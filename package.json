@@ -1,0 +1,44 @@
+{
+  "name": "@fluid/theme-framework",
+  "version": "0.1.0",
+  "description": "A modern, semantic design system using CSS layers and custom properties",
+  "main": "src/fluid.css",
+  "scripts": {
+    "serve": "npx http-server examples -o",
+    "test": "echo \"Visual testing only - open examples/foundation.html in browser\""
+  },
+  "keywords": [
+    "css",
+    "design-system",
+    "theme",
+    "framework",
+    "semantic",
+    "web-components",
+    "css-layers",
+    "custom-properties"
+  ],
+  "author": "Neil White",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/[your-username]/the-fluid-theme-v2c.git"
+  },
+  "bugs": {
+    "url": "https://github.com/[your-username]/the-fluid-theme-v2c/issues"
+  },
+  "homepage": "https://github.com/[your-username]/the-fluid-theme-v2c#readme",
+  "devDependencies": {},
+  "engines": {
+    "browsers": [
+      "last 2 Chrome versions",
+      "last 2 Firefox versions",
+      "last 2 Safari versions",
+      "last 2 Edge versions"
+    ]
+  },
+  "browserslist": [
+    "supports css-cascade-layers",
+    "supports css-container-queries",
+    "supports css-logical-properties"
+  ]
+}
