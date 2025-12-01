@@ -1,0 +1,302 @@
+/**
+ * Fluid Framework - Button Component
+ * @layer components
+ *
+ * Buttons should invite interaction, not demand it.
+ * Clear affordance, gentle feedback, natural transitions.
+ *
+ * Usage:
+ *   <button>Default</button>
+ *   <button data-variant="secondary">Secondary</button>
+ *   <button data-variant="ghost">Ghost</button>
+ *   <button data-variant="danger">Danger</button>
+ *   <button data-size="sm">Small</button>
+ *   <button data-size="lg">Large</button>
+ */
+
+@layer components {
+  /* Base button - the foundation */
+  button,
+  [role="button"],
+  .button {
+    /* Reset */
+    appearance: none;
+    border: none;
+    background: none;
+
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    /* Sizing */
+    padding-block: var(--_btn-padding-block, var(--space-3));
+    padding-inline: var(--_btn-padding-inline, var(--space-5));
+    min-block-size: var(--_btn-min-height, 2.75rem);
+
+    /* Typography */
+    font-family: inherit;
+    font-size: var(--_btn-font-size, var(--font-size-base));
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-none);
+    text-decoration: none;
+    white-space: nowrap;
+
+    /* Visual */
+    color: var(--_btn-color, white);
+    background-color: var(--_btn-bg, var(--color-primary));
+    border: var(--border-width) solid var(--_btn-border, transparent);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+
+    /* Transitions - smooth like flowing water */
+    transition:
+      background-color var(--duration-fast) var(--ease-fluid),
+      border-color var(--duration-fast) var(--ease-fluid),
+      color var(--duration-fast) var(--ease-fluid),
+      box-shadow var(--duration-fast) var(--ease-fluid),
+      transform var(--duration-fast) var(--ease-settle);
+  }
+
+  /* Hover state - gentle lift */
+  button:hover:not(:disabled),
+  [role="button"]:hover:not(:disabled),
+  .button:hover:not(:disabled) {
+    background-color: var(--_btn-bg-hover, var(--color-primary-hover));
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Active state - subtle press */
+  button:active:not(:disabled),
+  [role="button"]:active:not(:disabled),
+  .button:active:not(:disabled) {
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+
+  /* Focus state - clear ring */
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  .button:focus-visible {
+    outline: none;
+    box-shadow:
+      var(--shadow-glow),
+      0 0 0 2px var(--color-background),
+      0 0 0 4px var(--color-primary);
+  }
+
+  /* Disabled state */
+  button:disabled,
+  [role="button"][aria-disabled="true"],
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+
+  /* ========================================
+     VARIANTS
+     Each with its own personality
+     ======================================== */
+
+  /* Secondary - understated, supportive */
+  button[data-variant="secondary"],
+  .button[data-variant="secondary"] {
+    --_btn-color: var(--color-text);
+    --_btn-bg: var(--color-surface);
+    --_btn-bg-hover: var(--color-surface-raised);
+    --_btn-border: var(--color-border);
+  }
+
+  button[data-variant="secondary"]:hover:not(:disabled),
+  .button[data-variant="secondary"]:hover:not(:disabled) {
+    --_btn-border: var(--color-text-subtle);
+  }
+
+  /* Ghost - minimal, text-like */
+  button[data-variant="ghost"],
+  .button[data-variant="ghost"] {
+    --_btn-color: var(--color-text);
+    --_btn-bg: transparent;
+    --_btn-bg-hover: var(--color-surface);
+    --_btn-border: transparent;
+  }
+
+  /* Outline - bordered, no fill */
+  button[data-variant="outline"],
+  .button[data-variant="outline"] {
+    --_btn-color: var(--color-primary);
+    --_btn-bg: transparent;
+    --_btn-bg-hover: var(--color-primary-subtle);
+    --_btn-border: var(--color-primary);
+  }
+
+  /* Danger - for destructive actions */
+  button[data-variant="danger"],
+  .button[data-variant="danger"] {
+    --_btn-color: white;
+    --_btn-bg: var(--color-error);
+    --_btn-bg-hover: hsl(0 60% 45%);
+  }
+
+  /* Subtle danger - less alarming */
+  button[data-variant="danger-subtle"],
+  .button[data-variant="danger-subtle"] {
+    --_btn-color: var(--color-error);
+    --_btn-bg: hsl(0 50% 95%);
+    --_btn-bg-hover: hsl(0 50% 90%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    button[data-variant="danger-subtle"],
+    .button[data-variant="danger-subtle"] {
+      --_btn-bg: hsl(0 30% 15%);
+      --_btn-bg-hover: hsl(0 35% 20%);
+    }
+  }
+
+
+  /* ========================================
+     SIZES
+     Small for tight spaces, large for emphasis
+     ======================================== */
+
+  /* Extra small */
+  button[data-size="xs"],
+  .button[data-size="xs"] {
+    --_btn-padding-block: var(--space-1);
+    --_btn-padding-inline: var(--space-2);
+    --_btn-font-size: var(--font-size-xs);
+    --_btn-min-height: 1.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Small */
+  button[data-size="sm"],
+  .button[data-size="sm"] {
+    --_btn-padding-block: var(--space-2);
+    --_btn-padding-inline: var(--space-4);
+    --_btn-font-size: var(--font-size-sm);
+    --_btn-min-height: 2.25rem;
+  }
+
+  /* Large */
+  button[data-size="lg"],
+  .button[data-size="lg"] {
+    --_btn-padding-block: var(--space-4);
+    --_btn-padding-inline: var(--space-6);
+    --_btn-font-size: var(--font-size-lg);
+    --_btn-min-height: 3.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Extra large */
+  button[data-size="xl"],
+  .button[data-size="xl"] {
+    --_btn-padding-block: var(--space-5);
+    --_btn-padding-inline: var(--space-8);
+    --_btn-font-size: var(--font-size-xl);
+    --_btn-min-height: 4rem;
+    border-radius: var(--radius-lg);
+  }
+
+
+  /* ========================================
+     MODIFIERS
+     Additional behavioral variations
+     ======================================== */
+
+  /* Full width */
+  button[data-full],
+  .button[data-full] {
+    inline-size: 100%;
+  }
+
+  /* Icon only - square aspect */
+  button[data-icon],
+  .button[data-icon] {
+    --_btn-padding-inline: var(--_btn-padding-block);
+    aspect-ratio: 1;
+  }
+
+  /* Pill shape */
+  button[data-pill],
+  .button[data-pill] {
+    border-radius: var(--radius-full);
+  }
+
+  /* Loading state */
+  button[data-loading],
+  .button[data-loading] {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+  }
+
+  button[data-loading]::after,
+  .button[data-loading]::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    inline-size: 1.25em;
+    block-size: 1.25em;
+    margin-inline-start: -0.625em;
+    margin-block-start: -0.625em;
+    border: 2px solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: var(--radius-full);
+    animation: button-spin 0.6s linear infinite;
+    color: var(--_btn-color, white);
+    opacity: 0.8;
+  }
+
+  @keyframes button-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  /* ========================================
+     BUTTON GROUPS
+     Multiple buttons together
+     ======================================== */
+
+  .button-group {
+    display: inline-flex;
+    isolation: isolate;
+  }
+
+  .button-group > button,
+  .button-group > .button {
+    border-radius: 0;
+    position: relative;
+  }
+
+  .button-group > button:first-child,
+  .button-group > .button:first-child {
+    border-start-start-radius: var(--radius-md);
+    border-end-start-radius: var(--radius-md);
+  }
+
+  .button-group > button:last-child,
+  .button-group > .button:last-child {
+    border-start-end-radius: var(--radius-md);
+    border-end-end-radius: var(--radius-md);
+  }
+
+  .button-group > button:not(:first-child),
+  .button-group > .button:not(:first-child) {
+    margin-inline-start: -1px;
+  }
+
+  .button-group > button:hover,
+  .button-group > button:focus-visible,
+  .button-group > .button:hover,
+  .button-group > .button:focus-visible {
+    z-index: 1;
+  }
+}

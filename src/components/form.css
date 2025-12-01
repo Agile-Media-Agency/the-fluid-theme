@@ -1,0 +1,481 @@
+/**
+ * Fluid Framework - Form Components
+ * @layer components
+ *
+ * Forms should feel welcoming, not like paperwork.
+ * Clear labels, gentle feedback, graceful validation.
+ *
+ * Includes:
+ * - Form groups and layouts
+ * - Custom checkboxes and radios
+ * - Toggle switches
+ * - Input groups and addons
+ * - Form validation states
+ */
+
+@layer components {
+  /* ========================================
+     FORM GROUP
+     Label + input combinations
+     ======================================== */
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-group + .form-group {
+    margin-block-start: var(--space-5);
+  }
+
+  /* Inline form group */
+  .form-group[data-inline] {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .form-group[data-inline] label {
+    flex-shrink: 0;
+    margin-block-end: 0;
+  }
+
+  /* Label styling */
+  .form-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+  }
+
+  /* Required indicator */
+  .form-label[data-required]::after {
+    content: " *";
+    color: var(--color-error);
+  }
+
+  /* Help text */
+  .form-help {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-start: var(--space-1);
+  }
+
+  /* Error message */
+  .form-error {
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+    margin-block-start: var(--space-1);
+  }
+
+
+  /* ========================================
+     INPUT GROUP
+     Inputs with addons
+     ======================================== */
+
+  .input-group {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .input-group > input,
+  .input-group > select {
+    flex: 1;
+    min-inline-size: 0;
+    border-radius: 0;
+  }
+
+  .input-group > input:first-child,
+  .input-group > select:first-child {
+    border-start-start-radius: var(--radius-md);
+    border-end-start-radius: var(--radius-md);
+  }
+
+  .input-group > input:last-child,
+  .input-group > select:last-child {
+    border-start-end-radius: var(--radius-md);
+    border-end-end-radius: var(--radius-md);
+  }
+
+  .input-group__addon {
+    display: flex;
+    align-items: center;
+    padding-inline: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .input-group__addon:first-child {
+    border-inline-end: none;
+    border-start-start-radius: var(--radius-md);
+    border-end-start-radius: var(--radius-md);
+  }
+
+  .input-group__addon:last-child {
+    border-inline-start: none;
+    border-start-end-radius: var(--radius-md);
+    border-end-end-radius: var(--radius-md);
+  }
+
+
+  /* ========================================
+     CUSTOM CHECKBOX
+     Beautiful checkmarks
+     ======================================== */
+
+  .checkbox {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checkbox__input {
+    /* Hide native but keep accessible */
+    position: absolute;
+    opacity: 0;
+    inline-size: 0;
+    block-size: 0;
+  }
+
+  .checkbox__box {
+    flex-shrink: 0;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    border: var(--border-width-thick) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background-color var(--duration-fast) var(--ease-fluid),
+      border-color var(--duration-fast) var(--ease-fluid),
+      transform var(--duration-fast) var(--ease-settle);
+  }
+
+  /* Checkmark icon */
+  .checkbox__box::after {
+    content: "";
+    inline-size: 0.5rem;
+    block-size: 0.25rem;
+    border-inline-start: 2px solid white;
+    border-block-end: 2px solid white;
+    transform: rotate(-45deg) scale(0);
+    transition: transform var(--duration-fast) var(--ease-settle);
+  }
+
+  /* Hover state */
+  .checkbox:hover .checkbox__box {
+    border-color: var(--color-primary);
+  }
+
+  /* Focus state */
+  .checkbox__input:focus-visible + .checkbox__box {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Checked state */
+  .checkbox__input:checked + .checkbox__box {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .checkbox__input:checked + .checkbox__box::after {
+    transform: rotate(-45deg) scale(1);
+  }
+
+  /* Indeterminate state */
+  .checkbox__input:indeterminate + .checkbox__box::after {
+    inline-size: 0.5rem;
+    block-size: 0;
+    border-inline-start: none;
+    transform: rotate(0) scale(1);
+  }
+
+  /* Disabled state */
+  .checkbox__input:disabled + .checkbox__box {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .checkbox__input:disabled ~ .checkbox__label {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .checkbox__label {
+    font-size: var(--font-size-base);
+    line-height: 1.25rem;
+  }
+
+
+  /* ========================================
+     CUSTOM RADIO
+     Circular selection
+     ======================================== */
+
+  .radio {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .radio__input {
+    position: absolute;
+    opacity: 0;
+    inline-size: 0;
+    block-size: 0;
+  }
+
+  .radio__circle {
+    flex-shrink: 0;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    border: var(--border-width-thick) solid var(--color-border);
+    border-radius: var(--radius-full);
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      border-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .radio__circle::after {
+    content: "";
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+    transform: scale(0);
+    transition: transform var(--duration-fast) var(--ease-settle);
+  }
+
+  .radio:hover .radio__circle {
+    border-color: var(--color-primary);
+  }
+
+  .radio__input:focus-visible + .radio__circle {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .radio__input:checked + .radio__circle {
+    border-color: var(--color-primary);
+  }
+
+  .radio__input:checked + .radio__circle::after {
+    transform: scale(1);
+  }
+
+  .radio__input:disabled + .radio__circle {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .radio__input:disabled ~ .radio__label {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .radio__label {
+    font-size: var(--font-size-base);
+    line-height: 1.25rem;
+  }
+
+  /* Radio group */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .radio-group[data-inline] {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+  }
+
+
+  /* ========================================
+     TOGGLE SWITCH
+     On/off control
+     ======================================== */
+
+  .switch {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .switch__input {
+    position: absolute;
+    opacity: 0;
+    inline-size: 0;
+    block-size: 0;
+  }
+
+  .switch__track {
+    position: relative;
+    inline-size: 2.75rem;
+    block-size: 1.5rem;
+    background-color: var(--color-border);
+    border-radius: var(--radius-full);
+    transition: background-color var(--duration-normal) var(--ease-fluid);
+  }
+
+  .switch__thumb {
+    position: absolute;
+    inset-block-start: 0.125rem;
+    inset-inline-start: 0.125rem;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    background-color: white;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform var(--duration-normal) var(--ease-settle),
+      box-shadow var(--duration-fast) var(--ease-fluid);
+  }
+
+  .switch:hover .switch__track {
+    background-color: var(--color-text-subtle);
+  }
+
+  .switch__input:focus-visible + .switch__track {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .switch__input:checked + .switch__track {
+    background-color: var(--color-primary);
+  }
+
+  .switch__input:checked + .switch__track .switch__thumb {
+    transform: translateX(1.25rem);
+  }
+
+  .switch__input:disabled + .switch__track {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .switch__input:disabled ~ .switch__label {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .switch__label {
+    font-size: var(--font-size-base);
+  }
+
+  /* Small switch */
+  .switch[data-size="sm"] .switch__track {
+    inline-size: 2rem;
+    block-size: 1.125rem;
+  }
+
+  .switch[data-size="sm"] .switch__thumb {
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+
+  .switch[data-size="sm"] .switch__input:checked + .switch__track .switch__thumb {
+    transform: translateX(0.875rem);
+  }
+
+
+  /* ========================================
+     VALIDATION STATES
+     Clear feedback
+     ======================================== */
+
+  /* Valid/Success state */
+  input[data-valid],
+  textarea[data-valid],
+  select[data-valid],
+  .form-group[data-valid] input,
+  .form-group[data-valid] textarea,
+  .form-group[data-valid] select {
+    border-color: var(--color-success);
+  }
+
+  input[data-valid]:focus,
+  textarea[data-valid]:focus,
+  select[data-valid]:focus {
+    box-shadow: 0 0 0 3px hsl(145 45% 42% / 0.2);
+  }
+
+  /* Invalid/Error state */
+  input[data-invalid],
+  textarea[data-invalid],
+  select[data-invalid],
+  input:invalid:not(:placeholder-shown),
+  .form-group[data-invalid] input,
+  .form-group[data-invalid] textarea,
+  .form-group[data-invalid] select {
+    border-color: var(--color-error);
+  }
+
+  input[data-invalid]:focus,
+  textarea[data-invalid]:focus,
+  select[data-invalid]:focus,
+  input:invalid:not(:placeholder-shown):focus {
+    box-shadow: 0 0 0 3px hsl(0 55% 50% / 0.2);
+  }
+
+
+  /* ========================================
+     FORM LAYOUT
+     Multi-column forms
+     ======================================== */
+
+  .form-row {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .form-actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-block-start: var(--space-6);
+    padding-block-start: var(--space-6);
+    border-block-start: 1px solid var(--color-border-subtle);
+  }
+
+  .form-actions[data-align="end"] {
+    justify-content: flex-end;
+  }
+
+  .form-actions[data-align="between"] {
+    justify-content: space-between;
+  }
+
+
+  /* ========================================
+     FIELDSET & LEGEND
+     Grouped form sections
+     ======================================== */
+
+  fieldset.form-fieldset {
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin-block-end: var(--space-6);
+  }
+
+  fieldset.form-fieldset legend {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-semibold);
+    padding-inline: var(--space-2);
+    color: var(--color-text);
+  }
+}

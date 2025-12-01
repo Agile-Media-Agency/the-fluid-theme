@@ -43,14 +43,14 @@
 
 
 /* ========================================
-   COMPONENTS (Coming in Phase 2)
+   COMPONENTS
    Reusable UI components
    ======================================== */
 
-/* @import "./components/button.css"; */
-/* @import "./components/card.css"; */
-/* @import "./components/nav.css"; */
-/* @import "./components/form.css"; */
+@import "./components/button.css";
+@import "./components/card.css";
+@import "./components/nav.css";
+@import "./components/form.css";
 
 
 /* ========================================

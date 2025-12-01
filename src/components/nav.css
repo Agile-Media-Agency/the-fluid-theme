@@ -1,0 +1,381 @@
+/**
+ * Fluid Framework - Navigation Component
+ * @layer components
+ *
+ * Navigation should guide, not dominate.
+ * Clear hierarchy, gentle transitions, natural flow.
+ *
+ * Usage:
+ *   <nav class="nav">
+ *     <a href="/" class="nav__brand">Brand</a>
+ *     <ul class="nav__menu" role="list">
+ *       <li><a href="#" class="nav__link">Link</a></li>
+ *       <li><a href="#" class="nav__link" aria-current="page">Current</a></li>
+ *     </ul>
+ *   </nav>
+ *
+ * Variants:
+ *   data-variant="transparent" - Transparent background
+ *   data-variant="elevated" - With shadow
+ *   data-sticky - Sticky positioning
+ */
+
+@layer components {
+  /* ========================================
+     MAIN NAVIGATION
+     ======================================== */
+
+  .nav {
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-4);
+    padding-inline: var(--space-5);
+
+    /* Visual */
+    background-color: var(--_nav-bg, var(--color-background));
+    border-block-end: 1px solid var(--_nav-border, var(--color-border-subtle));
+
+    /* Container for responsive behavior */
+    container-type: inline-size;
+    container-name: nav;
+  }
+
+  /* Sticky navigation */
+  .nav[data-sticky] {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-sticky);
+    backdrop-filter: blur(8px);
+    background-color: hsl(from var(--color-background) h s l / 0.9);
+  }
+
+  /* Transparent variant */
+  .nav[data-variant="transparent"] {
+    --_nav-bg: transparent;
+    --_nav-border: transparent;
+  }
+
+  /* Elevated variant */
+  .nav[data-variant="elevated"] {
+    --_nav-border: transparent;
+    box-shadow: var(--shadow-sm);
+  }
+
+
+  /* Brand / Logo */
+  .nav__brand {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+    transition: opacity var(--duration-fast) var(--ease-fluid);
+  }
+
+  .nav__brand:hover {
+    opacity: 0.8;
+  }
+
+  .nav__brand img,
+  .nav__brand svg {
+    block-size: 2rem;
+    inline-size: auto;
+  }
+
+
+  /* Menu container */
+  .nav__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Push menu to end */
+  .nav__menu[data-align="end"] {
+    margin-inline-start: auto;
+  }
+
+  /* Space between brand and menu */
+  .nav__menu[data-align="center"] {
+    margin-inline: auto;
+  }
+
+
+  /* Navigation links */
+  .nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition:
+      color var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .nav__link:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  .nav__link[aria-current="page"],
+  .nav__link[data-active] {
+    color: var(--color-primary);
+    background-color: var(--color-primary-subtle);
+  }
+
+
+  /* Actions area (buttons, search, etc.) */
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-inline-start: auto;
+  }
+
+
+  /* ========================================
+     RESPONSIVE NAVIGATION
+     Adapts to container width
+     ======================================== */
+
+  /* Mobile toggle button */
+  .nav__toggle {
+    display: none;
+    padding: var(--space-2);
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .nav__toggle svg {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+  /* Narrow container - stack navigation */
+  @container nav (max-width: 40rem) {
+    .nav {
+      flex-wrap: wrap;
+    }
+
+    .nav__toggle {
+      display: flex;
+      margin-inline-start: auto;
+    }
+
+    .nav__menu {
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-1);
+      padding-block-start: var(--space-4);
+      display: none;
+    }
+
+    .nav__menu[data-open] {
+      display: flex;
+    }
+
+    .nav__link {
+      padding: var(--space-3);
+    }
+
+    .nav__actions {
+      flex-basis: 100%;
+      padding-block-start: var(--space-4);
+      border-block-start: 1px solid var(--color-border-subtle);
+      margin-block-start: var(--space-4);
+    }
+  }
+
+
+  /* ========================================
+     BREADCRUMB NAVIGATION
+     ======================================== */
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: var(--font-size-sm);
+  }
+
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .breadcrumb__item::after {
+    content: "/";
+    color: var(--color-text-subtle);
+  }
+
+  .breadcrumb__item:last-child::after {
+    content: none;
+  }
+
+  .breadcrumb__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--color-primary);
+  }
+
+  .breadcrumb__item:last-child .breadcrumb__link,
+  .breadcrumb__link[aria-current="page"] {
+    color: var(--color-text);
+    pointer-events: none;
+  }
+
+
+  /* ========================================
+     PAGINATION
+     ======================================== */
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .pagination__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 2.5rem;
+    min-block-size: 2.5rem;
+    padding: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition:
+      color var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .pagination__link:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  .pagination__link[aria-current="page"],
+  .pagination__link[data-active] {
+    color: white;
+    background-color: var(--color-primary);
+  }
+
+  .pagination__link[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Prev/Next buttons */
+  .pagination__link[data-prev],
+  .pagination__link[data-next] {
+    gap: var(--space-2);
+  }
+
+  .pagination__ellipsis {
+    padding: var(--space-2);
+    color: var(--color-text-subtle);
+  }
+
+
+  /* ========================================
+     TABS NAVIGATION
+     ======================================== */
+
+  .tabs {
+    display: flex;
+    gap: var(--space-1);
+    border-block-end: 1px solid var(--color-border-subtle);
+  }
+
+  .tabs__tab {
+    position: relative;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition:
+      color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .tabs__tab::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: -1px;
+    block-size: 2px;
+    background-color: transparent;
+    border-radius: var(--radius-full);
+    transition: background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .tabs__tab:hover {
+    color: var(--color-text);
+  }
+
+  .tabs__tab[aria-selected="true"],
+  .tabs__tab[data-active] {
+    color: var(--color-primary);
+  }
+
+  .tabs__tab[aria-selected="true"]::after,
+  .tabs__tab[data-active]::after {
+    background-color: var(--color-primary);
+  }
+
+  /* Contained tabs variant */
+  .tabs[data-variant="contained"] {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: none;
+    padding: var(--space-1);
+  }
+
+  .tabs[data-variant="contained"] .tabs__tab {
+    border-radius: var(--radius-sm);
+  }
+
+  .tabs[data-variant="contained"] .tabs__tab::after {
+    display: none;
+  }
+
+  .tabs[data-variant="contained"] .tabs__tab[aria-selected="true"],
+  .tabs[data-variant="contained"] .tabs__tab[data-active] {
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-xs);
+  }
+}
