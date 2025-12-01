@@ -1,0 +1,159 @@
+/**
+ * Fluid Framework - Modern CSS Reset
+ * @layer reset
+ *
+ * A minimal, modern reset that establishes sensible defaults
+ * without fighting against you. Uses :where() for zero specificity
+ * where appropriate, allowing easy overrides.
+ */
+
+@layer reset {
+  /* Box model normalization - the foundation of everything */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  /* Document setup */
+  :where(html) {
+    block-size: 100%;
+    color-scheme: light dark;
+    hanging-punctuation: first last;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Prevent font size inflation on mobile */
+    -moz-text-size-adjust: 100%;
+  }
+
+  /* Body defaults - the canvas */
+  :where(body) {
+    min-block-size: 100%;
+    line-height: 1.6;
+    font-family: var(--font-system, system-ui, -apple-system, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Responsive media - images flow naturally */
+  :where(img, picture, video, canvas, svg) {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  /* Form elements inherit typography */
+  :where(input, button, textarea, select) {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* Prevent textarea from breaking layout */
+  :where(textarea) {
+    resize: vertical;
+  }
+
+  /* Text overflow prevention */
+  :where(p, h1, h2, h3, h4, h5, h6, li, figcaption) {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Headings - tighter line height for larger text */
+  :where(h1, h2, h3, h4, h5, h6) {
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  /* Paragraphs - optimal reading width when in containers */
+  :where(p) {
+    text-wrap: pretty;
+  }
+
+  /* Remove list styles when role is navigation */
+  :where(ul, ol)[role="list"],
+  :where(ul, ol)[role="navigation"] {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Links - subtle offset for better readability */
+  :where(a) {
+    color: inherit;
+    text-underline-offset: 0.2em;
+  }
+
+  /* Anchor links within same page */
+  :where(a[href^="#"]) {
+    scroll-margin-block-start: 2rem;
+  }
+
+  /* Focus styles - visible only for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid var(--color-focus, currentColor);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Tables - collapse borders for cleaner look */
+  :where(table) {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* Fieldset - remove default styling */
+  :where(fieldset) {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Legend - reset positioning */
+  :where(legend) {
+    padding: 0;
+  }
+
+  /* Summary - cursor indicates interactivity */
+  :where(summary) {
+    cursor: pointer;
+  }
+
+  /* Dialog - remove default styling */
+  :where(dialog) {
+    padding: 0;
+    border: none;
+  }
+
+  /* Remove animations for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Smooth scrolling for non-reduced-motion users */
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Print styles - clean output */
+  @media print {
+    :where(body) {
+      background: white;
+      color: black;
+    }
+  }
+}

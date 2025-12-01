@@ -1,0 +1,159 @@
+/**
+ * Fluid Framework
+ * A modern, semantic design system
+ *
+ * Like water: adaptable, natural, powerful yet gentle.
+ *
+ * @version 0.1.0
+ * @license MIT
+ *
+ * Layer Architecture:
+ * 1. reset     - Normalize browser defaults
+ * 2. tokens    - Design tokens (CSS custom properties)
+ * 3. base      - Default element styles
+ * 4. layouts   - Layout utilities and patterns
+ * 5. components - Reusable component styles
+ * 6. themes    - Theme overrides
+ * 7. utilities - Utility classes (use sparingly)
+ */
+
+/* Establish layer order first - this is crucial */
+@layer reset, tokens, base, layouts, components, themes, utilities;
+
+
+/* ========================================
+   CORE
+   Foundation styles every project needs
+   ======================================== */
+
+@import "./core/reset.css";
+@import "./core/tokens.css";
+@import "./core/base.css";
+
+
+/* ========================================
+   LAYOUTS (Coming in Phase 3)
+   Layout primitives and patterns
+   ======================================== */
+
+/* @import "./layouts/container.css"; */
+/* @import "./layouts/stack.css"; */
+/* @import "./layouts/grid.css"; */
+/* @import "./layouts/sidebar.css"; */
+
+
+/* ========================================
+   COMPONENTS (Coming in Phase 2)
+   Reusable UI components
+   ======================================== */
+
+/* @import "./components/button.css"; */
+/* @import "./components/card.css"; */
+/* @import "./components/nav.css"; */
+/* @import "./components/form.css"; */
+
+
+/* ========================================
+   THEMES (Coming in Phase 4)
+   Theme variations and overrides
+   ======================================== */
+
+/* @import "./themes/default.css"; */
+/* @import "./themes/dark.css"; */
+/* @import "./themes/corporate.css"; */
+
+
+/* ========================================
+   UTILITIES
+   Single-purpose utility classes
+   Use sparingly - prefer semantic components
+   ======================================== */
+
+@layer utilities {
+  /* Visually hidden but accessible to screen readers */
+  .sr-only {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Focus utility - show only with focus-visible */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  /* Flow utility - consistent vertical spacing */
+  .flow > * + * {
+    margin-block-start: var(--flow-space, var(--space-5));
+  }
+
+  /* Prose utility - optimal reading width */
+  .prose {
+    max-inline-size: var(--container-prose);
+  }
+
+  /* Center utility - horizontally centered content */
+  .center {
+    display: grid;
+    place-items: center;
+  }
+}
+
+
+/* ========================================
+   LAYOUTS LAYER
+   Basic layout utilities until Phase 3
+   ======================================== */
+
+@layer layouts {
+  /* Container - constrained width with centered content */
+  .container {
+    --_container-size: var(--container-xl);
+    inline-size: min(100% - var(--space-8), var(--_container-size));
+    margin-inline: auto;
+    container-type: inline-size;
+  }
+
+  .container--sm { --_container-size: var(--container-sm); }
+  .container--md { --_container-size: var(--container-md); }
+  .container--lg { --_container-size: var(--container-lg); }
+  .container--xl { --_container-size: var(--container-xl); }
+  .container--2xl { --_container-size: var(--container-2xl); }
+
+  /* Stack - vertical flow with consistent gaps */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap, var(--space-5));
+  }
+
+  /* Cluster - horizontal flow that wraps */
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap, var(--space-4));
+    align-items: var(--cluster-align, center);
+  }
+
+  /* Grid - auto-responsive grid */
+  .grid {
+    display: grid;
+    gap: var(--grid-gap, var(--space-5));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--grid-min, 16rem)), 1fr)
+    );
+  }
+
+  /* Section - consistent vertical padding */
+  .section {
+    padding-block: var(--space-section);
+  }
+}

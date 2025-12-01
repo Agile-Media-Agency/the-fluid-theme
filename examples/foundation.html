@@ -1,639 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fluid Framework - Foundation Elements</title>
-    
-    <style>
-        /* ============================================
-           LAYER ARCHITECTURE
-           Cascade layers for predictable specificity
-           ============================================ */
-        @layer reset, tokens, base, layouts, components, themes, utilities;
-        
-        /* ============================================
-           MODERN RESET LAYER
-           ============================================ */
-        @layer reset {
-            /* Box model normalization */
-            *, *::before, *::after {
-                box-sizing: border-box;
-                margin: 0;
-            }
-            
-            /* Modern HTML setup */
-            :where(html) {
-                block-size: 100%;
-                color-scheme: light dark;
-                hanging-punctuation: first last;
-                -webkit-text-size-adjust: 100%;
-                text-size-adjust: 100%;
-            }
-            
-            /* Body defaults */
-            :where(body) {
-                min-block-size: 100%;
-                line-height: 1.5;
-                font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-                -webkit-font-smoothing: antialiased;
-                text-rendering: optimizeLegibility;
-            }
-            
-            /* Responsive media */
-            :where(img, picture, video, canvas, svg) {
-                display: block;
-                max-inline-size: 100%;
-                block-size: auto;
-            }
-            
-            /* Form elements */
-            :where(input, button, textarea, select) {
-                font: inherit;
-                color: inherit;
-            }
-            
-            /* Text overflow */
-            :where(p, h1, h2, h3, h4, h5, h6) {
-                overflow-wrap: break-word;
-            }
-            
-            /* Remove list styles when role is present */
-            :where(ul, ol)[role="list"] {
-                list-style: none;
-                padding: 0;
-            }
-            
-            /* Anchor defaults */
-            :where(a) {
-                text-underline-offset: 0.2ex;
-            }
-            
-            /* Focus visible only for keyboard */
-            :focus-visible {
-                outline: 2px solid var(--color-focus, currentColor);
-                outline-offset: 2px;
-            }
-            
-            :focus:not(:focus-visible) {
-                outline: none;
-            }
-            
-            /* Smooth scrolling for those who haven't opted out */
-            @media (prefers-reduced-motion: no-preference) {
-                :where(html:focus-within) {
-                    scroll-behavior: smooth;
-                }
-            }
-        }
-        
-        /* ============================================
-           DESIGN TOKENS LAYER
-           The single source of truth for all values
-           ============================================ */
-        @layer tokens {
-            :root {
-                /* COLOR SYSTEM - Using modern color spaces */
-                --color-primary-hue: 220;
-                --color-primary-sat: 90%;
-                --color-primary-light: 50%;
-                --color-primary: hsl(var(--color-primary-hue) var(--color-primary-sat) var(--color-primary-light));
-                
-                /* Semantic colors with automatic dark mode consideration */
-                --color-text: light-dark(#1a1a1a, #f0f0f0);
-                --color-background: light-dark(#ffffff, #0a0a0a);
-                --color-surface: light-dark(#f8f9fa, #1a1a1a);
-                --color-border: light-dark(#dee2e6, #2a2a2a);
-                --color-focus: var(--color-primary);
-                
-                /* TYPOGRAPHY SYSTEM */
-                --font-system: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-                --font-serif: "Iowan Old Style", "Georgia", "Times New Roman", serif;
-                --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
-                
-                /* Fluid type scale using clamp() */
-                --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-                --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-                --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-                --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-                --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-                --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-                --font-size-3xl: clamp(2rem, 1.7rem + 1.5vw, 2.5rem);
-                --font-size-4xl: clamp(2.5rem, 2rem + 2.5vw, 3rem);
-                
-                /* SPACING SYSTEM - Fibonacci-inspired scale */
-                --space-0: 0;
-                --space-px: 1px;
-                --space-0_5: 0.125rem;  /* 2px */
-                --space-1: 0.25rem;     /* 4px */
-                --space-2: 0.5rem;      /* 8px */
-                --space-3: 0.75rem;     /* 12px */
-                --space-5: 1.25rem;     /* 20px */
-                --space-8: 2rem;        /* 32px */
-                --space-13: 3.25rem;    /* 52px */
-                --space-21: 5.25rem;    /* 84px */
-                
-                /* CONTAINER SYSTEM */
-                --container-xs: 20rem;    /* 320px */
-                --container-sm: 40rem;    /* 640px */
-                --container-md: 48rem;    /* 768px */
-                --container-lg: 64rem;    /* 1024px */
-                --container-xl: 80rem;    /* 1280px */
-                --container-2xl: 96rem;   /* 1536px */
-                
-                /* ANIMATION TOKENS */
-                --duration-instant: 50ms;
-                --duration-fast: 150ms;
-                --duration-moderate: 250ms;
-                --duration-slow: 500ms;
-                --duration-slower: 1000ms;
-                
-                --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
-                --easing-in: cubic-bezier(0.4, 0, 1, 1);
-                --easing-out: cubic-bezier(0, 0, 0.2, 1);
-                --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                
-                /* LAYOUT TOKENS */
-                --radius-sm: 0.125rem;
-                --radius-md: 0.375rem;
-                --radius-lg: 0.5rem;
-                --radius-xl: 1rem;
-                --radius-full: 9999px;
-                
-                /* SHADOWS - Using modern blur values */
-                --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.05);
-                --shadow-sm: 0 2px 4px -1px hsl(0 0% 0% / 0.07);
-                --shadow-md: 0 4px 6px -2px hsl(0 0% 0% / 0.1);
-                --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1);
-                --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.15);
-                
-                /* Z-INDEX SCALE */
-                --z-base: 0;
-                --z-dropdown: 1000;
-                --z-sticky: 1100;
-                --z-overlay: 1200;
-                --z-modal: 1300;
-                --z-popover: 1400;
-                --z-toast: 1500;
-                --z-tooltip: 1600;
-            }
-            
-            /* High contrast mode adjustments */
-            @media (prefers-contrast: high) {
-                :root {
-                    --color-border: light-dark(#000000, #ffffff);
-                }
-            }
-            
-            /* Reduced motion preferences */
-            @media (prefers-reduced-motion: reduce) {
-                :root {
-                    --duration-instant: 0ms;
-                    --duration-fast: 0ms;
-                    --duration-moderate: 0ms;
-                    --duration-slow: 0ms;
-                    --duration-slower: 0ms;
-                }
-            }
-        }
-        
-        /* ============================================
-           BASE ELEMENT STYLES
-           ============================================ */
-        @layer base {
-            /* TYPOGRAPHY */
-            h1 {
-                font-size: var(--font-size-4xl);
-                line-height: 1.1;
-                font-weight: 800;
-                letter-spacing: -0.02em;
-                margin-block-end: var(--space-3);
-            }
-            
-            h2 {
-                font-size: var(--font-size-3xl);
-                line-height: 1.2;
-                font-weight: 700;
-                letter-spacing: -0.01em;
-                margin-block-end: var(--space-3);
-            }
-            
-            h3 {
-                font-size: var(--font-size-2xl);
-                line-height: 1.3;
-                font-weight: 600;
-                margin-block-end: var(--space-2);
-            }
-            
-            h4 {
-                font-size: var(--font-size-xl);
-                line-height: 1.4;
-                font-weight: 600;
-                margin-block-end: var(--space-2);
-            }
-            
-            h5 {
-                font-size: var(--font-size-lg);
-                line-height: 1.5;
-                font-weight: 500;
-                margin-block-end: var(--space-2);
-            }
-            
-            h6 {
-                font-size: var(--font-size-base);
-                line-height: 1.5;
-                font-weight: 500;
-                margin-block-end: var(--space-2);
-            }
-            
-            p {
-                font-size: var(--font-size-base);
-                margin-block-end: var(--space-5);
-            }
-            
-            a {
-                color: var(--color-primary);
-                text-decoration: underline;
-                transition: opacity var(--duration-fast) var(--easing-default);
-            }
-            
-            a:hover {
-                opacity: 0.8;
-            }
-            
-            /* LISTS */
-            ul, ol {
-                padding-inline-start: var(--space-8);
-                margin-block-end: var(--space-5);
-            }
-            
-            li {
-                margin-block-end: var(--space-1);
-            }
-            
-            /* CODE */
-            code {
-                font-family: var(--font-mono);
-                font-size: 0.875em;
-                background: light-dark(#f4f4f5, #18181b);
-                padding-inline: var(--space-1);
-                border-radius: var(--radius-sm);
-            }
-            
-            pre {
-                font-family: var(--font-mono);
-                font-size: var(--font-size-sm);
-                background: light-dark(#f4f4f5, #18181b);
-                padding: var(--space-5);
-                border-radius: var(--radius-md);
-                overflow-x: auto;
-                margin-block-end: var(--space-5);
-            }
-            
-            pre code {
-                background: none;
-                padding: 0;
-            }
-            
-            /* FORMS */
-            input, textarea, select {
-                inline-size: 100%;
-                padding: var(--space-2) var(--space-3);
-                background: var(--color-background);
-                border: 1px solid var(--color-border);
-                border-radius: var(--radius-md);
-                transition: border-color var(--duration-fast) var(--easing-default);
-            }
-            
-            input:hover, textarea:hover, select:hover {
-                border-color: var(--color-primary);
-            }
-            
-            button {
-                cursor: pointer;
-                padding: var(--space-2) var(--space-5);
-                background: var(--color-primary);
-                color: white;
-                border: none;
-                border-radius: var(--radius-md);
-                font-weight: 500;
-                transition: transform var(--duration-fast) var(--easing-default),
-                            box-shadow var(--duration-fast) var(--easing-default);
-            }
-            
-            button:hover {
-                transform: translateY(-1px);
-                box-shadow: var(--shadow-md);
-            }
-            
-            button:active {
-                transform: translateY(0);
-            }
-            
-            /* TABLES */
-            table {
-                inline-size: 100%;
-                border-collapse: collapse;
-                margin-block-end: var(--space-5);
-            }
-            
-            th, td {
-                padding: var(--space-3);
-                text-align: start;
-                border-block-end: 1px solid var(--color-border);
-            }
-            
-            th {
-                font-weight: 600;
-                background: var(--color-surface);
-            }
-            
-            /* SEMANTIC ELEMENTS */
-            blockquote {
-                padding-inline-start: var(--space-5);
-                border-inline-start: 3px solid var(--color-primary);
-                margin-block: var(--space-5);
-                font-style: italic;
-            }
-            
-            hr {
-                border: none;
-                border-block-start: 1px solid var(--color-border);
-                margin-block: var(--space-8);
-            }
-            
-            mark {
-                background: hsl(var(--color-primary-hue) var(--color-primary-sat) 90%);
-                padding-inline: var(--space-1);
-            }
-        }
-        
-        /* ============================================
-           LAYOUT UTILITIES (Container Query Ready)
-           ============================================ */
-        @layer layouts {
-            .container {
-                --_container-size: var(--container-xl);
-                inline-size: min(100% - var(--space-8), var(--_container-size));
-                margin-inline: auto;
-                container-type: inline-size;
-            }
-            
-            /* Container query example */
-            @container (min-width: 40rem) {
-                .responsive-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-            }
-        }
-        
-        /* ============================================
-           DEMO LAYOUT
-           ============================================ */
-        .demo-section {
-            padding-block: var(--space-8);
-            border-block-end: 1px solid var(--color-border);
-        }
-        
-        .demo-section > * + * {
-            margin-block-start: var(--space-5);
-        }
-        
-        .element-group {
-            padding: var(--space-5);
-            background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            margin-block: var(--space-5);
-        }
-        
-        .element-label {
-            font-family: var(--font-mono);
-            font-size: var(--font-size-xs);
-            color: var(--color-primary);
-            margin-block-end: var(--space-2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fluid Framework - Foundation Elements Showcase">
+  <title>Fluid Framework - Foundation</title>
+
+  <!-- The Framework -->
+  <link rel="stylesheet" href="../src/fluid.css">
+
+  <!-- Demo-specific styles only -->
+  <style>
+    @layer demo {
+      .demo-header {
+        padding-block: var(--space-16) var(--space-10);
+        text-align: center;
+      }
+
+      .demo-header p {
+        max-inline-size: 50ch;
+        margin-inline: auto;
+        color: var(--color-text-muted);
+      }
+
+      .demo-section {
+        padding-block: var(--space-10);
+        border-block-end: 1px solid var(--color-border-subtle);
+      }
+
+      .demo-section:last-of-type {
+        border-block-end: none;
+      }
+
+      .element-group {
+        padding: var(--space-6);
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        margin-block: var(--space-5);
+      }
+
+      .element-label {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-xs);
+        color: var(--color-primary);
+        margin-block-end: var(--space-4);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+      }
+
+      .element-label a {
+        font-size: var(--font-size-xs);
+        opacity: 0.7;
+      }
+
+      .element-label a:hover {
+        opacity: 1;
+      }
+
+      /* Token showcase */
+      .color-swatch {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-4);
+        background: var(--color-surface-raised);
+        border-radius: var(--radius-md);
+        font-family: var(--font-mono);
+        font-size: var(--font-size-sm);
+      }
+
+      .color-swatch::before {
+        content: "";
+        inline-size: var(--space-8);
+        block-size: var(--space-8);
+        border-radius: var(--radius-md);
+        background: var(--swatch-color);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .spacing-bar {
+        block-size: var(--space-2);
+        background: var(--color-primary);
+        border-radius: var(--radius-full);
+        opacity: 0.8;
+      }
+
+      .spacing-label {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-xs);
+        color: var(--color-text-muted);
+        margin-block-start: var(--space-1);
+      }
+
+      /* Footer */
+      .demo-footer {
+        padding-block: var(--space-10);
+        text-align: center;
+        color: var(--color-text-muted);
+      }
+
+      .demo-footer p {
+        margin-inline: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="demo-section">
-            <h1>Fluid Framework Foundation</h1>
-            <p>A modern, unopinionated foundation using CSS layers, custom properties, and logical properties. Every element below represents our base atomic styles.</p>
-        </header>
+  <div class="container">
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Fluid Framework</h1>
+      <p>A modern, semantic design system. Like water: adaptable, natural, powerful yet gentle. Every element below represents the foundation.</p>
+    </header>
 
-        <!-- Typography Elements -->
-        <section class="demo-section">
-            <h2>Typography Elements</h2>
-            
-            <div class="element-group">
-                <div class="element-label">&lt;h1&gt; - &lt;h6&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements" target="_blank">MDN ↗</a></div>
-                <h1>Heading Level 1</h1>
-                <h2>Heading Level 2</h2>
-                <h3>Heading Level 3</h3>
-                <h4>Heading Level 4</h4>
-                <h5>Heading Level 5</h5>
-                <h6>Heading Level 6</h6>
-            </div>
+    <!-- Typography -->
+    <section class="demo-section">
+      <h2>Typography</h2>
 
-            <div class="element-group">
-                <div class="element-label">&lt;p&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p" target="_blank">MDN ↗</a></div>
-                <p>This is a paragraph element demonstrating our base typography. It includes <strong>strong text</strong>, <em>emphasized text</em>, and <a href="#">links to other content</a>. The line height and spacing are optimized for readability.</p>
-                <p>Here's another paragraph showing the margin between consecutive paragraphs.</p>
-            </div>
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;h1&gt; - &lt;h6&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <div class="stack" style="--stack-gap: var(--space-3)">
+          <h1 style="margin: 0">Heading One</h1>
+          <h2 style="margin: 0">Heading Two</h2>
+          <h3 style="margin: 0">Heading Three</h3>
+          <h4 style="margin: 0">Heading Four</h4>
+          <h5 style="margin: 0">Heading Five</h5>
+          <h6 style="margin: 0">Heading Six</h6>
+        </div>
+      </div>
 
-            <div class="element-group">
-                <div class="element-label">&lt;blockquote&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote" target="_blank">MDN ↗</a></div>
-                <blockquote>
-                    "The best way to predict the future is to invent it." This is a blockquote element with proper semantic markup and visual distinction.
-                </blockquote>
-            </div>
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;p&gt; Paragraph</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <p>Typography should feel natural, like words flowing on a page. Notice how this paragraph has comfortable line height and optimal character width. The text includes <strong>strong emphasis</strong>, <em>italic styling</em>, and <a href="#">links that invite exploration</a>.</p>
+        <p>A second paragraph demonstrates the vertical rhythm between blocks of text. The spacing isn't cramped, nor is it too generous. It breathes.</p>
+      </div>
 
-            <div class="element-group">
-                <div class="element-label">&lt;code&gt; &amp; &lt;pre&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code" target="_blank">MDN ↗</a></div>
-                <p>Inline code like <code>const fluid = true;</code> uses monospace font.</p>
-                <pre><code>// Block code example
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;blockquote&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <blockquote>
+          Good design is as little design as possible. Less, but better, because it concentrates on the essential aspects.
+          <cite>Dieter Rams</cite>
+        </blockquote>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;code&gt; &amp; &lt;pre&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <p>Inline code like <code>const fluid = true;</code> integrates naturally with prose.</p>
+        <pre><code>// Code blocks have room to breathe
 function createTheme(name, tokens) {
   return {
     name,
     ...tokens,
-    apply: () => document.documentElement.dataset.theme = name
+    apply: () => {
+      document.documentElement.dataset.theme = name;
+    }
   };
 }</code></pre>
-            </div>
-        </section>
+      </div>
+    </section>
 
-        <!-- List Elements -->
-        <section class="demo-section">
-            <h2>List Elements</h2>
-            
-            <div class="element-group">
-                <div class="element-label">&lt;ul&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank">MDN ↗</a></div>
-                <ul>
-                    <li>Unordered list item one</li>
-                    <li>Unordered list item two</li>
-                    <li>Unordered list item three with nested list:
-                        <ul>
-                            <li>Nested item one</li>
-                            <li>Nested item two</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+    <!-- Lists -->
+    <section class="demo-section">
+      <h2>Lists</h2>
 
-            <div class="element-group">
-                <div class="element-label">&lt;ol&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank">MDN ↗</a></div>
-                <ol>
-                    <li>First ordered item</li>
-                    <li>Second ordered item</li>
-                    <li>Third ordered item</li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Form Elements -->
-        <section class="demo-section">
-            <h2>Form Elements</h2>
-            
-            <div class="element-group">
-                <div class="element-label">&lt;input&gt; types <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank">MDN ↗</a></div>
-                <input type="text" placeholder="Text input">
-                <br><br>
-                <input type="email" placeholder="Email input">
-                <br><br>
-                <input type="number" placeholder="Number input">
-                <br><br>
-                <input type="search" placeholder="Search input">
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">&lt;textarea&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank">MDN ↗</a></div>
-                <textarea rows="4" placeholder="Textarea for longer content..."></textarea>
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">&lt;select&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select" target="_blank">MDN ↗</a></div>
-                <select>
-                    <option>Option One</option>
-                    <option>Option Two</option>
-                    <option>Option Three</option>
-                </select>
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">&lt;button&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank">MDN ↗</a></div>
-                <button>Default Button</button>
-                <button data-variant="secondary" style="background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); margin-inline-start: var(--space-2);">Secondary Button</button>
-            </div>
-        </section>
-
-        <!-- Table Elements -->
-        <section class="demo-section">
-            <h2>Table Elements</h2>
-            
-            <div class="element-group">
-                <div class="element-label">&lt;table&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table" target="_blank">MDN ↗</a></div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Property</th>
-                            <th>Value</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>--space-1</td>
-                            <td>0.25rem</td>
-                            <td>Base spacing unit</td>
-                        </tr>
-                        <tr>
-                            <td>--space-2</td>
-                            <td>0.5rem</td>
-                            <td>Double the base</td>
-                        </tr>
-                        <tr>
-                            <td>--space-3</td>
-                            <td>0.75rem</td>
-                            <td>Triple the base</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Interactive Elements -->
-        <section class="demo-section">
-            <h2>Interactive & Semantic Elements</h2>
-            
-            <div class="element-group">
-                <div class="element-label">&lt;details&gt; &amp; &lt;summary&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank">MDN ↗</a></div>
-                <details>
-                    <summary>Click to expand this details element</summary>
-                    <p>Hidden content that appears when the details element is opened. This is native HTML functionality, no JavaScript required!</p>
-                </details>
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">&lt;mark&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark" target="_blank">MDN ↗</a></div>
-                <p>This sentence contains <mark>highlighted text</mark> using the mark element.</p>
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">&lt;hr&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr" target="_blank">MDN ↗</a></div>
-                <p>Content before the horizontal rule.</p>
-                <hr>
-                <p>Content after the horizontal rule.</p>
-            </div>
-        </section>
-
-        <!-- Custom Properties Demo -->
-        <section class="demo-section">
-            <h2>Design Token System</h2>
-            <p>All styles are powered by CSS custom properties, making theming as simple as changing variables:</p>
-            
-            <div class="element-group">
-                <div class="element-label">Color System</div>
-                <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-                    <div style="padding: var(--space-3); background: var(--color-primary); color: white; border-radius: var(--radius-md);">Primary</div>
-                    <div style="padding: var(--space-3); background: var(--color-text); color: var(--color-background); border-radius: var(--radius-md);">Text</div>
-                    <div style="padding: var(--space-3); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md);">Surface</div>
-                </div>
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">Spacing Scale (Fibonacci-inspired)</div>
-                <div style="display: flex; gap: var(--space-2); align-items: flex-end;">
-                    <div style="inline-size: var(--space-1); block-size: var(--space-8); background: var(--color-primary);"></div>
-                    <div style="inline-size: var(--space-2); block-size: var(--space-8); background: var(--color-primary);"></div>
-                    <div style="inline-size: var(--space-3); block-size: var(--space-8); background: var(--color-primary);"></div>
-                    <div style="inline-size: var(--space-5); block-size: var(--space-8); background: var(--color-primary);"></div>
-                    <div style="inline-size: var(--space-8); block-size: var(--space-8); background: var(--color-primary);"></div>
-                    <div style="inline-size: var(--space-13); block-size: var(--space-8); background: var(--color-primary);"></div>
-                </div>
-            </div>
-
-            <div class="element-group">
-                <div class="element-label">Animation Tokens</div>
-                <button onmouseover="this.style.transition=`transform var(--duration-instant) var(--easing-bounce)`">Instant (50ms)</button>
-                <button onmouseover="this.style.transition=`transform var(--duration-fast) var(--easing-bounce)`" style="margin-inline-start: var(--space-2);">Fast (150ms)</button>
-                <button onmouseover="this.style.transition=`transform var(--duration-moderate) var(--easing-bounce)`" style="margin-inline-start: var(--space-2);">Moderate (250ms)</button>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="demo-section">
-            <h3>Next Steps</h3>
-            <p>This foundation uses:</p>
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;ul&gt; Unordered List</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <ul>
+          <li>Modern CSS features: layers, custom properties, container queries</li>
+          <li>Semantic HTML: meaningful elements over div soup</li>
+          <li>Progressive enhancement: works without JavaScript
             <ul>
-                <li><strong>CSS Layers</strong> for predictable cascade management</li>
-                <li><strong>Logical Properties</strong> for internationalization readiness</li>
-                <li><strong>Modern Color Functions</strong> like light-dark() for automatic dark mode</li>
-                <li><strong>Container Queries</strong> for component-responsive design</li>
-                <li><strong>Fluid Typography</strong> with clamp() for perfect scaling</li>
-                <li><strong>Custom Properties</strong> as the single source of truth</li>
+              <li>Base functionality first</li>
+              <li>JavaScript enhances, never gates</li>
             </ul>
-            <p>Ready for Phase 2: Building semantic components on this foundation!</p>
-        </footer>
-    </div>
+          </li>
+          <li>Accessibility built-in, not bolted on</li>
+        </ul>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;ol&gt; Ordered List</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <ol>
+          <li>Define your design tokens</li>
+          <li>Apply semantic structure</li>
+          <li>Let the cascade do the work</li>
+        </ol>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;dl&gt; Definition List</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <dl>
+          <dt>Fluid</dt>
+          <dd>Flowing freely, adaptable, natural in movement.</dd>
+          <dt>Semantic</dt>
+          <dd>Relating to meaning; using elements for their intended purpose.</dd>
+          <dt>Progressive Enhancement</dt>
+          <dd>Building a solid foundation, then adding layers of capability.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Forms -->
+    <section class="demo-section">
+      <h2>Form Elements</h2>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;input&gt; Text Inputs</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <div class="stack">
+          <div>
+            <label for="input-text">Text Input</label>
+            <input type="text" id="input-text" placeholder="Enter text...">
+          </div>
+          <div>
+            <label for="input-email">Email Input</label>
+            <input type="email" id="input-email" placeholder="you@example.com">
+          </div>
+          <div>
+            <label for="input-search">Search Input</label>
+            <input type="search" id="input-search" placeholder="Search...">
+          </div>
+        </div>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;textarea&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <label for="textarea-demo">Message</label>
+        <textarea id="textarea-demo" placeholder="Write something thoughtful..."></textarea>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;select&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <label for="select-demo">Choose an option</label>
+        <select id="select-demo">
+          <option value="">Select...</option>
+          <option value="serene">Serene</option>
+          <option value="calm">Calm</option>
+          <option value="flowing">Flowing</option>
+        </select>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;button&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <div class="cluster">
+          <button type="button">Primary Action</button>
+          <button type="button" style="background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border);">Secondary</button>
+          <button type="button" disabled>Disabled</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tables -->
+    <section class="demo-section">
+      <h2>Tables</h2>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;table&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--space-4</code></td>
+              <td>1rem</td>
+              <td>Standard padding</td>
+            </tr>
+            <tr>
+              <td><code>--space-5</code></td>
+              <td>1.25rem</td>
+              <td>Component spacing</td>
+            </tr>
+            <tr>
+              <td><code>--space-8</code></td>
+              <td>2rem</td>
+              <td>Section spacing</td>
+            </tr>
+            <tr>
+              <td><code>--space-16</code></td>
+              <td>4rem</td>
+              <td>Large sections</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Interactive -->
+    <section class="demo-section">
+      <h2>Interactive Elements</h2>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;details&gt; &amp; &lt;summary&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <details>
+          <summary>Why "Fluid"?</summary>
+          <p>Because good design flows. It adapts to its container, responds to user preferences, and never fights against the natural way of the web. Like water finding its path.</p>
+        </details>
+        <details>
+          <summary>No JavaScript required?</summary>
+          <p>The foundation works entirely without JavaScript. Custom elements and enhanced interactions are progressive — they add capability but never gate functionality.</p>
+        </details>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;mark&gt; &amp; &lt;hr&gt;</span>
+        </div>
+        <p>You can <mark>highlight important information</mark> with the mark element.</p>
+        <hr>
+        <p>Horizontal rules provide visual separation without being heavy-handed.</p>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">
+          <span>&lt;progress&gt;</span>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress" target="_blank" rel="noopener">MDN</a>
+        </div>
+        <label for="progress-demo">Phase 1 Progress</label>
+        <progress id="progress-demo" value="75" max="100"></progress>
+      </div>
+    </section>
+
+    <!-- Design Tokens -->
+    <section class="demo-section">
+      <h2>Design Tokens</h2>
+
+      <div class="element-group">
+        <div class="element-label">Color System</div>
+        <div class="grid" style="--grid-min: 14rem; --grid-gap: var(--space-3)">
+          <div class="color-swatch" style="--swatch-color: var(--color-primary)">
+            --color-primary
+          </div>
+          <div class="color-swatch" style="--swatch-color: var(--color-accent)">
+            --color-accent
+          </div>
+          <div class="color-swatch" style="--swatch-color: var(--color-text)">
+            --color-text
+          </div>
+          <div class="color-swatch" style="--swatch-color: var(--color-text-muted)">
+            --color-text-muted
+          </div>
+          <div class="color-swatch" style="--swatch-color: var(--color-surface)">
+            --color-surface
+          </div>
+          <div class="color-swatch" style="--swatch-color: var(--color-border)">
+            --color-border
+          </div>
+        </div>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">Spacing Scale</div>
+        <div class="stack" style="--stack-gap: var(--space-3)">
+          <div>
+            <div class="spacing-bar" style="inline-size: var(--space-1)"></div>
+            <div class="spacing-label">--space-1 (0.25rem)</div>
+          </div>
+          <div>
+            <div class="spacing-bar" style="inline-size: var(--space-2)"></div>
+            <div class="spacing-label">--space-2 (0.5rem)</div>
+          </div>
+          <div>
+            <div class="spacing-bar" style="inline-size: var(--space-4)"></div>
+            <div class="spacing-label">--space-4 (1rem)</div>
+          </div>
+          <div>
+            <div class="spacing-bar" style="inline-size: var(--space-8)"></div>
+            <div class="spacing-label">--space-8 (2rem)</div>
+          </div>
+          <div>
+            <div class="spacing-bar" style="inline-size: var(--space-16)"></div>
+            <div class="spacing-label">--space-16 (4rem)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="element-group">
+        <div class="element-label">Typography Scale</div>
+        <div class="stack" style="--stack-gap: var(--space-2)">
+          <p style="font-size: var(--font-size-xs); margin: 0">Extra Small (--font-size-xs)</p>
+          <p style="font-size: var(--font-size-sm); margin: 0">Small (--font-size-sm)</p>
+          <p style="font-size: var(--font-size-md); margin: 0">Medium / Base (--font-size-md)</p>
+          <p style="font-size: var(--font-size-lg); margin: 0">Large (--font-size-lg)</p>
+          <p style="font-size: var(--font-size-xl); margin: 0">Extra Large (--font-size-xl)</p>
+          <p style="font-size: var(--font-size-2xl); margin: 0">2XL (--font-size-2xl)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="demo-footer">
+      <h3>Foundation Complete</h3>
+      <p>These base styles form the bedrock of the Fluid Framework. Next: semantic components that build on this foundation.</p>
+      <p style="margin-block-start: var(--space-5)">
+        <small>Toggle your system dark mode to see automatic adaptation.</small>
+      </p>
+    </footer>
+  </div>
 </body>
 </html>
