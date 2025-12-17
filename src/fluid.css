@@ -32,14 +32,11 @@
 
 
 /* ========================================
-   LAYOUTS (Coming in Phase 3)
+   LAYOUTS
    Layout primitives and patterns
    ======================================== */
 
-/* @import "./layouts/container.css"; */
-/* @import "./layouts/stack.css"; */
-/* @import "./layouts/grid.css"; */
-/* @import "./layouts/sidebar.css"; */
+@import "./layouts/positioning.css";
 
 
 /* ========================================

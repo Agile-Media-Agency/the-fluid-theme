@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fluid Framework - Positioning System Demo">
+  <title>Fluid Framework - Positioning System</title>
+
+  <link rel="stylesheet" href="../src/fluid.css">
+
+  <style>
+    /* Demo-only styles */
+    @layer demo {
+      .demo-section {
+        border-block-end: 1px solid var(--color-border-subtle);
+      }
+
+      .demo-section:last-of-type {
+        border-block-end: none;
+      }
+
+      .demo-label {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-xs);
+        color: var(--color-text-muted);
+        margin-block-end: var(--space-2);
+      }
+
+      .demo-box {
+        background: var(--color-surface);
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+      }
+
+      .demo-image {
+        background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-surface));
+        aspect-ratio: 4/3;
+        border-radius: var(--radius-lg);
+        display: grid;
+        place-items: center;
+        color: var(--color-text-muted);
+        font-size: var(--font-size-sm);
+      }
+
+      .demo-hero-bg {
+        background: linear-gradient(135deg, hsl(215 50% 25%), hsl(215 50% 35%));
+        color: white;
+        min-block-size: 50vh;
+      }
+
+      .demo-hero-bg h1,
+      .demo-hero-bg h2,
+      .demo-hero-bg p {
+        color: white;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="section" data-layout="center" data-padding="lg">
+      <h1>Positioning System</h1>
+      <p>Same HTML, different layouts. Just change a data attribute.</p>
+    </header>
+
+    <!-- Text Alignment -->
+    <section class="demo-section section" data-padding="md">
+      <h2>Text Alignment</h2>
+      <p class="demo-label">data-align="start | center | end"</p>
+
+      <div class="grid" style="--grid-min: 14rem">
+        <div class="demo-box" data-align="start">
+          <strong>data-align="start"</strong>
+          <p style="margin: 0">Left-aligned text.</p>
+        </div>
+        <div class="demo-box" data-align="center">
+          <strong>data-align="center"</strong>
+          <p style="margin: 0">Centered text.</p>
+        </div>
+        <div class="demo-box" data-align="end">
+          <strong>data-align="end"</strong>
+          <p style="margin: 0">Right-aligned text.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layout: Center -->
+    <section class="demo-section section" data-padding="md" data-layout="center">
+      <p class="demo-label">data-layout="center"</p>
+      <h2>Centered Layout</h2>
+      <p>All content is centered horizontally with a max-width constraint. Great for hero sections, CTAs, and focused content.</p>
+      <button>Call to Action</button>
+    </section>
+
+    <!-- Layout: Left -->
+    <section class="demo-section section" data-padding="md" data-layout="left">
+      <p class="demo-label">data-layout="left"</p>
+      <h2>Left Layout</h2>
+      <p>Content aligned to the start. This is the default reading pattern for most content. The content has a max-width to maintain readability.</p>
+      <button data-variant="outline">Learn More</button>
+    </section>
+
+    <!-- Layout: Right -->
+    <section class="demo-section section" data-padding="md" data-layout="right">
+      <p class="demo-label">data-layout="right"</p>
+      <h2>Right Layout</h2>
+      <p>Content aligned to the end. Useful for visual variety or alternate sections. Text still reads left-to-right.</p>
+      <button data-variant="secondary">View Details</button>
+    </section>
+
+    <!-- Layout: Split -->
+    <section class="demo-section section" data-padding="md" data-layout="split">
+      <div>
+        <p class="demo-label">data-layout="split"</p>
+        <h2>Split Layout</h2>
+        <p>Two equal columns. First child on left, second on right. Automatically stacks on narrow screens.</p>
+        <button>Primary Action</button>
+      </div>
+      <div class="demo-image">Image / Media</div>
+    </section>
+
+    <!-- Layout: Split Reverse -->
+    <section class="demo-section section" data-padding="md" data-layout="split-reverse">
+      <div>
+        <p class="demo-label">data-layout="split-reverse"</p>
+        <h2>Split Reverse Layout</h2>
+        <p>Same as split, but media appears on the left. HTML order stays logical (content first), CSS handles visual order.</p>
+        <button data-variant="outline">Secondary Action</button>
+      </div>
+      <div class="demo-image">Image / Media</div>
+    </section>
+
+    <!-- Content Width Control -->
+    <section class="demo-section section" data-padding="md" data-layout="center">
+      <h2>Content Width Control</h2>
+      <p class="demo-label">data-width="narrow | default | wide | full"</p>
+
+      <div class="stack" data-gap="lg" style="inline-size: 100%">
+        <div class="demo-box" data-layout="center" data-width="narrow">
+          <strong>data-width="narrow"</strong>
+          <p style="margin: 0">Max-width: 32rem (512px)</p>
+        </div>
+        <div class="demo-box" data-layout="center" data-width="default">
+          <strong>data-width="default"</strong>
+          <p style="margin: 0">Max-width: 48rem (768px)</p>
+        </div>
+        <div class="demo-box" data-layout="center" data-width="wide">
+          <strong>data-width="wide"</strong>
+          <p style="margin: 0">Max-width: 64rem (1024px)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gap Control -->
+    <section class="demo-section section" data-padding="md">
+      <h2>Gap Control</h2>
+      <p class="demo-label">data-gap="none | sm | md | lg | xl"</p>
+
+      <div class="grid" style="--grid-min: 12rem">
+        <div class="demo-box" data-layout="stack" data-gap="sm">
+          <strong>data-gap="sm"</strong>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+        </div>
+        <div class="demo-box" data-layout="stack" data-gap="md">
+          <strong>data-gap="md"</strong>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+        </div>
+        <div class="demo-box" data-layout="stack" data-gap="lg">
+          <strong>data-gap="lg"</strong>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+          <div style="background: var(--color-primary-subtle); padding: var(--space-2); border-radius: var(--radius-sm)">Item</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Padding Control -->
+    <section class="demo-section" data-layout="center" data-padding="sm" style="background: var(--color-surface);">
+      <p class="demo-label">data-padding="sm"</p>
+      <h3>Small Padding</h3>
+    </section>
+
+    <section class="demo-section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+      <p class="demo-label">data-padding="lg"</p>
+      <h3>Large Padding</h3>
+    </section>
+
+    <!-- Combined Example: Hero -->
+    <section class="demo-section demo-hero-bg" data-layout="center" data-padding="xl">
+      <p class="demo-label" style="color: white; opacity: 0.7;">Combined: data-layout="center" data-padding="xl"</p>
+      <h2>Hero Section Example</h2>
+      <p>This demonstrates combining layout and padding attributes. The content is centered with extra vertical padding.</p>
+      <div class="cluster">
+        <button>Get Started</button>
+        <button data-variant="outline" style="border-color: white; color: white;">Learn More</button>
+      </div>
+    </section>
+
+    <!-- Combined Example: Feature -->
+    <section class="demo-section section" data-layout="split" data-padding="lg" data-gap="xl">
+      <div data-layout="stack" data-gap="md">
+        <p class="demo-label">Combined: split + stack + custom gaps</p>
+        <h2>Feature Section</h2>
+        <p>Nesting layouts works naturally. This outer section uses split, while the content uses stack for vertical flow.</p>
+        <ul>
+          <li>Clean semantic HTML</li>
+          <li>CSS handles all positioning</li>
+          <li>Change layout with one attribute</li>
+        </ul>
+        <button data-variant="secondary">View Demo</button>
+      </div>
+      <div class="demo-image" style="aspect-ratio: 1;">Feature Image</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section" data-layout="center" data-padding="lg">
+      <h3>Positioning System Complete</h3>
+      <p>This system forms the foundation for all section layouts. Next: Build hero sections using these primitives.</p>
+      <p style="margin-block-start: var(--space-4)">
+        <small>Resize your browser to see responsive behavior on split layouts.</small>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
