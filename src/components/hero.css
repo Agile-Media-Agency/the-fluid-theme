@@ -36,6 +36,9 @@
     color: var(--hero-text-color);
     overflow: hidden;
     container-type: inline-size;
+
+    /* Inline padding to prevent text touching edges */
+    padding-inline: var(--space-5);
   }
 
   /* Ensure content stays above backgrounds/overlays */

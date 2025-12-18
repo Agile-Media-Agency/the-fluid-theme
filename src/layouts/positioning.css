@@ -328,4 +328,30 @@
   [data-padding="xl"] {
     padding-block: var(--space-24);
   }
+
+
+  /* ========================================
+     INLINE PADDING CONTROL
+     Horizontal padding for content spacing from edges
+     ======================================== */
+
+  [data-padding-inline="none"] {
+    padding-inline: 0;
+  }
+
+  [data-padding-inline="sm"] {
+    padding-inline: var(--space-4);
+  }
+
+  [data-padding-inline="md"] {
+    padding-inline: var(--space-6);
+  }
+
+  [data-padding-inline="lg"] {
+    padding-inline: var(--space-8);
+  }
+
+  [data-padding-inline="xl"] {
+    padding-inline: var(--space-12);
+  }
 }

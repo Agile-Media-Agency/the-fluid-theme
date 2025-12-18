@@ -159,8 +159,8 @@
     align-items: center;
     justify-content: center;
     transition:
-      background-color var(--duration-fast) var(--ease-fluid),
-      border-color var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid),
+      border-color var(--duration-normal) var(--ease-fluid),
       transform var(--duration-fast) var(--ease-settle);
   }
 
@@ -251,7 +251,7 @@
     align-items: center;
     justify-content: center;
     transition:
-      border-color var(--duration-fast) var(--ease-fluid);
+      border-color var(--duration-normal) var(--ease-fluid);
   }
 
   .radio__circle::after {

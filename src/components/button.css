@@ -52,10 +52,10 @@
 
     /* Transitions - smooth like flowing water */
     transition:
-      background-color var(--duration-fast) var(--ease-fluid),
-      border-color var(--duration-fast) var(--ease-fluid),
-      color var(--duration-fast) var(--ease-fluid),
-      box-shadow var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid),
+      border-color var(--duration-normal) var(--ease-fluid),
+      color var(--duration-normal) var(--ease-fluid),
+      box-shadow var(--duration-normal) var(--ease-fluid),
       transform var(--duration-fast) var(--ease-settle);
   }
 

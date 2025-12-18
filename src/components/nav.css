@@ -74,7 +74,7 @@
     align-items: center;
     gap: var(--space-2);
     flex-shrink: 0;
-    transition: opacity var(--duration-fast) var(--ease-fluid);
+    transition: opacity var(--duration-normal) var(--ease-fluid);
   }
 
   .nav__brand:hover {
@@ -128,8 +128,8 @@
     text-decoration: none;
     border-radius: var(--radius-md);
     transition:
-      color var(--duration-fast) var(--ease-fluid),
-      background-color var(--duration-fast) var(--ease-fluid);
+      color var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
   }
 
   .nav__link:hover {
@@ -185,8 +185,8 @@
     color: var(--color-text-muted);
     cursor: pointer;
     transition:
-      color var(--duration-fast) var(--ease-fluid),
-      background-color var(--duration-fast) var(--ease-fluid);
+      color var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
   }
 
   .nav__theme-toggle:hover {
@@ -297,7 +297,7 @@
     color: var(--color-text-muted);
     text-decoration: none;
     line-height: 1;
-    transition: color var(--duration-fast) var(--ease-fluid);
+    transition: color var(--duration-normal) var(--ease-fluid);
   }
 
   .breadcrumb__link:hover {
@@ -337,8 +337,8 @@
     text-decoration: none;
     border-radius: var(--radius-md);
     transition:
-      color var(--duration-fast) var(--ease-fluid),
-      background-color var(--duration-fast) var(--ease-fluid);
+      color var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
   }
 
   .pagination__link:hover {
@@ -392,8 +392,8 @@
     cursor: pointer;
     outline: none;
     transition:
-      color var(--duration-fast) var(--ease-fluid),
-      background-color var(--duration-fast) var(--ease-fluid);
+      color var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
   }
 
   /* Focus state - subtle ring */
@@ -410,7 +410,7 @@
     block-size: 3px; /* Slightly thicker for visible rounded ends */
     background-color: transparent;
     border-radius: var(--radius-full);
-    transition: background-color var(--duration-fast) var(--ease-fluid);
+    transition: background-color var(--duration-normal) var(--ease-fluid);
   }
 
   .tabs__tab:hover {

@@ -219,15 +219,22 @@
     /* ========================================
        ANIMATION TOKENS
        Smooth, unhurried, like flowing water
+
+       The "NSW Ratio" (0.73) creates proportional harmony.
+       Base duration × 0.73 = fast, × 1.37 = slow
+       This creates a golden-ratio-like relationship between speeds.
        ======================================== */
 
-    /* Durations - Nothing abrupt */
-    --duration-instant: 100ms;
-    --duration-fast: 200ms;
-    --duration-normal: 350ms;
-    --duration-slow: 500ms;
-    --duration-slower: 800ms;
-    --duration-slowest: 1200ms;
+    /* Base timing - the heartbeat of all motion */
+    --motion-base: 467ms;  /* ~0.5s feels distinctly fluid */
+
+    /* Durations - Proportionally related via NSW ratio (0.73) */
+    --duration-instant: 137ms;                              /* Micro-interactions */
+    --duration-fast: calc(var(--motion-base) * 0.73);       /* ~341ms - Quick feedback */
+    --duration-normal: var(--motion-base);                  /* ~467ms - Standard transitions */
+    --duration-slow: calc(var(--motion-base) * 1.37);       /* ~640ms - Deliberate motion */
+    --duration-slower: calc(var(--motion-base) * 1.73);     /* ~808ms - Emphasis */
+    --duration-slowest: calc(var(--motion-base) * 2.37);    /* ~1107ms - Grand gestures */
 
     /* Easing - Natural, organic movement */
     --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
@@ -235,12 +242,12 @@
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Fluid motion - like water flowing */
-    --ease-fluid: cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* Fluid motion - like water flowing, unhurried */
+    --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
     --ease-fluid-in: cubic-bezier(0.55, 0, 1, 0.45);
     --ease-fluid-out: cubic-bezier(0, 0.55, 0.45, 1);
 
-    /* Gentle settle - like a leaf landing on water */
+    /* Gentle settle - like a leaf landing on still water */
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
 
 
