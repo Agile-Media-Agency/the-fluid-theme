@@ -163,15 +163,15 @@
     content: "";
     inline-size: 0.5rem;
     block-size: 0.25rem;
-    border-inline-start: 2px solid white;
-    border-block-end: 2px solid white;
+    border-inline-start: 2px solid var(--white);
+    border-block-end: 2px solid var(--white);
     transform: rotate(-45deg) scale(0);
     transition: transform var(--duration-fast) var(--ease-settle);
   }
 
   /* Hover state */
   .checkbox:hover .checkbox__box {
-    border-color: var(--color-primary);
+    border-color: var(--accent);
   }
 
   /* Focus state */
@@ -181,8 +181,8 @@
 
   /* Checked state */
   .checkbox__input:checked + .checkbox__box {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+    background-color: var(--accent);
+    border-color: var(--accent);
   }
 
   .checkbox__input:checked + .checkbox__box::after {
@@ -253,13 +253,13 @@
     inline-size: 0.5rem;
     block-size: 0.5rem;
     border-radius: var(--radius-full);
-    background-color: var(--color-primary);
+    background-color: var(--accent);
     transform: scale(0);
     transition: transform var(--duration-fast) var(--ease-settle);
   }
 
   .radio:hover .radio__circle {
-    border-color: var(--color-primary);
+    border-color: var(--accent);
   }
 
   .radio__input:focus-visible + .radio__circle {
@@ -267,7 +267,7 @@
   }
 
   .radio__input:checked + .radio__circle {
-    border-color: var(--color-primary);
+    border-color: var(--accent);
   }
 
   .radio__input:checked + .radio__circle::after {
@@ -338,7 +338,7 @@
     inset-inline-start: 0.125rem;
     inline-size: 1.25rem;
     block-size: 1.25rem;
-    background-color: white;
+    background-color: var(--white);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-sm);
     transition:
@@ -355,7 +355,7 @@
   }
 
   .switch__input:checked + .switch__track {
-    background-color: var(--color-primary);
+    background-color: var(--accent);
   }
 
   .switch__input:checked + .switch__track .switch__thumb {
@@ -410,7 +410,7 @@
   input[data-valid]:focus,
   textarea[data-valid]:focus,
   select[data-valid]:focus {
-    box-shadow: 0 0 0 3px hsl(145 45% 42% / 0.2);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-success) 20%, transparent);
   }
 
   /* Invalid/Error state */
@@ -428,7 +428,7 @@
   textarea[data-invalid]:focus,
   select[data-invalid]:focus,
   input:invalid:not(:placeholder-shown):focus {
-    box-shadow: 0 0 0 3px hsl(0 55% 50% / 0.2);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-error) 20%, transparent);
   }
 
 

@@ -129,7 +129,7 @@
      ======================================== */
 
   a {
-    color: var(--color-primary);
+    color: var(--accent);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.15em;
@@ -139,7 +139,7 @@
   }
 
   a:hover {
-    color: var(--color-primary-hover);
+    color: var(--accent-hover);
     text-decoration-thickness: 2px;
   }
 
@@ -150,7 +150,7 @@
   }
 
   a[data-subtle]:hover {
-    color: var(--color-primary);
+    color: var(--accent);
     text-decoration: underline;
   }
 
@@ -337,7 +337,7 @@
 
   /* Striped rows - subtle */
   tbody tr:nth-child(even) {
-    background-color: hsl(var(--shadow-color) / 0.02);
+    background-color: oklch(from var(--shadow-color) l c h / 0.02);
   }
 
   /* Hover state - gentle highlight */
@@ -346,7 +346,7 @@
   }
 
   tbody tr:hover {
-    background-color: hsl(var(--shadow-color) / 0.04);
+    background-color: oklch(from var(--shadow-color) l c h / 0.04);
   }
 
 
@@ -389,7 +389,7 @@
   textarea:focus,
   select:focus {
     outline: none;
-    border-color: var(--color-primary);
+    border-color: var(--accent);
     box-shadow: var(--shadow-glow);
   }
 
@@ -428,8 +428,8 @@
     font-size: var(--font-size-base);
     font-weight: var(--weight-medium);
     line-height: var(--leading-none);
-    color: white;
-    background-color: var(--color-primary);
+    color: var(--white);
+    background-color: var(--accent);
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -440,7 +440,7 @@
   }
 
   button:hover {
-    background-color: var(--color-primary-hover);
+    background-color: var(--accent-hover);
     box-shadow: var(--shadow-sm);
   }
 
@@ -455,7 +455,7 @@
   }
 
   button:disabled:hover {
-    background-color: var(--color-primary);
+    background-color: var(--accent);
     box-shadow: none;
     transform: none;
   }
@@ -521,15 +521,15 @@
      ======================================== */
 
   mark {
-    background-color: hsl(50 100% 85%);
+    background-color: oklch(90% 0.08 90);
     padding-inline: var(--space-1);
     border-radius: var(--radius-sm);
   }
 
   @media (prefers-color-scheme: dark) {
     mark {
-      background-color: hsl(50 60% 30%);
-      color: hsl(50 100% 95%);
+      background-color: oklch(40% 0.08 90);
+      color: oklch(95% 0.02 90);
     }
   }
 
@@ -572,12 +572,12 @@
   }
 
   progress::-webkit-progress-value {
-    background-color: var(--color-primary);
+    background-color: var(--accent);
     border-radius: var(--radius-full);
   }
 
   progress::-moz-progress-bar {
-    background-color: var(--color-primary);
+    background-color: var(--accent);
     border-radius: var(--radius-full);
   }
 
@@ -597,7 +597,7 @@
   }
 
   dialog::backdrop {
-    background-color: hsl(var(--shadow-color) / 0.5);
+    background-color: oklch(from var(--shadow-color) l c h / 0.5);
     backdrop-filter: blur(4px);
   }
 

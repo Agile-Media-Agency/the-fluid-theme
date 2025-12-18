@@ -1,0 +1,252 @@
+/**
+ * Fluid Framework - Hero Component
+ * @layer components
+ *
+ * Full-width hero sections for landing pages and page headers.
+ * Uses the positioning system for layout - just add data attributes.
+ *
+ * Philosophy:
+ * - The hero is a canvas, not a constraint
+ * - Backgrounds, overlays, and content are separate concerns
+ * - Serene presence, not aggressive attention-seeking
+ *
+ * Usage:
+ *   <section class="hero" data-layout="center" data-padding="xl">
+ *     <h1>Headline</h1>
+ *     <p>Subheadline</p>
+ *     <button>Call to Action</button>
+ *   </section>
+ */
+
+@layer components {
+
+  /* ========================================
+     BASE HERO
+     A full-width section ready for content
+     ======================================== */
+
+  .hero {
+    --hero-min-height: 60vh;
+    --hero-background: var(--color-surface);
+    --hero-text-color: var(--color-text);
+
+    position: relative;
+    min-block-size: var(--hero-min-height);
+    background-color: var(--hero-background);
+    color: var(--hero-text-color);
+    overflow: hidden;
+    container-type: inline-size;
+  }
+
+  /* Ensure content stays above backgrounds/overlays */
+  .hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+
+  /* ========================================
+     HERO SIZES
+     Control the visual impact
+     ======================================== */
+
+  .hero[data-size="compact"] {
+    --hero-min-height: 40vh;
+  }
+
+  .hero[data-size="full"] {
+    --hero-min-height: 100vh;
+  }
+
+  .hero[data-size="auto"] {
+    --hero-min-height: auto;
+  }
+
+
+  /* ========================================
+     HERO CONTENT
+     Structured content within the hero
+     ======================================== */
+
+  .hero__content {
+    max-inline-size: var(--content-width, var(--container-md));
+  }
+
+  .hero__headline {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.03em;
+    line-height: var(--leading-tight);
+    margin-block-end: var(--space-4);
+  }
+
+  .hero__subheadline {
+    font-size: var(--font-size-xl);
+    color: var(--hero-text-muted, var(--color-text-muted));
+    line-height: var(--leading-relaxed);
+    margin-block-end: var(--space-6);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: inherit;
+  }
+
+
+  /* ========================================
+     HERO BACKGROUNDS
+     Image and gradient backgrounds
+     ======================================== */
+
+  .hero__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero__background img,
+  .hero__background video {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+
+  /* ========================================
+     HERO OVERLAY
+     Darken backgrounds for text readability
+     ======================================== */
+
+  .hero[data-overlay]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--hero-overlay, oklch(0% 0 0 / 0.4));
+    pointer-events: none;
+  }
+
+  /* Overlay intensity presets */
+  .hero[data-overlay="light"]::before {
+    --hero-overlay: oklch(0% 0 0 / 0.2);
+  }
+
+  .hero[data-overlay="medium"]::before {
+    --hero-overlay: oklch(0% 0 0 / 0.4);
+  }
+
+  .hero[data-overlay="heavy"]::before {
+    --hero-overlay: oklch(0% 0 0 / 0.6);
+  }
+
+  /* Gradient overlays - subtle fade from bottom */
+  .hero[data-overlay="gradient"]::before {
+    --hero-overlay: linear-gradient(
+      to top,
+      oklch(0% 0 0 / 0.6) 0%,
+      oklch(0% 0 0 / 0.3) 40%,
+      oklch(0% 0 0 / 0) 100%
+    );
+  }
+
+
+  /* ========================================
+     HERO THEMES
+     Pre-designed color schemes
+     ======================================== */
+
+  /* Dark hero with light text */
+  .hero[data-theme="dark"] {
+    --hero-background: var(--gray-10);
+    --hero-text-color: var(--gray-95);
+    --hero-text-muted: var(--gray-70);
+  }
+
+  /* Accent color hero */
+  .hero[data-theme="accent"] {
+    --hero-background: var(--accent);
+    --hero-text-color: var(--white);
+    --hero-text-muted: oklch(100% 0 0 / 0.85);
+  }
+
+  /* Subtle/muted hero */
+  .hero[data-theme="subtle"] {
+    --hero-background: var(--color-surface);
+    --hero-text-color: var(--color-text);
+    --hero-text-muted: var(--color-text-muted);
+  }
+
+  /* Gradient hero - uses theme colors for consistency */
+  .hero[data-theme="gradient"] {
+    --hero-background: linear-gradient(
+      135deg,
+      var(--gray-20) 0%,
+      var(--gray-35) 50%,
+      var(--gray-50) 100%
+    );
+    --hero-text-color: var(--white);
+    --hero-text-muted: var(--gray-80);
+    background: var(--hero-background);
+  }
+
+
+  /* ========================================
+     SPLIT HERO
+     Content + media side by side
+     ======================================== */
+
+  .hero[data-layout="split"] .hero__media,
+  .hero[data-layout="split-reverse"] .hero__media {
+    block-size: 100%;
+    min-block-size: 40vh;
+  }
+
+  .hero[data-layout="split"] .hero__media img,
+  .hero[data-layout="split-reverse"] .hero__media img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+
+  /* ========================================
+     RESPONSIVE BEHAVIOR
+     ======================================== */
+
+  @container (max-width: 40rem) {
+    .hero__headline {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero__subheadline {
+      font-size: var(--font-size-lg);
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero__actions > * {
+      justify-content: center;
+    }
+  }
+
+
+  /* ========================================
+     REDUCED MOTION
+     Respect user preferences
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero,
+    .hero * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}

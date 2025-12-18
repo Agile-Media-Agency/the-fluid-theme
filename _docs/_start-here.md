@@ -14,6 +14,7 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 | [Contributing](contributing.md) | How to contribute to the project |
 | [Tokens Reference](reference/tokens.md) | Design tokens (colors, spacing, typography) |
 | [Positioning System](reference/positioning.md) | Layout and alignment utilities |
+| [Heroes](reference/heroes.md) | Full-width hero sections |
 | [Components](reference/components.md) | Component API and usage |
 
 ### For AI Agents
@@ -46,7 +47,9 @@ the-fluid-theme-v2c/
 │   └── fluid.css            # Main entry point
 ├── examples/                # Live examples
 │   ├── foundation.html      # Element showcase
-│   └── components.html      # Component gallery
+│   ├── components.html      # Component gallery
+│   ├── positioning.html     # Positioning system demo
+│   └── heroes.html          # Hero section showcase
 ├── CLAUDE.md                # AI assistant entry point
 └── README.md                # Project overview
 ```
