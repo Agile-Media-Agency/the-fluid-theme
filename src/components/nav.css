@@ -94,16 +94,17 @@
     align-items: center;
     gap: var(--space-1);
     margin: 0;
+    margin-inline-start: auto; /* Default: push menu to end */
     padding: 0;
     list-style: none;
   }
 
-  /* Push menu to end */
-  .nav__menu[data-align="end"] {
-    margin-inline-start: auto;
+  /* Keep menu at start (next to brand) */
+  .nav__menu[data-align="start"] {
+    margin-inline-start: 0;
   }
 
-  /* Space between brand and menu */
+  /* Center menu */
   .nav__menu[data-align="center"] {
     margin-inline: auto;
   }
@@ -335,9 +336,9 @@
   .tabs__tab::after {
     content: "";
     position: absolute;
-    inset-inline: 0;
+    inset-inline: var(--space-2); /* Inset from edges for rounded look */
     inset-block-end: -1px;
-    block-size: 2px;
+    block-size: 3px; /* Slightly thicker for visible rounded ends */
     background-color: transparent;
     border-radius: var(--radius-full);
     transition: background-color var(--duration-fast) var(--ease-fluid);
