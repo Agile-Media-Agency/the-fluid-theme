@@ -25,8 +25,14 @@
     gap: var(--space-2);
   }
 
-  .form-group + .form-group {
+  /* Stack form groups vertically with spacing (but not inside grid rows) */
+  .form-group + .form-group:not(.form-row .form-group) {
     margin-block-start: var(--space-5);
+  }
+
+  /* Inside form-row, remove margin to let grid handle spacing */
+  .form-row .form-group {
+    margin-block-start: 0;
   }
 
   /* Inline form group */

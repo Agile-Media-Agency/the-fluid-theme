@@ -391,6 +391,8 @@
     outline: none;
     border-color: var(--accent);
     box-shadow: var(--shadow-glow);
+    /* Soft focus background - draws attention without being harsh */
+    background-color: var(--accent-subtle);
   }
 
   input::placeholder,
