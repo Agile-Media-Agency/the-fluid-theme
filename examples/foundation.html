@@ -1,190 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fluid Framework - Foundation Elements Showcase">
-  <title>Fluid Framework - Foundation</title>
-
-  <!-- The Framework -->
-  <link rel="stylesheet" href="../src/fluid.css">
-
-  <!-- Demo-specific styles only -->
-  <style>
-    @layer demo {
-      .demo-header {
-        padding-block: var(--space-16) var(--space-10);
-        text-align: center;
-      }
-
-      .demo-header p {
-        max-inline-size: 50ch;
-        margin-inline: auto;
-        color: var(--color-text-muted);
-      }
-
-      .demo-section {
-        padding-block: var(--space-10);
-        border-block-end: 1px solid var(--color-border-subtle);
-      }
-
-      .demo-section:last-of-type {
-        border-block-end: none;
-      }
-
-      .element-group {
-        padding: var(--space-6);
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        margin-block: var(--space-5);
-      }
-
-      .element-label {
-        font-family: var(--font-mono);
-        font-size: var(--font-size-xs);
-        color: var(--color-primary);
-        margin-block-end: var(--space-4);
-        display: flex;
-        align-items: center;
-        gap: var(--space-3);
-      }
-
-      .element-label a {
-        font-size: var(--font-size-xs);
-        opacity: 0.7;
-      }
-
-      .element-label a:hover {
-        opacity: 1;
-      }
-
-      /* Token showcase */
-      .color-swatch {
-        display: flex;
-        align-items: center;
-        gap: var(--space-3);
-        padding: var(--space-3) var(--space-4);
-        background: var(--color-surface-raised);
-        border-radius: var(--radius-md);
-        font-family: var(--font-mono);
-        font-size: var(--font-size-sm);
-      }
-
-      .color-swatch::before {
-        content: "";
-        inline-size: var(--space-8);
-        block-size: var(--space-8);
-        border-radius: var(--radius-md);
-        background: var(--swatch-color);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .spacing-bar {
-        block-size: var(--space-2);
-        background: var(--color-primary);
-        border-radius: var(--radius-full);
-        opacity: 0.8;
-      }
-
-      .spacing-label {
-        font-family: var(--font-mono);
-        font-size: var(--font-size-xs);
-        color: var(--color-text-muted);
-        margin-block-start: var(--space-1);
-      }
-
-      /* Footer */
-      .demo-footer {
-        padding-block: var(--space-10);
-        text-align: center;
-        color: var(--color-text-muted);
-      }
-
-      .demo-footer p {
-        margin-inline: auto;
-      }
+---
+title: Foundation
+description: Fluid Framework - Foundation Elements Showcase
+nav: foundation
+---
+<style>
+  @layer demo {
+    .demo-header {
+      padding-block: var(--space-16) var(--space-10);
+      text-align: center;
     }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="nav" data-sticky>
-    <a href="../index.html" class="nav__brand">Fluid</a>
-    <ul class="nav__menu" role="list" id="nav-menu">
-      <li><a href="foundation.html" class="nav__link" aria-current="page">Foundation</a></li>
-      <li><a href="components.html" class="nav__link">Components</a></li>
-      <li><a href="positioning.html" class="nav__link">Layouts</a></li>
-      <li><a href="heroes.html" class="nav__link">Heroes</a></li>
-      <li><a href="hero-picker.html" class="nav__link">Hero Picker</a></li>
-    </ul>
-    <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12h18M3 6h18M3 18h18"/>
-      </svg>
-    </button>
-  </nav>
 
-  <div class="container">
-    <!-- Header -->
-    <header class="demo-header">
-      <h1>Fluid Framework</h1>
-      <p>A modern, semantic design system. Like water: adaptable, natural, powerful yet gentle. Every element below represents the foundation.</p>
-    </header>
+    .demo-header p {
+      max-inline-size: 50ch;
+      margin-inline: auto;
+      color: var(--color-text-muted);
+    }
 
-    <!-- Typography -->
-    <section class="demo-section">
-      <h2>Typography</h2>
+    .demo-section {
+      padding-block: var(--space-10);
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
 
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;h1&gt; - &lt;h6&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <div class="stack" style="--stack-gap: var(--space-3)">
-          <h1 style="margin: 0">Heading One</h1>
-          <h2 style="margin: 0">Heading Two</h2>
-          <h3 style="margin: 0">Heading Three</h3>
-          <h4 style="margin: 0">Heading Four</h4>
-          <h5 style="margin: 0">Heading Five</h5>
-          <h6 style="margin: 0">Heading Six</h6>
-        </div>
+    .demo-section:last-of-type {
+      border-block-end: none;
+    }
+
+    .element-group {
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      margin-block: var(--space-5);
+    }
+
+    .element-label {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      color: var(--color-primary);
+      margin-block-end: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .element-label a {
+      font-size: var(--font-size-xs);
+      opacity: 0.7;
+    }
+
+    .element-label a:hover {
+      opacity: 1;
+    }
+
+    .color-swatch {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface-raised);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: var(--font-size-sm);
+    }
+
+    .color-swatch::before {
+      content: "";
+      inline-size: var(--space-8);
+      block-size: var(--space-8);
+      border-radius: var(--radius-md);
+      background: var(--swatch-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .spacing-bar {
+      block-size: var(--space-2);
+      background: var(--color-primary);
+      border-radius: var(--radius-full);
+      opacity: 0.8;
+    }
+
+    .spacing-label {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-block-start: var(--space-1);
+    }
+
+    .demo-footer {
+      padding-block: var(--space-10);
+      text-align: center;
+      color: var(--color-text-muted);
+    }
+
+    .demo-footer p {
+      margin-inline: auto;
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- Header -->
+  <header class="demo-header">
+    <h1>Fluid Framework</h1>
+    <p>A modern, semantic design system. Like water: adaptable, natural, powerful yet gentle. Every element below represents the foundation.</p>
+  </header>
+
+  <!-- Typography -->
+  <section class="demo-section">
+    <h2>Typography</h2>
+
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;h1&gt; - &lt;h6&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements" target="_blank" rel="noopener">MDN</a>
       </div>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;p&gt; Paragraph</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <p>Typography should feel natural, like words flowing on a page. Notice how this paragraph has comfortable line height and optimal character width. The text includes <strong>strong emphasis</strong>, <em>italic styling</em>, and <a href="#">links that invite exploration</a>.</p>
-        <p>A second paragraph demonstrates the vertical rhythm between blocks of text. The spacing isn't cramped, nor is it too generous. It breathes.</p>
+      <div class="stack" style="--stack-gap: var(--space-3)">
+        <h1 style="margin: 0">Heading One</h1>
+        <h2 style="margin: 0">Heading Two</h2>
+        <h3 style="margin: 0">Heading Three</h3>
+        <h4 style="margin: 0">Heading Four</h4>
+        <h5 style="margin: 0">Heading Five</h5>
+        <h6 style="margin: 0">Heading Six</h6>
       </div>
+    </div>
 
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;blockquote&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <blockquote>
-          Good design is as little design as possible. Less, but better, because it concentrates on the essential aspects.
-          <cite>Dieter Rams</cite>
-        </blockquote>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;p&gt; Paragraph</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p" target="_blank" rel="noopener">MDN</a>
       </div>
+      <p>Typography should feel natural, like words flowing on a page. Notice how this paragraph has comfortable line height and optimal character width. The text includes <strong>strong emphasis</strong>, <em>italic styling</em>, and <a href="#">links that invite exploration</a>.</p>
+      <p>A second paragraph demonstrates the vertical rhythm between blocks of text. The spacing isn't cramped, nor is it too generous. It breathes.</p>
+    </div>
 
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;code&gt; &amp; &lt;pre&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <p>Inline code like <code>const fluid = true;</code> integrates naturally with prose.</p>
-        <pre><code>// Code blocks have room to breathe
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;blockquote&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote" target="_blank" rel="noopener">MDN</a>
+      </div>
+      <blockquote>
+        Good design is as little design as possible. Less, but better, because it concentrates on the essential aspects.
+        <cite>Dieter Rams</cite>
+      </blockquote>
+    </div>
+
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;code&gt; &amp; &lt;pre&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code" target="_blank" rel="noopener">MDN</a>
+      </div>
+      <p>Inline code like <code>const fluid = true;</code> integrates naturally with prose.</p>
+      <pre><code>// Code blocks have room to breathe
 function createTheme(name, tokens) {
   return {
     name,
@@ -194,312 +159,275 @@ function createTheme(name, tokens) {
     }
   };
 }</code></pre>
+    </div>
+  </section>
+
+  <!-- Lists -->
+  <section class="demo-section">
+    <h2>Lists</h2>
+
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;ul&gt; Unordered List</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank" rel="noopener">MDN</a>
       </div>
-    </section>
+      <ul>
+        <li>Modern CSS features: layers, custom properties, container queries</li>
+        <li>Semantic HTML: meaningful elements over div soup</li>
+        <li>Progressive enhancement: works without JavaScript
+          <ul>
+            <li>Base functionality first</li>
+            <li>JavaScript enhances, never gates</li>
+          </ul>
+        </li>
+        <li>Accessibility built-in, not bolted on</li>
+      </ul>
+    </div>
 
-    <!-- Lists -->
-    <section class="demo-section">
-      <h2>Lists</h2>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;ul&gt; Unordered List</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <ul>
-          <li>Modern CSS features: layers, custom properties, container queries</li>
-          <li>Semantic HTML: meaningful elements over div soup</li>
-          <li>Progressive enhancement: works without JavaScript
-            <ul>
-              <li>Base functionality first</li>
-              <li>JavaScript enhances, never gates</li>
-            </ul>
-          </li>
-          <li>Accessibility built-in, not bolted on</li>
-        </ul>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;ol&gt; Ordered List</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener">MDN</a>
       </div>
+      <ol>
+        <li>Define your design tokens</li>
+        <li>Apply semantic structure</li>
+        <li>Let the cascade do the work</li>
+      </ol>
+    </div>
 
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;ol&gt; Ordered List</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <ol>
-          <li>Define your design tokens</li>
-          <li>Apply semantic structure</li>
-          <li>Let the cascade do the work</li>
-        </ol>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;dl&gt; Definition List</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl" target="_blank" rel="noopener">MDN</a>
       </div>
+      <dl>
+        <dt>Fluid</dt>
+        <dd>Flowing freely, adaptable, natural in movement.</dd>
+        <dt>Semantic</dt>
+        <dd>Relating to meaning; using elements for their intended purpose.</dd>
+        <dt>Progressive Enhancement</dt>
+        <dd>Building a solid foundation, then adding layers of capability.</dd>
+      </dl>
+    </div>
+  </section>
 
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;dl&gt; Definition List</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <dl>
-          <dt>Fluid</dt>
-          <dd>Flowing freely, adaptable, natural in movement.</dd>
-          <dt>Semantic</dt>
-          <dd>Relating to meaning; using elements for their intended purpose.</dd>
-          <dt>Progressive Enhancement</dt>
-          <dd>Building a solid foundation, then adding layers of capability.</dd>
-        </dl>
+  <!-- Forms -->
+  <section class="demo-section">
+    <h2>Form Elements</h2>
+
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;input&gt; Text Inputs</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener">MDN</a>
       </div>
-    </section>
-
-    <!-- Forms -->
-    <section class="demo-section">
-      <h2>Form Elements</h2>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;input&gt; Text Inputs</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener">MDN</a>
+      <div class="stack">
+        <div>
+          <label for="input-text">Text Input</label>
+          <input type="text" id="input-text" placeholder="Enter text...">
         </div>
-        <div class="stack">
-          <div>
-            <label for="input-text">Text Input</label>
-            <input type="text" id="input-text" placeholder="Enter text...">
-          </div>
-          <div>
-            <label for="input-email">Email Input</label>
-            <input type="email" id="input-email" placeholder="you@example.com">
-          </div>
-          <div>
-            <label for="input-search">Search Input</label>
-            <input type="search" id="input-search" placeholder="Search...">
-          </div>
+        <div>
+          <label for="input-email">Email Input</label>
+          <input type="email" id="input-email" placeholder="you@example.com">
         </div>
-      </div>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;textarea&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <label for="textarea-demo">Message</label>
-        <textarea id="textarea-demo" placeholder="Write something thoughtful..."></textarea>
-      </div>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;select&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <label for="select-demo">Choose an option</label>
-        <select id="select-demo">
-          <option value="">Select...</option>
-          <option value="serene">Serene</option>
-          <option value="calm">Calm</option>
-          <option value="flowing">Flowing</option>
-        </select>
-      </div>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;button&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <div class="cluster">
-          <button type="button">Primary Action</button>
-          <button type="button" style="background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border);">Secondary</button>
-          <button type="button" disabled>Disabled</button>
+        <div>
+          <label for="input-search">Search Input</label>
+          <input type="search" id="input-search" placeholder="Search...">
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Tables -->
-    <section class="demo-section">
-      <h2>Tables</h2>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;table&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Token</th>
-              <th>Value</th>
-              <th>Usage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>--space-4</code></td>
-              <td>1rem</td>
-              <td>Standard padding</td>
-            </tr>
-            <tr>
-              <td><code>--space-5</code></td>
-              <td>1.25rem</td>
-              <td>Component spacing</td>
-            </tr>
-            <tr>
-              <td><code>--space-8</code></td>
-              <td>2rem</td>
-              <td>Section spacing</td>
-            </tr>
-            <tr>
-              <td><code>--space-16</code></td>
-              <td>4rem</td>
-              <td>Large sections</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;textarea&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank" rel="noopener">MDN</a>
       </div>
-    </section>
+      <label for="textarea-demo">Message</label>
+      <textarea id="textarea-demo" placeholder="Write something thoughtful..."></textarea>
+    </div>
 
-    <!-- Interactive -->
-    <section class="demo-section">
-      <h2>Interactive Elements</h2>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;details&gt; &amp; &lt;summary&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <details>
-          <summary>Why "Fluid"?</summary>
-          <p>Because good design flows. It adapts to its container, responds to user preferences, and never fights against the natural way of the web. Like water finding its path.</p>
-        </details>
-        <details>
-          <summary>No JavaScript required?</summary>
-          <p>The foundation works entirely without JavaScript. Custom elements and enhanced interactions are progressive — they add capability but never gate functionality.</p>
-        </details>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;select&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select" target="_blank" rel="noopener">MDN</a>
       </div>
+      <label for="select-demo">Choose an option</label>
+      <select id="select-demo">
+        <option value="">Select...</option>
+        <option value="serene">Serene</option>
+        <option value="calm">Calm</option>
+        <option value="flowing">Flowing</option>
+      </select>
+    </div>
 
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;mark&gt; &amp; &lt;hr&gt;</span>
-        </div>
-        <p>You can <mark>highlight important information</mark> with the mark element.</p>
-        <hr>
-        <p>Horizontal rules provide visual separation without being heavy-handed.</p>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;button&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener">MDN</a>
       </div>
-
-      <div class="element-group">
-        <div class="element-label">
-          <span>&lt;progress&gt;</span>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress" target="_blank" rel="noopener">MDN</a>
-        </div>
-        <label for="progress-demo">Phase 1 Progress</label>
-        <progress id="progress-demo" value="75" max="100"></progress>
+      <div class="cluster">
+        <button type="button">Primary Action</button>
+        <button type="button" style="background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border);">Secondary</button>
+        <button type="button" disabled>Disabled</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Design Tokens -->
-    <section class="demo-section">
-      <h2>Design Tokens</h2>
+  <!-- Tables -->
+  <section class="demo-section">
+    <h2>Tables</h2>
 
-      <div class="element-group">
-        <div class="element-label">Color System</div>
-        <div class="grid" style="--grid-min: 14rem; --grid-gap: var(--space-3)">
-          <div class="color-swatch" style="--swatch-color: var(--color-primary)">
-            --color-primary
-          </div>
-          <div class="color-swatch" style="--swatch-color: var(--color-accent)">
-            --color-accent
-          </div>
-          <div class="color-swatch" style="--swatch-color: var(--color-text)">
-            --color-text
-          </div>
-          <div class="color-swatch" style="--swatch-color: var(--color-text-muted)">
-            --color-text-muted
-          </div>
-          <div class="color-swatch" style="--swatch-color: var(--color-surface)">
-            --color-surface
-          </div>
-          <div class="color-swatch" style="--swatch-color: var(--color-border)">
-            --color-border
-          </div>
-        </div>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;table&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table" target="_blank" rel="noopener">MDN</a>
       </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--space-4</code></td>
+            <td>1rem</td>
+            <td>Standard padding</td>
+          </tr>
+          <tr>
+            <td><code>--space-5</code></td>
+            <td>1.25rem</td>
+            <td>Component spacing</td>
+          </tr>
+          <tr>
+            <td><code>--space-8</code></td>
+            <td>2rem</td>
+            <td>Section spacing</td>
+          </tr>
+          <tr>
+            <td><code>--space-16</code></td>
+            <td>4rem</td>
+            <td>Large sections</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-      <div class="element-group">
-        <div class="element-label">Spacing Scale</div>
-        <div class="stack" style="--stack-gap: var(--space-3)">
-          <div>
-            <div class="spacing-bar" style="inline-size: var(--space-1)"></div>
-            <div class="spacing-label">--space-1 (0.25rem)</div>
-          </div>
-          <div>
-            <div class="spacing-bar" style="inline-size: var(--space-2)"></div>
-            <div class="spacing-label">--space-2 (0.5rem)</div>
-          </div>
-          <div>
-            <div class="spacing-bar" style="inline-size: var(--space-4)"></div>
-            <div class="spacing-label">--space-4 (1rem)</div>
-          </div>
-          <div>
-            <div class="spacing-bar" style="inline-size: var(--space-8)"></div>
-            <div class="spacing-label">--space-8 (2rem)</div>
-          </div>
-          <div>
-            <div class="spacing-bar" style="inline-size: var(--space-16)"></div>
-            <div class="spacing-label">--space-16 (4rem)</div>
-          </div>
-        </div>
+  <!-- Interactive -->
+  <section class="demo-section">
+    <h2>Interactive Elements</h2>
+
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;details&gt; &amp; &lt;summary&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener">MDN</a>
       </div>
+      <details>
+        <summary>Why "Fluid"?</summary>
+        <p>Because good design flows. It adapts to its container, responds to user preferences, and never fights against the natural way of the web. Like water finding its path.</p>
+      </details>
+      <details>
+        <summary>No JavaScript required?</summary>
+        <p>The foundation works entirely without JavaScript. Custom elements and enhanced interactions are progressive — they add capability but never gate functionality.</p>
+      </details>
+    </div>
 
-      <div class="element-group">
-        <div class="element-label">Typography Scale</div>
-        <div class="stack" style="--stack-gap: var(--space-2)">
-          <p style="font-size: var(--font-size-xs); margin: 0">Extra Small (--font-size-xs)</p>
-          <p style="font-size: var(--font-size-sm); margin: 0">Small (--font-size-sm)</p>
-          <p style="font-size: var(--font-size-md); margin: 0">Medium / Base (--font-size-md)</p>
-          <p style="font-size: var(--font-size-lg); margin: 0">Large (--font-size-lg)</p>
-          <p style="font-size: var(--font-size-xl); margin: 0">Extra Large (--font-size-xl)</p>
-          <p style="font-size: var(--font-size-2xl); margin: 0">2XL (--font-size-2xl)</p>
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;mark&gt; &amp; &lt;hr&gt;</span>
+      </div>
+      <p>You can <mark>highlight important information</mark> with the mark element.</p>
+      <hr>
+      <p>Horizontal rules provide visual separation without being heavy-handed.</p>
+    </div>
+
+    <div class="element-group">
+      <div class="element-label">
+        <span>&lt;progress&gt;</span>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress" target="_blank" rel="noopener">MDN</a>
+      </div>
+      <label for="progress-demo">Phase 1 Progress</label>
+      <progress id="progress-demo" value="75" max="100"></progress>
+    </div>
+  </section>
+
+  <!-- Design Tokens -->
+  <section class="demo-section">
+    <h2>Design Tokens</h2>
+
+    <div class="element-group">
+      <div class="element-label">Color System</div>
+      <div class="grid" style="--grid-min: 14rem; --grid-gap: var(--space-3)">
+        <div class="color-swatch" style="--swatch-color: var(--color-primary)">
+          --color-primary
+        </div>
+        <div class="color-swatch" style="--swatch-color: var(--color-accent)">
+          --color-accent
+        </div>
+        <div class="color-swatch" style="--swatch-color: var(--color-text)">
+          --color-text
+        </div>
+        <div class="color-swatch" style="--swatch-color: var(--color-text-muted)">
+          --color-text-muted
+        </div>
+        <div class="color-swatch" style="--swatch-color: var(--color-surface)">
+          --color-surface
+        </div>
+        <div class="color-swatch" style="--swatch-color: var(--color-border)">
+          --color-border
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="demo-footer">
-      <h3>Foundation Complete</h3>
-      <p>These base styles form the bedrock of the Fluid Framework. Next: semantic components that build on this foundation.</p>
-      <p style="margin-block-start: var(--space-5)">
-        <small>Toggle your system dark mode to see automatic adaptation.</small>
-      </p>
-      <p class="version-indicator" style="color: var(--color-text-subtle); font-size: var(--font-size-xs); margin-block-start: var(--space-5); font-family: var(--font-mono);">
-        Last Updated: <time datetime="2025-12-18T09:17:00Z">Dec 18, 2025 at 4:17 AM</time> · v0.1.0
-      </p>
-    </footer>
-  </div>
+    <div class="element-group">
+      <div class="element-label">Spacing Scale</div>
+      <div class="stack" style="--stack-gap: var(--space-3)">
+        <div>
+          <div class="spacing-bar" style="inline-size: var(--space-1)"></div>
+          <div class="spacing-label">--space-1 (0.25rem)</div>
+        </div>
+        <div>
+          <div class="spacing-bar" style="inline-size: var(--space-2)"></div>
+          <div class="spacing-label">--space-2 (0.5rem)</div>
+        </div>
+        <div>
+          <div class="spacing-bar" style="inline-size: var(--space-4)"></div>
+          <div class="spacing-label">--space-4 (1rem)</div>
+        </div>
+        <div>
+          <div class="spacing-bar" style="inline-size: var(--space-8)"></div>
+          <div class="spacing-label">--space-8 (2rem)</div>
+        </div>
+        <div>
+          <div class="spacing-bar" style="inline-size: var(--space-16)"></div>
+          <div class="spacing-label">--space-16 (4rem)</div>
+        </div>
+      </div>
+    </div>
 
-  <!-- Theme and menu toggle scripts -->
-  <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('fluid-theme', newTheme);
-    }
+    <div class="element-group">
+      <div class="element-label">Typography Scale</div>
+      <div class="stack" style="--stack-gap: var(--space-2)">
+        <p style="font-size: var(--font-size-xs); margin: 0">Extra Small (--font-size-xs)</p>
+        <p style="font-size: var(--font-size-sm); margin: 0">Small (--font-size-sm)</p>
+        <p style="font-size: var(--font-size-md); margin: 0">Medium / Base (--font-size-md)</p>
+        <p style="font-size: var(--font-size-lg); margin: 0">Large (--font-size-lg)</p>
+        <p style="font-size: var(--font-size-xl); margin: 0">Extra Large (--font-size-xl)</p>
+        <p style="font-size: var(--font-size-2xl); margin: 0">2XL (--font-size-2xl)</p>
+      </div>
+    </div>
+  </section>
 
-    function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
-      const toggle = document.querySelector('.nav__toggle');
-      const isOpen = menu.hasAttribute('data-open');
-      if (isOpen) {
-        menu.removeAttribute('data-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      } else {
-        menu.setAttribute('data-open', '');
-        toggle.setAttribute('aria-expanded', 'true');
-      }
-    }
-
-    (function() {
-      const saved = localStorage.getItem('fluid-theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
-</body>
-</html>
+  <!-- Footer -->
+  <footer class="demo-footer">
+    <h3>Foundation Complete</h3>
+    <p>These base styles form the bedrock of the Fluid Framework. Next: semantic components that build on this foundation.</p>
+    <p style="margin-block-start: var(--space-5)">
+      <small>Toggle your system dark mode to see automatic adaptation.</small>
+    </p>
+    {% include version.html %}
+  </footer>
+</div>

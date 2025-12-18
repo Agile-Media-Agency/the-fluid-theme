@@ -1,0 +1,35 @@
+<script>
+  // Theme toggle - persists to localStorage
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('fluid-theme', newTheme);
+  }
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById('nav-menu');
+    const toggle = document.querySelector('.nav__toggle');
+    const isOpen = menu.hasAttribute('data-open');
+
+    if (isOpen) {
+      menu.removeAttribute('data-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      menu.setAttribute('data-open', '');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // Initialize theme from localStorage or system preference
+  (function() {
+    const saved = localStorage.getItem('fluid-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
