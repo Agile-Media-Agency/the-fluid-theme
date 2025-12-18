@@ -336,9 +336,9 @@
   .tabs__tab::after {
     content: "";
     position: absolute;
-    inset-inline: 0;
+    inset-inline: var(--space-2); /* Inset from edges for rounded look */
     inset-block-end: -1px;
-    block-size: 2px;
+    block-size: 3px; /* Slightly thicker for visible rounded ends */
     background-color: transparent;
     border-radius: var(--radius-full);
     transition: background-color var(--duration-fast) var(--ease-fluid);
