@@ -1,0 +1,331 @@
+/**
+ * Fluid Framework - Positioning System
+ * @layer layouts
+ *
+ * A simple, flexible system for positioning content within containers.
+ * Same HTML, different layouts - just change a data attribute.
+ *
+ * Philosophy:
+ * - Finite options, not infinite (left/center/right, start/center/end)
+ * - Data attributes for easy editor/CMS integration
+ * - Works on any container (sections, cards, divs)
+ * - Composable - combine alignment options as needed
+ *
+ * Usage:
+ *   <section data-align="center">Centered text</section>
+ *   <section data-layout="center">Centered content block</section>
+ *   <section data-layout="split">Two columns</section>
+ */
+
+@layer layouts {
+
+  /* ========================================
+     TEXT ALIGNMENT
+     Controls text-align within the element
+     ======================================== */
+
+  [data-align="start"] {
+    text-align: start;
+  }
+
+  [data-align="center"] {
+    text-align: center;
+  }
+
+  [data-align="end"] {
+    text-align: end;
+  }
+
+
+  /* ========================================
+     CONTENT POSITIONING
+     For block-level content positioning
+     Uses flexbox for vertical centering
+     ======================================== */
+
+  /* Horizontal content position within flex/grid containers */
+  [data-items="start"] {
+    align-items: flex-start;
+  }
+
+  [data-items="center"] {
+    align-items: center;
+  }
+
+  [data-items="end"] {
+    align-items: flex-end;
+  }
+
+  /* Justify content (main axis) */
+  [data-justify="start"] {
+    justify-content: flex-start;
+  }
+
+  [data-justify="center"] {
+    justify-content: center;
+  }
+
+  [data-justify="end"] {
+    justify-content: flex-end;
+  }
+
+  [data-justify="between"] {
+    justify-content: space-between;
+  }
+
+
+  /* ========================================
+     PLACE - Combined alignment (Grid shorthand)
+     For simple center-center type layouts
+     ======================================== */
+
+  [data-place="center"] {
+    display: grid;
+    place-items: center;
+  }
+
+  [data-place="start"] {
+    display: grid;
+    place-items: start;
+  }
+
+  [data-place="end"] {
+    display: grid;
+    place-items: end;
+  }
+
+
+  /* ========================================
+     SECTION LAYOUTS
+     Common content arrangement patterns
+     These turn any element into a layout container
+     ======================================== */
+
+  /*
+   * LAYOUT: center
+   * Content block centered horizontally
+   * Good for: hero headlines, centered sections
+   */
+  [data-layout="center"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  [data-layout="center"] > * {
+    max-inline-size: var(--content-width, var(--container-md));
+  }
+
+  /*
+   * LAYOUT: left
+   * Content aligned to start (left in LTR)
+   * Good for: standard content, articles
+   */
+  [data-layout="left"] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: start;
+  }
+
+  [data-layout="left"] > * {
+    max-inline-size: var(--content-width, var(--container-md));
+  }
+
+  /*
+   * LAYOUT: right
+   * Content aligned to end (right in LTR)
+   * Good for: alternate sections, variation
+   */
+  [data-layout="right"] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: start; /* Text still reads left-to-right */
+  }
+
+  [data-layout="right"] > * {
+    max-inline-size: var(--content-width, var(--container-md));
+  }
+
+  /*
+   * LAYOUT: split
+   * Two-column layout: content | media (or any two children)
+   * Good for: hero with image, feature sections
+   */
+  [data-layout="split"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--split-gap, var(--space-8));
+    align-items: center;
+  }
+
+  /*
+   * LAYOUT: split-reverse
+   * Two-column layout: media | content (reversed)
+   * Good for: alternating sections
+   */
+  [data-layout="split-reverse"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--split-gap, var(--space-8));
+    align-items: center;
+  }
+
+  [data-layout="split-reverse"] > :first-child {
+    order: 2;
+  }
+
+  [data-layout="split-reverse"] > :last-child {
+    order: 1;
+  }
+
+  /*
+   * LAYOUT: stack
+   * Vertical stack with controlled gap
+   * Good for: any vertical content flow
+   */
+  [data-layout="stack"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap, var(--space-5));
+  }
+
+  /*
+   * LAYOUT: overlay
+   * Content positioned over background (for heroes with bg images)
+   * Requires a background to be set separately
+   */
+  [data-layout="overlay"] {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    position: relative;
+    isolation: isolate;
+  }
+
+  [data-layout="overlay"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-color, hsl(0 0% 0% / 0.4));
+    z-index: -1;
+  }
+
+
+  /* ========================================
+     RESPONSIVE LAYOUTS
+     Split layouts stack on narrow containers
+     ======================================== */
+
+  @container (max-width: 40rem) {
+    [data-layout="split"],
+    [data-layout="split-reverse"] {
+      grid-template-columns: 1fr;
+    }
+
+    [data-layout="split-reverse"] > :first-child {
+      order: 1;
+    }
+
+    [data-layout="split-reverse"] > :last-child {
+      order: 2;
+    }
+  }
+
+
+  /* ========================================
+     CONTENT WIDTH CONTROL
+     Constrain content width within layouts
+     ======================================== */
+
+  [data-width="narrow"] {
+    --content-width: var(--container-sm);
+  }
+
+  [data-width="default"] {
+    --content-width: var(--container-md);
+  }
+
+  [data-width="wide"] {
+    --content-width: var(--container-lg);
+  }
+
+  [data-width="full"] {
+    --content-width: 100%;
+  }
+
+
+  /* ========================================
+     VERTICAL ALIGNMENT (within containers)
+     For positioning content vertically
+     ======================================== */
+
+  [data-valign="start"] {
+    align-content: start;
+    align-items: flex-start;
+  }
+
+  [data-valign="center"] {
+    align-content: center;
+    align-items: center;
+  }
+
+  [data-valign="end"] {
+    align-content: end;
+    align-items: flex-end;
+  }
+
+
+  /* ========================================
+     GAP CONTROL
+     Override default gaps
+     ======================================== */
+
+  [data-gap="none"] {
+    gap: 0;
+  }
+
+  [data-gap="sm"] {
+    gap: var(--space-3);
+  }
+
+  [data-gap="md"] {
+    gap: var(--space-5);
+  }
+
+  [data-gap="lg"] {
+    gap: var(--space-8);
+  }
+
+  [data-gap="xl"] {
+    gap: var(--space-12);
+  }
+
+
+  /* ========================================
+     PADDING CONTROL
+     Section padding variations
+     ======================================== */
+
+  [data-padding="none"] {
+    padding-block: 0;
+  }
+
+  [data-padding="sm"] {
+    padding-block: var(--space-8);
+  }
+
+  [data-padding="md"] {
+    padding-block: var(--space-12);
+  }
+
+  [data-padding="lg"] {
+    padding-block: var(--space-16);
+  }
+
+  [data-padding="xl"] {
+    padding-block: var(--space-24);
+  }
+}

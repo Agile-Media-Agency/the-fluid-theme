@@ -1,0 +1,642 @@
+/**
+ * Fluid Framework - Base Element Styles
+ * @layer base
+ *
+ * Default styles for native HTML elements.
+ * These establish the rhythm and feel without requiring classes.
+ * Every element should feel intentional, refined, unhurried.
+ */
+
+@layer base {
+  /* ========================================
+     DOCUMENT
+     ======================================== */
+
+  body {
+    font-family: var(--font-system);
+    font-size: var(--font-size-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+    background-color: var(--color-background);
+  }
+
+  ::selection {
+    background-color: var(--color-selection);
+    color: var(--color-text);
+  }
+
+
+  /* ========================================
+     TYPOGRAPHY - Headings
+     Confident but not aggressive
+     ======================================== */
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    margin-block-end: var(--space-4);
+  }
+
+  h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-size: var(--font-size-2xl);
+    letter-spacing: -0.015em;
+  }
+
+  h4 {
+    font-size: var(--font-size-xl);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  h5 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  h6 {
+    font-size: var(--font-size-base);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  /* Subheadings following main headings */
+  :is(h1, h2, h3) + :is(h2, h3, h4) {
+    margin-block-start: var(--space-2);
+  }
+
+
+  /* ========================================
+     TYPOGRAPHY - Body Text
+     Room to breathe
+     ======================================== */
+
+  p {
+    margin-block-end: var(--space-5);
+    max-inline-size: var(--container-prose);
+  }
+
+  /* Last child shouldn't add extra space */
+  p:last-child {
+    margin-block-end: 0;
+  }
+
+  strong, b {
+    font-weight: var(--weight-semibold);
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  small {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Subscript and superscript */
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    inset-block-start: -0.5em;
+  }
+
+  sub {
+    inset-block-end: -0.25em;
+  }
+
+
+  /* ========================================
+     LINKS
+     Subtle, inviting interaction
+     ======================================== */
+
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    transition:
+      color var(--duration-fast) var(--ease-fluid),
+      text-decoration-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  a:hover {
+    color: var(--color-primary-hover);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Links that look like text but reveal on hover */
+  a[data-subtle] {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a[data-subtle]:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+
+  /* ========================================
+     LISTS
+     Structured with breathing room
+     ======================================== */
+
+  ul, ol {
+    padding-inline-start: var(--space-6);
+    margin-block-end: var(--space-5);
+  }
+
+  li {
+    margin-block-end: var(--space-2);
+  }
+
+  li:last-child {
+    margin-block-end: 0;
+  }
+
+  /* Nested lists */
+  li > ul,
+  li > ol {
+    margin-block-start: var(--space-2);
+    margin-block-end: 0;
+  }
+
+  /* Definition lists */
+  dl {
+    margin-block-end: var(--space-5);
+  }
+
+  dt {
+    font-weight: var(--weight-semibold);
+    margin-block-end: var(--space-1);
+  }
+
+  dd {
+    margin-inline-start: var(--space-6);
+    margin-block-end: var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+
+  /* ========================================
+     BLOCKQUOTES
+     Thoughtful, set apart
+     ======================================== */
+
+  blockquote {
+    position: relative;
+    padding-inline-start: var(--space-6);
+    margin-block: var(--space-6);
+    border-inline-start: 3px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  blockquote::before {
+    content: none; /* No decorative quotes - let content speak */
+  }
+
+  blockquote cite {
+    display: block;
+    margin-block-start: var(--space-3);
+    font-size: var(--font-size-sm);
+    font-style: normal;
+    color: var(--color-text-subtle);
+  }
+
+  blockquote cite::before {
+    content: "— ";
+  }
+
+
+  /* ========================================
+     CODE
+     Technical but approachable
+     ======================================== */
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background-color: var(--color-surface);
+    padding-inline: var(--space-1-5);
+    padding-block: var(--space-0-5);
+    border-radius: var(--radius-sm);
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-relaxed);
+    background-color: var(--color-surface);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    margin-block-end: var(--space-5);
+    tab-size: 2;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+  }
+
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background-color: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding-inline: var(--space-1-5);
+    padding-block: var(--space-0-5);
+    box-shadow: var(--shadow-xs);
+  }
+
+  samp {
+    font-family: var(--font-mono);
+  }
+
+  var {
+    font-style: italic;
+    font-weight: var(--weight-medium);
+  }
+
+
+  /* ========================================
+     HORIZONTAL RULES
+     Quiet separation
+     ======================================== */
+
+  hr {
+    border: none;
+    border-block-start: 1px solid var(--color-border-subtle);
+    margin-block: var(--space-10);
+  }
+
+
+  /* ========================================
+     MEDIA
+     Graceful presentation
+     ======================================== */
+
+  figure {
+    margin-block: var(--space-6);
+  }
+
+  figcaption {
+    margin-block-start: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+
+  /* ========================================
+     TABLES
+     Clean, readable data
+     ======================================== */
+
+  table {
+    inline-size: 100%;
+    margin-block-end: var(--space-5);
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th, td {
+    padding: var(--space-3) var(--space-4);
+    text-align: start;
+    border-block-end: 1px solid var(--color-border-subtle);
+  }
+
+  th {
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  /* Striped rows - subtle */
+  tbody tr:nth-child(even) {
+    background-color: hsl(var(--shadow-color) / 0.02);
+  }
+
+  /* Hover state - gentle highlight */
+  tbody tr {
+    transition: background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  tbody tr:hover {
+    background-color: hsl(var(--shadow-color) / 0.04);
+  }
+
+
+  /* ========================================
+     FORMS - Inputs
+     Inviting, not intimidating
+     ======================================== */
+
+  label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    margin-block-end: var(--space-2);
+    color: var(--color-text);
+  }
+
+  input,
+  textarea,
+  select {
+    inline-size: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition:
+      border-color var(--duration-fast) var(--ease-fluid),
+      box-shadow var(--duration-fast) var(--ease-fluid);
+  }
+
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border-color: var(--color-text-subtle);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-glow);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-text-subtle);
+    opacity: 1;
+  }
+
+  /* Disabled state */
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--color-surface);
+  }
+
+  textarea {
+    min-block-size: 8rem;
+    resize: vertical;
+  }
+
+
+  /* ========================================
+     FORMS - Buttons
+     Clear call to action, never garish
+     ======================================== */
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-size-base);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-none);
+    color: white;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-fluid),
+      transform var(--duration-fast) var(--ease-settle),
+      box-shadow var(--duration-fast) var(--ease-fluid);
+  }
+
+  button:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-sm);
+  }
+
+  button:active {
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  button:disabled:hover {
+    background-color: var(--color-primary);
+    box-shadow: none;
+    transform: none;
+  }
+
+
+  /* ========================================
+     INTERACTIVE ELEMENTS
+     Native HTML interactivity
+     ======================================== */
+
+  details {
+    margin-block-end: var(--space-4);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  summary {
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    padding: var(--space-2);
+    margin: calc(var(--space-4) * -1);
+    margin-block-end: 0;
+    border-radius: var(--radius-md);
+    transition: background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  summary:hover {
+    background-color: var(--color-surface);
+  }
+
+  details[open] summary {
+    margin-block-end: var(--space-4);
+    border-block-end: 1px solid var(--color-border-subtle);
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  /* Hide default marker in webkit */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::marker {
+    content: "";
+  }
+
+  summary::before {
+    content: "▸";
+    display: inline-block;
+    margin-inline-end: var(--space-2);
+    transition: transform var(--duration-fast) var(--ease-fluid);
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+
+  /* ========================================
+     SEMANTIC ELEMENTS
+     Meaningful markup, meaningful styles
+     ======================================== */
+
+  mark {
+    background-color: hsl(50 100% 85%);
+    padding-inline: var(--space-1);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    mark {
+      background-color: hsl(50 60% 30%);
+      color: hsl(50 100% 95%);
+    }
+  }
+
+  abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+
+  address {
+    font-style: normal;
+    margin-block-end: var(--space-5);
+  }
+
+  time {
+    font-variant-numeric: tabular-nums;
+  }
+
+
+  /* ========================================
+     METER & PROGRESS
+     Visual feedback
+     ======================================== */
+
+  meter,
+  progress {
+    inline-size: 100%;
+    block-size: var(--space-2);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  progress {
+    appearance: none;
+    background-color: var(--color-surface);
+  }
+
+  progress::-webkit-progress-bar {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-full);
+  }
+
+  progress::-webkit-progress-value {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+  }
+
+  progress::-moz-progress-bar {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+  }
+
+
+  /* ========================================
+     DIALOG
+     Modal overlay styling
+     ======================================== */
+
+  dialog {
+    max-inline-size: min(90vw, var(--container-sm));
+    padding: var(--space-6);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    background-color: var(--color-background);
+  }
+
+  dialog::backdrop {
+    background-color: hsl(var(--shadow-color) / 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+
+  /* ========================================
+     PRINT STYLES
+     Clean output for paper
+     ======================================== */
+
+  @media print {
+    body {
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    p, blockquote, ul, ol, table {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    /* Show URLs for external links */
+    a[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+      color: var(--color-text-muted);
+    }
+
+    pre, code {
+      background-color: #f5f5f5;
+    }
+  }
+}

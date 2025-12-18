@@ -1,0 +1,349 @@
+/**
+ * Fluid Framework - Card Component
+ * @layer components
+ *
+ * Cards are containers that group related content.
+ * They provide subtle elevation and visual boundaries.
+ * Uses container queries for truly responsive behavior.
+ *
+ * Usage:
+ *   <article class="card">...</article>
+ *   <div class="card" data-variant="elevated">...</div>
+ *   <article class="card" data-variant="outlined">...</article>
+ *   <a href="#" class="card" data-interactive>Clickable card</a>
+ *
+ * Structure (optional):
+ *   <article class="card">
+ *     <img class="card__media" src="..." alt="...">
+ *     <div class="card__content">
+ *       <h3 class="card__title">Title</h3>
+ *       <p class="card__description">Description</p>
+ *     </div>
+ *     <footer class="card__footer">Actions</footer>
+ *   </article>
+ */
+
+@layer components {
+  /* Base card */
+  .card {
+    /* Container for queries */
+    container-type: inline-size;
+    container-name: card;
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+
+    /* Visual */
+    background-color: var(--_card-bg, var(--color-surface-raised));
+    border: var(--border-width) solid var(--_card-border, var(--color-border-subtle));
+    border-radius: var(--radius-xl);
+
+    /* Overflow handling */
+    overflow: hidden;
+
+    /* Transitions */
+    transition:
+      box-shadow var(--duration-normal) var(--ease-fluid),
+      border-color var(--duration-normal) var(--ease-fluid),
+      transform var(--duration-normal) var(--ease-settle);
+  }
+
+
+  /* ========================================
+     VARIANTS
+     Different visual treatments
+     ======================================== */
+
+  /* Elevated - floating appearance */
+  .card[data-variant="elevated"] {
+    --_card-border: transparent;
+    box-shadow: var(--shadow-md);
+  }
+
+  .card[data-variant="elevated"]:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Outlined - border emphasis */
+  .card[data-variant="outlined"] {
+    --_card-bg: transparent;
+    --_card-border: var(--color-border);
+  }
+
+  /* Ghost - minimal, content-focused */
+  .card[data-variant="ghost"] {
+    --_card-bg: transparent;
+    --_card-border: transparent;
+  }
+
+  /* Filled - solid background */
+  .card[data-variant="filled"] {
+    --_card-bg: var(--color-surface);
+    --_card-border: transparent;
+  }
+
+
+  /* ========================================
+     INTERACTIVE CARDS
+     Clickable/hoverable cards
+     ======================================== */
+
+  .card[data-interactive],
+  a.card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card[data-interactive]:hover,
+  a.card:hover {
+    --_card-border: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card[data-interactive]:active,
+  a.card:active {
+    transform: scale(0.99);
+  }
+
+  .card[data-interactive]:focus-visible,
+  a.card:focus-visible {
+    outline: none;
+    box-shadow:
+      var(--shadow-glow),
+      0 0 0 2px var(--color-background),
+      0 0 0 4px var(--color-primary);
+  }
+
+
+  /* ========================================
+     CARD STRUCTURE
+     Optional semantic sections
+     ======================================== */
+
+  /* Media - images, video, etc. */
+  .card__media {
+    /* Full width, maintain aspect */
+    inline-size: 100%;
+    block-size: auto;
+    object-fit: cover;
+
+    /* Remove from flow for overlay positioning */
+    flex-shrink: 0;
+  }
+
+  /* Aspect ratio variants for media */
+  .card__media[data-aspect="square"] {
+    aspect-ratio: 1;
+  }
+
+  .card__media[data-aspect="video"] {
+    aspect-ratio: 16 / 9;
+  }
+
+  .card__media[data-aspect="portrait"] {
+    aspect-ratio: 3 / 4;
+  }
+
+  .card__media[data-aspect="wide"] {
+    aspect-ratio: 21 / 9;
+  }
+
+  /* Content area */
+  .card__content {
+    flex: 1;
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  /* Title */
+  .card__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin: 0;
+  }
+
+  /* Description */
+  .card__description {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Metadata - tags, dates, etc. */
+  .card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-subtle);
+  }
+
+  /* Footer - actions, links */
+  .card__footer {
+    padding: var(--space-4) var(--space-5);
+    border-block-start: 1px solid var(--color-border-subtle);
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  /* Push footer actions to end */
+  .card__footer[data-align="end"] {
+    justify-content: flex-end;
+  }
+
+  .card__footer[data-align="between"] {
+    justify-content: space-between;
+  }
+
+
+  /* ========================================
+     SIZE VARIANTS
+     Compact for lists, spacious for features
+     ======================================== */
+
+  .card[data-size="sm"] .card__content {
+    padding: var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .card[data-size="sm"] .card__title {
+    font-size: var(--font-size-base);
+  }
+
+  .card[data-size="sm"] .card__footer {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .card[data-size="lg"] .card__content {
+    padding: var(--space-6);
+    gap: var(--space-4);
+  }
+
+  .card[data-size="lg"] .card__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .card[data-size="lg"] .card__footer {
+    padding: var(--space-5) var(--space-6);
+  }
+
+
+  /* ========================================
+     CONTAINER QUERY RESPONSIVE
+     Cards adapt to their container, not viewport
+     ======================================== */
+
+  /* Compact card in narrow containers */
+  @container card (max-width: 20rem) {
+    .card__content {
+      padding: var(--space-4);
+    }
+
+    .card__title {
+      font-size: var(--font-size-base);
+    }
+
+    .card__footer {
+      padding: var(--space-3) var(--space-4);
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  /* Horizontal layout in wider containers */
+  @container card (min-width: 30rem) {
+    .card[data-layout="horizontal"] {
+      flex-direction: row;
+    }
+
+    .card[data-layout="horizontal"] .card__media {
+      inline-size: 40%;
+      max-inline-size: 16rem;
+      block-size: auto;
+    }
+
+    .card[data-layout="horizontal"] .card__content {
+      justify-content: center;
+    }
+  }
+
+
+  /* ========================================
+     SPECIAL CARD TYPES
+     Common card patterns
+     ======================================== */
+
+  /* Profile card */
+  .card[data-type="profile"] {
+    text-align: center;
+  }
+
+  .card[data-type="profile"] .card__media {
+    inline-size: 6rem;
+    block-size: 6rem;
+    border-radius: var(--radius-full);
+    margin: var(--space-5) auto 0;
+  }
+
+  /* Stat card */
+  .card[data-type="stat"] .card__content {
+    text-align: center;
+    gap: var(--space-2);
+  }
+
+  .card[data-type="stat"] .card__value {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-none);
+    color: var(--color-primary);
+  }
+
+  .card[data-type="stat"] .card__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* Feature card - emphasized */
+  .card[data-type="feature"] {
+    text-align: center;
+    padding: var(--space-6);
+  }
+
+  .card[data-type="feature"] .card__icon {
+    inline-size: 3rem;
+    block-size: 3rem;
+    margin-inline: auto;
+    margin-block-end: var(--space-4);
+    color: var(--color-primary);
+  }
+
+
+  /* ========================================
+     CARD GROUPS
+     Multiple cards together
+     ======================================== */
+
+  .card-group {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--card-min-width, 18rem)), 1fr)
+    );
+  }
+
+  /* Equal height cards */
+  .card-group[data-equal-height] > .card {
+    block-size: 100%;
+  }
+
+  .card-group[data-equal-height] > .card .card__content {
+    flex: 1;
+  }
+}
