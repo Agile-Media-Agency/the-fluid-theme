@@ -245,6 +245,22 @@
 
 
     /* ========================================
+       MOTION INTENSITY - Water Themes
+       Scale motion from calm to dynamic
+       Usage: <html data-motion="trickling">
+       ======================================== */
+
+    /* Motion multiplier - default is 1 (normal) */
+    --motion-scale: 1;
+
+    /* Computed durations based on scale */
+    --motion-instant: calc(100ms * var(--motion-scale));
+    --motion-fast: calc(200ms * var(--motion-scale));
+    --motion-normal: calc(350ms * var(--motion-scale));
+    --motion-slow: calc(500ms * var(--motion-scale));
+
+
+    /* ========================================
        BORDERS & RADII
        Soft edges, never harsh
        ======================================== */
@@ -433,7 +449,60 @@
       --duration-slow: 0ms;
       --duration-slower: 0ms;
       --duration-slowest: 0ms;
+      --motion-scale: 0;
     }
+  }
+
+
+  /* ========================================
+     MOTION INTENSITY PRESETS - Water Themes
+     Apply to root: <html data-motion="trickling">
+     ======================================== */
+
+  /* Trickling Brook - Minimal, barely perceptible motion */
+  :root[data-motion="trickling"],
+  [data-motion="trickling"] {
+    --motion-scale: 0.5;
+    --duration-fast: 100ms;
+    --duration-normal: 175ms;
+    --duration-slow: 250ms;
+  }
+
+  /* Flowing Stream - Gentle, natural movement (default) */
+  :root[data-motion="flowing"],
+  [data-motion="flowing"] {
+    --motion-scale: 1;
+    /* Uses default durations */
+  }
+
+  /* Rapids - More energetic, responsive motion */
+  :root[data-motion="rapids"],
+  [data-motion="rapids"] {
+    --motion-scale: 1.5;
+    --duration-fast: 300ms;
+    --duration-normal: 500ms;
+    --duration-slow: 750ms;
+    --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy overshoot */
+  }
+
+  /* Tsunami - Maximum impact, dramatic motion */
+  :root[data-motion="tsunami"],
+  [data-motion="tsunami"] {
+    --motion-scale: 2;
+    --duration-fast: 400ms;
+    --duration-normal: 700ms;
+    --duration-slow: 1000ms;
+    --ease-fluid: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Strong overshoot */
+    --ease-settle: cubic-bezier(0.34, 1.8, 0.64, 1); /* Dramatic settle */
+  }
+
+  /* Still Water - Almost no motion, for those who prefer calm */
+  :root[data-motion="still"],
+  [data-motion="still"] {
+    --motion-scale: 0.25;
+    --duration-fast: 50ms;
+    --duration-normal: 100ms;
+    --duration-slow: 150ms;
   }
 }
 
