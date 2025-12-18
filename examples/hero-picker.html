@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fluid Framework - Interactive Hero Builder">
+  <title>Fluid Framework - Hero Picker</title>
+
+  <link rel="stylesheet" href="../src/fluid.css">
+
+  <style>
+    @layer demo {
+      .picker-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+        padding: var(--space-5);
+      }
+
+      @media (min-width: 64rem) {
+        .picker-layout {
+          grid-template-columns: 320px 1fr;
+          min-block-size: calc(100vh - 60px);
+        }
+      }
+
+      /* Controls Panel */
+      .picker-controls {
+        background: var(--color-surface);
+        border-radius: var(--radius-xl);
+        padding: var(--space-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        block-size: fit-content;
+        position: sticky;
+        inset-block-start: 80px;
+      }
+
+      .picker-controls h2 {
+        font-size: var(--font-size-lg);
+        margin: 0;
+        padding-block-end: var(--space-3);
+        border-block-end: 1px solid var(--color-border-subtle);
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .control-group label {
+        font-size: var(--font-size-sm);
+        font-weight: var(--weight-medium);
+        color: var(--color-text-muted);
+      }
+
+      .control-group select,
+      .control-group input[type="text"] {
+        padding: var(--space-2) var(--space-3);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        background: var(--color-background);
+        font-size: var(--font-size-sm);
+      }
+
+      .control-group input[type="text"] {
+        inline-size: 100%;
+      }
+
+      /* Toggle Switch inline */
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+      }
+
+      .toggle-row label {
+        font-size: var(--font-size-sm);
+        font-weight: var(--weight-medium);
+        color: var(--color-text-muted);
+      }
+
+      /* Preview Area */
+      .picker-preview {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .preview-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+      }
+
+      .preview-header h2 {
+        font-size: var(--font-size-lg);
+        margin: 0;
+      }
+
+      .preview-container {
+        border: 1px solid var(--color-border-subtle);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        min-block-size: 400px;
+      }
+
+      /* Code Output */
+      .code-output {
+        background: var(--gray-10);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4);
+        overflow-x: auto;
+      }
+
+      .code-output pre {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: var(--font-size-sm);
+        color: var(--gray-80);
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .code-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-block-end: var(--space-4);
+      }
+
+      .code-header h3 {
+        font-size: var(--font-size-base);
+        margin: 0;
+      }
+
+      /* Button styles for copy */
+      .btn-copy {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--font-size-sm);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all var(--duration-fast) var(--ease-fluid);
+      }
+
+      .btn-copy:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+
+      .btn-copy[data-copied] {
+        background: var(--color-success);
+        border-color: var(--color-success);
+        color: white;
+      }
+
+      /* Preset buttons */
+      .presets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+
+      .preset-btn {
+        padding: var(--space-1) var(--space-2);
+        font-size: var(--font-size-xs);
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: all var(--duration-fast) var(--ease-fluid);
+      }
+
+      .preset-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .preset-btn[data-active] {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" data-sticky>
+    <a href="../index.html" class="nav__brand">Fluid</a>
+    <ul class="nav__menu" role="list" id="nav-menu">
+      <li><a href="foundation.html" class="nav__link">Foundation</a></li>
+      <li><a href="components.html" class="nav__link">Components</a></li>
+      <li><a href="positioning.html" class="nav__link">Layouts</a></li>
+      <li><a href="heroes.html" class="nav__link">Heroes</a></li>
+      <li><a href="hero-picker.html" class="nav__link" aria-current="page">Hero Picker</a></li>
+    </ul>
+    <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div class="picker-layout">
+    <!-- Controls Panel -->
+    <aside class="picker-controls">
+      <h2>Hero Builder</h2>
+
+      <!-- Presets -->
+      <div class="control-group">
+        <label>Quick Presets</label>
+        <div class="presets">
+          <button class="preset-btn" onclick="applyPreset('minimal')">Minimal</button>
+          <button class="preset-btn" onclick="applyPreset('bold')">Bold Dark</button>
+          <button class="preset-btn" onclick="applyPreset('split')">Split Media</button>
+          <button class="preset-btn" onclick="applyPreset('cinematic')">Cinematic</button>
+          <button class="preset-btn" onclick="applyPreset('gradient')">Gradient</button>
+        </div>
+      </div>
+
+      <!-- Layout -->
+      <div class="control-group">
+        <label for="layout">Layout</label>
+        <select id="layout" onchange="updatePreview()">
+          <option value="center">Center</option>
+          <option value="left">Left</option>
+          <option value="right">Right</option>
+          <option value="split">Split (Media Right)</option>
+          <option value="split-reverse">Split Reverse (Media Left)</option>
+        </select>
+      </div>
+
+      <!-- Theme -->
+      <div class="control-group">
+        <label for="theme">Theme</label>
+        <select id="theme" onchange="updatePreview()">
+          <option value="subtle">Subtle (Light)</option>
+          <option value="dark">Dark</option>
+          <option value="accent">Accent Color</option>
+          <option value="gradient">Gradient</option>
+          <option value="primary">Primary</option>
+        </select>
+      </div>
+
+      <!-- Size -->
+      <div class="control-group">
+        <label for="size">Size</label>
+        <select id="size" onchange="updatePreview()">
+          <option value="">Default (60vh)</option>
+          <option value="compact">Compact (40vh)</option>
+          <option value="full">Full Screen (100vh)</option>
+          <option value="auto">Auto (content height)</option>
+        </select>
+      </div>
+
+      <!-- Padding -->
+      <div class="control-group">
+        <label for="padding">Padding</label>
+        <select id="padding" onchange="updatePreview()">
+          <option value="md">Medium</option>
+          <option value="lg">Large</option>
+          <option value="xl" selected>Extra Large</option>
+        </select>
+      </div>
+
+      <!-- Background Image Toggle -->
+      <div class="toggle-row">
+        <label for="bgImage">Background Image</label>
+        <label class="switch">
+          <input class="switch__input" type="checkbox" id="bgImage" onchange="updatePreview()">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </label>
+      </div>
+
+      <!-- Overlay (only when bg image is on) -->
+      <div class="control-group" id="overlayGroup" style="display: none;">
+        <label for="overlay">Overlay</label>
+        <select id="overlay" onchange="updatePreview()">
+          <option value="">None</option>
+          <option value="light">Light (20%)</option>
+          <option value="medium" selected>Medium (40%)</option>
+          <option value="heavy">Heavy (60%)</option>
+          <option value="gradient">Gradient (bottom fade)</option>
+        </select>
+      </div>
+
+      <!-- Content -->
+      <div class="control-group">
+        <label for="headline">Headline</label>
+        <input type="text" id="headline" value="Your Headline Here" oninput="updatePreview()">
+      </div>
+
+      <div class="control-group">
+        <label for="subheadline">Subheadline</label>
+        <input type="text" id="subheadline" value="A brief description that supports your main message." oninput="updatePreview()">
+      </div>
+
+      <!-- Buttons Toggle -->
+      <div class="toggle-row">
+        <label for="showButtons">Show Buttons</label>
+        <label class="switch">
+          <input class="switch__input" type="checkbox" id="showButtons" checked onchange="updatePreview()">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </label>
+      </div>
+    </aside>
+
+    <!-- Preview Area -->
+    <main class="picker-preview">
+      <div class="preview-header">
+        <h2>Live Preview</h2>
+      </div>
+
+      <div class="preview-container" id="previewContainer">
+        <!-- Hero preview renders here -->
+      </div>
+
+      <!-- Code Output -->
+      <div class="code-output">
+        <div class="code-header">
+          <h3>Generated HTML</h3>
+          <button class="btn-copy" onclick="copyCode()">Copy Code</button>
+        </div>
+        <pre id="codeOutput"></pre>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('fluid-theme', newTheme);
+    }
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      const toggle = document.querySelector('.nav__toggle');
+      const isOpen = menu.hasAttribute('data-open');
+      if (isOpen) {
+        menu.removeAttribute('data-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.setAttribute('data-open', '');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Initialize theme
+    (function() {
+      const saved = localStorage.getItem('fluid-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    // Background images
+    const bgImages = [
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&h=900&fit=crop'
+    ];
+
+    const splitImages = [
+      'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop'
+    ];
+
+    // Get current image based on settings
+    function getCurrentBgImage() {
+      return bgImages[0];
+    }
+
+    function getCurrentSplitImage() {
+      return splitImages[0];
+    }
+
+    // Update preview
+    function updatePreview() {
+      const layout = document.getElementById('layout').value;
+      const theme = document.getElementById('theme').value;
+      const size = document.getElementById('size').value;
+      const padding = document.getElementById('padding').value;
+      const bgImage = document.getElementById('bgImage').checked;
+      const overlay = document.getElementById('overlay').value;
+      const headline = document.getElementById('headline').value;
+      const subheadline = document.getElementById('subheadline').value;
+      const showButtons = document.getElementById('showButtons').checked;
+
+      // Show/hide overlay control
+      document.getElementById('overlayGroup').style.display = bgImage ? 'flex' : 'none';
+
+      // Build attributes
+      let attrs = [`data-layout="${layout}"`, `data-padding="${padding}"`];
+
+      if (theme) attrs.push(`data-theme="${theme}"`);
+      if (size) attrs.push(`data-size="${size}"`);
+      if (bgImage && overlay) attrs.push(`data-overlay="${overlay}"`);
+
+      // Determine if we need special text color for bg image
+      let inlineStyle = '';
+      if (bgImage) {
+        inlineStyle = ' style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);"';
+      }
+
+      // Build HTML
+      const isSplit = layout === 'split' || layout === 'split-reverse';
+      let html = '';
+
+      if (isSplit) {
+        html = `<section class="hero" ${attrs.join(' ')}${inlineStyle}>
+  <div class="hero__content" data-layout="stack" data-gap="md">
+    <h1 class="hero__headline">${escapeHtml(headline)}</h1>
+    <p class="hero__subheadline">${escapeHtml(subheadline)}</p>${showButtons ? `
+    <div class="hero__actions">
+      <button>Primary Action</button>
+      <button data-variant="outline">Secondary</button>
+    </div>` : ''}
+  </div>
+  <img class="hero__media" src="${getCurrentSplitImage()}" alt="Hero image" style="aspect-ratio: 4/3; border-radius: var(--radius-lg); object-fit: cover;">
+</section>`;
+      } else if (bgImage) {
+        html = `<section class="hero" ${attrs.join(' ')}${inlineStyle}>
+  <div class="hero__background">
+    <img src="${getCurrentBgImage()}" alt="Background" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+  <h1 class="hero__headline">${escapeHtml(headline)}</h1>
+  <p class="hero__subheadline">${escapeHtml(subheadline)}</p>${showButtons ? `
+  <div class="hero__actions">
+    <button>Primary Action</button>
+    <button data-variant="outline" style="border-color: white; color: white;">Secondary</button>
+  </div>` : ''}
+</section>`;
+      } else {
+        html = `<section class="hero" ${attrs.join(' ')}>
+  <h1 class="hero__headline">${escapeHtml(headline)}</h1>
+  <p class="hero__subheadline">${escapeHtml(subheadline)}</p>${showButtons ? `
+  <div class="hero__actions">
+    <button>Primary Action</button>
+    <button data-variant="outline">Secondary</button>
+  </div>` : ''}
+</section>`;
+      }
+
+      // Update preview
+      document.getElementById('previewContainer').innerHTML = html;
+
+      // Update code output
+      document.getElementById('codeOutput').textContent = html;
+    }
+
+    // Escape HTML
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Copy code
+    function copyCode() {
+      const code = document.getElementById('codeOutput').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.btn-copy');
+        btn.textContent = 'Copied!';
+        btn.setAttribute('data-copied', '');
+        setTimeout(() => {
+          btn.textContent = 'Copy Code';
+          btn.removeAttribute('data-copied');
+        }, 2000);
+      });
+    }
+
+    // Presets
+    function applyPreset(preset) {
+      // Clear active state from all preset buttons
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.removeAttribute('data-active'));
+      event.target.setAttribute('data-active', '');
+
+      switch (preset) {
+        case 'minimal':
+          document.getElementById('layout').value = 'center';
+          document.getElementById('theme').value = 'subtle';
+          document.getElementById('size').value = '';
+          document.getElementById('padding').value = 'xl';
+          document.getElementById('bgImage').checked = false;
+          document.getElementById('showButtons').checked = true;
+          break;
+        case 'bold':
+          document.getElementById('layout').value = 'center';
+          document.getElementById('theme').value = 'dark';
+          document.getElementById('size').value = 'full';
+          document.getElementById('padding').value = 'xl';
+          document.getElementById('bgImage').checked = false;
+          document.getElementById('showButtons').checked = true;
+          break;
+        case 'split':
+          document.getElementById('layout').value = 'split';
+          document.getElementById('theme').value = 'subtle';
+          document.getElementById('size').value = 'auto';
+          document.getElementById('padding').value = 'lg';
+          document.getElementById('bgImage').checked = false;
+          document.getElementById('showButtons').checked = true;
+          break;
+        case 'cinematic':
+          document.getElementById('layout').value = 'center';
+          document.getElementById('theme').value = 'dark';
+          document.getElementById('size').value = 'full';
+          document.getElementById('padding').value = 'xl';
+          document.getElementById('bgImage').checked = true;
+          document.getElementById('overlay').value = 'gradient';
+          document.getElementById('showButtons').checked = true;
+          break;
+        case 'gradient':
+          document.getElementById('layout').value = 'center';
+          document.getElementById('theme').value = 'gradient';
+          document.getElementById('size').value = '';
+          document.getElementById('padding').value = 'xl';
+          document.getElementById('bgImage').checked = false;
+          document.getElementById('showButtons').checked = true;
+          break;
+      }
+      updatePreview();
+    }
+
+    // Initialize
+    updatePreview();
+  </script>
+</body>
+</html>
