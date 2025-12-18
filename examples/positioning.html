@@ -60,13 +60,26 @@
   <!-- Navigation -->
   <nav class="nav" data-sticky>
     <a href="../index.html" class="nav__brand">Fluid</a>
-    <ul class="nav__menu" role="list">
+    <ul class="nav__menu" role="list" id="nav-menu">
       <li><a href="foundation.html" class="nav__link">Foundation</a></li>
       <li><a href="components.html" class="nav__link">Components</a></li>
       <li><a href="positioning.html" class="nav__link" aria-current="page">Layouts</a></li>
       <li><a href="heroes.html" class="nav__link">Heroes</a></li>
       <li><a href="#" class="nav__link">Themes</a></li>
     </ul>
+    <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
   </nav>
 
   <div class="container">
@@ -238,5 +251,38 @@
       </p>
     </footer>
   </div>
+
+  <!-- Theme and menu toggle scripts -->
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('fluid-theme', newTheme);
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      const toggle = document.querySelector('.nav__toggle');
+      const isOpen = menu.hasAttribute('data-open');
+      if (isOpen) {
+        menu.removeAttribute('data-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.setAttribute('data-open', '');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    (function() {
+      const saved = localStorage.getItem('fluid-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </body>
 </html>
