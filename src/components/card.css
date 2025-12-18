@@ -72,6 +72,36 @@
     box-shadow: var(--shadow-lg);
   }
 
+  /* Dark mode: add subtle border since shadows are less visible */
+  @media (prefers-color-scheme: dark) {
+    .card[data-variant="elevated"] {
+      --_card-border: var(--color-border-subtle);
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 1px var(--color-border-subtle);
+    }
+
+    .card[data-variant="elevated"]:hover {
+      box-shadow:
+        var(--shadow-lg),
+        0 0 0 1px var(--color-border);
+    }
+  }
+
+  /* Also support explicit dark theme */
+  [data-theme="dark"] .card[data-variant="elevated"] {
+    --_card-border: var(--color-border-subtle);
+    box-shadow:
+      var(--shadow-md),
+      0 0 0 1px var(--color-border-subtle);
+  }
+
+  [data-theme="dark"] .card[data-variant="elevated"]:hover {
+    box-shadow:
+      var(--shadow-lg),
+      0 0 0 1px var(--color-border);
+  }
+
   /* Outlined - border emphasis */
   .card[data-variant="outlined"] {
     --_card-bg: transparent;

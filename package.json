@@ -4,7 +4,7 @@
   "description": "A modern, semantic design system using CSS layers and custom properties",
   "main": "src/fluid.css",
   "scripts": {
-    "serve": "npx http-server examples -o",
+    "serve": "npx http-server . -o /index.html",
     "test": "echo \"Visual testing only - open examples/foundation.html in browser\""
   },
   "keywords": [

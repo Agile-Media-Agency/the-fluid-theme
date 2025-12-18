@@ -134,8 +134,8 @@
     text-decoration-thickness: 1px;
     text-underline-offset: 0.15em;
     transition:
-      color var(--duration-fast) var(--ease-fluid),
-      text-decoration-color var(--duration-fast) var(--ease-fluid);
+      color var(--duration-normal) var(--ease-fluid),
+      text-decoration-color var(--duration-normal) var(--ease-fluid);
   }
 
   a:hover {
@@ -342,7 +342,7 @@
 
   /* Hover state - gentle highlight */
   tbody tr {
-    transition: background-color var(--duration-fast) var(--ease-fluid);
+    transition: background-color var(--duration-normal) var(--ease-fluid);
   }
 
   tbody tr:hover {
@@ -374,9 +374,14 @@
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
+    /* Subtle 3D effect - layered shadows create depth */
+    box-shadow:
+      inset 0 1px 2px oklch(from var(--shadow-color) l c h / 0.04),
+      0 1px 0 oklch(from var(--theme-light) l c h / 0.6);
     transition:
-      border-color var(--duration-fast) var(--ease-fluid),
-      box-shadow var(--duration-fast) var(--ease-fluid);
+      border-color var(--duration-normal) var(--ease-fluid),
+      box-shadow var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
   }
 
   input:hover,
@@ -390,7 +395,12 @@
   select:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: var(--shadow-glow);
+    /* Focus: glow ring + maintain subtle 3D */
+    box-shadow:
+      var(--shadow-glow),
+      inset 0 1px 2px oklch(from var(--shadow-color) l c h / 0.03);
+    /* Soft focus background - subtle tint that adapts to light/dark */
+    background-color: color-mix(in oklch, var(--accent) 7%, var(--color-background));
   }
 
   input::placeholder,
@@ -434,9 +444,9 @@
     border-radius: var(--radius-md);
     cursor: pointer;
     transition:
-      background-color var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid),
       transform var(--duration-fast) var(--ease-settle),
-      box-shadow var(--duration-fast) var(--ease-fluid);
+      box-shadow var(--duration-normal) var(--ease-fluid);
   }
 
   button:hover {
@@ -480,7 +490,7 @@
     margin: calc(var(--space-4) * -1);
     margin-block-end: 0;
     border-radius: var(--radius-md);
-    transition: background-color var(--duration-fast) var(--ease-fluid);
+    transition: background-color var(--duration-normal) var(--ease-fluid);
   }
 
   summary:hover {
@@ -507,7 +517,7 @@
     content: "▸";
     display: inline-block;
     margin-inline-end: var(--space-2);
-    transition: transform var(--duration-fast) var(--ease-fluid);
+    transition: transform var(--duration-normal) var(--ease-settle);
   }
 
   details[open] summary::before {
@@ -550,7 +560,7 @@
 
   /* ========================================
      METER & PROGRESS
-     Visual feedback
+     Visual feedback with viewport animation
      ======================================== */
 
   meter,
@@ -574,11 +584,33 @@
   progress::-webkit-progress-value {
     background-color: var(--accent);
     border-radius: var(--radius-full);
+    /* Animate to draw attention when visible */
+    transition: inline-size var(--duration-slow) var(--ease-fluid);
   }
 
   progress::-moz-progress-bar {
     background-color: var(--accent);
     border-radius: var(--radius-full);
+    transition: inline-size var(--duration-slow) var(--ease-fluid);
+  }
+
+  /* Animated progress - starts at 0 and fills to value when in viewport */
+  progress[data-animate] {
+    --progress-value: 73;  /* Default: NSW easter egg */
+  }
+
+  progress[data-animate]::-webkit-progress-value {
+    animation: progress-fill var(--duration-slower) var(--ease-fluid) forwards;
+    animation-play-state: paused;
+  }
+
+  progress[data-animate][data-visible]::-webkit-progress-value {
+    animation-play-state: running;
+  }
+
+  @keyframes progress-fill {
+    from { inline-size: 0; }
+    to { inline-size: 100%; }
   }
 
 
