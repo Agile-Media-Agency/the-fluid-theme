@@ -504,6 +504,52 @@
     --duration-normal: 100ms;
     --duration-slow: 150ms;
   }
+
+
+  /* ========================================
+     PAGE TRANSITIONS - View Transitions API
+     Native browser support, progressive enhancement
+     ======================================== */
+
+  /* Enable cross-document view transitions */
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* Default page transition - gentle fade with slide */
+  ::view-transition-old(root) {
+    animation: var(--duration-normal) var(--ease-fluid) both fade-out,
+               var(--duration-normal) var(--ease-fluid) both slide-to-left;
+  }
+
+  ::view-transition-new(root) {
+    animation: var(--duration-normal) var(--ease-fluid) both fade-in,
+               var(--duration-normal) var(--ease-fluid) both slide-from-right;
+  }
+
+  @keyframes fade-out {
+    to { opacity: 0; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+  }
+
+  @keyframes slide-to-left {
+    to { transform: translateX(-2%); }
+  }
+
+  @keyframes slide-from-right {
+    from { transform: translateX(2%); }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+    }
+  }
 }
 
 
