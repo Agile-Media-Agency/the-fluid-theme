@@ -26,13 +26,15 @@
 @layer components {
   /* Base card */
   .card {
-    /* Container for queries */
-    container-type: inline-size;
+    /* Container for queries - only when explicitly enabled */
     container-name: card;
 
     /* Layout */
     display: flex;
     flex-direction: column;
+
+    /* Prevent collapse in grid/flex layouts */
+    min-inline-size: 0;
 
     /* Visual */
     background-color: var(--_card-bg, var(--color-surface-raised));
@@ -47,6 +49,11 @@
       box-shadow var(--duration-normal) var(--ease-fluid),
       border-color var(--duration-normal) var(--ease-fluid),
       transform var(--duration-normal) var(--ease-settle);
+  }
+
+  /* Enable container queries only when needed */
+  .card[data-container] {
+    container-type: inline-size;
   }
 
 
