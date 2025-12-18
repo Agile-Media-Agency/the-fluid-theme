@@ -98,7 +98,7 @@
 
   .card[data-interactive]:hover,
   a.card:hover {
-    --_card-border: var(--color-primary);
+    --_card-border: var(--accent);
     box-shadow: var(--shadow-sm);
   }
 
@@ -113,7 +113,7 @@
     box-shadow:
       var(--shadow-glow),
       0 0 0 2px var(--color-background),
-      0 0 0 4px var(--color-primary);
+      0 0 0 4px var(--accent);
   }
 
 
@@ -300,7 +300,7 @@
     font-size: var(--font-size-3xl);
     font-weight: var(--weight-bold);
     line-height: var(--leading-none);
-    color: var(--color-primary);
+    color: var(--accent);
   }
 
   .card[data-type="stat"] .card__title {
@@ -320,7 +320,7 @@
     block-size: 3rem;
     margin-inline: auto;
     margin-block-end: var(--space-4);
-    color: var(--color-primary);
+    color: var(--accent);
   }
 
 

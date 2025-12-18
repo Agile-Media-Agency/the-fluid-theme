@@ -4,81 +4,124 @@
  *
  * The single source of truth. Every value flows from here.
  *
- * Design philosophy: Serene, calm, like a gentle brook.
- * - Soft, natural colors that don't fight for attention
- * - Smooth, unhurried transitions
- * - Shadows that feel like natural light
- * - Typography that breathes
+ * Color philosophy: OKLCH-based, black & white foundation.
+ * - Perceptually uniform lightness (50% gray LOOKS like 50%)
+ * - Themes need only 2 colors: light and dark
+ * - All other colors derive mathematically
  */
 
 @layer tokens {
   :root {
     /* ========================================
-       COLOR SYSTEM
-       HSL-based for intuitive manipulation
+       OKLCH COLOR SYSTEM
+       Perceptually uniform, mathematically derived
        ======================================== */
 
-    /* Primary - A sophisticated, muted blue
-       Not electric, not aggressive. Think morning sky. */
-    --color-primary-h: 215;
-    --color-primary-s: 50%;
-    --color-primary-l: 45%;
-    --color-primary: hsl(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l));
-    --color-primary-subtle: hsl(var(--color-primary-h) 30% 95%);
-    --color-primary-hover: hsl(var(--color-primary-h) calc(var(--color-primary-s) + 10%) calc(var(--color-primary-l) - 5%));
+    /* === FOUNDATION: Pure Black & White === */
+    --black: oklch(0% 0 0);
+    --white: oklch(100% 0 0);
 
-    /* Accent - Warm, earthy undertone
-       Complements without competing */
-    --color-accent-h: 25;
-    --color-accent-s: 45%;
-    --color-accent-l: 52%;
-    --color-accent: hsl(var(--color-accent-h) var(--color-accent-s) var(--color-accent-l));
 
-    /* Semantic colors - Adaptive light/dark */
-    --color-text: light-dark(
-      hsl(220 15% 18%),
-      hsl(220 15% 88%)
-    );
-    --color-text-muted: light-dark(
-      hsl(220 10% 45%),
-      hsl(220 10% 60%)
-    );
-    --color-text-subtle: light-dark(
-      hsl(220 8% 60%),
-      hsl(220 8% 45%)
-    );
+    /* === GRAY SCALE: Perceptually Even Steps ===
+       In OKLCH, 50% lightness actually LOOKS 50% gray.
+       These steps are mathematically uniform to human vision. */
+    --gray-5:  oklch(5% 0 0);
+    --gray-10: oklch(10% 0 0);
+    --gray-15: oklch(15% 0 0);
+    --gray-20: oklch(20% 0 0);
+    --gray-25: oklch(25% 0 0);
+    --gray-30: oklch(30% 0 0);
+    --gray-35: oklch(35% 0 0);
+    --gray-40: oklch(40% 0 0);
+    --gray-45: oklch(45% 0 0);
+    --gray-50: oklch(50% 0 0);
+    --gray-55: oklch(55% 0 0);
+    --gray-60: oklch(60% 0 0);
+    --gray-65: oklch(65% 0 0);
+    --gray-70: oklch(70% 0 0);
+    --gray-75: oklch(75% 0 0);
+    --gray-80: oklch(80% 0 0);
+    --gray-85: oklch(85% 0 0);
+    --gray-90: oklch(90% 0 0);
+    --gray-95: oklch(95% 0 0);
+    --gray-98: oklch(98% 0 0);
 
-    --color-background: light-dark(
-      hsl(220 20% 99%),
-      hsl(220 15% 8%)
-    );
-    --color-surface: light-dark(
-      hsl(220 20% 96%),
-      hsl(220 12% 12%)
-    );
-    --color-surface-raised: light-dark(
-      hsl(0 0% 100%),
-      hsl(220 12% 15%)
-    );
 
-    --color-border: light-dark(
-      hsl(220 15% 88%),
-      hsl(220 12% 22%)
-    );
-    --color-border-subtle: light-dark(
-      hsl(220 15% 92%),
-      hsl(220 12% 18%)
-    );
+    /* === THEME FOUNDATION ===
+       Themes override ONLY these two variables.
+       Everything else derives automatically. */
+    --theme-dark: var(--black);
+    --theme-light: var(--white);
 
-    /* Interactive states */
-    --color-focus: var(--color-primary);
-    --color-selection: hsl(var(--color-primary-h) 50% 90%);
+    /* Optional: Theme can add slight chroma for warmth/coolness
+       Default is 0 (pure neutral). Themes can set 0.01-0.03 for subtle tint. */
+    --theme-chroma: 0;
+    --theme-hue: 0;
 
-    /* Feedback colors - Softer, not alarming */
-    --color-success: hsl(145 45% 42%);
-    --color-warning: hsl(38 75% 50%);
-    --color-error: hsl(0 55% 50%);
-    --color-info: hsl(200 60% 48%);
+
+    /* === MATHEMATICAL BLENDS ===
+       Mix theme colors in OKLCH for perceptually even results */
+    --blend-5:  color-mix(in oklch, var(--theme-dark) 95%, var(--theme-light));
+    --blend-10: color-mix(in oklch, var(--theme-dark) 90%, var(--theme-light));
+    --blend-15: color-mix(in oklch, var(--theme-dark) 85%, var(--theme-light));
+    --blend-20: color-mix(in oklch, var(--theme-dark) 80%, var(--theme-light));
+    --blend-25: color-mix(in oklch, var(--theme-dark) 75%, var(--theme-light));
+    --blend-30: color-mix(in oklch, var(--theme-dark) 70%, var(--theme-light));
+    --blend-40: color-mix(in oklch, var(--theme-dark) 60%, var(--theme-light));
+    --blend-50: color-mix(in oklch, var(--theme-dark) 50%, var(--theme-light));
+    --blend-60: color-mix(in oklch, var(--theme-dark) 40%, var(--theme-light));
+    --blend-70: color-mix(in oklch, var(--theme-dark) 30%, var(--theme-light));
+    --blend-75: color-mix(in oklch, var(--theme-dark) 25%, var(--theme-light));
+    --blend-80: color-mix(in oklch, var(--theme-dark) 20%, var(--theme-light));
+    --blend-85: color-mix(in oklch, var(--theme-dark) 15%, var(--theme-light));
+    --blend-90: color-mix(in oklch, var(--theme-dark) 10%, var(--theme-light));
+    --blend-95: color-mix(in oklch, var(--theme-dark) 5%, var(--theme-light));
+
+
+    /* === ACCENT COLOR ===
+       Default: a mid-gray. Themes can override with any color.
+       Variants auto-calculate lighter/darker versions. */
+    --accent: var(--gray-40);
+    --accent-subtle: color-mix(in oklch, var(--accent) 15%, var(--theme-light));
+    --accent-hover: color-mix(in oklch, var(--accent) 85%, var(--theme-dark));
+    --accent-active: color-mix(in oklch, var(--accent) 70%, var(--theme-dark));
+
+
+    /* === SEMANTIC COLORS: Light Mode ===
+       These map the foundation to meaningful roles. */
+    --color-text: var(--gray-15);
+    --color-text-muted: var(--gray-40);
+    --color-text-subtle: var(--gray-55);
+
+    --color-background: var(--white);
+    --color-surface: var(--gray-98);
+    --color-surface-raised: var(--white);
+
+    --color-border: var(--gray-85);
+    --color-border-subtle: var(--gray-90);
+
+    --color-focus: var(--accent);
+    --color-selection: var(--accent-subtle);
+
+
+    /* === FEEDBACK COLORS ===
+       Muted, not alarming. OKLCH for perceptual consistency. */
+    --color-success: oklch(55% 0.15 145);
+    --color-warning: oklch(70% 0.15 70);
+    --color-error: oklch(55% 0.18 25);
+    --color-info: oklch(55% 0.12 240);
+
+    /* Subtle backgrounds for feedback */
+    --color-success-subtle: oklch(95% 0.03 145);
+    --color-warning-subtle: oklch(95% 0.04 70);
+    --color-error-subtle: oklch(95% 0.03 25);
+    --color-info-subtle: oklch(95% 0.02 240);
+
+
+    /* === SHADOW COLOR ===
+       Uses theme dark for natural shadows */
+    --shadow-color: var(--theme-dark);
+    --shadow-opacity: 0.08;
 
 
     /* ========================================
@@ -186,8 +229,7 @@
     --duration-slower: 800ms;
     --duration-slowest: 1200ms;
 
-    /* Easing - Natural, organic movement
-       These feel like water, not springs */
+    /* Easing - Natural, organic movement */
     --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -221,38 +263,34 @@
 
     /* ========================================
        SHADOWS & ELEVATION
-       Soft, diffused light - never harsh
-       Like dappled sunlight through leaves
+       Using theme color for natural shadows
        ======================================== */
 
-    --shadow-color: 220 15% 30%;
-
-    /* Subtle elevation */
     --shadow-xs:
-      0 1px 2px hsl(var(--shadow-color) / 0.04),
-      0 1px 3px hsl(var(--shadow-color) / 0.06);
+      0 1px 2px oklch(from var(--shadow-color) l c h / 0.04),
+      0 1px 3px oklch(from var(--shadow-color) l c h / 0.06);
 
     --shadow-sm:
-      0 2px 4px hsl(var(--shadow-color) / 0.04),
-      0 3px 6px hsl(var(--shadow-color) / 0.06);
+      0 2px 4px oklch(from var(--shadow-color) l c h / 0.04),
+      0 3px 6px oklch(from var(--shadow-color) l c h / 0.06);
 
     --shadow-md:
-      0 4px 8px hsl(var(--shadow-color) / 0.04),
-      0 6px 12px hsl(var(--shadow-color) / 0.08);
+      0 4px 8px oklch(from var(--shadow-color) l c h / 0.04),
+      0 6px 12px oklch(from var(--shadow-color) l c h / 0.08);
 
     --shadow-lg:
-      0 8px 16px hsl(var(--shadow-color) / 0.04),
-      0 12px 24px hsl(var(--shadow-color) / 0.08);
+      0 8px 16px oklch(from var(--shadow-color) l c h / 0.04),
+      0 12px 24px oklch(from var(--shadow-color) l c h / 0.08);
 
     --shadow-xl:
-      0 16px 32px hsl(var(--shadow-color) / 0.06),
-      0 24px 48px hsl(var(--shadow-color) / 0.1);
+      0 16px 32px oklch(from var(--shadow-color) l c h / 0.06),
+      0 24px 48px oklch(from var(--shadow-color) l c h / 0.1);
 
     /* Inset shadow for depth */
-    --shadow-inset: inset 0 2px 4px hsl(var(--shadow-color) / 0.06);
+    --shadow-inset: inset 0 2px 4px oklch(from var(--shadow-color) l c h / 0.06);
 
     /* Glow for focus states */
-    --shadow-glow: 0 0 0 3px hsl(var(--color-primary-h) var(--color-primary-s) 70% / 0.3);
+    --shadow-glow: 0 0 0 3px color-mix(in oklch, var(--accent) 30%, transparent);
 
 
     /* ========================================
@@ -291,14 +329,81 @@
 
 
   /* ========================================
-     DARK MODE SHADOW ADJUSTMENTS
-     Darker shadows for dark backgrounds
+     DARK MODE
+     Simply invert the semantic mappings
      ======================================== */
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --shadow-color: 220 50% 5%;
+      /* Invert semantic colors */
+      --color-text: var(--gray-90);
+      --color-text-muted: var(--gray-60);
+      --color-text-subtle: var(--gray-50);
+
+      --color-background: var(--gray-10);
+      --color-surface: var(--gray-15);
+      --color-surface-raised: var(--gray-20);
+
+      --color-border: var(--gray-25);
+      --color-border-subtle: var(--gray-20);
+
+      /* Deeper shadows in dark mode */
+      --shadow-opacity: 0.25;
+
+      /* Slightly brighter feedback colors for dark backgrounds */
+      --color-success: oklch(65% 0.15 145);
+      --color-warning: oklch(75% 0.15 70);
+      --color-error: oklch(65% 0.18 25);
+      --color-info: oklch(65% 0.12 240);
+
+      /* Darker subtle backgrounds */
+      --color-success-subtle: oklch(20% 0.04 145);
+      --color-warning-subtle: oklch(20% 0.05 70);
+      --color-error-subtle: oklch(20% 0.04 25);
+      --color-info-subtle: oklch(20% 0.03 240);
     }
+  }
+
+  /* Manual dark mode override */
+  [data-theme="dark"] {
+    --color-text: var(--gray-90);
+    --color-text-muted: var(--gray-60);
+    --color-text-subtle: var(--gray-50);
+
+    --color-background: var(--gray-10);
+    --color-surface: var(--gray-15);
+    --color-surface-raised: var(--gray-20);
+
+    --color-border: var(--gray-25);
+    --color-border-subtle: var(--gray-20);
+
+    --shadow-opacity: 0.25;
+
+    --color-success: oklch(65% 0.15 145);
+    --color-warning: oklch(75% 0.15 70);
+    --color-error: oklch(65% 0.18 25);
+    --color-info: oklch(65% 0.12 240);
+
+    --color-success-subtle: oklch(20% 0.04 145);
+    --color-warning-subtle: oklch(20% 0.05 70);
+    --color-error-subtle: oklch(20% 0.04 25);
+    --color-info-subtle: oklch(20% 0.03 240);
+  }
+
+  /* Manual light mode override */
+  [data-theme="light"] {
+    --color-text: var(--gray-15);
+    --color-text-muted: var(--gray-40);
+    --color-text-subtle: var(--gray-55);
+
+    --color-background: var(--white);
+    --color-surface: var(--gray-98);
+    --color-surface-raised: var(--white);
+
+    --color-border: var(--gray-85);
+    --color-border-subtle: var(--gray-90);
+
+    --shadow-opacity: 0.08;
   }
 
 
@@ -309,10 +414,7 @@
 
   @media (prefers-contrast: high) {
     :root {
-      --color-border: light-dark(
-        hsl(220 20% 30%),
-        hsl(220 20% 80%)
-      );
+      --color-border: var(--gray-50);
       --color-text-muted: var(--color-text);
     }
   }
@@ -334,3 +436,29 @@
     }
   }
 }
+
+
+/* ========================================
+   EXAMPLE THEME OVERRIDES
+   Themes need only set 2-3 variables!
+   ======================================== */
+
+/*
+[data-theme="ocean"] {
+  --theme-dark: oklch(15% 0.03 230);
+  --theme-light: oklch(98% 0.01 230);
+  --accent: oklch(50% 0.15 230);
+}
+
+[data-theme="forest"] {
+  --theme-dark: oklch(15% 0.02 140);
+  --theme-light: oklch(98% 0.01 140);
+  --accent: oklch(45% 0.12 140);
+}
+
+[data-theme="sunset"] {
+  --theme-dark: oklch(15% 0.02 30);
+  --theme-light: oklch(98% 0.02 50);
+  --accent: oklch(60% 0.18 30);
+}
+*/

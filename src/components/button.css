@@ -44,8 +44,8 @@
     white-space: nowrap;
 
     /* Visual */
-    color: var(--_btn-color, white);
-    background-color: var(--_btn-bg, var(--color-primary));
+    color: var(--_btn-color, var(--white));
+    background-color: var(--_btn-bg, var(--accent));
     border: var(--border-width) solid var(--_btn-border, transparent);
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -63,7 +63,7 @@
   button:hover:not(:disabled),
   [role="button"]:hover:not(:disabled),
   .button:hover:not(:disabled) {
-    background-color: var(--_btn-bg-hover, var(--color-primary-hover));
+    background-color: var(--_btn-bg-hover, var(--accent-hover));
     box-shadow: var(--shadow-sm);
   }
 
@@ -83,7 +83,7 @@
     box-shadow:
       var(--shadow-glow),
       0 0 0 2px var(--color-background),
-      0 0 0 4px var(--color-primary);
+      0 0 0 4px var(--accent);
   }
 
   /* Disabled state */
@@ -127,34 +127,26 @@
   /* Outline - bordered, no fill */
   button[data-variant="outline"],
   .button[data-variant="outline"] {
-    --_btn-color: var(--color-primary);
+    --_btn-color: var(--accent);
     --_btn-bg: transparent;
-    --_btn-bg-hover: var(--color-primary-subtle);
-    --_btn-border: var(--color-primary);
+    --_btn-bg-hover: var(--accent-subtle);
+    --_btn-border: var(--accent);
   }
 
   /* Danger - for destructive actions */
   button[data-variant="danger"],
   .button[data-variant="danger"] {
-    --_btn-color: white;
+    --_btn-color: var(--white);
     --_btn-bg: var(--color-error);
-    --_btn-bg-hover: hsl(0 60% 45%);
+    --_btn-bg-hover: color-mix(in oklch, var(--color-error) 85%, var(--black));
   }
 
   /* Subtle danger - less alarming */
   button[data-variant="danger-subtle"],
   .button[data-variant="danger-subtle"] {
     --_btn-color: var(--color-error);
-    --_btn-bg: hsl(0 50% 95%);
-    --_btn-bg-hover: hsl(0 50% 90%);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    button[data-variant="danger-subtle"],
-    .button[data-variant="danger-subtle"] {
-      --_btn-bg: hsl(0 30% 15%);
-      --_btn-bg-hover: hsl(0 35% 20%);
-    }
+    --_btn-bg: var(--color-error-subtle);
+    --_btn-bg-hover: color-mix(in oklch, var(--color-error-subtle) 80%, var(--color-error));
   }
 
 
@@ -249,7 +241,7 @@
     border-inline-end-color: transparent;
     border-radius: var(--radius-full);
     animation: button-spin 0.6s linear infinite;
-    color: var(--_btn-color, white);
+    color: var(--_btn-color, var(--white));
     opacity: 0.8;
   }
 

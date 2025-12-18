@@ -125,30 +125,30 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: var(--hero-overlay, hsl(0 0% 0% / 0.4));
+    background: var(--hero-overlay, oklch(0% 0 0 / 0.4));
     pointer-events: none;
   }
 
   /* Overlay intensity presets */
   .hero[data-overlay="light"]::before {
-    --hero-overlay: hsl(0 0% 0% / 0.2);
+    --hero-overlay: oklch(0% 0 0 / 0.2);
   }
 
   .hero[data-overlay="medium"]::before {
-    --hero-overlay: hsl(0 0% 0% / 0.4);
+    --hero-overlay: oklch(0% 0 0 / 0.4);
   }
 
   .hero[data-overlay="heavy"]::before {
-    --hero-overlay: hsl(0 0% 0% / 0.6);
+    --hero-overlay: oklch(0% 0 0 / 0.6);
   }
 
   /* Gradient overlays - subtle fade from bottom */
   .hero[data-overlay="gradient"]::before {
     --hero-overlay: linear-gradient(
       to top,
-      hsl(0 0% 0% / 0.6) 0%,
-      hsl(0 0% 0% / 0.3) 40%,
-      hsl(0 0% 0% / 0) 100%
+      oklch(0% 0 0 / 0.6) 0%,
+      oklch(0% 0 0 / 0.3) 40%,
+      oklch(0% 0 0 / 0) 100%
     );
   }
 
@@ -160,16 +160,16 @@
 
   /* Dark hero with light text */
   .hero[data-theme="dark"] {
-    --hero-background: var(--color-text);
-    --hero-text-color: var(--color-background);
-    --hero-text-muted: hsl(0 0% 100% / 0.7);
+    --hero-background: var(--gray-10);
+    --hero-text-color: var(--gray-95);
+    --hero-text-muted: var(--gray-70);
   }
 
-  /* Primary brand color hero */
-  .hero[data-theme="primary"] {
-    --hero-background: var(--color-primary);
-    --hero-text-color: white;
-    --hero-text-muted: hsl(0 0% 100% / 0.85);
+  /* Accent color hero */
+  .hero[data-theme="accent"] {
+    --hero-background: var(--accent);
+    --hero-text-color: var(--white);
+    --hero-text-muted: oklch(100% 0 0 / 0.85);
   }
 
   /* Subtle/muted hero */
@@ -179,16 +179,16 @@
     --hero-text-muted: var(--color-text-muted);
   }
 
-  /* Gradient hero - serene blue tones */
+  /* Gradient hero - uses theme colors for consistency */
   .hero[data-theme="gradient"] {
     --hero-background: linear-gradient(
       135deg,
-      hsl(215 40% 25%) 0%,
-      hsl(215 35% 35%) 50%,
-      hsl(215 30% 45%) 100%
+      var(--gray-20) 0%,
+      var(--gray-35) 50%,
+      var(--gray-50) 100%
     );
-    --hero-text-color: white;
-    --hero-text-muted: hsl(0 0% 100% / 0.8);
+    --hero-text-color: var(--white);
+    --hero-text-muted: var(--gray-80);
     background: var(--hero-background);
   }
 

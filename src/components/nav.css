@@ -48,7 +48,7 @@
     inset-block-start: 0;
     z-index: var(--z-sticky);
     backdrop-filter: blur(8px);
-    background-color: hsl(from var(--color-background) h s l / 0.9);
+    background-color: oklch(from var(--color-background) l c h / 0.9);
   }
 
   /* Transparent variant */
@@ -132,8 +132,8 @@
 
   .nav__link[aria-current="page"],
   .nav__link[data-active] {
-    color: var(--color-primary);
-    background-color: var(--color-primary-subtle);
+    color: var(--accent);
+    background-color: var(--accent-subtle);
   }
 
 
@@ -240,7 +240,7 @@
   }
 
   .breadcrumb__link:hover {
-    color: var(--color-primary);
+    color: var(--accent);
   }
 
   .breadcrumb__item:last-child .breadcrumb__link,
@@ -287,8 +287,8 @@
 
   .pagination__link[aria-current="page"],
   .pagination__link[data-active] {
-    color: white;
-    background-color: var(--color-primary);
+    color: var(--white);
+    background-color: var(--accent);
   }
 
   .pagination__link[data-disabled] {
@@ -349,12 +349,12 @@
 
   .tabs__tab[aria-selected="true"],
   .tabs__tab[data-active] {
-    color: var(--color-primary);
+    color: var(--accent);
   }
 
   .tabs__tab[aria-selected="true"]::after,
   .tabs__tab[data-active]::after {
-    background-color: var(--color-primary);
+    background-color: var(--accent);
   }
 
   /* Contained tabs variant */
