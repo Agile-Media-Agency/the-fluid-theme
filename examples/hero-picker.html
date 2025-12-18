@@ -188,6 +188,36 @@
         border-color: var(--accent);
         color: white;
       }
+
+      /* Mobile improvements */
+      @media (max-width: 63.99rem) {
+        .picker-controls {
+          position: relative;
+          inset-block-start: 0;
+        }
+
+        .picker-layout {
+          padding: var(--space-4);
+          gap: var(--space-5);
+        }
+
+        .preview-container {
+          min-block-size: 300px;
+        }
+      }
+
+      /* Collapsed sections for mobile */
+      @media (max-width: 40rem) {
+        .picker-controls {
+          padding: var(--space-4);
+          gap: var(--space-4);
+        }
+
+        .control-group select,
+        .control-group input[type="text"] {
+          padding: var(--space-3);
+        }
+      }
     }
   </style>
 </head>
@@ -231,6 +261,7 @@
           <button class="preset-btn" onclick="applyPreset('split')">Split Media</button>
           <button class="preset-btn" onclick="applyPreset('cinematic')">Cinematic</button>
           <button class="preset-btn" onclick="applyPreset('gradient')">Gradient</button>
+          <button class="preset-btn" onclick="applyPreset('landing')">Landing Page</button>
         </div>
       </div>
 
@@ -279,6 +310,26 @@
         </select>
       </div>
 
+      <!-- Vertical Alignment -->
+      <div class="control-group">
+        <label for="valign">Vertical Alignment</label>
+        <select id="valign" onchange="updatePreview()">
+          <option value="">Center (default)</option>
+          <option value="start">Top</option>
+          <option value="end">Bottom</option>
+        </select>
+      </div>
+
+      <!-- Content Width -->
+      <div class="control-group">
+        <label for="width">Content Width</label>
+        <select id="width" onchange="updatePreview()">
+          <option value="">Default (48rem)</option>
+          <option value="narrow">Narrow (32rem)</option>
+          <option value="wide">Wide (64rem)</option>
+        </select>
+      </div>
+
       <!-- Background Image Toggle -->
       <div class="toggle-row">
         <label for="bgImage">Background Image</label>
@@ -288,6 +339,18 @@
             <span class="switch__thumb"></span>
           </span>
         </label>
+      </div>
+
+      <!-- Image Selection (only when bg image is on) -->
+      <div class="control-group" id="imageGroup" style="display: none;">
+        <label for="bgImageChoice">Background Image</label>
+        <select id="bgImageChoice" onchange="updatePreview()">
+          <option value="0">Mountains</option>
+          <option value="1">Lake Sunset</option>
+          <option value="2">Starry Night</option>
+          <option value="3">Ocean Waves</option>
+          <option value="4">Forest Valley</option>
+        </select>
       </div>
 
       <!-- Overlay (only when bg image is on) -->
@@ -380,21 +443,25 @@
       }
     })();
 
-    // Background images
+    // Background images - curated collection
     const bgImages = [
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop',
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&h=900&fit=crop',
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&h=900&fit=crop'
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop', // Mountains
+      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&h=900&fit=crop', // Lake Sunset
+      'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&h=900&fit=crop', // Starry Night
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&h=900&fit=crop', // Ocean Waves
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&h=900&fit=crop'  // Forest Valley
     ];
 
     const splitImages = [
       'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop'
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop'
     ];
 
-    // Get current image based on settings
+    // Get current image based on selection
     function getCurrentBgImage() {
-      return bgImages[0];
+      const choice = document.getElementById('bgImageChoice').value;
+      return bgImages[parseInt(choice)] || bgImages[0];
     }
 
     function getCurrentSplitImage() {
@@ -407,13 +474,16 @@
       const theme = document.getElementById('theme').value;
       const size = document.getElementById('size').value;
       const padding = document.getElementById('padding').value;
+      const valign = document.getElementById('valign').value;
+      const width = document.getElementById('width').value;
       const bgImage = document.getElementById('bgImage').checked;
       const overlay = document.getElementById('overlay').value;
       const headline = document.getElementById('headline').value;
       const subheadline = document.getElementById('subheadline').value;
       const showButtons = document.getElementById('showButtons').checked;
 
-      // Show/hide overlay control
+      // Show/hide image-related controls
+      document.getElementById('imageGroup').style.display = bgImage ? 'flex' : 'none';
       document.getElementById('overlayGroup').style.display = bgImage ? 'flex' : 'none';
 
       // Build attributes
@@ -421,6 +491,8 @@
 
       if (theme) attrs.push(`data-theme="${theme}"`);
       if (size) attrs.push(`data-size="${size}"`);
+      if (valign) attrs.push(`data-valign="${valign}"`);
+      if (width) attrs.push(`data-width="${width}"`);
       if (bgImage && overlay) attrs.push(`data-overlay="${overlay}"`);
 
       // Determine if we need special text color for bg image
@@ -502,6 +574,11 @@
       document.querySelectorAll('.preset-btn').forEach(btn => btn.removeAttribute('data-active'));
       event.target.setAttribute('data-active', '');
 
+      // Reset common values first
+      document.getElementById('valign').value = '';
+      document.getElementById('width').value = '';
+      document.getElementById('bgImageChoice').value = '0';
+
       switch (preset) {
         case 'minimal':
           document.getElementById('layout').value = 'center';
@@ -532,9 +609,11 @@
           document.getElementById('theme').value = 'dark';
           document.getElementById('size').value = 'full';
           document.getElementById('padding').value = 'xl';
+          document.getElementById('valign').value = 'end';
           document.getElementById('bgImage').checked = true;
+          document.getElementById('bgImageChoice').value = '1';
           document.getElementById('overlay').value = 'gradient';
-          document.getElementById('showButtons').checked = true;
+          document.getElementById('showButtons').checked = false;
           break;
         case 'gradient':
           document.getElementById('layout').value = 'center';
@@ -543,6 +622,17 @@
           document.getElementById('padding').value = 'xl';
           document.getElementById('bgImage').checked = false;
           document.getElementById('showButtons').checked = true;
+          break;
+        case 'landing':
+          document.getElementById('layout').value = 'center';
+          document.getElementById('theme').value = 'subtle';
+          document.getElementById('size').value = 'full';
+          document.getElementById('padding').value = 'xl';
+          document.getElementById('width').value = 'narrow';
+          document.getElementById('bgImage').checked = false;
+          document.getElementById('showButtons').checked = true;
+          document.getElementById('headline').value = 'Build Something Amazing';
+          document.getElementById('subheadline').value = 'The modern way to create beautiful, responsive websites without the complexity.';
           break;
       }
       updatePreview();
