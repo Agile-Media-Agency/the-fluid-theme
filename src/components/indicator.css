@@ -366,8 +366,55 @@
     transition: inline-size var(--duration-slow) var(--ease-settle);
   }
 
-  /* Tsunami: dramatic fill */
+  /* Tsunami: wave animation - rise, crest, crash, bounce, settle */
+  @keyframes tsunami-progress-fill {
+    0% {
+      inline-size: 0;
+      transform: scaleY(1);
+    }
+    25% {
+      /* Rising - wave builds up, overshoots target */
+      inline-size: calc(var(--progress-percent, 0%) * 1.15);
+      transform: scaleY(1.3);
+    }
+    40% {
+      /* Cresting - peak of the wave */
+      inline-size: calc(var(--progress-percent, 0%) * 1.1);
+      transform: scaleY(1.4);
+    }
+    60% {
+      /* Crashing down - undershoots */
+      inline-size: calc(var(--progress-percent, 0%) * 0.92);
+      transform: scaleY(0.8);
+    }
+    75% {
+      /* Bounce back up */
+      inline-size: calc(var(--progress-percent, 0%) * 1.03);
+      transform: scaleY(1.1);
+    }
+    90% {
+      /* Settling */
+      inline-size: calc(var(--progress-percent, 0%) * 0.99);
+      transform: scaleY(0.95);
+    }
+    100% {
+      /* Final position */
+      inline-size: var(--progress-percent, 0%);
+      transform: scaleY(1);
+    }
+  }
+
   [data-motion="tsunami"] .progress__fill {
+    transition: none;
+    transform-origin: left center;
+  }
+
+  [data-motion="tsunami"] .progress[data-animate][data-visible] .progress__fill {
+    animation: tsunami-progress-fill var(--duration-slower) var(--ease-settle) forwards;
+  }
+
+  /* Non-animated tsunami progress - just use transition */
+  [data-motion="tsunami"] .progress:not([data-animate]) .progress__fill {
     transition: inline-size var(--duration-slower) var(--ease-settle);
   }
 

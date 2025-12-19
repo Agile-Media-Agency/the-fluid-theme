@@ -256,6 +256,50 @@
 
 
   /* ========================================
+     TSUNAMI MOTION EFFECTS
+     Bold, wave-like interactions
+     Uses transform only to avoid CLS
+     ======================================== */
+
+  /* Tsunami button hover - noticeable growth like a wave rising */
+  [data-motion="tsunami"] button:hover:not(:disabled),
+  [data-motion="tsunami"] [role="button"]:hover:not(:disabled),
+  [data-motion="tsunami"] .button:hover:not(:disabled) {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-lg);
+    transition:
+      transform var(--duration-normal) var(--ease-fluid),
+      box-shadow var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Tsunami button active/click - crash down effect */
+  [data-motion="tsunami"] button:active:not(:disabled),
+  [data-motion="tsunami"] [role="button"]:active:not(:disabled),
+  [data-motion="tsunami"] .button:active:not(:disabled) {
+    transform: scale(0.92) translateY(4px);
+    box-shadow: var(--shadow-xs);
+    transition:
+      transform 150ms var(--ease-settle),
+      box-shadow 150ms var(--ease-settle);
+  }
+
+  /* Tsunami button leave - wave crash with bounce settle */
+  @keyframes tsunami-button-settle {
+    0% { transform: scale(1.08); }
+    40% { transform: scale(0.95) translateY(3px); }
+    70% { transform: scale(1.02) translateY(-1px); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  [data-motion="tsunami"] button:not(:hover):not(:active):not(:disabled),
+  [data-motion="tsunami"] [role="button"]:not(:hover):not(:active):not([aria-disabled="true"]),
+  [data-motion="tsunami"] .button:not(:hover):not(:active):not(:disabled) {
+    animation: tsunami-button-settle var(--duration-normal) var(--ease-settle);
+  }
+
+
+  /* ========================================
      BUTTON GROUPS
      Multiple buttons together
      ======================================== */
