@@ -72,34 +72,34 @@
     box-shadow: var(--shadow-lg);
   }
 
-  /* Dark mode: add subtle border since shadows are less visible */
+  /* Dark mode: use accent glow since shadows are barely visible on dark */
   @media (prefers-color-scheme: dark) {
     .card[data-variant="elevated"] {
-      --_card-border: var(--color-border-subtle);
+      --_card-border: transparent;
       box-shadow:
-        var(--shadow-md),
-        0 0 0 1px var(--color-border-subtle);
+        0 0 0 1px oklch(from var(--accent) l c h / 0.15),
+        0 4px 20px oklch(from var(--accent) l c h / 0.1);
     }
 
     .card[data-variant="elevated"]:hover {
       box-shadow:
-        var(--shadow-lg),
-        0 0 0 1px var(--color-border);
+        0 0 0 1px oklch(from var(--accent) l c h / 0.25),
+        0 8px 30px oklch(from var(--accent) l c h / 0.15);
     }
   }
 
   /* Also support explicit dark theme */
   [data-theme="dark"] .card[data-variant="elevated"] {
-    --_card-border: var(--color-border-subtle);
+    --_card-border: transparent;
     box-shadow:
-      var(--shadow-md),
-      0 0 0 1px var(--color-border-subtle);
+      0 0 0 1px oklch(from var(--accent) l c h / 0.15),
+      0 4px 20px oklch(from var(--accent) l c h / 0.1);
   }
 
   [data-theme="dark"] .card[data-variant="elevated"]:hover {
     box-shadow:
-      var(--shadow-lg),
-      0 0 0 1px var(--color-border);
+      0 0 0 1px oklch(from var(--accent) l c h / 0.25),
+      0 8px 30px oklch(from var(--accent) l c h / 0.15);
   }
 
   /* Outlined - border emphasis */

@@ -161,6 +161,63 @@ OKLCH makes it easy to create harmonious palettes:
 
 ---
 
+## Motion System
+
+Fluid Framework includes a sophisticated motion system with water-themed intensity levels. Apply via `<html data-motion="flowing">`:
+
+| Level | Name | Character | Page Transition |
+|-------|------|-----------|-----------------|
+| 0 | `still` | Instant, no animation | Instant cut |
+| 1 | `serene` | Ken Burns effect, slow crossfade | Gentle zoom + fade (1-3s) |
+| 2 | `trickling` | Minimal, quick motion | Quick fade (~175ms) |
+| 3 | `flowing` | Horizontal push (default) | Content slides left→right |
+| 4 | `rapids` | Vertical spring effect | Top-down sweep with bounce |
+| 5 | `tsunami` | Dramatic diagonal crash | Wave from top-right |
+
+### Motion Variables
+
+Each motion level sets these CSS custom properties:
+
+```css
+/* Example: Rapids level */
+[data-motion="rapids"] {
+  --motion-scale: 1.5;
+  --duration-fast: 250ms;
+  --duration-normal: 450ms;
+  --duration-slow: 650ms;
+  --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy overshoot */
+  --ease-settle: cubic-bezier(0.22, 1.4, 0.36, 1); /* Spring settle */
+}
+```
+
+### Creating Motion-Aware Components
+
+To make components respond to the motion settings:
+
+```css
+.my-component {
+  transition: transform var(--duration-normal) var(--ease-fluid),
+              opacity var(--duration-fast) var(--ease-fluid);
+}
+
+/* Respect "still" mode */
+[data-motion="still"] .my-component {
+  transition: none;
+}
+
+/* Enhance for "serene" mode (Ken Burns style) */
+[data-motion="serene"] .my-component img {
+  animation: kenburns 10s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(var(--kenburns-scale, 1.05)); }
+}
+```
+
+---
+
 ## Example Request
 
 Here's a complete example of asking Gemini to create a theme:
@@ -173,4 +230,47 @@ Using the Fluid Framework theming system described above, create a child theme c
 - Use case: Creative portfolio/art showcase
 
 Please provide the complete CSS for both the accent preset and color swatch.
+```
+
+---
+
+## Full Child Theme Template
+
+Here's a complete template for creating a child theme with all features:
+
+```css
+/* ========================================
+   [THEME_NAME] Child Theme for Fluid Framework
+   ======================================== */
+
+/* Accent Color Preset */
+[data-accent="your-theme"] {
+  --accent: oklch(55% 0.15 200);
+  --accent-subtle: oklch(95% 0.025 200);
+  --accent-hover: oklch(45% 0.17 200);
+  --accent-active: oklch(40% 0.15 200);
+}
+
+/* Color Swatch (for settings panel) */
+.color-swatch[data-preset="your-theme"] {
+  --_swatch-color: oklch(55% 0.15 200);
+  background: linear-gradient(135deg,
+    oklch(60% 0.17 195) 0%,
+    oklch(50% 0.13 205) 100%);
+}
+
+/* Optional: Full Theme Override */
+[data-theme="your-theme"] {
+  --theme-dark: oklch(15% 0.02 200);
+  --theme-light: oklch(98% 0.01 200);
+  --theme-chroma: 0.01;
+  --theme-hue: 200;
+}
+
+/* Optional: Custom Motion (rarely needed) */
+[data-motion="your-custom-motion"] {
+  --motion-scale: 1.2;
+  --duration-normal: 400ms;
+  --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
+}
 ```
