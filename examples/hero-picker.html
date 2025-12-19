@@ -102,6 +102,69 @@ nav: hero-picker
       border-radius: var(--radius-xl);
       overflow: hidden;
       min-block-size: 400px;
+      position: relative;
+    }
+
+    /* Preview transition wrapper */
+    .preview-container .hero {
+      view-transition-name: hero-preview;
+    }
+
+    /* Motion-aware preview transitions */
+    ::view-transition-old(hero-preview),
+    ::view-transition-new(hero-preview) {
+      animation-duration: var(--duration-normal);
+      animation-timing-function: var(--ease-fluid);
+    }
+
+    /* Still: instant */
+    [data-motion="still"] ::view-transition-old(hero-preview),
+    [data-motion="still"] ::view-transition-new(hero-preview) {
+      animation: none;
+    }
+
+    /* Serene: slow crossfade with subtle zoom */
+    [data-motion="serene"] ::view-transition-old(hero-preview) {
+      animation: var(--duration-slow) var(--ease-fluid) both kenburns-out;
+    }
+    [data-motion="serene"] ::view-transition-new(hero-preview) {
+      animation: var(--duration-slow) var(--ease-fluid) both kenburns-in;
+    }
+
+    /* Trickling: quick fade */
+    [data-motion="trickling"] ::view-transition-old(hero-preview) {
+      animation: var(--duration-normal) var(--ease-fluid) both fade-out;
+    }
+    [data-motion="trickling"] ::view-transition-new(hero-preview) {
+      animation: var(--duration-normal) var(--ease-fluid) both fade-in;
+    }
+
+    /* Flowing: horizontal slide */
+    [data-motion="flowing"] ::view-transition-old(hero-preview),
+    :root:not([data-motion]) ::view-transition-old(hero-preview) {
+      animation: var(--duration-normal) var(--ease-fluid) both fade-out,
+                 var(--duration-normal) var(--ease-fluid) both slide-out-left;
+    }
+    [data-motion="flowing"] ::view-transition-new(hero-preview),
+    :root:not([data-motion]) ::view-transition-new(hero-preview) {
+      animation: var(--duration-normal) var(--ease-fluid) both fade-in,
+                 var(--duration-normal) var(--ease-fluid) both slide-in-right;
+    }
+
+    /* Rapids: vertical sweep */
+    [data-motion="rapids"] ::view-transition-old(hero-preview) {
+      animation: var(--duration-normal) var(--ease-settle) var(--rapids-stagger, 80ms) both sweep-out-up;
+    }
+    [data-motion="rapids"] ::view-transition-new(hero-preview) {
+      animation: var(--duration-normal) var(--ease-fluid) both sweep-in-down;
+    }
+
+    /* Tsunami: diagonal wave */
+    [data-motion="tsunami"] ::view-transition-old(hero-preview) {
+      animation: var(--duration-normal) var(--ease-settle) both wave-out;
+    }
+    [data-motion="tsunami"] ::view-transition-new(hero-preview) {
+      animation: var(--duration-normal) var(--ease-fluid) both wave-in;
     }
 
     /* Code Output */
@@ -408,7 +471,7 @@ nav: hero-picker
     return splitImages[0];
   }
 
-  // Update preview
+  // Update preview with View Transitions API for smooth animations
   function updatePreview() {
     const layout = document.getElementById('layout').value;
     const theme = document.getElementById('theme').value;
@@ -480,8 +543,17 @@ nav: hero-picker
 </section>`;
     }
 
-    // Update preview
-    document.getElementById('previewContainer').innerHTML = html;
+    // Update preview with View Transitions API if supported
+    const container = document.getElementById('previewContainer');
+
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        container.innerHTML = html;
+      });
+    } else {
+      // Fallback for browsers without View Transitions
+      container.innerHTML = html;
+    }
 
     // Update code output
     document.getElementById('codeOutput').textContent = html;
