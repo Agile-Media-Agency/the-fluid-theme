@@ -1,0 +1,380 @@
+/**
+ * Fluid Framework - Status Indicator System
+ * @layer components
+ *
+ * A semantic status system for scores, progress, and feedback.
+ * Uses data-status to drive ALL visual styling - prevents color drift.
+ *
+ * Philosophy:
+ * - Status is the single source of truth
+ * - Score → Status → Theme Token → Visuals
+ * - No component may mix status color families
+ *
+ * Status Tiers (default thresholds):
+ * - good: ≥80% (success family)
+ * - moderate: 60-79% (warning family)
+ * - severe: <60% (error family)
+ *
+ * Usage:
+ *   <div data-status="good">88% - Meeting goals</div>
+ *   <progress data-status="moderate" value="65" max="100"></progress>
+ *   <span class="badge" data-status="severe">Needs attention</span>
+ */
+
+@layer components {
+
+  /* ========================================
+     STATUS COLOR SYSTEM
+     All colors derive from status token
+     ======================================== */
+
+  /* Good (Success family) - ≥80% */
+  [data-status="good"] {
+    --status-color: var(--color-success);
+    --status-bg: var(--color-success-subtle);
+    --status-text: var(--color-success);
+    --status-border: var(--color-success);
+  }
+
+  /* Moderate (Warning family) - 60-79% */
+  [data-status="moderate"] {
+    --status-color: var(--color-warning);
+    --status-bg: var(--color-warning-subtle);
+    --status-text: oklch(from var(--color-warning) calc(l - 0.2) c h);
+    --status-border: var(--color-warning);
+  }
+
+  /* Severe (Error family) - <60% */
+  [data-status="severe"] {
+    --status-color: var(--color-error);
+    --status-bg: var(--color-error-subtle);
+    --status-text: var(--color-error);
+    --status-border: var(--color-error);
+  }
+
+  /* Neutral (no score/status) */
+  [data-status="neutral"] {
+    --status-color: var(--color-text-muted);
+    --status-bg: var(--color-surface);
+    --status-text: var(--color-text-muted);
+    --status-border: var(--color-border);
+  }
+
+
+  /* ========================================
+     ENHANCED PROGRESS BAR
+     Animated, labeled, status-aware
+     ======================================== */
+
+  .progress {
+    --_progress-height: var(--space-3);
+    --_progress-radius: var(--radius-full);
+    --_progress-track: var(--color-border);
+    --_progress-fill: var(--status-color, var(--accent));
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  /* Progress label row */
+  .progress__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: var(--font-size-sm);
+  }
+
+  .progress__title {
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+  }
+
+  .progress__value {
+    font-weight: var(--weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--status-text, var(--color-text));
+  }
+
+  /* Progress track (background) */
+  .progress__track {
+    position: relative;
+    block-size: var(--_progress-height);
+    background-color: var(--_progress-track);
+    border-radius: var(--_progress-radius);
+    overflow: hidden;
+  }
+
+  /* Dark mode: make track more visible */
+  @media (prefers-color-scheme: dark) {
+    .progress__track {
+      --_progress-track: var(--gray-30);
+    }
+  }
+
+  [data-theme="dark"] .progress__track {
+    --_progress-track: var(--gray-30);
+  }
+
+  /* Progress fill bar */
+  .progress__fill {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--progress-percent, 0%);
+    background-color: var(--_progress-fill);
+    border-radius: var(--_progress-radius);
+    transition: inline-size var(--duration-slow) var(--ease-fluid);
+  }
+
+  /* Animated progress - starts at 0, fills when visible */
+  .progress[data-animate] .progress__fill {
+    inline-size: 0;
+  }
+
+  .progress[data-animate][data-visible] .progress__fill {
+    inline-size: var(--progress-percent, 0%);
+  }
+
+
+  /* ========================================
+     PROGRESS SIZE VARIANTS
+     ======================================== */
+
+  .progress[data-size="sm"] {
+    --_progress-height: var(--space-2);
+  }
+
+  .progress[data-size="lg"] {
+    --_progress-height: var(--space-4);
+  }
+
+  .progress[data-size="xl"] {
+    --_progress-height: var(--space-6);
+  }
+
+
+  /* ========================================
+     PROGRESS WITH THRESHOLD MARKERS
+     Visual indicators for score bands
+     ======================================== */
+
+  .progress__markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .progress__marker {
+    position: absolute;
+    inset-block: calc(var(--_progress-height) * -0.25);
+    inline-size: 2px;
+    background-color: var(--color-text-subtle);
+    opacity: 0.5;
+  }
+
+  /* Position markers at thresholds */
+  .progress__marker[data-at="60"] {
+    inset-inline-start: 60%;
+  }
+
+  .progress__marker[data-at="80"] {
+    inset-inline-start: 80%;
+  }
+
+
+  /* ========================================
+     STATUS BADGE / PILL
+     Compact status indicator
+     ======================================== */
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding-block: var(--space-1);
+    padding-inline: var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-none);
+    color: var(--status-text, var(--color-text));
+    background-color: var(--status-bg, var(--color-surface));
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  /* Filled variant - stronger emphasis */
+  .badge[data-variant="filled"] {
+    color: var(--white);
+    background-color: var(--status-color, var(--accent));
+  }
+
+  /* Outline variant */
+  .badge[data-variant="outline"] {
+    background-color: transparent;
+    border: 1px solid var(--status-border, var(--color-border));
+  }
+
+  /* Badge sizes */
+  .badge[data-size="sm"] {
+    padding-block: var(--space-0-5);
+    padding-inline: var(--space-1-5);
+    font-size: var(--font-size-xs);
+  }
+
+  .badge[data-size="lg"] {
+    padding-block: var(--space-2);
+    padding-inline: var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Badge with dot indicator */
+  .badge[data-dot]::before {
+    content: "";
+    inline-size: 0.5em;
+    block-size: 0.5em;
+    border-radius: var(--radius-full);
+    background-color: var(--status-color, var(--accent));
+  }
+
+
+  /* ========================================
+     STATUS CONTAINER / CARD
+     Wrap content in status context
+     ======================================== */
+
+  .status-card {
+    padding: var(--space-4);
+    background-color: var(--status-bg, var(--color-surface));
+    border: 1px solid var(--status-border, var(--color-border-subtle));
+    border-radius: var(--radius-lg);
+    border-inline-start-width: 4px;
+  }
+
+  .status-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: var(--space-3);
+  }
+
+  .status-card__title {
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+  }
+
+  .status-card__score {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--status-text, var(--color-text));
+  }
+
+
+  /* ========================================
+     SCORE LEGEND / KEY
+     Display threshold explanations
+     ======================================== */
+
+  .score-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  .score-legend__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .score-legend__color {
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    border-radius: var(--radius-sm);
+  }
+
+  .score-legend__item[data-status="good"] .score-legend__color {
+    background-color: var(--color-success);
+  }
+
+  .score-legend__item[data-status="moderate"] .score-legend__color {
+    background-color: var(--color-warning);
+  }
+
+  .score-legend__item[data-status="severe"] .score-legend__color {
+    background-color: var(--color-error);
+  }
+
+  .score-legend__range {
+    color: var(--color-text-muted);
+  }
+
+  .score-legend__label {
+    font-weight: var(--weight-medium);
+  }
+
+
+  /* ========================================
+     FRACTION DISPLAY
+     Show "23 / 26" style values
+     ======================================== */
+
+  .fraction {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fraction__numerator {
+    font-weight: var(--weight-bold);
+    color: var(--status-text, var(--color-text));
+  }
+
+  .fraction__separator {
+    color: var(--color-text-subtle);
+  }
+
+  .fraction__denominator {
+    color: var(--color-text-muted);
+  }
+
+
+  /* ========================================
+     MOTION-AWARE ANIMATIONS
+     Respect user preferences
+     ======================================== */
+
+  /* Still: instant fill */
+  [data-motion="still"] .progress__fill {
+    transition: none;
+  }
+
+  /* Serene: very slow fill */
+  [data-motion="serene"] .progress__fill {
+    transition: inline-size var(--duration-slowest) var(--ease-fluid);
+  }
+
+  /* Rapids: bouncy overshoot fill */
+  [data-motion="rapids"] .progress__fill {
+    transition: inline-size var(--duration-slow) var(--ease-settle);
+  }
+
+  /* Tsunami: dramatic fill */
+  [data-motion="tsunami"] .progress__fill {
+    transition: inline-size var(--duration-slower) var(--ease-settle);
+  }
+
+  /* Reduced motion: respect preference */
+  @media (prefers-reduced-motion: reduce) {
+    .progress__fill {
+      transition: none;
+    }
+  }
+}

@@ -152,6 +152,52 @@
 
 
   // ========================================
+  // ANIMATED PROGRESS BARS
+  // Trigger fill animation when scrolled into view
+  // ========================================
+
+  function initAnimatedProgress() {
+    const progressBars = document.querySelectorAll('.progress[data-animate]');
+
+    if (progressBars.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute('data-visible', '');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% visible
+    });
+
+    progressBars.forEach(bar => observer.observe(bar));
+  }
+
+
+  // ========================================
+  // STATUS FROM SCORE
+  // Auto-calculate status from percentage
+  // ========================================
+
+  function getStatusFromScore(score, thresholds = { good: 80, moderate: 60 }) {
+    if (score >= thresholds.good) return 'good';
+    if (score >= thresholds.moderate) return 'moderate';
+    return 'severe';
+  }
+
+  function initAutoStatus() {
+    document.querySelectorAll('[data-score]').forEach(el => {
+      const score = parseFloat(el.dataset.score);
+      if (!isNaN(score) && !el.hasAttribute('data-status')) {
+        el.setAttribute('data-status', getStatusFromScore(score));
+      }
+    });
+  }
+
+
+  // ========================================
   // INITIALIZE ON PAGE LOAD
   // ========================================
 
@@ -182,11 +228,15 @@
         updateDarkModeToggle();
         updateAccentSwatches();
         updateMotionSelect();
+        initAnimatedProgress();
+        initAutoStatus();
       });
     } else {
       updateDarkModeToggle();
       updateAccentSwatches();
       updateMotionSelect();
+      initAnimatedProgress();
+      initAutoStatus();
     }
   })();
 </script>

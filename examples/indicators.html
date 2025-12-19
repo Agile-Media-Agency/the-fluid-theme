@@ -1,0 +1,448 @@
+---
+title: Status Indicators
+description: Fluid Framework - Progress bars, badges, and status displays
+nav: indicators
+---
+<style>
+  @layer demo {
+    .demo-header {
+      padding-block: var(--space-10);
+      text-align: center;
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
+
+    .demo-header p {
+      max-inline-size: 50ch;
+      margin-inline: auto;
+      color: var(--color-text-muted);
+    }
+
+    .demo-section {
+      padding-block: var(--space-10);
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
+
+    .demo-section:last-of-type {
+      border-block-end: none;
+    }
+
+    .component-group {
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      margin-block: var(--space-5);
+    }
+
+    .component-label {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      color: var(--color-primary);
+      margin-block-end: var(--space-4);
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    }
+
+    .demo-grid-3 {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    }
+
+    /* Extra vertical space between progress bars */
+    .progress-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- Header -->
+  <header class="demo-header">
+    <h1>Status Indicators</h1>
+    <p>Semantic status displays for scores, progress, and feedback. Status is the single source of truth - score determines status, status drives all visuals.</p>
+  </header>
+
+  <!-- Status System Overview -->
+  <section class="demo-section">
+    <h2>Status System</h2>
+    <p>All indicators use <code>data-status</code> to drive visual styling. This prevents color drift and ensures consistency.</p>
+
+    <div class="component-group">
+      <div class="component-label">Score Legend</div>
+      <div class="score-legend">
+        <div class="score-legend__item" data-status="good">
+          <span class="score-legend__color"></span>
+          <span class="score-legend__range">80-100%</span>
+          <span class="score-legend__label">Good</span>
+        </div>
+        <div class="score-legend__item" data-status="moderate">
+          <span class="score-legend__color"></span>
+          <span class="score-legend__range">60-79%</span>
+          <span class="score-legend__label">Moderate</span>
+        </div>
+        <div class="score-legend__item" data-status="severe">
+          <span class="score-legend__color"></span>
+          <span class="score-legend__range">0-59%</span>
+          <span class="score-legend__label">Needs Attention</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress Bars -->
+  <section class="demo-section">
+    <h2>Progress Bars</h2>
+    <p>Animated, labeled progress bars that fill when scrolled into view. Color indicates status tier.</p>
+
+    <div class="component-group">
+      <div class="component-label">Static Progress (Different Status Levels)</div>
+      <div class="progress-stack">
+        <!-- Good: 88% -->
+        <div class="progress" data-status="good" style="--progress-percent: 88%">
+          <div class="progress__label">
+            <span class="progress__title">Accessibility Score</span>
+            <span class="progress__value">88%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <!-- Moderate: 72% -->
+        <div class="progress" data-status="moderate" style="--progress-percent: 72%">
+          <div class="progress__label">
+            <span class="progress__title">Performance Score</span>
+            <span class="progress__value">72%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <!-- Severe: 45% -->
+        <div class="progress" data-status="severe" style="--progress-percent: 45%">
+          <div class="progress__label">
+            <span class="progress__title">SEO Score</span>
+            <span class="progress__value">45%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Animated Progress (Scroll to fill)</div>
+      <div class="progress-stack">
+        <!-- Animated: fills on scroll -->
+        <div class="progress" data-animate data-status="good" style="--progress-percent: 95%">
+          <div class="progress__label">
+            <span class="progress__title">Best Practices</span>
+            <span class="progress__value">95%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-animate data-status="moderate" style="--progress-percent: 68%">
+          <div class="progress__label">
+            <span class="progress__title">Core Web Vitals</span>
+            <span class="progress__value">68%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-animate data-status="severe" style="--progress-percent: 32%">
+          <div class="progress__label">
+            <span class="progress__title">Security Headers</span>
+            <span class="progress__value">32%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Progress Sizes</div>
+      <div class="progress-stack">
+        <div class="progress" data-size="sm" data-status="good" style="--progress-percent: 80%">
+          <div class="progress__label">
+            <span class="progress__title">Small</span>
+            <span class="progress__value">80%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-status="good" style="--progress-percent: 80%">
+          <div class="progress__label">
+            <span class="progress__title">Default</span>
+            <span class="progress__value">80%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-size="lg" data-status="good" style="--progress-percent: 80%">
+          <div class="progress__label">
+            <span class="progress__title">Large</span>
+            <span class="progress__value">80%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-size="xl" data-status="good" style="--progress-percent: 80%">
+          <div class="progress__label">
+            <span class="progress__title">Extra Large</span>
+            <span class="progress__value">80%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Progress with Threshold Markers</div>
+      <div class="progress-stack">
+        <div class="progress" data-size="lg" data-status="moderate" style="--progress-percent: 72%">
+          <div class="progress__label">
+            <span class="progress__title">Overall Score</span>
+            <span class="progress__value">72%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+            <div class="progress__markers">
+              <span class="progress__marker" data-at="60"></span>
+              <span class="progress__marker" data-at="80"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section class="demo-section">
+    <h2>Status Badges</h2>
+    <p>Compact status indicators for labels, tags, and inline status.</p>
+
+    <div class="component-group">
+      <div class="component-label">Default Badges</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <span class="badge" data-status="good">Passing</span>
+        <span class="badge" data-status="moderate">Warning</span>
+        <span class="badge" data-status="severe">Critical</span>
+        <span class="badge" data-status="neutral">Neutral</span>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Filled Badges</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <span class="badge" data-status="good" data-variant="filled">Passing</span>
+        <span class="badge" data-status="moderate" data-variant="filled">Warning</span>
+        <span class="badge" data-status="severe" data-variant="filled">Critical</span>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Outline Badges</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <span class="badge" data-status="good" data-variant="outline">Passing</span>
+        <span class="badge" data-status="moderate" data-variant="outline">Warning</span>
+        <span class="badge" data-status="severe" data-variant="outline">Critical</span>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Badges with Dot Indicator</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <span class="badge" data-status="good" data-dot>Active</span>
+        <span class="badge" data-status="moderate" data-dot>Pending</span>
+        <span class="badge" data-status="severe" data-dot>Offline</span>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Badge Sizes</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3); --cluster-align: flex-end">
+        <span class="badge" data-status="good" data-size="sm">Small</span>
+        <span class="badge" data-status="good">Default</span>
+        <span class="badge" data-status="good" data-size="lg">Large</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Cards -->
+  <section class="demo-section">
+    <h2>Status Cards</h2>
+    <p>Cards with status context for score displays and metrics.</p>
+
+    <div class="component-group">
+      <div class="component-label">Score Cards</div>
+      <div class="demo-grid-3">
+        <div class="status-card" data-status="good">
+          <div class="status-card__header">
+            <span class="status-card__title">Accessibility</span>
+            <span class="badge" data-status="good" data-size="sm">Good</span>
+          </div>
+          <div class="status-card__score">88%</div>
+        </div>
+
+        <div class="status-card" data-status="moderate">
+          <div class="status-card__header">
+            <span class="status-card__title">Performance</span>
+            <span class="badge" data-status="moderate" data-size="sm">Moderate</span>
+          </div>
+          <div class="status-card__score">72%</div>
+        </div>
+
+        <div class="status-card" data-status="severe">
+          <div class="status-card__header">
+            <span class="status-card__title">SEO</span>
+            <span class="badge" data-status="severe" data-size="sm">Needs Work</span>
+          </div>
+          <div class="status-card__score">45%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fractions -->
+  <section class="demo-section">
+    <h2>Fraction Display</h2>
+    <p>Show "23 / 26" style values with proper styling.</p>
+
+    <div class="component-group">
+      <div class="component-label">Fractions with Status</div>
+      <div class="demo-grid-3">
+        <div class="status-card" data-status="good">
+          <div class="status-card__header">
+            <span class="status-card__title">Tests Passing</span>
+          </div>
+          <div class="fraction">
+            <span class="fraction__numerator">23</span>
+            <span class="fraction__separator">/</span>
+            <span class="fraction__denominator">26</span>
+          </div>
+        </div>
+
+        <div class="status-card" data-status="moderate">
+          <div class="status-card__header">
+            <span class="status-card__title">Items Reviewed</span>
+          </div>
+          <div class="fraction">
+            <span class="fraction__numerator">18</span>
+            <span class="fraction__separator">/</span>
+            <span class="fraction__denominator">26</span>
+          </div>
+        </div>
+
+        <div class="status-card" data-status="severe">
+          <div class="status-card__header">
+            <span class="status-card__title">Checks Passed</span>
+          </div>
+          <div class="fraction">
+            <span class="fraction__numerator">12</span>
+            <span class="fraction__separator">/</span>
+            <span class="fraction__denominator">26</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Auto Status from Score -->
+  <section class="demo-section">
+    <h2>Auto Status from Score</h2>
+    <p>Use <code>data-score</code> to automatically calculate status. JavaScript reads the score and sets the appropriate <code>data-status</code> attribute.</p>
+
+    <div class="component-group">
+      <div class="component-label">Auto-calculated Status</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <span class="badge" data-score="92">Score: 92%</span>
+        <span class="badge" data-score="75">Score: 75%</span>
+        <span class="badge" data-score="42">Score: 42%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll Animation Demo -->
+  <section class="demo-section">
+    <h2>Scroll Animation Demo</h2>
+    <p>Scroll down to see these progress bars animate. They fill when 30% visible.</p>
+
+    <div class="component-group" style="margin-block-start: var(--space-10)">
+      <div class="component-label">These animate when you scroll to them</div>
+      <div class="progress-stack">
+        <div class="progress" data-animate data-status="good" style="--progress-percent: 100%">
+          <div class="progress__label">
+            <span class="progress__title">Full Score</span>
+            <span class="progress__value">100%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-animate data-status="good" style="--progress-percent: 85%">
+          <div class="progress__label">
+            <span class="progress__title">Great Score</span>
+            <span class="progress__value">85%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-animate data-status="moderate" style="--progress-percent: 60%">
+          <div class="progress__label">
+            <span class="progress__title">Threshold Score</span>
+            <span class="progress__value">60%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+
+        <div class="progress" data-animate data-status="severe" style="--progress-percent: 15%">
+          <div class="progress__label">
+            <span class="progress__title">Low Score</span>
+            <span class="progress__value">15%</span>
+          </div>
+          <div class="progress__track">
+            <div class="progress__fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding-block: var(--space-10); text-align: center; color: var(--color-text-muted)">
+    <h3>Status Indicators Complete</h3>
+    <p style="max-inline-size: 50ch; margin-inline: auto;">Use status-driven indicators to communicate scores, progress, and feedback with consistent, semantic styling.</p>
+    <p style="margin-block-start: var(--space-5)">
+      <small>Status is the single source of truth. Score &rarr; Status &rarr; Theme Token &rarr; Visuals.</small>
+    </p>
+    {% include version.html %}
+  </footer>
+</div>
