@@ -7,34 +7,79 @@ Copy this prompt into Gemini (or any AI assistant) to help it understand how to 
 ## The Prompt
 
 ```
-You are an expert CSS designer specializing in modern CSS features. I need you to help me create a child theme for the Fluid Framework - a modern, semantic CSS design system.
+You are an expert CSS designer specializing in modern CSS features. I need you to help me create a child theme for the Fluid Framework - a modern, semantic CSS design system based on fluid dynamics physics.
 
-## About Fluid Framework
+## About Fluid Framework v0.2.0
 
 Fluid Framework uses:
 - **OKLCH color space** for perceptually uniform colors
 - **CSS custom properties** (variables) for all theming
-- **Logical properties** (inline/block instead of left/right)
-- **Data attributes** for variants (data-theme, data-accent, data-motion)
-- **CSS @layer** for proper cascade control
+- **9 color palettes** (moods) with 6 colors each
+- **6 motion styles** mapped to fluid dynamics (Reynolds numbers)
+- **Motion-linked colors** in the Fluid palette
+- **Data attributes** for all configuration
+- **View Transitions API** for page transitions
 
-## How Theming Works
+## The Palette System
 
-Child themes only need to override a few CSS custom properties. The framework automatically derives all other colors mathematically.
+Fluid Framework v0.2.0 uses a palette-based theming system. Each palette provides 6 curated colors.
 
-### Minimum Required Variables
+### Built-in Palettes
 
-To create a complete theme, you only need to set:
+| Palette | Character | Use Case |
+|---------|-----------|----------|
+| `fluid` | Water colors (motion-linked) | Default, dynamic |
+| `morandi` | Muted, sophisticated | Elegant, timeless |
+| `bold` | Vibrant, saturated | High energy, attention |
+| `pastel` | Soft, light | Calming, friendly |
+| `earth` | Natural, warm | Organic, trustworthy |
+| `mono` | Single hue (blue-gray) | Professional, focused |
+| `80s` | Neon synthwave | Retro, nostalgic |
+| `matrix` | Terminal greens | Digital, hacker |
+| `subtle` | Trending feminine | Etsy/IG aesthetic |
+
+### How to Apply
+
+```html
+<html data-palette="morandi" data-accent="3">
+<!-- Uses the 3rd color from the Morandi palette -->
+```
+
+### The Fluid Palette (Special)
+
+The Fluid palette auto-links colors to motion styles:
+
+| Motion | Color | Inspiration |
+|--------|-------|-------------|
+| `still` | Slate gray | Still water reflecting sky |
+| `serene` | Soft teal | Calm mountain lake |
+| `trickling` | Light cyan | Gentle stream |
+| `flowing` | Medium blue | Steady river |
+| `rapids` | Deep teal | Whitewater |
+| `tsunami` | Deep navy | Hokusai's Great Wave |
+
+```html
+<html data-palette="fluid" data-motion="tsunami">
+<!-- Accent automatically becomes deep navy -->
+```
+
+## Creating a Custom Palette
+
+To create a new palette, define 6 harmonious colors:
 
 ```css
-[data-accent="your-theme-name"] {
-  /* Primary accent color - used for buttons, links, focus states */
-  --accent: oklch(L% C H);
+/* ========================================
+   [YOUR_PALETTE_NAME] Palette
+   [Description of the mood/character]
+   ======================================== */
 
-  /* Automatically calculated variants (optional overrides) */
-  --accent-subtle: oklch(95% 0.03 H);    /* Very light tint for backgrounds */
-  --accent-hover: oklch(L-10% C+0.02 H); /* Darker for hover states */
-  --accent-active: oklch(L-15% C H);     /* Even darker for active/pressed */
+[data-palette="your-palette"] {
+  --palette-1: oklch(L% C H);  /* Color 1 - [description] */
+  --palette-2: oklch(L% C H);  /* Color 2 - [description] */
+  --palette-3: oklch(L% C H);  /* Color 3 - [description] */
+  --palette-4: oklch(L% C H);  /* Color 4 - [description] */
+  --palette-5: oklch(L% C H);  /* Color 5 - [description] */
+  --palette-6: oklch(L% C H);  /* Color 6 - [description] */
 }
 ```
 
@@ -42,235 +87,224 @@ To create a complete theme, you only need to set:
 
 OKLCH uses three values:
 - **L (Lightness)**: 0% = black, 100% = white
-- **C (Chroma)**: 0 = gray, ~0.4 = maximum saturation
-- **H (Hue)**: 0-360 degrees on the color wheel
+- **C (Chroma)**: 0 = gray, ~0.3 = vivid (max varies by hue)
+- **H (Hue)**: 0-360 degrees
   - 0/360 = Red
   - 30 = Orange
   - 55 = Yellow/Gold
   - 145 = Green
   - 200 = Cyan/Teal
   - 260 = Blue
-  - 300 = Purple/Violet
-  - 330 = Pink/Magenta
+  - 300 = Purple
+  - 330 = Pink
 
-### Full Theme Override (Optional)
+### Palette Design Tips
 
-For complete control over light/dark appearance:
-
-```css
-[data-theme="your-theme"][data-accent="your-theme"] {
-  /* Theme foundation */
-  --theme-dark: oklch(15% 0.02 H);   /* Darkest color */
-  --theme-light: oklch(98% 0.01 H);  /* Lightest color */
-
-  /* Optional: Add warmth/coolness to grays */
-  --theme-chroma: 0.01;  /* Subtle color in grays */
-  --theme-hue: H;        /* Match accent hue */
-}
-```
-
-## Example Child Themes
-
-Here are example accent presets from the framework:
-
-```css
-/* Coral - Warm, vibrant energy */
-[data-accent="coral"] {
-  --accent: oklch(65% 0.18 25);
-  --accent-subtle: oklch(95% 0.04 25);
-  --accent-hover: oklch(55% 0.20 25);
-  --accent-active: oklch(45% 0.18 25);
-}
-
-/* Vapor - Soft, ethereal purple */
-[data-accent="vapor"] {
-  --accent: oklch(55% 0.15 300);
-  --accent-subtle: oklch(95% 0.03 300);
-  --accent-hover: oklch(45% 0.17 300);
-  --accent-active: oklch(40% 0.15 300);
-}
-
-/* Tide - Ocean blue-green */
-[data-accent="tide"] {
-  --accent: oklch(55% 0.12 200);
-  --accent-subtle: oklch(95% 0.025 200);
-  --accent-hover: oklch(45% 0.14 200);
-  --accent-active: oklch(40% 0.12 200);
-}
-```
-
-## What I Need
-
-Create a child theme called "[THEME_NAME]" with the following characteristics:
-- [Describe the mood/feeling: professional, playful, elegant, bold, etc.]
-- [Describe color preferences: warm, cool, specific colors you like]
-- [Any brand colors to match: provide hex codes if available]
-
-Please provide:
-1. The complete CSS for the accent preset
-2. The color swatch button CSS (for the settings panel)
-3. Optional: Full theme override for complete customization
-4. A brief description of the color choices and their psychological impact
-```
-
----
-
-## Tips for Better Results
-
-1. **Provide reference colors**: If you have brand colors, provide their hex codes. Gemini can convert them to OKLCH.
-
-2. **Describe the mood**: Words like "professional", "playful", "elegant", "bold", "calming" help the AI choose appropriate chroma and lightness levels.
-
-3. **Specify use case**: "For a law firm website" vs "For a children's game app" will yield very different palettes.
-
-4. **Ask for variations**: Request "3 variations from subtle to bold" to explore options.
-
----
-
-## Converting Hex to OKLCH
-
-If you have brand colors in hex format, ask Gemini to convert them:
-
-```
-Convert these brand colors to OKLCH:
-- Primary: #FF6B35
-- Secondary: #004E64
-```
-
----
-
-## Advanced: Mathematical Color Relationships
-
-OKLCH makes it easy to create harmonious palettes:
-
-```css
-/* Complementary: add 180 to hue */
---accent: oklch(55% 0.15 200);        /* Teal */
---accent-complement: oklch(55% 0.15 20); /* Coral (200 + 180 = 380 = 20) */
-
-/* Triadic: add 120 to hue */
---color-1: oklch(55% 0.15 200);  /* Teal */
---color-2: oklch(55% 0.15 320);  /* Purple */
---color-3: oklch(55% 0.15 80);   /* Yellow-green */
-
-/* Analogous: ±30 from hue */
---color-main: oklch(55% 0.15 200);  /* Teal */
---color-warm: oklch(55% 0.15 170);  /* Slightly warmer */
---color-cool: oklch(55% 0.15 230);  /* Slightly cooler */
-```
-
----
+1. **Vary lightness** - Include light (70-85%) and dark (40-55%) options
+2. **Consistent chroma** - Similar saturation levels feel cohesive
+3. **Hue relationships** - Use analogous (±30°) or complementary (±180°) hues
+4. **Test both modes** - Check colors in light AND dark mode
 
 ## Motion System
 
-Fluid Framework includes a sophisticated motion system with water-themed intensity levels. Apply via `<html data-motion="flowing">`:
+Fluid Framework has 6 motion styles based on fluid dynamics:
 
-| Level | Name | Character | Page Transition |
-|-------|------|-----------|-----------------|
-| 0 | `still` | Instant, no animation | Instant cut |
-| 1 | `serene` | Ken Burns effect, slow crossfade | Gentle zoom + fade (1-3s) |
-| 2 | `trickling` | Minimal, quick motion | Quick fade (~175ms) |
-| 3 | `flowing` | Horizontal push (default) | Content slides left→right |
-| 4 | `rapids` | Vertical spring effect | Top-down sweep with bounce |
-| 5 | `tsunami` | Dramatic diagonal crash | Wave from top-right |
+| Style | Reynolds # | Page Transition | Duration |
+|-------|------------|-----------------|----------|
+| `still` | 0 | Instant cut | 0ms |
+| `serene` | Low | Ken Burns zoom + fade | ~1100ms |
+| `trickling` | Low | Quick fade | ~640ms |
+| `flowing` | Moderate | Horizontal push | ~800ms |
+| `rapids` | High | Push-through-drag | ~1100ms |
+| `tsunami` | Extreme | Rise-crest-crash | ~800ms |
+
+### Rapids: Fluid Dynamics Effect
+
+The Rapids transition simulates real physics:
+- New content emerges from bottom
+- Overlaps old content ~10%
+- Old content lags (friction)
+- New gains traction, pulls old away
+
+### Tsunami: Wave Crash
+
+Buttons in Tsunami mode have special physics:
+- **Hover**: Swells 8% (surface tension)
+- **Click**: Crashes down (breakthrough)
+- **Leave**: Bounces and settles
 
 ### Motion Variables
 
-Each motion level sets these CSS custom properties:
+Each motion level sets timing variables:
 
 ```css
-/* Example: Rapids level */
 [data-motion="rapids"] {
   --motion-scale: 1.5;
   --duration-fast: 250ms;
   --duration-normal: 450ms;
   --duration-slow: 650ms;
-  --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy overshoot */
-  --ease-settle: cubic-bezier(0.22, 1.4, 0.36, 1); /* Spring settle */
+  --duration-slower: 808ms;
+  --duration-slowest: 1107ms;
+  --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy */
+  --ease-settle: cubic-bezier(0.22, 1.4, 0.36, 1); /* Spring */
 }
 ```
 
-### Creating Motion-Aware Components
+## Subdued Mode
 
-To make components respond to the motion settings:
+Lower contrast for gentler viewing:
 
 ```css
-.my-component {
-  transition: transform var(--duration-normal) var(--ease-fluid),
-              opacity var(--duration-fast) var(--ease-fluid);
-}
-
-/* Respect "still" mode */
-[data-motion="still"] .my-component {
-  transition: none;
-}
-
-/* Enhance for "serene" mode (Ken Burns style) */
-[data-motion="serene"] .my-component img {
-  animation: kenburns 10s ease-in-out infinite alternate;
-}
-
-@keyframes kenburns {
-  from { transform: scale(1); }
-  to { transform: scale(var(--kenburns-scale, 1.05)); }
+[data-contrast="subdued"] {
+  /* Softens text and background extremes */
+  --color-text: var(--gray-30);      /* Less black */
+  --color-background: var(--gray-95); /* Less white */
 }
 ```
 
----
+Apply: `<html data-contrast="subdued">`
 
-## Example Request
+## Status Indicator System
 
-Here's a complete example of asking Gemini to create a theme:
+For scores and progress, use semantic status:
+
+```html
+<div class="progress" data-status="good" style="--progress-percent: 88%">
+  <!-- Green progress bar at 88% -->
+</div>
+
+<span class="badge" data-status="moderate">Warning</span>
+```
+
+Status thresholds:
+- `good`: ≥80%
+- `moderate`: 60-79%
+- `severe`: <60%
+
+## Example Requests
+
+### Request 1: Create a Brand Palette
 
 ```
-Using the Fluid Framework theming system described above, create a child theme called "Aurora" with these characteristics:
-
+Create a Fluid Framework palette called "aurora" with these characteristics:
 - Mood: Ethereal, magical, inspiring
-- Colors: Northern lights inspired - greens, teals, and subtle purples
-- Use case: Creative portfolio/art showcase
+- Colors: Northern lights - greens, teals, purples
+- Use case: Creative portfolio
 
-Please provide the complete CSS for both the accent preset and color swatch.
+Provide the complete CSS for the palette definition.
 ```
 
----
+### Request 2: Full Child Theme
 
-## Full Child Theme Template
+```
+Create a complete Fluid Framework child theme called "corporate" for a law firm:
+- Mood: Professional, trustworthy, serious
+- Colors: Deep blues, subtle golds, neutral grays
+- Should work well with both light and dark modes
 
-Here's a complete template for creating a child theme with all features:
+Provide:
+1. Palette definition with 6 colors
+2. Recommended motion style
+3. Whether subdued mode would suit this use case
+```
+
+### Request 3: Motion-Linked Palette
+
+```
+Create a Fluid Framework palette called "fire" that mirrors the Fluid palette concept but with fire/heat colors:
+- `still` → Ash gray (cold embers)
+- `serene` → Warm amber (candlelight)
+- `trickling` → Orange glow
+- `flowing` → Bright flame
+- `rapids` → Intense red-orange
+- `tsunami` → Deep crimson (volcanic)
+
+Include the motion-to-color CSS mapping like Fluid palette has.
+```
+
+## Complete Palette Template
 
 ```css
 /* ========================================
-   [THEME_NAME] Child Theme for Fluid Framework
+   [PALETTE_NAME] Palette for Fluid Framework
+   [Description: mood, inspiration, use case]
    ======================================== */
 
-/* Accent Color Preset */
-[data-accent="your-theme"] {
-  --accent: oklch(55% 0.15 200);
-  --accent-subtle: oklch(95% 0.025 200);
-  --accent-hover: oklch(45% 0.17 200);
-  --accent-active: oklch(40% 0.15 200);
+[data-palette="palette-name"] {
+  /* Primary/Default */
+  --palette-1: oklch(55% 0.15 200);  /* [Name] - [description] */
+
+  /* Secondary */
+  --palette-2: oklch(60% 0.12 220);  /* [Name] - [description] */
+
+  /* Tertiary */
+  --palette-3: oklch(65% 0.10 180);  /* [Name] - [description] */
+
+  /* Accent Light */
+  --palette-4: oklch(70% 0.08 200);  /* [Name] - [description] */
+
+  /* Accent Dark */
+  --palette-5: oklch(45% 0.18 210);  /* [Name] - [description] */
+
+  /* Special/Pop */
+  --palette-6: oklch(50% 0.20 260);  /* [Name] - [description] */
 }
 
-/* Color Swatch (for settings panel) */
-.color-swatch[data-preset="your-theme"] {
-  --_swatch-color: oklch(55% 0.15 200);
-  background: linear-gradient(135deg,
-    oklch(60% 0.17 195) 0%,
-    oklch(50% 0.13 205) 100%);
-}
-
-/* Optional: Full Theme Override */
-[data-theme="your-theme"] {
-  --theme-dark: oklch(15% 0.02 200);
-  --theme-light: oklch(98% 0.01 200);
-  --theme-chroma: 0.01;
-  --theme-hue: 200;
-}
-
-/* Optional: Custom Motion (rarely needed) */
-[data-motion="your-custom-motion"] {
-  --motion-scale: 1.2;
-  --duration-normal: 400ms;
-  --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* Optional: Add to settings panel dropdown */
+/* In settings-panel.html, add:
+   <option value="palette-name">Palette Name (Description)</option>
+*/
 ```
+
+## Converting Existing Brand Colors
+
+If you have hex colors:
+
+```
+Convert these brand colors to OKLCH for a Fluid Framework palette:
+- Primary: #1A5F7A
+- Secondary: #159895
+- Accent: #57C5B6
+- Light: #9EE6CF
+```
+
+## Tips for Best Results
+
+1. **Describe the mood** - "Professional", "playful", "ethereal" helps choose chroma/lightness
+2. **Specify use case** - "Law firm" vs "children's app" yields different palettes
+3. **Mention motion preference** - Some palettes pair better with certain motions
+4. **Ask for variations** - "3 options from subtle to bold"
+5. **Test both themes** - Request light AND dark mode compatibility
+```
+
+---
+
+## For ThatOne.App Integration
+
+When creating a child theme for ThatOne.App specifically:
+
+1. **Start with palette selection** - Choose from 9 built-in or create custom
+2. **Consider motion** - What energy level fits the app's purpose?
+3. **Set defaults** - Which palette color is the default accent?
+4. **Subdued option** - Is lower contrast appropriate for the use case?
+
+### Example: ThatOne.App Theme Request
+
+```
+Create a Fluid Framework child theme for ThatOne.App with:
+- App type: [productivity/creative/social/etc.]
+- Brand colors: [provide hex codes if available]
+- Mood: [describe the feeling]
+- Target users: [who uses this app?]
+
+I need:
+1. Custom palette OR recommendation from built-in palettes
+2. Recommended motion style
+3. Default accent color (1-6)
+4. Whether to enable subdued mode
+5. Complete CSS if custom palette
+```
+
+---
+
+*Updated for Fluid Framework v0.2.0 - December 2024*

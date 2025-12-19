@@ -1,8 +1,8 @@
 # Fluid Framework - Documentation
 
-> *"Like water: adaptable, natural, powerful yet gentle."*
+> *"A design system derived from fluid dynamics - not water-themed, physics-based."*
 
-Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design system prioritizing semantic HTML, CSS custom properties, and progressive enhancement.
+Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design system built on the physics of how fluids actually behave.
 
 ---
 
@@ -16,6 +16,7 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 | [Positioning System](reference/positioning.md) | Layout and alignment utilities |
 | [Heroes](reference/heroes.md) | Full-width hero sections |
 | [Components](reference/components.md) | Component API and usage |
+| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance |
 
 ### For AI Agents
 | Document | Description |
@@ -23,6 +24,50 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 | [General Instructions](_agents/general.md) | Core project principles |
 | [CSS Specialist](_agents/css-specialist.md) | CSS patterns and conventions |
 | [Component Developer](_agents/component-developer.md) | Component creation guide |
+
+---
+
+## What's New in v0.2.0
+
+### Fluid Dynamics Foundation
+The framework is now explicitly based on fluid mechanics:
+- **Viscosity** - Elements have different densities
+- **Displacement** - New content pushes old away
+- **Surface Tension** - Boundaries before breakthrough
+- **Momentum** - Overshoot, settle, equilibrium
+
+See [examples/philosophy.html](../examples/philosophy.html) for the full explanation.
+
+### Motion System (Water-Themed)
+Six motion presets mapped to Reynolds numbers:
+
+| Style | Flow Type | Behavior |
+|-------|-----------|----------|
+| `still` | No flow | Instant, no animation |
+| `serene` | Laminar | Ken Burns effect, slow crossfade |
+| `trickling` | Low Re | Quick, subtle feedback |
+| `flowing` | Moderate Re | Horizontal push (default) |
+| `rapids` | High Re | Fluid dynamics - pushes through, drags |
+| `tsunami` | Extreme | Rise, crest, crash |
+
+### Color Palette System (9 Moods)
+| Palette | Character |
+|---------|-----------|
+| `fluid` | Water colors, auto-linked to motion style |
+| `morandi` | Muted, sophisticated |
+| `bold` | Vibrant, saturated |
+| `pastel` | Soft, light |
+| `earth` | Natural, warm |
+| `mono` | Single hue variations |
+| `80s` | Neon synthwave |
+| `matrix` | Terminal/coding aesthetic |
+| `subtle` | Trending feminine (Etsy/IG) |
+
+### Subdued Mode
+Lower contrast for gentler viewing: `<html data-contrast="subdued">`
+
+### Status Indicator System
+Progress bars, badges, and status cards with semantic status-driven styling.
 
 ---
 
@@ -34,14 +79,18 @@ the-fluid-theme-v2c/
 │   ├── _start-here.md       # This file
 │   ├── architecture.md      # Technical decisions
 │   ├── contributing.md      # Contribution guide
+│   ├── gemini-child-theme-prompt.md  # AI theme creation
 │   ├── _agents/             # AI agent instructions
 │   └── reference/           # Technical reference
 ├── src/
 │   ├── core/                # Foundation CSS
 │   │   ├── reset.css        # Modern CSS reset
-│   │   ├── tokens.css       # Design tokens
+│   │   ├── tokens.css       # Design tokens + palettes + motion
 │   │   └── base.css         # Element defaults
 │   ├── components/          # UI components
+│   │   ├── button.css       # Buttons (tsunami effects)
+│   │   ├── card.css         # Cards
+│   │   └── indicator.css    # Progress bars, badges, status
 │   ├── layouts/             # Layout patterns
 │   ├── themes/              # Theme variations
 │   └── fluid.css            # Main entry point
@@ -49,7 +98,12 @@ the-fluid-theme-v2c/
 │   ├── foundation.html      # Element showcase
 │   ├── components.html      # Component gallery
 │   ├── positioning.html     # Positioning system demo
-│   └── heroes.html          # Hero section showcase
+│   ├── heroes.html          # Hero section showcase
+│   ├── indicators.html      # Status indicators demo
+│   ├── philosophy.html      # Fluid dynamics explanation
+│   └── hero-picker.html     # Interactive hero builder
+├── .github/workflows/       # GitHub Actions
+│   └── version-bump.yml     # Auto version on merge
 ├── CLAUDE.md                # AI assistant entry point
 └── README.md                # Project overview
 ```
@@ -58,7 +112,14 @@ the-fluid-theme-v2c/
 
 ## Core Principles
 
-### 1. Semantic HTML First
+### 1. Physics-Based Motion
+Motion isn't arbitrary - it's derived from fluid dynamics:
+```html
+<html data-motion="rapids">
+<!-- New content pushes through old with friction and momentum -->
+```
+
+### 2. Semantic HTML First
 ```html
 <!-- Do this -->
 <article class="card">
@@ -69,49 +130,28 @@ the-fluid-theme-v2c/
 <!-- Not this -->
 <div class="flex flex-col p-4 rounded-lg shadow-md">
   <div class="text-xl font-bold">Title</div>
-  <div class="text-gray-600">Content</div>
 </div>
 ```
 
-### 2. CSS Custom Properties for Everything
+### 3. OKLCH Color System
+Perceptually uniform colors that derive mathematically:
 ```css
 /* All values come from tokens */
-padding: var(--space-5);
-color: var(--color-text);
-font-size: var(--font-size-lg);
+--accent: oklch(55% 0.15 200);
+--accent-subtle: color-mix(in oklch, var(--accent) 15%, var(--color-background));
 ```
 
-### 3. Logical Properties
-```css
-/* Use logical (works for RTL) */
-margin-block-start: var(--space-4);
-padding-inline: var(--space-5);
-
-/* Not physical */
-margin-top: 1rem;    /* Avoid */
-padding-left: 1rem;  /* Avoid */
-```
-
-### 4. No Build Step Required
-The framework works directly in browsers. Just link the CSS:
+### 4. Palette-Driven Theming
 ```html
-<link rel="stylesheet" href="src/fluid.css">
+<html data-palette="morandi" data-accent="3">
+<!-- Palette sets 6 color options, accent picks one -->
 ```
 
-### 5. Progressive Enhancement
-Everything works without JavaScript. JS enhances, never gates.
-
----
-
-## Design Philosophy
-
-**Serene, calm, like a gentle brook.**
-
-- Soft, natural colors (not electric or aggressive)
-- Smooth, unhurried transitions (200-350ms)
-- Shadows that feel like natural light
-- Typography that breathes
-- Subtle interactions, not flashy
+### 5. Motion-Linked Colors (Fluid Palette)
+```html
+<html data-palette="fluid" data-motion="tsunami">
+<!-- Accent automatically becomes deep navy (Hokusai wave) -->
+```
 
 ---
 
@@ -119,7 +159,7 @@ Everything works without JavaScript. JS enhances, never gates.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-palette="fluid" data-motion="flowing">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,13 +170,26 @@ Everything works without JavaScript. JS enhances, never gates.
   <div class="container">
     <section class="section" data-layout="center">
       <h1>Hello Fluid</h1>
-      <p>A serene design system.</p>
+      <p>A physics-based design system.</p>
       <button>Get Started</button>
     </section>
   </div>
 </body>
 </html>
 ```
+
+---
+
+## Data Attributes Reference
+
+| Attribute | Values | Purpose |
+|-----------|--------|---------|
+| `data-theme` | `light`, `dark` | Color mode |
+| `data-motion` | `still`, `serene`, `trickling`, `flowing`, `rapids`, `tsunami` | Motion intensity |
+| `data-palette` | `fluid`, `morandi`, `bold`, `pastel`, `earth`, `mono`, `80s`, `matrix`, `subtle` | Color family |
+| `data-accent` | `1`-`6` | Accent color from palette |
+| `data-contrast` | `subdued` | Lower contrast mode |
+| `data-status` | `good`, `moderate`, `severe`, `neutral` | Status indicator styling |
 
 ---
 
@@ -147,7 +200,7 @@ Everything works without JavaScript. JS enhances, never gates.
 - Safari 16.4+
 - Edge 120+
 
-Requires: CSS Layers, Container Queries, `light-dark()` function.
+Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 ---
 
@@ -155,8 +208,10 @@ Requires: CSS Layers, Container Queries, `light-dark()` function.
 
 1. Read [Architecture](architecture.md) for technical details
 2. See [Tokens Reference](reference/tokens.md) for available design tokens
-3. Check [examples/](../examples/) for live demos
+3. Visit [philosophy.html](../examples/philosophy.html) for fluid dynamics explanation
+4. Check [examples/](../examples/) for live demos
+5. Use [Gemini Prompt](gemini-child-theme-prompt.md) to create child themes
 
 ---
 
-*Last updated: December 2024*
+*Version 0.2.0 - December 2024*
