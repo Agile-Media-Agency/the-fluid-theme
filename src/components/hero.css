@@ -76,18 +76,23 @@
   }
 
   .hero__headline {
-    font-size: var(--font-size-5xl);
+    /* Fluid scaling: smooth transition across all viewport sizes */
+    font-size: clamp(2rem, 1rem + 5vw, 3.5rem);
     font-weight: var(--weight-bold);
     letter-spacing: -0.03em;
     line-height: var(--leading-tight);
     margin-block-end: var(--space-4);
+    text-wrap: balance; /* Prevent orphans in headlines */
   }
 
   .hero__subheadline {
-    font-size: var(--font-size-xl);
+    /* Fluid scaling for subheadlines */
+    font-size: clamp(1.125rem, 0.875rem + 1.5vw, 1.5rem);
     color: var(--hero-text-muted, var(--color-text-muted));
     line-height: var(--leading-relaxed);
     margin-block-end: var(--space-6);
+    text-wrap: pretty; /* Better line breaks */
+    max-inline-size: 65ch; /* Optimal reading width */
   }
 
   .hero__actions {
@@ -218,17 +223,11 @@
 
   /* ========================================
      RESPONSIVE BEHAVIOR
+     Font sizes use fluid clamp() - no breakpoints needed
      ======================================== */
 
   @container (max-width: 40rem) {
-    .hero__headline {
-      font-size: var(--font-size-3xl);
-    }
-
-    .hero__subheadline {
-      font-size: var(--font-size-lg);
-    }
-
+    /* Actions stack vertically on narrow containers */
     .hero__actions {
       flex-direction: column;
       align-items: stretch;
@@ -237,6 +236,33 @@
     .hero__actions > * {
       justify-content: center;
     }
+  }
+
+
+  /* ========================================
+     HERO BUTTON CONTRAST
+     Ensure buttons are visible on themed backgrounds
+     ======================================== */
+
+  /* Dark theme: use light outline buttons for secondary */
+  .hero[data-theme="dark"] button[data-variant="outline"],
+  .hero[data-theme="gradient"] button[data-variant="outline"] {
+    --_btn-color: var(--white);
+    --_btn-border: var(--white);
+    --_btn-bg-hover: oklch(100% 0 0 / 0.15);
+  }
+
+  /* Accent theme: invert button colors for contrast */
+  .hero[data-theme="accent"] button:not([data-variant]) {
+    --_btn-color: var(--accent);
+    --_btn-bg: var(--white);
+    --_btn-bg-hover: var(--gray-95);
+  }
+
+  .hero[data-theme="accent"] button[data-variant="outline"] {
+    --_btn-color: var(--white);
+    --_btn-border: var(--white);
+    --_btn-bg-hover: oklch(100% 0 0 / 0.15);
   }
 
 

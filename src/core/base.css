@@ -635,6 +635,38 @@
 
 
   /* ========================================
+     SKIP LINK
+     Accessibility: Jump to main content
+     Hidden until focused for keyboard users
+     ======================================== */
+
+  .skip-link {
+    position: absolute;
+    inset-block-start: var(--space-4);
+    inset-inline-start: var(--space-4);
+    z-index: var(--z-max);
+    padding: var(--space-3) var(--space-5);
+    background-color: var(--accent);
+    color: var(--white);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-200%);
+    transition: transform var(--duration-fast) var(--ease-fluid);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: none;
+    box-shadow:
+      var(--shadow-lg),
+      0 0 0 3px var(--color-background),
+      0 0 0 5px var(--accent);
+  }
+
+
+  /* ========================================
      PRINT STYLES
      Clean output for paper
      ======================================== */
