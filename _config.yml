@@ -9,6 +9,7 @@ baseurl: /the-fluid-theme-v2c
 # Build settings
 markdown: kramdown
 highlighter: rouge
+timezone: America/New_York
 
 # Don't process these
 exclude:
@@ -35,5 +36,5 @@ defaults:
       layout: default
 
 # Site-wide variables
-version: "0.1.2"
+version: "0.2.0"
 # Note: "Last Built" timestamp is now automatic via site.time
