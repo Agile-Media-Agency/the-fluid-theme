@@ -4,7 +4,7 @@
 title: Fluid Framework
 description: A modern, semantic CSS design system
 url: https://agile-media-agency.github.io
-baseurl: /the-fluid-theme-v2c
+baseurl: ""
 
 # Build settings
 markdown: kramdown
