@@ -1,129 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fluid Framework - A modern, semantic CSS design system">
-  <title>Fluid Framework</title>
-  <link rel="stylesheet" href="src/fluid.css">
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="nav" data-sticky>
-    <a href="index.html" class="nav__brand">Fluid</a>
-    <ul class="nav__menu" role="list" id="nav-menu">
-      <li><a href="examples/foundation.html" class="nav__link">Foundation</a></li>
-      <li><a href="examples/components.html" class="nav__link">Components</a></li>
-      <li><a href="examples/positioning.html" class="nav__link">Layouts</a></li>
-      <li><a href="examples/heroes.html" class="nav__link">Heroes</a></li>
-      <li><a href="examples/hero-picker.html" class="nav__link">Hero Picker</a></li>
-    </ul>
-    <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12h18M3 6h18M3 18h18"/>
-      </svg>
-    </button>
-  </nav>
+---
+title: Home
+description: Fluid Framework - A modern, semantic CSS design system
+nav: home
+---
+<div class="container">
+  <header class="section" data-layout="center" data-padding="xl">
+    <h1>Fluid Framework</h1>
+    <p>A modern, semantic CSS design system. Like water: adaptable, natural, powerful yet gentle.</p>
+    <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+      No build step. No JavaScript required. Just CSS.
+    </p>
+  </header>
 
-  <div class="container">
-    <header class="section" data-layout="center" data-padding="xl">
-      <h1>Fluid Framework</h1>
-      <p>A modern, semantic CSS design system. Like water: adaptable, natural, powerful yet gentle.</p>
-      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
-        No build step. No JavaScript required. Just CSS.
-      </p>
-    </header>
+  <section class="section" data-layout="center" data-padding="md">
+    <h2>Examples</h2>
+    <div class="grid" style="--grid-min: 16rem; margin-block-start: var(--space-6);">
+      <a href="{{ '/examples/foundation.html' | relative_url }}" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Foundation</h3>
+          <p class="card__description">Base HTML elements - typography, forms, tables, and more.</p>
+        </div>
+      </a>
+      <a href="{{ '/examples/components.html' | relative_url }}" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Components</h3>
+          <p class="card__description">Buttons, cards, navigation, form controls.</p>
+        </div>
+      </a>
+      <a href="{{ '/examples/positioning.html' | relative_url }}" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Positioning</h3>
+          <p class="card__description">Layout system - center, split, stack layouts.</p>
+        </div>
+      </a>
+      <a href="{{ '/examples/heroes.html' | relative_url }}" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Heroes</h3>
+          <p class="card__description">Full-width hero sections with themes and overlays.</p>
+        </div>
+      </a>
+      <a href="{{ '/examples/hero-picker.html' | relative_url }}" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Hero Picker</h3>
+          <p class="card__description">Interactive builder - design heroes visually and copy the code.</p>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    <section class="section" data-layout="center" data-padding="md">
-      <h2>Examples</h2>
-      <div class="grid" style="--grid-min: 16rem; margin-block-start: var(--space-6);">
-        <a href="examples/foundation.html" class="card" data-interactive>
-          <div class="card__content">
-            <h3 class="card__title">Foundation</h3>
-            <p class="card__description">Base HTML elements - typography, forms, tables, and more.</p>
-          </div>
-        </a>
-        <a href="examples/components.html" class="card" data-interactive>
-          <div class="card__content">
-            <h3 class="card__title">Components</h3>
-            <p class="card__description">Buttons, cards, navigation, form controls.</p>
-          </div>
-        </a>
-        <a href="examples/positioning.html" class="card" data-interactive>
-          <div class="card__content">
-            <h3 class="card__title">Positioning</h3>
-            <p class="card__description">Layout system - center, split, stack layouts.</p>
-          </div>
-        </a>
-        <a href="examples/heroes.html" class="card" data-interactive>
-          <div class="card__content">
-            <h3 class="card__title">Heroes</h3>
-            <p class="card__description">Full-width hero sections with themes and overlays.</p>
-          </div>
-        </a>
-        <a href="examples/hero-picker.html" class="card" data-interactive>
-          <div class="card__content">
-            <h3 class="card__title">Hero Picker</h3>
-            <p class="card__description">Interactive builder - design heroes visually and copy the code.</p>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" data-layout="center" data-padding="md">
-      <h2>Features</h2>
-      <div class="grid" style="--grid-min: 14rem; margin-block-start: var(--space-6);">
-        <div class="card" data-variant="filled">
-          <div class="card__content" data-align="center">
-            <h4 class="card__title">CSS Layers</h4>
-            <p class="card__description">Predictable cascade with @layer</p>
-          </div>
-        </div>
-        <div class="card" data-variant="filled">
-          <div class="card__content" data-align="center">
-            <h4 class="card__title">Design Tokens</h4>
-            <p class="card__description">CSS custom properties for everything</p>
-          </div>
-        </div>
-        <div class="card" data-variant="filled">
-          <div class="card__content" data-align="center">
-            <h4 class="card__title">Container Queries</h4>
-            <p class="card__description">Components respond to their container</p>
-          </div>
-        </div>
-        <div class="card" data-variant="filled">
-          <div class="card__content" data-align="center">
-            <h4 class="card__title">Auto Dark Mode</h4>
-            <p class="card__description">Respects system preferences</p>
-          </div>
-        </div>
-        <div class="card" data-variant="filled">
-          <div class="card__content" data-align="center">
-            <h4 class="card__title">No Build Step</h4>
-            <p class="card__description">Works directly in browsers</p>
-          </div>
-        </div>
-        <div class="card" data-variant="filled">
-          <div class="card__content" data-align="center">
-            <h4 class="card__title">Accessible</h4>
-            <p class="card__description">Focus states, reduced motion</p>
-          </div>
+  <section class="section" data-layout="center" data-padding="md">
+    <h2>Features</h2>
+    <div class="grid" style="--grid-min: 14rem; margin-block-start: var(--space-6);">
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h4 class="card__title">CSS Layers</h4>
+          <p class="card__description">Predictable cascade with @layer</p>
         </div>
       </div>
-    </section>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h4 class="card__title">Design Tokens</h4>
+          <p class="card__description">CSS custom properties for everything</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h4 class="card__title">Container Queries</h4>
+          <p class="card__description">Components respond to their container</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h4 class="card__title">Auto Dark Mode</h4>
+          <p class="card__description">Respects system preferences</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h4 class="card__title">No Build Step</h4>
+          <p class="card__description">Works directly in browsers</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h4 class="card__title">Accessible</h4>
+          <p class="card__description">Focus states, reduced motion</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
-      <h2>Quick Start</h2>
-      <div data-width="wide" style="margin-block-start: var(--space-5);">
-        <pre><code>&lt;!-- Just link the CSS --&gt;
+  <section class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+    <h2>Quick Start</h2>
+    <div data-width="wide" style="margin-block-start: var(--space-5);">
+      <pre><code>&lt;!-- Just link the CSS --&gt;
 &lt;link rel="stylesheet" href="src/fluid.css"&gt;
 
 &lt;!-- Use semantic HTML with data attributes --&gt;
@@ -132,58 +102,17 @@
   &lt;p&gt;A serene design system.&lt;/p&gt;
   &lt;button&gt;Get Started&lt;/button&gt;
 &lt;/section&gt;</code></pre>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="section" data-layout="center" data-padding="md">
-      <p style="color: var(--color-text-muted);">
-        <a href="https://github.com/Agile-Media-Agency/the-fluid-theme-v2c">View on GitHub</a>
-        · Built by <a href="https://agilemediaagency.com">Agile Media Agency</a>
-      </p>
-      <p style="color: var(--color-text-subtle); font-size: var(--font-size-sm); margin-block-start: var(--space-3);">
-        Use the theme toggle in the nav or your system settings for dark mode.
-      </p>
-      <p class="version-indicator" style="color: var(--color-text-subtle); font-size: var(--font-size-xs); margin-block-start: var(--space-4); font-family: var(--font-mono);">
-        Last Updated: <time datetime="2025-12-18T09:17:00Z">Dec 18, 2025 at 4:17 AM</time> · v0.1.0
-      </p>
-    </footer>
-  </div>
-
-  <!-- Simple theme and menu toggle (vanilla JS, no dependencies) -->
-  <script>
-    // Theme toggle - persists to localStorage
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('fluid-theme', newTheme);
-    }
-
-    // Mobile menu toggle
-    function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
-      const toggle = document.querySelector('.nav__toggle');
-      const isOpen = menu.hasAttribute('data-open');
-
-      if (isOpen) {
-        menu.removeAttribute('data-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      } else {
-        menu.setAttribute('data-open', '');
-        toggle.setAttribute('aria-expanded', 'true');
-      }
-    }
-
-    // Initialize theme from localStorage or system preference
-    (function() {
-      const saved = localStorage.getItem('fluid-theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
-</body>
-</html>
+  <footer class="section" data-layout="center" data-padding="md">
+    <p style="color: var(--color-text-muted);">
+      <a href="https://github.com/Agile-Media-Agency/the-fluid-theme-v2c">View on GitHub</a>
+      · Built by <a href="https://agilemediaagency.com">Agile Media Agency</a>
+    </p>
+    <p style="color: var(--color-text-subtle); font-size: var(--font-size-sm); margin-block-start: var(--space-3);">
+      Use the theme toggle in the nav or your system settings for dark mode.
+    </p>
+    {% include version.html %}
+  </footer>
+</div>

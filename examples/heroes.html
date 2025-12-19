@@ -1,276 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fluid Framework - Hero Section Examples">
-  <title>Fluid Framework - Hero Sections</title>
-
-  <link rel="stylesheet" href="../src/fluid.css">
-
-  <style>
-    /* Demo-only styles */
-    @layer demo {
-      .demo-nav {
-        position: sticky;
-        inset-block-start: 0;
-        z-index: 100;
-        background: var(--color-background);
-        border-block-end: 1px solid var(--color-border-subtle);
-        padding: var(--space-3) var(--space-5);
-      }
-
-      .demo-nav__list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-2) var(--space-4);
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        font-size: var(--font-size-sm);
-      }
-
-      .demo-label {
-        display: inline-block;
-        font-family: var(--font-mono);
-        font-size: var(--font-size-xs);
-        background: hsl(0 0% 0% / 0.7);
-        color: white;
-        padding: var(--space-1) var(--space-2);
-        border-radius: var(--radius-sm);
-        margin-block-end: var(--space-3);
-      }
-
-      .demo-label--light {
-        background: hsl(0 0% 100% / 0.9);
-        color: var(--color-text);
-      }
-
-      .demo-spacer {
-        block-size: var(--space-1);
-        background: var(--color-border-subtle);
-      }
-
-      .demo-placeholder-image {
-        background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-surface));
-        display: grid;
-        place-items: center;
-        color: var(--color-text-muted);
-        font-size: var(--font-size-sm);
-      }
+---
+title: Hero Sections
+description: Fluid Framework - Hero Section Examples
+nav: heroes
+---
+<style>
+  @layer demo {
+    .demo-nav {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 100;
+      background: var(--color-background);
+      border-block-end: 1px solid var(--color-border-subtle);
+      padding: var(--space-3) var(--space-5);
     }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="nav" data-sticky>
-    <a href="../index.html" class="nav__brand">Fluid</a>
-    <ul class="nav__menu" role="list" id="nav-menu">
-      <li><a href="foundation.html" class="nav__link">Foundation</a></li>
-      <li><a href="components.html" class="nav__link">Components</a></li>
-      <li><a href="positioning.html" class="nav__link">Layouts</a></li>
-      <li><a href="heroes.html" class="nav__link" aria-current="page">Heroes</a></li>
-      <li><a href="hero-picker.html" class="nav__link">Hero Picker</a></li>
-    </ul>
-    <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12h18M3 6h18M3 18h18"/>
-      </svg>
-    </button>
-  </nav>
 
-  <!-- Page Sub-navigation -->
-  <nav class="demo-nav">
-    <ul class="demo-nav__list">
-      <li><a href="#centered">Centered</a></li>
-      <li><a href="#fullscreen">Fullscreen</a></li>
-      <li><a href="#dark">Dark Theme</a></li>
-      <li><a href="#gradient">Gradient</a></li>
-      <li><a href="#split">Split</a></li>
-      <li><a href="#overlay">With Overlay</a></li>
-      <li><a href="#compact">Compact</a></li>
-    </ul>
-  </nav>
+    .demo-nav__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-4);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: var(--font-size-sm);
+    }
 
-  <!-- Hero 1: Basic Centered -->
-  <section id="centered" class="hero" data-layout="center" data-padding="xl" data-theme="subtle">
-    <span class="demo-label demo-label--light">Basic: data-layout="center" data-padding="xl"</span>
-    <h1 class="hero__headline">Fluid Framework</h1>
-    <p class="hero__subheadline">A modern, semantic CSS design system. Like water: adaptable, natural, powerful yet gentle.</p>
+    .demo-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      background: hsl(0 0% 0% / 0.7);
+      color: white;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      margin-block-end: var(--space-3);
+    }
+
+    .demo-label--light {
+      background: hsl(0 0% 100% / 0.9);
+      color: var(--color-text);
+    }
+
+    .demo-spacer {
+      block-size: var(--space-1);
+      background: var(--color-border-subtle);
+    }
+
+    .demo-placeholder-image {
+      background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-surface));
+      display: grid;
+      place-items: center;
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+    }
+  }
+</style>
+
+<!-- Page Sub-navigation -->
+<nav class="demo-nav">
+  <ul class="demo-nav__list">
+    <li><a href="#centered">Centered</a></li>
+    <li><a href="#fullscreen">Fullscreen</a></li>
+    <li><a href="#dark">Dark Theme</a></li>
+    <li><a href="#gradient">Gradient</a></li>
+    <li><a href="#split">Split</a></li>
+    <li><a href="#overlay">With Overlay</a></li>
+    <li><a href="#compact">Compact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero 1: Basic Centered -->
+<section id="centered" class="hero" data-layout="center" data-padding="xl" data-theme="subtle">
+  <span class="demo-label demo-label--light">Basic: data-layout="center" data-padding="xl"</span>
+  <h1 class="hero__headline">Fluid Framework</h1>
+  <p class="hero__subheadline">A modern, semantic CSS design system. Like water: adaptable, natural, powerful yet gentle.</p>
+  <div class="hero__actions">
+    <button>Get Started</button>
+    <button data-variant="outline">Learn More</button>
+  </div>
+</section>
+
+<div class="demo-spacer"></div>
+
+<!-- Hero 2: Fullscreen Dark -->
+<section id="fullscreen" class="hero" data-layout="center" data-padding="xl" data-size="full" data-theme="dark">
+  <span class="demo-label">data-size="full" data-theme="dark"</span>
+  <h1 class="hero__headline">Make an Impact</h1>
+  <p class="hero__subheadline">Fullscreen heroes command attention. Use them sparingly for maximum effect.</p>
+  <div class="hero__actions">
+    <button data-variant="secondary">Explore</button>
+  </div>
+</section>
+
+<div class="demo-spacer"></div>
+
+<!-- Hero 3: Gradient Theme -->
+<section id="gradient" class="hero" data-layout="center" data-padding="xl" data-theme="gradient">
+  <span class="demo-label">data-theme="gradient"</span>
+  <h1 class="hero__headline">Serene Gradients</h1>
+  <p class="hero__subheadline">Subtle color transitions create depth without distraction. A calm brook, not a crashing wave.</p>
+  <div class="hero__actions">
+    <button>Primary Action</button>
+    <button data-variant="ghost" style="color: white; border-color: white;">Secondary</button>
+  </div>
+</section>
+
+<div class="demo-spacer"></div>
+
+<!-- Hero 4: Split Layout -->
+<section id="split" class="hero" data-layout="split" data-padding="lg" data-theme="subtle" data-size="auto">
+  <div class="hero__content" data-layout="stack" data-gap="md">
+    <span class="demo-label demo-label--light">data-layout="split"</span>
+    <h1 class="hero__headline">Content & Media</h1>
+    <p class="hero__subheadline">Split layouts pair text with visuals. Perfect for product showcases and feature sections.</p>
     <div class="hero__actions">
-      <button>Get Started</button>
+      <button>Call to Action</button>
       <button data-variant="outline">Learn More</button>
     </div>
-  </section>
+  </div>
+  <img class="hero__media" src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop" alt="Abstract waves" style="aspect-ratio: 4/3; border-radius: var(--radius-lg); object-fit: cover;">
+</section>
 
-  <div class="demo-spacer"></div>
+<div class="demo-spacer"></div>
 
-  <!-- Hero 2: Fullscreen Dark -->
-  <section id="fullscreen" class="hero" data-layout="center" data-padding="xl" data-size="full" data-theme="dark">
-    <span class="demo-label">data-size="full" data-theme="dark"</span>
-    <h1 class="hero__headline">Make an Impact</h1>
-    <p class="hero__subheadline">Fullscreen heroes command attention. Use them sparingly for maximum effect.</p>
+<!-- Hero 5: Split Reverse -->
+<section class="hero" data-layout="split-reverse" data-padding="lg" data-theme="subtle" data-size="auto">
+  <div class="hero__content" data-layout="stack" data-gap="md">
+    <span class="demo-label demo-label--light">data-layout="split-reverse"</span>
+    <h2 class="hero__headline">Media First</h2>
+    <p class="hero__subheadline">Reverse the split for visual variety. HTML stays logical, CSS handles the visual order.</p>
     <div class="hero__actions">
-      <button data-variant="secondary">Explore</button>
+      <button data-variant="secondary">Explore Features</button>
     </div>
-  </section>
+  </div>
+  <img class="hero__media" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Ocean waves" style="aspect-ratio: 4/3; border-radius: var(--radius-lg); object-fit: cover;">
+</section>
 
-  <div class="demo-spacer"></div>
+<div class="demo-spacer"></div>
 
-  <!-- Hero 3: Gradient Theme -->
-  <section id="gradient" class="hero" data-layout="center" data-padding="xl" data-theme="gradient">
-    <span class="demo-label">data-theme="gradient"</span>
-    <h1 class="hero__headline">Serene Gradients</h1>
-    <p class="hero__subheadline">Subtle color transitions create depth without distraction. A calm brook, not a crashing wave.</p>
+<!-- Hero 6: With Background Image + Overlay -->
+<section id="overlay" class="hero" data-layout="center" data-padding="xl" data-overlay="medium" style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);">
+  <div class="hero__background">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop" alt="Mountain peaks" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+  <span class="demo-label">data-overlay="medium" (with background)</span>
+  <h1 class="hero__headline">Background Images</h1>
+  <p class="hero__subheadline">Use overlays to ensure text readability over images. Light, medium, heavy, or gradient options.</p>
+  <div class="hero__actions">
+    <button>Get Started</button>
+    <button data-variant="outline" style="border-color: white; color: white;">Watch Video</button>
+  </div>
+</section>
+
+<div class="demo-spacer"></div>
+
+<!-- Hero 7: Gradient Overlay -->
+<section class="hero" data-layout="center" data-padding="xl" data-overlay="gradient" data-valign="end" style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);">
+  <div class="hero__background">
+    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&h=900&fit=crop" alt="Calm lake at sunset" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+  <span class="demo-label">data-overlay="gradient" data-valign="end"</span>
+  <h2 class="hero__headline">Gradient Overlay</h2>
+  <p class="hero__subheadline">Content positioned at the bottom with a gradient fade. Great for cinematic presentations.</p>
+</section>
+
+<div class="demo-spacer"></div>
+
+<!-- Hero 8: Compact -->
+<section id="compact" class="hero" data-layout="center" data-padding="lg" data-size="compact" data-theme="primary">
+  <span class="demo-label">data-size="compact" data-theme="primary"</span>
+  <h2 class="hero__headline">Compact Heroes</h2>
+  <p class="hero__subheadline">Perfect for interior page headers. Less vertical space, same impact.</p>
+</section>
+
+<div class="demo-spacer"></div>
+
+<!-- Hero 9: Left Aligned -->
+<section class="hero" data-layout="left" data-padding="xl" data-theme="dark">
+  <div class="hero__content">
+    <span class="demo-label">data-layout="left"</span>
+    <h2 class="hero__headline">Left-Aligned Content</h2>
+    <p class="hero__subheadline">Not everything needs to be centered. Left alignment feels natural for content-heavy heroes.</p>
     <div class="hero__actions">
-      <button>Primary Action</button>
-      <button data-variant="ghost" style="color: white; border-color: white;">Secondary</button>
+      <button data-variant="secondary">Read Article</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="demo-spacer"></div>
+<div class="demo-spacer"></div>
 
-  <!-- Hero 4: Split Layout -->
-  <section id="split" class="hero" data-layout="split" data-padding="lg" data-theme="subtle" data-size="auto">
-    <div class="hero__content" data-layout="stack" data-gap="md">
-      <span class="demo-label demo-label--light">data-layout="split"</span>
-      <h1 class="hero__headline">Content & Media</h1>
-      <p class="hero__subheadline">Split layouts pair text with visuals. Perfect for product showcases and feature sections.</p>
-      <div class="hero__actions">
-        <button>Call to Action</button>
-        <button data-variant="outline">Learn More</button>
-      </div>
-    </div>
-    <img class="hero__media" src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop" alt="Abstract waves" style="aspect-ratio: 4/3; border-radius: var(--radius-lg); object-fit: cover;">
-  </section>
+<!-- Hero 10: Narrow Width -->
+<section class="hero" data-layout="center" data-width="narrow" data-padding="xl" data-theme="gradient">
+  <span class="demo-label">data-width="narrow"</span>
+  <h2 class="hero__headline">Focused Message</h2>
+  <p class="hero__subheadline">Narrow content width creates focus. Every word counts.</p>
+  <button>Take Action</button>
+</section>
 
-  <div class="demo-spacer"></div>
-
-  <!-- Hero 5: Split Reverse -->
-  <section class="hero" data-layout="split-reverse" data-padding="lg" data-theme="subtle" data-size="auto">
-    <div class="hero__content" data-layout="stack" data-gap="md">
-      <span class="demo-label demo-label--light">data-layout="split-reverse"</span>
-      <h2 class="hero__headline">Media First</h2>
-      <p class="hero__subheadline">Reverse the split for visual variety. HTML stays logical, CSS handles the visual order.</p>
-      <div class="hero__actions">
-        <button data-variant="secondary">Explore Features</button>
-      </div>
-    </div>
-    <img class="hero__media" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Ocean waves" style="aspect-ratio: 4/3; border-radius: var(--radius-lg); object-fit: cover;">
-  </section>
-
-  <div class="demo-spacer"></div>
-
-  <!-- Hero 6: With Background Image + Overlay -->
-  <section id="overlay" class="hero" data-layout="center" data-padding="xl" data-overlay="medium" style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);">
-    <div class="hero__background">
-      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop" alt="Mountain peaks" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <span class="demo-label">data-overlay="medium" (with background)</span>
-    <h1 class="hero__headline">Background Images</h1>
-    <p class="hero__subheadline">Use overlays to ensure text readability over images. Light, medium, heavy, or gradient options.</p>
-    <div class="hero__actions">
-      <button>Get Started</button>
-      <button data-variant="outline" style="border-color: white; color: white;">Watch Video</button>
-    </div>
-  </section>
-
-  <div class="demo-spacer"></div>
-
-  <!-- Hero 7: Gradient Overlay -->
-  <section class="hero" data-layout="center" data-padding="xl" data-overlay="gradient" data-valign="end" style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);">
-    <div class="hero__background">
-      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&h=900&fit=crop" alt="Calm lake at sunset" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <span class="demo-label">data-overlay="gradient" data-valign="end"</span>
-    <h2 class="hero__headline">Gradient Overlay</h2>
-    <p class="hero__subheadline">Content positioned at the bottom with a gradient fade. Great for cinematic presentations.</p>
-  </section>
-
-  <div class="demo-spacer"></div>
-
-  <!-- Hero 8: Compact -->
-  <section id="compact" class="hero" data-layout="center" data-padding="lg" data-size="compact" data-theme="primary">
-    <span class="demo-label">data-size="compact" data-theme="primary"</span>
-    <h2 class="hero__headline">Compact Heroes</h2>
-    <p class="hero__subheadline">Perfect for interior page headers. Less vertical space, same impact.</p>
-  </section>
-
-  <div class="demo-spacer"></div>
-
-  <!-- Hero 9: Left Aligned -->
-  <section class="hero" data-layout="left" data-padding="xl" data-theme="dark">
-    <div class="hero__content">
-      <span class="demo-label">data-layout="left"</span>
-      <h2 class="hero__headline">Left-Aligned Content</h2>
-      <p class="hero__subheadline">Not everything needs to be centered. Left alignment feels natural for content-heavy heroes.</p>
-      <div class="hero__actions">
-        <button data-variant="secondary">Read Article</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="demo-spacer"></div>
-
-  <!-- Hero 10: Narrow Width -->
-  <section class="hero" data-layout="center" data-width="narrow" data-padding="xl" data-theme="gradient">
-    <span class="demo-label">data-width="narrow"</span>
-    <h2 class="hero__headline">Focused Message</h2>
-    <p class="hero__subheadline">Narrow content width creates focus. Every word counts.</p>
-    <button>Take Action</button>
-  </section>
-
-  <!-- Footer -->
-  <footer class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
-    <h3>Hero Component Complete</h3>
-    <p>Combine with the positioning system for endless variations.</p>
-    <p style="margin-block-start: var(--space-4);">
-      <a href="../index.html">&larr; Back to Home</a>
-    </p>
-    <p class="version-indicator" style="color: var(--color-text-subtle); font-size: var(--font-size-xs); margin-block-start: var(--space-4); font-family: var(--font-mono);">
-      Last Updated: <time datetime="2025-12-18T09:17:00Z">Dec 18, 2025 at 4:17 AM</time> · v0.1.0
-    </p>
-  </footer>
-
-  <!-- Theme and menu toggle scripts -->
-  <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('fluid-theme', newTheme);
-    }
-
-    function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
-      const toggle = document.querySelector('.nav__toggle');
-      const isOpen = menu.hasAttribute('data-open');
-      if (isOpen) {
-        menu.removeAttribute('data-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      } else {
-        menu.setAttribute('data-open', '');
-        toggle.setAttribute('aria-expanded', 'true');
-      }
-    }
-
-    (function() {
-      const saved = localStorage.getItem('fluid-theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
-</body>
-</html>
+<!-- Footer -->
+<footer class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+  <h3>Hero Component Complete</h3>
+  <p>Combine with the positioning system for endless variations.</p>
+  <p style="margin-block-start: var(--space-4);">
+    <a href="{{ '/' | relative_url }}">&larr; Back to Home</a>
+  </p>
+  {% include version.html %}
+</footer>

@@ -1,0 +1,40 @@
+# Fluid Framework - Jekyll Configuration
+# GitHub Pages builds this automatically - no local setup needed
+
+title: Fluid Framework
+description: A modern, semantic CSS design system
+url: https://agile-media-agency.github.io
+baseurl: /the-fluid-theme-v2c
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Don't process these
+exclude:
+  - README.md
+  - CLAUDE.md
+  - package.json
+  - package-lock.json
+  - node_modules
+  - _docs
+
+# Include dotfiles if needed
+include:
+  - .nojekyll
+
+# Collections (if we add more pages later)
+collections_dir: .
+
+# Defaults - all pages use default layout unless specified
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+
+# Site-wide variables - update version here, reflects everywhere
+version: "0.1.0"
+last_updated: "Dec 18, 2025 at 4:17 AM"
+last_updated_iso: "2025-12-18T09:17:00Z"

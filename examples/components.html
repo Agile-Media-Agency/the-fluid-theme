@@ -1,463 +1,393 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fluid Framework - Component Gallery">
-  <title>Fluid Framework - Components</title>
-
-  <!-- The Framework -->
-  <link rel="stylesheet" href="../src/fluid.css">
-
-  <!-- Demo-specific styles -->
-  <style>
-    @layer demo {
-      .demo-header {
-        padding-block: var(--space-10);
-        text-align: center;
-        border-block-end: 1px solid var(--color-border-subtle);
-      }
-
-      .demo-header p {
-        max-inline-size: 50ch;
-        margin-inline: auto;
-        color: var(--color-text-muted);
-      }
-
-      .demo-section {
-        padding-block: var(--space-10);
-        border-block-end: 1px solid var(--color-border-subtle);
-      }
-
-      .demo-section:last-of-type {
-        border-block-end: none;
-      }
-
-      .component-group {
-        padding: var(--space-6);
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        margin-block: var(--space-5);
-      }
-
-      .component-label {
-        font-family: var(--font-mono);
-        font-size: var(--font-size-xs);
-        color: var(--color-primary);
-        margin-block-end: var(--space-4);
-      }
-
-      .demo-grid {
-        display: grid;
-        gap: var(--space-5);
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-      }
+---
+title: Components
+description: Fluid Framework - Component Gallery
+nav: components
+---
+<style>
+  @layer demo {
+    .demo-header {
+      padding-block: var(--space-10);
+      text-align: center;
+      border-block-end: 1px solid var(--color-border-subtle);
     }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="nav" data-sticky>
-    <a href="../index.html" class="nav__brand">Fluid</a>
-    <ul class="nav__menu" role="list" id="nav-menu">
-      <li><a href="foundation.html" class="nav__link">Foundation</a></li>
-      <li><a href="components.html" class="nav__link" aria-current="page">Components</a></li>
-      <li><a href="positioning.html" class="nav__link">Layouts</a></li>
-      <li><a href="heroes.html" class="nav__link">Heroes</a></li>
-      <li><a href="hero-picker.html" class="nav__link">Hero Picker</a></li>
-    </ul>
-    <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12h18M3 6h18M3 18h18"/>
-      </svg>
-    </button>
-  </nav>
 
-  <div class="container">
-    <!-- Header -->
-    <header class="demo-header">
-      <h1>Components</h1>
-      <p>Semantic, accessible UI components built on the Fluid foundation. Each component respects user preferences and adapts to its container.</p>
-    </header>
+    .demo-header p {
+      max-inline-size: 50ch;
+      margin-inline: auto;
+      color: var(--color-text-muted);
+    }
 
-    <!-- Buttons -->
-    <section class="demo-section">
-      <h2>Buttons</h2>
-      <p>Buttons invite interaction with clear affordance and gentle feedback.</p>
+    .demo-section {
+      padding-block: var(--space-10);
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
 
-      <div class="component-group">
-        <div class="component-label">Variants</div>
-        <div class="cluster" style="--cluster-gap: var(--space-3)">
-          <button>Primary</button>
-          <button data-variant="secondary">Secondary</button>
-          <button data-variant="outline">Outline</button>
-          <button data-variant="ghost">Ghost</button>
-          <button data-variant="danger">Danger</button>
-        </div>
+    .demo-section:last-of-type {
+      border-block-end: none;
+    }
+
+    .component-group {
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      margin-block: var(--space-5);
+    }
+
+    .component-label {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      color: var(--color-primary);
+      margin-block-end: var(--space-4);
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- Header -->
+  <header class="demo-header">
+    <h1>Components</h1>
+    <p>Semantic, accessible UI components built on the Fluid foundation. Each component respects user preferences and adapts to its container.</p>
+  </header>
+
+  <!-- Buttons -->
+  <section class="demo-section">
+    <h2>Buttons</h2>
+    <p>Buttons invite interaction with clear affordance and gentle feedback.</p>
+
+    <div class="component-group">
+      <div class="component-label">Variants</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <button>Primary</button>
+        <button data-variant="secondary">Secondary</button>
+        <button data-variant="outline">Outline</button>
+        <button data-variant="ghost">Ghost</button>
+        <button data-variant="danger">Danger</button>
       </div>
+    </div>
 
-      <div class="component-group">
-        <div class="component-label">Sizes</div>
-        <div class="cluster" style="--cluster-gap: var(--space-3); --cluster-align: flex-end">
-          <button data-size="xs">Extra Small</button>
-          <button data-size="sm">Small</button>
-          <button>Default</button>
-          <button data-size="lg">Large</button>
-          <button data-size="xl">Extra Large</button>
-        </div>
+    <div class="component-group">
+      <div class="component-label">Sizes</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3); --cluster-align: flex-end">
+        <button data-size="xs">Extra Small</button>
+        <button data-size="sm">Small</button>
+        <button>Default</button>
+        <button data-size="lg">Large</button>
+        <button data-size="xl">Extra Large</button>
       </div>
+    </div>
 
-      <div class="component-group">
-        <div class="component-label">States & Modifiers</div>
-        <div class="cluster" style="--cluster-gap: var(--space-3)">
-          <button disabled>Disabled</button>
-          <button data-loading>Loading</button>
-          <button data-pill>Pill Shape</button>
-          <button data-icon aria-label="Settings">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-          </button>
-        </div>
+    <div class="component-group">
+      <div class="component-label">States & Modifiers</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <button disabled>Disabled</button>
+        <button data-loading>Loading</button>
+        <button data-pill>Pill Shape</button>
+        <button data-icon aria-label="Settings">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
       </div>
+    </div>
 
-      <div class="component-group">
-        <div class="component-label">Button Group</div>
-        <div class="button-group">
-          <button data-variant="secondary">Left</button>
-          <button data-variant="secondary">Center</button>
-          <button data-variant="secondary">Right</button>
-        </div>
+    <div class="component-group">
+      <div class="component-label">Button Group</div>
+      <div class="button-group">
+        <button data-variant="secondary">Left</button>
+        <button data-variant="secondary">Center</button>
+        <button data-variant="secondary">Right</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Cards -->
-    <section class="demo-section">
-      <h2>Cards</h2>
-      <p>Cards group related content with subtle elevation and container-query responsiveness.</p>
+  <!-- Cards -->
+  <section class="demo-section">
+    <h2>Cards</h2>
+    <p>Cards group related content with subtle elevation and container-query responsiveness.</p>
 
-      <div class="component-group">
-        <div class="component-label">Variants</div>
-        <div class="demo-grid">
-          <article class="card">
-            <div class="card__content">
-              <h3 class="card__title">Default Card</h3>
-              <p class="card__description">A subtle border and light background define the card boundaries.</p>
-            </div>
-          </article>
-
-          <article class="card" data-variant="elevated">
-            <div class="card__content">
-              <h3 class="card__title">Elevated Card</h3>
-              <p class="card__description">Floating appearance with shadow for emphasis.</p>
-            </div>
-          </article>
-
-          <article class="card" data-variant="outlined">
-            <div class="card__content">
-              <h3 class="card__title">Outlined Card</h3>
-              <p class="card__description">Border emphasis without background fill.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <div class="component-group">
-        <div class="component-label">Interactive Cards</div>
-        <div class="demo-grid">
-          <a href="#" class="card" data-interactive>
-            <div class="card__content">
-              <h3 class="card__title">Clickable Card</h3>
-              <p class="card__description">The entire card is a link. Hover and focus states guide interaction.</p>
-            </div>
-          </a>
-
-          <article class="card" data-variant="elevated" data-interactive onclick="alert('Card clicked!')">
-            <div class="card__content">
-              <h3 class="card__title">Interactive Elevated</h3>
-              <p class="card__description">Click anywhere on this card to trigger an action.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <div class="component-group">
-        <div class="component-label">Card with Media</div>
-        <div class="demo-grid">
-          <article class="card">
-            <img class="card__media" data-aspect="video" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=338&fit=crop" alt="Mountain landscape">
-            <div class="card__content">
-              <div class="card__meta">
-                <span>Photography</span>
-                <span>5 min read</span>
-              </div>
-              <h3 class="card__title">Serene Landscapes</h3>
-              <p class="card__description">Finding peace in nature's quiet corners.</p>
-            </div>
-            <footer class="card__footer" data-align="between">
-              <span style="font-size: var(--font-size-sm); color: var(--color-text-muted)">Dec 2024</span>
-              <button data-variant="ghost" data-size="sm">Read More</button>
-            </footer>
-          </article>
-
-          <article class="card" data-layout="horizontal">
-            <img class="card__media" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300&h=300&fit=crop" alt="Foggy forest">
-            <div class="card__content">
-              <h3 class="card__title">Horizontal Layout</h3>
-              <p class="card__description">Cards adapt to wider containers with horizontal media placement.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <div class="component-group">
-        <div class="component-label">Stat Cards</div>
-        <div class="demo-grid" style="--grid-min: 12rem">
-          <article class="card" data-type="stat">
-            <div class="card__content">
-              <span class="card__value">2,847</span>
-              <h3 class="card__title">Active Users</h3>
-            </div>
-          </article>
-
-          <article class="card" data-type="stat">
-            <div class="card__content">
-              <span class="card__value">99.9%</span>
-              <h3 class="card__title">Uptime</h3>
-            </div>
-          </article>
-
-          <article class="card" data-type="stat">
-            <div class="card__content">
-              <span class="card__value">4.8</span>
-              <h3 class="card__title">User Rating</h3>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Navigation Components -->
-    <section class="demo-section">
-      <h2>Navigation</h2>
-      <p>Guide users through your interface with clear, natural navigation patterns.</p>
-
-      <div class="component-group">
-        <div class="component-label">Tabs</div>
-        <div class="tabs" role="tablist">
-          <button class="tabs__tab" role="tab" aria-selected="true">Overview</button>
-          <button class="tabs__tab" role="tab">Features</button>
-          <button class="tabs__tab" role="tab">Pricing</button>
-          <button class="tabs__tab" role="tab">FAQ</button>
-        </div>
-      </div>
-
-      <div class="component-group">
-        <div class="component-label">Contained Tabs</div>
-        <div class="tabs" data-variant="contained" role="tablist">
-          <button class="tabs__tab" role="tab" aria-selected="true">Daily</button>
-          <button class="tabs__tab" role="tab">Weekly</button>
-          <button class="tabs__tab" role="tab">Monthly</button>
-        </div>
-      </div>
-
-      <div class="component-group">
-        <div class="component-label">Breadcrumbs</div>
-        <nav aria-label="Breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb__item"><a href="#" class="breadcrumb__link">Home</a></li>
-            <li class="breadcrumb__item"><a href="#" class="breadcrumb__link">Products</a></li>
-            <li class="breadcrumb__item"><a href="#" class="breadcrumb__link">Category</a></li>
-            <li class="breadcrumb__item"><a href="#" class="breadcrumb__link" aria-current="page">Current Page</a></li>
-          </ol>
-        </nav>
-      </div>
-
-      <div class="component-group">
-        <div class="component-label">Pagination</div>
-        <nav aria-label="Pagination">
-          <ol class="pagination" role="list">
-            <li><a href="#" class="pagination__link" data-prev>← Prev</a></li>
-            <li><a href="#" class="pagination__link">1</a></li>
-            <li><a href="#" class="pagination__link" data-active>2</a></li>
-            <li><a href="#" class="pagination__link">3</a></li>
-            <li><span class="pagination__ellipsis">...</span></li>
-            <li><a href="#" class="pagination__link">12</a></li>
-            <li><a href="#" class="pagination__link" data-next>Next →</a></li>
-          </ol>
-        </nav>
-      </div>
-    </section>
-
-    <!-- Form Components -->
-    <section class="demo-section">
-      <h2>Form Components</h2>
-      <p>Forms that feel welcoming, with clear feedback and graceful validation.</p>
-
-      <div class="component-group">
-        <div class="component-label">Input Group</div>
-        <div class="form-group">
-          <label class="form-label">Website URL</label>
-          <div class="input-group">
-            <span class="input-group__addon">https://</span>
-            <input type="text" placeholder="example.com">
+    <div class="component-group">
+      <div class="component-label">Variants</div>
+      <div class="demo-grid">
+        <article class="card">
+          <div class="card__content">
+            <h3 class="card__title">Default Card</h3>
+            <p class="card__description">A subtle border and light background define the card boundaries.</p>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="component-group">
-        <div class="component-label">Checkboxes</div>
-        <div class="stack" style="--stack-gap: var(--space-3)">
-          <label class="checkbox">
-            <input type="checkbox" class="checkbox__input" checked>
-            <span class="checkbox__box"></span>
-            <span class="checkbox__label">Enable notifications</span>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox" class="checkbox__input">
-            <span class="checkbox__box"></span>
-            <span class="checkbox__label">Send weekly digest</span>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox" class="checkbox__input" disabled>
-            <span class="checkbox__box"></span>
-            <span class="checkbox__label">Premium feature (disabled)</span>
-          </label>
-        </div>
-      </div>
+        <article class="card" data-variant="elevated">
+          <div class="card__content">
+            <h3 class="card__title">Elevated Card</h3>
+            <p class="card__description">Floating appearance with shadow for emphasis.</p>
+          </div>
+        </article>
 
-      <div class="component-group">
-        <div class="component-label">Radio Buttons</div>
-        <div class="radio-group">
-          <label class="radio">
-            <input type="radio" name="plan" class="radio__input" checked>
-            <span class="radio__circle"></span>
-            <span class="radio__label">Free Plan</span>
-          </label>
-          <label class="radio">
-            <input type="radio" name="plan" class="radio__input">
-            <span class="radio__circle"></span>
-            <span class="radio__label">Pro Plan</span>
-          </label>
-          <label class="radio">
-            <input type="radio" name="plan" class="radio__input">
-            <span class="radio__circle"></span>
-            <span class="radio__label">Enterprise Plan</span>
-          </label>
-        </div>
+        <article class="card" data-variant="outlined">
+          <div class="card__content">
+            <h3 class="card__title">Outlined Card</h3>
+            <p class="card__description">Border emphasis without background fill.</p>
+          </div>
+        </article>
       </div>
+    </div>
 
-      <div class="component-group">
-        <div class="component-label">Toggle Switches</div>
-        <div class="stack" style="--stack-gap: var(--space-4)">
-          <label class="switch">
-            <input type="checkbox" class="switch__input" checked>
-            <span class="switch__track">
-              <span class="switch__thumb"></span>
-            </span>
-            <span class="switch__label">Dark mode</span>
-          </label>
-          <label class="switch">
-            <input type="checkbox" class="switch__input">
-            <span class="switch__track">
-              <span class="switch__thumb"></span>
-            </span>
-            <span class="switch__label">Auto-save</span>
-          </label>
-          <label class="switch" data-size="sm">
-            <input type="checkbox" class="switch__input">
-            <span class="switch__track">
-              <span class="switch__thumb"></span>
-            </span>
-            <span class="switch__label">Small switch</span>
-          </label>
-        </div>
+    <div class="component-group">
+      <div class="component-label">Interactive Cards</div>
+      <div class="demo-grid">
+        <a href="#" class="card" data-interactive>
+          <div class="card__content">
+            <h3 class="card__title">Clickable Card</h3>
+            <p class="card__description">The entire card is a link. Hover and focus states guide interaction.</p>
+          </div>
+        </a>
+
+        <article class="card" data-variant="elevated" data-interactive onclick="alert('Card clicked!')">
+          <div class="card__content">
+            <h3 class="card__title">Interactive Elevated</h3>
+            <p class="card__description">Click anywhere on this card to trigger an action.</p>
+          </div>
+        </article>
       </div>
+    </div>
 
-      <div class="component-group">
-        <div class="component-label">Form Layout</div>
-        <form onsubmit="event.preventDefault()">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" data-required for="first-name">First Name</label>
-              <input type="text" id="first-name" placeholder="Jane">
+    <div class="component-group">
+      <div class="component-label">Card with Media</div>
+      <div class="demo-grid">
+        <article class="card">
+          <img class="card__media" data-aspect="video" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=338&fit=crop" alt="Mountain landscape">
+          <div class="card__content">
+            <div class="card__meta">
+              <span>Photography</span>
+              <span>5 min read</span>
             </div>
-            <div class="form-group">
-              <label class="form-label" data-required for="last-name">Last Name</label>
-              <input type="text" id="last-name" placeholder="Doe">
-            </div>
+            <h3 class="card__title">Serene Landscapes</h3>
+            <p class="card__description">Finding peace in nature's quiet corners.</p>
+          </div>
+          <footer class="card__footer" data-align="between">
+            <span style="font-size: var(--font-size-sm); color: var(--color-text-muted)">Dec 2024</span>
+            <button data-variant="ghost" data-size="sm">Read More</button>
+          </footer>
+        </article>
+
+        <article class="card" data-layout="horizontal">
+          <img class="card__media" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300&h=300&fit=crop" alt="Foggy forest">
+          <div class="card__content">
+            <h3 class="card__title">Horizontal Layout</h3>
+            <p class="card__description">Cards adapt to wider containers with horizontal media placement.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Stat Cards</div>
+      <div class="demo-grid" style="--grid-min: 12rem">
+        <article class="card" data-type="stat">
+          <div class="card__content">
+            <span class="card__value">2,847</span>
+            <h3 class="card__title">Active Users</h3>
+          </div>
+        </article>
+
+        <article class="card" data-type="stat">
+          <div class="card__content">
+            <span class="card__value">99.9%</span>
+            <h3 class="card__title">Uptime</h3>
+          </div>
+        </article>
+
+        <article class="card" data-type="stat">
+          <div class="card__content">
+            <span class="card__value">4.8</span>
+            <h3 class="card__title">User Rating</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Components -->
+  <section class="demo-section">
+    <h2>Navigation</h2>
+    <p>Guide users through your interface with clear, natural navigation patterns.</p>
+
+    <div class="component-group">
+      <div class="component-label">Tabs</div>
+      <div class="tabs" role="tablist">
+        <button class="tabs__tab" role="tab" aria-selected="true">Overview</button>
+        <button class="tabs__tab" role="tab">Features</button>
+        <button class="tabs__tab" role="tab">Pricing</button>
+        <button class="tabs__tab" role="tab">FAQ</button>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Contained Tabs</div>
+      <div class="tabs" data-variant="contained" role="tablist">
+        <button class="tabs__tab" role="tab" aria-selected="true">Daily</button>
+        <button class="tabs__tab" role="tab">Weekly</button>
+        <button class="tabs__tab" role="tab">Monthly</button>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Breadcrumbs</div>
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb__item"><a href="#" class="breadcrumb__link">Home</a></li>
+          <li class="breadcrumb__item"><a href="#" class="breadcrumb__link">Products</a></li>
+          <li class="breadcrumb__item"><a href="#" class="breadcrumb__link">Category</a></li>
+          <li class="breadcrumb__item"><a href="#" class="breadcrumb__link" aria-current="page">Current Page</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Pagination</div>
+      <nav aria-label="Pagination">
+        <ol class="pagination" role="list">
+          <li><a href="#" class="pagination__link" data-prev>← Prev</a></li>
+          <li><a href="#" class="pagination__link">1</a></li>
+          <li><a href="#" class="pagination__link" data-active>2</a></li>
+          <li><a href="#" class="pagination__link">3</a></li>
+          <li><span class="pagination__ellipsis">...</span></li>
+          <li><a href="#" class="pagination__link">12</a></li>
+          <li><a href="#" class="pagination__link" data-next>Next →</a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Form Components -->
+  <section class="demo-section">
+    <h2>Form Components</h2>
+    <p>Forms that feel welcoming, with clear feedback and graceful validation.</p>
+
+    <div class="component-group">
+      <div class="component-label">Input Group</div>
+      <div class="form-group">
+        <label class="form-label">Website URL</label>
+        <div class="input-group">
+          <span class="input-group__addon">https://</span>
+          <input type="text" placeholder="example.com">
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Checkboxes</div>
+      <div class="stack" style="--stack-gap: var(--space-3)">
+        <label class="checkbox">
+          <input type="checkbox" class="checkbox__input" checked>
+          <span class="checkbox__box"></span>
+          <span class="checkbox__label">Enable notifications</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="checkbox__input">
+          <span class="checkbox__box"></span>
+          <span class="checkbox__label">Send weekly digest</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" class="checkbox__input" disabled>
+          <span class="checkbox__box"></span>
+          <span class="checkbox__label">Premium feature (disabled)</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Radio Buttons</div>
+      <div class="radio-group">
+        <label class="radio">
+          <input type="radio" name="plan" class="radio__input" checked>
+          <span class="radio__circle"></span>
+          <span class="radio__label">Free Plan</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="plan" class="radio__input">
+          <span class="radio__circle"></span>
+          <span class="radio__label">Pro Plan</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="plan" class="radio__input">
+          <span class="radio__circle"></span>
+          <span class="radio__label">Enterprise Plan</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Toggle Switches</div>
+      <div class="stack" style="--stack-gap: var(--space-4)">
+        <label class="switch">
+          <input type="checkbox" class="switch__input" checked>
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+          <span class="switch__label">Dark mode</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" class="switch__input">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+          <span class="switch__label">Auto-save</span>
+        </label>
+        <label class="switch" data-size="sm">
+          <input type="checkbox" class="switch__input">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+          <span class="switch__label">Small switch</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Form Layout</div>
+      <form onsubmit="event.preventDefault()">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-required for="first-name">First Name</label>
+            <input type="text" id="first-name" placeholder="Jane">
           </div>
           <div class="form-group">
-            <label class="form-label" for="email-form">Email</label>
-            <input type="email" id="email-form" placeholder="jane@example.com">
-            <span class="form-help">We'll never share your email.</span>
+            <label class="form-label" data-required for="last-name">Last Name</label>
+            <input type="text" id="last-name" placeholder="Doe">
           </div>
-          <div class="form-group" data-invalid>
-            <label class="form-label" for="password-form">Password</label>
-            <input type="password" id="password-form" data-invalid>
-            <span class="form-error">Password must be at least 8 characters.</span>
-          </div>
-          <div class="form-actions" data-align="end">
-            <button type="button" data-variant="ghost">Cancel</button>
-            <button type="submit">Create Account</button>
-          </div>
-        </form>
-      </div>
-    </section>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email-form">Email</label>
+          <input type="email" id="email-form" placeholder="jane@example.com">
+          <span class="form-help">We'll never share your email.</span>
+        </div>
+        <div class="form-group" data-invalid>
+          <label class="form-label" for="password-form">Password</label>
+          <input type="password" id="password-form" data-invalid>
+          <span class="form-error">Password must be at least 8 characters.</span>
+        </div>
+        <div class="form-actions" data-align="end">
+          <button type="button" data-variant="ghost">Cancel</button>
+          <button type="submit">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer style="padding-block: var(--space-10); text-align: center; color: var(--color-text-muted)">
-      <h3>Components Complete</h3>
-      <p style="max-inline-size: 50ch; margin-inline: auto;">These components form the building blocks of any interface. Combine them with the foundation styles to create beautiful, accessible experiences.</p>
-      <p style="margin-block-start: var(--space-5)">
-        <small>All components respect <code>prefers-reduced-motion</code> and <code>prefers-color-scheme</code>.</small>
-      </p>
-      <p class="version-indicator" style="color: var(--color-text-subtle); font-size: var(--font-size-xs); margin-block-start: var(--space-4); font-family: var(--font-mono);">
-        Last Updated: <time datetime="2025-12-18T09:17:00Z">Dec 18, 2025 at 4:17 AM</time> · v0.1.0
-      </p>
-    </footer>
-  </div>
-
-  <!-- Theme and menu toggle scripts -->
-  <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('fluid-theme', newTheme);
-    }
-
-    function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
-      const toggle = document.querySelector('.nav__toggle');
-      const isOpen = menu.hasAttribute('data-open');
-      if (isOpen) {
-        menu.removeAttribute('data-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      } else {
-        menu.setAttribute('data-open', '');
-        toggle.setAttribute('aria-expanded', 'true');
-      }
-    }
-
-    (function() {
-      const saved = localStorage.getItem('fluid-theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
-</body>
-</html>
+  <!-- Footer -->
+  <footer style="padding-block: var(--space-10); text-align: center; color: var(--color-text-muted)">
+    <h3>Components Complete</h3>
+    <p style="max-inline-size: 50ch; margin-inline: auto;">These components form the building blocks of any interface. Combine them with the foundation styles to create beautiful, accessible experiences.</p>
+    <p style="margin-block-start: var(--space-5)">
+      <small>All components respect <code>prefers-reduced-motion</code> and <code>prefers-color-scheme</code>.</small>
+    </p>
+    {% include version.html %}
+  </footer>
+</div>
