@@ -48,6 +48,7 @@
     background-color: var(--_btn-bg, var(--accent));
     border: var(--border-width) solid var(--_btn-border, transparent);
     border-radius: var(--radius-md);
+    box-shadow: var(--_btn-shadow, var(--shadow-xs)); /* Subtle depth at rest */
     cursor: pointer;
 
     /* Transitions - smooth like flowing water */
@@ -122,6 +123,7 @@
     --_btn-bg: transparent;
     --_btn-bg-hover: var(--color-surface);
     --_btn-border: transparent;
+    --_btn-shadow: none; /* No shadow for ghost buttons */
   }
 
   /* Outline - bordered, no fill */
@@ -131,6 +133,7 @@
     --_btn-bg: transparent;
     --_btn-bg-hover: var(--accent-subtle);
     --_btn-border: var(--accent);
+    --_btn-shadow: none; /* Border provides visual boundary */
   }
 
   /* Danger - for destructive actions */

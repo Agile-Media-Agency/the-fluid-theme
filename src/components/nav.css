@@ -99,10 +99,11 @@
     list-style: none;
   }
 
-  /* Menu items - ensure alignment */
+  /* Menu items - ensure alignment and reset base styles */
   .nav__menu > li {
     display: flex;
     align-items: center;
+    margin: 0; /* Override base li margin that can cause misalignment */
   }
 
   /* Keep menu at start (next to brand) */
@@ -118,15 +119,17 @@
 
   /* Navigation links */
   .nav__link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: var(--space-2);
     padding: var(--space-2) var(--space-3);
     font-size: var(--font-size-sm);
     font-weight: var(--weight-medium);
+    line-height: 1; /* Prevent line-height variance affecting alignment */
     color: var(--color-text-muted);
     text-decoration: none;
     border-radius: var(--radius-md);
+    white-space: nowrap; /* Prevent wrapping that can affect height */
     transition:
       color var(--duration-normal) var(--ease-fluid),
       background-color var(--duration-normal) var(--ease-fluid);
@@ -224,26 +227,57 @@
       margin-inline-start: auto;
     }
 
+    /* Mobile menu with smooth reveal animation */
     .nav__menu {
       flex-basis: 100%;
       flex-direction: column;
       align-items: stretch;
       gap: var(--space-1);
       padding-block-start: var(--space-4);
-      display: none;
       order: 2;
+      /* Hidden state */
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      max-block-size: 0;
+      overflow: hidden;
+      transition:
+        opacity var(--duration-normal) var(--ease-fluid),
+        visibility var(--duration-normal) var(--ease-fluid),
+        max-block-size var(--duration-normal) var(--ease-fluid);
     }
 
-    /* Show menu when toggle is checked or data-open is set */
+    /* Show menu when toggle is open */
     .nav__menu[data-open],
-    .nav:has(.nav__toggle:checked) .nav__menu,
     .nav:has(.nav__toggle[aria-expanded="true"]) .nav__menu {
-      display: flex;
+      visibility: visible;
+      opacity: 1;
+      max-block-size: 100vh; /* Large enough for any menu */
     }
 
     .nav__menu > li {
       display: block;
+      opacity: 0;
+      transform: translateY(-0.5rem);
+      transition:
+        opacity var(--duration-fast) var(--ease-fluid),
+        transform var(--duration-fast) var(--ease-settle);
     }
+
+    /* Animate items in when menu opens */
+    .nav__menu[data-open] > li,
+    .nav:has(.nav__toggle[aria-expanded="true"]) .nav__menu > li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger the item animations */
+    .nav__menu > li:nth-child(1) { transition-delay: 50ms; }
+    .nav__menu > li:nth-child(2) { transition-delay: 100ms; }
+    .nav__menu > li:nth-child(3) { transition-delay: 150ms; }
+    .nav__menu > li:nth-child(4) { transition-delay: 200ms; }
+    .nav__menu > li:nth-child(5) { transition-delay: 250ms; }
+    .nav__menu > li:nth-child(6) { transition-delay: 300ms; }
 
     .nav__link {
       display: block;
