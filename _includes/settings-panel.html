@@ -1,0 +1,71 @@
+<!-- Settings Panel - Theme customization -->
+<div class="settings-panel" id="settings-panel">
+  <div class="settings-panel__content">
+    <header class="settings-panel__header">
+      <h2 class="settings-panel__title">Settings</h2>
+    </header>
+
+    <div class="settings-panel__body">
+      <!-- Theme Mode -->
+      <div class="settings-section">
+        <span class="settings-section__label">Appearance</span>
+        <div class="settings-row">
+          <div>
+            <span class="settings-row__label">Dark Mode</span>
+            <p class="settings-row__description">Switch between light and dark</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" class="switch__input" id="dark-mode-toggle" onchange="setThemeMode(this.checked ? 'dark' : 'light')">
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Color Presets -->
+      <div class="settings-section">
+        <span class="settings-section__label">Accent Color</span>
+        <div class="color-presets">
+          <button class="color-swatch" data-preset="default" onclick="setAccent('default')" title="Default Gray" aria-label="Default gray accent color"></button>
+          <button class="color-swatch" data-preset="coral" onclick="setAccent('coral')" title="Coral" aria-label="Coral accent color"></button>
+          <button class="color-swatch" data-preset="vapor" onclick="setAccent('vapor')" title="Vapor" aria-label="Vapor purple accent color"></button>
+          <button class="color-swatch" data-preset="tide" onclick="setAccent('tide')" title="Tide" aria-label="Tide blue-green accent color"></button>
+          <button class="color-swatch" data-preset="forest" onclick="setAccent('forest')" title="Forest" aria-label="Forest green accent color"></button>
+          <button class="color-swatch" data-preset="sunset" onclick="setAccent('sunset')" title="Sunset" aria-label="Sunset gold accent color"></button>
+          <button class="color-swatch" data-preset="midnight" onclick="setAccent('midnight')" title="Midnight" aria-label="Midnight blue accent color"></button>
+        </div>
+      </div>
+
+      <!-- Motion Intensity -->
+      <div class="settings-section">
+        <span class="settings-section__label">Motion</span>
+        <div class="settings-row">
+          <div>
+            <span class="settings-row__label">Animation Style</span>
+          </div>
+          <select id="motion-select" onchange="setMotion(this.value)" style="padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); font-size: var(--font-size-sm);">
+            <option value="still">Still Water</option>
+            <option value="trickling">Trickling</option>
+            <option value="flowing" selected>Flowing</option>
+            <option value="rapids">Rapids</option>
+            <option value="tsunami">Tsunami</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <footer class="settings-panel__footer">
+      <button data-variant="ghost" data-size="sm" onclick="resetSettings()">Reset to Defaults</button>
+    </footer>
+  </div>
+
+  <button class="settings-panel__toggle" onclick="toggleSettingsPanel()" aria-label="Toggle settings panel" aria-expanded="false">
+    <span class="settings-panel__toggle-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </span>
+  </button>
+</div>

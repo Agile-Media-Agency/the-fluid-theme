@@ -34,7 +34,6 @@ defaults:
     values:
       layout: default
 
-# Site-wide variables - update version here, reflects everywhere
-version: "0.1.1"
-last_updated: "Dec 19, 2025 at 2:45 AM"
-last_updated_iso: "2025-12-19T07:45:00Z"
+# Site-wide variables
+version: "0.1.2"
+# Note: "Last Built" timestamp is now automatic via site.time

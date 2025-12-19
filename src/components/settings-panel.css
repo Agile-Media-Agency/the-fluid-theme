@@ -1,0 +1,374 @@
+/**
+ * Fluid Framework - Settings Panel Component
+ * @layer components
+ *
+ * A floating panel for theme customization.
+ * Demonstrates the framework's flexibility in action.
+ *
+ * Usage:
+ *   <div class="settings-panel" data-open>
+ *     <button class="settings-panel__toggle">...</button>
+ *     <div class="settings-panel__content">...</div>
+ *   </div>
+ */
+
+@layer components {
+  /* ========================================
+     SETTINGS PANEL CONTAINER
+     Fixed position, floating in corner
+     ======================================== */
+
+  .settings-panel {
+    --_panel-size: 20rem;
+    --_fab-size: 3.25rem;
+    --_offset: var(--space-5);
+
+    position: fixed;
+    inset-block-end: var(--_offset);
+    inset-inline-end: var(--_offset);
+    z-index: var(--z-overlay);
+
+    /* For toggle button positioning */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-3);
+  }
+
+
+  /* ========================================
+     TOGGLE BUTTON (FAB)
+     Floating action button to open/close
+     ======================================== */
+
+  .settings-panel__toggle {
+    /* Reset */
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    /* Sizing */
+    inline-size: var(--_fab-size);
+    block-size: var(--_fab-size);
+    padding: 0;
+
+    /* Visual */
+    background-color: var(--accent);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Transitions */
+    transition:
+      background-color var(--duration-normal) var(--ease-fluid),
+      transform var(--duration-normal) var(--ease-settle),
+      box-shadow var(--duration-normal) var(--ease-fluid);
+  }
+
+  .settings-panel__toggle:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .settings-panel__toggle:active {
+    transform: scale(0.95);
+  }
+
+  .settings-panel__toggle:focus-visible {
+    outline: none;
+    box-shadow:
+      var(--shadow-lg),
+      0 0 0 3px var(--color-background),
+      0 0 0 5px var(--accent);
+  }
+
+  /* Icon container - handles rotation */
+  .settings-panel__toggle-icon {
+    display: flex;
+    transition: transform var(--duration-slow) var(--ease-settle);
+  }
+
+  /* Rotate icon when open */
+  .settings-panel[data-open] .settings-panel__toggle-icon {
+    transform: rotate(90deg);
+  }
+
+  /* Icon styling */
+  .settings-panel__toggle svg {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+
+  /* ========================================
+     PANEL CONTENT
+     The actual settings drawer
+     ======================================== */
+
+  .settings-panel__content {
+    /* Sizing */
+    inline-size: var(--_panel-size);
+    max-block-size: calc(100dvh - var(--_fab-size) - var(--_offset) * 3);
+    overflow-y: auto;
+
+    /* Visual */
+    background-color: var(--color-surface-raised);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(var(--space-3)) scale(0.95);
+    transform-origin: bottom right;
+
+    /* Transitions */
+    transition:
+      opacity var(--duration-normal) var(--ease-fluid),
+      visibility var(--duration-normal) var(--ease-fluid),
+      transform var(--duration-normal) var(--ease-settle);
+  }
+
+  /* Open state */
+  .settings-panel[data-open] .settings-panel__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+
+  /* ========================================
+     PANEL HEADER
+     Title and close button
+     ======================================== */
+
+  .settings-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-block-end: 1px solid var(--color-border-subtle);
+  }
+
+  .settings-panel__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--weight-semibold);
+    margin: 0;
+    color: var(--color-text);
+  }
+
+
+  /* ========================================
+     PANEL BODY
+     Settings sections
+     ======================================== */
+
+  .settings-panel__body {
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+
+  /* ========================================
+     SETTINGS SECTION
+     Grouped settings with label
+     ======================================== */
+
+  .settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .settings-section__label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-subtle);
+  }
+
+
+  /* ========================================
+     SETTINGS ROW
+     Label and control side by side
+     ======================================== */
+
+  .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-2) 0;
+  }
+
+  .settings-row__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  .settings-row__description {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-block-start: var(--space-0-5);
+  }
+
+
+  /* ========================================
+     COLOR PRESET SWATCHES
+     Visual color selection buttons
+     ======================================== */
+
+  .color-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .color-swatch {
+    /* Reset */
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+
+    /* Sizing */
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+
+    /* Visual */
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 0 0 2px oklch(from var(--_swatch-color) l c h / 0.2);
+
+    /* Transitions */
+    transition:
+      transform var(--duration-fast) var(--ease-settle),
+      box-shadow var(--duration-normal) var(--ease-fluid);
+  }
+
+  .color-swatch:hover {
+    transform: scale(1.1);
+  }
+
+  .color-swatch:active {
+    transform: scale(0.95);
+  }
+
+  .color-swatch:focus-visible {
+    outline: none;
+    box-shadow:
+      inset 0 0 0 2px oklch(from var(--_swatch-color) l c h / 0.3),
+      0 0 0 2px var(--color-background),
+      0 0 0 4px var(--_swatch-color);
+  }
+
+  /* Selected state */
+  .color-swatch[data-selected] {
+    box-shadow:
+      inset 0 0 0 2px oklch(from var(--_swatch-color) l c h / 0.4),
+      0 0 0 2px var(--color-background),
+      0 0 0 3px var(--_swatch-color);
+  }
+
+  /* Default swatch (current accent) */
+  .color-swatch[data-preset="default"] {
+    --_swatch-color: var(--gray-40);
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-30) 100%);
+  }
+
+  /* Coral - Warm, vibrant energy */
+  .color-swatch[data-preset="coral"] {
+    --_swatch-color: oklch(65% 0.18 25);
+    background: linear-gradient(135deg, oklch(70% 0.20 30) 0%, oklch(55% 0.18 20) 100%);
+  }
+
+  /* Vapor - Soft, ethereal purple */
+  .color-swatch[data-preset="vapor"] {
+    --_swatch-color: oklch(55% 0.15 300);
+    background: linear-gradient(135deg, oklch(65% 0.18 310) 0%, oklch(50% 0.15 290) 100%);
+  }
+
+  /* Tide - Ocean blue-green */
+  .color-swatch[data-preset="tide"] {
+    --_swatch-color: oklch(55% 0.12 200);
+    background: linear-gradient(135deg, oklch(60% 0.14 190) 0%, oklch(50% 0.12 210) 100%);
+  }
+
+  /* Forest - Deep natural green */
+  .color-swatch[data-preset="forest"] {
+    --_swatch-color: oklch(50% 0.12 145);
+    background: linear-gradient(135deg, oklch(55% 0.14 140) 0%, oklch(40% 0.10 150) 100%);
+  }
+
+  /* Sunset - Golden warmth */
+  .color-swatch[data-preset="sunset"] {
+    --_swatch-color: oklch(70% 0.16 55);
+    background: linear-gradient(135deg, oklch(75% 0.18 50) 0%, oklch(60% 0.16 40) 100%);
+  }
+
+  /* Midnight - Deep sophisticated blue */
+  .color-swatch[data-preset="midnight"] {
+    --_swatch-color: oklch(45% 0.12 260);
+    background: linear-gradient(135deg, oklch(55% 0.14 270) 0%, oklch(35% 0.10 250) 100%);
+  }
+
+
+  /* ========================================
+     PANEL FOOTER
+     Reset and additional actions
+     ======================================== */
+
+  .settings-panel__footer {
+    padding: var(--space-4) var(--space-5);
+    border-block-start: 1px solid var(--color-border-subtle);
+  }
+
+
+  /* ========================================
+     RESPONSIVE ADJUSTMENTS
+     ======================================== */
+
+  @media (max-width: 30rem) {
+    .settings-panel {
+      --_offset: var(--space-4);
+    }
+
+    .settings-panel__content {
+      inline-size: calc(100vw - var(--_offset) * 2);
+      max-inline-size: var(--_panel-size);
+    }
+  }
+
+
+  /* ========================================
+     REDUCED MOTION
+     Respect user preferences
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .settings-panel__toggle-icon {
+      transition: none;
+    }
+
+    .settings-panel__content {
+      transition: opacity var(--duration-fast) linear,
+                  visibility var(--duration-fast) linear;
+      transform: none;
+    }
+
+    .settings-panel[data-open] .settings-panel__content {
+      transform: none;
+    }
+  }
+}

@@ -561,8 +561,70 @@
 
 
 /* ========================================
-   EXAMPLE THEME OVERRIDES
-   Themes need only set 2-3 variables!
+   COLOR PRESETS
+   Ready-to-use accent color themes
+   Apply via: <html data-accent="coral">
+   ======================================== */
+
+/* Default - Sophisticated neutral gray */
+[data-accent="default"],
+:root:not([data-accent]) {
+  --accent: var(--gray-40);
+}
+
+/* Coral - Warm, vibrant energy */
+[data-accent="coral"] {
+  --accent: oklch(65% 0.18 25);
+  --accent-subtle: oklch(95% 0.04 25);
+  --accent-hover: oklch(55% 0.20 25);
+  --accent-active: oklch(45% 0.18 25);
+}
+
+/* Vapor - Soft, ethereal purple */
+[data-accent="vapor"] {
+  --accent: oklch(55% 0.15 300);
+  --accent-subtle: oklch(95% 0.03 300);
+  --accent-hover: oklch(45% 0.17 300);
+  --accent-active: oklch(40% 0.15 300);
+}
+
+/* Tide - Ocean blue-green */
+[data-accent="tide"] {
+  --accent: oklch(55% 0.12 200);
+  --accent-subtle: oklch(95% 0.025 200);
+  --accent-hover: oklch(45% 0.14 200);
+  --accent-active: oklch(40% 0.12 200);
+}
+
+/* Forest - Deep natural green */
+[data-accent="forest"] {
+  --accent: oklch(50% 0.12 145);
+  --accent-subtle: oklch(95% 0.025 145);
+  --accent-hover: oklch(40% 0.14 145);
+  --accent-active: oklch(35% 0.12 145);
+}
+
+/* Sunset - Golden warmth */
+[data-accent="sunset"] {
+  --accent: oklch(70% 0.16 55);
+  --accent-subtle: oklch(95% 0.035 55);
+  --accent-hover: oklch(60% 0.18 55);
+  --accent-active: oklch(55% 0.16 55);
+}
+
+/* Midnight - Deep sophisticated blue */
+[data-accent="midnight"] {
+  --accent: oklch(45% 0.12 260);
+  --accent-subtle: oklch(95% 0.025 260);
+  --accent-hover: oklch(35% 0.14 260);
+  --accent-active: oklch(30% 0.12 260);
+}
+
+
+/* ========================================
+   FULL THEME OVERRIDES
+   Themes that customize entire color palette
+   Apply via: <html data-theme="ocean">
    ======================================== */
 
 /*
@@ -570,17 +632,5 @@
   --theme-dark: oklch(15% 0.03 230);
   --theme-light: oklch(98% 0.01 230);
   --accent: oklch(50% 0.15 230);
-}
-
-[data-theme="forest"] {
-  --theme-dark: oklch(15% 0.02 140);
-  --theme-light: oklch(98% 0.01 140);
-  --accent: oklch(45% 0.12 140);
-}
-
-[data-theme="sunset"] {
-  --theme-dark: oklch(15% 0.02 30);
-  --theme-light: oklch(98% 0.02 50);
-  --accent: oklch(60% 0.18 30);
 }
 */
