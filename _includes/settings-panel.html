@@ -6,43 +6,13 @@
     </header>
 
     <div class="settings-panel__body">
-      <!-- Theme Mode -->
+      <!-- Motion Style (Top - biggest impact, changes accent in Fluid palette) -->
       <div class="settings-section">
-        <span class="settings-section__label">Appearance</span>
+        <span class="settings-section__label">Motion Style</span>
         <div class="settings-row">
           <div>
-            <span class="settings-row__label">Dark Mode</span>
-            <p class="settings-row__description">Switch between light and dark</p>
-          </div>
-          <label class="switch">
-            <input type="checkbox" class="switch__input" id="dark-mode-toggle" onchange="setThemeMode(this.checked ? 'dark' : 'light')">
-            <span class="switch__track">
-              <span class="switch__thumb"></span>
-            </span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Color Presets -->
-      <div class="settings-section">
-        <span class="settings-section__label">Accent Color</span>
-        <div class="color-presets">
-          <button class="color-swatch" data-preset="default" onclick="setAccent('default')" title="Default Gray" aria-label="Default gray accent color"></button>
-          <button class="color-swatch" data-preset="coral" onclick="setAccent('coral')" title="Coral" aria-label="Coral accent color"></button>
-          <button class="color-swatch" data-preset="vapor" onclick="setAccent('vapor')" title="Vapor" aria-label="Vapor purple accent color"></button>
-          <button class="color-swatch" data-preset="tide" onclick="setAccent('tide')" title="Tide" aria-label="Tide blue-green accent color"></button>
-          <button class="color-swatch" data-preset="forest" onclick="setAccent('forest')" title="Forest" aria-label="Forest green accent color"></button>
-          <button class="color-swatch" data-preset="sunset" onclick="setAccent('sunset')" title="Sunset" aria-label="Sunset gold accent color"></button>
-          <button class="color-swatch" data-preset="midnight" onclick="setAccent('midnight')" title="Midnight" aria-label="Midnight blue accent color"></button>
-        </div>
-      </div>
-
-      <!-- Motion Intensity -->
-      <div class="settings-section">
-        <span class="settings-section__label">Motion</span>
-        <div class="settings-row">
-          <div>
-            <span class="settings-row__label">Animation Style</span>
+            <span class="settings-row__label">Animation</span>
+            <p class="settings-row__description">Controls transitions &amp; effects</p>
           </div>
           <select id="motion-select" onchange="setMotion(this.value)" style="padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); font-size: var(--font-size-sm);">
             <option value="still">Still (instant)</option>
@@ -53,6 +23,90 @@
             <option value="tsunami">Tsunami (dramatic)</option>
           </select>
         </div>
+      </div>
+
+      <!-- Theme Mode -->
+      <div class="settings-section">
+        <span class="settings-section__label">Appearance</span>
+        <div class="settings-row">
+          <div>
+            <span class="settings-row__label">Theme</span>
+            <p class="settings-row__description">Light, dark, or match system</p>
+          </div>
+          <div class="theme-buttons" style="display: flex; gap: var(--space-1);">
+            <button class="theme-btn" data-theme-option="light" onclick="setThemeMode('light')" title="Light mode" aria-label="Light mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+            </button>
+            <button class="theme-btn" data-theme-option="dark" onclick="setThemeMode('dark')" title="Dark mode" aria-label="Dark mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <button class="theme-btn" data-theme-option="auto" onclick="setThemeMode('auto')" title="Match system" aria-label="Match system preference">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- Subdued mode -->
+        <div class="settings-row" style="margin-block-start: var(--space-3);">
+          <div>
+            <span class="settings-row__label">Subdued</span>
+            <p class="settings-row__description">Lower contrast, gentler on eyes</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" class="switch__input" id="subdued-toggle" onchange="setContrast(this.checked ? 'subdued' : 'normal')">
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Color Palette -->
+      <div class="settings-section">
+        <span class="settings-section__label">Color Palette</span>
+        <div class="settings-row">
+          <div>
+            <span class="settings-row__label">Mood</span>
+            <p class="settings-row__description">Color family for accent</p>
+          </div>
+          <select id="palette-select" onchange="setPalette(this.value)" style="padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); font-size: var(--font-size-sm);">
+            <option value="fluid">Fluid (Water)</option>
+            <option value="morandi">Morandi (Muted)</option>
+            <option value="bold">Bold (Vibrant)</option>
+            <option value="pastel">Pastel (Soft)</option>
+            <option value="earth">Earth (Natural)</option>
+            <option value="mono">Mono (Focused)</option>
+            <option value="80s">80s (Retro)</option>
+            <option value="matrix">Matrix (Digital)</option>
+            <option value="subtle">Subtle (Trending)</option>
+          </select>
+        </div>
+        <!-- Accent Color Swatches -->
+        <div class="settings-row" style="margin-block-start: var(--space-3);">
+          <div>
+            <span class="settings-row__label">Accent</span>
+          </div>
+          <div class="palette-swatches" id="palette-swatches">
+            <button class="palette-swatch" data-swatch="1" onclick="setAccentFromPalette('1')" title="Color 1" aria-label="Palette color 1"></button>
+            <button class="palette-swatch" data-swatch="2" onclick="setAccentFromPalette('2')" title="Color 2" aria-label="Palette color 2"></button>
+            <button class="palette-swatch" data-swatch="3" onclick="setAccentFromPalette('3')" title="Color 3" aria-label="Palette color 3"></button>
+            <button class="palette-swatch" data-swatch="4" onclick="setAccentFromPalette('4')" title="Color 4" aria-label="Palette color 4"></button>
+            <button class="palette-swatch" data-swatch="5" onclick="setAccentFromPalette('5')" title="Color 5" aria-label="Palette color 5"></button>
+            <button class="palette-swatch" data-swatch="6" onclick="setAccentFromPalette('6')" title="Color 6" aria-label="Palette color 6"></button>
+          </div>
+        </div>
+        <!-- Auto-linked indicator for Fluid palette -->
+        <p class="settings-hint" id="fluid-hint" style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-block-start: var(--space-2); display: none;">
+          In Fluid palette, accent auto-matches motion style
+        </p>
       </div>
     </div>
 
@@ -70,3 +124,85 @@
     </span>
   </button>
 </div>
+
+<style>
+  /* Theme toggle buttons */
+  .theme-buttons {
+    display: flex;
+    gap: var(--space-1);
+    background: var(--color-surface);
+    padding: var(--space-1);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-muted);
+    border: none;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
+  }
+
+  .theme-btn:hover {
+    background: var(--color-surface-raised);
+    color: var(--color-text);
+  }
+
+  .theme-btn[data-active] {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  /* Palette swatches */
+  .palette-swatches {
+    display: flex;
+    gap: var(--space-1);
+  }
+
+  .palette-swatch {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
+    position: relative;
+  }
+
+  .palette-swatch:hover {
+    transform: scale(1.15);
+  }
+
+  .palette-swatch[data-active] {
+    border-color: var(--color-text);
+    box-shadow: 0 0 0 2px var(--color-background);
+  }
+
+  /* Swatch colors from CSS variables */
+  .palette-swatch[data-swatch="1"] { background-color: var(--palette-1); }
+  .palette-swatch[data-swatch="2"] { background-color: var(--palette-2); }
+  .palette-swatch[data-swatch="3"] { background-color: var(--palette-3); }
+  .palette-swatch[data-swatch="4"] { background-color: var(--palette-4); }
+  .palette-swatch[data-swatch="5"] { background-color: var(--palette-5); }
+  .palette-swatch[data-swatch="6"] { background-color: var(--palette-6); }
+
+  /* Auto indicator for fluid palette swatches */
+  .palette-swatch[data-auto]::after {
+    content: "A";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+</style>

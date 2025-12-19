@@ -593,31 +593,113 @@
     from { transform: translateX(100%); }
   }
 
-  /* Vertical sweep (Rapids) */
-  @keyframes sweep-out-up {
-    0% { transform: translateY(0); opacity: 1; }
-    30% { opacity: 1; }
-    100% { transform: translateY(-100%); opacity: 0; }
+  /* Rapids: Fluid dynamics - new content pushes through, drags old */
+  @keyframes rapids-old {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    /* Old content stays put initially while new overlaps */
+    40% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    /* Old content starts moving slowly - friction/lag */
+    60% {
+      transform: translateY(-15%);
+      opacity: 0.9;
+    }
+    /* Accelerates as new content gains traction and pulls it */
+    80% {
+      transform: translateY(-60%);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
   }
 
-  @keyframes sweep-in-down {
-    0% { transform: translateY(-30%); opacity: 0; }
-    20% { opacity: 0.5; }
-    100% { transform: translateY(0); opacity: 1; }
+  @keyframes rapids-new {
+    0% {
+      /* Starts from bottom of screen */
+      transform: translateY(100%);
+      opacity: 0.8;
+    }
+    /* Initial slow surge - emerging */
+    15% {
+      transform: translateY(90%);
+      opacity: 0.9;
+    }
+    /* Overlaps old content ~10% - friction slows it */
+    35% {
+      transform: translateY(60%);
+      opacity: 1;
+    }
+    /* Gains traction - accelerates */
+    60% {
+      transform: translateY(25%);
+      opacity: 1;
+    }
+    /* Final push - pulls old content along */
+    85% {
+      transform: translateY(5%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
-  /* Diagonal wave (Tsunami) */
+  /* Diagonal wave (Tsunami) - Rise, crest, crash like Hokusai's Great Wave */
   @keyframes wave-out {
-    to {
-      transform: translate(-30%, 30%) rotate(-5deg) scale(0.9);
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    30% {
+      /* Rising - wave builds up */
+      transform: translateY(-10%) scale(1.02);
+      opacity: 1;
+    }
+    50% {
+      /* Cresting - peak of the wave */
+      transform: translateY(-15%) rotate(-2deg) scale(1.05);
+      opacity: 0.9;
+    }
+    100% {
+      /* Crashing down and away */
+      transform: translate(-40%, 50%) rotate(-8deg) scale(0.85);
       opacity: 0;
     }
   }
 
   @keyframes wave-in {
-    from {
-      transform: translate(30%, -30%) rotate(5deg) scale(1.1);
+    0% {
+      /* Starting from below, building up */
+      transform: translateY(100%) scale(0.9);
       opacity: 0;
+    }
+    40% {
+      /* Rising up, gaining momentum */
+      transform: translateY(-5%) scale(1.03);
+      opacity: 0.8;
+    }
+    60% {
+      /* Cresting - slight overshoot */
+      transform: translateY(-8%) scale(1.05);
+      opacity: 1;
+    }
+    80% {
+      /* Settling back */
+      transform: translateY(2%) scale(1.01);
+      opacity: 1;
+    }
+    100% {
+      /* Final position with bounce settle */
+      transform: translateY(0) scale(1);
+      opacity: 1;
     }
   }
 
@@ -634,14 +716,15 @@
 
 
   /* --- Default transition (Flowing) --- */
+  /* All transitions run at 2x duration for smoother, more visible motion */
   ::view-transition-old(root) {
-    animation: var(--duration-normal) var(--ease-fluid) both fade-out,
-               var(--duration-normal) var(--ease-fluid) both slide-out-left;
+    animation: var(--duration-slower) var(--ease-fluid) both fade-out,
+               var(--duration-slower) var(--ease-fluid) both slide-out-left;
   }
 
   ::view-transition-new(root) {
-    animation: var(--duration-normal) var(--ease-fluid) both fade-in,
-               var(--duration-normal) var(--ease-fluid) both slide-in-right;
+    animation: var(--duration-slower) var(--ease-fluid) both fade-in,
+               var(--duration-slower) var(--ease-fluid) both slide-in-right;
   }
 
 
@@ -657,11 +740,11 @@
   /* --- Serene: Slow crossfade (Ken Burns) --- */
   :root[data-motion="serene"] {
     &::view-transition-old(root) {
-      animation: var(--duration-slow) var(--ease-fluid) both kenburns-out;
+      animation: var(--duration-slowest) var(--ease-fluid) both kenburns-out;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-slow) var(--ease-fluid) both kenburns-in;
+      animation: var(--duration-slowest) var(--ease-fluid) both kenburns-in;
     }
   }
 
@@ -669,23 +752,25 @@
   /* --- Trickling: Quick subtle fade --- */
   :root[data-motion="trickling"] {
     &::view-transition-old(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-out;
+      animation: var(--duration-slow) var(--ease-fluid) both fade-out;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-in;
+      animation: var(--duration-slow) var(--ease-fluid) both fade-in;
     }
   }
 
 
-  /* --- Rapids: Vertical sweep with spring --- */
+  /* --- Rapids: Fluid dynamics effect ---
+     New content pushes up from bottom, overlaps old briefly,
+     friction slows it, then it gains traction and pulls old content away */
   :root[data-motion="rapids"] {
     &::view-transition-old(root) {
-      animation: var(--duration-normal) var(--ease-settle) var(--rapids-stagger) both sweep-out-up;
+      animation: var(--duration-slowest) cubic-bezier(0.4, 0, 0.6, 1) both rapids-old;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both sweep-in-down;
+      animation: var(--duration-slowest) cubic-bezier(0.2, 0, 0.4, 1) both rapids-new;
     }
   }
 
@@ -693,11 +778,11 @@
   /* --- Tsunami: Diagonal wave crash --- */
   :root[data-motion="tsunami"] {
     &::view-transition-old(root) {
-      animation: var(--duration-normal) var(--ease-settle) both wave-out;
+      animation: var(--duration-slower) var(--ease-settle) both wave-out;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both wave-in;
+      animation: var(--duration-slower) var(--ease-fluid) both wave-in;
     }
   }
 
@@ -770,6 +855,215 @@
   --accent-subtle: oklch(95% 0.025 260);
   --accent-hover: oklch(35% 0.14 260);
   --accent-active: oklch(30% 0.12 260);
+}
+
+
+/* ========================================
+   SUBDUED MODE (Low Contrast)
+   Reduces contrast for gentler viewing
+   Apply via: <html data-contrast="subdued">
+   ======================================== */
+
+[data-contrast="subdued"] {
+  /* Light mode subdued: soften the extremes */
+  --color-text: var(--gray-30);
+  --color-text-muted: var(--gray-45);
+  --color-text-subtle: var(--gray-55);
+  --color-background: var(--gray-95);
+  --color-surface: var(--gray-92);
+  --color-surface-raised: var(--gray-98);
+  --color-border: var(--gray-80);
+  --color-border-subtle: var(--gray-85);
+}
+
+[data-theme="dark"][data-contrast="subdued"] {
+  /* Dark mode subdued: less stark */
+  --color-text: var(--gray-75);
+  --color-text-muted: var(--gray-55);
+  --color-text-subtle: var(--gray-45);
+  --color-background: var(--gray-15);
+  --color-surface: var(--gray-20);
+  --color-surface-raised: var(--gray-25);
+  --color-border: var(--gray-30);
+  --color-border-subtle: var(--gray-25);
+}
+
+
+/* ========================================
+   COLOR PALETTES (Moods)
+   Curated color families for accent selection
+   Apply via: <html data-palette="fluid">
+   ======================================== */
+
+/* --- FLUID PALETTE ---
+   Water-inspired colors that match motion styles.
+   When motion changes, accent auto-updates (if palette is fluid).
+   Each motion style has its natural water color. */
+
+/* Motion-to-color mapping for Fluid palette */
+[data-palette="fluid"][data-motion="still"],
+[data-palette="fluid"]:not([data-motion]) {
+  --palette-accent-1: oklch(55% 0.02 250); /* Slate gray - still water */
+}
+
+[data-palette="fluid"][data-motion="serene"] {
+  --palette-accent-1: oklch(65% 0.12 195); /* Soft teal - calm lake */
+}
+
+[data-palette="fluid"][data-motion="trickling"] {
+  --palette-accent-1: oklch(70% 0.14 210); /* Light cyan - gentle stream */
+}
+
+[data-palette="fluid"][data-motion="flowing"] {
+  --palette-accent-1: oklch(60% 0.18 240); /* Medium blue - steady river */
+}
+
+[data-palette="fluid"][data-motion="rapids"] {
+  --palette-accent-1: oklch(55% 0.15 200); /* Deep teal - whitewater */
+}
+
+[data-palette="fluid"][data-motion="tsunami"] {
+  --palette-accent-1: oklch(40% 0.15 260); /* Deep navy - Hokusai wave */
+}
+
+/* Fluid palette swatches (all 6 water colors) */
+[data-palette="fluid"] {
+  --palette-1: oklch(55% 0.02 250); /* Still - Slate */
+  --palette-2: oklch(65% 0.12 195); /* Serene - Soft teal */
+  --palette-3: oklch(70% 0.14 210); /* Trickling - Light cyan */
+  --palette-4: oklch(60% 0.18 240); /* Flowing - Medium blue */
+  --palette-5: oklch(55% 0.15 200); /* Rapids - Deep teal */
+  --palette-6: oklch(40% 0.15 260); /* Tsunami - Deep navy */
+}
+
+
+/* --- MORANDI PALETTE ---
+   Muted, sophisticated colors inspired by Giorgio Morandi.
+   Desaturated, elegant, timeless. */
+[data-palette="morandi"] {
+  --palette-1: oklch(65% 0.04 50);  /* Dusty rose */
+  --palette-2: oklch(70% 0.03 90);  /* Sage mist */
+  --palette-3: oklch(55% 0.05 230); /* Slate blue */
+  --palette-4: oklch(60% 0.04 60);  /* Clay */
+  --palette-5: oklch(75% 0.02 100); /* Soft moss */
+  --palette-6: oklch(50% 0.04 280); /* Dusty lavender */
+}
+
+
+/* --- BOLD PALETTE ---
+   Vibrant, saturated colors that pop.
+   High energy, confident, attention-grabbing. */
+[data-palette="bold"] {
+  --palette-1: oklch(60% 0.25 25);  /* Electric coral */
+  --palette-2: oklch(55% 0.22 300); /* Vivid purple */
+  --palette-3: oklch(70% 0.20 145); /* Lime green */
+  --palette-4: oklch(65% 0.25 45);  /* Hot orange */
+  --palette-5: oklch(50% 0.20 260); /* Royal blue */
+  --palette-6: oklch(55% 0.25 340); /* Magenta */
+}
+
+
+/* --- PASTEL PALETTE ---
+   Soft, light colors with gentle saturation.
+   Calming, approachable, friendly. */
+[data-palette="pastel"] {
+  --palette-1: oklch(85% 0.08 350); /* Baby pink */
+  --palette-2: oklch(88% 0.06 200); /* Powder blue */
+  --palette-3: oklch(90% 0.07 100); /* Mint cream */
+  --palette-4: oklch(87% 0.08 80);  /* Buttercream */
+  --palette-5: oklch(85% 0.07 280); /* Lavender mist */
+  --palette-6: oklch(88% 0.06 165); /* Seafoam */
+}
+
+
+/* --- EARTH PALETTE ---
+   Natural, warm tones from the earth.
+   Grounded, organic, trustworthy. */
+[data-palette="earth"] {
+  --palette-1: oklch(50% 0.10 55);  /* Terracotta */
+  --palette-2: oklch(45% 0.08 145); /* Forest green */
+  --palette-3: oklch(55% 0.12 70);  /* Amber */
+  --palette-4: oklch(40% 0.06 40);  /* Espresso */
+  --palette-5: oklch(60% 0.05 85);  /* Sand */
+  --palette-6: oklch(50% 0.08 180); /* Teal stone */
+}
+
+
+/* --- MONO PALETTE ---
+   Single hue variations in blue-gray.
+   Clean, professional, focused. */
+[data-palette="mono"] {
+  --palette-1: oklch(30% 0.03 250); /* Deep */
+  --palette-2: oklch(40% 0.03 250); /* Dark */
+  --palette-3: oklch(50% 0.03 250); /* Medium */
+  --palette-4: oklch(60% 0.03 250); /* Light */
+  --palette-5: oklch(70% 0.02 250); /* Lighter */
+  --palette-6: oklch(80% 0.02 250); /* Lightest */
+}
+
+
+/* --- 80s PALETTE ---
+   Retro 80s neon and synth-wave vibes.
+   Electric, nostalgic, bold. */
+[data-palette="80s"] {
+  --palette-1: oklch(60% 0.28 330); /* Hot pink */
+  --palette-2: oklch(70% 0.22 190); /* Electric cyan */
+  --palette-3: oklch(55% 0.25 290); /* Purple neon */
+  --palette-4: oklch(75% 0.18 100); /* Lime */
+  --palette-5: oklch(65% 0.22 50);  /* Sunset orange */
+  --palette-6: oklch(50% 0.20 260); /* Electric blue */
+}
+
+
+/* --- MATRIX PALETTE ---
+   Terminal/coding aesthetic.
+   Dark, digital, hacker vibes. */
+[data-palette="matrix"] {
+  --palette-1: oklch(70% 0.25 145); /* Matrix green */
+  --palette-2: oklch(60% 0.20 145); /* Dark terminal */
+  --palette-3: oklch(55% 0.18 180); /* Cyan terminal */
+  --palette-4: oklch(45% 0.15 145); /* Deep code */
+  --palette-5: oklch(65% 0.12 100); /* Phosphor */
+  --palette-6: oklch(50% 0.08 200); /* Cold steel */
+}
+
+
+/* --- SUBTLE PALETTE ---
+   Trending soft feminine palettes (Etsy/IG aesthetic).
+   Brown, teal, gold - softened and subdued. */
+[data-palette="subtle"] {
+  --palette-1: oklch(55% 0.08 50);  /* Warm taupe */
+  --palette-2: oklch(50% 0.10 180); /* Muted teal */
+  --palette-3: oklch(65% 0.12 75);  /* Soft gold */
+  --palette-4: oklch(60% 0.06 30);  /* Blush brown */
+  --palette-5: oklch(70% 0.05 90);  /* Cream sage */
+  --palette-6: oklch(45% 0.08 200); /* Deep sea */
+}
+
+
+/* ========================================
+   APPLY PALETTE ACCENT
+   When data-palette is set, use palette colors
+   ======================================== */
+
+/* Map swatch selection to accent */
+[data-palette][data-accent="1"] { --accent: var(--palette-1); }
+[data-palette][data-accent="2"] { --accent: var(--palette-2); }
+[data-palette][data-accent="3"] { --accent: var(--palette-3); }
+[data-palette][data-accent="4"] { --accent: var(--palette-4); }
+[data-palette][data-accent="5"] { --accent: var(--palette-5); }
+[data-palette][data-accent="6"] { --accent: var(--palette-6); }
+
+/* Auto-derive accent variants from selected palette color */
+[data-palette] {
+  --accent-subtle: color-mix(in oklch, var(--accent) 15%, var(--color-background));
+  --accent-hover: color-mix(in oklch, var(--accent) 85%, var(--theme-dark));
+  --accent-active: color-mix(in oklch, var(--accent) 70%, var(--theme-dark));
+}
+
+/* Fluid palette: auto-select accent based on motion */
+[data-palette="fluid"]:not([data-accent]) {
+  --accent: var(--palette-accent-1);
 }
 
 

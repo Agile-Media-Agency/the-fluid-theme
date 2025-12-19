@@ -110,11 +110,18 @@ nav: hero-picker
       view-transition-name: hero-preview;
     }
 
-    /* Motion-aware preview transitions */
-    ::view-transition-old(hero-preview),
+    /*
+     * Preview uses crossfade for all motion levels.
+     * Full directional animations are for page navigation.
+     * Same-page updates look better with simpler crossfade.
+     */
+
+    /* Base: gentle crossfade */
+    ::view-transition-old(hero-preview) {
+      animation: var(--duration-normal, 350ms) var(--ease-fluid, ease) both fade-out;
+    }
     ::view-transition-new(hero-preview) {
-      animation-duration: var(--duration-normal);
-      animation-timing-function: var(--ease-fluid);
+      animation: var(--duration-normal, 350ms) var(--ease-fluid, ease) both fade-in;
     }
 
     /* Still: instant */
@@ -129,42 +136,6 @@ nav: hero-picker
     }
     [data-motion="serene"] ::view-transition-new(hero-preview) {
       animation: var(--duration-slow) var(--ease-fluid) both kenburns-in;
-    }
-
-    /* Trickling: quick fade */
-    [data-motion="trickling"] ::view-transition-old(hero-preview) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-out;
-    }
-    [data-motion="trickling"] ::view-transition-new(hero-preview) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-in;
-    }
-
-    /* Flowing: horizontal slide */
-    [data-motion="flowing"] ::view-transition-old(hero-preview),
-    :root:not([data-motion]) ::view-transition-old(hero-preview) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-out,
-                 var(--duration-normal) var(--ease-fluid) both slide-out-left;
-    }
-    [data-motion="flowing"] ::view-transition-new(hero-preview),
-    :root:not([data-motion]) ::view-transition-new(hero-preview) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-in,
-                 var(--duration-normal) var(--ease-fluid) both slide-in-right;
-    }
-
-    /* Rapids: vertical sweep */
-    [data-motion="rapids"] ::view-transition-old(hero-preview) {
-      animation: var(--duration-normal) var(--ease-settle) var(--rapids-stagger, 80ms) both sweep-out-up;
-    }
-    [data-motion="rapids"] ::view-transition-new(hero-preview) {
-      animation: var(--duration-normal) var(--ease-fluid) both sweep-in-down;
-    }
-
-    /* Tsunami: diagonal wave */
-    [data-motion="tsunami"] ::view-transition-old(hero-preview) {
-      animation: var(--duration-normal) var(--ease-settle) both wave-out;
-    }
-    [data-motion="tsunami"] ::view-transition-new(hero-preview) {
-      animation: var(--duration-normal) var(--ease-fluid) both wave-in;
     }
 
     /* Code Output */

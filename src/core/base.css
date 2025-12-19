@@ -399,8 +399,23 @@
     box-shadow:
       var(--shadow-glow),
       inset 0 1px 2px oklch(from var(--shadow-color) l c h / 0.03);
-    /* Soft focus background - subtle tint that adapts to light/dark */
-    background-color: color-mix(in oklch, var(--accent) 7%, var(--color-background));
+    /* Soft focus background - subtle tint */
+    background-color: color-mix(in oklch, var(--accent) 8%, var(--color-background));
+  }
+
+  /* Dark mode: stronger tint needed for visibility */
+  @media (prefers-color-scheme: dark) {
+    input:focus,
+    textarea:focus,
+    select:focus {
+      background-color: color-mix(in oklch, var(--accent) 15%, var(--color-background));
+    }
+  }
+
+  [data-theme="dark"] input:focus,
+  [data-theme="dark"] textarea:focus,
+  [data-theme="dark"] select:focus {
+    background-color: color-mix(in oklch, var(--accent) 15%, var(--color-background));
   }
 
   input::placeholder,

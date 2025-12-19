@@ -1,46 +1,179 @@
 <script>
   // ========================================
-  // THEME MODE (Light/Dark)
+  // THEME MODE (Light/Dark/Auto)
   // ========================================
 
   function setThemeMode(mode) {
-    document.documentElement.setAttribute('data-theme', mode);
-    localStorage.setItem('fluid-theme', mode);
-    updateDarkModeToggle();
+    if (mode === 'auto') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('fluid-theme');
+      // Apply system preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      localStorage.setItem('fluid-theme-mode', 'auto');
+    } else {
+      document.documentElement.setAttribute('data-theme', mode);
+      localStorage.setItem('fluid-theme', mode);
+      localStorage.setItem('fluid-theme-mode', mode);
+    }
+    updateThemeButtons();
   }
 
-  function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme');
-    setThemeMode(current === 'dark' ? 'light' : 'dark');
+  function updateThemeButtons() {
+    const mode = localStorage.getItem('fluid-theme-mode') || 'auto';
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      if (btn.dataset.themeOption === mode) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
+    });
   }
 
-  function updateDarkModeToggle() {
-    const toggle = document.getElementById('dark-mode-toggle');
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    const mode = localStorage.getItem('fluid-theme-mode');
+    if (mode === 'auto' || !mode) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+  });
+
+
+  // ========================================
+  // CONTRAST MODE (Subdued)
+  // ========================================
+
+  function setContrast(mode) {
+    if (mode === 'subdued') {
+      document.documentElement.setAttribute('data-contrast', 'subdued');
+      localStorage.setItem('fluid-contrast', 'subdued');
+    } else {
+      document.documentElement.removeAttribute('data-contrast');
+      localStorage.removeItem('fluid-contrast');
+    }
+    updateSubduedToggle();
+  }
+
+  function updateSubduedToggle() {
+    const toggle = document.getElementById('subdued-toggle');
     if (toggle) {
-      toggle.checked = document.documentElement.getAttribute('data-theme') === 'dark';
+      toggle.checked = document.documentElement.getAttribute('data-contrast') === 'subdued';
     }
   }
 
 
   // ========================================
-  // ACCENT COLOR PRESETS
+  // COLOR PALETTE (Mood)
+  // ========================================
+
+  function setPalette(palette) {
+    document.documentElement.setAttribute('data-palette', palette);
+    localStorage.setItem('fluid-palette', palette);
+
+    // If switching to fluid palette, clear any manual accent selection
+    // to allow motion-to-color mapping
+    if (palette === 'fluid') {
+      const currentAccent = document.documentElement.getAttribute('data-accent');
+      // If there's a numbered accent, keep it, otherwise let auto work
+      if (currentAccent && !['1','2','3','4','5','6'].includes(currentAccent)) {
+        document.documentElement.removeAttribute('data-accent');
+        localStorage.removeItem('fluid-accent');
+      }
+    }
+
+    updatePaletteUI();
+  }
+
+  function setAccentFromPalette(swatchNum) {
+    document.documentElement.setAttribute('data-accent', swatchNum);
+    localStorage.setItem('fluid-accent', swatchNum);
+    updatePaletteSwatches();
+  }
+
+  function updatePaletteSelect() {
+    const select = document.getElementById('palette-select');
+    const current = document.documentElement.getAttribute('data-palette') || 'fluid';
+    if (select) {
+      select.value = current;
+    }
+  }
+
+  function updatePaletteSwatches() {
+    const current = document.documentElement.getAttribute('data-accent');
+    const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
+
+    document.querySelectorAll('.palette-swatch').forEach(swatch => {
+      swatch.removeAttribute('data-active');
+      swatch.removeAttribute('data-auto');
+
+      if (swatch.dataset.swatch === current) {
+        swatch.setAttribute('data-active', '');
+      }
+    });
+
+    // In Fluid palette, mark the motion-linked swatch as "auto"
+    if (palette === 'fluid' && !current) {
+      const motion = document.documentElement.getAttribute('data-motion') || 'flowing';
+      const motionToSwatch = {
+        'still': '1',
+        'serene': '2',
+        'trickling': '3',
+        'flowing': '4',
+        'rapids': '5',
+        'tsunami': '6'
+      };
+      const autoSwatch = document.querySelector(`.palette-swatch[data-swatch="${motionToSwatch[motion]}"]`);
+      if (autoSwatch) {
+        autoSwatch.setAttribute('data-auto', '');
+        autoSwatch.setAttribute('data-active', '');
+      }
+    }
+  }
+
+  function updateFluidHint() {
+    const hint = document.getElementById('fluid-hint');
+    const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
+    if (hint) {
+      hint.style.display = palette === 'fluid' ? 'block' : 'none';
+    }
+  }
+
+  function updatePaletteUI() {
+    updatePaletteSelect();
+    updatePaletteSwatches();
+    updateFluidHint();
+  }
+
+
+  // ========================================
+  // LEGACY ACCENT COLOR (for backwards compatibility)
   // ========================================
 
   function setAccent(preset) {
-    document.documentElement.setAttribute('data-accent', preset);
-    localStorage.setItem('fluid-accent', preset);
-    updateAccentSwatches();
+    // Legacy function - now we use palette system
+    // Map old presets to new system
+    const presetToPalette = {
+      'default': { palette: 'mono', accent: '3' },
+      'coral': { palette: 'bold', accent: '1' },
+      'vapor': { palette: 'bold', accent: '2' },
+      'tide': { palette: 'fluid', accent: '5' },
+      'forest': { palette: 'earth', accent: '2' },
+      'sunset': { palette: 'earth', accent: '3' },
+      'midnight': { palette: 'fluid', accent: '6' }
+    };
+
+    if (presetToPalette[preset]) {
+      setPalette(presetToPalette[preset].palette);
+      setAccentFromPalette(presetToPalette[preset].accent);
+    }
   }
 
   function updateAccentSwatches() {
-    const current = document.documentElement.getAttribute('data-accent') || 'default';
-    document.querySelectorAll('.color-swatch').forEach(swatch => {
-      if (swatch.dataset.preset === current) {
-        swatch.setAttribute('data-selected', '');
-      } else {
-        swatch.removeAttribute('data-selected');
-      }
-    });
+    // Legacy - now handled by updatePaletteSwatches
+    updatePaletteSwatches();
   }
 
 
@@ -52,6 +185,13 @@
     document.documentElement.setAttribute('data-motion', level);
     localStorage.setItem('fluid-motion', level);
     updateMotionSelect();
+
+    // If using Fluid palette without manual accent, update swatches
+    const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
+    const accent = document.documentElement.getAttribute('data-accent');
+    if (palette === 'fluid' && !accent) {
+      updatePaletteSwatches();
+    }
   }
 
   function updateMotionSelect() {
@@ -112,22 +252,34 @@
   function resetSettings() {
     // Clear stored preferences
     localStorage.removeItem('fluid-theme');
+    localStorage.removeItem('fluid-theme-mode');
     localStorage.removeItem('fluid-accent');
     localStorage.removeItem('fluid-motion');
+    localStorage.removeItem('fluid-palette');
+    localStorage.removeItem('fluid-contrast');
 
     // Reset to system/defaults
     document.documentElement.removeAttribute('data-theme');
     document.documentElement.removeAttribute('data-accent');
     document.documentElement.removeAttribute('data-motion');
+    document.documentElement.removeAttribute('data-palette');
+    document.documentElement.removeAttribute('data-contrast');
+
+    // Apply defaults
+    document.documentElement.setAttribute('data-palette', 'fluid');
+    document.documentElement.setAttribute('data-motion', 'flowing');
 
     // Check system preference for dark mode
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
     }
 
     // Update UI
-    updateDarkModeToggle();
-    updateAccentSwatches();
+    updateThemeButtons();
+    updateSubduedToggle();
+    updatePaletteUI();
     updateMotionSelect();
   }
 
@@ -152,17 +304,80 @@
 
 
   // ========================================
+  // ANIMATED PROGRESS BARS
+  // Trigger fill animation when scrolled into view
+  // ========================================
+
+  function initAnimatedProgress() {
+    const progressBars = document.querySelectorAll('.progress[data-animate]');
+
+    if (progressBars.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute('data-visible', '');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% visible
+    });
+
+    progressBars.forEach(bar => observer.observe(bar));
+  }
+
+
+  // ========================================
+  // STATUS FROM SCORE
+  // Auto-calculate status from percentage
+  // ========================================
+
+  function getStatusFromScore(score, thresholds = { good: 80, moderate: 60 }) {
+    if (score >= thresholds.good) return 'good';
+    if (score >= thresholds.moderate) return 'moderate';
+    return 'severe';
+  }
+
+  function initAutoStatus() {
+    document.querySelectorAll('[data-score]').forEach(el => {
+      const score = parseFloat(el.dataset.score);
+      if (!isNaN(score) && !el.hasAttribute('data-status')) {
+        el.setAttribute('data-status', getStatusFromScore(score));
+      }
+    });
+  }
+
+
+  // ========================================
   // INITIALIZE ON PAGE LOAD
   // ========================================
 
   (function() {
     // Theme mode
     const savedTheme = localStorage.getItem('fluid-theme');
-    if (savedTheme) {
+    const savedThemeMode = localStorage.getItem('fluid-theme-mode');
+
+    if (savedThemeMode === 'auto' || (!savedTheme && !savedThemeMode)) {
+      // Auto mode or first visit
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } else if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
     }
+
+    // Contrast mode
+    const savedContrast = localStorage.getItem('fluid-contrast');
+    if (savedContrast === 'subdued') {
+      document.documentElement.setAttribute('data-contrast', 'subdued');
+    }
+
+    // Palette
+    const savedPalette = localStorage.getItem('fluid-palette');
+    document.documentElement.setAttribute('data-palette', savedPalette || 'fluid');
 
     // Accent color
     const savedAccent = localStorage.getItem('fluid-accent');
@@ -179,14 +394,20 @@
     // Update UI controls once DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
-        updateDarkModeToggle();
-        updateAccentSwatches();
+        updateThemeButtons();
+        updateSubduedToggle();
+        updatePaletteUI();
         updateMotionSelect();
+        initAnimatedProgress();
+        initAutoStatus();
       });
     } else {
-      updateDarkModeToggle();
-      updateAccentSwatches();
+      updateThemeButtons();
+      updateSubduedToggle();
+      updatePaletteUI();
       updateMotionSelect();
+      initAnimatedProgress();
+      initAutoStatus();
     }
   })();
 </script>
