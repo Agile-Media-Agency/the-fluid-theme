@@ -1,14 +1,141 @@
 <script>
-  // Theme toggle - persists to localStorage
-  function toggleTheme() {
-    const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('fluid-theme', newTheme);
+  // ========================================
+  // THEME MODE (Light/Dark)
+  // ========================================
+
+  function setThemeMode(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    localStorage.setItem('fluid-theme', mode);
+    updateDarkModeToggle();
   }
 
-  // Mobile menu toggle
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    setThemeMode(current === 'dark' ? 'light' : 'dark');
+  }
+
+  function updateDarkModeToggle() {
+    const toggle = document.getElementById('dark-mode-toggle');
+    if (toggle) {
+      toggle.checked = document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+  }
+
+
+  // ========================================
+  // ACCENT COLOR PRESETS
+  // ========================================
+
+  function setAccent(preset) {
+    document.documentElement.setAttribute('data-accent', preset);
+    localStorage.setItem('fluid-accent', preset);
+    updateAccentSwatches();
+  }
+
+  function updateAccentSwatches() {
+    const current = document.documentElement.getAttribute('data-accent') || 'default';
+    document.querySelectorAll('.color-swatch').forEach(swatch => {
+      if (swatch.dataset.preset === current) {
+        swatch.setAttribute('data-selected', '');
+      } else {
+        swatch.removeAttribute('data-selected');
+      }
+    });
+  }
+
+
+  // ========================================
+  // MOTION INTENSITY
+  // ========================================
+
+  function setMotion(level) {
+    document.documentElement.setAttribute('data-motion', level);
+    localStorage.setItem('fluid-motion', level);
+    updateMotionSelect();
+  }
+
+  function updateMotionSelect() {
+    const select = document.getElementById('motion-select');
+    const current = document.documentElement.getAttribute('data-motion') || 'flowing';
+    if (select) {
+      select.value = current;
+    }
+  }
+
+
+  // ========================================
+  // SETTINGS PANEL TOGGLE
+  // ========================================
+
+  function toggleSettingsPanel() {
+    const panel = document.getElementById('settings-panel');
+    const toggle = panel.querySelector('.settings-panel__toggle');
+    const isOpen = panel.hasAttribute('data-open');
+
+    if (isOpen) {
+      panel.removeAttribute('data-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      panel.setAttribute('data-open', '');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // Close panel when clicking outside
+  document.addEventListener('click', function(e) {
+    const panel = document.getElementById('settings-panel');
+    if (panel && panel.hasAttribute('data-open')) {
+      if (!panel.contains(e.target)) {
+        panel.removeAttribute('data-open');
+        panel.querySelector('.settings-panel__toggle').setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+
+  // Close panel with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const panel = document.getElementById('settings-panel');
+      if (panel && panel.hasAttribute('data-open')) {
+        panel.removeAttribute('data-open');
+        panel.querySelector('.settings-panel__toggle').setAttribute('aria-expanded', 'false');
+        panel.querySelector('.settings-panel__toggle').focus();
+      }
+    }
+  });
+
+
+  // ========================================
+  // RESET TO DEFAULTS
+  // ========================================
+
+  function resetSettings() {
+    // Clear stored preferences
+    localStorage.removeItem('fluid-theme');
+    localStorage.removeItem('fluid-accent');
+    localStorage.removeItem('fluid-motion');
+
+    // Reset to system/defaults
+    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute('data-accent');
+    document.documentElement.removeAttribute('data-motion');
+
+    // Check system preference for dark mode
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Update UI
+    updateDarkModeToggle();
+    updateAccentSwatches();
+    updateMotionSelect();
+  }
+
+
+  // ========================================
+  // MOBILE MENU TOGGLE
+  // ========================================
+
   function toggleMenu() {
     const menu = document.getElementById('nav-menu');
     const toggle = document.querySelector('.nav__toggle');
@@ -23,13 +150,43 @@
     }
   }
 
-  // Initialize theme from localStorage or system preference
+
+  // ========================================
+  // INITIALIZE ON PAGE LOAD
+  // ========================================
+
   (function() {
-    const saved = localStorage.getItem('fluid-theme');
-    if (saved) {
-      document.documentElement.setAttribute('data-theme', saved);
+    // Theme mode
+    const savedTheme = localStorage.getItem('fluid-theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Accent color
+    const savedAccent = localStorage.getItem('fluid-accent');
+    if (savedAccent) {
+      document.documentElement.setAttribute('data-accent', savedAccent);
+    }
+
+    // Motion intensity
+    const savedMotion = localStorage.getItem('fluid-motion');
+    if (savedMotion) {
+      document.documentElement.setAttribute('data-motion', savedMotion);
+    }
+
+    // Update UI controls once DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        updateDarkModeToggle();
+        updateAccentSwatches();
+        updateMotionSelect();
+      });
+    } else {
+      updateDarkModeToggle();
+      updateAccentSwatches();
+      updateMotionSelect();
     }
   })();
 </script>
