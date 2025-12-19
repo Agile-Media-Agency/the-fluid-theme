@@ -593,17 +593,63 @@
     from { transform: translateX(100%); }
   }
 
-  /* Vertical sweep (Rapids) */
-  @keyframes sweep-out-up {
-    0% { transform: translateY(0); opacity: 1; }
-    30% { opacity: 1; }
-    100% { transform: translateY(-100%); opacity: 0; }
+  /* Rapids: Fluid dynamics - new content pushes through, drags old */
+  @keyframes rapids-old {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    /* Old content stays put initially while new overlaps */
+    40% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    /* Old content starts moving slowly - friction/lag */
+    60% {
+      transform: translateY(-15%);
+      opacity: 0.9;
+    }
+    /* Accelerates as new content gains traction and pulls it */
+    80% {
+      transform: translateY(-60%);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
   }
 
-  @keyframes sweep-in-down {
-    0% { transform: translateY(-30%); opacity: 0; }
-    20% { opacity: 0.5; }
-    100% { transform: translateY(0); opacity: 1; }
+  @keyframes rapids-new {
+    0% {
+      /* Starts from bottom of screen */
+      transform: translateY(100%);
+      opacity: 0.8;
+    }
+    /* Initial slow surge - emerging */
+    15% {
+      transform: translateY(90%);
+      opacity: 0.9;
+    }
+    /* Overlaps old content ~10% - friction slows it */
+    35% {
+      transform: translateY(60%);
+      opacity: 1;
+    }
+    /* Gains traction - accelerates */
+    60% {
+      transform: translateY(25%);
+      opacity: 1;
+    }
+    /* Final push - pulls old content along */
+    85% {
+      transform: translateY(5%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   /* Diagonal wave (Tsunami) - Rise, crest, crash like Hokusai's Great Wave */
@@ -670,14 +716,15 @@
 
 
   /* --- Default transition (Flowing) --- */
+  /* All transitions run at 2x duration for smoother, more visible motion */
   ::view-transition-old(root) {
-    animation: var(--duration-normal) var(--ease-fluid) both fade-out,
-               var(--duration-normal) var(--ease-fluid) both slide-out-left;
+    animation: var(--duration-slower) var(--ease-fluid) both fade-out,
+               var(--duration-slower) var(--ease-fluid) both slide-out-left;
   }
 
   ::view-transition-new(root) {
-    animation: var(--duration-normal) var(--ease-fluid) both fade-in,
-               var(--duration-normal) var(--ease-fluid) both slide-in-right;
+    animation: var(--duration-slower) var(--ease-fluid) both fade-in,
+               var(--duration-slower) var(--ease-fluid) both slide-in-right;
   }
 
 
@@ -693,11 +740,11 @@
   /* --- Serene: Slow crossfade (Ken Burns) --- */
   :root[data-motion="serene"] {
     &::view-transition-old(root) {
-      animation: var(--duration-slow) var(--ease-fluid) both kenburns-out;
+      animation: var(--duration-slowest) var(--ease-fluid) both kenburns-out;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-slow) var(--ease-fluid) both kenburns-in;
+      animation: var(--duration-slowest) var(--ease-fluid) both kenburns-in;
     }
   }
 
@@ -705,23 +752,25 @@
   /* --- Trickling: Quick subtle fade --- */
   :root[data-motion="trickling"] {
     &::view-transition-old(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-out;
+      animation: var(--duration-slow) var(--ease-fluid) both fade-out;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both fade-in;
+      animation: var(--duration-slow) var(--ease-fluid) both fade-in;
     }
   }
 
 
-  /* --- Rapids: Vertical sweep with spring --- */
+  /* --- Rapids: Fluid dynamics effect ---
+     New content pushes up from bottom, overlaps old briefly,
+     friction slows it, then it gains traction and pulls old content away */
   :root[data-motion="rapids"] {
     &::view-transition-old(root) {
-      animation: var(--duration-normal) var(--ease-settle) var(--rapids-stagger) both sweep-out-up;
+      animation: var(--duration-slowest) cubic-bezier(0.4, 0, 0.6, 1) both rapids-old;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both sweep-in-down;
+      animation: var(--duration-slowest) cubic-bezier(0.2, 0, 0.4, 1) both rapids-new;
     }
   }
 
@@ -729,11 +778,11 @@
   /* --- Tsunami: Diagonal wave crash --- */
   :root[data-motion="tsunami"] {
     &::view-transition-old(root) {
-      animation: var(--duration-normal) var(--ease-settle) both wave-out;
+      animation: var(--duration-slower) var(--ease-settle) both wave-out;
     }
 
     &::view-transition-new(root) {
-      animation: var(--duration-normal) var(--ease-fluid) both wave-in;
+      animation: var(--duration-slower) var(--ease-fluid) both wave-in;
     }
   }
 
