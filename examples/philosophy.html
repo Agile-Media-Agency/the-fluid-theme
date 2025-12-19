@@ -1,0 +1,440 @@
+---
+title: Fluid Dynamics
+description: The physics behind the Fluid Framework
+nav: philosophy
+---
+<style>
+  @layer demo {
+    .philosophy-hero {
+      padding-block: var(--space-16);
+      text-align: center;
+      background: linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--accent) 5%, var(--color-background)) 0%,
+        var(--color-background) 100%
+      );
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
+
+    .philosophy-hero h1 {
+      font-size: var(--font-size-5xl);
+      font-weight: var(--weight-bold);
+      margin-block-end: var(--space-4);
+    }
+
+    .philosophy-hero .lead {
+      font-size: var(--font-size-xl);
+      color: var(--color-text-muted);
+      max-inline-size: 50ch;
+      margin-inline: auto;
+    }
+
+    .philosophy-section {
+      padding-block: var(--space-12);
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
+
+    .philosophy-section:last-of-type {
+      border-block-end: none;
+    }
+
+    .philosophy-section h2 {
+      font-size: var(--font-size-2xl);
+      margin-block-end: var(--space-6);
+    }
+
+    .concept-grid {
+      display: grid;
+      gap: var(--space-6);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+      margin-block-start: var(--space-8);
+    }
+
+    .concept-card {
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .concept-card h3 {
+      font-size: var(--font-size-lg);
+      margin-block-end: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .concept-card p {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+    }
+
+    .physics-icon {
+      inline-size: 2.5rem;
+      block-size: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-subtle);
+      color: var(--accent);
+      border-radius: var(--radius-md);
+      font-weight: var(--weight-bold);
+    }
+
+    .reynolds-table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      margin-block: var(--space-6);
+      font-size: var(--font-size-sm);
+    }
+
+    .reynolds-table th,
+    .reynolds-table td {
+      padding: var(--space-3) var(--space-4);
+      text-align: start;
+      border-block-end: 1px solid var(--color-border-subtle);
+    }
+
+    .reynolds-table th {
+      background: var(--color-surface);
+      font-weight: var(--weight-semibold);
+    }
+
+    .reynolds-table tr:last-child td {
+      border-block-end: none;
+    }
+
+    .demo-box {
+      padding: var(--space-8);
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      margin-block: var(--space-6);
+    }
+
+    .demo-label {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      color: var(--accent);
+      margin-block-end: var(--space-4);
+    }
+
+    .displacement-demo {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .displacement-demo button {
+      flex: 1;
+      min-inline-size: 8rem;
+    }
+
+    .quote-block {
+      padding: var(--space-6);
+      background: linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--accent) 8%, var(--color-surface)) 0%,
+        var(--color-surface) 100%
+      );
+      border-radius: var(--radius-xl);
+      border-inline-start: 4px solid var(--accent);
+      margin-block: var(--space-8);
+    }
+
+    .quote-block blockquote {
+      font-size: var(--font-size-lg);
+      font-style: italic;
+      margin: 0;
+      color: var(--color-text);
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-block-start: var(--space-3);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-style: normal;
+    }
+
+    .motion-comparison {
+      display: grid;
+      gap: var(--space-4);
+      margin-block: var(--space-6);
+    }
+
+    .motion-row {
+      display: grid;
+      grid-template-columns: 8rem 1fr 1fr;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-3);
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+    }
+
+    .motion-row:nth-child(odd) {
+      background: var(--color-surface-raised);
+    }
+
+    .motion-name {
+      font-weight: var(--weight-semibold);
+    }
+
+    .motion-physics {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+
+    .motion-behavior {
+      font-size: var(--font-size-sm);
+    }
+
+    @media (max-width: 48rem) {
+      .motion-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+      }
+    }
+  }
+</style>
+
+<div class="philosophy-hero">
+  <div class="container">
+    <h1>Fluid Dynamics</h1>
+    <p class="lead">This isn't a theme with water names. It's a design system derived from the physics of how fluids actually behave.</p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- The Insight -->
+  <section class="philosophy-section">
+    <h2>The Realization</h2>
+    <p>We started with water metaphors: Still, Serene, Trickling, Flowing, Rapids, Tsunami. Poetic names for motion intensities.</p>
+    <p>Then we tried to make the Rapids transition feel right. Not just "fast" - but <em>physically correct</em>. New content should push through old content. There should be friction. Momentum transfer. Displacement.</p>
+    <p>That's when it clicked: we weren't just naming things after water. We were accidentally implementing <strong>fluid mechanics</strong>.</p>
+
+    <div class="quote-block">
+      <blockquote>
+        "The theme isn't water-themed. It's physics-based. The water metaphors work because they describe real phenomena."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Core Principles -->
+  <section class="philosophy-section">
+    <h2>Core Principles</h2>
+    <p>Every interaction in the Fluid Framework can be understood through fluid dynamics:</p>
+
+    <div class="concept-grid">
+      <article class="concept-card">
+        <h3>
+          <span class="physics-icon">V</span>
+          Viscosity
+        </h3>
+        <p>Different elements have different "densities." Headers resist movement. Text flows freely. Old content is denser than new - it takes force to displace it.</p>
+      </article>
+
+      <article class="concept-card">
+        <h3>
+          <span class="physics-icon">D</span>
+          Displacement
+        </h3>
+        <p>When one element moves, it affects its neighbors. New content pushes old content out of the way. The old doesn't just disappear - it's displaced.</p>
+      </article>
+
+      <article class="concept-card">
+        <h3>
+          <span class="physics-icon">T</span>
+          Surface Tension
+        </h3>
+        <p>Elements have natural boundaries. On hover, buttons swell slightly before "breaking through" on click. There's resistance before the action.</p>
+      </article>
+
+      <article class="concept-card">
+        <h3>
+          <span class="physics-icon">P</span>
+          Pressure
+        </h3>
+        <p>Force applied to elements creates proportional response. Click a button and it compresses. The harder the press, the more it yields.</p>
+      </article>
+
+      <article class="concept-card">
+        <h3>
+          <span class="physics-icon">M</span>
+          Momentum
+        </h3>
+        <p>Objects in motion stay in motion. Transitions don't just stop - they settle. Overshoot, bounce back, find equilibrium. Like water finding its level.</p>
+      </article>
+
+      <article class="concept-card">
+        <h3>
+          <span class="physics-icon">F</span>
+          Friction
+        </h3>
+        <p>Movement through a medium encounters resistance. New content slows as it meets old content. Then it gains traction and accelerates.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Reynolds Number -->
+  <section class="philosophy-section">
+    <h2>The Reynolds Number</h2>
+    <p>In fluid dynamics, the <strong>Reynolds number</strong> determines whether flow is smooth (laminar) or chaotic (turbulent). Our motion styles map directly to this spectrum:</p>
+
+    <table class="reynolds-table">
+      <thead>
+        <tr>
+          <th>Motion Style</th>
+          <th>Flow Type</th>
+          <th>Physical Behavior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Still</strong></td>
+          <td>No flow</td>
+          <td>Zero energy. Absolute rest. Instant transitions.</td>
+        </tr>
+        <tr>
+          <td><strong>Serene</strong></td>
+          <td>Laminar</td>
+          <td>Smooth parallel layers. No mixing. Slow crossfades.</td>
+        </tr>
+        <tr>
+          <td><strong>Trickling</strong></td>
+          <td>Low Re</td>
+          <td>Viscosity dominates. Gentle, predictable movement.</td>
+        </tr>
+        <tr>
+          <td><strong>Flowing</strong></td>
+          <td>Moderate Re</td>
+          <td>Balanced forces. The comfortable default.</td>
+        </tr>
+        <tr>
+          <td><strong>Rapids</strong></td>
+          <td>High Re</td>
+          <td>Inertia dominates. Turbulent mixing. Content pushes through content.</td>
+        </tr>
+        <tr>
+          <td><strong>Tsunami</strong></td>
+          <td>Extreme</td>
+          <td>Boundary-breaking energy. Rise, crest, crash.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Rapids Deep Dive -->
+  <section class="philosophy-section">
+    <h2>Rapids: A Case Study</h2>
+    <p>The Rapids transition demonstrates true fluid dynamics:</p>
+
+    <div class="motion-comparison">
+      <div class="motion-row">
+        <span class="motion-name">0-15%</span>
+        <span class="motion-physics">Initial surge</span>
+        <span class="motion-behavior">New content slowly emerges from below</span>
+      </div>
+      <div class="motion-row">
+        <span class="motion-name">15-35%</span>
+        <span class="motion-physics">Friction zone</span>
+        <span class="motion-behavior">New meets old. Slows from resistance. Overlaps ~10%</span>
+      </div>
+      <div class="motion-row">
+        <span class="motion-name">35-40%</span>
+        <span class="motion-physics">Inertia lag</span>
+        <span class="motion-behavior">Old content remains stationary. Dense fluid resists.</span>
+      </div>
+      <div class="motion-row">
+        <span class="motion-name">40-60%</span>
+        <span class="motion-physics">Momentum transfer</span>
+        <span class="motion-behavior">New gains traction. Old begins to yield.</span>
+      </div>
+      <div class="motion-row">
+        <span class="motion-name">60-100%</span>
+        <span class="motion-physics">Displacement complete</span>
+        <span class="motion-behavior">New pulls old away. Acceleration to final state.</span>
+      </div>
+    </div>
+
+    <p>This isn't arbitrary timing. It's what actually happens when one fluid displaces another.</p>
+  </section>
+
+  <!-- Interactive Demo -->
+  <section class="philosophy-section">
+    <h2>Surface Tension in Action</h2>
+    <p>Switch to <strong>Tsunami</strong> motion in settings, then hover these buttons. Watch them swell (surface tension building), then click (breaking through), then leave (crash and settle):</p>
+
+    <div class="demo-box">
+      <div class="demo-label">Tsunami Button Behavior</div>
+      <div class="displacement-demo">
+        <button>Hover Me</button>
+        <button data-variant="secondary">Click Me</button>
+        <button data-variant="outline">Watch the Settle</button>
+      </div>
+    </div>
+
+    <p>The button grows on hover (tension building), compresses on click (breaking through), then bounces back when you leave (energy dissipating, finding equilibrium).</p>
+  </section>
+
+  <!-- Color as Depth -->
+  <section class="philosophy-section">
+    <h2>Color as Depth</h2>
+    <p>The Fluid palette maps motion to water color - not arbitrarily, but by depth and energy:</p>
+
+    <div class="concept-grid">
+      <article class="concept-card" style="--accent: oklch(55% 0.02 250);">
+        <h3>Still - Slate</h3>
+        <p>Surface water reflecting an overcast sky. No movement, no color variance.</p>
+      </article>
+      <article class="concept-card" style="--accent: oklch(65% 0.12 195);">
+        <h3>Serene - Soft Teal</h3>
+        <p>A calm mountain lake. Clear enough to see depth, still enough to reflect.</p>
+      </article>
+      <article class="concept-card" style="--accent: oklch(70% 0.14 210);">
+        <h3>Trickling - Light Cyan</h3>
+        <p>A gentle stream catching sunlight. Shallow, playful, bright.</p>
+      </article>
+      <article class="concept-card" style="--accent: oklch(60% 0.18 240);">
+        <h3>Flowing - Medium Blue</h3>
+        <p>A steady river. Deep enough to be substantial, moving with purpose.</p>
+      </article>
+      <article class="concept-card" style="--accent: oklch(55% 0.15 200);">
+        <h3>Rapids - Deep Teal</h3>
+        <p>Whitewater. Aerated, energetic, mixing surface and depth.</p>
+      </article>
+      <article class="concept-card" style="--accent: oklch(40% 0.15 260);">
+        <h3>Tsunami - Deep Navy</h3>
+        <p>The Great Wave. Ocean depth meeting violent energy. Hokusai's blue.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="philosophy-section">
+    <h2>Why This Matters</h2>
+    <p>Design systems often feel arbitrary. "Use this easing curve because it looks nice." "This duration feels right."</p>
+    <p>Fluid Framework is different. Every timing, every easing curve, every interaction has a <em>physical basis</em>. It's not opinion - it's physics.</p>
+    <p>This gives us:</p>
+    <ul style="margin-block: var(--space-4); padding-inline-start: var(--space-6);">
+      <li><strong>Internal consistency</strong> - Behaviors derive from the same principles</li>
+      <li><strong>Intuitive feel</strong> - Users understand physics intuitively, even if they can't name it</li>
+      <li><strong>Predictability</strong> - Given the motion style, you can predict how any element will behave</li>
+      <li><strong>Extensibility</strong> - New components can derive their behavior from first principles</li>
+    </ul>
+
+    <div class="quote-block">
+      <blockquote>
+        "Good design feels inevitable. Fluid dynamics makes it inevitable - because it's based on how the universe actually works."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding-block: var(--space-10); text-align: center; color: var(--color-text-muted);">
+    <p style="font-size: var(--font-size-lg); margin-block-end: var(--space-4);">Fluid Framework v0.2.0</p>
+    <p style="max-inline-size: 50ch; margin-inline: auto;">A design system where motion isn't decoration - it's physics.</p>
+    {% include version.html %}
+  </footer>
+</div>
