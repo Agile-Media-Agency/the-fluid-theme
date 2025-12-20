@@ -1,0 +1,89 @@
+---
+title: Customizer
+description: Customize and export your Fluid theme
+layout: default
+nav: customizer
+---
+<!-- Hero Section -->
+<section class="hero" data-layout="center" data-padding="xl" data-theme="gradient">
+  <h1 class="hero__headline">Theme Customizer</h1>
+  <p class="hero__subheadline">Build your perfect theme. Export ready-to-use code.</p>
+</section>
+
+<!-- Coming Soon Content -->
+<section class="section" data-padding="xl">
+  <div data-layout="center" data-width="default" style="text-align: center;">
+    <div style="display: inline-flex; align-items: center; justify-content: center; width: 5rem; height: 5rem; background: var(--accent-subtle); border-radius: 50%; margin-block-end: var(--space-6);">
+      {% include icons.html icon="palette" size="40" %}
+    </div>
+
+    <h2 style="margin-block-end: var(--space-4);">Coming Soon</h2>
+    <p style="color: var(--color-text-muted); max-inline-size: 50ch; margin-inline: auto; margin-block-end: var(--space-8);">
+      We're building a visual customizer that lets you tweak every aspect of the Fluid theme - colors, typography, spacing, motion intensity, and more. Export your custom configuration as CSS or download a complete theme package.
+    </p>
+
+    <div class="grid" style="--grid-min: 200px; gap: var(--space-4); margin-block-end: var(--space-10);">
+      <article class="card">
+        <div class="card__content" style="text-align: center;">
+          <span style="color: var(--color-primary); display: block; margin-block-end: var(--space-3);">
+            {% include icons.html icon="palette" size="28" %}
+          </span>
+          <h3 class="card__title">Color Palettes</h3>
+          <p class="card__description">9 curated palettes or create your own custom colors</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__content" style="text-align: center;">
+          <span style="color: var(--color-primary); display: block; margin-block-end: var(--space-3);">
+            {% include icons.html icon="waves" size="28" %}
+          </span>
+          <h3 class="card__title">Motion Presets</h3>
+          <p class="card__description">Adjust animation intensity from still to tsunami</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__content" style="text-align: center;">
+          <span style="color: var(--color-primary); display: block; margin-block-end: var(--space-3);">
+            {% include icons.html icon="code" size="28" %}
+          </span>
+          <h3 class="card__title">Export Code</h3>
+          <p class="card__description">Download ready-to-use CSS or complete theme packages</p>
+        </div>
+      </article>
+    </div>
+
+    <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-end: var(--space-6);">
+      Want to be notified when the customizer launches?
+    </p>
+
+    <div style="max-inline-size: 400px; margin-inline: auto;">
+      <div class="input-group">
+        <input type="email" placeholder="Enter your email">
+        <button>Notify Me</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Meanwhile Section -->
+<section class="section" data-padding="xl" data-theme="subtle">
+  <div data-layout="center" data-width="default" style="text-align: center;">
+    <h2 style="margin-block-end: var(--space-4);">In the Meantime</h2>
+    <p style="color: var(--color-text-muted); margin-block-end: var(--space-8);">
+      Explore what's already possible with Fluid
+    </p>
+
+    <div class="cluster" style="justify-content: center; gap: var(--space-4);">
+      <a href="{{ '/templates/' | relative_url }}"><button>Browse Templates</button></a>
+      <a href="{{ '/examples/components.html' | relative_url }}"><button data-variant="outline">View Components</button></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+  <p style="color: var(--color-text-muted);">Built with the Fluid Framework</p>
+  {% include version.html %}
+</footer>
