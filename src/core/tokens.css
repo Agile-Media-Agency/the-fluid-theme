@@ -1200,6 +1200,92 @@
 
 
 /* ========================================
+   THEMED SURFACE & SECTION COLORS
+   Tinted backgrounds derived from palette
+   ======================================== */
+
+/* Base themed surfaces - derived from accent */
+[data-palette] {
+  /* Subtle tint for alternating sections */
+  --surface-tinted: color-mix(in oklch, var(--accent) 8%, var(--color-background));
+  --surface-accent: color-mix(in oklch, var(--accent) 15%, var(--color-background));
+  --section-alt: color-mix(in oklch, var(--accent) 5%, var(--color-background));
+}
+
+/* Mono: use gray tints instead of colored */
+[data-palette="mono"] {
+  --surface-tinted: oklch(from var(--color-background) calc(l - 0.03) 0.01 250);
+  --surface-accent: oklch(from var(--color-background) calc(l - 0.06) 0.02 250);
+  --section-alt: oklch(from var(--color-background) calc(l - 0.02) 0.01 250);
+}
+
+/* Pastel: lighter tints since colors are already soft */
+[data-palette="pastel"] {
+  --surface-tinted: color-mix(in oklch, var(--accent) 12%, var(--color-background));
+  --surface-accent: color-mix(in oklch, var(--accent) 20%, var(--color-background));
+}
+
+/* Bold/80s: stronger presence */
+[data-palette="bold"],
+[data-palette="80s"] {
+  --surface-tinted: color-mix(in oklch, var(--accent) 10%, var(--color-background));
+  --surface-accent: color-mix(in oklch, var(--accent) 18%, var(--color-background));
+}
+
+
+/* ========================================
+   DUOTONE IMAGE FILTERS
+   Theme-aware image color overlays
+   ======================================== */
+
+/* Duotone colors per palette */
+[data-palette="fluid"] {
+  --duotone-dark: oklch(0.30 0.08 220);
+  --duotone-light: oklch(0.70 0.12 200);
+}
+
+[data-palette="morandi"] {
+  --duotone-dark: oklch(0.35 0.04 60);
+  --duotone-light: oklch(0.75 0.04 80);
+}
+
+[data-palette="bold"] {
+  --duotone-dark: oklch(0.30 0.15 25);
+  --duotone-light: oklch(0.65 0.20 30);
+}
+
+[data-palette="pastel"] {
+  --duotone-dark: oklch(0.50 0.08 200);
+  --duotone-light: oklch(0.88 0.06 180);
+}
+
+[data-palette="earth"] {
+  --duotone-dark: oklch(0.30 0.08 55);
+  --duotone-light: oklch(0.60 0.10 70);
+}
+
+[data-palette="mono"] {
+  --duotone-dark: oklch(0.25 0.02 250);
+  --duotone-light: oklch(0.70 0.02 250);
+}
+
+[data-palette="80s"] {
+  --duotone-dark: oklch(0.25 0.20 300);
+  --duotone-light: oklch(0.65 0.25 330);
+}
+
+[data-palette="matrix"] {
+  --duotone-dark: oklch(0.15 0.10 145);
+  --duotone-light: oklch(0.60 0.22 145);
+}
+
+[data-palette="subtle"] {
+  --duotone-dark: oklch(0.35 0.06 180);
+  --duotone-light: oklch(0.65 0.08 170);
+}
+
+
+/* ========================================
    FULL THEME OVERRIDES
    Themes that customize entire color palette
    Apply via: <html data-theme="ocean">

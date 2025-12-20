@@ -52,6 +52,7 @@
 @import "./components/indicator.css";
 @import "./components/settings-panel.css";
 @import "./components/scroll-progress.css";
+@import "./components/themed-images.css";
 
 /* Animations */
 @import "./animations/scroll-reveal.css";

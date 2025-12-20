@@ -134,7 +134,7 @@ nav: home
   </header>
 
   <!-- Theme Selection Cards (Compact) -->
-  <section class="section" data-layout="center" data-padding="md">
+  <section class="section" data-layout="center" data-padding="md" data-bg="tinted">
     <h2>Choose Your Theme</h2>
     <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto; margin-block-end: var(--space-6);">
       Seven complete themes with motion, colors, fonts, and layout.
@@ -466,6 +466,123 @@ nav: home
     outline: 3px solid var(--accent);
     outline-offset: -3px;
     z-index: 1;
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC GRID LAYOUTS
+     Each theme shows its character in the grid
+     ======================================== */
+
+  /* Still: Minimal, precise, bottom-left aligned (Swiss style) */
+  [data-motion="still"] .theme-grid__content {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-4);
+  }
+  [data-motion="still"] .theme-grid__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  [data-motion="still"] .theme-grid__desc {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.02em;
+  }
+
+  /* Serene: Elegant, centered, larger serif feel */
+  [data-motion="serene"] .theme-grid__content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-6);
+  }
+  [data-motion="serene"] .theme-grid__name {
+    font-size: clamp(var(--font-size-2xl), 5vw, var(--font-size-4xl));
+    font-weight: var(--weight-normal);
+    font-style: italic;
+  }
+  [data-motion="serene"] .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    font-style: italic;
+    opacity: 0.85;
+  }
+
+  /* Stream: Horizontal emphasis, left-aligned, modern */
+  [data-motion="stream"] .theme-grid__content {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-5);
+  }
+  [data-motion="stream"] .theme-grid__name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--weight-semibold);
+  }
+  [data-motion="stream"] .theme-grid__name::after {
+    content: "";
+    display: block;
+    inline-size: 3rem;
+    block-size: 2px;
+    background: white;
+    margin-block-start: var(--space-2);
+    opacity: 0.7;
+  }
+
+  /* Cascade: Playful, offset positioning */
+  [data-motion="cascade"] .theme-grid__content {
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: right;
+    padding: var(--space-5);
+    padding-block-start: 30%;
+  }
+  [data-motion="cascade"] .theme-grid__name {
+    font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-2xl));
+    font-weight: var(--weight-bold);
+  }
+
+  /* Rapids: Bold, large, punchy */
+  [data-motion="rapids"] .theme-grid__content {
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-6);
+  }
+  [data-motion="rapids"] .theme-grid__name {
+    font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-4xl));
+    font-weight: var(--weight-black, 900);
+    text-transform: uppercase;
+    line-height: 0.9;
+  }
+  [data-motion="rapids"] .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Tsunami: Maximum impact, centered, dramatic */
+  [data-motion="tsunami"] .theme-grid__content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-6);
+  }
+  [data-motion="tsunami"] .theme-grid__name {
+    font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-5xl));
+    font-weight: var(--weight-black, 900);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.85;
+  }
+  [data-motion="tsunami"] .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-block-start: var(--space-3);
   }
 
 
