@@ -1,0 +1,109 @@
+---
+title: Page Not Found
+description: The page you're looking for doesn't exist
+layout: template
+nav: ""
+permalink: /404.html
+---
+<!-- 404 Hero -->
+<section class="hero" data-layout="center" data-padding="xl" data-size="full" data-overlay="medium" style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);">
+  <div class="hero__background">
+    <img src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_83c574a8-05d0-4522-949a-bf25ef8fd5e0_0.png" alt="Turbulent waters" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+
+  <div style="text-align: center;">
+    <p style="font-size: var(--font-size-8xl); font-weight: 800; margin-block-end: var(--space-4); opacity: 0.3;">404</p>
+    <h1 class="hero__headline">Lost in the Current</h1>
+    <p class="hero__subheadline" style="max-inline-size: 45ch; margin-inline: auto;">The page you're looking for seems to have drifted away. Don't worry, we'll help you find your way back.</p>
+
+    <div class="hero__actions" style="margin-block-start: var(--space-8);">
+      <a href="index.html"><button>Back to Home</button></a>
+      <button data-variant="outline" style="border-color: white; color: white;" onclick="history.back()">Go Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- Helpful Links -->
+<section class="section" data-padding="xl">
+  <div data-layout="center" data-width="default">
+    <h2 style="text-align: center; margin-block-end: var(--space-3);">Maybe You Were Looking For...</h2>
+    <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-8);">Here are some popular destinations that might help.</p>
+
+    <div class="grid" style="--grid-min: 200px; gap: var(--space-4);">
+      <a href="index.html" style="text-decoration: none;">
+        <article class="card" style="text-align: center; transition: transform 0.2s ease;">
+          <div class="card__content">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2);">🏠</span>
+            <h3 class="card__title">Home</h3>
+            <p class="card__description">Start from the beginning</p>
+          </div>
+        </article>
+      </a>
+
+      <a href="about.html" style="text-decoration: none;">
+        <article class="card" style="text-align: center; transition: transform 0.2s ease;">
+          <div class="card__content">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2);">👋</span>
+            <h3 class="card__title">About Us</h3>
+            <p class="card__description">Learn who we are</p>
+          </div>
+        </article>
+      </a>
+
+      <a href="services.html" style="text-decoration: none;">
+        <article class="card" style="text-align: center; transition: transform 0.2s ease;">
+          <div class="card__content">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2);">⚡</span>
+            <h3 class="card__title">Services</h3>
+            <p class="card__description">See what we offer</p>
+          </div>
+        </article>
+      </a>
+
+      <a href="gallery.html" style="text-decoration: none;">
+        <article class="card" style="text-align: center; transition: transform 0.2s ease;">
+          <div class="card__content">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2);">🎨</span>
+            <h3 class="card__title">Gallery</h3>
+            <p class="card__description">View our work</p>
+          </div>
+        </article>
+      </a>
+
+      <a href="blog.html" style="text-decoration: none;">
+        <article class="card" style="text-align: center; transition: transform 0.2s ease;">
+          <div class="card__content">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2);">📝</span>
+            <h3 class="card__title">Blog</h3>
+            <p class="card__description">Read our insights</p>
+          </div>
+        </article>
+      </a>
+
+      <a href="contact.html" style="text-decoration: none;">
+        <article class="card" style="text-align: center; transition: transform 0.2s ease;">
+          <div class="card__content">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2);">✉️</span>
+            <h3 class="card__title">Contact</h3>
+            <p class="card__description">Get in touch</p>
+          </div>
+        </article>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Search Section -->
+<section class="section" data-padding="lg" data-layout="center" data-theme="subtle">
+  <h3 style="margin-block-end: var(--space-4);">Or Try Searching</h3>
+  <div class="input-group" style="max-inline-size: 400px; margin-inline: auto;">
+    <input type="search" placeholder="Search our site...">
+    <button>Search</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+  <p style="color: var(--color-text-muted);">Built with the Fluid Framework</p>
+  {% include version.html %}
+</footer>
