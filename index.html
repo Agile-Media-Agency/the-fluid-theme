@@ -470,6 +470,56 @@ nav: home
 
 
   /* ========================================
+     THEME-SPECIFIC GRID ITEM SHAPES
+     Each theme has distinctive border-radius
+     ======================================== */
+
+  /* Default: No special radius */
+  .theme-grid__item {
+    border-radius: 0;
+  }
+
+  /* Still: Sharp, precise rectangles */
+  [data-motion="still"] .theme-grid__item {
+    border-radius: 0;
+  }
+
+  /* Serene: Soft, pillowy corners - NOT full pills */
+  [data-motion="serene"] .theme-grid__item {
+    border-radius: 24px;
+  }
+
+  /* Stream: Clean, moderate corners */
+  [data-motion="stream"] .theme-grid__item {
+    border-radius: 12px;
+  }
+
+  /* Flowing: Balanced rounded corners */
+  [data-motion="flowing"] .theme-grid__item {
+    border-radius: 16px;
+  }
+
+  /* Cascade: Bubbly, friendly corners */
+  [data-motion="cascade"] .theme-grid__item {
+    border-radius: 32px;
+  }
+
+  /* Rapids: Moderate, punchy corners */
+  [data-motion="rapids"] .theme-grid__item {
+    border-radius: 12px;
+  }
+
+  /* Tsunami: ASYMMETRIC - one rounded corner, three sharp */
+  [data-motion="tsunami"] .theme-grid__item {
+    border-radius: 0 32px 0 0; /* Only top-right */
+  }
+  /* Alternate items get different corner */
+  [data-motion="tsunami"] .theme-grid__item:nth-child(even) {
+    border-radius: 32px 0 0 0; /* Only top-left */
+  }
+
+
+  /* ========================================
      THEME-SPECIFIC GRID LAYOUTS
      Each theme shows its character in the grid
      ======================================== */
