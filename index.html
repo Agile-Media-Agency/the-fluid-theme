@@ -1,6 +1,6 @@
 ---
 title: Home
-description: Fluid Framework - A modern, semantic CSS design system
+description: Fluid Framework - A modern, semantic CSS design system with complete theme presets
 nav: home
 ---
 <div class="container">
@@ -10,7 +10,166 @@ nav: home
     <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
       No build step. No JavaScript required. Just CSS.
     </p>
+    <div class="cluster" style="margin-block-start: var(--space-6); justify-content: center;">
+      <a href="{{ '/examples/foundation.html' | relative_url }}" class="btn" data-variant="primary">
+        Explore Components
+      </a>
+      <button class="btn" data-variant="outline" onclick="toggleSettingsPanel()">
+        Customize Theme
+      </button>
+    </div>
   </header>
+
+  <!-- Theme Showcase Section -->
+  <section class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+    <h2>Choose Your Theme</h2>
+    <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto;">
+      Seven complete themes, each with its own personality. Motion, colors, fonts, and layout all work together.
+    </p>
+    <div class="theme-showcase" style="margin-block-start: var(--space-8);">
+      <div class="grid" style="--grid-min: 18rem; gap: var(--space-4);">
+        <!-- Still -->
+        <button class="theme-preview" onclick="setThemePreset('still')" data-theme-preset="still">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="12" x2="15" y2="12"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Still</h3>
+          </div>
+          <p class="theme-preview__desc">Minimal. No animations. Swiss precision.</p>
+          <div class="theme-preview__tags">
+            <span>Mono palette</span>
+            <span>Inter font</span>
+            <span>Sharp corners</span>
+          </div>
+        </button>
+
+        <!-- Serene -->
+        <button class="theme-preview" onclick="setThemePreset('serene')" data-theme-preset="serene">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3c.5 0 1 .5 1 1v1c0 .5-.5 1-1 1s-1-.5-1-1V4c0-.5.5-1 1-1z"/>
+                <circle cx="12" cy="12" r="4"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Serene</h3>
+          </div>
+          <p class="theme-preview__desc">Calm. Ken Burns fades. Editorial elegance.</p>
+          <div class="theme-preview__tags">
+            <span>Morandi palette</span>
+            <span>Garamond + Lato</span>
+            <span>Generous space</span>
+          </div>
+        </button>
+
+        <!-- Stream -->
+        <button class="theme-preview" onclick="setThemePreset('stream')" data-theme-preset="stream">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 12h16"/>
+                <path d="M4 8h12"/>
+                <path d="M8 16h12"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Stream</h3>
+          </div>
+          <p class="theme-preview__desc">Modern. Horizontal flow. Tech-forward.</p>
+          <div class="theme-preview__tags">
+            <span>Subtle palette</span>
+            <span>Source Sans 3</span>
+            <span>Clean lines</span>
+          </div>
+        </button>
+
+        <!-- Flowing (Default) -->
+        <button class="theme-preview" onclick="setThemePreset('flowing')" data-theme-preset="flowing">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12c3-4 6-4 9 0s6 4 9 0"/>
+                <path d="M3 17c3-4 6-4 9 0s6 4 9 0"/>
+                <path d="M3 7c3-4 6-4 9 0s6 4 9 0"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Flowing</h3>
+            <span class="theme-preview__badge">Default</span>
+          </div>
+          <p class="theme-preview__desc">Balanced. Organic. Versatile.</p>
+          <div class="theme-preview__tags">
+            <span>Fluid palette</span>
+            <span>Outfit + Inter</span>
+            <span>Natural rhythm</span>
+          </div>
+        </button>
+
+        <!-- Cascade -->
+        <button class="theme-preview" onclick="setThemePreset('cascade')" data-theme-preset="cascade">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3v4"/>
+                <path d="M8 7v4"/>
+                <path d="M16 7v4"/>
+                <path d="M12 11v4"/>
+                <path d="M8 15v4"/>
+                <path d="M16 15v4"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Cascade</h3>
+          </div>
+          <p class="theme-preview__desc">Playful. Waterfall stagger. Warm.</p>
+          <div class="theme-preview__tags">
+            <span>Pastel palette</span>
+            <span>Nunito fonts</span>
+            <span>Rounded corners</span>
+          </div>
+        </button>
+
+        <!-- Rapids -->
+        <button class="theme-preview" onclick="setThemePreset('rapids')" data-theme-preset="rapids">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Rapids</h3>
+          </div>
+          <p class="theme-preview__desc">Fast. Energetic. Spring bounces.</p>
+          <div class="theme-preview__tags">
+            <span>Bold palette</span>
+            <span>Archivo Black</span>
+            <span>Tight spacing</span>
+          </div>
+        </button>
+
+        <!-- Tsunami -->
+        <button class="theme-preview" onclick="setThemePreset('tsunami')" data-theme-preset="tsunami">
+          <div class="theme-preview__header">
+            <span class="theme-preview__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 12c2-6 6-8 10-4s8 2 10-4"/>
+                <path d="M2 18c2-6 6-8 10-4s8 2 10-4"/>
+              </svg>
+            </span>
+            <h3 class="theme-preview__name">Tsunami</h3>
+          </div>
+          <p class="theme-preview__desc">Bold. Dramatic wave. Maximum impact.</p>
+          <div class="theme-preview__tags">
+            <span>80s palette</span>
+            <span>Space Grotesk</span>
+            <span>Deep shadows</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
 
   <section class="section" data-layout="center" data-padding="md">
     <h2>Examples</h2>
@@ -53,20 +212,20 @@ nav: home
     <div class="grid" style="--grid-min: 14rem; margin-block-start: var(--space-6);">
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">CSS Layers</h4>
-          <p class="card__description">Predictable cascade with @layer</p>
+          <h4 class="card__title">7 Complete Themes</h4>
+          <p class="card__description">Motion, colors, fonts, layout</p>
         </div>
       </div>
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">Design Tokens</h4>
-          <p class="card__description">CSS custom properties for everything</p>
+          <h4 class="card__title">View Transitions</h4>
+          <p class="card__description">Unique page transitions per theme</p>
         </div>
       </div>
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">Container Queries</h4>
-          <p class="card__description">Components respond to their container</p>
+          <h4 class="card__title">9 Color Palettes</h4>
+          <p class="card__description">OKLCH-based, perceptually uniform</p>
         </div>
       </div>
       <div class="card" data-variant="filled">
@@ -111,8 +270,110 @@ nav: home
       · Built by <a href="https://agilemediaagency.com">Agile Media Agency</a>
     </p>
     <p style="color: var(--color-text-subtle); font-size: var(--font-size-sm); margin-block-start: var(--space-3);">
-      Use the theme toggle in the nav or your system settings for dark mode.
+      Click the gear icon to customize, or try the theme cards above.
     </p>
     {% include version.html %}
   </footer>
 </div>
+
+<style>
+  /* Theme Preview Cards */
+  .theme-preview {
+    appearance: none;
+    border: none;
+    background: var(--color-surface-raised);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    text-align: left;
+    cursor: pointer;
+    border: 2px solid var(--color-border);
+    transition: all var(--duration-normal) var(--ease-fluid);
+  }
+
+  .theme-preview:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .theme-preview[data-active] {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+  }
+
+  .theme-preview__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-block-end: var(--space-3);
+  }
+
+  .theme-preview__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    color: var(--accent);
+  }
+
+  .theme-preview__icon svg {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+  .theme-preview__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-semibold);
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  .theme-preview__badge {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-2);
+    background: var(--accent);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    margin-inline-start: auto;
+  }
+
+  .theme-preview__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3) 0;
+  }
+
+  .theme-preview__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .theme-preview__tags span {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-subtle);
+  }
+</style>
+
+<script>
+  // Update theme preview cards when theme changes
+  function updateThemePreviews() {
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    document.querySelectorAll('.theme-preview').forEach(preview => {
+      if (preview.dataset.themePreset === currentMotion) {
+        preview.setAttribute('data-active', '');
+      } else {
+        preview.removeAttribute('data-active');
+      }
+    });
+  }
+
+  // Call on page load
+  document.addEventListener('DOMContentLoaded', updateThemePreviews);
+</script>

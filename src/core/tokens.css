@@ -474,7 +474,8 @@
 
   /* === STILL: Instant, no animation ===
      Like perfectly still water - no movement at all.
-     For users who prefer no motion or maximum performance. */
+     For users who prefer no motion or maximum performance.
+     Layout: Structured, grid-based, minimal decoration. */
   :root[data-motion="still"],
   [data-motion="still"] {
     --motion-scale: 0;
@@ -486,12 +487,23 @@
     --duration-slowest: 0ms;
     --ease-fluid: linear;
     --ease-settle: linear;
+
+    /* Layout: Swiss design, precise, grid-focused */
+    --space-section: var(--space-12);
+    --radius-sm: 0;
+    --radius-md: 2px;
+    --radius-lg: 4px;
+    --radius-xl: 4px;
+    --shadow-sm: none;
+    --shadow-md: 0 1px 2px oklch(from var(--shadow-color) l c h / 0.1);
+    --shadow-lg: 0 2px 4px oklch(from var(--shadow-color) l c h / 0.1);
   }
 
   /* === SERENE: Ken Burns effect ===
      Like gazing at a reflection in still water.
      Very slow crossfades, gentle zoom on images.
-     Meditative, contemplative motion. */
+     Meditative, contemplative motion.
+     Layout: Generous whitespace, classical proportions. */
   :root[data-motion="serene"],
   [data-motion="serene"] {
     --motion-scale: 0.3;
@@ -505,11 +517,18 @@
     --ease-settle: cubic-bezier(0.25, 0.1, 0.25, 1);
     /* Ken Burns zoom amount for images */
     --kenburns-scale: 1.05;
+
+    /* Layout: Editorial, lots of breathing room */
+    --space-section: var(--space-24);
+    --space-gutter: var(--space-8);
+    --leading-normal: 1.75;
+    --container-prose: 38rem;
   }
 
   /* === TRICKLING: Minimal, quick motion ===
      Like a small brook - slight movement, nothing dramatic.
-     Quick, subtle feedback for interactions. */
+     Quick, subtle feedback for interactions.
+     Layout: Compact, efficient, subtle styling. */
   :root[data-motion="trickling"],
   [data-motion="trickling"] {
     --motion-scale: 0.5;
@@ -517,25 +536,75 @@
     --duration-normal: 175ms;
     --duration-slow: 250ms;
     --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Layout: Understated, efficient use of space */
+    --space-section: var(--space-12);
+    --radius-md: var(--radius-sm);
+    --radius-lg: var(--radius-md);
+  }
+
+  /* === STREAM: Horizontal flow ===
+     Like a gentle stream - content flows sideways.
+     Modern, tech-forward feel.
+     Layout: Clean lines, horizontal emphasis. */
+  :root[data-motion="stream"],
+  [data-motion="stream"] {
+    --motion-scale: 0.7;
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 450ms;
+    --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Layout: Modern, clean horizontal lines */
+    --space-section: var(--space-16);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
   }
 
   /* === FLOWING: Connected horizontal flow (default) ===
      Like a gentle stream - content flows left to right.
      Old content pushes out as new content slides in.
-     The default, balanced motion style. */
+     The default, balanced motion style.
+     Layout: Balanced, organic, versatile. */
   :root[data-motion="flowing"],
   [data-motion="flowing"],
   :root:not([data-motion]) {
     --motion-scale: 1;
     --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
-    /* Uses default durations from base tokens */
+    /* Uses default durations and layout from base tokens */
+  }
+
+  /* === CASCADE: Waterfall effect ===
+     Like a waterfall - content cascades down in layers.
+     Playful, friendly, staggered animations.
+     Layout: Rounded, warm, approachable. */
+  :root[data-motion="cascade"],
+  [data-motion="cascade"] {
+    --motion-scale: 1.2;
+    --duration-fast: 200ms;
+    --duration-normal: 350ms;
+    --duration-slow: 500ms;
+    --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Slight bounce */
+    --ease-settle: cubic-bezier(0.22, 1.2, 0.36, 1);
+
+    /* Layout: Friendly, rounded, warm */
+    --space-section: var(--space-16);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-md: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.08);
+    --shadow-lg: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.12);
   }
 
   /* === RAPIDS: Vertical spring effect ===
      Like rushing water - new content rushes in from top,
      accelerates, then pulls the old content away.
-     Energetic, bouncy, with overshoot. */
+     Energetic, bouncy, with overshoot.
+     Layout: Compact, bold, athletic. */
   :root[data-motion="rapids"],
   [data-motion="rapids"] {
     --motion-scale: 1.5;
@@ -546,12 +615,22 @@
     --ease-settle: cubic-bezier(0.22, 1.4, 0.36, 1); /* Spring settle */
     /* Stagger delay for layered effect */
     --rapids-stagger: 80ms;
+
+    /* Layout: Tight, punchy, high-energy */
+    --space-section: var(--space-12);
+    --space-gutter: var(--space-4);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-md: 0 4px 8px oklch(from var(--shadow-color) l c h / 0.15);
+    --shadow-lg: 0 8px 16px oklch(from var(--shadow-color) l c h / 0.2);
   }
 
   /* === TSUNAMI: Diagonal wave crash ===
      Maximum impact - content crashes in diagonally
      like a wave breaking. Strong overshoot, dramatic.
-     For bold, attention-grabbing interfaces. */
+     For bold, attention-grabbing interfaces.
+     Layout: Bold, full-width, impactful. */
   :root[data-motion="tsunami"],
   [data-motion="tsunami"] {
     --motion-scale: 2;
@@ -560,6 +639,15 @@
     --duration-slow: 900ms;
     --ease-fluid: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Strong overshoot */
     --ease-settle: cubic-bezier(0.34, 1.8, 0.64, 1); /* Dramatic settle */
+
+    /* Layout: Bold, dramatic, high-contrast */
+    --space-section: var(--space-20);
+    --radius-sm: 0;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --shadow-md: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.2);
+    --shadow-lg: 0 16px 48px oklch(from var(--shadow-color) l c h / 0.25);
+    --shadow-xl: 0 24px 64px oklch(from var(--shadow-color) l c h / 0.3);
   }
 
 
@@ -584,121 +672,157 @@
     from { opacity: 0; }
   }
 
-  /* Horizontal slide (Flowing) */
-  @keyframes slide-out-left {
-    to { transform: translateX(-100%); }
-  }
-
-  @keyframes slide-in-right {
-    from { transform: translateX(100%); }
-  }
-
-  /* Rapids: Fluid dynamics - new content pushes through, drags old */
-  @keyframes rapids-old {
+  /* Horizontal slide (Flowing) - Smooth L→R with organic ease */
+  @keyframes flowing-out {
     0% {
-      transform: translateY(0);
+      transform: translateX(0);
       opacity: 1;
     }
-    /* Old content stays put initially while new overlaps */
-    40% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    /* Old content starts moving slowly - friction/lag */
-    60% {
-      transform: translateY(-15%);
+    /* Gentle start */
+    30% {
+      transform: translateX(15%);
       opacity: 0.9;
     }
-    /* Accelerates as new content gains traction and pulls it */
-    80% {
-      transform: translateY(-60%);
-      opacity: 0.5;
+    /* Peak momentum */
+    60% {
+      transform: translateX(50%);
+      opacity: 0.6;
+    }
+    /* Slow, organic finish */
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes flowing-in {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    /* Gentle start from left */
+    30% {
+      transform: translateX(-50%);
+      opacity: 0.4;
+    }
+    /* Peak momentum */
+    60% {
+      transform: translateX(-15%);
+      opacity: 0.8;
+    }
+    /* Slow, organic settle - ease out gently */
+    85% {
+      transform: translateX(-3%);
+      opacity: 0.95;
     }
     100% {
-      transform: translateY(-100%);
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Rapids: Content rushes toward you (zoom out), new loads behind */
+  @keyframes rapids-old {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    /* Begins to rush toward viewer */
+    30% {
+      transform: scale(1.3);
+      opacity: 0.9;
+    }
+    /* Rushes past - expanding rapidly */
+    60% {
+      transform: scale(2);
+      opacity: 0.5;
+    }
+    /* Exits view quickly */
+    100% {
+      transform: scale(3);
       opacity: 0;
     }
   }
 
   @keyframes rapids-new {
     0% {
-      /* Starts from bottom of screen */
-      transform: translateY(100%);
-      opacity: 0.8;
+      /* Starts behind, smaller */
+      transform: scale(0.5);
+      opacity: 0;
     }
-    /* Initial slow surge - emerging */
-    15% {
-      transform: translateY(90%);
+    /* Quickly becomes visible */
+    20% {
+      transform: scale(0.7);
+      opacity: 0.5;
+    }
+    /* Rushes into place */
+    60% {
+      transform: scale(0.95);
       opacity: 0.9;
     }
-    /* Overlaps old content ~10% - friction slows it */
-    35% {
-      transform: translateY(60%);
-      opacity: 1;
-    }
-    /* Gains traction - accelerates */
-    60% {
-      transform: translateY(25%);
-      opacity: 1;
-    }
-    /* Final push - pulls old content along */
-    85% {
-      transform: translateY(5%);
-      opacity: 1;
-    }
+    /* Final position - direct */
     100% {
-      transform: translateY(0);
+      transform: scale(1);
       opacity: 1;
     }
   }
 
-  /* Diagonal wave (Tsunami) - Rise, crest, crash like Hokusai's Great Wave */
+  /* Tsunami: Wave arc - comes from left, rises up 10%, then sweeps down at angle */
   @keyframes wave-out {
     0% {
-      transform: translateY(0) scale(1);
+      transform: translate(0, 0) scale(1);
       opacity: 1;
     }
-    30% {
-      /* Rising - wave builds up */
-      transform: translateY(-10%) scale(1.02);
+    /* Rise up - wave building */
+    25% {
+      transform: translate(5%, -10%) scale(1.02);
       opacity: 1;
     }
-    50% {
-      /* Cresting - peak of the wave */
-      transform: translateY(-15%) rotate(-2deg) scale(1.05);
+    /* Peak of wave arc */
+    45% {
+      transform: translate(15%, -12%) rotate(-2deg) scale(1.03);
       opacity: 0.9;
     }
+    /* Sweeping down and away at angle */
+    70% {
+      transform: translate(40%, 15%) rotate(-5deg) scale(0.95);
+      opacity: 0.5;
+    }
     100% {
-      /* Crashing down and away */
-      transform: translate(-40%, 50%) rotate(-8deg) scale(0.85);
+      /* Exit at angle */
+      transform: translate(80%, 40%) rotate(-8deg) scale(0.85);
       opacity: 0;
     }
   }
 
   @keyframes wave-in {
     0% {
-      /* Starting from below, building up */
-      transform: translateY(100%) scale(0.9);
+      /* Starting from left, below horizon */
+      transform: translate(-100%, 20%) scale(0.9);
       opacity: 0;
     }
-    40% {
-      /* Rising up, gaining momentum */
-      transform: translateY(-5%) scale(1.03);
-      opacity: 0.8;
+    /* Rising up as it comes in */
+    30% {
+      transform: translate(-40%, -8%) scale(0.98);
+      opacity: 0.6;
     }
-    60% {
-      /* Cresting - slight overshoot */
-      transform: translateY(-8%) scale(1.05);
+    /* Cresting - peak of wave */
+    50% {
+      transform: translate(-10%, -12%) scale(1.02);
+      opacity: 0.9;
+    }
+    /* Coming down from peak */
+    70% {
+      transform: translate(5%, -5%) scale(1.01);
       opacity: 1;
     }
-    80% {
-      /* Settling back */
-      transform: translateY(2%) scale(1.01);
+    /* Settling with slight overshoot */
+    85% {
+      transform: translate(-2%, 2%) scale(1);
       opacity: 1;
     }
     100% {
-      /* Final position with bounce settle */
-      transform: translateY(0) scale(1);
+      transform: translate(0, 0) scale(1);
       opacity: 1;
     }
   }
@@ -716,15 +840,13 @@
 
 
   /* --- Default transition (Flowing) --- */
-  /* All transitions run at 2x duration for smoother, more visible motion */
+  /* Smooth left-to-right with organic ease-in-out */
   ::view-transition-old(root) {
-    animation: var(--duration-slower) var(--ease-fluid) both fade-out,
-               var(--duration-slower) var(--ease-fluid) both slide-out-left;
+    animation: var(--duration-slower) cubic-bezier(0.4, 0, 0.2, 1) both flowing-out;
   }
 
   ::view-transition-new(root) {
-    animation: var(--duration-slower) var(--ease-fluid) both fade-in,
-               var(--duration-slower) var(--ease-fluid) both slide-in-right;
+    animation: var(--duration-slower) cubic-bezier(0.4, 0, 0.2, 1) both flowing-in;
   }
 
 

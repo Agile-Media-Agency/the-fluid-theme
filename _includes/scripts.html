@@ -24,7 +24,8 @@
 
   function updateThemeButtons() {
     const mode = localStorage.getItem('fluid-theme-mode') || 'auto';
-    document.querySelectorAll('.theme-btn').forEach(btn => {
+    // Support both old .theme-btn and new .mode-btn class names
+    document.querySelectorAll('.theme-btn, .mode-btn').forEach(btn => {
       if (btn.dataset.themeOption === mode) {
         btn.setAttribute('data-active', '');
       } else {
@@ -186,6 +187,11 @@
     localStorage.setItem('fluid-motion', level);
     updateMotionSelect();
 
+    // Load theme fonts if available
+    if (typeof loadThemeFonts === 'function') {
+      loadThemeFonts(level);
+    }
+
     // If using Fluid palette without manual accent, update swatches
     const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
     const accent = document.documentElement.getAttribute('data-accent');
@@ -204,42 +210,76 @@
 
 
   // ========================================
-  // SETTINGS PANEL TOGGLE
+  // THEME PRESETS (Complete child themes)
+  // ========================================
+
+  // Theme preset configurations
+  // Each preset maps a motion style to its recommended palette
+  const themePresets = {
+    still: { motion: 'still', palette: 'mono' },        // Minimal, focused
+    serene: { motion: 'serene', palette: 'morandi' },   // Calm, muted
+    stream: { motion: 'stream', palette: 'subtle' },    // Modern, understated
+    flowing: { motion: 'flowing', palette: 'fluid' },   // Balanced, water-inspired
+    cascade: { motion: 'cascade', palette: 'pastel' },  // Friendly, soft
+    rapids: { motion: 'rapids', palette: 'bold' },      // Energetic, vibrant
+    tsunami: { motion: 'tsunami', palette: '80s' }      // Bold, retro impact
+  };
+
+  function setThemePreset(preset) {
+    const config = themePresets[preset];
+    if (!config) return;
+
+    // Apply motion and palette
+    setMotion(config.motion);
+    setPalette(config.palette);
+
+    // Store the preset
+    localStorage.setItem('fluid-preset', preset);
+
+    // Update UI
+    updateThemeCards();
+  }
+
+  function updateThemeCards() {
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    document.querySelectorAll('.theme-card').forEach(card => {
+      if (card.dataset.themePreset === currentMotion) {
+        card.setAttribute('data-active', '');
+      } else {
+        card.removeAttribute('data-active');
+      }
+    });
+  }
+
+
+  // ========================================
+  // SETTINGS DRAWER TOGGLE
   // ========================================
 
   function toggleSettingsPanel() {
-    const panel = document.getElementById('settings-panel');
-    const toggle = panel.querySelector('.settings-panel__toggle');
-    const isOpen = panel.hasAttribute('data-open');
+    const drawer = document.getElementById('settings-panel');
+    const fab = document.getElementById('settings-fab');
+    const isOpen = drawer.hasAttribute('data-open');
 
     if (isOpen) {
-      panel.removeAttribute('data-open');
-      toggle.setAttribute('aria-expanded', 'false');
+      drawer.removeAttribute('data-open');
+      if (fab) fab.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     } else {
-      panel.setAttribute('data-open', '');
-      toggle.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('data-open', '');
+      if (fab) fab.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     }
   }
 
-  // Close panel when clicking outside
-  document.addEventListener('click', function(e) {
-    const panel = document.getElementById('settings-panel');
-    if (panel && panel.hasAttribute('data-open')) {
-      if (!panel.contains(e.target)) {
-        panel.removeAttribute('data-open');
-        panel.querySelector('.settings-panel__toggle').setAttribute('aria-expanded', 'false');
-      }
-    }
-  });
-
-  // Close panel with Escape key
+  // Close drawer with Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      const panel = document.getElementById('settings-panel');
-      if (panel && panel.hasAttribute('data-open')) {
-        panel.removeAttribute('data-open');
-        panel.querySelector('.settings-panel__toggle').setAttribute('aria-expanded', 'false');
-        panel.querySelector('.settings-panel__toggle').focus();
+      const drawer = document.getElementById('settings-panel');
+      if (drawer && drawer.hasAttribute('data-open')) {
+        toggleSettingsPanel();
+        const fab = document.getElementById('settings-fab');
+        if (fab) fab.focus();
       }
     }
   });
@@ -257,6 +297,7 @@
     localStorage.removeItem('fluid-motion');
     localStorage.removeItem('fluid-palette');
     localStorage.removeItem('fluid-contrast');
+    localStorage.removeItem('fluid-preset');
 
     // Reset to system/defaults
     document.documentElement.removeAttribute('data-theme');
@@ -281,6 +322,7 @@
     updateSubduedToggle();
     updatePaletteUI();
     updateMotionSelect();
+    updateThemeCards();
   }
 
 
@@ -350,17 +392,86 @@
 
 
   // ========================================
+  // SCROLL PROGRESS INDICATOR
+  // ========================================
+
+  function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+
+      progressBar.style.setProperty('--_progress', progress);
+
+      // Add data attribute for CSS hooks
+      if (progress === 0) {
+        progressBar.setAttribute('data-progress', '0');
+      } else {
+        progressBar.removeAttribute('data-progress');
+      }
+    }
+
+    // Throttle scroll updates for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial update
+    updateProgress();
+  }
+
+  function setScrollProgressPosition(position) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      progressBar.setAttribute('data-position', position);
+      localStorage.setItem('fluid-scroll-progress-position', position);
+    }
+  }
+
+  function toggleScrollProgress(show) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      if (show) {
+        progressBar.removeAttribute('data-hidden');
+        localStorage.removeItem('fluid-scroll-progress-hidden');
+      } else {
+        progressBar.setAttribute('data-hidden', '');
+        localStorage.setItem('fluid-scroll-progress-hidden', 'true');
+      }
+    }
+  }
+
+
+  // ========================================
   // SCROLL REVEAL ANIMATIONS
   // ========================================
 
   function initScrollReveal() {
-    const elements = document.querySelectorAll('[data-reveal]');
-    if (!elements.length) return;
+    // Get motion style - if 'still', skip all animations
+    const motionStyle = document.documentElement.getAttribute('data-motion') || 'flowing';
+    if (motionStyle === 'still') return;
+
+    // Select both explicit [data-reveal] elements AND sections for auto-reveal
+    const explicitElements = document.querySelectorAll('[data-reveal]');
+    const sections = document.querySelectorAll('.section:not([data-reveal])');
+    const allElements = [...explicitElements, ...sections];
+
+    if (!allElements.length) return;
 
     // Check for IntersectionObserver support
     if (!('IntersectionObserver' in window)) {
       // Fallback: reveal all immediately
-      elements.forEach(el => el.classList.add('revealed'));
+      allElements.forEach(el => el.classList.add('revealed'));
       return;
     }
 
@@ -377,7 +488,7 @@
       threshold: 0.1
     });
 
-    elements.forEach(el => observer.observe(el));
+    allElements.forEach(el => observer.observe(el));
   }
 
 
@@ -423,6 +534,18 @@
       document.documentElement.setAttribute('data-motion', savedMotion);
     }
 
+    // Scroll progress settings
+    const savedScrollProgressHidden = localStorage.getItem('fluid-scroll-progress-hidden');
+    const savedScrollProgressPosition = localStorage.getItem('fluid-scroll-progress-position');
+    if (savedScrollProgressHidden) {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.setAttribute('data-hidden', '');
+    }
+    if (savedScrollProgressPosition) {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.setAttribute('data-position', savedScrollProgressPosition);
+    }
+
     // Update UI controls once DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
@@ -430,8 +553,10 @@
         updateSubduedToggle();
         updatePaletteUI();
         updateMotionSelect();
+        updateThemeCards();
         initAnimatedProgress();
         initAutoStatus();
+        initScrollProgress();
         initScrollReveal();
       });
     } else {
@@ -439,8 +564,10 @@
       updateSubduedToggle();
       updatePaletteUI();
       updateMotionSelect();
+      updateThemeCards();
       initAnimatedProgress();
       initAutoStatus();
+      initScrollProgress();
       initScrollReveal();
     }
   })();

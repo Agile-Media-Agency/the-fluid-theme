@@ -1,56 +1,39 @@
 /**
- * Fluid Framework - Settings Panel Component
+ * Fluid Framework - Settings Drawer Component
  * @layer components
  *
- * A floating panel for theme customization.
- * Demonstrates the framework's flexibility in action.
+ * A slide-out drawer for theme customization.
+ * Slides in from the right edge with a backdrop.
  *
- * Usage:
- *   <div class="settings-panel" data-open>
- *     <button class="settings-panel__toggle">...</button>
- *     <div class="settings-panel__content">...</div>
- *   </div>
+ * Structure:
+ *   .settings-drawer (container, covers viewport when open)
+ *     .settings-drawer__backdrop (clickable overlay)
+ *     .settings-drawer__panel (actual drawer)
+ *   .settings-fab (floating action button)
  */
 
 @layer components {
   /* ========================================
-     SETTINGS PANEL CONTAINER
-     Fixed position, floating in corner
+     FLOATING ACTION BUTTON (FAB)
+     Always visible in bottom-right corner
      ======================================== */
 
-  .settings-panel {
-    --_panel-size: 20rem;
-    --_fab-size: 3.25rem;
-    --_offset: var(--space-5);
-
-    position: fixed;
-    inset-block-end: var(--_offset);
-    inset-inline-end: var(--_offset);
-    z-index: var(--z-overlay);
-
-    /* For toggle button positioning */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: var(--space-3);
-  }
-
-
-  /* ========================================
-     TOGGLE BUTTON (FAB)
-     Floating action button to open/close
-     ======================================== */
-
-  .settings-panel__toggle {
+  .settings-fab {
     /* Reset */
     appearance: none;
     border: none;
     background: none;
     cursor: pointer;
 
+    /* Position */
+    position: fixed;
+    inset-block-end: var(--space-5);
+    inset-inline-end: var(--space-5);
+    z-index: var(--z-overlay);
+
     /* Sizing */
-    inline-size: var(--_fab-size);
-    block-size: var(--_fab-size);
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
     padding: 0;
 
     /* Visual */
@@ -71,17 +54,17 @@
       box-shadow var(--duration-normal) var(--ease-fluid);
   }
 
-  .settings-panel__toggle:hover {
+  .settings-fab:hover {
     background-color: var(--accent-hover);
-    transform: scale(1.05);
+    transform: scale(1.08);
     box-shadow: var(--shadow-xl);
   }
 
-  .settings-panel__toggle:active {
+  .settings-fab:active {
     transform: scale(0.95);
   }
 
-  .settings-panel__toggle:focus-visible {
+  .settings-fab:focus-visible {
     outline: none;
     box-shadow:
       var(--shadow-lg),
@@ -89,90 +72,139 @@
       0 0 0 5px var(--accent);
   }
 
-  /* Icon container - handles rotation */
-  .settings-panel__toggle-icon {
-    display: flex;
-    transition: transform var(--duration-slow) var(--ease-settle);
+  /* Rotate when open */
+  .settings-fab[aria-expanded="true"] {
+    transform: rotate(60deg);
   }
 
-  /* Rotate icon when open */
-  .settings-panel[data-open] .settings-panel__toggle-icon {
-    transform: rotate(90deg);
-  }
-
-  /* Icon styling */
-  .settings-panel__toggle svg {
-    inline-size: 1.5rem;
-    block-size: 1.5rem;
+  .settings-fab[aria-expanded="true"]:hover {
+    transform: rotate(60deg) scale(1.08);
   }
 
 
   /* ========================================
-     PANEL CONTENT
-     The actual settings drawer
+     DRAWER CONTAINER
+     Full viewport overlay when open
      ======================================== */
 
-  .settings-panel__content {
-    /* Sizing */
-    inline-size: var(--_panel-size);
-    max-block-size: calc(100dvh - var(--_fab-size) - var(--_offset) * 3);
-    overflow-y: auto;
+  .settings-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: calc(var(--z-overlay) + 1);
+
+    /* Hidden by default - not interactive */
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .settings-drawer[data-open] {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+
+  /* ========================================
+     BACKDROP
+     Semi-transparent overlay behind drawer
+     ======================================== */
+
+  .settings-drawer__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: oklch(from var(--theme-dark) l c h / 0.4);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  [data-theme="dark"] .settings-drawer__backdrop {
+    background-color: oklch(0% 0 0 / 0.6);
+  }
+
+  .settings-drawer[data-open] .settings-drawer__backdrop {
+    opacity: 1;
+  }
+
+
+  /* ========================================
+     DRAWER PANEL
+     Slides in from right edge
+     ======================================== */
+
+  .settings-drawer__panel {
+    --_drawer-width: 22rem;
+
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    inline-size: min(var(--_drawer-width), 90vw);
 
     /* Visual */
     background-color: var(--color-surface-raised);
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-xl);
+    border-inline-start: 1px solid var(--color-border-subtle);
     box-shadow: var(--shadow-xl);
 
-    /* Hidden by default */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(var(--space-3)) scale(0.95);
-    transform-origin: bottom right;
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
-    /* Transitions */
-    transition:
-      opacity var(--duration-normal) var(--ease-fluid),
-      visibility var(--duration-normal) var(--ease-fluid),
-      transform var(--duration-normal) var(--ease-settle);
+    /* Animation */
+    transform: translateX(100%);
+    transition: transform var(--duration-slow) var(--ease-settle);
   }
 
-  /* Open state */
-  .settings-panel[data-open] .settings-panel__content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
+  .settings-drawer[data-open] .settings-drawer__panel {
+    transform: translateX(0);
   }
 
 
   /* ========================================
-     PANEL HEADER
-     Title and close button
+     DRAWER HEADER
      ======================================== */
 
-  .settings-panel__header {
+  .settings-drawer__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--space-4) var(--space-5);
     border-block-end: 1px solid var(--color-border-subtle);
+    flex-shrink: 0;
   }
 
-  .settings-panel__title {
-    font-size: var(--font-size-base);
+  .settings-drawer__title {
+    font-size: var(--font-size-lg);
     font-weight: var(--weight-semibold);
     margin: 0;
     color: var(--color-text);
   }
 
+  .settings-drawer__close {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: var(--space-2);
+    margin: calc(var(--space-2) * -1);
+    cursor: pointer;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast) var(--ease-fluid);
+  }
+
+  .settings-drawer__close:hover {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
+
 
   /* ========================================
-     PANEL BODY
-     Settings sections
+     DRAWER BODY
+     Scrollable content area
      ======================================== */
 
-  .settings-panel__body {
-    padding: var(--space-4) var(--space-5);
+  .settings-drawer__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-5);
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
@@ -180,8 +212,35 @@
 
 
   /* ========================================
+     DRAWER FOOTER
+     ======================================== */
+
+  .settings-drawer__footer {
+    padding: var(--space-4) var(--space-5);
+    border-block-start: 1px solid var(--color-border-subtle);
+    flex-shrink: 0;
+  }
+
+  .settings-drawer__footer .btn {
+    inline-size: 100%;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+
+  /* ========================================
+     SETTINGS DIVIDER
+     ======================================== */
+
+  .settings-divider {
+    border: none;
+    border-block-start: 1px solid var(--color-border-subtle);
+    margin: 0;
+  }
+
+
+  /* ========================================
      SETTINGS SECTION
-     Grouped settings with label
      ======================================== */
 
   .settings-section {
@@ -192,10 +251,94 @@
 
   .settings-section__label {
     font-size: var(--font-size-xs);
-    font-weight: var(--weight-medium);
+    font-weight: var(--weight-semibold);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
     color: var(--color-text-subtle);
+    margin: 0;
+  }
+
+  .settings-section__hint {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin: calc(var(--space-2) * -1) 0 0 0;
+  }
+
+
+  /* ========================================
+     THEME GRID
+     Visual theme selection cards
+     ======================================== */
+
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .theme-card {
+    /* Reset */
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+
+    /* Visual */
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+
+    /* Transition */
+    transition: all var(--duration-fast) var(--ease-fluid);
+  }
+
+  .theme-card:hover {
+    background-color: var(--color-surface-raised);
+    border-color: var(--color-text-muted);
+    transform: translateY(-2px);
+  }
+
+  .theme-card[data-active] {
+    background-color: var(--accent-subtle);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .theme-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    color: var(--color-text-muted);
+  }
+
+  .theme-card[data-active] .theme-card__icon {
+    color: var(--accent);
+  }
+
+  .theme-card__icon svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .theme-card__name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+  }
+
+  .theme-card__desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 
 
@@ -217,121 +360,193 @@
     color: var(--color-text);
   }
 
-  .settings-row__description {
+
+  /* ========================================
+     MODE BUTTONS (Light/Dark/Auto)
+     ======================================== */
+
+  .mode-buttons {
+    display: flex;
+    gap: var(--space-1);
+    background: var(--color-surface);
+    padding: var(--space-1);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .mode-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-muted);
+    border: none;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
+  }
+
+  .mode-btn:hover {
+    background: var(--color-surface-raised);
+    color: var(--color-text);
+  }
+
+  .mode-btn[data-active] {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+
+  /* ========================================
+     SETTINGS SELECT (Dropdown)
+     ======================================== */
+
+  .settings-select {
+    padding: var(--space-2) var(--space-3);
+    padding-inline-end: var(--space-8);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
+
+    /* Custom arrow */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+  }
+
+  .settings-select:hover {
+    border-color: var(--color-text-muted);
+  }
+
+  .settings-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-subtle);
+  }
+
+
+  /* ========================================
+     PALETTE SWATCHES
+     ======================================== */
+
+  .palette-swatches {
+    display: flex;
+    gap: var(--space-1);
+  }
+
+  .palette-swatch {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
+    position: relative;
+    padding: 0;
+  }
+
+  .palette-swatch:hover {
+    transform: scale(1.15);
+  }
+
+  .palette-swatch[data-active] {
+    border-color: var(--color-text);
+    box-shadow: 0 0 0 2px var(--color-background);
+  }
+
+  /* Swatch colors from CSS variables */
+  .palette-swatch[data-swatch="1"] { background-color: var(--palette-1); }
+  .palette-swatch[data-swatch="2"] { background-color: var(--palette-2); }
+  .palette-swatch[data-swatch="3"] { background-color: var(--palette-3); }
+  .palette-swatch[data-swatch="4"] { background-color: var(--palette-4); }
+  .palette-swatch[data-swatch="5"] { background-color: var(--palette-5); }
+  .palette-swatch[data-swatch="6"] { background-color: var(--palette-6); }
+
+  /* Auto indicator for fluid palette swatches */
+  .palette-swatch[data-auto]::after {
+    content: "A";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+
+
+  /* ========================================
+     SETTINGS HINT
+     ======================================== */
+
+  .settings-hint {
     font-size: var(--font-size-xs);
     color: var(--color-text-muted);
-    margin-block-start: var(--space-0-5);
+    margin: 0;
+    display: none;
+  }
+
+  [data-palette="fluid"] .settings-hint#fluid-hint {
+    display: block;
   }
 
 
   /* ========================================
-     COLOR PRESET SWATCHES
-     Visual color selection buttons
+     TOGGLE/SWITCH
      ======================================== */
 
-  .color-presets {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .color-swatch {
-    /* Reset */
-    appearance: none;
-    border: none;
-    background: none;
-    padding: 0;
+  .switch {
+    position: relative;
+    display: inline-block;
     cursor: pointer;
-
-    /* Sizing */
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-
-    /* Visual */
-    border-radius: var(--radius-md);
-    box-shadow: inset 0 0 0 2px oklch(from var(--_swatch-color) l c h / 0.2);
-
-    /* Transitions */
-    transition:
-      transform var(--duration-fast) var(--ease-settle),
-      box-shadow var(--duration-normal) var(--ease-fluid);
   }
 
-  .color-swatch:hover {
-    transform: scale(1.1);
+  .switch__input {
+    position: absolute;
+    opacity: 0;
+    inline-size: 0;
+    block-size: 0;
   }
 
-  .color-swatch:active {
-    transform: scale(0.95);
+  .switch__track {
+    display: block;
+    inline-size: 2.75rem;
+    block-size: 1.5rem;
+    background-color: var(--color-border);
+    border-radius: var(--radius-full);
+    transition: background-color var(--duration-fast) var(--ease-fluid);
   }
 
-  .color-swatch:focus-visible {
-    outline: none;
-    box-shadow:
-      inset 0 0 0 2px oklch(from var(--_swatch-color) l c h / 0.3),
-      0 0 0 2px var(--color-background),
-      0 0 0 4px var(--_swatch-color);
+  .switch__thumb {
+    position: absolute;
+    inset-block-start: 0.125rem;
+    inset-inline-start: 0.125rem;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    background-color: var(--white);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--duration-fast) var(--ease-settle);
   }
 
-  /* Selected state */
-  .color-swatch[data-selected] {
-    box-shadow:
-      inset 0 0 0 2px oklch(from var(--_swatch-color) l c h / 0.4),
-      0 0 0 2px var(--color-background),
-      0 0 0 3px var(--_swatch-color);
+  .switch__input:checked + .switch__track {
+    background-color: var(--accent);
   }
 
-  /* Default swatch (current accent) */
-  .color-swatch[data-preset="default"] {
-    --_swatch-color: var(--gray-40);
-    background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-30) 100%);
+  .switch__input:checked + .switch__track .switch__thumb {
+    transform: translateX(1.25rem);
   }
 
-  /* Coral - Warm, vibrant energy */
-  .color-swatch[data-preset="coral"] {
-    --_swatch-color: oklch(65% 0.18 25);
-    background: linear-gradient(135deg, oklch(70% 0.20 30) 0%, oklch(55% 0.18 20) 100%);
-  }
-
-  /* Vapor - Soft, ethereal purple */
-  .color-swatch[data-preset="vapor"] {
-    --_swatch-color: oklch(55% 0.15 300);
-    background: linear-gradient(135deg, oklch(65% 0.18 310) 0%, oklch(50% 0.15 290) 100%);
-  }
-
-  /* Tide - Ocean blue-green */
-  .color-swatch[data-preset="tide"] {
-    --_swatch-color: oklch(55% 0.12 200);
-    background: linear-gradient(135deg, oklch(60% 0.14 190) 0%, oklch(50% 0.12 210) 100%);
-  }
-
-  /* Forest - Deep natural green */
-  .color-swatch[data-preset="forest"] {
-    --_swatch-color: oklch(50% 0.12 145);
-    background: linear-gradient(135deg, oklch(55% 0.14 140) 0%, oklch(40% 0.10 150) 100%);
-  }
-
-  /* Sunset - Golden warmth */
-  .color-swatch[data-preset="sunset"] {
-    --_swatch-color: oklch(70% 0.16 55);
-    background: linear-gradient(135deg, oklch(75% 0.18 50) 0%, oklch(60% 0.16 40) 100%);
-  }
-
-  /* Midnight - Deep sophisticated blue */
-  .color-swatch[data-preset="midnight"] {
-    --_swatch-color: oklch(45% 0.12 260);
-    background: linear-gradient(135deg, oklch(55% 0.14 270) 0%, oklch(35% 0.10 250) 100%);
-  }
-
-
-  /* ========================================
-     PANEL FOOTER
-     Reset and additional actions
-     ======================================== */
-
-  .settings-panel__footer {
-    padding: var(--space-4) var(--space-5);
-    border-block-start: 1px solid var(--color-border-subtle);
+  .switch__input:focus-visible + .switch__track {
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--accent);
   }
 
 
@@ -340,35 +555,36 @@
      ======================================== */
 
   @media (max-width: 30rem) {
-    .settings-panel {
-      --_offset: var(--space-4);
+    .settings-fab {
+      inset-block-end: var(--space-4);
+      inset-inline-end: var(--space-4);
     }
 
-    .settings-panel__content {
-      inline-size: calc(100vw - var(--_offset) * 2);
-      max-inline-size: var(--_panel-size);
+    .theme-grid {
+      grid-template-columns: 1fr;
     }
   }
 
 
   /* ========================================
      REDUCED MOTION
-     Respect user preferences
      ======================================== */
 
   @media (prefers-reduced-motion: reduce) {
-    .settings-panel__toggle-icon {
+    .settings-drawer__panel {
       transition: none;
     }
 
-    .settings-panel__content {
-      transition: opacity var(--duration-fast) linear,
-                  visibility var(--duration-fast) linear;
-      transform: none;
+    .settings-drawer__backdrop {
+      transition: none;
     }
 
-    .settings-panel[data-open] .settings-panel__content {
-      transform: none;
+    .settings-fab {
+      transition: none;
+    }
+
+    .settings-drawer[data-open] .settings-drawer__panel {
+      transform: translateX(0);
     }
   }
 }

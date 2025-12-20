@@ -97,6 +97,7 @@
     margin-inline-start: auto; /* Default: push menu to end */
     padding: 0;
     list-style: none;
+    overflow: visible; /* Allow dropdowns to overflow */
   }
 
   /* Menu items - ensure alignment and reset base styles */
@@ -104,6 +105,7 @@
     display: flex;
     align-items: center;
     margin: 0; /* Override base li margin that can cause misalignment */
+    position: relative; /* For dropdown positioning */
   }
 
   /* Keep menu at start (next to brand) */
