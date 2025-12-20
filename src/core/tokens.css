@@ -1188,6 +1188,16 @@
   --accent: var(--palette-accent-1);
 }
 
+/* Default accent fallbacks for each palette (when no explicit accent selected) */
+[data-palette="morandi"]:not([data-accent]) { --accent: var(--palette-2); }  /* Sage mist */
+[data-palette="bold"]:not([data-accent]) { --accent: var(--palette-1); }     /* Electric coral */
+[data-palette="pastel"]:not([data-accent]) { --accent: var(--palette-2); }   /* Powder blue */
+[data-palette="earth"]:not([data-accent]) { --accent: var(--palette-1); }    /* Terracotta */
+[data-palette="mono"]:not([data-accent]) { --accent: var(--palette-3); }     /* Medium gray */
+[data-palette="80s"]:not([data-accent]) { --accent: var(--palette-1); }      /* Hot pink */
+[data-palette="matrix"]:not([data-accent]) { --accent: var(--palette-1); }   /* Matrix green */
+[data-palette="subtle"]:not([data-accent]) { --accent: var(--palette-2); }   /* Muted teal */
+
 
 /* ========================================
    FULL THEME OVERRIDES

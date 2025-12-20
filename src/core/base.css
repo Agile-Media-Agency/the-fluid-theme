@@ -183,15 +183,16 @@
   }
 
   /* === Themed list markers ===
-     Each child theme gets a distinctive marker */
+     Each child theme gets a distinctive marker
+     Note: Uses :not([class]) to avoid overriding nav dropdowns and other styled lists */
 
   /* Still: Clean disc (default - minimal) */
-  [data-motion="still"] ul {
+  [data-motion="still"] ul:not([class]) {
     list-style-type: disc;
   }
 
   /* Serene: Open circle - elegant, understated */
-  [data-motion="serene"] ul {
+  [data-motion="serene"] ul:not([class]) {
     list-style-type: circle;
   }
 
