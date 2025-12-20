@@ -6,6 +6,7 @@
     <li><a href="{{ '/examples/positioning.html' | relative_url }}" class="nav__link"{% if page.nav == 'positioning' %} aria-current="page"{% endif %}>Layouts</a></li>
     <li><a href="{{ '/examples/heroes.html' | relative_url }}" class="nav__link"{% if page.nav == 'heroes' %} aria-current="page"{% endif %}>Heroes</a></li>
     <li><a href="{{ '/examples/hero-picker.html' | relative_url }}" class="nav__link"{% if page.nav == 'hero-picker' %} aria-current="page"{% endif %}>Hero Picker</a></li>
+    <li><a href="{{ '/templates/' | relative_url }}" class="nav__link"{% if page.nav contains 'template' %} aria-current="page"{% endif %}>Templates</a></li>
   </ul>
   <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
