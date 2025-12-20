@@ -4,6 +4,46 @@ description: Frequently asked questions about our services
 layout: template
 nav: faq
 ---
+<style>
+  /* Prevent accordion width changes on open */
+  .faq-accordion {
+    width: 100%;
+  }
+
+  .faq-accordion .card {
+    width: 100%;
+  }
+
+  .faq-accordion details {
+    width: 100%;
+  }
+
+  .faq-accordion summary {
+    cursor: pointer;
+    padding: var(--space-4);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .faq-accordion summary span {
+    flex-shrink: 0;
+    font-size: var(--font-size-xl);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-accordion details[open] summary span {
+    transform: rotate(45deg);
+  }
+
+  .faq-accordion .faq-answer {
+    padding: 0 var(--space-4) var(--space-4);
+    color: var(--color-text-muted);
+  }
+</style>
+
 <!-- Hero Section -->
 <section class="hero" data-layout="center" data-padding="lg" data-theme="subtle" data-size="compact">
   <h1 class="hero__headline">Frequently Asked Questions</h1>
@@ -41,33 +81,33 @@ nav: faq
     <div style="margin-block-end: var(--space-10);">
       <h2 style="font-size: var(--font-size-lg); color: var(--color-primary); margin-block-end: var(--space-4);">General Questions</h2>
 
-      <div class="stack" data-gap="sm">
+      <div class="stack faq-accordion" data-gap="sm">
         <details class="card" open>
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             What does Fluid specialize in?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             We specialize in creating beautiful, functional websites and digital experiences. Our expertise spans web design, frontend and backend development, e-commerce solutions, and digital strategy. We're particularly known for our physics-based design approach that creates interfaces feeling as natural as water.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             What industries do you work with?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             We work with clients across various industries including technology, healthcare, e-commerce, professional services, non-profits, and creative agencies. Our adaptable approach means we can craft solutions that fit any industry's unique needs and requirements.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Do you work with clients internationally?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Yes! We work with clients worldwide. Our team is experienced in remote collaboration and we use modern tools to ensure smooth communication across time zones. We've successfully completed projects for clients in North America, Europe, Asia, and Australia.
           </div>
         </details>
@@ -78,43 +118,43 @@ nav: faq
     <div style="margin-block-end: var(--space-10);">
       <h2 style="font-size: var(--font-size-lg); color: var(--color-primary); margin-block-end: var(--space-4);">Pricing & Payment</h2>
 
-      <div class="stack" data-gap="sm">
+      <div class="stack faq-accordion" data-gap="sm">
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             How much does a website cost?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Our projects start at $499 for simple websites and range up to custom pricing for enterprise solutions. The exact cost depends on factors like the number of pages, custom functionality, e-commerce needs, and complexity of design. We provide detailed quotes after understanding your specific requirements.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Do you offer payment plans?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Yes, we offer flexible payment options. Our standard arrangement is 50% upfront and 50% upon completion. For larger projects, we can discuss milestone-based payments. Enterprise clients can arrange custom payment terms that work for their budget and timeline.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             What payment methods do you accept?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             We accept credit cards, bank transfers, and PayPal. For enterprise clients, we can also arrange invoicing with net-30 terms. All transactions are secure and you'll receive detailed invoices for your records.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Are there any hidden fees?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Never. We believe in transparent pricing. Your quote includes everything discussed in our project scope. If additional requirements arise during the project, we'll always discuss and agree on any cost adjustments before proceeding.
           </div>
         </details>
@@ -125,33 +165,33 @@ nav: faq
     <div style="margin-block-end: var(--space-10);">
       <h2 style="font-size: var(--font-size-lg); color: var(--color-primary); margin-block-end: var(--space-4);">Our Process</h2>
 
-      <div class="stack" data-gap="sm">
+      <div class="stack faq-accordion" data-gap="sm">
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             How long does a project take?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Timelines vary based on project scope. A simple website typically takes 2-3 weeks, professional sites 4-6 weeks, and enterprise projects are custom scheduled. We'll provide a detailed timeline during our discovery phase so you know exactly what to expect.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             How many revisions are included?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Our Starter package includes 2 design revisions, Professional includes 5, and Enterprise includes unlimited revisions. We work collaboratively throughout the design process to ensure you're happy with the direction before we begin development.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             What do you need from me to get started?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             To kick off a project, we typically need: your brand guidelines (logo, colors, fonts), content for your pages (text and images), examples of websites you like, and any specific functionality requirements. Don't worry if you don't have everything ready – we can help guide you through the process.
           </div>
         </details>
@@ -162,33 +202,33 @@ nav: faq
     <div style="margin-block-end: var(--space-10);">
       <h2 style="font-size: var(--font-size-lg); color: var(--color-primary); margin-block-end: var(--space-4);">Technical Questions</h2>
 
-      <div class="stack" data-gap="sm">
+      <div class="stack faq-accordion" data-gap="sm">
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Will my website be mobile-friendly?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Absolutely. Every website we build is fully responsive and tested across devices and browsers. With over 60% of web traffic now coming from mobile devices, we design mobile-first to ensure an excellent experience on all screen sizes.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Do you provide hosting?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             We can recommend reliable hosting providers based on your needs, or deploy to your existing hosting. For clients who prefer a hands-off approach, we offer managed hosting packages that include security updates, backups, and monitoring.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Will I be able to update the website myself?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Yes! We build websites with user-friendly content management systems that allow you to update text, images, and basic content without any technical knowledge. We also provide training and documentation to help you manage your site confidently.
           </div>
         </details>
@@ -199,23 +239,23 @@ nav: faq
     <div>
       <h2 style="font-size: var(--font-size-lg); color: var(--color-primary); margin-block-end: var(--space-4);">Support</h2>
 
-      <div class="stack" data-gap="sm">
+      <div class="stack faq-accordion" data-gap="sm">
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             What happens after the website launches?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             All projects include 30 days of post-launch support to address any issues and answer questions. After that, you can choose to work with us on a maintenance plan or manage the site independently. We're always here if you need us for future updates or enhancements.
           </div>
         </details>
 
         <details class="card">
-          <summary style="cursor: pointer; padding: var(--space-4); font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+          <summary>
             Do you offer ongoing maintenance?
-            <span style="font-size: var(--font-size-xl);">+</span>
+            <span>+</span>
           </summary>
-          <div style="padding: 0 var(--space-4) var(--space-4); color: var(--color-text-muted);">
+          <div class="faq-answer">
             Yes, we offer monthly maintenance plans that include security updates, regular backups, performance monitoring, and a set number of content updates. Plans start at $99/month and can be customized based on your needs.
           </div>
         </details>
