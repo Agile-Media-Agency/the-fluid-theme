@@ -214,15 +214,15 @@
   // ========================================
 
   // Theme preset configurations
-  // Each preset maps a motion style to its recommended palette
+  // Each preset maps a motion style to its recommended palette and default accent
   const themePresets = {
-    still: { motion: 'still', palette: 'mono' },        // Minimal, focused
-    serene: { motion: 'serene', palette: 'morandi' },   // Calm, muted
-    stream: { motion: 'stream', palette: 'subtle' },    // Modern, understated
-    flowing: { motion: 'flowing', palette: 'fluid' },   // Balanced, water-inspired
-    cascade: { motion: 'cascade', palette: 'pastel' },  // Friendly, soft
-    rapids: { motion: 'rapids', palette: 'bold' },      // Energetic, vibrant
-    tsunami: { motion: 'tsunami', palette: '80s' }      // Bold, retro impact
+    still: { motion: 'still', palette: 'mono', accent: '3' },        // Minimal, focused
+    serene: { motion: 'serene', palette: 'morandi', accent: '2' },   // Calm, muted sage
+    stream: { motion: 'stream', palette: 'subtle', accent: '2' },    // Modern teal
+    flowing: { motion: 'flowing', palette: 'fluid', accent: null },  // Auto from motion
+    cascade: { motion: 'cascade', palette: 'pastel', accent: '2' },  // Soft blue
+    rapids: { motion: 'rapids', palette: 'bold', accent: '1' },      // Electric coral
+    tsunami: { motion: 'tsunami', palette: '80s', accent: '1' }      // Hot pink
   };
 
   function setThemePreset(preset) {
@@ -233,11 +233,21 @@
     setMotion(config.motion);
     setPalette(config.palette);
 
+    // Apply accent (clear for fluid/auto, set for others)
+    if (config.accent) {
+      setAccentFromPalette(config.accent);
+    } else {
+      // Clear accent for auto mode (fluid palette)
+      document.documentElement.removeAttribute('data-accent');
+      localStorage.removeItem('fluid-accent');
+    }
+
     // Store the preset
     localStorage.setItem('fluid-preset', preset);
 
     // Update UI
     updateThemeCards();
+    updatePaletteSwatches();
   }
 
   function updateThemeCards() {
