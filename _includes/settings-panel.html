@@ -1,65 +1,136 @@
-<!-- Settings Panel - Theme customization -->
-<div class="settings-panel" id="settings-panel">
-  <div class="settings-panel__content">
-    <header class="settings-panel__header">
-      <h2 class="settings-panel__title">Settings</h2>
+<!-- Settings Panel - Slide-out Theme Customization -->
+<aside class="settings-drawer" id="settings-panel" aria-label="Theme settings">
+  <!-- Backdrop for closing -->
+  <div class="settings-drawer__backdrop" onclick="toggleSettingsPanel()"></div>
+
+  <!-- Drawer content -->
+  <div class="settings-drawer__panel">
+    <header class="settings-drawer__header">
+      <h2 class="settings-drawer__title">Customize</h2>
+      <button class="settings-drawer__close" onclick="toggleSettingsPanel()" aria-label="Close settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </header>
 
-    <div class="settings-panel__body">
-      <!-- Motion Style (Top - biggest impact, changes accent in Fluid palette) -->
-      <div class="settings-section">
-        <span class="settings-section__label">Motion Style</span>
-        <div class="settings-row">
-          <div>
-            <span class="settings-row__label">Animation</span>
-            <p class="settings-row__description">Controls transitions &amp; effects</p>
-          </div>
-          <select id="motion-select" onchange="setMotion(this.value)" style="padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); font-size: var(--font-size-sm);">
-            <option value="still">Still (instant)</option>
-            <option value="serene">Serene (Ken Burns)</option>
-            <option value="trickling">Trickling (subtle)</option>
-            <option value="flowing" selected>Flowing (default)</option>
-            <option value="rapids">Rapids (spring)</option>
-            <option value="tsunami">Tsunami (dramatic)</option>
-          </select>
+    <div class="settings-drawer__body">
+      <!-- THEME SELECTION (Top - Complete themes) -->
+      <section class="settings-section">
+        <h3 class="settings-section__label">Theme</h3>
+        <p class="settings-section__hint">Complete styling presets</p>
+        <div class="theme-grid" id="theme-grid">
+          <button class="theme-card" data-theme-preset="still" onclick="setThemePreset('still')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="12" x2="15" y2="12"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Still</span>
+            <span class="theme-card__desc">Instant, minimal</span>
+          </button>
+          <button class="theme-card" data-theme-preset="serene" onclick="setThemePreset('serene')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3c.5 0 1 .5 1 1v1c0 .5-.5 1-1 1s-1-.5-1-1V4c0-.5.5-1 1-1z"/>
+                <path d="M12 19c.5 0 1 .5 1 1v1c0 .5-.5 1-1 1s-1-.5-1-1v-1c0-.5.5-1 1-1z"/>
+                <circle cx="12" cy="12" r="4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Serene</span>
+            <span class="theme-card__desc">Slow, gentle</span>
+          </button>
+          <button class="theme-card" data-theme-preset="stream" onclick="setThemePreset('stream')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 12h16"/>
+                <path d="M4 8h12"/>
+                <path d="M8 16h12"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Stream</span>
+            <span class="theme-card__desc">Horizontal flow</span>
+          </button>
+          <button class="theme-card" data-theme-preset="flowing" onclick="setThemePreset('flowing')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12c3-4 6-4 9 0s6 4 9 0"/>
+                <path d="M3 17c3-4 6-4 9 0s6 4 9 0"/>
+                <path d="M3 7c3-4 6-4 9 0s6 4 9 0"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Flowing</span>
+            <span class="theme-card__desc">Balanced, organic</span>
+          </button>
+          <button class="theme-card" data-theme-preset="cascade" onclick="setThemePreset('cascade')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3v4"/>
+                <path d="M8 7v4"/>
+                <path d="M16 7v4"/>
+                <path d="M12 11v4"/>
+                <path d="M8 15v4"/>
+                <path d="M16 15v4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Cascade</span>
+            <span class="theme-card__desc">Waterfall effect</span>
+          </button>
+          <button class="theme-card" data-theme-preset="rapids" onclick="setThemePreset('rapids')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Rapids</span>
+            <span class="theme-card__desc">Fast, energetic</span>
+          </button>
+          <button class="theme-card" data-theme-preset="tsunami" onclick="setThemePreset('tsunami')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 12c2-6 6-8 10-4s8 2 10-4"/>
+                <path d="M2 18c2-6 6-8 10-4s8 2 10-4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Tsunami</span>
+            <span class="theme-card__desc">Bold, dramatic</span>
+          </button>
         </div>
-      </div>
+      </section>
 
-      <!-- Theme Mode -->
-      <div class="settings-section">
-        <span class="settings-section__label">Appearance</span>
+      <hr class="settings-divider">
+
+      <!-- APPEARANCE -->
+      <section class="settings-section">
+        <h3 class="settings-section__label">Appearance</h3>
         <div class="settings-row">
-          <div>
-            <span class="settings-row__label">Theme</span>
-            <p class="settings-row__description">Light, dark, or match system</p>
-          </div>
-          <div class="theme-buttons" style="display: flex; gap: var(--space-1);">
-            <button class="theme-btn" data-theme-option="light" onclick="setThemeMode('light')" title="Light mode" aria-label="Light mode">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <span class="settings-row__label">Mode</span>
+          <div class="mode-buttons">
+            <button class="mode-btn" data-theme-option="light" onclick="setThemeMode('light')" title="Light mode" aria-label="Light mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="5"/>
                 <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
               </svg>
             </button>
-            <button class="theme-btn" data-theme-option="dark" onclick="setThemeMode('dark')" title="Dark mode" aria-label="Dark mode">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button class="mode-btn" data-theme-option="dark" onclick="setThemeMode('dark')" title="Dark mode" aria-label="Dark mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
               </svg>
             </button>
-            <button class="theme-btn" data-theme-option="auto" onclick="setThemeMode('auto')" title="Match system" aria-label="Match system preference">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <button class="mode-btn" data-theme-option="auto" onclick="setThemeMode('auto')" title="Auto (system)" aria-label="Match system preference">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
                 <line x1="8" y1="21" x2="16" y2="21"/>
                 <line x1="12" y1="17" x2="12" y2="21"/>
               </svg>
             </button>
           </div>
         </div>
-        <!-- Subdued mode -->
-        <div class="settings-row" style="margin-block-start: var(--space-3);">
-          <div>
-            <span class="settings-row__label">Subdued</span>
-            <p class="settings-row__description">Lower contrast, gentler on eyes</p>
-          </div>
+        <div class="settings-row">
+          <span class="settings-row__label">Subdued contrast</span>
           <label class="switch">
             <input type="checkbox" class="switch__input" id="subdued-toggle" onchange="setContrast(this.checked ? 'subdued' : 'normal')">
             <span class="switch__track">
@@ -67,17 +138,32 @@
             </span>
           </label>
         </div>
-      </div>
+      </section>
 
-      <!-- Color Palette -->
-      <div class="settings-section">
-        <span class="settings-section__label">Color Palette</span>
+      <hr class="settings-divider">
+
+      <!-- OVERRIDES -->
+      <section class="settings-section">
+        <h3 class="settings-section__label">Overrides</h3>
+        <p class="settings-section__hint">Fine-tune your experience</p>
+
+        <!-- Motion Override -->
         <div class="settings-row">
-          <div>
-            <span class="settings-row__label">Mood</span>
-            <p class="settings-row__description">Color family for accent</p>
-          </div>
-          <select id="palette-select" onchange="setPalette(this.value)" style="padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); font-size: var(--font-size-sm);">
+          <span class="settings-row__label">Animation speed</span>
+          <select id="motion-select" onchange="setMotion(this.value)" class="settings-select">
+            <option value="still">Still (none)</option>
+            <option value="serene">Serene (very slow)</option>
+            <option value="trickling">Trickling (subtle)</option>
+            <option value="flowing" selected>Flowing (default)</option>
+            <option value="rapids">Rapids (fast)</option>
+            <option value="tsunami">Tsunami (dramatic)</option>
+          </select>
+        </div>
+
+        <!-- Palette Override -->
+        <div class="settings-row">
+          <span class="settings-row__label">Color palette</span>
+          <select id="palette-select" onchange="setPalette(this.value)" class="settings-select">
             <option value="fluid">Fluid (Water)</option>
             <option value="morandi">Morandi (Muted)</option>
             <option value="bold">Bold (Vibrant)</option>
@@ -89,120 +175,39 @@
             <option value="subtle">Subtle (Trending)</option>
           </select>
         </div>
+
         <!-- Accent Color Swatches -->
-        <div class="settings-row" style="margin-block-start: var(--space-3);">
-          <div>
-            <span class="settings-row__label">Accent</span>
-          </div>
+        <div class="settings-row">
+          <span class="settings-row__label">Accent color</span>
           <div class="palette-swatches" id="palette-swatches">
-            <button class="palette-swatch" data-swatch="1" onclick="setAccentFromPalette('1')" title="Color 1" aria-label="Palette color 1"></button>
-            <button class="palette-swatch" data-swatch="2" onclick="setAccentFromPalette('2')" title="Color 2" aria-label="Palette color 2"></button>
-            <button class="palette-swatch" data-swatch="3" onclick="setAccentFromPalette('3')" title="Color 3" aria-label="Palette color 3"></button>
-            <button class="palette-swatch" data-swatch="4" onclick="setAccentFromPalette('4')" title="Color 4" aria-label="Palette color 4"></button>
-            <button class="palette-swatch" data-swatch="5" onclick="setAccentFromPalette('5')" title="Color 5" aria-label="Palette color 5"></button>
-            <button class="palette-swatch" data-swatch="6" onclick="setAccentFromPalette('6')" title="Color 6" aria-label="Palette color 6"></button>
+            <button class="palette-swatch" data-swatch="1" onclick="setAccentFromPalette('1')" aria-label="Color 1"></button>
+            <button class="palette-swatch" data-swatch="2" onclick="setAccentFromPalette('2')" aria-label="Color 2"></button>
+            <button class="palette-swatch" data-swatch="3" onclick="setAccentFromPalette('3')" aria-label="Color 3"></button>
+            <button class="palette-swatch" data-swatch="4" onclick="setAccentFromPalette('4')" aria-label="Color 4"></button>
+            <button class="palette-swatch" data-swatch="5" onclick="setAccentFromPalette('5')" aria-label="Color 5"></button>
+            <button class="palette-swatch" data-swatch="6" onclick="setAccentFromPalette('6')" aria-label="Color 6"></button>
           </div>
         </div>
-        <!-- Auto-linked indicator for Fluid palette -->
-        <p class="settings-hint" id="fluid-hint" style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-block-start: var(--space-2); display: none;">
-          In Fluid palette, accent auto-matches motion style
-        </p>
-      </div>
+        <p class="settings-hint" id="fluid-hint">Accent auto-links to motion in Fluid palette</p>
+      </section>
     </div>
 
-    <footer class="settings-panel__footer">
-      <button data-variant="ghost" data-size="sm" onclick="resetSettings()">Reset to Defaults</button>
+    <footer class="settings-drawer__footer">
+      <button class="btn btn--ghost btn--sm" onclick="resetSettings()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        Reset to defaults
+      </button>
     </footer>
   </div>
+</aside>
 
-  <button class="settings-panel__toggle" onclick="toggleSettingsPanel()" aria-label="Toggle settings panel" aria-expanded="false">
-    <span class="settings-panel__toggle-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-      </svg>
-    </span>
-  </button>
-</div>
-
-<style>
-  /* Theme toggle buttons */
-  .theme-buttons {
-    display: flex;
-    gap: var(--space-1);
-    background: var(--color-surface);
-    padding: var(--space-1);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-  }
-
-  .theme-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-2);
-    border-radius: var(--radius-sm);
-    background: transparent;
-    color: var(--color-text-muted);
-    border: none;
-    cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-fluid);
-  }
-
-  .theme-btn:hover {
-    background: var(--color-surface-raised);
-    color: var(--color-text);
-  }
-
-  .theme-btn[data-active] {
-    background: var(--accent);
-    color: var(--white);
-  }
-
-  /* Palette swatches */
-  .palette-swatches {
-    display: flex;
-    gap: var(--space-1);
-  }
-
-  .palette-swatch {
-    inline-size: 1.5rem;
-    block-size: 1.5rem;
-    border-radius: var(--radius-full);
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-fluid);
-    position: relative;
-  }
-
-  .palette-swatch:hover {
-    transform: scale(1.15);
-  }
-
-  .palette-swatch[data-active] {
-    border-color: var(--color-text);
-    box-shadow: 0 0 0 2px var(--color-background);
-  }
-
-  /* Swatch colors from CSS variables */
-  .palette-swatch[data-swatch="1"] { background-color: var(--palette-1); }
-  .palette-swatch[data-swatch="2"] { background-color: var(--palette-2); }
-  .palette-swatch[data-swatch="3"] { background-color: var(--palette-3); }
-  .palette-swatch[data-swatch="4"] { background-color: var(--palette-4); }
-  .palette-swatch[data-swatch="5"] { background-color: var(--palette-5); }
-  .palette-swatch[data-swatch="6"] { background-color: var(--palette-6); }
-
-  /* Auto indicator for fluid palette swatches */
-  .palette-swatch[data-auto]::after {
-    content: "A";
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: var(--white);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  }
-</style>
+<!-- Floating toggle button -->
+<button class="settings-fab" onclick="toggleSettingsPanel()" aria-label="Open theme settings" aria-expanded="false" id="settings-fab">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+</button>

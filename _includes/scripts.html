@@ -24,7 +24,8 @@
 
   function updateThemeButtons() {
     const mode = localStorage.getItem('fluid-theme-mode') || 'auto';
-    document.querySelectorAll('.theme-btn').forEach(btn => {
+    // Support both old .theme-btn and new .mode-btn class names
+    document.querySelectorAll('.theme-btn, .mode-btn').forEach(btn => {
       if (btn.dataset.themeOption === mode) {
         btn.setAttribute('data-active', '');
       } else {
@@ -204,42 +205,75 @@
 
 
   // ========================================
-  // SETTINGS PANEL TOGGLE
+  // THEME PRESETS (Complete child themes)
+  // ========================================
+
+  // Theme preset configurations
+  const themePresets = {
+    still: { motion: 'still', palette: 'mono' },
+    serene: { motion: 'serene', palette: 'morandi' },
+    stream: { motion: 'stream', palette: 'subtle' },
+    flowing: { motion: 'flowing', palette: 'fluid' },
+    cascade: { motion: 'cascade', palette: 'pastel' },
+    rapids: { motion: 'rapids', palette: 'bold' },
+    tsunami: { motion: 'tsunami', palette: '80s' }
+  };
+
+  function setThemePreset(preset) {
+    const config = themePresets[preset];
+    if (!config) return;
+
+    // Apply motion and palette
+    setMotion(config.motion);
+    setPalette(config.palette);
+
+    // Store the preset
+    localStorage.setItem('fluid-preset', preset);
+
+    // Update UI
+    updateThemeCards();
+  }
+
+  function updateThemeCards() {
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    document.querySelectorAll('.theme-card').forEach(card => {
+      if (card.dataset.themePreset === currentMotion) {
+        card.setAttribute('data-active', '');
+      } else {
+        card.removeAttribute('data-active');
+      }
+    });
+  }
+
+
+  // ========================================
+  // SETTINGS DRAWER TOGGLE
   // ========================================
 
   function toggleSettingsPanel() {
-    const panel = document.getElementById('settings-panel');
-    const toggle = panel.querySelector('.settings-panel__toggle');
-    const isOpen = panel.hasAttribute('data-open');
+    const drawer = document.getElementById('settings-panel');
+    const fab = document.getElementById('settings-fab');
+    const isOpen = drawer.hasAttribute('data-open');
 
     if (isOpen) {
-      panel.removeAttribute('data-open');
-      toggle.setAttribute('aria-expanded', 'false');
+      drawer.removeAttribute('data-open');
+      if (fab) fab.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     } else {
-      panel.setAttribute('data-open', '');
-      toggle.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('data-open', '');
+      if (fab) fab.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     }
   }
 
-  // Close panel when clicking outside
-  document.addEventListener('click', function(e) {
-    const panel = document.getElementById('settings-panel');
-    if (panel && panel.hasAttribute('data-open')) {
-      if (!panel.contains(e.target)) {
-        panel.removeAttribute('data-open');
-        panel.querySelector('.settings-panel__toggle').setAttribute('aria-expanded', 'false');
-      }
-    }
-  });
-
-  // Close panel with Escape key
+  // Close drawer with Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      const panel = document.getElementById('settings-panel');
-      if (panel && panel.hasAttribute('data-open')) {
-        panel.removeAttribute('data-open');
-        panel.querySelector('.settings-panel__toggle').setAttribute('aria-expanded', 'false');
-        panel.querySelector('.settings-panel__toggle').focus();
+      const drawer = document.getElementById('settings-panel');
+      if (drawer && drawer.hasAttribute('data-open')) {
+        toggleSettingsPanel();
+        const fab = document.getElementById('settings-fab');
+        if (fab) fab.focus();
       }
     }
   });
@@ -257,6 +291,7 @@
     localStorage.removeItem('fluid-motion');
     localStorage.removeItem('fluid-palette');
     localStorage.removeItem('fluid-contrast');
+    localStorage.removeItem('fluid-preset');
 
     // Reset to system/defaults
     document.documentElement.removeAttribute('data-theme');
@@ -281,6 +316,7 @@
     updateSubduedToggle();
     updatePaletteUI();
     updateMotionSelect();
+    updateThemeCards();
   }
 
 
@@ -511,6 +547,7 @@
         updateSubduedToggle();
         updatePaletteUI();
         updateMotionSelect();
+        updateThemeCards();
         initAnimatedProgress();
         initAutoStatus();
         initScrollProgress();
@@ -521,6 +558,7 @@
       updateSubduedToggle();
       updatePaletteUI();
       updateMotionSelect();
+      updateThemeCards();
       initAnimatedProgress();
       initAutoStatus();
       initScrollProgress();
