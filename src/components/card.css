@@ -168,6 +168,46 @@
 
     /* Remove from flow for overlay positioning */
     flex-shrink: 0;
+
+    /* Auto-apply theme-aware duotone tint */
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Duotone wrapper for blend mode overlay */
+  .card__media-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card__media-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--duotone-dark, oklch(0.3 0.1 220)) 0%,
+      var(--duotone-light, oklch(0.7 0.1 200)) 100%
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    pointer-events: none;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Hover: reveal more of original image */
+  .card:hover .card__media {
+    filter: grayscale(60%) contrast(1.05);
+  }
+
+  .card:hover .card__media-wrap::after {
+    opacity: 0.6;
+  }
+
+  /* Opt-out of duotone effect */
+  .card__media[data-no-duotone],
+  .card[data-no-duotone] .card__media {
+    filter: none;
   }
 
   /* Aspect ratio variants for media */

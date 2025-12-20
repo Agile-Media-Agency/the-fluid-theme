@@ -1286,6 +1286,68 @@
 
 
 /* ========================================
+   THEME-SPECIFIC SECTION COLORS
+   Alternating backgrounds per motion style
+   ======================================== */
+
+/* Still: Clean white/near-white with subtle gray alternation */
+[data-motion="still"] {
+  --section-1: var(--color-background);
+  --section-2: oklch(from var(--color-background) calc(l - 0.02) 0.01 250);
+  --section-3: var(--color-background);
+  --section-accent: oklch(from var(--color-background) calc(l - 0.04) 0.02 250);
+}
+
+/* Serene: Warm cream tones, editorial feel */
+[data-motion="serene"] {
+  --section-1: oklch(from var(--color-background) l 0.01 60);
+  --section-2: oklch(from var(--color-background) calc(l - 0.02) 0.02 70);
+  --section-3: oklch(from var(--color-background) l 0.015 50);
+  --section-accent: color-mix(in oklch, var(--accent) 8%, var(--color-background));
+}
+
+/* Stream: Cool, minimal alternation */
+[data-motion="stream"] {
+  --section-1: var(--color-background);
+  --section-2: color-mix(in oklch, var(--accent) 4%, var(--color-background));
+  --section-3: var(--color-background);
+  --section-accent: color-mix(in oklch, var(--accent) 10%, var(--color-background));
+}
+
+/* Flowing: Balanced, water-inspired blues */
+[data-motion="flowing"] {
+  --section-1: var(--color-background);
+  --section-2: color-mix(in oklch, var(--accent) 6%, var(--color-background));
+  --section-3: oklch(from var(--color-background) calc(l - 0.01) 0.02 220);
+  --section-accent: color-mix(in oklch, var(--accent) 12%, var(--color-background));
+}
+
+/* Cascade: Soft pastel alternation */
+[data-motion="cascade"] {
+  --section-1: var(--color-background);
+  --section-2: color-mix(in oklch, var(--accent) 8%, var(--color-background));
+  --section-3: oklch(from var(--color-background) l 0.03 180);
+  --section-accent: color-mix(in oklch, var(--accent) 15%, var(--color-background));
+}
+
+/* Rapids: Bold, energetic color bands */
+[data-motion="rapids"] {
+  --section-1: var(--color-background);
+  --section-2: color-mix(in oklch, var(--accent) 10%, var(--color-background));
+  --section-3: oklch(from var(--color-background) calc(l - 0.03) 0.05 30);
+  --section-accent: color-mix(in oklch, var(--accent) 20%, var(--color-background));
+}
+
+/* Tsunami: Dramatic, high-contrast sections */
+[data-motion="tsunami"] {
+  --section-1: var(--color-background);
+  --section-2: color-mix(in oklch, var(--accent) 15%, var(--color-background));
+  --section-3: oklch(from var(--accent) 0.92 0.08 h);
+  --section-accent: color-mix(in oklch, var(--accent) 25%, var(--color-background));
+}
+
+
+/* ========================================
    FULL THEME OVERRIDES
    Themes that customize entire color palette
    Apply via: <html data-theme="ocean">
