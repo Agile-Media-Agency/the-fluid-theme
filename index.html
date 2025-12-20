@@ -287,7 +287,9 @@ nav: home
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    min-block-size: 100svh;
+    /* Fit in viewport below nav (~60px) */
+    block-size: calc(100svh - 4rem);
+    max-block-size: calc(100svh - 4rem);
     gap: 2px;
     background: var(--color-background);
   }
@@ -378,6 +380,7 @@ nav: home
     font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-3xl));
     font-weight: var(--weight-bold);
     margin: 0 0 var(--space-1) 0;
+    color: white !important; /* Override any heading color inheritance */
     /* Strong multi-layer shadow for visibility on any background */
     text-shadow:
       0 1px 2px oklch(0% 0 0 / 0.9),
