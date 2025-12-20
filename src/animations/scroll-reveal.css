@@ -1,0 +1,96 @@
+/**
+ * Scroll Reveal Animations
+ *
+ * Add [data-reveal] attribute to elements you want to animate in on scroll.
+ * Works with the scroll-reveal.js script or CSS-only with animation-timeline.
+ *
+ * Variants:
+ *   data-reveal="fade"      - Fade in
+ *   data-reveal="fade-up"   - Fade in from below
+ *   data-reveal="fade-down" - Fade in from above
+ *   data-reveal="fade-left" - Fade in from right
+ *   data-reveal="fade-right"- Fade in from left
+ *   data-reveal="scale"     - Scale up
+ *   data-reveal="blur"      - Blur to focus
+ *
+ * Timing:
+ *   data-reveal-delay="100" - Delay in ms (100, 200, 300, 400, 500)
+ *   data-reveal-duration="slow" - Duration (fast, normal, slow)
+ */
+
+@layer components {
+  /* Base reveal state - hidden by default */
+  [data-reveal] {
+    opacity: 0;
+    transition:
+      opacity var(--reveal-duration, 0.6s) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1)),
+      transform var(--reveal-duration, 0.6s) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1)),
+      filter var(--reveal-duration, 0.6s) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1));
+    will-change: opacity, transform;
+  }
+
+  /* Revealed state */
+  [data-reveal].revealed,
+  [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* Fade variants - starting positions */
+  [data-reveal="fade-up"] {
+    transform: translateY(2rem);
+  }
+
+  [data-reveal="fade-down"] {
+    transform: translateY(-2rem);
+  }
+
+  [data-reveal="fade-left"] {
+    transform: translateX(2rem);
+  }
+
+  [data-reveal="fade-right"] {
+    transform: translateX(-2rem);
+  }
+
+  [data-reveal="scale"] {
+    transform: scale(0.95);
+  }
+
+  [data-reveal="blur"] {
+    filter: blur(8px);
+  }
+
+  /* Delays */
+  [data-reveal-delay="100"] { transition-delay: 100ms; }
+  [data-reveal-delay="200"] { transition-delay: 200ms; }
+  [data-reveal-delay="300"] { transition-delay: 300ms; }
+  [data-reveal-delay="400"] { transition-delay: 400ms; }
+  [data-reveal-delay="500"] { transition-delay: 500ms; }
+
+  /* Durations */
+  [data-reveal-duration="fast"] { --reveal-duration: 0.3s; }
+  [data-reveal-duration="normal"] { --reveal-duration: 0.6s; }
+  [data-reveal-duration="slow"] { --reveal-duration: 1s; }
+
+  /* Stagger children - useful for grids and lists */
+  [data-reveal-stagger] > [data-reveal]:nth-child(1) { transition-delay: calc(var(--reveal-stagger, 100ms) * 0); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(2) { transition-delay: calc(var(--reveal-stagger, 100ms) * 1); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(3) { transition-delay: calc(var(--reveal-stagger, 100ms) * 2); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(4) { transition-delay: calc(var(--reveal-stagger, 100ms) * 3); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(5) { transition-delay: calc(var(--reveal-stagger, 100ms) * 4); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(6) { transition-delay: calc(var(--reveal-stagger, 100ms) * 5); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(7) { transition-delay: calc(var(--reveal-stagger, 100ms) * 6); }
+  [data-reveal-stagger] > [data-reveal]:nth-child(8) { transition-delay: calc(var(--reveal-stagger, 100ms) * 7); }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+  }
+}

@@ -52,6 +52,9 @@
 @import "./components/indicator.css";
 @import "./components/settings-panel.css";
 
+/* Animations */
+@import "./animations/scroll-reveal.css";
+
 
 /* ========================================
    THEMES (Coming in Phase 4)
@@ -104,6 +107,20 @@
     display: grid;
     place-items: center;
   }
+
+  /* Icon utility - inline SVG icons */
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    stroke-width: 2;
+  }
+
+  .icon--sm { width: 0.875em; height: 0.875em; }
+  .icon--lg { width: 1.25em; height: 1.25em; }
+  .icon--xl { width: 1.5em; height: 1.5em; }
 }
 
 
