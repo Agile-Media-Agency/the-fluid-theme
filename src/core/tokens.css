@@ -584,121 +584,157 @@
     from { opacity: 0; }
   }
 
-  /* Horizontal slide (Flowing) */
-  @keyframes slide-out-left {
-    to { transform: translateX(-100%); }
-  }
-
-  @keyframes slide-in-right {
-    from { transform: translateX(100%); }
-  }
-
-  /* Rapids: Fluid dynamics - new content pushes through, drags old */
-  @keyframes rapids-old {
+  /* Horizontal slide (Flowing) - Smooth L→R with organic ease */
+  @keyframes flowing-out {
     0% {
-      transform: translateY(0);
+      transform: translateX(0);
       opacity: 1;
     }
-    /* Old content stays put initially while new overlaps */
-    40% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    /* Old content starts moving slowly - friction/lag */
-    60% {
-      transform: translateY(-15%);
+    /* Gentle start */
+    30% {
+      transform: translateX(15%);
       opacity: 0.9;
     }
-    /* Accelerates as new content gains traction and pulls it */
-    80% {
-      transform: translateY(-60%);
-      opacity: 0.5;
+    /* Peak momentum */
+    60% {
+      transform: translateX(50%);
+      opacity: 0.6;
+    }
+    /* Slow, organic finish */
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes flowing-in {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    /* Gentle start from left */
+    30% {
+      transform: translateX(-50%);
+      opacity: 0.4;
+    }
+    /* Peak momentum */
+    60% {
+      transform: translateX(-15%);
+      opacity: 0.8;
+    }
+    /* Slow, organic settle - ease out gently */
+    85% {
+      transform: translateX(-3%);
+      opacity: 0.95;
     }
     100% {
-      transform: translateY(-100%);
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Rapids: Content rushes toward you (zoom out), new loads behind */
+  @keyframes rapids-old {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    /* Begins to rush toward viewer */
+    30% {
+      transform: scale(1.3);
+      opacity: 0.9;
+    }
+    /* Rushes past - expanding rapidly */
+    60% {
+      transform: scale(2);
+      opacity: 0.5;
+    }
+    /* Exits view quickly */
+    100% {
+      transform: scale(3);
       opacity: 0;
     }
   }
 
   @keyframes rapids-new {
     0% {
-      /* Starts from bottom of screen */
-      transform: translateY(100%);
-      opacity: 0.8;
+      /* Starts behind, smaller */
+      transform: scale(0.5);
+      opacity: 0;
     }
-    /* Initial slow surge - emerging */
-    15% {
-      transform: translateY(90%);
+    /* Quickly becomes visible */
+    20% {
+      transform: scale(0.7);
+      opacity: 0.5;
+    }
+    /* Rushes into place */
+    60% {
+      transform: scale(0.95);
       opacity: 0.9;
     }
-    /* Overlaps old content ~10% - friction slows it */
-    35% {
-      transform: translateY(60%);
-      opacity: 1;
-    }
-    /* Gains traction - accelerates */
-    60% {
-      transform: translateY(25%);
-      opacity: 1;
-    }
-    /* Final push - pulls old content along */
-    85% {
-      transform: translateY(5%);
-      opacity: 1;
-    }
+    /* Final position - direct */
     100% {
-      transform: translateY(0);
+      transform: scale(1);
       opacity: 1;
     }
   }
 
-  /* Diagonal wave (Tsunami) - Rise, crest, crash like Hokusai's Great Wave */
+  /* Tsunami: Wave arc - comes from left, rises up 10%, then sweeps down at angle */
   @keyframes wave-out {
     0% {
-      transform: translateY(0) scale(1);
+      transform: translate(0, 0) scale(1);
       opacity: 1;
     }
-    30% {
-      /* Rising - wave builds up */
-      transform: translateY(-10%) scale(1.02);
+    /* Rise up - wave building */
+    25% {
+      transform: translate(5%, -10%) scale(1.02);
       opacity: 1;
     }
-    50% {
-      /* Cresting - peak of the wave */
-      transform: translateY(-15%) rotate(-2deg) scale(1.05);
+    /* Peak of wave arc */
+    45% {
+      transform: translate(15%, -12%) rotate(-2deg) scale(1.03);
       opacity: 0.9;
     }
+    /* Sweeping down and away at angle */
+    70% {
+      transform: translate(40%, 15%) rotate(-5deg) scale(0.95);
+      opacity: 0.5;
+    }
     100% {
-      /* Crashing down and away */
-      transform: translate(-40%, 50%) rotate(-8deg) scale(0.85);
+      /* Exit at angle */
+      transform: translate(80%, 40%) rotate(-8deg) scale(0.85);
       opacity: 0;
     }
   }
 
   @keyframes wave-in {
     0% {
-      /* Starting from below, building up */
-      transform: translateY(100%) scale(0.9);
+      /* Starting from left, below horizon */
+      transform: translate(-100%, 20%) scale(0.9);
       opacity: 0;
     }
-    40% {
-      /* Rising up, gaining momentum */
-      transform: translateY(-5%) scale(1.03);
-      opacity: 0.8;
+    /* Rising up as it comes in */
+    30% {
+      transform: translate(-40%, -8%) scale(0.98);
+      opacity: 0.6;
     }
-    60% {
-      /* Cresting - slight overshoot */
-      transform: translateY(-8%) scale(1.05);
+    /* Cresting - peak of wave */
+    50% {
+      transform: translate(-10%, -12%) scale(1.02);
+      opacity: 0.9;
+    }
+    /* Coming down from peak */
+    70% {
+      transform: translate(5%, -5%) scale(1.01);
       opacity: 1;
     }
-    80% {
-      /* Settling back */
-      transform: translateY(2%) scale(1.01);
+    /* Settling with slight overshoot */
+    85% {
+      transform: translate(-2%, 2%) scale(1);
       opacity: 1;
     }
     100% {
-      /* Final position with bounce settle */
-      transform: translateY(0) scale(1);
+      transform: translate(0, 0) scale(1);
       opacity: 1;
     }
   }
@@ -716,15 +752,13 @@
 
 
   /* --- Default transition (Flowing) --- */
-  /* All transitions run at 2x duration for smoother, more visible motion */
+  /* Smooth left-to-right with organic ease-in-out */
   ::view-transition-old(root) {
-    animation: var(--duration-slower) var(--ease-fluid) both fade-out,
-               var(--duration-slower) var(--ease-fluid) both slide-out-left;
+    animation: var(--duration-slower) cubic-bezier(0.4, 0, 0.2, 1) both flowing-out;
   }
 
   ::view-transition-new(root) {
-    animation: var(--duration-slower) var(--ease-fluid) both fade-in,
-               var(--duration-slower) var(--ease-fluid) both slide-in-right;
+    animation: var(--duration-slower) cubic-bezier(0.4, 0, 0.2, 1) both flowing-in;
   }
 
 
