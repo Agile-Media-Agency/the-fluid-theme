@@ -3,6 +3,65 @@ title: Home
 description: Fluid Framework - A modern, semantic CSS design system with complete theme presets
 nav: home
 ---
+
+<!-- Full-viewport Theme Grid -->
+<section class="theme-grid-hero">
+  <button class="theme-grid__item" data-theme="still" onclick="setThemePreset('still'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png' | relative_url }}" alt="Still water reflection">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Still</h2>
+      <p class="theme-grid__desc">No animation. Swiss precision.</p>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="serene" onclick="setThemePreset('serene'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png' | relative_url }}" alt="Serene landscape">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Serene</h2>
+      <p class="theme-grid__desc">Slow Ken Burns fades.</p>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="stream" onclick="setThemePreset('stream'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0.png' | relative_url }}" alt="Gentle stream">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Stream</h2>
+      <p class="theme-grid__desc">Horizontal flow. Modern.</p>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="cascade" onclick="setThemePreset('cascade'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png' | relative_url }}" alt="Cascading waterfall">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Cascade</h2>
+      <p class="theme-grid__desc">Playful waterfall stagger.</p>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="rapids" onclick="setThemePreset('rapids'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0.png' | relative_url }}" alt="Turbulent rapids">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Rapids</h2>
+      <p class="theme-grid__desc">Fast. Energetic bounces.</p>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="tsunami" onclick="setThemePreset('tsunami'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0.png' | relative_url }}" alt="Powerful tsunami wave">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Tsunami</h2>
+      <p class="theme-grid__desc">Bold. Maximum impact.</p>
+    </div>
+  </button>
+</section>
+
+<!-- Hero Section -->
 <div class="container">
   <header class="section" data-layout="center" data-padding="xl">
     <h1>Fluid Framework</h1>
@@ -20,154 +79,42 @@ nav: home
     </div>
   </header>
 
-  <!-- Theme Showcase Section -->
-  <section class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+  <!-- Theme Selection Cards (Compact) -->
+  <section class="section" data-layout="center" data-padding="md">
     <h2>Choose Your Theme</h2>
-    <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto;">
-      Seven complete themes, each with its own personality. Motion, colors, fonts, and layout all work together.
+    <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto; margin-block-end: var(--space-6);">
+      Seven complete themes with motion, colors, fonts, and layout.
     </p>
-    <div class="theme-showcase" style="margin-block-start: var(--space-8);">
-      <div class="grid" style="--grid-min: 18rem; gap: var(--space-4);">
-        <!-- Still -->
-        <button class="theme-preview" onclick="setThemePreset('still')" data-theme-preset="still">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="12"/>
-                <line x1="12" y1="12" x2="15" y2="12"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Still</h3>
-          </div>
-          <p class="theme-preview__desc">Minimal. No animations. Swiss precision.</p>
-          <div class="theme-preview__tags">
-            <span>Mono palette</span>
-            <span>Inter font</span>
-            <span>Sharp corners</span>
-          </div>
-        </button>
-
-        <!-- Serene -->
-        <button class="theme-preview" onclick="setThemePreset('serene')" data-theme-preset="serene">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 3c.5 0 1 .5 1 1v1c0 .5-.5 1-1 1s-1-.5-1-1V4c0-.5.5-1 1-1z"/>
-                <circle cx="12" cy="12" r="4"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Serene</h3>
-          </div>
-          <p class="theme-preview__desc">Calm. Ken Burns fades. Editorial elegance.</p>
-          <div class="theme-preview__tags">
-            <span>Morandi palette</span>
-            <span>Garamond + Lato</span>
-            <span>Generous space</span>
-          </div>
-        </button>
-
-        <!-- Stream -->
-        <button class="theme-preview" onclick="setThemePreset('stream')" data-theme-preset="stream">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 12h16"/>
-                <path d="M4 8h12"/>
-                <path d="M8 16h12"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Stream</h3>
-          </div>
-          <p class="theme-preview__desc">Modern. Horizontal flow. Tech-forward.</p>
-          <div class="theme-preview__tags">
-            <span>Subtle palette</span>
-            <span>Source Sans 3</span>
-            <span>Clean lines</span>
-          </div>
-        </button>
-
-        <!-- Flowing (Default) -->
-        <button class="theme-preview" onclick="setThemePreset('flowing')" data-theme-preset="flowing">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M3 12c3-4 6-4 9 0s6 4 9 0"/>
-                <path d="M3 17c3-4 6-4 9 0s6 4 9 0"/>
-                <path d="M3 7c3-4 6-4 9 0s6 4 9 0"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Flowing</h3>
-            <span class="theme-preview__badge">Default</span>
-          </div>
-          <p class="theme-preview__desc">Balanced. Organic. Versatile.</p>
-          <div class="theme-preview__tags">
-            <span>Fluid palette</span>
-            <span>Outfit + Inter</span>
-            <span>Natural rhythm</span>
-          </div>
-        </button>
-
-        <!-- Cascade -->
-        <button class="theme-preview" onclick="setThemePreset('cascade')" data-theme-preset="cascade">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 3v4"/>
-                <path d="M8 7v4"/>
-                <path d="M16 7v4"/>
-                <path d="M12 11v4"/>
-                <path d="M8 15v4"/>
-                <path d="M16 15v4"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Cascade</h3>
-          </div>
-          <p class="theme-preview__desc">Playful. Waterfall stagger. Warm.</p>
-          <div class="theme-preview__tags">
-            <span>Pastel palette</span>
-            <span>Nunito fonts</span>
-            <span>Rounded corners</span>
-          </div>
-        </button>
-
-        <!-- Rapids -->
-        <button class="theme-preview" onclick="setThemePreset('rapids')" data-theme-preset="rapids">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Rapids</h3>
-          </div>
-          <p class="theme-preview__desc">Fast. Energetic. Spring bounces.</p>
-          <div class="theme-preview__tags">
-            <span>Bold palette</span>
-            <span>Archivo Black</span>
-            <span>Tight spacing</span>
-          </div>
-        </button>
-
-        <!-- Tsunami -->
-        <button class="theme-preview" onclick="setThemePreset('tsunami')" data-theme-preset="tsunami">
-          <div class="theme-preview__header">
-            <span class="theme-preview__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M2 12c2-6 6-8 10-4s8 2 10-4"/>
-                <path d="M2 18c2-6 6-8 10-4s8 2 10-4"/>
-              </svg>
-            </span>
-            <h3 class="theme-preview__name">Tsunami</h3>
-          </div>
-          <p class="theme-preview__desc">Bold. Dramatic wave. Maximum impact.</p>
-          <div class="theme-preview__tags">
-            <span>80s palette</span>
-            <span>Space Grotesk</span>
-            <span>Deep shadows</span>
-          </div>
-        </button>
-      </div>
+    <div class="theme-chips">
+      <button class="theme-chip" data-theme-preset="still" onclick="setThemePreset('still')">
+        <span class="theme-chip__dot" style="--chip-color: var(--gray-50);"></span>
+        Still
+      </button>
+      <button class="theme-chip" data-theme-preset="serene" onclick="setThemePreset('serene')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.75 0.05 60);"></span>
+        Serene
+      </button>
+      <button class="theme-chip" data-theme-preset="stream" onclick="setThemePreset('stream')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.65 0.08 230);"></span>
+        Stream
+      </button>
+      <button class="theme-chip" data-theme-preset="flowing" onclick="setThemePreset('flowing')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.65 0.15 220);"></span>
+        Flowing
+        <span class="theme-chip__badge">Default</span>
+      </button>
+      <button class="theme-chip" data-theme-preset="cascade" onclick="setThemePreset('cascade')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.80 0.12 150);"></span>
+        Cascade
+      </button>
+      <button class="theme-chip" data-theme-preset="rapids" onclick="setThemePreset('rapids')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.60 0.20 25);"></span>
+        Rapids
+      </button>
+      <button class="theme-chip" data-theme-preset="tsunami" onclick="setThemePreset('tsunami')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.55 0.25 320);"></span>
+        Tsunami
+      </button>
     </div>
   </section>
 
@@ -277,103 +224,238 @@ nav: home
 </div>
 
 <style>
-  /* Theme Preview Cards */
-  .theme-preview {
-    appearance: none;
-    border: none;
-    background: var(--color-surface-raised);
-    padding: var(--space-5);
-    border-radius: var(--radius-lg);
-    text-align: left;
+  /* ========================================
+     FULL-VIEWPORT THEME GRID
+     2x3 portrait, 3x2 landscape with duotone
+     ======================================== */
+
+  .theme-grid-hero {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    min-block-size: 100svh;
+    gap: 2px;
+    background: var(--color-background);
+  }
+
+  /* Landscape: 3 columns, 2 rows */
+  @media (orientation: landscape) {
+    .theme-grid-hero {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+  }
+
+  .theme-grid__item {
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
+    border: none;
+    padding: 0;
+    background: var(--gray-90);
+    transition: transform var(--duration-normal) var(--ease-fluid);
+  }
+
+  .theme-grid__item img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-fluid);
+    /* Base grayscale for duotone effect */
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  /* Duotone overlay - creates the color effect */
+  .theme-grid__overlay {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Theme-specific duotone colors */
+  .theme-grid__item[data-theme="still"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.45 0.02 250) 0%, oklch(0.70 0.02 200) 100%);
+  }
+
+  .theme-grid__item[data-theme="serene"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.55 0.08 60) 0%, oklch(0.80 0.06 80) 100%);
+  }
+
+  .theme-grid__item[data-theme="stream"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.45 0.12 230) 0%, oklch(0.75 0.08 200) 100%);
+  }
+
+  .theme-grid__item[data-theme="cascade"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.60 0.15 160) 0%, oklch(0.85 0.10 140) 100%);
+  }
+
+  .theme-grid__item[data-theme="rapids"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.45 0.20 25) 0%, oklch(0.70 0.18 40) 100%);
+  }
+
+  .theme-grid__item[data-theme="tsunami"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.35 0.25 300) 0%, oklch(0.55 0.20 340) 100%);
+  }
+
+  /* Content overlay */
+  .theme-grid__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-5);
+    background: linear-gradient(to top, oklch(0% 0 0 / 0.7) 0%, transparent 60%);
+    color: white;
+    text-align: left;
+    opacity: 0.9;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  .theme-grid__name {
+    font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-3xl));
+    font-weight: var(--weight-bold);
+    margin: 0 0 var(--space-1) 0;
+    text-shadow: 0 2px 8px oklch(0% 0 0 / 0.5);
+  }
+
+  .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    margin: 0;
+    opacity: 0.9;
+    text-shadow: 0 1px 4px oklch(0% 0 0 / 0.5);
+  }
+
+  /* Hover effects */
+  .theme-grid__item:hover img {
+    transform: scale(1.05);
+  }
+
+  .theme-grid__item:hover .theme-grid__overlay {
+    opacity: 0.7;
+  }
+
+  .theme-grid__item:hover .theme-grid__content {
+    opacity: 1;
+  }
+
+  /* Active state */
+  .theme-grid__item[data-active] {
+    outline: 4px solid var(--accent);
+    outline-offset: -4px;
+  }
+
+  .theme-grid__item[data-active]::after {
+    content: "✓";
+    position: absolute;
+    inset-block-start: var(--space-4);
+    inset-inline-end: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    background: var(--accent);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-bold);
+  }
+
+  /* Focus visible */
+  .theme-grid__item:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+    z-index: 1;
+  }
+
+
+  /* ========================================
+     THEME CHIPS (Compact Selection)
+     ======================================== */
+
+  .theme-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .theme-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-surface-raised);
     border: 2px solid var(--color-border);
-    transition: all var(--duration-normal) var(--ease-fluid);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
   }
 
-  .theme-preview:hover {
+  .theme-chip:hover {
     border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    background: var(--color-surface);
   }
 
-  .theme-preview[data-active] {
+  .theme-chip[data-active] {
     border-color: var(--accent);
     background: var(--accent-subtle);
   }
 
-  .theme-preview__header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-block-end: var(--space-3);
-  }
-
-  .theme-preview__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-    background: var(--color-surface);
-    border-radius: var(--radius-md);
-    color: var(--accent);
-  }
-
-  .theme-preview__icon svg {
-    inline-size: 1.5rem;
-    block-size: 1.5rem;
-  }
-
-  .theme-preview__name {
-    font-size: var(--font-size-lg);
-    font-weight: var(--weight-semibold);
-    margin: 0;
-    color: var(--color-text);
-  }
-
-  .theme-preview__badge {
-    font-size: var(--font-size-xs);
-    padding: var(--space-1) var(--space-2);
-    background: var(--accent);
-    color: var(--white);
+  .theme-chip__dot {
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
     border-radius: var(--radius-full);
-    margin-inline-start: auto;
+    background: var(--chip-color, var(--accent));
   }
 
-  .theme-preview__desc {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-3) 0;
-  }
-
-  .theme-preview__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .theme-preview__tags span {
+  .theme-chip__badge {
     font-size: var(--font-size-xs);
-    padding: var(--space-1) var(--space-2);
-    background: var(--color-surface);
+    padding: 0 var(--space-1);
+    background: var(--accent);
+    color: white;
     border-radius: var(--radius-sm);
-    color: var(--color-text-subtle);
+    margin-inline-start: var(--space-1);
   }
 </style>
 
 <script>
-  // Update theme preview cards when theme changes
-  function updateThemePreviews() {
+  // Update theme grid and chips when theme changes
+  function updateThemeGrid() {
     const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
-    document.querySelectorAll('.theme-preview').forEach(preview => {
-      if (preview.dataset.themePreset === currentMotion) {
-        preview.setAttribute('data-active', '');
+
+    // Update grid items
+    document.querySelectorAll('.theme-grid__item').forEach(item => {
+      if (item.dataset.theme === currentMotion) {
+        item.setAttribute('data-active', '');
       } else {
-        preview.removeAttribute('data-active');
+        item.removeAttribute('data-active');
       }
     });
+
+    // Update chips
+    document.querySelectorAll('.theme-chip').forEach(chip => {
+      if (chip.dataset.themePreset === currentMotion) {
+        chip.setAttribute('data-active', '');
+      } else {
+        chip.removeAttribute('data-active');
+      }
+    });
+
+    // Also update theme cards if present
+    if (typeof updateThemeCards === 'function') {
+      updateThemeCards();
+    }
   }
 
   // Call on page load
-  document.addEventListener('DOMContentLoaded', updateThemePreviews);
+  document.addEventListener('DOMContentLoaded', updateThemeGrid);
 </script>
