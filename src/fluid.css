@@ -51,6 +51,7 @@
 @import "./components/hero.css";
 @import "./components/indicator.css";
 @import "./components/settings-panel.css";
+@import "./components/scroll-progress.css";
 
 /* Animations */
 @import "./animations/scroll-reveal.css";

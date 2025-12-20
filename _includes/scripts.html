@@ -350,17 +350,86 @@
 
 
   // ========================================
+  // SCROLL PROGRESS INDICATOR
+  // ========================================
+
+  function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+
+      progressBar.style.setProperty('--_progress', progress);
+
+      // Add data attribute for CSS hooks
+      if (progress === 0) {
+        progressBar.setAttribute('data-progress', '0');
+      } else {
+        progressBar.removeAttribute('data-progress');
+      }
+    }
+
+    // Throttle scroll updates for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial update
+    updateProgress();
+  }
+
+  function setScrollProgressPosition(position) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      progressBar.setAttribute('data-position', position);
+      localStorage.setItem('fluid-scroll-progress-position', position);
+    }
+  }
+
+  function toggleScrollProgress(show) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      if (show) {
+        progressBar.removeAttribute('data-hidden');
+        localStorage.removeItem('fluid-scroll-progress-hidden');
+      } else {
+        progressBar.setAttribute('data-hidden', '');
+        localStorage.setItem('fluid-scroll-progress-hidden', 'true');
+      }
+    }
+  }
+
+
+  // ========================================
   // SCROLL REVEAL ANIMATIONS
   // ========================================
 
   function initScrollReveal() {
-    const elements = document.querySelectorAll('[data-reveal]');
-    if (!elements.length) return;
+    // Get motion style - if 'still', skip all animations
+    const motionStyle = document.documentElement.getAttribute('data-motion') || 'flowing';
+    if (motionStyle === 'still') return;
+
+    // Select both explicit [data-reveal] elements AND sections for auto-reveal
+    const explicitElements = document.querySelectorAll('[data-reveal]');
+    const sections = document.querySelectorAll('.section:not([data-reveal])');
+    const allElements = [...explicitElements, ...sections];
+
+    if (!allElements.length) return;
 
     // Check for IntersectionObserver support
     if (!('IntersectionObserver' in window)) {
       // Fallback: reveal all immediately
-      elements.forEach(el => el.classList.add('revealed'));
+      allElements.forEach(el => el.classList.add('revealed'));
       return;
     }
 
@@ -377,7 +446,7 @@
       threshold: 0.1
     });
 
-    elements.forEach(el => observer.observe(el));
+    allElements.forEach(el => observer.observe(el));
   }
 
 
@@ -423,6 +492,18 @@
       document.documentElement.setAttribute('data-motion', savedMotion);
     }
 
+    // Scroll progress settings
+    const savedScrollProgressHidden = localStorage.getItem('fluid-scroll-progress-hidden');
+    const savedScrollProgressPosition = localStorage.getItem('fluid-scroll-progress-position');
+    if (savedScrollProgressHidden) {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.setAttribute('data-hidden', '');
+    }
+    if (savedScrollProgressPosition) {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.setAttribute('data-position', savedScrollProgressPosition);
+    }
+
     // Update UI controls once DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
@@ -432,6 +513,7 @@
         updateMotionSelect();
         initAnimatedProgress();
         initAutoStatus();
+        initScrollProgress();
         initScrollReveal();
       });
     } else {
@@ -441,6 +523,7 @@
       updateMotionSelect();
       initAnimatedProgress();
       initAutoStatus();
+      initScrollProgress();
       initScrollReveal();
     }
   })();

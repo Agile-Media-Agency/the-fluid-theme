@@ -1,0 +1,104 @@
+/**
+ * Scroll Progress Indicator
+ *
+ * A thin bar showing page scroll position.
+ * Position and animation direction matches the motion style.
+ *
+ * Usage: Add {% include scroll-progress.html %} to your layout
+ *
+ * Data attributes:
+ *   data-position="top" | "bottom" | "left" | "right"
+ *   data-hidden - Hide the indicator
+ */
+
+@layer components {
+  .scroll-progress {
+    --_progress: 0;
+    --_size: 3px;
+
+    position: fixed;
+    z-index: var(--z-overlay);
+    background-color: var(--accent);
+    pointer-events: none;
+    opacity: 0.8;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Hide when at top of page or when disabled */
+  .scroll-progress[data-hidden],
+  .scroll-progress[data-progress="0"] {
+    opacity: 0;
+  }
+
+  /* Top position (default) - horizontal bar */
+  .scroll-progress,
+  .scroll-progress[data-position="top"] {
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    block-size: var(--_size);
+    inline-size: calc(var(--_progress) * 100%);
+  }
+
+  /* Bottom position - horizontal bar */
+  .scroll-progress[data-position="bottom"] {
+    inset-block-end: 0;
+    inset-block-start: auto;
+    inset-inline-start: 0;
+    block-size: var(--_size);
+    inline-size: calc(var(--_progress) * 100%);
+  }
+
+  /* Left position - vertical bar */
+  .scroll-progress[data-position="left"] {
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: var(--_size);
+    block-size: calc(var(--_progress) * 100%);
+  }
+
+  /* Right position - vertical bar */
+  .scroll-progress[data-position="right"] {
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-inline-start: auto;
+    inline-size: var(--_size);
+    block-size: calc(var(--_progress) * 100%);
+  }
+
+  /* Motion style adjustments */
+  /* Still: No progress bar by default */
+  [data-motion="still"] .scroll-progress {
+    display: none;
+  }
+
+  /* Serene/Stream: Very thin, subtle */
+  [data-motion="serene"] .scroll-progress,
+  [data-motion="stream"] .scroll-progress {
+    --_size: 2px;
+    opacity: 0.5;
+  }
+
+  /* Flowing: Standard */
+  [data-motion="flowing"] .scroll-progress {
+    --_size: 3px;
+  }
+
+  /* Cascade: Slightly thicker */
+  [data-motion="cascade"] .scroll-progress {
+    --_size: 4px;
+  }
+
+  /* Rapids/Tsunami: Bold */
+  [data-motion="rapids"] .scroll-progress,
+  [data-motion="tsunami"] .scroll-progress {
+    --_size: 5px;
+    opacity: 0.9;
+  }
+
+  /* Reduced motion: instant updates */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-progress {
+      transition: none;
+    }
+  }
+}
