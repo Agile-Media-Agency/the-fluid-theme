@@ -39,7 +39,7 @@
     /* Visual */
     background-color: var(--_card-bg, var(--color-surface-raised));
     border: var(--border-width) solid var(--_card-border, var(--color-border-subtle));
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card, var(--radius-xl));
 
     /* Overflow handling */
     overflow: hidden;
@@ -422,5 +422,41 @@
 
   .card-group[data-equal-height] > .card .card__content {
     flex: 1;
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC CARD STYLES
+     Motion styles affect card appearance
+     ======================================== */
+
+  /* Tsunami: Asymmetric corners - ONE rounded, THREE sharp */
+  [data-motion="tsunami"] .card {
+    border-radius: var(--radius-asymmetric, 0 24px 0 0);
+  }
+
+  /* Alternate cards get opposite corner */
+  [data-motion="tsunami"] .card:nth-child(even) {
+    border-radius: var(--radius-asymmetric-alt, 24px 0 0 0);
+  }
+
+  /* Large cards get larger asymmetric radius */
+  [data-motion="tsunami"] .card[data-size="lg"] {
+    border-radius: var(--radius-asymmetric-lg, 0 48px 0 0);
+  }
+
+  /* Serene: Extra soft, pillowy cards */
+  [data-motion="serene"] .card {
+    box-shadow: var(--shadow-sm);
+  }
+
+  [data-motion="serene"] .card[data-variant="elevated"] {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Still: Crisp, no-nonsense borders */
+  [data-motion="still"] .card {
+    border-width: 1px;
+    border-color: var(--color-border);
   }
 }

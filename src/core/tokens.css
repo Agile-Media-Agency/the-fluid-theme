@@ -494,6 +494,10 @@
     --radius-md: 2px;
     --radius-lg: 4px;
     --radius-xl: 4px;
+    --radius-card: 0;
+    --radius-button: 0;
+    --radius-input: 2px;
+    --container-content: var(--container-lg);
     --shadow-sm: none;
     --shadow-md: 0 1px 2px oklch(from var(--shadow-color) l c h / 0.1);
     --shadow-lg: 0 2px 4px oklch(from var(--shadow-color) l c h / 0.1);
@@ -503,7 +507,7 @@
      Like gazing at a reflection in still water.
      Very slow crossfades, gentle zoom on images.
      Meditative, contemplative motion.
-     Layout: Generous whitespace, classical proportions. */
+     Layout: Generous whitespace, classical proportions, soft edges. */
   :root[data-motion="serene"],
   [data-motion="serene"] {
     --motion-scale: 0.3;
@@ -518,11 +522,28 @@
     /* Ken Burns zoom amount for images */
     --kenburns-scale: 1.05;
 
-    /* Layout: Editorial, lots of breathing room */
+    /* Layout: Editorial, soft rounded corners, NOT full width */
     --space-section: var(--space-24);
-    --space-gutter: var(--space-8);
+    --space-gutter: var(--space-10);
     --leading-normal: 1.75;
     --container-prose: 38rem;
+    --container-content: var(--container-md);  /* Narrower content */
+    --container-xl: var(--container-lg);        /* Constrain max width */
+
+    /* Soft, pillowy corners */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-2xl: 40px;
+    --radius-card: 24px;
+    --radius-button: 9999px;  /* Pill buttons */
+    --radius-input: 16px;
+
+    /* Softer shadows */
+    --shadow-sm: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.04);
+    --shadow-md: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.06);
+    --shadow-lg: 0 16px 48px oklch(from var(--shadow-color) l c h / 0.08);
   }
 
   /* === TRICKLING: Minimal, quick motion ===
@@ -539,14 +560,20 @@
 
     /* Layout: Understated, efficient use of space */
     --space-section: var(--space-12);
-    --radius-md: var(--radius-sm);
-    --radius-lg: var(--radius-md);
+    --container-content: var(--container-lg);
+    --radius-sm: 3px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-card: 8px;
+    --radius-button: 6px;
+    --radius-input: 6px;
   }
 
   /* === STREAM: Horizontal flow ===
      Like a gentle stream - content flows sideways.
      Modern, tech-forward feel.
-     Layout: Clean lines, horizontal emphasis. */
+     Layout: Clean lines, horizontal emphasis, full-width. */
   :root[data-motion="stream"],
   [data-motion="stream"] {
     --motion-scale: 0.7;
@@ -558,9 +585,14 @@
 
     /* Layout: Modern, clean horizontal lines */
     --space-section: var(--space-16);
+    --container-content: var(--container-xl);
     --radius-sm: 4px;
-    --radius-md: 6px;
-    --radius-lg: 8px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-input: 8px;
   }
 
   /* === FLOWING: Connected horizontal flow (default) ===
@@ -574,13 +606,18 @@
     --motion-scale: 1;
     --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
-    /* Uses default durations and layout from base tokens */
+
+    /* Layout: Balanced defaults */
+    --container-content: var(--container-xl);
+    --radius-card: var(--radius-lg);
+    --radius-button: var(--radius-md);
+    --radius-input: var(--radius-md);
   }
 
   /* === CASCADE: Waterfall effect ===
      Like a waterfall - content cascades down in layers.
      Playful, friendly, staggered animations.
-     Layout: Rounded, warm, approachable. */
+     Layout: Rounded, warm, approachable, bubbly. */
   :root[data-motion="cascade"],
   [data-motion="cascade"] {
     --motion-scale: 1.2;
@@ -590,12 +627,18 @@
     --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Slight bounce */
     --ease-settle: cubic-bezier(0.22, 1.2, 0.36, 1);
 
-    /* Layout: Friendly, rounded, warm */
+    /* Layout: Friendly, bubbly, rounded corners */
     --space-section: var(--space-16);
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    --space-gutter: var(--space-6);
+    --container-content: var(--container-xl);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-2xl: 48px;
+    --radius-card: 20px;
+    --radius-button: 9999px;  /* Pill buttons */
+    --radius-input: 12px;
     --shadow-md: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.08);
     --shadow-lg: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.12);
   }
@@ -616,12 +659,17 @@
     /* Stagger delay for layered effect */
     --rapids-stagger: 80ms;
 
-    /* Layout: Tight, punchy, high-energy */
+    /* Layout: Tight, punchy, high-energy, full-width */
     --space-section: var(--space-12);
     --space-gutter: var(--space-4);
+    --container-content: var(--container-2xl);
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-input: 6px;
     --shadow-md: 0 4px 8px oklch(from var(--shadow-color) l c h / 0.15);
     --shadow-lg: 0 8px 16px oklch(from var(--shadow-color) l c h / 0.2);
   }
@@ -630,7 +678,7 @@
      Maximum impact - content crashes in diagonally
      like a wave breaking. Strong overshoot, dramatic.
      For bold, attention-grabbing interfaces.
-     Layout: Bold, full-width, impactful. */
+     Layout: Bold, edge-to-edge, asymmetric corners. */
   :root[data-motion="tsunami"],
   [data-motion="tsunami"] {
     --motion-scale: 2;
@@ -640,11 +688,26 @@
     --ease-fluid: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Strong overshoot */
     --ease-settle: cubic-bezier(0.34, 1.8, 0.64, 1); /* Dramatic settle */
 
-    /* Layout: Bold, dramatic, high-contrast */
+    /* Layout: Bold, edge-to-edge, maximum impact */
     --space-section: var(--space-20);
+    --space-gutter: var(--space-6);
+    --container-content: 100%;  /* Full width */
+    --container-xl: 100%;
+
+    /* Asymmetric corners: ONE rounded, THREE sharp */
     --radius-sm: 0;
-    --radius-md: 4px;
-    --radius-lg: 8px;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-card: 0;
+    --radius-button: 0;
+    --radius-input: 0;
+    /* Special asymmetric radius for cards/containers */
+    --radius-asymmetric: 0 24px 0 0;  /* Only top-right rounded */
+    --radius-asymmetric-alt: 24px 0 0 0;  /* Only top-left rounded */
+    --radius-asymmetric-lg: 0 48px 0 0;
+
+    /* Dramatic shadows */
     --shadow-md: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.2);
     --shadow-lg: 0 16px 48px oklch(from var(--shadow-color) l c h / 0.25);
     --shadow-xl: 0 24px 64px oklch(from var(--shadow-color) l c h / 0.3);
