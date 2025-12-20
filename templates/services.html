@@ -4,6 +4,39 @@ description: Professional web design and development services
 layout: template
 nav: services
 ---
+<style>
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    text-align: left;
+  }
+
+  .feature-list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--color-primary);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+</style>
+
 <!-- Hero Section -->
 <section class="hero" data-layout="center" data-padding="xl" data-overlay="medium" style="--hero-text-color: white; --hero-text-muted: hsl(0 0% 100% / 0.8);">
   <div class="hero__background">
@@ -21,16 +54,16 @@ nav: services
 <!-- Main Services -->
 <section class="section" data-padding="xl">
   <div data-layout="center" data-width="wide">
-    <h2 style="text-align: center; margin-block-end: var(--space-3);">Our Expertise</h2>
-    <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-10); max-inline-size: 55ch; margin-inline: auto;">Comprehensive services designed to elevate your digital presence.</p>
+    <h2 style="text-align: center; margin-block-end: var(--space-3);" data-reveal="fade-up">Our Expertise</h2>
+    <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-10); max-inline-size: 55ch; margin-inline: auto;" data-reveal="fade-up" data-reveal-delay="100">Comprehensive services designed to elevate your digital presence.</p>
 
     <!-- Service 1 -->
     <section class="section" data-layout="split" data-padding="lg" data-gap="xl" style="border-block-end: 1px solid var(--color-border-subtle);">
-      <div data-layout="stack" data-gap="md">
+      <div data-layout="stack" data-gap="md" data-reveal="fade-right">
         <span style="font-size: var(--font-size-sm); color: var(--color-primary); font-weight: 500;">01</span>
         <h3>Web Design</h3>
         <p style="color: var(--color-text-muted);">Beautiful, responsive designs that capture your brand essence and engage your audience. We focus on user experience that feels natural and intuitive.</p>
-        <ul style="color: var(--color-text-muted);">
+        <ul class="feature-list">
           <li>UI/UX Design</li>
           <li>Responsive Layouts</li>
           <li>Brand Integration</li>
@@ -38,16 +71,16 @@ nav: services
         </ul>
         <button data-variant="outline" data-size="sm">Learn More</button>
       </div>
-      <img src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_1.png" alt="Web Design" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;">
+      <img src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_1.png" alt="Web Design" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;" data-reveal="fade-left" data-reveal-delay="200">
     </section>
 
     <!-- Service 2 -->
     <section class="section" data-layout="split-reverse" data-padding="lg" data-gap="xl" style="border-block-end: 1px solid var(--color-border-subtle);">
-      <div data-layout="stack" data-gap="md">
+      <div data-layout="stack" data-gap="md" data-reveal="fade-left">
         <span style="font-size: var(--font-size-sm); color: var(--color-primary); font-weight: 500;">02</span>
         <h3>Development</h3>
         <p style="color: var(--color-text-muted);">Clean, maintainable code that brings designs to life. We build performant websites and applications using modern technologies.</p>
-        <ul style="color: var(--color-text-muted);">
+        <ul class="feature-list">
           <li>Frontend Development</li>
           <li>Backend Systems</li>
           <li>API Integration</li>
@@ -55,16 +88,16 @@ nav: services
         </ul>
         <button data-variant="outline" data-size="sm">Learn More</button>
       </div>
-      <img src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0.png" alt="Development" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;">
+      <img src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0.png" alt="Development" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;" data-reveal="fade-right" data-reveal-delay="200">
     </section>
 
     <!-- Service 3 -->
     <section class="section" data-layout="split" data-padding="lg" data-gap="xl" style="border-block-end: 1px solid var(--color-border-subtle);">
-      <div data-layout="stack" data-gap="md">
+      <div data-layout="stack" data-gap="md" data-reveal="fade-right">
         <span style="font-size: var(--font-size-sm); color: var(--color-primary); font-weight: 500;">03</span>
         <h3>E-Commerce</h3>
         <p style="color: var(--color-text-muted);">Complete online store solutions that convert visitors into customers. From product pages to checkout, we optimize every step.</p>
-        <ul style="color: var(--color-text-muted);">
+        <ul class="feature-list">
           <li>Store Setup</li>
           <li>Payment Integration</li>
           <li>Inventory Management</li>
@@ -72,16 +105,16 @@ nav: services
         </ul>
         <button data-variant="outline" data-size="sm">Learn More</button>
       </div>
-      <img src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_2.png" alt="E-Commerce" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;">
+      <img src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_2.png" alt="E-Commerce" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;" data-reveal="fade-left" data-reveal-delay="200">
     </section>
 
     <!-- Service 4 -->
     <section class="section" data-layout="split-reverse" data-padding="lg" data-gap="xl">
-      <div data-layout="stack" data-gap="md">
+      <div data-layout="stack" data-gap="md" data-reveal="fade-left">
         <span style="font-size: var(--font-size-sm); color: var(--color-primary); font-weight: 500;">04</span>
         <h3>Digital Strategy</h3>
         <p style="color: var(--color-text-muted);">Data-driven approaches to grow your online presence. We help you understand your audience and reach them effectively.</p>
-        <ul style="color: var(--color-text-muted);">
+        <ul class="feature-list">
           <li>SEO Optimization</li>
           <li>Content Strategy</li>
           <li>Analytics & Insights</li>
@@ -89,7 +122,7 @@ nav: services
         </ul>
         <button data-variant="outline" data-size="sm">Learn More</button>
       </div>
-      <img src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_1.png" alt="Digital Strategy" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;">
+      <img src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_1.png" alt="Digital Strategy" style="border-radius: var(--radius-lg); object-fit: cover; aspect-ratio: 4/3;" data-reveal="fade-right" data-reveal-delay="200">
     </section>
   </div>
 </section>
@@ -97,11 +130,11 @@ nav: services
 <!-- Process Section -->
 <section class="section" data-padding="xl" data-theme="subtle">
   <div data-layout="center" data-width="wide">
-    <h2 style="text-align: center; margin-block-end: var(--space-3);">Our Process</h2>
-    <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-10); max-inline-size: 50ch; margin-inline: auto;">A proven workflow that delivers results.</p>
+    <h2 style="text-align: center; margin-block-end: var(--space-3);" data-reveal="fade-up">Our Process</h2>
+    <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-10); max-inline-size: 50ch; margin-inline: auto;" data-reveal="fade-up" data-reveal-delay="100">A proven workflow that delivers results.</p>
 
-    <div class="grid" style="--grid-min: 200px; gap: var(--space-6);">
-      <article class="card">
+    <div class="grid" style="--grid-min: 200px; gap: var(--space-6);" data-reveal-stagger>
+      <article class="card" data-reveal="fade-up">
         <div class="card__content" style="text-align: center;">
           <span style="display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; background: var(--color-primary); color: white; border-radius: 50%; font-weight: 700; margin-block-end: var(--space-4);">1</span>
           <h3 class="card__title">Discovery</h3>
@@ -109,7 +142,7 @@ nav: services
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-reveal="fade-up">
         <div class="card__content" style="text-align: center;">
           <span style="display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; background: var(--color-primary); color: white; border-radius: 50%; font-weight: 700; margin-block-end: var(--space-4);">2</span>
           <h3 class="card__title">Design</h3>
@@ -117,7 +150,7 @@ nav: services
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-reveal="fade-up">
         <div class="card__content" style="text-align: center;">
           <span style="display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; background: var(--color-primary); color: white; border-radius: 50%; font-weight: 700; margin-block-end: var(--space-4);">3</span>
           <h3 class="card__title">Develop</h3>
@@ -125,7 +158,7 @@ nav: services
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-reveal="fade-up">
         <div class="card__content" style="text-align: center;">
           <span style="display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; background: var(--color-primary); color: white; border-radius: 50%; font-weight: 700; margin-block-end: var(--space-4);">4</span>
           <h3 class="card__title">Launch</h3>

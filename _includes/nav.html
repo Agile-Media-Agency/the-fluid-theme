@@ -1,13 +1,46 @@
 <nav class="nav" data-sticky>
   <a href="{{ '/' | relative_url }}" class="nav__brand">Fluid</a>
+
   <ul class="nav__menu" role="list" id="nav-menu">
-    <li><a href="{{ '/examples/foundation.html' | relative_url }}" class="nav__link"{% if page.nav == 'foundation' %} aria-current="page"{% endif %}>Foundation</a></li>
-    <li><a href="{{ '/examples/components.html' | relative_url }}" class="nav__link"{% if page.nav == 'components' %} aria-current="page"{% endif %}>Components</a></li>
-    <li><a href="{{ '/examples/positioning.html' | relative_url }}" class="nav__link"{% if page.nav == 'positioning' %} aria-current="page"{% endif %}>Layouts</a></li>
-    <li><a href="{{ '/examples/heroes.html' | relative_url }}" class="nav__link"{% if page.nav == 'heroes' %} aria-current="page"{% endif %}>Heroes</a></li>
-    <li><a href="{{ '/examples/hero-picker.html' | relative_url }}" class="nav__link"{% if page.nav == 'hero-picker' %} aria-current="page"{% endif %}>Hero Picker</a></li>
-    <li><a href="{{ '/templates/' | relative_url }}" class="nav__link"{% if page.nav contains 'template' %} aria-current="page"{% endif %}>Templates</a></li>
+    <!-- Templates Dropdown -->
+    <li class="nav__dropdown">
+      <button class="nav__dropdown-trigger"{% if page.url contains '/templates/' %} data-active{% endif %}>
+        Templates
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <ul class="nav__dropdown-menu">
+        <li><a href="{{ '/templates/' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'templates-home' %} aria-current="page"{% endif %}>Overview</a></li>
+        <li><a href="{{ '/templates/about.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'about' %} aria-current="page"{% endif %}>About</a></li>
+        <li><a href="{{ '/templates/services.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'services' %} aria-current="page"{% endif %}>Services</a></li>
+        <li><a href="{{ '/templates/gallery.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'gallery' %} aria-current="page"{% endif %}>Gallery</a></li>
+        <li><a href="{{ '/templates/blog.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'blog' %} aria-current="page"{% endif %}>Blog</a></li>
+        <li><a href="{{ '/templates/pricing.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'pricing' %} aria-current="page"{% endif %}>Pricing</a></li>
+        <li><a href="{{ '/templates/faq.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'faq' %} aria-current="page"{% endif %}>FAQ</a></li>
+        <li><a href="{{ '/templates/contact.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'contact' %} aria-current="page"{% endif %}>Contact</a></li>
+      </ul>
+    </li>
+
+    <!-- Showcase Dropdown -->
+    <li class="nav__dropdown">
+      <button class="nav__dropdown-trigger"{% if page.url contains '/examples/' %} data-active{% endif %}>
+        Showcase
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <ul class="nav__dropdown-menu">
+        <li><a href="{{ '/examples/foundation.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'foundation' %} aria-current="page"{% endif %}>Foundation</a></li>
+        <li><a href="{{ '/examples/components.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'components' %} aria-current="page"{% endif %}>Components</a></li>
+        <li><a href="{{ '/examples/positioning.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'positioning' %} aria-current="page"{% endif %}>Layouts</a></li>
+        <li><a href="{{ '/examples/heroes.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'heroes' %} aria-current="page"{% endif %}>Heroes</a></li>
+        <li><a href="{{ '/examples/hero-picker.html' | relative_url }}" class="nav__dropdown-link"{% if page.nav == 'hero-picker' %} aria-current="page"{% endif %}>Hero Picker</a></li>
+      </ul>
+    </li>
+
+    <!-- Customizer CTA -->
+    <li>
+      <a href="{{ '/customizer.html' | relative_url }}" class="nav__cta">Customizer</a>
+    </li>
   </ul>
+
   <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
