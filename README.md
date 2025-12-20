@@ -1,56 +1,31 @@
-# The Fluid Theme Framework v2c
+# The Fluid Theme Framework
 
-## 🌊 A Modern, Semantic Design System
+## 🌊 A Physics-Based Design System
 
-A revolutionary approach to web theming that prioritizes semantic HTML, modern CSS features, and progressive enhancement over utility-class chaos. Built by someone who's seen it all in 32 years of design and is ready for something better.
+A revolutionary approach to web theming built on **fluid dynamics principles**. Every animation, transition, and interaction is governed by real physics—viscosity, displacement, surface tension, momentum, and friction.
 
-## Philosophy
+> *"There HAS to be a better way..." — And now there is.*
 
-- **Semantic First**: Use `<fluid-card>` not `<div class="flex flex-col p-4 m-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">`
-- **Modern CSS**: Leverage cascade layers, custom properties, container queries, and logical properties
-- **Progressive Enhancement**: Everything works without JavaScript, then enhances gracefully
-- **Zero Build Step**: No compilation needed - works directly in browsers
-- **Truly Themeable**: Change a few CSS variables, transform everything
+## What Makes This Different
 
-## Project Structure
+Most design systems pick arbitrary animation timings. We use **Reynolds numbers**—the same physics that determines whether water flows smoothly or turbulently:
 
-```
-the-fluid-theme-v2c/
-├── docs/                    # Documentation
-│   ├── ARCHITECTURE.md     # Technical decisions and patterns
-│   ├── CONTRIBUTING.md     # How to contribute
-│   └── agents/             # AI agent instructions
-├── src/
-│   ├── core/               # Foundation layers
-│   │   ├── reset.css       # Modern reset layer
-│   │   ├── tokens.css      # Design tokens
-│   │   └── base.css        # Base element styles
-│   ├── components/         # Reusable components
-│   │   ├── fluid-card.js   # Card web component
-│   │   ├── fluid-nav.js    # Navigation component
-│   │   └── ...
-│   ├── layouts/           # Layout patterns
-│   ├── themes/            # Theme variations
-│   │   ├── default.css
-│   │   ├── dark.css
-│   │   └── ...
-│   └── fluid.css          # Main entry point
-├── examples/              # Live examples
-│   ├── index.html         # Element showcase
-│   ├── components.html    # Component gallery
-│   └── themes.html        # Theme switcher demo
-└── tests/                 # Visual regression tests
-
-```
+| Motion Style | Reynolds | Behavior |
+|-------------|----------|----------|
+| **Still** | 0 | No motion, instant state changes |
+| **Stream** | ~100 | Laminar flow, smooth and predictable |
+| **Cascade** | ~1000 | Transitional, gentle waterfalls |
+| **Rapids** | ~5000 | Turbulent, energetic with resistance |
+| **Tsunami** | ~50000 | Massive force, dramatic displacement |
 
 ## Quick Start
 
 ```html
-<!-- Just link the CSS -->
+<!-- Link the CSS -->
 <link rel="stylesheet" href="path/to/fluid.css">
 
-<!-- Optionally add custom elements for enhanced functionality -->
-<script type="module" src="path/to/fluid-components.js"></script>
+<!-- Set your preferences -->
+<body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
 
 <!-- Use semantic HTML -->
 <fluid-card>
@@ -59,89 +34,131 @@ the-fluid-theme-v2c/
 </fluid-card>
 ```
 
+```bash
+# Local development
+npm run serve    # Opens at localhost:8080
+```
+
 ## Core Features
 
-### 🎨 Design Tokens
-Single source of truth for all design decisions:
-- **Colors**: HSL-based with automatic dark mode
-- **Typography**: Fluid type scale using clamp()
-- **Spacing**: Fibonacci-inspired mathematical scale
-- **Animation**: Consistent timing and easing functions
+### 🎬 Motion System
+Five physics-based animation styles:
+- **Still** — Reduced motion, instant transitions
+- **Stream** — Smooth, laminar animations (300ms)
+- **Cascade** — Gentle waterfall effects (450ms)
+- **Rapids** — Turbulent with friction and drag (700ms)
+- **Tsunami** — Dramatic rise, crest, and crash (900ms)
 
-### 📦 CSS Architecture
+### 🎨 Color Palettes
+Nine curated palettes, each with 6 accent colors:
+
+| Palette | Vibe |
+|---------|------|
+| **Fluid** | Water-themed, auto-links to motion style |
+| **Morandi** | Muted, sophisticated Italian aesthetics |
+| **Bold** | High saturation, confident primaries |
+| **Pastel** | Soft, approachable pastels |
+| **Earth** | Natural, organic tones |
+| **Mono** | Grayscale with subtle warmth |
+| **80s** | Neon retrowave |
+| **Matrix** | Cyberpunk greens |
+| **Subtle** | Nearly neutral, whisper quiet |
+
+### 🌓 Theme Modes
+- **Light** — Clean, high contrast
+- **Dark** — Easy on the eyes
+- **Auto** — Follows system preference
+- **Subdued** — Low contrast for any mode (OKLCH-based)
+
+### 📐 CSS Architecture
 ```css
-/* Predictable cascade with layers */
 @layer reset, tokens, base, layouts, components, themes, utilities;
 ```
 
-### 🌍 International Ready
-- Logical properties throughout (block/inline)
-- RTL support out of the box
-- Container queries for component-level responsiveness
+Modern CSS features throughout:
+- **OKLCH colors** with `color-mix()` for derived shades
+- **Logical properties** (`margin-block`, `padding-inline`)
+- **Container queries** for component-level responsiveness
+- **View Transitions API** for page transitions
+- **Custom properties** for everything
 
-### ♿ Accessibility First
-- Focus-visible styles
-- Respects prefers-reduced-motion
-- High contrast mode support
-- Semantic HTML structure
+## Project Structure
+
+```
+the-fluid-theme-v2c/
+├── _docs/                    # Documentation
+│   ├── _start-here.md       # Full documentation
+│   └── gemini-child-theme-prompt.md
+├── _includes/               # Jekyll includes
+│   ├── settings-panel.html  # Interactive controls
+│   └── scripts.html         # Theme/palette logic
+├── src/
+│   ├── core/
+│   │   ├── reset.css        # Modern reset
+│   │   ├── tokens.css       # Design tokens + motion + palettes
+│   │   └── base.css         # Base element styles
+│   ├── components/          # Button, card, indicator, etc.
+│   ├── layouts/             # Layout patterns
+│   └── fluid.css            # Main entry point
+├── examples/
+│   ├── index.html           # Home
+│   ├── foundation.html      # Element showcase
+│   ├── components.html      # Component gallery
+│   └── philosophy.html      # Fluid dynamics explanation
+└── _config.yml              # Jekyll config (version, etc.)
+```
+
+## Data Attributes
+
+Control everything via HTML attributes:
+
+```html
+<body
+  data-theme="dark"      <!-- light | dark | auto -->
+  data-motion="cascade"  <!-- still | stream | cascade | rapids | tsunami -->
+  data-palette="fluid"   <!-- fluid | morandi | bold | pastel | earth | mono | 80s | matrix | subtle -->
+  data-accent="1"        <!-- 1-6, selects from current palette -->
+  data-contrast="normal" <!-- normal | subdued -->
+>
+```
+
+## Philosophy
+
+**Semantic First** — Use `<fluid-card>` not `<div class="flex flex-col p-4 m-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">`
+
+**Progressive Enhancement** — Everything works without JavaScript, then enhances gracefully
+
+**Zero Build Step** — No compilation needed, works directly in browsers
+
+**Physics-Based** — Animations feel natural because they follow natural laws
 
 ## Development Status
 
-### Phase 1: Foundation ✅
-- [x] Modern CSS reset
-- [x] Design token system
-- [x] Base element styles
-- [x] Documentation structure
-
-### Phase 2: Components 🚧
-- [ ] Core component library
-- [ ] Custom elements implementation
-- [ ] Component documentation
-
-### Phase 3: Layouts 📋
-- [ ] Layout primitives
-- [ ] Common sections
-- [ ] Page templates
-
-### Phase 4: Theming 📋
-- [ ] Theme variations
-- [ ] Theme switcher
-- [ ] Custom theme generator
-
-### Phase 5: Polish 📋
-- [ ] Visual regression testing
-- [ ] Performance optimization
-- [ ] Production build
+- [x] **Phase 1: Foundation** — Reset, tokens, base styles
+- [x] **Phase 2: Components** — Buttons, cards, indicators, forms
+- [x] **Phase 3: Motion System** — 5 physics-based animation styles
+- [x] **Phase 4: Theming** — 9 palettes, subdued mode, settings panel
+- [ ] **Phase 5: Polish** — Visual testing, optimization
 
 ## Browser Support
 
-Targets modern browsers with these baseline features:
+Modern browsers with:
 - CSS Custom Properties
-- CSS Grid & Flexbox
 - CSS Cascade Layers
+- OKLCH Colors
+- View Transitions API (progressive)
 - Container Queries
-- Web Components (for progressive enhancement)
 
-## Contributing
+## Documentation
 
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
-
-## Philosophy Behind the Name
-
-"Fluid" because:
-- The design system flows and adapts
-- Typography scales fluidly with viewport
-- Themes flow through the system via CSS variables
-- Components adapt to their containers, not just viewport
+- **[Full Documentation](_docs/_start-here.md)** — Complete guide
+- **[Philosophy Page](examples/philosophy.html)** — Fluid dynamics explained
+- **[Child Theme Prompt](_docs/gemini-child-theme-prompt.md)** — AI theming instructions
 
 ## License
 
-MIT - Use it, modify it, make it yours.
-
-## Author
-
-Built with 32 years of experience and a burning desire to make web development sane again.
+MIT — Use it, modify it, make it yours.
 
 ---
 
-*"There HAS to be a better way..." - And now there is.*
+**Version 0.2.0** | Built with physics and 32 years of design experience.
