@@ -12,6 +12,15 @@ nav: home
     <div class="theme-grid__content">
       <h2 class="theme-grid__name">Still</h2>
       <p class="theme-grid__desc">No animation. Swiss precision.</p>
+      <span class="theme-grid__font">Inter</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="mono">
+      <span style="--swatch: oklch(30% 0.03 250)"></span>
+      <span style="--swatch: oklch(40% 0.03 250)"></span>
+      <span style="--swatch: oklch(50% 0.03 250)"></span>
+      <span style="--swatch: oklch(60% 0.03 250)"></span>
+      <span style="--swatch: oklch(70% 0.02 250)"></span>
+      <span style="--swatch: oklch(80% 0.02 250)"></span>
     </div>
   </button>
 
@@ -21,6 +30,15 @@ nav: home
     <div class="theme-grid__content">
       <h2 class="theme-grid__name">Serene</h2>
       <p class="theme-grid__desc">Slow Ken Burns fades.</p>
+      <span class="theme-grid__font">Cormorant Garamond + Lato</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="morandi">
+      <span style="--swatch: oklch(65% 0.04 50)"></span>
+      <span style="--swatch: oklch(70% 0.03 90)"></span>
+      <span style="--swatch: oklch(55% 0.05 230)"></span>
+      <span style="--swatch: oklch(60% 0.04 60)"></span>
+      <span style="--swatch: oklch(75% 0.02 100)"></span>
+      <span style="--swatch: oklch(68% 0.03 40)"></span>
     </div>
   </button>
 
@@ -30,6 +48,15 @@ nav: home
     <div class="theme-grid__content">
       <h2 class="theme-grid__name">Stream</h2>
       <p class="theme-grid__desc">Horizontal flow. Modern.</p>
+      <span class="theme-grid__font">Source Sans 3</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="subtle">
+      <span style="--swatch: oklch(55% 0.08 50)"></span>
+      <span style="--swatch: oklch(50% 0.10 180)"></span>
+      <span style="--swatch: oklch(65% 0.12 75)"></span>
+      <span style="--swatch: oklch(60% 0.06 30)"></span>
+      <span style="--swatch: oklch(70% 0.05 90)"></span>
+      <span style="--swatch: oklch(58% 0.07 260)"></span>
     </div>
   </button>
 
@@ -39,6 +66,15 @@ nav: home
     <div class="theme-grid__content">
       <h2 class="theme-grid__name">Cascade</h2>
       <p class="theme-grid__desc">Playful waterfall stagger.</p>
+      <span class="theme-grid__font">Nunito + Nunito Sans</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="pastel">
+      <span style="--swatch: oklch(85% 0.08 350)"></span>
+      <span style="--swatch: oklch(88% 0.06 200)"></span>
+      <span style="--swatch: oklch(90% 0.07 100)"></span>
+      <span style="--swatch: oklch(87% 0.08 80)"></span>
+      <span style="--swatch: oklch(85% 0.07 280)"></span>
+      <span style="--swatch: oklch(86% 0.06 160)"></span>
     </div>
   </button>
 
@@ -48,6 +84,15 @@ nav: home
     <div class="theme-grid__content">
       <h2 class="theme-grid__name">Rapids</h2>
       <p class="theme-grid__desc">Fast. Energetic bounces.</p>
+      <span class="theme-grid__font">Archivo Black + Archivo</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="bold">
+      <span style="--swatch: oklch(60% 0.25 25)"></span>
+      <span style="--swatch: oklch(55% 0.22 300)"></span>
+      <span style="--swatch: oklch(70% 0.20 145)"></span>
+      <span style="--swatch: oklch(65% 0.25 45)"></span>
+      <span style="--swatch: oklch(50% 0.20 260)"></span>
+      <span style="--swatch: oklch(62% 0.18 180)"></span>
     </div>
   </button>
 
@@ -57,6 +102,15 @@ nav: home
     <div class="theme-grid__content">
       <h2 class="theme-grid__name">Tsunami</h2>
       <p class="theme-grid__desc">Bold. Maximum impact.</p>
+      <span class="theme-grid__font">Space Grotesk</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="80s">
+      <span style="--swatch: oklch(60% 0.28 330)"></span>
+      <span style="--swatch: oklch(70% 0.22 190)"></span>
+      <span style="--swatch: oklch(55% 0.25 290)"></span>
+      <span style="--swatch: oklch(75% 0.18 100)"></span>
+      <span style="--swatch: oklch(65% 0.22 50)"></span>
+      <span style="--swatch: oklch(50% 0.20 260)"></span>
     </div>
   </button>
 </section>
@@ -313,10 +367,10 @@ nav: home
     flex-direction: column;
     justify-content: flex-end;
     padding: var(--space-5);
-    background: linear-gradient(to top, oklch(0% 0 0 / 0.7) 0%, transparent 60%);
+    padding-block-end: calc(var(--space-5) + 8px); /* Room for palette strip */
+    background: linear-gradient(to top, oklch(0% 0 0 / 0.85) 0%, oklch(0% 0 0 / 0.4) 40%, transparent 70%);
     color: white;
     text-align: left;
-    opacity: 0.9;
     transition: opacity var(--duration-normal) var(--ease-fluid);
   }
 
@@ -324,14 +378,48 @@ nav: home
     font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-3xl));
     font-weight: var(--weight-bold);
     margin: 0 0 var(--space-1) 0;
-    text-shadow: 0 2px 8px oklch(0% 0 0 / 0.5);
+    /* Strong multi-layer shadow for visibility on any background */
+    text-shadow:
+      0 1px 2px oklch(0% 0 0 / 0.9),
+      0 2px 4px oklch(0% 0 0 / 0.7),
+      0 4px 8px oklch(0% 0 0 / 0.5),
+      0 0 20px oklch(0% 0 0 / 0.4);
   }
 
   .theme-grid__desc {
     font-size: var(--font-size-sm);
-    margin: 0;
-    opacity: 0.9;
-    text-shadow: 0 1px 4px oklch(0% 0 0 / 0.5);
+    margin: 0 0 var(--space-1) 0;
+    text-shadow:
+      0 1px 2px oklch(0% 0 0 / 0.9),
+      0 2px 6px oklch(0% 0 0 / 0.6);
+  }
+
+  .theme-grid__font {
+    font-size: var(--font-size-xs);
+    opacity: 0.8;
+    font-style: italic;
+    text-shadow:
+      0 1px 2px oklch(0% 0 0 / 0.9),
+      0 2px 4px oklch(0% 0 0 / 0.5);
+  }
+
+  /* Palette color strip at bottom */
+  .theme-grid__palette {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    display: flex;
+    block-size: 6px;
+  }
+
+  .theme-grid__palette span {
+    flex: 1;
+    background: var(--swatch);
+    transition: block-size var(--duration-fast) var(--ease-fluid);
+  }
+
+  .theme-grid__item:hover .theme-grid__palette span {
+    block-size: 10px;
   }
 
   /* Hover effects */
