@@ -187,6 +187,11 @@
     localStorage.setItem('fluid-motion', level);
     updateMotionSelect();
 
+    // Load theme fonts if available
+    if (typeof loadThemeFonts === 'function') {
+      loadThemeFonts(level);
+    }
+
     // If using Fluid palette without manual accent, update swatches
     const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
     const accent = document.documentElement.getAttribute('data-accent');
