@@ -214,14 +214,15 @@
   // ========================================
 
   // Theme preset configurations
+  // Each preset maps a motion style to its recommended palette
   const themePresets = {
-    still: { motion: 'still', palette: 'mono' },
-    serene: { motion: 'serene', palette: 'morandi' },
-    stream: { motion: 'stream', palette: 'subtle' },
-    flowing: { motion: 'flowing', palette: 'fluid' },
-    cascade: { motion: 'cascade', palette: 'pastel' },
-    rapids: { motion: 'rapids', palette: 'bold' },
-    tsunami: { motion: 'tsunami', palette: '80s' }
+    still: { motion: 'still', palette: 'mono' },        // Minimal, focused
+    serene: { motion: 'serene', palette: 'morandi' },   // Calm, muted
+    stream: { motion: 'stream', palette: 'subtle' },    // Modern, understated
+    flowing: { motion: 'flowing', palette: 'fluid' },   // Balanced, water-inspired
+    cascade: { motion: 'cascade', palette: 'pastel' },  // Friendly, soft
+    rapids: { motion: 'rapids', palette: 'bold' },      // Energetic, vibrant
+    tsunami: { motion: 'tsunami', palette: '80s' }      // Bold, retro impact
   };
 
   function setThemePreset(preset) {
