@@ -357,22 +357,43 @@
 
   /* ========================================
      MOTION-AWARE ANIMATIONS
-     Respect user preferences
+     Each theme has its own progress animation style
      ======================================== */
 
-  /* Still: instant fill */
+  /* Still: instant fill - no animation */
   [data-motion="still"] .progress__fill {
     transition: none;
   }
 
-  /* Serene: very slow fill */
+  /* Serene: very slow, gentle fill */
   [data-motion="serene"] .progress__fill {
     transition: inline-size var(--duration-slowest) var(--ease-fluid);
   }
 
-  /* Rapids: bouncy overshoot fill */
+  /* Trickling: subtle, quick fill */
+  [data-motion="trickling"] .progress__fill {
+    transition: inline-size var(--duration-slow) var(--ease-fluid);
+  }
+
+  /* Stream: smooth horizontal flow */
+  [data-motion="stream"] .progress__fill {
+    transition: inline-size var(--duration-slow) var(--ease-fluid);
+  }
+
+  /* Flowing: balanced, organic fill (default) */
+  [data-motion="flowing"] .progress__fill,
+  :root:not([data-motion]) .progress__fill {
+    transition: inline-size var(--duration-slow) var(--ease-fluid);
+  }
+
+  /* Cascade: bouncy waterfall effect */
+  [data-motion="cascade"] .progress__fill {
+    transition: inline-size var(--duration-normal) var(--ease-settle);
+  }
+
+  /* Rapids: fast, energetic with overshoot */
   [data-motion="rapids"] .progress__fill {
-    transition: inline-size var(--duration-slow) var(--ease-settle);
+    transition: inline-size var(--duration-normal) var(--ease-settle);
   }
 
   /* Tsunami: wave animation - rise, crest, crash, bounce, settle */
