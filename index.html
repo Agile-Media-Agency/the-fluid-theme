@@ -474,49 +474,176 @@ nav: home
      Each theme has distinctive border-radius
      ======================================== */
 
-  /* Default: No special radius */
+  /* Default: Standard grid with small gap */
+  .theme-grid-hero {
+    gap: var(--grid-gap, 2px);
+    padding: var(--grid-padding, 0);
+  }
+
   .theme-grid__item {
-    border-radius: 0;
+    border-radius: var(--item-radius, 0);
+    transform: var(--item-transform, none);
+    box-shadow: var(--item-shadow, none);
+    margin: var(--item-margin, 0);
   }
 
-  /* Still: Sharp, precise rectangles */
+  /* ----------------------------------------
+     STILL: Zero space, items touch, sharp
+     ---------------------------------------- */
+  [data-motion="still"] .theme-grid-hero {
+    --grid-gap: 0;
+    --grid-padding: 0;
+  }
   [data-motion="still"] .theme-grid__item {
-    border-radius: 0;
+    --item-radius: 0;
   }
 
-  /* Serene: Soft, pillowy corners - NOT full pills */
+  /* ----------------------------------------
+     SERENE: Generous whitespace, soft corners
+     ---------------------------------------- */
+  [data-motion="serene"] .theme-grid-hero {
+    --grid-gap: var(--space-6);
+    --grid-padding: var(--space-6);
+    background: var(--color-surface);
+  }
   [data-motion="serene"] .theme-grid__item {
-    border-radius: 24px;
+    --item-radius: 24px;
+    --item-shadow: 0 8px 32px oklch(0 0 0 / 0.1);
   }
 
-  /* Stream: Clean, moderate corners */
+  /* ----------------------------------------
+     STREAM: Small padding, clean
+     ---------------------------------------- */
+  [data-motion="stream"] .theme-grid-hero {
+    --grid-gap: var(--space-3);
+    --grid-padding: var(--space-3);
+  }
   [data-motion="stream"] .theme-grid__item {
-    border-radius: 12px;
+    --item-radius: 12px;
   }
 
-  /* Flowing: Balanced rounded corners */
+  /* ----------------------------------------
+     FLOWING: Horizontal carousel (single row)
+     Auto-scrolling, swipeable, loops
+     ---------------------------------------- */
+  [data-motion="flowing"] .theme-grid-hero {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    --grid-gap: var(--space-4);
+    --grid-padding: var(--space-4);
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  [data-motion="flowing"] .theme-grid-hero::-webkit-scrollbar {
+    display: none;
+  }
   [data-motion="flowing"] .theme-grid__item {
-    border-radius: 16px;
+    flex: 0 0 45%;
+    min-inline-size: 280px;
+    max-inline-size: 400px;
+    aspect-ratio: 3/4;
+    scroll-snap-align: center;
+    --item-radius: 16px;
+  }
+  @media (min-width: 768px) {
+    [data-motion="flowing"] .theme-grid__item {
+      flex: 0 0 30%;
+      max-inline-size: 350px;
+    }
   }
 
-  /* Cascade: Bubbly, friendly corners */
+  /* ----------------------------------------
+     CASCADE: Large rounded, spacing, shadows
+     Bubbly, friendly, elevated
+     ---------------------------------------- */
+  [data-motion="cascade"] .theme-grid-hero {
+    --grid-gap: var(--space-5);
+    --grid-padding: var(--space-5);
+    background: linear-gradient(135deg, oklch(0.96 0.02 200) 0%, oklch(0.98 0.01 100) 100%);
+  }
   [data-motion="cascade"] .theme-grid__item {
-    border-radius: 32px;
+    --item-radius: 32px;
+    --item-shadow:
+      0 4px 12px oklch(0 0 0 / 0.08),
+      0 12px 32px oklch(0 0 0 / 0.12);
+  }
+  [data-motion="cascade"] .theme-grid__item:hover {
+    box-shadow:
+      0 8px 24px oklch(0 0 0 / 0.1),
+      0 24px 48px oklch(0 0 0 / 0.15);
   }
 
-  /* Rapids: Moderate, punchy corners */
+  /* ----------------------------------------
+     RAPIDS: Skewed, angled, aggressive
+     Sports/action/fitness feel
+     ---------------------------------------- */
+  [data-motion="rapids"] .theme-grid-hero {
+    --grid-gap: var(--space-3);
+    --grid-padding: var(--space-4);
+    background: oklch(0.15 0.02 250);
+  }
   [data-motion="rapids"] .theme-grid__item {
-    border-radius: 12px;
+    --item-radius: 4px;
+    --item-transform: skewY(-2deg);
+    --item-shadow: 4px 4px 0 oklch(0 0 0 / 0.3);
+  }
+  [data-motion="rapids"] .theme-grid__item:nth-child(even) {
+    --item-transform: skewY(2deg);
+  }
+  [data-motion="rapids"] .theme-grid__item:hover {
+    transform: skewY(-2deg) scale(1.03);
+    z-index: 2;
+  }
+  [data-motion="rapids"] .theme-grid__item:nth-child(even):hover {
+    transform: skewY(2deg) scale(1.03);
+  }
+  /* Bold italic text for Rapids */
+  [data-motion="rapids"] .theme-grid__name {
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
   }
 
-  /* Tsunami: ASYMMETRIC - one rounded corner, three sharp */
+  /* ----------------------------------------
+     TSUNAMI: Depth/layered effect
+     3D perspective, dramatic shadows
+     ---------------------------------------- */
+  [data-motion="tsunami"] .theme-grid-hero {
+    --grid-gap: var(--space-2);
+    --grid-padding: var(--space-2);
+    background: oklch(0.08 0.03 260);
+    perspective: 1000px;
+  }
   [data-motion="tsunami"] .theme-grid__item {
-    border-radius: 0 32px 0 0; /* Only top-right */
+    --item-radius: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --item-shadow:
+      0 20px 40px oklch(0 0 0 / 0.4),
+      0 0 0 1px oklch(1 0 0 / 0.1) inset;
   }
-  /* Alternate items get different corner */
-  [data-motion="tsunami"] .theme-grid__item:nth-child(even) {
-    border-radius: 32px 0 0 0; /* Only top-left */
+  [data-motion="tsunami"] .theme-grid__item:hover {
+    transform: translateZ(30px) scale(1.02);
+    z-index: 10;
+    box-shadow:
+      0 30px 60px oklch(0 0 0 / 0.5),
+      0 0 0 2px var(--accent) inset,
+      0 0 60px oklch(from var(--accent) l c h / 0.3);
   }
+  /* Staggered depth for visual interest */
+  [data-motion="tsunami"] .theme-grid__item:nth-child(1) { transform: translateZ(10px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(2) { transform: translateZ(5px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(3) { transform: translateZ(15px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(4) { transform: translateZ(8px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
 
 
   /* ========================================
@@ -720,4 +847,65 @@ nav: home
 
   // Call on page load
   document.addEventListener('DOMContentLoaded', updateThemeGrid);
+
+  // ========================================
+  // FLOWING CAROUSEL - Auto-scroll
+  // ========================================
+  let flowingScrollInterval = null;
+  let flowingScrollPaused = false;
+
+  function initFlowingCarousel() {
+    const grid = document.querySelector('.theme-grid-hero');
+    if (!grid) return;
+
+    const isFlowing = document.documentElement.getAttribute('data-motion') === 'flowing';
+
+    // Clear any existing interval
+    if (flowingScrollInterval) {
+      clearInterval(flowingScrollInterval);
+      flowingScrollInterval = null;
+    }
+
+    if (!isFlowing) return;
+
+    // Start scrolled to show last item peeking
+    setTimeout(() => {
+      grid.scrollLeft = grid.scrollWidth - grid.clientWidth - 50;
+    }, 100);
+
+    // Auto-scroll slowly to the right
+    flowingScrollInterval = setInterval(() => {
+      if (flowingScrollPaused) return;
+
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+
+      // Scroll right slowly
+      grid.scrollLeft += 0.5;
+
+      // Loop back when reaching the end
+      if (grid.scrollLeft >= maxScroll) {
+        grid.scrollLeft = 0;
+      }
+    }, 30);
+
+    // Pause on hover/touch
+    grid.addEventListener('mouseenter', () => { flowingScrollPaused = true; });
+    grid.addEventListener('mouseleave', () => { flowingScrollPaused = false; });
+    grid.addEventListener('touchstart', () => { flowingScrollPaused = true; }, { passive: true });
+    grid.addEventListener('touchend', () => {
+      setTimeout(() => { flowingScrollPaused = false; }, 2000);
+    }, { passive: true });
+  }
+
+  // Initialize on load and theme change
+  document.addEventListener('DOMContentLoaded', initFlowingCarousel);
+
+  // Re-init when theme changes (wrap setThemePreset)
+  const originalSetThemePreset = window.setThemePreset;
+  if (originalSetThemePreset) {
+    window.setThemePreset = function(preset) {
+      originalSetThemePreset(preset);
+      setTimeout(initFlowingCarousel, 50);
+    };
+  }
 </script>
