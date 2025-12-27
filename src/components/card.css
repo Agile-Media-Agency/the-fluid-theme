@@ -430,33 +430,71 @@
      Motion styles affect card appearance
      ======================================== */
 
-  /* Tsunami: Asymmetric corners - ONE rounded, THREE sharp */
-  [data-motion="tsunami"] .card {
-    border-radius: var(--radius-asymmetric, 0 24px 0 0);
-  }
-
-  /* Alternate cards get opposite corner */
-  [data-motion="tsunami"] .card:nth-child(even) {
-    border-radius: var(--radius-asymmetric-alt, 24px 0 0 0);
-  }
-
-  /* Large cards get larger asymmetric radius */
-  [data-motion="tsunami"] .card[data-size="lg"] {
-    border-radius: var(--radius-asymmetric-lg, 0 48px 0 0);
-  }
-
-  /* Serene: Extra soft, pillowy cards */
-  [data-motion="serene"] .card {
-    box-shadow: var(--shadow-sm);
-  }
-
-  [data-motion="serene"] .card[data-variant="elevated"] {
-    box-shadow: var(--shadow-md);
-  }
-
   /* Still: Crisp, no-nonsense borders */
   [data-motion="still"] .card {
     border-width: 1px;
     border-color: var(--color-border);
+    box-shadow: none;
+  }
+
+  /* Serene: Extra soft, pillowy cards with gentle shadows */
+  [data-motion="serene"] .card {
+    box-shadow: var(--shadow-sm);
+  }
+  [data-motion="serene"] .card[data-variant="elevated"] {
+    box-shadow: var(--shadow-md);
+  }
+  [data-motion="serene"] .card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Cascade: Prominent layered shadows, bubbly elevated feel */
+  [data-motion="cascade"] .card {
+    box-shadow:
+      0 4px 12px oklch(0 0 0 / 0.06),
+      0 12px 28px oklch(0 0 0 / 0.1);
+  }
+  [data-motion="cascade"] .card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 8px 20px oklch(0 0 0 / 0.08),
+      0 20px 40px oklch(0 0 0 / 0.14);
+  }
+  [data-motion="cascade"] .card[data-variant="elevated"] {
+    box-shadow:
+      0 8px 20px oklch(0 0 0 / 0.08),
+      0 24px 48px oklch(0 0 0 / 0.12);
+  }
+
+  /* Rapids: Hard offset shadows, energetic hover */
+  [data-motion="rapids"] .card {
+    box-shadow: 4px 4px 0 oklch(0 0 0 / 0.15);
+    transition:
+      transform 150ms var(--ease-fluid),
+      box-shadow 150ms var(--ease-fluid);
+  }
+  [data-motion="rapids"] .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 oklch(0 0 0 / 0.2);
+  }
+  [data-motion="rapids"] .card:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 oklch(0 0 0 / 0.15);
+  }
+
+  /* Tsunami: 3D depth effect with dramatic shadows */
+  [data-motion="tsunami"] .card {
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+    box-shadow:
+      0 15px 35px oklch(0 0 0 / 0.2),
+      0 5px 15px oklch(0 0 0 / 0.1);
+  }
+  [data-motion="tsunami"] .card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+      0 25px 50px oklch(0 0 0 / 0.25),
+      0 10px 20px oklch(0 0 0 / 0.15),
+      0 0 40px oklch(from var(--accent) l c h / 0.15);
   }
 }
