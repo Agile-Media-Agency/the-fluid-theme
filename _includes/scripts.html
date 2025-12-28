@@ -32,6 +32,20 @@
         btn.removeAttribute('data-active');
       }
     });
+
+    // Update nav theme toggle button
+    const navToggle = document.querySelector('.nav__theme-toggle');
+    if (navToggle) {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      navToggle.setAttribute('data-theme', currentTheme || 'light');
+    }
+  }
+
+  // Toggle between light and dark theme (for nav button)
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setThemeMode(newTheme);
   }
 
   // Listen for system theme changes
