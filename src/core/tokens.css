@@ -1226,6 +1226,20 @@
 }
 
 
+/* --- TSUNAMI PALETTE ---
+   The dark, powerful side of a roaring wave.
+   Deep midnight blues, dark teals, ocean depths.
+   Dramatic, intense, commanding. */
+[data-palette="tsunami"] {
+  --palette-1: oklch(25% 0.08 250); /* Midnight abyss */
+  --palette-2: oklch(30% 0.12 220); /* Deep ocean teal */
+  --palette-3: oklch(35% 0.10 200); /* Dark sea */
+  --palette-4: oklch(45% 0.15 210); /* Storm teal */
+  --palette-5: oklch(55% 0.12 195); /* Cresting wave */
+  --palette-6: oklch(20% 0.06 260); /* Ocean trench */
+}
+
+
 /* ========================================
    APPLY PALETTE ACCENT
    When data-palette is set, use palette colors
@@ -1260,6 +1274,7 @@
 [data-palette="80s"]:not([data-accent]) { --accent: var(--palette-1); }      /* Hot pink */
 [data-palette="matrix"]:not([data-accent]) { --accent: var(--palette-1); }   /* Matrix green */
 [data-palette="subtle"]:not([data-accent]) { --accent: var(--palette-2); }   /* Muted teal */
+[data-palette="tsunami"]:not([data-accent]) { --accent: var(--palette-4); }  /* Storm teal */
 
 
 /* ========================================
@@ -1347,6 +1362,52 @@
   --duotone-light: oklch(0.65 0.08 170);
 }
 
+[data-palette="tsunami"] {
+  --duotone-dark: oklch(0.15 0.10 250);
+  --duotone-light: oklch(0.40 0.12 210);
+}
+
+
+/* ========================================
+   PALETTE BACKGROUND TOKENS
+   Light/Dark/Neutral for visual hierarchy
+   ======================================== */
+
+/* Base backgrounds - subtle variations from palette */
+[data-palette] {
+  --bg-light: color-mix(in oklch, var(--palette-5) 8%, var(--color-background));
+  --bg-neutral: color-mix(in oklch, var(--palette-3) 12%, var(--color-background));
+  --bg-dark: color-mix(in oklch, var(--palette-1) 15%, var(--color-background));
+}
+
+/* Mono: gray scale backgrounds */
+[data-palette="mono"] {
+  --bg-light: oklch(from var(--color-background) calc(l - 0.02) 0.01 250);
+  --bg-neutral: oklch(from var(--color-background) calc(l - 0.05) 0.02 250);
+  --bg-dark: oklch(from var(--color-background) calc(l - 0.10) 0.02 250);
+}
+
+/* Bold: stronger colored backgrounds */
+[data-palette="bold"] {
+  --bg-light: color-mix(in oklch, var(--palette-3) 10%, var(--color-background));
+  --bg-neutral: color-mix(in oklch, var(--palette-5) 15%, var(--color-background));
+  --bg-dark: color-mix(in oklch, var(--palette-1) 18%, var(--color-background));
+}
+
+/* Matrix: dark terminal feel */
+[data-palette="matrix"] {
+  --bg-light: color-mix(in oklch, var(--palette-1) 5%, var(--color-background));
+  --bg-neutral: color-mix(in oklch, var(--palette-4) 12%, var(--color-background));
+  --bg-dark: color-mix(in oklch, var(--palette-6) 20%, var(--color-background));
+}
+
+/* Tsunami: deep ocean layers */
+[data-palette="tsunami"] {
+  --bg-light: color-mix(in oklch, var(--palette-5) 15%, var(--color-background));
+  --bg-neutral: color-mix(in oklch, var(--palette-3) 25%, var(--color-background));
+  --bg-dark: color-mix(in oklch, var(--palette-1) 35%, var(--color-background));
+}
+
 
 /* ========================================
    THEME-SPECIFIC SECTION COLORS
@@ -1393,20 +1454,20 @@
   --section-accent: color-mix(in oklch, var(--accent) 15%, var(--color-background));
 }
 
-/* Rapids: Bold, energetic color bands */
+/* Rapids: Bold, energetic color bands using palette backgrounds */
 [data-motion="rapids"] {
-  --section-1: var(--color-background);
-  --section-2: color-mix(in oklch, var(--accent) 10%, var(--color-background));
-  --section-3: oklch(from var(--color-background) calc(l - 0.03) 0.05 30);
-  --section-accent: color-mix(in oklch, var(--accent) 20%, var(--color-background));
+  --section-1: var(--bg-light);
+  --section-2: var(--bg-neutral);
+  --section-3: var(--color-background);
+  --section-accent: var(--bg-dark);
 }
 
-/* Tsunami: Dramatic, high-contrast sections */
+/* Tsunami: Dramatic deep ocean sections with strong hierarchy */
 [data-motion="tsunami"] {
-  --section-1: var(--color-background);
-  --section-2: color-mix(in oklch, var(--accent) 15%, var(--color-background));
-  --section-3: oklch(from var(--accent) 0.92 0.08 h);
-  --section-accent: color-mix(in oklch, var(--accent) 25%, var(--color-background));
+  --section-1: var(--bg-neutral);
+  --section-2: var(--bg-dark);
+  --section-3: var(--bg-light);
+  --section-accent: color-mix(in oklch, var(--accent) 30%, var(--bg-dark));
 }
 
 
