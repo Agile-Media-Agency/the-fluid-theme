@@ -135,10 +135,12 @@ Control everything via HTML attributes:
 ## Development Status
 
 - [x] **Phase 1: Foundation** — Reset, tokens, base styles
-- [x] **Phase 2: Components** — Buttons, cards, indicators, forms
-- [x] **Phase 3: Motion System** — 5 physics-based animation styles
+- [x] **Phase 2: Components** — Buttons, cards, indicators, forms (9 of 20+ needed)
+- [x] **Phase 3: Motion System** — 9 physics-based motion presets
 - [x] **Phase 4: Theming** — 9 palettes, subdued mode, settings panel
 - [ ] **Phase 5: Polish** — Visual testing, optimization
+
+**Public Readiness**: See [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) for comprehensive roadmap and gap analysis.
 
 ## Browser Support
 
@@ -152,6 +154,8 @@ Modern browsers with:
 ## Documentation
 
 - **[Full Documentation](_docs/_start-here.md)** — Complete guide
+- **[Public Readiness Roadmap](FRAMEWORK_READINESS.md)** — Comprehensive launch plan & task list
+- **[Project Status](PROJECT_STATUS.md)** — Current progress tracking
 - **[Philosophy Page](examples/philosophy.html)** — Fluid dynamics explained
 - **[Child Theme Prompt](_docs/gemini-child-theme-prompt.md)** — AI theming instructions
 
