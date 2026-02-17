@@ -330,19 +330,22 @@ nav: home
   .theme-grid-hero {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
     /* Fit in viewport below nav (~60px) */
-    block-size: calc(100svh - 4rem);
-    max-block-size: calc(100svh - 4rem);
+    min-block-size: calc(100svh - 4rem);
     gap: 2px;
     background: var(--color-background);
   }
 
-  /* Landscape: 3 columns, 2 rows */
+  /* Last item spans full width as a dramatic banner (works for odd item counts) */
+  .theme-grid-hero > .theme-grid__item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Landscape: 3 columns */
   @media (orientation: landscape) {
     .theme-grid-hero {
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
     }
   }
 
@@ -688,6 +691,7 @@ nav: home
   [data-motion="tsunami"] .theme-grid__item:nth-child(4) { transform: translateZ(8px); }
   [data-motion="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
   [data-motion="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(7) { transform: translateZ(18px); }
 
 
   /* ========================================
