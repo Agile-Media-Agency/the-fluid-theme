@@ -12,14 +12,16 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 
 | Document | Description |
 |----------|-------------|
+| **[DEVELOPMENT.md](DEVELOPMENT.md)** | **Master guide — read first. Why we built this, principles, practices.** |
 | [Architecture](architecture.md) | Technical decisions, layer system, philosophy |
 | [Contributing](contributing.md) | How to contribute to the project |
+| [Future Features](future-features.md) | Planned features and ideas |
 | [Tokens Reference](reference/tokens.md) | Design tokens (colors, spacing, typography) |
 | [Positioning System](reference/positioning.md) | Layout and alignment utilities |
 | [Heroes](reference/heroes.md) | Full-width hero sections |
 | [Components](reference/components.md) | Component API and usage (17 components) |
 | [Getting Started](getting-started.md) | Installation and first steps |
-| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance |
+| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance | |
 
 ### For AI Agents
 | Document | Description |
