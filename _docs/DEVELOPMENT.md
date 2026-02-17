@@ -293,10 +293,11 @@ This provides automatic RTL support and is more semantically accurate.
 **Priority: Fix these in the default (`flowing`) preset first, then propagate to others.**
 
 - [x] Dark mode colors are just black—should use deep palette colors *(Fixed: each preset has deep palette-tinted dark mode)*
-- [x] Subdued/muted contrast toggle doesn't work well—needs palette-specific muted variants *(Fixed: 10 preset-specific subdued variants, light + dark)*
-- [x] Some components don't flip colors correctly in dark mode *(Fixed: tooltip, hero, indicator use semantic tokens)*
+- [x] Subdued/muted contrast toggle doesn't work well—needs palette-specific muted variants *(Fixed: 11 preset-specific subdued variants, light + dark, WCAG AA compliant)*
+- [x] Some components don't flip colors correctly in dark mode *(Fixed: All 11 components use semantic tokens exclusively)*
 - [x] Presets are too similar (just accent color + font changes) *(Fixed: each preset has unique spacing, shadows, borders, radius, typography rhythm)*
-- [ ] Typography scale may not be truly fluid in all components
+- [x] Typography scale may not be truly fluid in all components *(Verified: Fluid typography implemented with clamp() and viewport units, scales proportionally)*
+- [x] TRICKLING preset was missing from subdued contrast and font configuration *(Fixed: Added complete TRICKLING definitions)*
 
 ### Testing Checklist
 
