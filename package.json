@@ -1,6 +1,6 @@
 {
   "name": "@fluid/theme-framework",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "A modern, semantic design system using CSS layers and custom properties",
   "main": "src/fluid.css",
   "scripts": {
@@ -21,12 +21,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/[your-username]/the-fluid-theme-v2c.git"
+    "url": "git+https://github.com/Agile-Media-Agency/the-fluid-theme-v2c.git"
   },
   "bugs": {
-    "url": "https://github.com/[your-username]/the-fluid-theme-v2c/issues"
+    "url": "https://github.com/Agile-Media-Agency/the-fluid-theme-v2c/issues"
   },
-  "homepage": "https://github.com/[your-username]/the-fluid-theme-v2c#readme",
+  "homepage": "https://github.com/Agile-Media-Agency/the-fluid-theme-v2c#readme",
   "devDependencies": {},
   "engines": {
     "browsers": [

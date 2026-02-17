@@ -4,7 +4,7 @@
  *
  * Like water: adaptable, natural, powerful yet gentle.
  *
- * @version 0.1.0
+ * @version 0.3.0
  * @license MIT
  *
  * Layer Architecture:
@@ -58,6 +58,9 @@
 @import "./components/accordion.css";
 @import "./components/alert.css";
 @import "./components/table.css";
+@import "./components/avatar.css";
+@import "./components/loading.css";
+@import "./components/dropdown.css";
 
 /* Animations */
 @import "./animations/scroll-reveal.css";

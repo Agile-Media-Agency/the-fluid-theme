@@ -1,0 +1,274 @@
+/**
+ * Fluid Framework - Loading & Skeleton Component
+ * @layer components
+ *
+ * Loading spinners and skeleton screens for loading states.
+ * Respects prefers-reduced-motion.
+ *
+ * Spinner Usage:
+ *   <div class="spinner" aria-label="Loading"></div>
+ *   <div class="spinner" data-size="sm"></div>
+ *   <div class="spinner" data-size="lg"></div>
+ *
+ * Skeleton Usage:
+ *   <div class="skeleton" style="--skeleton-h: 1rem; --skeleton-w: 60%;"></div>
+ *   <div class="skeleton" data-variant="circle"></div>
+ *   <div class="skeleton" data-variant="card"></div>
+ *
+ * Skeleton Card (preset layout):
+ *   <div class="skeleton-card">
+ *     <div class="skeleton" data-variant="media"></div>
+ *     <div class="skeleton" data-variant="title"></div>
+ *     <div class="skeleton" data-variant="text"></div>
+ *     <div class="skeleton" data-variant="text" style="--skeleton-w: 75%;"></div>
+ *   </div>
+ */
+
+@layer components {
+  /* ========================================
+     SPINNER
+     ======================================== */
+
+  .spinner {
+    --_spinner-size: 2rem;
+    --_spinner-width: 3px;
+    --_spinner-color: var(--accent);
+
+    display: inline-block;
+    inline-size: var(--_spinner-size);
+    block-size: var(--_spinner-size);
+    border: var(--_spinner-width) solid color-mix(in oklch, var(--_spinner-color) 20%, transparent);
+    border-block-start-color: var(--_spinner-color);
+    border-radius: var(--radius-full);
+    animation: spinner-rotate var(--duration-slow, 640ms) linear infinite;
+  }
+
+  @keyframes spinner-rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Sizes */
+  .spinner[data-size="xs"] {
+    --_spinner-size: 1rem;
+    --_spinner-width: 2px;
+  }
+
+  .spinner[data-size="sm"] {
+    --_spinner-size: 1.5rem;
+    --_spinner-width: 2px;
+  }
+
+  .spinner[data-size="lg"] {
+    --_spinner-size: 3rem;
+    --_spinner-width: 4px;
+  }
+
+  .spinner[data-size="xl"] {
+    --_spinner-size: 4rem;
+    --_spinner-width: 4px;
+  }
+
+  /* Reduced motion: pulse instead of spin */
+  @media (prefers-reduced-motion: reduce) {
+    .spinner {
+      animation: spinner-pulse 1.5s ease-in-out infinite;
+      border-color: color-mix(in oklch, var(--_spinner-color) 30%, transparent);
+      border-block-start-color: color-mix(in oklch, var(--_spinner-color) 30%, transparent);
+    }
+
+    @keyframes spinner-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+  }
+
+
+  /* ========================================
+     DOTS SPINNER (alternative)
+     ======================================== */
+
+  .spinner-dots {
+    display: inline-flex;
+    gap: var(--space-1-5);
+    align-items: center;
+  }
+
+  .spinner-dots::before,
+  .spinner-dots::after,
+  .spinner-dots span {
+    content: "";
+    display: block;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: var(--radius-full);
+    background: var(--accent);
+    animation: spinner-dot-bounce var(--duration-slow, 640ms) ease-in-out infinite;
+  }
+
+  .spinner-dots::after {
+    animation-delay: calc(var(--duration-slow, 640ms) * 0.16);
+  }
+
+  .spinner-dots span {
+    animation-delay: calc(var(--duration-slow, 640ms) * 0.32);
+  }
+
+  @keyframes spinner-dot-bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner-dots::before,
+    .spinner-dots::after,
+    .spinner-dots span {
+      animation: none;
+      opacity: 0.6;
+    }
+  }
+
+
+  /* ========================================
+     LOADING OVERLAY
+     Full-area loading state
+     ======================================== */
+
+  .loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-3);
+    background: color-mix(in oklch, var(--color-background) 80%, transparent);
+    z-index: var(--z-overlay);
+    border-radius: inherit;
+  }
+
+  .loading-overlay__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+
+  /* ========================================
+     SKELETON SCREENS
+     ======================================== */
+
+  .skeleton {
+    --skeleton-h: 1rem;
+    --skeleton-w: 100%;
+    --_skeleton-radius: var(--radius-md);
+
+    display: block;
+    inline-size: var(--skeleton-w);
+    block-size: var(--skeleton-h);
+    border-radius: var(--_skeleton-radius);
+    background: linear-gradient(
+      90deg,
+      var(--color-surface) 0%,
+      var(--color-surface-raised) 40%,
+      var(--color-surface) 80%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+      background: var(--color-surface);
+    }
+  }
+
+
+  /* ========================================
+     SKELETON VARIANTS
+     ======================================== */
+
+  /* Circle: avatar placeholder */
+  .skeleton[data-variant="circle"] {
+    --skeleton-w: 2.5rem;
+    --skeleton-h: 2.5rem;
+    --_skeleton-radius: var(--radius-full);
+  }
+
+  /* Title: heading placeholder */
+  .skeleton[data-variant="title"] {
+    --skeleton-h: 1.5rem;
+    --skeleton-w: 60%;
+  }
+
+  /* Text: body line placeholder */
+  .skeleton[data-variant="text"] {
+    --skeleton-h: 0.875rem;
+    --skeleton-w: var(--skeleton-w, 100%);
+  }
+
+  /* Media: image/video placeholder */
+  .skeleton[data-variant="media"] {
+    --skeleton-h: 12rem;
+    --_skeleton-radius: var(--radius-lg);
+  }
+
+  /* Button placeholder */
+  .skeleton[data-variant="button"] {
+    --skeleton-h: 2.75rem;
+    --skeleton-w: 8rem;
+    --_skeleton-radius: var(--radius-button, var(--radius-md));
+  }
+
+
+  /* ========================================
+     SKELETON CARD
+     Pre-built card loading state
+     ======================================== */
+
+  .skeleton-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-surface-raised);
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+  }
+
+  .skeleton-card .skeleton[data-variant="media"] {
+    margin: calc(var(--space-5) * -1);
+    margin-block-end: var(--space-3);
+    inline-size: calc(100% + var(--space-5) * 2);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: no animation */
+  [data-motion="still"] .spinner {
+    animation-duration: 800ms;
+  }
+
+  [data-motion="still"] .skeleton {
+    animation: none;
+    background: var(--color-surface);
+  }
+
+  /* Tsunami: asymmetric skeleton cards */
+  [data-motion="tsunami"] .skeleton-card {
+    border-radius: var(--radius-asymmetric, 0 24px 0 0);
+  }
+
+  /* Rapids: faster spinner */
+  [data-motion="rapids"] .spinner {
+    animation-duration: 500ms;
+  }
+}

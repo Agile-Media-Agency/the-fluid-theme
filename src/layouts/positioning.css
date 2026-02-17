@@ -354,4 +354,246 @@
   [data-padding-inline="xl"] {
     padding-inline: var(--space-12);
   }
+
+
+  /* ========================================
+     FLEX UTILITIES
+     Composable flex layout controls
+     ======================================== */
+
+  /* Flex direction */
+  [data-flex] {
+    display: flex;
+  }
+
+  [data-flex="row"] {
+    display: flex;
+    flex-direction: row;
+  }
+
+  [data-flex="col"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-flex="row-reverse"] {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  [data-flex="col-reverse"] {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  /* Flex wrap */
+  [data-wrap] {
+    flex-wrap: wrap;
+  }
+
+  [data-wrap="nowrap"] {
+    flex-wrap: nowrap;
+  }
+
+  /* Flex child: grow/shrink */
+  [data-grow] {
+    flex-grow: 1;
+  }
+
+  [data-shrink="0"] {
+    flex-shrink: 0;
+  }
+
+  /* Flex basis shortcuts */
+  [data-basis="full"] { flex-basis: 100%; }
+  [data-basis="half"] { flex-basis: 50%; }
+  [data-basis="third"] { flex-basis: 33.333%; }
+  [data-basis="quarter"] { flex-basis: 25%; }
+
+
+  /* ========================================
+     GRID UTILITIES
+     Composable grid layout controls
+     ======================================== */
+
+  /* Explicit column grids */
+  [data-grid] {
+    display: grid;
+  }
+
+  [data-grid="2"] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--grid-gap, var(--space-5));
+  }
+
+  [data-grid="3"] {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap, var(--space-5));
+  }
+
+  [data-grid="4"] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--grid-gap, var(--space-5));
+  }
+
+  /* Auto-fit responsive grids */
+  [data-grid="auto-sm"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: var(--grid-gap, var(--space-5));
+  }
+
+  [data-grid="auto"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--grid-gap, var(--space-5));
+  }
+
+  [data-grid="auto-lg"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--grid-gap, var(--space-5));
+  }
+
+  /* Grid span */
+  [data-span="2"] { grid-column: span 2; }
+  [data-span="3"] { grid-column: span 3; }
+  [data-span="full"] { grid-column: 1 / -1; }
+
+  /* Responsive: multi-column grids collapse on mobile */
+  @media (max-width: 40rem) {
+    [data-grid="2"],
+    [data-grid="3"],
+    [data-grid="4"] {
+      grid-template-columns: 1fr;
+    }
+
+    [data-span="2"],
+    [data-span="3"],
+    [data-span="full"] {
+      grid-column: auto;
+    }
+  }
+
+  @media (min-width: 40rem) and (max-width: 64rem) {
+    [data-grid="3"],
+    [data-grid="4"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+
+  /* ========================================
+     COMMON LAYOUT PATTERNS
+     Pre-built structural layouts
+     ======================================== */
+
+  /*
+   * LAYOUT: sidebar
+   * Content with a fixed-width sidebar
+   * Sidebar is first child, content is second
+   */
+  [data-layout="sidebar"] {
+    display: grid;
+    grid-template-columns: minmax(12rem, 16rem) 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  [data-layout="sidebar-right"] {
+    display: grid;
+    grid-template-columns: 1fr minmax(12rem, 16rem);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  /* Responsive: sidebar stacks on narrow screens */
+  @media (max-width: 48rem) {
+    [data-layout="sidebar"],
+    [data-layout="sidebar-right"] {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /*
+   * LAYOUT: holy-grail
+   * Classic 3-column layout: sidebar | content | sidebar
+   */
+  [data-layout="holy-grail"] {
+    display: grid;
+    grid-template-columns: minmax(10rem, 14rem) 1fr minmax(10rem, 14rem);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  @media (max-width: 64rem) {
+    [data-layout="holy-grail"] {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /*
+   * LAYOUT: dashboard
+   * Dense auto-fill grid for dashboard cards/widgets
+   */
+  [data-layout="dashboard"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+
+  /* ========================================
+     POSITION UTILITIES
+     Static positioning helpers
+     ======================================== */
+
+  [data-position="sticky"] {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-sticky);
+  }
+
+  [data-position="relative"] {
+    position: relative;
+  }
+
+  /* Overflow control */
+  [data-overflow="hidden"] { overflow: hidden; }
+  [data-overflow="auto"] { overflow: auto; }
+  [data-overflow="scroll"] { overflow: scroll; }
+
+  /* Z-index layers */
+  [data-z="base"] { z-index: var(--z-base); }
+  [data-z="raised"] { z-index: var(--z-raised); }
+  [data-z="dropdown"] { z-index: var(--z-dropdown); }
+  [data-z="overlay"] { z-index: var(--z-overlay); }
+
+
+  /* ========================================
+     DISPLAY UTILITIES
+     ======================================== */
+
+  [data-display="none"] { display: none; }
+  [data-display="block"] { display: block; }
+  [data-display="inline"] { display: inline; }
+  [data-display="inline-flex"] { display: inline-flex; }
+  [data-display="inline-block"] { display: inline-block; }
+
+  /* Responsive visibility */
+  @media (max-width: 40rem) {
+    [data-hide="mobile"] { display: none; }
+  }
+
+  @media (min-width: 40rem) and (max-width: 64rem) {
+    [data-hide="tablet"] { display: none; }
+  }
+
+  @media (min-width: 64rem) {
+    [data-hide="desktop"] { display: none; }
+  }
 }

@@ -1202,6 +1202,174 @@ nav: components
     </dialog>
   </section>
 
+  <!-- Avatars -->
+  <section class="demo-section">
+    <h2>Avatars</h2>
+    <p>User profile images with sizes, status indicators, initials fallback, and group stacking.</p>
+
+    <div class="component-group">
+      <div class="component-label">Sizes</div>
+      <div class="cluster" style="--cluster-gap: var(--space-4); --cluster-align: center;">
+        <div class="avatar" data-size="xs" data-initials="XS"></div>
+        <div class="avatar" data-size="sm" data-initials="SM"></div>
+        <div class="avatar" data-initials="MD"></div>
+        <div class="avatar" data-size="lg" data-initials="LG"></div>
+        <div class="avatar" data-size="xl" data-initials="XL"></div>
+        <div class="avatar" data-size="2xl" data-initials="2X"></div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Status Indicators</div>
+      <div class="cluster" style="--cluster-gap: var(--space-4);">
+        <div class="avatar" data-size="lg" data-initials="ON" data-status="online"></div>
+        <div class="avatar" data-size="lg" data-initials="BU" data-status="busy"></div>
+        <div class="avatar" data-size="lg" data-initials="AW" data-status="away"></div>
+        <div class="avatar" data-size="lg" data-initials="OF" data-status="offline"></div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Shapes</div>
+      <div class="cluster" style="--cluster-gap: var(--space-4);">
+        <div class="avatar" data-size="lg" data-initials="CI"></div>
+        <div class="avatar" data-size="lg" data-initials="SQ" data-shape="square"></div>
+        <div class="avatar" data-size="lg" data-initials="RD" data-shape="rounded"></div>
+        <div class="avatar" data-size="lg" data-initials="RI" data-ring></div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Avatar Group</div>
+      <div class="avatar-group">
+        <div class="avatar" data-initials="AB"></div>
+        <div class="avatar" data-initials="CD"></div>
+        <div class="avatar" data-initials="EF"></div>
+        <div class="avatar" data-initials="GH"></div>
+        <span class="avatar-group__overflow">+5</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loading & Skeleton -->
+  <section class="demo-section">
+    <h2>Loading & Skeletons</h2>
+    <p>Spinners for active loading and skeleton screens for content placeholders.</p>
+
+    <div class="component-group">
+      <div class="component-label">Spinner Sizes</div>
+      <div class="cluster" style="--cluster-gap: var(--space-5); --cluster-align: center;">
+        <div class="spinner" data-size="xs" aria-label="Loading"></div>
+        <div class="spinner" data-size="sm" aria-label="Loading"></div>
+        <div class="spinner" aria-label="Loading"></div>
+        <div class="spinner" data-size="lg" aria-label="Loading"></div>
+        <div class="spinner" data-size="xl" aria-label="Loading"></div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Dots Spinner</div>
+      <div class="cluster" style="--cluster-gap: var(--space-5); --cluster-align: center;">
+        <div class="spinner-dots"><span></span></div>
+        <span style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Loading data...</span>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Skeleton Elements</div>
+      <div class="stack" style="--stack-gap: var(--space-3); max-inline-size: 24rem;">
+        <div style="display: flex; gap: var(--space-3); align-items: center;">
+          <div class="skeleton" data-variant="circle"></div>
+          <div class="stack" style="--stack-gap: var(--space-2); flex: 1;">
+            <div class="skeleton" data-variant="title"></div>
+            <div class="skeleton" data-variant="text" style="--skeleton-w: 40%;"></div>
+          </div>
+        </div>
+        <div class="skeleton" data-variant="text"></div>
+        <div class="skeleton" data-variant="text" style="--skeleton-w: 85%;"></div>
+        <div class="skeleton" data-variant="text" style="--skeleton-w: 70%;"></div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Skeleton Card</div>
+      <div class="demo-grid" style="--grid-min: 16rem;">
+        <div class="skeleton-card">
+          <div class="skeleton" data-variant="media"></div>
+          <div class="skeleton" data-variant="title"></div>
+          <div class="skeleton" data-variant="text"></div>
+          <div class="skeleton" data-variant="text" style="--skeleton-w: 75%;"></div>
+          <div class="skeleton" data-variant="button"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton" data-variant="media"></div>
+          <div class="skeleton" data-variant="title"></div>
+          <div class="skeleton" data-variant="text"></div>
+          <div class="skeleton" data-variant="text" style="--skeleton-w: 60%;"></div>
+          <div class="skeleton" data-variant="button"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dropdowns -->
+  <section class="demo-section">
+    <h2>Dropdowns</h2>
+    <p>Standalone dropdown menus for actions, selections, and context menus.</p>
+
+    <div class="component-group">
+      <div class="component-label">Basic Dropdown</div>
+      <div class="cluster" style="--cluster-gap: var(--space-5);">
+        <div class="dropdown">
+          <button class="dropdown__trigger">
+            Actions
+            <svg class="dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown__menu">
+            <a href="#" class="dropdown__item">Edit</a>
+            <a href="#" class="dropdown__item">Duplicate</a>
+            <a href="#" class="dropdown__item">Share</a>
+            <div class="dropdown__divider"></div>
+            <a href="#" class="dropdown__item" data-danger>Delete</a>
+          </div>
+        </div>
+
+        <div class="dropdown" data-position="bottom-end">
+          <button class="dropdown__trigger" data-variant="secondary">
+            With Sections
+            <svg class="dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown__menu">
+            <div class="dropdown__header">Navigation</div>
+            <a href="#" class="dropdown__item">Dashboard</a>
+            <a href="#" class="dropdown__item">Settings</a>
+            <div class="dropdown__divider"></div>
+            <div class="dropdown__header">Account</div>
+            <a href="#" class="dropdown__item">Profile</a>
+            <a href="#" class="dropdown__item">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">With Shortcuts & Descriptions</div>
+      <div class="dropdown">
+        <button class="dropdown__trigger" data-variant="outline">
+          File Menu
+          <svg class="dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown__menu">
+          <a href="#" class="dropdown__item">New File <span class="dropdown__shortcut">Ctrl+N</span></a>
+          <a href="#" class="dropdown__item">Open <span class="dropdown__shortcut">Ctrl+O</span></a>
+          <a href="#" class="dropdown__item">Save <span class="dropdown__shortcut">Ctrl+S</span></a>
+          <div class="dropdown__divider"></div>
+          <a href="#" class="dropdown__item" aria-disabled="true">Export PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer style="padding-block: var(--space-10); text-align: center; color: var(--color-text-muted)">
     <h3>Components Complete</h3>
