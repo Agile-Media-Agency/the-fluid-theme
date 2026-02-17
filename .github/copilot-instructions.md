@@ -134,10 +134,7 @@ the-fluid-theme/
 │   │   ├── loading.css
 │   │   └── dropdown.css
 │   ├── layouts/                      # Layout utilities
-│   │   ├── flex.css                  # Flexbox utilities
-│   │   ├── grid.css                  # Grid utilities
-│   │   ├── patterns.css              # Common layouts (sidebar, etc.)
-│   │   └── positioning.css           # Position, z-index, overflow
+│   │   └── positioning.css           # All layout: position, flex, grid, patterns
 │   └── animations/
 │       └── scroll-reveal.css         # Scroll-triggered animations
 │
