@@ -766,6 +766,442 @@ nav: components
     </div>
   </section>
 
+  <!-- Accordion -->
+  <section class="demo-section">
+    <h2>Accordion</h2>
+    <p>Collapsible content sections built on native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>. Zero JavaScript required.</p>
+
+    <div class="component-group">
+      <div class="component-label">Default Accordion</div>
+      <div class="accordion">
+        <details class="accordion__item" open>
+          <summary class="accordion__trigger">What is the Fluid Framework?</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">A physics-based CSS framework that applies fluid dynamics principles to web design. Unlike arbitrary animation timings, we use Reynolds numbers to create natural, cohesive motion systems.</div>
+          </div>
+        </details>
+        <details class="accordion__item">
+          <summary class="accordion__trigger">Do I need a build step?</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">No. The Fluid Framework works directly in browsers with zero build configuration. Just link the CSS and start building with semantic HTML.</div>
+          </div>
+        </details>
+        <details class="accordion__item">
+          <summary class="accordion__trigger">How does the motion system work?</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">Each motion preset (Still, Serene, Stream, Flowing, Cascade, Rapids, Tsunami) defines a complete set of timing, easing, and layout tokens. Changing one attribute transforms the entire interface feel.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Separated Variant</div>
+      <div class="accordion" data-variant="separated">
+        <details class="accordion__item" open>
+          <summary class="accordion__trigger">Elevated card-style items</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">Each accordion item appears as a separate elevated card with its own shadow and border radius.</div>
+          </div>
+        </details>
+        <details class="accordion__item">
+          <summary class="accordion__trigger">Spaced apart for visual clarity</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">The gap between items makes it clear that each section is independent.</div>
+          </div>
+        </details>
+        <details class="accordion__item">
+          <summary class="accordion__trigger">Adapts to motion themes</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">Border radius, shadows, and transitions automatically adjust based on the active motion preset.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Bordered Variant (Compact)</div>
+      <div class="accordion" data-variant="bordered" data-size="sm">
+        <details class="accordion__item">
+          <summary class="accordion__trigger">Compact bordered style</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">Smaller padding for tighter UI layouts.</div>
+          </div>
+        </details>
+        <details class="accordion__item">
+          <summary class="accordion__trigger">Card-like borders</summary>
+          <div class="accordion__content">
+            <div class="accordion__body">Each item has a full border like a contained card.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alerts & Toasts -->
+  <section class="demo-section">
+    <h2>Alerts & Toasts</h2>
+    <p>Inline alerts for contextual feedback and toast notifications for transient messages.</p>
+
+    <div class="component-group">
+      <div class="component-label">Alert Statuses</div>
+      <div class="stack" style="--stack-gap: var(--space-4)">
+        <div class="alert" data-status="info">
+          <div class="alert__content">
+            <strong class="alert__title">Information</strong>
+            <p>A new version of the framework is available. Check the release notes for details.</p>
+          </div>
+        </div>
+        <div class="alert" data-status="success">
+          <div class="alert__content">
+            <strong class="alert__title">Success</strong>
+            <p>Your theme settings have been saved successfully.</p>
+          </div>
+        </div>
+        <div class="alert" data-status="warning">
+          <div class="alert__content">
+            <strong class="alert__title">Warning</strong>
+            <p>OKLCH colors require modern browser support. Consider adding fallbacks for older browsers.</p>
+          </div>
+        </div>
+        <div class="alert" data-status="error">
+          <div class="alert__content">
+            <strong class="alert__title">Error</strong>
+            <p>Failed to load the custom theme file. Please check the file path and try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Filled Variant</div>
+      <div class="stack" style="--stack-gap: var(--space-3)">
+        <div class="alert" data-status="success" data-variant="filled">
+          <div class="alert__content">
+            <p>Changes deployed to production.</p>
+          </div>
+        </div>
+        <div class="alert" data-status="error" data-variant="filled">
+          <div class="alert__content">
+            <p>Build failed. Check the console for errors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Outline Variant</div>
+      <div class="stack" style="--stack-gap: var(--space-3)">
+        <div class="alert" data-status="info" data-variant="outline">
+          <div class="alert__content">
+            <p>This component uses CSS cascade layers for clean specificity management.</p>
+          </div>
+        </div>
+        <div class="alert" data-status="warning" data-variant="outline">
+          <div class="alert__content">
+            <p>Container queries are not supported in browsers older than 2023.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Toast Preview (Static)</div>
+      <div class="stack" style="--stack-gap: var(--space-3); max-inline-size: 22rem;">
+        <div class="toast" data-status="success" style="position: relative; animation: none;">
+          <div class="toast__content">
+            <strong>Saved</strong>
+            <p>Your changes are live.</p>
+          </div>
+        </div>
+        <div class="toast" data-status="error" style="position: relative; animation: none;">
+          <div class="toast__content">
+            <strong>Connection Lost</strong>
+            <p>Retrying in 5 seconds...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tables -->
+  <section class="demo-section">
+    <h2>Tables</h2>
+    <p>Responsive tables with horizontal scroll, sortable headers, and mobile stacking.</p>
+
+    <div class="component-group">
+      <div class="component-label">Default Table with Hover</div>
+      <div class="table-wrap">
+        <table class="table" data-hover>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Status</th>
+              <th>Version</th>
+              <th data-align="end">Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Button</td>
+              <td><span class="badge" data-status="good">Stable</span></td>
+              <td>0.2.0</td>
+              <td data-align="end">2.4 KB</td>
+            </tr>
+            <tr>
+              <td>Card</td>
+              <td><span class="badge" data-status="good">Stable</span></td>
+              <td>0.2.0</td>
+              <td data-align="end">3.1 KB</td>
+            </tr>
+            <tr>
+              <td>Modal</td>
+              <td><span class="badge" data-status="moderate" data-dot>New</span></td>
+              <td>0.3.0</td>
+              <td data-align="end">2.8 KB</td>
+            </tr>
+            <tr>
+              <td>Accordion</td>
+              <td><span class="badge" data-status="moderate" data-dot>New</span></td>
+              <td>0.3.0</td>
+              <td data-align="end">1.9 KB</td>
+            </tr>
+            <tr>
+              <td>Tooltip</td>
+              <td><span class="badge" data-status="moderate" data-dot>New</span></td>
+              <td>0.3.0</td>
+              <td data-align="end">1.2 KB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Striped Table</div>
+      <div class="table-wrap">
+        <table class="table" data-variant="striped" data-hover>
+          <thead>
+            <tr>
+              <th>Motion Preset</th>
+              <th>Character</th>
+              <th data-align="center">Scale</th>
+              <th data-align="end">Base Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Still</td>
+              <td>No animation</td>
+              <td data-align="center">0</td>
+              <td data-align="end">0ms</td>
+            </tr>
+            <tr>
+              <td>Serene</td>
+              <td>Ken Burns, meditative</td>
+              <td data-align="center">0.3</td>
+              <td data-align="end">1000ms</td>
+            </tr>
+            <tr>
+              <td>Flowing</td>
+              <td>Balanced, organic</td>
+              <td data-align="center">1.0</td>
+              <td data-align="end">467ms</td>
+            </tr>
+            <tr>
+              <td>Cascade</td>
+              <td>Bouncy, playful</td>
+              <td data-align="center">1.2</td>
+              <td data-align="end">350ms</td>
+            </tr>
+            <tr>
+              <td>Rapids</td>
+              <td>Energetic, spring</td>
+              <td data-align="center">1.5</td>
+              <td data-align="end">450ms</td>
+            </tr>
+            <tr>
+              <td>Tsunami</td>
+              <td>Dramatic, bold</td>
+              <td data-align="center">2.0</td>
+              <td data-align="end">600ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Compact Bordered Table</div>
+      <div class="table-wrap">
+        <table class="table" data-variant="compact" data-hover>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Light</th>
+              <th>Dark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--color-text</code></td>
+              <td>gray-15</td>
+              <td>gray-90</td>
+            </tr>
+            <tr>
+              <td><code>--color-background</code></td>
+              <td>white</td>
+              <td>gray-10</td>
+            </tr>
+            <tr>
+              <td><code>--color-surface</code></td>
+              <td>gray-98</td>
+              <td>gray-15</td>
+            </tr>
+            <tr>
+              <td><code>--color-border</code></td>
+              <td>gray-85</td>
+              <td>gray-25</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tooltips -->
+  <section class="demo-section">
+    <h2>Tooltips</h2>
+    <p>CSS-only tooltips via <code>data-tooltip</code> attribute. No JavaScript needed.</p>
+
+    <div class="component-group">
+      <div class="component-label">Tooltip Positions</div>
+      <div class="cluster" style="--cluster-gap: var(--space-5); justify-content: center; padding-block: var(--space-6);">
+        <button data-variant="secondary" data-tooltip="Tooltip on top">Top (default)</button>
+        <button data-variant="secondary" data-tooltip="Tooltip below" data-tooltip-pos="bottom">Bottom</button>
+        <button data-variant="secondary" data-tooltip="Tooltip left" data-tooltip-pos="left">Left</button>
+        <button data-variant="secondary" data-tooltip="Tooltip right" data-tooltip-pos="right">Right</button>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-label">Tooltips on Various Elements</div>
+      <div class="cluster" style="--cluster-gap: var(--space-5); padding-block: var(--space-4);">
+        <span data-tooltip="Inline text tooltip" style="text-decoration: underline; text-decoration-style: dotted; cursor: help;">Hover this text</span>
+        <button data-icon data-variant="ghost" data-tooltip="Settings" aria-label="Settings">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <a href="#" data-tooltip="Visit homepage">Link with tooltip</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <section class="demo-section">
+    <h2>Modal / Dialog</h2>
+    <p>Built on the native <code>&lt;dialog&gt;</code> element. Accessible, supports drawers, and adapts to motion themes.</p>
+
+    <div class="component-group">
+      <div class="component-label">Modal Triggers</div>
+      <div class="cluster" style="--cluster-gap: var(--space-3)">
+        <button onclick="document.getElementById('demo-modal').showModal()">Open Modal</button>
+        <button data-variant="secondary" onclick="document.getElementById('demo-modal-sm').showModal()">Small Modal</button>
+        <button data-variant="secondary" onclick="document.getElementById('demo-modal-lg').showModal()">Large Modal</button>
+        <button data-variant="outline" onclick="document.getElementById('demo-drawer').showModal()">Right Drawer</button>
+      </div>
+    </div>
+
+    <!-- Default Modal -->
+    <dialog id="demo-modal" class="modal">
+      <div class="modal__content">
+        <header class="modal__header">
+          <h2 class="modal__title">Modal Title</h2>
+          <button class="modal__close" aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+        </header>
+        <div class="modal__body">
+          <p>This is a modal dialog built on the native <code>&lt;dialog&gt;</code> element. It supports backdrop blur, smooth transitions, and adapts to the active motion theme.</p>
+          <p style="margin-block-start: var(--space-4); color: var(--color-text-muted);">On mobile devices, modals transform into bottom sheets for better thumb accessibility.</p>
+        </div>
+        <footer class="modal__footer">
+          <button data-variant="ghost" onclick="this.closest('dialog').close()">Cancel</button>
+          <button onclick="this.closest('dialog').close()">Confirm</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Small Modal -->
+    <dialog id="demo-modal-sm" class="modal" data-size="sm">
+      <div class="modal__content">
+        <header class="modal__header">
+          <h2 class="modal__title">Are you sure?</h2>
+          <button class="modal__close" aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+        </header>
+        <div class="modal__body">
+          <p>This action cannot be undone. Your data will be permanently deleted.</p>
+        </div>
+        <footer class="modal__footer">
+          <button data-variant="ghost" onclick="this.closest('dialog').close()">Cancel</button>
+          <button data-variant="danger" onclick="this.closest('dialog').close()">Delete</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Large Modal -->
+    <dialog id="demo-modal-lg" class="modal" data-size="lg">
+      <div class="modal__content">
+        <header class="modal__header">
+          <h2 class="modal__title">Component Reference</h2>
+          <button class="modal__close" aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+        </header>
+        <div class="modal__body">
+          <p>Large modals are ideal for complex forms, data tables, or detailed content that needs more space.</p>
+          <div style="margin-block-start: var(--space-5);">
+            <div class="table-wrap">
+              <table class="table" data-variant="striped">
+                <thead>
+                  <tr><th>Property</th><th>Type</th><th>Default</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>data-size</td><td>sm | lg | full</td><td>default</td></tr>
+                  <tr><td>data-variant</td><td>drawer-right | drawer-left</td><td>centered</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <footer class="modal__footer">
+          <button data-variant="ghost" onclick="this.closest('dialog').close()">Close</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <!-- Drawer -->
+    <dialog id="demo-drawer" class="modal" data-variant="drawer-right">
+      <div class="modal__content">
+        <header class="modal__header">
+          <h2 class="modal__title">Drawer Panel</h2>
+          <button class="modal__close" aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+        </header>
+        <div class="modal__body">
+          <p>Drawers slide in from the edge of the screen. Useful for navigation, filters, or settings panels.</p>
+          <div class="stack" style="margin-block-start: var(--space-5);">
+            <div class="alert" data-status="info">
+              <div class="alert__content">
+                <p>On mobile, drawers become bottom sheets.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="modal__footer">
+          <button onclick="this.closest('dialog').close()">Done</button>
+        </footer>
+      </div>
+    </dialog>
+  </section>
+
   <!-- Footer -->
   <footer style="padding-block: var(--space-10); text-align: center; color: var(--color-text-muted)">
     <h3>Components Complete</h3>

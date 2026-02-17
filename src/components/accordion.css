@@ -1,0 +1,239 @@
+/**
+ * Fluid Framework - Accordion/Collapse Component
+ * @layer components
+ *
+ * Accordion for collapsible content sections.
+ * Built on native <details>/<summary> for zero-JS operation.
+ * CSS transitions for smooth open/close animations.
+ *
+ * Usage:
+ *   <div class="accordion">
+ *     <details class="accordion__item">
+ *       <summary class="accordion__trigger">Section Title</summary>
+ *       <div class="accordion__content">
+ *         <div class="accordion__body">Content here</div>
+ *       </div>
+ *     </details>
+ *   </div>
+ *
+ * Variants:
+ *   data-variant="bordered"  — card-like bordered items
+ *   data-variant="separated" — spaced apart with elevation
+ *   data-variant="flush"     — minimal, no borders
+ *
+ * Single open: Add name="" attribute to details elements
+ *   (exclusive accordion behavior, native HTML)
+ */
+
+@layer components {
+  /* ========================================
+     ACCORDION CONTAINER
+     ======================================== */
+
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Separated variant: gap between items */
+  .accordion[data-variant="separated"] {
+    gap: var(--space-3);
+  }
+
+
+  /* ========================================
+     ACCORDION ITEM
+     ======================================== */
+
+  .accordion__item {
+    border-block-end: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .accordion__item:first-of-type {
+    border-block-start: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  /* Bordered variant: each item is a card */
+  .accordion[data-variant="bordered"] .accordion__item {
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .accordion[data-variant="bordered"] .accordion__item:first-of-type {
+    border-block-start: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  /* Separated variant: elevated card items */
+  .accordion[data-variant="separated"] .accordion__item {
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-xs);
+    overflow: hidden;
+  }
+
+  /* Flush variant: no borders at all */
+  .accordion[data-variant="flush"] .accordion__item {
+    border: none;
+  }
+
+  .accordion[data-variant="flush"] .accordion__item:first-of-type {
+    border: none;
+  }
+
+
+  /* ========================================
+     ACCORDION TRIGGER (summary element)
+     ======================================== */
+
+  .accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    font-weight: var(--weight-semibold);
+    font-size: var(--font-size-base);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+    list-style: none; /* Remove default marker */
+
+    transition:
+      color var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  /* Remove default summary marker across browsers */
+  .accordion__trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion__trigger::marker {
+    content: "";
+  }
+
+  /* Chevron icon */
+  .accordion__trigger::after {
+    content: "";
+    flex-shrink: 0;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    background-color: var(--color-text-muted);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    transition: transform var(--duration-normal) var(--ease-settle);
+  }
+
+  /* Rotate chevron when open */
+  .accordion__item[open] > .accordion__trigger::after {
+    transform: rotate(180deg);
+  }
+
+  /* Hover */
+  .accordion__trigger:hover {
+    color: var(--accent);
+    background-color: color-mix(in oklch, var(--accent) 5%, transparent);
+  }
+
+  /* Focus */
+  .accordion__trigger:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm);
+  }
+
+
+  /* ========================================
+     ACCORDION CONTENT
+     ======================================== */
+
+  .accordion__content {
+    overflow: hidden;
+  }
+
+  .accordion__body {
+    padding: 0 var(--space-5) var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    line-height: var(--leading-normal);
+  }
+
+  /* Extra spacing for body content */
+  .accordion__body > * + * {
+    margin-block-start: var(--space-3);
+  }
+
+
+  /* ========================================
+     SIZE VARIANTS
+     ======================================== */
+
+  /* Compact */
+  .accordion[data-size="sm"] .accordion__trigger {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .accordion[data-size="sm"] .accordion__body {
+    padding: 0 var(--space-4) var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .accordion[data-size="sm"] .accordion__trigger::after {
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+
+  /* Large */
+  .accordion[data-size="lg"] .accordion__trigger {
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--font-size-lg);
+  }
+
+  .accordion[data-size="lg"] .accordion__body {
+    padding: 0 var(--space-6) var(--space-6);
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: no animation */
+  [data-motion="still"] .accordion__trigger::after {
+    transition: none;
+  }
+
+  /* Serene: rounded, soft */
+  [data-motion="serene"] .accordion[data-variant="separated"] .accordion__item,
+  [data-motion="serene"] .accordion[data-variant="bordered"] .accordion__item {
+    border-radius: var(--radius-xl);
+  }
+
+  /* Cascade: bouncy, bubbly */
+  [data-motion="cascade"] .accordion[data-variant="separated"] .accordion__item,
+  [data-motion="cascade"] .accordion[data-variant="bordered"] .accordion__item {
+    border-radius: var(--radius-xl);
+  }
+
+  /* Rapids: hard shadow on separated */
+  [data-motion="rapids"] .accordion[data-variant="separated"] .accordion__item {
+    box-shadow: 3px 3px 0 oklch(0 0 0 / 0.1);
+  }
+
+  /* Tsunami: asymmetric corners */
+  [data-motion="tsunami"] .accordion[data-variant="separated"] .accordion__item,
+  [data-motion="tsunami"] .accordion[data-variant="bordered"] .accordion__item {
+    border-radius: var(--radius-asymmetric, 0 24px 0 0);
+  }
+}

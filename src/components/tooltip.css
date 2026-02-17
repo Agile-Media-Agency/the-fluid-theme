@@ -1,0 +1,245 @@
+/**
+ * Fluid Framework - Tooltip & Popover Component
+ * @layer components
+ *
+ * Tooltips for brief hints; popovers for richer content.
+ * CSS-only tooltips via data-tooltip attribute.
+ * Popover uses the native popover API where supported.
+ *
+ * Tooltip Usage (CSS-only):
+ *   <button data-tooltip="Helpful hint">Hover me</button>
+ *   <span data-tooltip="Info" data-tooltip-pos="top">Text</span>
+ *
+ * Positions: data-tooltip-pos="top|bottom|left|right" (default: top)
+ *
+ * Popover Usage (native API):
+ *   <button popovertarget="my-popover">Open</button>
+ *   <div id="my-popover" popover class="popover">
+ *     <div class="popover__content">
+ *       <h3 class="popover__title">Title</h3>
+ *       <p>Rich content here.</p>
+ *     </div>
+ *   </div>
+ */
+
+@layer components {
+  /* ========================================
+     TOOLTIP (CSS-only via data attribute)
+     ======================================== */
+
+  [data-tooltip] {
+    position: relative;
+  }
+
+  /* Tooltip bubble */
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+
+    /* Positioning */
+    position: absolute;
+    z-index: var(--z-tooltip);
+    pointer-events: none;
+
+    /* Visual */
+    background: var(--gray-15);
+    color: var(--gray-95);
+    font-size: var(--font-size-xs);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-snug);
+    white-space: nowrap;
+    padding: var(--space-1-5) var(--space-3);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+
+    /* Hidden state */
+    opacity: 0;
+    transform: scale(0.95);
+    transition:
+      opacity var(--duration-fast) var(--ease-fluid),
+      transform var(--duration-fast) var(--ease-settle);
+  }
+
+  /* Dark mode tooltip */
+  [data-theme="dark"] [data-tooltip]::after {
+    background: var(--gray-85);
+    color: var(--gray-10);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) [data-tooltip]::after {
+      background: var(--gray-85);
+      color: var(--gray-10);
+    }
+  }
+
+  /* Show on hover/focus */
+  [data-tooltip]:hover::after,
+  [data-tooltip]:focus-visible::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+
+  /* ========================================
+     TOOLTIP POSITIONS
+     ======================================== */
+
+  /* Top (default) */
+  [data-tooltip]::after,
+  [data-tooltip][data-tooltip-pos="top"]::after {
+    inset-block-end: calc(100% + var(--space-2));
+    inset-inline-start: 50%;
+    translate: -50% 4px;
+  }
+
+  [data-tooltip]:hover::after,
+  [data-tooltip]:focus-visible::after,
+  [data-tooltip][data-tooltip-pos="top"]:hover::after,
+  [data-tooltip][data-tooltip-pos="top"]:focus-visible::after {
+    translate: -50% 0;
+  }
+
+  /* Bottom */
+  [data-tooltip][data-tooltip-pos="bottom"]::after {
+    inset-block-start: calc(100% + var(--space-2));
+    inset-block-end: auto;
+    inset-inline-start: 50%;
+    translate: -50% -4px;
+  }
+
+  [data-tooltip][data-tooltip-pos="bottom"]:hover::after,
+  [data-tooltip][data-tooltip-pos="bottom"]:focus-visible::after {
+    translate: -50% 0;
+  }
+
+  /* Left */
+  [data-tooltip][data-tooltip-pos="left"]::after {
+    inset-inline-end: calc(100% + var(--space-2));
+    inset-inline-start: auto;
+    inset-block-start: 50%;
+    translate: 4px -50%;
+  }
+
+  [data-tooltip][data-tooltip-pos="left"]:hover::after,
+  [data-tooltip][data-tooltip-pos="left"]:focus-visible::after {
+    translate: 0 -50%;
+  }
+
+  /* Right */
+  [data-tooltip][data-tooltip-pos="right"]::after {
+    inset-inline-start: calc(100% + var(--space-2));
+    inset-block-start: 50%;
+    translate: -4px -50%;
+  }
+
+  [data-tooltip][data-tooltip-pos="right"]:hover::after,
+  [data-tooltip][data-tooltip-pos="right"]:focus-visible::after {
+    translate: 0 -50%;
+  }
+
+  /* Multiline: allow wrapping for long tooltips */
+  [data-tooltip][data-tooltip-wrap]::after {
+    white-space: normal;
+    inline-size: max-content;
+    max-inline-size: 20rem;
+    text-align: start;
+  }
+
+
+  /* ========================================
+     POPOVER (native popover API)
+     ======================================== */
+
+  .popover {
+    /* Reset native popover defaults */
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    overflow: visible;
+
+    /* Positioning handled by browser anchor API or manual JS */
+    z-index: var(--z-popover);
+
+    /* Hidden by default */
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+    transition:
+      opacity var(--duration-fast) var(--ease-fluid),
+      transform var(--duration-fast) var(--ease-settle),
+      display var(--duration-fast) allow-discrete,
+      overlay var(--duration-fast) allow-discrete;
+  }
+
+  /* Open state */
+  .popover:popover-open {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  /* Starting style for entry animation */
+  @starting-style {
+    .popover:popover-open {
+      opacity: 0;
+      transform: scale(0.95) translateY(-4px);
+    }
+  }
+
+  .popover__content {
+    background: var(--color-surface-raised);
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-4);
+    min-inline-size: 12rem;
+    max-inline-size: 24rem;
+  }
+
+  .popover__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-semibold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .popover__content p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: no animation */
+  [data-motion="still"] [data-tooltip]::after {
+    transition: none;
+  }
+
+  [data-motion="still"] .popover {
+    transition: none;
+  }
+
+  /* Rapids: hard shadow */
+  [data-motion="rapids"] .popover__content {
+    box-shadow: 4px 4px 0 oklch(0 0 0 / 0.12);
+  }
+
+  /* Tsunami: asymmetric */
+  [data-motion="tsunami"] .popover__content {
+    border-radius: var(--radius-asymmetric, 0 24px 0 0);
+  }
+
+
+  /* ========================================
+     ACCESSIBILITY
+     ======================================== */
+
+  /* Hide tooltips when reduced motion preferred AND touch-only devices */
+  @media (hover: none) {
+    [data-tooltip]::after {
+      display: none;
+    }
+  }
+}
