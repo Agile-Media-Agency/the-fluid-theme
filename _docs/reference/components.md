@@ -2,9 +2,13 @@
 
 UI components built on the Fluid foundation. All components use design tokens and respect user preferences.
 
+**Live demo site: [TheFluidTheme.com](https://thefluidtheme.com)** — See all components in action at [/examples/components.html](https://thefluidtheme.com/examples/components.html)
+
 ---
 
 ## Button
+
+[Live demo](https://thefluidtheme.com/examples/components.html#buttons)
 
 ### Basic Usage
 ```html
@@ -50,6 +54,8 @@ UI components built on the Fluid foundation. All components use design tokens an
 ---
 
 ## Card
+
+[Live demo](https://thefluidtheme.com/examples/components.html#cards)
 
 ### Basic Usage
 ```html
@@ -134,6 +140,8 @@ UI components built on the Fluid foundation. All components use design tokens an
 
 ## Navigation
 
+[Live demo](https://thefluidtheme.com/examples/components.html#navigation)
+
 ### Main Nav
 ```html
 <nav class="nav" data-sticky>
@@ -200,6 +208,8 @@ UI components built on the Fluid foundation. All components use design tokens an
 ---
 
 ## Form Components
+
+[Live demo](https://thefluidtheme.com/examples/components.html#forms)
 
 ### Form Group
 ```html
@@ -279,6 +289,8 @@ UI components built on the Fluid foundation. All components use design tokens an
 
 ## Hero
 
+[Live demo](https://thefluidtheme.com/examples/heroes.html)
+
 Full-width hero sections for landing pages and page headers. Uses the positioning system data attributes for layout.
 
 ### Basic Usage
@@ -326,6 +338,8 @@ Uses the positioning system — combine `data-layout`, `data-padding`, `data-ali
 ---
 
 ## Indicators
+
+[Live demo](https://thefluidtheme.com/examples/components.html#indicators) | [Dedicated page](https://thefluidtheme.com/examples/indicators.html)
 
 Semantic status system for scores, progress, and feedback. Uses `data-status` to drive all visual styling.
 
@@ -462,6 +476,8 @@ Images are converted to grayscale, then an accent-colored overlay is applied via
 
 ## Modal / Dialog
 
+[Live demo](https://thefluidtheme.com/examples/components.html#modal)
+
 Built on native `<dialog>` for accessibility. CSS transitions; JS needed only for `showModal()` / `close()`.
 
 ### Basic Usage
@@ -509,6 +525,8 @@ On screens narrower than `40rem`, all modals become bottom sheets (slide up from
 
 ## Tooltip / Popover
 
+[Live demo](https://thefluidtheme.com/examples/components.html#tooltips)
+
 CSS-only tooltips via data attributes. Popovers use the native `popover` API.
 
 ### Tooltip Usage
@@ -547,6 +565,8 @@ Tooltips are hidden on touch-only devices (`@media (hover: none)`).
 ---
 
 ## Accordion
+
+[Live demo](https://thefluidtheme.com/examples/components.html#accordion)
 
 Built on native `<details>` / `<summary>` — works without JavaScript.
 
@@ -601,6 +621,8 @@ Using the same `name` attribute creates exclusive accordion behavior (native HTM
 ---
 
 ## Alert / Toast
+
+[Live demo](https://thefluidtheme.com/examples/components.html#alerts)
 
 Alerts for inline feedback. Toasts for transient positioned notifications.
 
@@ -666,6 +688,8 @@ Alerts for inline feedback. Toasts for transient positioned notifications.
 ---
 
 ## Table
+
+[Live demo](https://thefluidtheme.com/examples/components.html#tables)
 
 Responsive tables with horizontal scroll, sortable headers, and mobile stacked layout.
 
@@ -735,6 +759,8 @@ On mobile (`< 40rem`), header hides and cells stack vertically with `data-label`
 
 ## Avatar
 
+[Live demo](https://thefluidtheme.com/examples/components.html#avatars)
+
 Profile images with initials fallback, status indicators, and grouping.
 
 ### Basic Usage
@@ -793,6 +819,8 @@ Profile images with initials fallback, status indicators, and grouping.
 ---
 
 ## Loading / Skeleton
+
+[Live demo](https://thefluidtheme.com/examples/components.html#loading)
 
 Loading spinners and skeleton screens for loading states.
 
@@ -856,6 +884,8 @@ Spinners pulse instead of spinning. Skeleton shimmer stops. All controlled by `p
 ---
 
 ## Dropdown
+
+[Live demo](https://thefluidtheme.com/examples/components.html#dropdowns)
 
 Standalone dropdown menus for actions, selections, and context menus. Separate from nav dropdowns.
 

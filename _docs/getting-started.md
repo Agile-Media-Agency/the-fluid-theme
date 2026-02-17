@@ -1,5 +1,7 @@
 # Getting Started with Fluid Framework
 
+**Live Site: [TheFluidTheme.com](https://thefluidtheme.com)** | [GitHub](https://github.com/Agile-Media-Agency/the-fluid-theme)
+
 A step-by-step guide to using the Fluid Framework in your project.
 
 ---
@@ -169,7 +171,7 @@ This means component styles always override base styles, and utilities always wi
 
 ## Your First Components
 
-### Button
+### Button — [Live demo](https://thefluidtheme.com/examples/components.html#buttons)
 
 ```html
 <!-- Variants: primary, secondary, ghost, outline, destructive -->
@@ -179,7 +181,7 @@ This means component styles always override base styles, and utilities always wi
 <button class="btn" data-variant="ghost">Ghost Button</button>
 ```
 
-### Card
+### Card — [Live demo](https://thefluidtheme.com/examples/components.html#cards)
 
 ```html
 <article class="card">
@@ -194,7 +196,7 @@ This means component styles always override base styles, and utilities always wi
 </article>
 ```
 
-### Alert
+### Alert — [Live demo](https://thefluidtheme.com/examples/components.html#alerts)
 
 ```html
 <!-- Statuses: info, success, warning, error -->
@@ -207,7 +209,7 @@ This means component styles always override base styles, and utilities always wi
 </div>
 ```
 
-### Modal (Dialog)
+### Modal (Dialog) — [Live demo](https://thefluidtheme.com/examples/components.html#modal)
 
 ```html
 <dialog class="modal" id="my-modal">
@@ -232,7 +234,7 @@ This means component styles always override base styles, and utilities always wi
 </button>
 ```
 
-### Accordion
+### Accordion — [Live demo](https://thefluidtheme.com/examples/components.html#accordion)
 
 ```html
 <!-- Uses native <details>/<summary> — no JavaScript needed -->
@@ -394,29 +396,29 @@ The framework has accessibility built in:
 
 ## Examples and Templates
 
-Explore the bundled examples to see components in action:
+Explore the live examples on **[TheFluidTheme.com](https://thefluidtheme.com)**:
 
-| File | What It Shows |
+| Page | What It Shows |
 |------|---------------|
-| `examples/foundation.html` | All HTML elements styled |
-| `examples/components.html` | All 17 components |
-| `examples/positioning.html` | Layout utilities |
-| `examples/heroes.html` | Hero section variants |
-| `examples/indicators.html` | Progress, badges, status |
-| `examples/philosophy.html` | Fluid dynamics explanation |
-| `examples/hero-picker.html` | Interactive hero builder |
-
-There are also 9 ready-made page templates in the `templates/` directory.
+| [Foundation](https://thefluidtheme.com/examples/foundation.html) | All HTML elements styled |
+| [Components](https://thefluidtheme.com/examples/components.html) | All 17 components |
+| [Positioning](https://thefluidtheme.com/examples/positioning.html) | Layout utilities |
+| [Heroes](https://thefluidtheme.com/examples/heroes.html) | Hero section variants |
+| [Indicators](https://thefluidtheme.com/examples/indicators.html) | Progress, badges, status |
+| [Philosophy](https://thefluidtheme.com/examples/philosophy.html) | Fluid dynamics explanation |
+| [Hero Picker](https://thefluidtheme.com/examples/hero-picker.html) | Interactive hero builder |
+| [Templates](https://thefluidtheme.com/templates/) | 9 ready-made page templates |
 
 ---
 
 ## Next Steps
 
-- [Component Reference](_docs/reference/components.md) — Full API for all 17 components
-- [Design Tokens Reference](_docs/reference/tokens.md) — All CSS custom properties
-- [Positioning Reference](_docs/reference/positioning.md) — Layout system details
-- [Heroes Reference](_docs/reference/heroes.md) — Hero section options
-- [Architecture](_docs/architecture.md) — Technical decisions and philosophy
+- **[TheFluidTheme.com](https://thefluidtheme.com)** — Live demo site with all components
+- [Component Reference](reference/components.md) — Full API for all 17 components
+- [Design Tokens Reference](reference/tokens.md) — All CSS custom properties
+- [Positioning Reference](reference/positioning.md) — Layout system details
+- [Heroes Reference](reference/heroes.md) — Hero section options
+- [Architecture](architecture.md) — Technical decisions and philosophy
 
 ---
 

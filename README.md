@@ -1,5 +1,7 @@
 # The Fluid Theme Framework
 
+**[TheFluidTheme.com](https://thefluidtheme.com)** | [Live Components](https://thefluidtheme.com/examples/components.html) | [Live Foundation](https://thefluidtheme.com/examples/foundation.html) | [Templates](https://thefluidtheme.com/templates/)
+
 ## A Physics-Based Design System
 
 A modern approach to web theming built on **fluid dynamics principles**. Every animation, transition, and interaction is governed by real physics — viscosity, displacement, surface tension, momentum, and friction.
@@ -164,6 +166,8 @@ Modern browsers: Chrome 120+, Firefox 120+, Safari 16.4+, Edge 120+
 
 ## Documentation
 
+- **[TheFluidTheme.com](https://thefluidtheme.com)** — Live demo site
+- **[Getting Started](_docs/getting-started.md)** — Installation and first steps
 - **[Full Documentation](_docs/_start-here.md)** — Complete guide
 - **[Component Reference](_docs/reference/components.md)** — All 17 components
 - **[Positioning Reference](_docs/reference/positioning.md)** — Layout system
@@ -177,4 +181,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.3.1** | Built with physics and 32 years of design experience.
+**Version 0.3.1** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
