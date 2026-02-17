@@ -972,6 +972,291 @@
   }
 
 
+  /* ========================================
+     SIGNATURE PRESETS - Radically Different
+     These intentionally break the mold.
+     Same HTML, completely different visual identity.
+     ======================================== */
+
+  /* === BRUTALIST: Raw, uncompromising, technical ===
+     Monospace typography, zero decoration, grid-locked.
+     Inspired by Swiss design and brutalist architecture.
+     For: Developer portfolios, tech products, manifestos */
+  :root[data-motion="brutalist"],
+  [data-motion="brutalist"] {
+    /* No motion - instant, mechanical */
+    --motion-scale: 0;
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --duration-slowest: 0ms;
+    --ease-fluid: linear;
+    --ease-settle: linear;
+
+    /* Typography: Monospace everything */
+    --font-body: var(--font-mono);
+    --font-heading: var(--font-mono);
+    --font-ui: var(--font-mono);
+    --leading-normal: 1.5;
+    --leading-tight: 1.3;
+    --tracking-normal: -0.02em;
+
+    /* Layout: Narrow, focused, dense */
+    --space-section: var(--space-8);
+    --space-gutter: var(--space-3);
+    --container-content: 600px;
+    --container-prose: 55ch;
+
+    /* Zero radius - sharp edges only */
+    --radius-none: 0;
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
+    --radius-full: 0;
+    --radius-card: 0;
+    --radius-button: 0;
+    --radius-input: 0;
+
+    /* High-contrast borders, no soft shadows */
+    --border-width: 2px;
+    --border-width-thick: 4px;
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-md: 4px 4px 0 var(--color-border);
+    --shadow-lg: 8px 8px 0 var(--color-border);
+    --shadow-xl: 12px 12px 0 var(--color-border);
+
+    /* High contrast colors */
+    --color-text: var(--black);
+    --color-background: var(--white);
+    --color-border: var(--black);
+    --color-border-subtle: var(--gray-30);
+    --accent: var(--black);
+  }
+
+  /* Brutalist dark mode */
+  [data-motion="brutalist"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="brutalist"] {
+    --color-text: var(--white);
+    --color-background: var(--black);
+    --color-border: var(--white);
+    --color-border-subtle: var(--gray-70);
+    --accent: var(--white);
+    --shadow-md: 4px 4px 0 var(--color-border);
+    --shadow-lg: 8px 8px 0 var(--color-border);
+  }
+
+
+  /* === EDITORIAL: Luxurious, literary, contemplative ===
+     Serif typography, generous whitespace, classical proportions.
+     Inspired by high-end magazines and book design.
+     For: Magazines, blogs, luxury brands, essays */
+  :root[data-motion="editorial"],
+  [data-motion="editorial"] {
+    /* Very slow, contemplative motion */
+    --motion-scale: 0.2;
+    --duration-instant: 300ms;
+    --duration-fast: 800ms;
+    --duration-normal: 1200ms;
+    --duration-slow: 2000ms;
+    --duration-slower: 3000ms;
+    --duration-slowest: 4000ms;
+    --ease-fluid: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-settle: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+    /* Typography: Elegant serif */
+    --font-body: var(--font-serif);
+    --font-heading: var(--font-serif);
+    --font-ui: var(--font-system);
+    --leading-normal: 1.85;
+    --leading-relaxed: 2;
+    --tracking-normal: 0.01em;
+    --tracking-wide: 0.1em;
+
+    /* Layout: Narrow column, extreme whitespace */
+    --space-section: 8rem;
+    --space-gutter: var(--space-12);
+    --container-content: 38rem;
+    --container-prose: 32rem;
+    --container-xl: 48rem;
+
+    /* Soft, subtle radius */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-xl: 8px;
+    --radius-2xl: 12px;
+    --radius-card: 4px;
+    --radius-button: 2px;
+    --radius-input: 4px;
+
+    /* No shadows - flat, clean, sophisticated */
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+
+    /* Muted, warm color palette */
+    --color-text: oklch(25% 0.02 50);
+    --color-text-muted: oklch(45% 0.02 50);
+    --color-background: oklch(98% 0.01 60);
+    --color-surface: oklch(96% 0.015 60);
+    --color-border: oklch(85% 0.02 60);
+    --color-border-subtle: oklch(90% 0.015 60);
+    --accent: oklch(40% 0.08 30);
+  }
+
+  /* Editorial dark mode - ink on paper feel */
+  [data-motion="editorial"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="editorial"] {
+    --color-text: oklch(90% 0.01 60);
+    --color-text-muted: oklch(70% 0.01 60);
+    --color-background: oklch(12% 0.01 60);
+    --color-surface: oklch(15% 0.015 60);
+    --color-border: oklch(25% 0.02 60);
+    --accent: oklch(70% 0.06 40);
+  }
+
+
+  /* === NEON: Electric, futuristic, high-energy ===
+     Geometric sans-serif, dark backgrounds, glowing accents.
+     Inspired by cyberpunk, gaming, night clubs.
+     For: Gaming, tech startups, entertainment, events */
+  :root[data-motion="neon"],
+  [data-motion="neon"] {
+    /* Fast, snappy, energetic motion */
+    --motion-scale: 1.8;
+    --duration-instant: 80ms;
+    --duration-fast: 150ms;
+    --duration-normal: 280ms;
+    --duration-slow: 400ms;
+    --duration-slower: 550ms;
+    --duration-slowest: 750ms;
+    --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-settle: cubic-bezier(0.22, 1.6, 0.36, 1);
+
+    /* Typography: Geometric, modern sans */
+    --font-body: var(--font-system);
+    --font-heading: var(--font-system);
+    --font-ui: var(--font-system);
+    --leading-normal: 1.5;
+    --leading-tight: 1.15;
+    --tracking-normal: 0;
+    --tracking-wide: 0.15em;
+
+    /* Layout: Wide, immersive, edge-to-edge */
+    --space-section: var(--space-20);
+    --space-gutter: var(--space-6);
+    --container-content: 100%;
+    --container-xl: 100%;
+
+    /* Full pill shapes */
+    --radius-sm: 9999px;
+    --radius-md: 9999px;
+    --radius-lg: 9999px;
+    --radius-xl: 9999px;
+    --radius-2xl: 9999px;
+    --radius-card: 24px;
+    --radius-button: 9999px;
+    --radius-input: 9999px;
+
+    /* Glowing shadows */
+    --shadow-xs: 0 0 8px var(--accent);
+    --shadow-sm: 0 0 12px var(--accent);
+    --shadow-md: 0 0 20px var(--accent), 0 0 40px color-mix(in oklch, var(--accent) 50%, transparent);
+    --shadow-lg: 0 0 30px var(--accent), 0 0 60px color-mix(in oklch, var(--accent) 50%, transparent);
+    --shadow-xl: 0 0 40px var(--accent), 0 0 80px color-mix(in oklch, var(--accent) 40%, transparent);
+    --shadow-glow: 0 0 0 2px var(--accent), 0 0 20px var(--accent);
+
+    /* Dark by default with neon accent */
+    --color-text: oklch(95% 0 0);
+    --color-text-muted: oklch(70% 0.02 280);
+    --color-background: oklch(8% 0.02 280);
+    --color-surface: oklch(12% 0.03 280);
+    --color-surface-raised: oklch(16% 0.03 280);
+    --color-border: oklch(25% 0.05 280);
+    --color-border-subtle: oklch(18% 0.04 280);
+
+    /* Electric neon accent */
+    --accent: oklch(70% 0.25 320);
+    --accent-subtle: oklch(20% 0.15 320);
+    --accent-hover: oklch(80% 0.28 320);
+    --accent-active: oklch(60% 0.22 320);
+  }
+
+  /* Neon "light mode" - inverted but still vibrant */
+  [data-motion="neon"][data-theme="light"],
+  [data-theme="light"] [data-motion="neon"] {
+    --color-text: oklch(15% 0.02 280);
+    --color-background: oklch(98% 0.01 280);
+    --color-surface: oklch(95% 0.02 280);
+    --accent: oklch(55% 0.30 320);
+    --shadow-md: 0 0 15px color-mix(in oklch, var(--accent) 40%, transparent);
+    --shadow-lg: 0 0 25px color-mix(in oklch, var(--accent) 50%, transparent);
+  }
+
+
+  /* --- Signature Preset Page Transitions --- */
+
+  /* Brutalist: Hard cut, no transition */
+  :root[data-motion="brutalist"] {
+    &::view-transition-old(root),
+    &::view-transition-new(root) {
+      animation: none;
+    }
+  }
+
+  /* Editorial: Very slow crossfade */
+  @keyframes editorial-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes editorial-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  :root[data-motion="editorial"] {
+    &::view-transition-old(root) {
+      animation: 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) both editorial-fade-out;
+    }
+
+    &::view-transition-new(root) {
+      animation: 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) both editorial-fade-in;
+    }
+  }
+
+  /* Neon: Fast glitch/flash effect */
+  @keyframes neon-out {
+    0% { opacity: 1; transform: scale(1); filter: brightness(1); }
+    50% { opacity: 0.8; transform: scale(1.02); filter: brightness(2); }
+    100% { opacity: 0; transform: scale(1.05); filter: brightness(0); }
+  }
+
+  @keyframes neon-in {
+    0% { opacity: 0; transform: scale(0.95); filter: brightness(0); }
+    30% { opacity: 0.5; transform: scale(0.98); filter: brightness(2); }
+    60% { opacity: 0.9; transform: scale(1.01); filter: brightness(1.5); }
+    100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+  }
+
+  :root[data-motion="neon"] {
+    &::view-transition-old(root) {
+      animation: 280ms cubic-bezier(0.34, 1.56, 0.64, 1) both neon-out;
+    }
+
+    &::view-transition-new(root) {
+      animation: 350ms cubic-bezier(0.22, 1.6, 0.36, 1) both neon-in;
+    }
+  }
+
+
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root),
@@ -1240,6 +1525,48 @@
 }
 
 
+/* --- BRUTALIST PALETTE ---
+   High-contrast, stark, minimal color.
+   Black, white, and one brutal accent.
+   Raw, uncompromising, typographic. */
+[data-palette="brutalist"] {
+  --palette-1: oklch(0% 0 0);       /* Pure black */
+  --palette-2: oklch(100% 0 0);     /* Pure white */
+  --palette-3: oklch(50% 0 0);      /* True gray */
+  --palette-4: oklch(60% 0.25 25);  /* Warning red */
+  --palette-5: oklch(25% 0 0);      /* Near black */
+  --palette-6: oklch(75% 0 0);      /* Light gray */
+}
+
+
+/* --- EDITORIAL PALETTE ---
+   Warm, muted, sophisticated colors.
+   Ink tones, paper textures, literary feel.
+   Timeless, elegant, understated. */
+[data-palette="editorial"] {
+  --palette-1: oklch(40% 0.08 30);  /* Dried ink */
+  --palette-2: oklch(55% 0.06 50);  /* Warm sepia */
+  --palette-3: oklch(65% 0.04 70);  /* Aged paper */
+  --palette-4: oklch(35% 0.05 200); /* Slate blue */
+  --palette-5: oklch(70% 0.03 90);  /* Parchment */
+  --palette-6: oklch(45% 0.07 150); /* Verdigris */
+}
+
+
+/* --- NEON PALETTE ---
+   Electric, vibrant, cyberpunk colors.
+   Glowing accents on dark backgrounds.
+   Futuristic, bold, attention-grabbing. */
+[data-palette="neon"] {
+  --palette-1: oklch(70% 0.25 320); /* Hot magenta */
+  --palette-2: oklch(75% 0.22 190); /* Electric cyan */
+  --palette-3: oklch(80% 0.20 100); /* Lime green */
+  --palette-4: oklch(65% 0.28 290); /* Violet */
+  --palette-5: oklch(75% 0.18 50);  /* Orange glow */
+  --palette-6: oklch(60% 0.25 250); /* Blue electric */
+}
+
+
 /* ========================================
    APPLY PALETTE ACCENT
    When data-palette is set, use palette colors
@@ -1275,6 +1602,9 @@
 [data-palette="matrix"]:not([data-accent]) { --accent: var(--palette-1); }   /* Matrix green */
 [data-palette="subtle"]:not([data-accent]) { --accent: var(--palette-2); }   /* Muted teal */
 [data-palette="tsunami"]:not([data-accent]) { --accent: var(--palette-4); }  /* Storm teal */
+[data-palette="brutalist"]:not([data-accent]) { --accent: var(--palette-1); } /* Pure black */
+[data-palette="editorial"]:not([data-accent]) { --accent: var(--palette-1); } /* Dried ink */
+[data-palette="neon"]:not([data-accent]) { --accent: var(--palette-1); }      /* Hot magenta */
 
 
 /* ========================================
@@ -1365,6 +1695,21 @@
 [data-palette="tsunami"] {
   --duotone-dark: oklch(0.15 0.10 250);
   --duotone-light: oklch(0.40 0.12 210);
+}
+
+[data-palette="brutalist"] {
+  --duotone-dark: oklch(0 0 0);
+  --duotone-light: oklch(1 0 0);
+}
+
+[data-palette="editorial"] {
+  --duotone-dark: oklch(0.30 0.04 50);
+  --duotone-light: oklch(0.80 0.03 60);
+}
+
+[data-palette="neon"] {
+  --duotone-dark: oklch(0.10 0.15 280);
+  --duotone-light: oklch(0.70 0.25 320);
 }
 
 
@@ -1468,6 +1813,30 @@
   --section-2: var(--bg-dark);
   --section-3: var(--bg-light);
   --section-accent: color-mix(in oklch, var(--accent) 30%, var(--bg-dark));
+}
+
+/* Brutalist: Stark black/white alternation, no softness */
+[data-motion="brutalist"] {
+  --section-1: var(--color-background);
+  --section-2: var(--color-border);
+  --section-3: var(--color-background);
+  --section-accent: var(--color-text);
+}
+
+/* Editorial: Warm, subtle cream variations */
+[data-motion="editorial"] {
+  --section-1: oklch(98% 0.01 60);
+  --section-2: oklch(96% 0.015 65);
+  --section-3: oklch(97% 0.01 55);
+  --section-accent: oklch(94% 0.02 50);
+}
+
+/* Neon: Dark sections with subtle purple variation */
+[data-motion="neon"] {
+  --section-1: oklch(8% 0.02 280);
+  --section-2: oklch(10% 0.03 290);
+  --section-3: oklch(6% 0.02 270);
+  --section-accent: oklch(15% 0.08 320);
 }
 
 

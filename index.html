@@ -60,6 +60,25 @@ nav: home
     </div>
   </button>
 
+  <button class="theme-grid__item" data-theme="flowing" onclick="setThemePreset('flowing'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_3.png' | relative_url }}" alt="Flowing water">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Flowing</h2>
+      <p class="theme-grid__desc">Balanced. The default.</p>
+      <span class="theme-grid__font">System UI</span>
+      <span class="theme-grid__badge" style="margin-block-start: var(--space-2); font-size: var(--font-size-xs); background: var(--accent); color: var(--color-background); padding: var(--space-1) var(--space-2); border-radius: var(--radius-full);">Default</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="fluid">
+      <span style="--swatch: oklch(55% 0.15 220)"></span>
+      <span style="--swatch: oklch(60% 0.12 200)"></span>
+      <span style="--swatch: oklch(65% 0.10 180)"></span>
+      <span style="--swatch: oklch(70% 0.08 160)"></span>
+      <span style="--swatch: oklch(75% 0.06 140)"></span>
+      <span style="--swatch: oklch(80% 0.04 120)"></span>
+    </div>
+  </button>
+
   <button class="theme-grid__item" data-theme="cascade" onclick="setThemePreset('cascade'); updateThemeGrid();">
     <img src="{{ '/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png' | relative_url }}" alt="Cascading waterfall">
     <div class="theme-grid__overlay"></div>
@@ -137,8 +156,11 @@ nav: home
   <section class="section" data-layout="center" data-padding="md" data-bg="tinted">
     <h2>Choose Your Theme</h2>
     <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto; margin-block-end: var(--space-6);">
-      Seven complete themes with motion, colors, fonts, and layout.
+      Ten complete themes with motion, colors, fonts, and layout.
     </p>
+
+    <!-- Water Themes -->
+    <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-end: var(--space-2);">Water Themes</p>
     <div class="theme-chips">
       <button class="theme-chip" data-theme-preset="still" onclick="setThemePreset('still')">
         <span class="theme-chip__dot" style="--chip-color: var(--gray-50);"></span>
@@ -170,6 +192,28 @@ nav: home
         Tsunami
       </button>
     </div>
+
+    <!-- Signature Presets -->
+    <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-5); margin-block-end: var(--space-2);">
+      Signature Presets <span style="font-size: var(--font-size-xs); opacity: 0.7;">(Radically Different)</span>
+    </p>
+    <div class="theme-chips">
+      <button class="theme-chip" data-theme-preset="brutalist" onclick="setThemePreset('brutalist')">
+        <span class="theme-chip__dot" style="--chip-color: var(--black);"></span>
+        Brutalist
+        <span class="theme-chip__badge" style="background: var(--gray-20);">New</span>
+      </button>
+      <button class="theme-chip" data-theme-preset="editorial" onclick="setThemePreset('editorial')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.40 0.08 30);"></span>
+        Editorial
+        <span class="theme-chip__badge" style="background: var(--gray-20);">New</span>
+      </button>
+      <button class="theme-chip" data-theme-preset="neon" onclick="setThemePreset('neon')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.70 0.25 320);"></span>
+        Neon
+        <span class="theme-chip__badge" style="background: var(--gray-20);">New</span>
+      </button>
+    </div>
   </section>
 
   <section class="section" data-layout="center" data-padding="md">
@@ -184,7 +228,7 @@ nav: home
       <a href="{{ '/examples/components.html' | relative_url }}" class="card" data-interactive>
         <div class="card__content">
           <h3 class="card__title">Components</h3>
-          <p class="card__description">Buttons, cards, navigation, form controls.</p>
+          <p class="card__description">17 UI components — buttons, cards, modals, tooltips, and more.</p>
         </div>
       </a>
       <a href="{{ '/examples/positioning.html' | relative_url }}" class="card" data-interactive>
@@ -213,7 +257,7 @@ nav: home
     <div class="grid" style="--grid-min: 14rem; margin-block-start: var(--space-6);">
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">7 Complete Themes</h4>
+          <h4 class="card__title">10 Complete Themes</h4>
           <p class="card__description">Motion, colors, fonts, layout</p>
         </div>
       </div>
@@ -225,7 +269,7 @@ nav: home
       </div>
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">9 Color Palettes</h4>
+          <h4 class="card__title">10 Color Palettes</h4>
           <p class="card__description">OKLCH-based, perceptually uniform</p>
         </div>
       </div>
