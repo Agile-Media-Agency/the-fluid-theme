@@ -56,14 +56,12 @@ npm run serve    # Open examples in browser at localhost:8080
 
 ## Current Focus
 
-**All major features complete and QA'd!** ✅
+**Perfect the default `flowing` preset first**, then propagate fixes to other presets:
 
 - [x] Dark mode: Use deep palette colors, not black
-- [x] Subdued contrast: Proper muted palettes (11 presets, WCAG AA compliant)
+- [x] Subdued contrast: Needs proper muted palettes
 - [x] Each preset should feel completely different
-- [x] Fluid typography that scales proportionally
-- [x] All components use semantic tokens for dark mode
-- [x] TRICKLING preset fully integrated
+- [ ] Fluid typography that scales proportionally
 
 ---
 

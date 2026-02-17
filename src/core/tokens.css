@@ -1614,7 +1614,7 @@
 [data-motion="still"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="still"],
 [data-contrast="subdued"]:root[data-motion="still"] {
-  --color-text: oklch(28% 0.01 250);
+  --color-text: oklch(35% 0.01 250);
   --color-text-muted: oklch(48% 0.01 250);
   --color-text-subtle: oklch(58% 0.008 250);
   --color-background: oklch(96% 0.005 250);
@@ -1643,7 +1643,7 @@
 [data-motion="serene"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="serene"],
 [data-contrast="subdued"]:root[data-motion="serene"] {
-  --color-text: oklch(28% 0.015 60);
+  --color-text: oklch(35% 0.015 60);
   --color-text-muted: oklch(48% 0.012 60);
   --color-text-subtle: oklch(58% 0.01 60);
   --color-background: oklch(96% 0.01 60);
@@ -1672,7 +1672,7 @@
 [data-motion="trickling"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="trickling"],
 [data-contrast="subdued"]:root[data-motion="trickling"] {
-  --color-text: oklch(28% 0.01 190);
+  --color-text: oklch(35% 0.01 190);
   --color-text-muted: oklch(48% 0.008 190);
   --color-text-subtle: oklch(58% 0.006 190);
   --color-background: oklch(96% 0.006 190);
@@ -1701,7 +1701,7 @@
 [data-motion="stream"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="stream"],
 [data-contrast="subdued"]:root[data-motion="stream"] {
-  --color-text: oklch(28% 0.012 200);
+  --color-text: oklch(35% 0.012 200);
   --color-text-muted: oklch(48% 0.01 200);
   --color-text-subtle: oklch(58% 0.008 200);
   --color-background: oklch(96% 0.008 200);
@@ -1731,7 +1731,7 @@
 [data-contrast="subdued"] [data-motion="flowing"],
 [data-contrast="subdued"]:root[data-motion="flowing"],
 [data-contrast="subdued"]:root:not([data-motion]) {
-  --color-text: oklch(28% 0.015 230);
+  --color-text: oklch(35% 0.015 230);
   --color-text-muted: oklch(48% 0.012 230);
   --color-text-subtle: oklch(58% 0.01 230);
   --color-background: oklch(96% 0.008 230);
@@ -1761,7 +1761,7 @@
 [data-motion="cascade"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="cascade"],
 [data-contrast="subdued"]:root[data-motion="cascade"] {
-  --color-text: oklch(28% 0.012 280);
+  --color-text: oklch(35% 0.012 280);
   --color-text-muted: oklch(48% 0.01 280);
   --color-text-subtle: oklch(58% 0.008 280);
   --color-background: oklch(96% 0.008 280);
@@ -1790,7 +1790,7 @@
 [data-motion="rapids"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="rapids"],
 [data-contrast="subdued"]:root[data-motion="rapids"] {
-  --color-text: oklch(28% 0.015 25);
+  --color-text: oklch(35% 0.015 25);
   --color-text-muted: oklch(48% 0.012 25);
   --color-text-subtle: oklch(58% 0.01 25);
   --color-background: oklch(96% 0.01 25);
@@ -1819,7 +1819,7 @@
 [data-motion="tsunami"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="tsunami"],
 [data-contrast="subdued"]:root[data-motion="tsunami"] {
-  --color-text: oklch(28% 0.015 250);
+  --color-text: oklch(35% 0.015 250);
   --color-text-muted: oklch(48% 0.012 250);
   --color-text-subtle: oklch(58% 0.01 250);
   --color-background: oklch(96% 0.008 250);
@@ -1877,7 +1877,7 @@
 [data-motion="editorial"][data-contrast="subdued"],
 [data-contrast="subdued"] [data-motion="editorial"],
 [data-contrast="subdued"]:root[data-motion="editorial"] {
-  --color-text: oklch(28% 0.015 50);
+  --color-text: oklch(35% 0.015 50);
   --color-text-muted: oklch(50% 0.012 50);
   --color-text-subtle: oklch(60% 0.01 50);
   --color-background: oklch(96% 0.01 60);
@@ -1907,7 +1907,7 @@
 [data-contrast="subdued"] [data-motion="neon"],
 [data-contrast="subdued"]:root[data-motion="neon"] {
   /* Neon defaults dark, so light subdued is unusual but supported */
-  --color-text: oklch(28% 0.015 280);
+  --color-text: oklch(35% 0.015 280);
   --color-text-muted: oklch(50% 0.012 280);
   --color-text-subtle: oklch(60% 0.01 280);
   --color-background: oklch(96% 0.008 280);

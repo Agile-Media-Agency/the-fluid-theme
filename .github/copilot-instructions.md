@@ -56,8 +56,8 @@ The framework itself requires **no compilation or build step**. It's pure CSS th
 ### Validation Steps
 1. View the page in browser at `localhost:8080`
 2. Test theme switching (light/dark toggle in settings panel)
-3. Test all 7 motion styles (via settings panel)
-4. Test all 10 color palettes (via settings panel)
+3. Test motion presets (8 water + 3 signature = 11 total, via settings panel)
+4. Test all 13 color palettes (via settings panel)
 5. Check dark mode appearance
 6. Test `prefers-reduced-motion` by setting in browser DevTools
 7. Validate on Chrome, Firefox, Safari (modern versions)
@@ -118,10 +118,10 @@ the-fluid-theme/
 │   ├── components/                   # 17 UI components
 │   │   ├── button.css
 │   │   ├── card.css
-│   │   ├── navigation.css
+│   │   ├── nav.css
 │   │   ├── form.css
 │   │   ├── hero.css
-│   │   ├── indicators.css
+│   │   ├── indicator.css
 │   │   ├── scroll-progress.css
 │   │   ├── settings-panel.css
 │   │   ├── themed-images.css
@@ -144,11 +144,11 @@ the-fluid-theme/
 ├── examples/                         # Demo pages
 │   ├── foundation.html               # All HTML elements showcase
 │   ├── components.html               # All 17 components gallery
-│   ├── layout-examples.html          # Layout patterns demo
-│   ├── motion-comparison.html        # Compare all 7 motion styles
-│   ├── preset-comparison.html        # Compare all presets
-│   ├── dark-mode-demo.html           # Dark mode showcase
-│   └── scroll-reveal-demo.html       # Scroll animations
+│   ├── heroes.html                   # Hero section variants
+│   ├── hero-picker.html              # Interactive hero builder
+│   ├── indicators.html               # Status indicators demo
+│   ├── philosophy.html               # Design philosophy page
+│   └── positioning.html              # Layout/positioning demo
 │
 ├── templates/                        # Page templates
 │   ├── dashboard.html
@@ -195,9 +195,9 @@ the-fluid-theme/
 
 ### Token Usage
 - **Spacing:** `var(--space-1)` through `var(--space-12)` (0.25rem to 6rem)
-- **Typography:** `var(--font-body)`, `var(--font-heading)`, `var(--size-1)` through `var(--size-12)`
-- **Colors:** `var(--color-bg)`, `var(--color-text)`, `var(--color-accent)`, etc.
-- **Motion:** `var(--duration-instant)` through `var(--duration-epic)`, `var(--ease-standard)`
+- **Typography:** `var(--font-body)`, `var(--font-heading)`, `var(--font-size-xs)` through `var(--font-size-5xl)`
+- **Colors:** `var(--color-background)`, `var(--color-text)`, `var(--accent)`, `var(--color-surface)`, etc.
+- **Motion:** `var(--duration-instant)` through `var(--duration-slowest)`, `var(--ease-default)`, `var(--ease-fluid)`
 
 ### Layer Placement
 ```css
@@ -220,7 +220,7 @@ the-fluid-theme/
 3. Import in `src/fluid.css`
 4. Create example in `examples/components.html`
 5. Document in `_docs/reference/components.md`
-6. Test all 7 motion styles and 10 palettes
+6. Test all 11 presets and 13 palettes
 
 ### Modifying Existing Styles
 1. Find the file in `src/`
@@ -255,8 +255,8 @@ When making changes, validate:
 - [ ] Looks correct in light mode
 - [ ] Looks correct in dark mode
 - [ ] Works with `prefers-reduced-motion`
-- [ ] All 7 motion styles work correctly
-- [ ] All 10 color palettes work correctly
+- [ ] All 11 presets work correctly (8 water + 3 signature)
+- [ ] All 13 color palettes work correctly
 - [ ] Component is responsive (mobile, tablet, desktop)
 - [ ] Semantic HTML is used (no utility class soup)
 - [ ] CSS tokens are used (no hardcoded values)
@@ -273,16 +273,17 @@ Fluid Framework proves that modern CSS can replace utility-class frameworks like
 Read `_docs/DEVELOPMENT.md` for the full philosophy and rationale.
 
 ### What Makes It Different
-- **Physics-based motion system** — 7 styles derived from Reynolds numbers (still, serene, stream, flowing, cascade, rapids, tsunami)
-- **Complete presets** — Not just color swaps; each preset changes fonts, colors, motion, and layout
+- **Physics-based motion system** — 8 water presets (still, serene, trickling, stream, flowing, cascade, rapids, tsunami) + 3 signature presets (brutalist, editorial, neon)
+- **Complete presets** — Not just color swaps; each preset changes fonts, colors, motion, layout, shadows, borders, and typography rhythm
 - **OKLCH color system** — Modern color space with `color-mix()` for derived shades
 - **No JavaScript required** — All interactivity works with CSS `:hover`, `:focus`, etc.
 
-## Trust These Instructions
+## Additional References
 
-The information in this file has been carefully validated. Only search for additional information if:
-- These instructions are incomplete for your specific task
-- You find an error or inconsistency
-- The repository structure has changed significantly
+For the full design philosophy, architecture decisions, and development workflow:
+- Read `_docs/DEVELOPMENT.md` — the authoritative master guide
+- Read `CLAUDE.md` — quick reference with current focus areas
+- Read `_docs/_start-here.md` — full documentation index
 
-Otherwise, follow these guidelines to work efficiently in this codebase.
+When in doubt, check the actual source files. Token names and file paths
+in this document may drift as the framework evolves.
