@@ -341,4 +341,15 @@
       text-align: end;
     }
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .table[data-hover] tbody tr {
+      transition: none;
+    }
+  }
 }

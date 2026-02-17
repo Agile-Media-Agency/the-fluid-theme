@@ -236,4 +236,19 @@
   [data-motion="tsunami"] .accordion[data-variant="bordered"] .accordion__item {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .accordion__trigger {
+      transition: none;
+    }
+
+    .accordion__trigger::after {
+      transition: none;
+    }
+  }
 }

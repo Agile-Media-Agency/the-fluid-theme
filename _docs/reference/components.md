@@ -277,6 +277,189 @@ UI components built on the Fluid foundation. All components use design tokens an
 
 ---
 
+## Hero
+
+Full-width hero sections for landing pages and page headers. Uses the positioning system data attributes for layout.
+
+### Basic Usage
+```html
+<section class="hero" data-layout="center" data-padding="xl">
+  <h1>Headline</h1>
+  <p>Subheadline text.</p>
+  <button>Call to Action</button>
+</section>
+```
+
+### With Background Image
+```html
+<section class="hero" data-layout="overlay" data-padding="xl"
+         style="background-image: url('hero-bg.jpg')">
+  <h1>Over Image</h1>
+  <p>Content on top of the background.</p>
+</section>
+```
+
+### Split Hero
+```html
+<section class="hero" data-layout="split">
+  <div>
+    <h1>Headline</h1>
+    <p>Description text.</p>
+    <button>Get Started</button>
+  </div>
+  <img src="hero-image.jpg" alt="Feature">
+</section>
+```
+
+### Custom Properties
+```css
+.hero {
+  --hero-min-height: 60vh;    /* Minimum height */
+  --hero-background: var(--color-surface);
+  --hero-text-color: var(--color-text);
+}
+```
+
+### Variants via Data Attributes
+Uses the positioning system — combine `data-layout`, `data-padding`, `data-align`, `data-width` to create any hero layout. See [Positioning Reference](positioning.md).
+
+---
+
+## Indicators
+
+Semantic status system for scores, progress, and feedback. Uses `data-status` to drive all visual styling.
+
+### Status Tiers
+```html
+<div data-status="good">88% — Meeting goals</div>
+<div data-status="moderate">65% — Needs improvement</div>
+<div data-status="severe">32% — Critical</div>
+```
+
+| Status | Threshold | Color Family |
+|--------|-----------|-------------|
+| `good` | >= 80% | Success (green) |
+| `moderate` | 60-79% | Warning (amber) |
+| `severe` | < 60% | Error (red) |
+
+### Progress Bar
+```html
+<progress data-status="good" value="88" max="100">88%</progress>
+```
+
+### Badge
+```html
+<span class="badge" data-status="good">Active</span>
+<span class="badge" data-status="moderate">Pending</span>
+<span class="badge" data-status="severe">Failed</span>
+```
+
+### Status Card
+```html
+<article class="card" data-type="stat">
+  <div class="card__content">
+    <span class="card__value" data-status="good">92%</span>
+    <h3 class="card__title">Uptime</h3>
+  </div>
+</article>
+```
+
+---
+
+## Settings Panel
+
+Slide-out drawer for live theme customization. Controls motion, palette, accent, and theme mode.
+
+### Usage
+```html
+<!-- Floating action button (always visible) -->
+<button class="settings-fab" aria-label="Settings">
+  <svg>...</svg>
+</button>
+
+<!-- Drawer -->
+<div class="settings-drawer">
+  <div class="settings-drawer__backdrop"></div>
+  <div class="settings-drawer__panel">
+    <!-- Theme controls go here -->
+  </div>
+</div>
+```
+
+### Structure
+- `.settings-fab` — Fixed-position button in bottom-right corner
+- `.settings-drawer` — Full-viewport overlay container
+- `.settings-drawer__backdrop` — Clickable translucent backdrop
+- `.settings-drawer__panel` — The actual slide-out panel
+
+### Behavior
+Opens by toggling the `open` attribute. Panel slides in from the right with backdrop blur. Includes `{% include settings-panel.html %}` in templates for the full interactive customizer.
+
+---
+
+## Scroll Progress
+
+Thin bar showing page scroll position. Position and style adapt to the active motion preset.
+
+### Usage
+```html
+<div class="scroll-progress" aria-hidden="true"></div>
+```
+
+### Positions
+```html
+<div class="scroll-progress" data-position="top"><!-- Horizontal, top (default) --></div>
+<div class="scroll-progress" data-position="bottom"><!-- Horizontal, bottom --></div>
+<div class="scroll-progress" data-position="left"><!-- Vertical, left --></div>
+<div class="scroll-progress" data-position="right"><!-- Vertical, right --></div>
+```
+
+### Custom Properties
+```css
+.scroll-progress {
+  --_progress: 0;      /* Set via JS: 0 to 1 */
+  --_size: 3px;        /* Bar thickness */
+}
+```
+
+### Hiding
+```html
+<div class="scroll-progress" data-hidden><!-- Hidden --></div>
+```
+
+---
+
+## Themed Images
+
+Apply theme-aware duotone filters to images. Uses CSS filters and pseudo-element overlays.
+
+### Basic Usage
+```html
+<figure class="themed-image">
+  <img src="photo.jpg" alt="Description">
+</figure>
+```
+
+### On Cards
+```html
+<article class="card" data-themed-image>
+  <img src="photo.jpg" alt="Description">
+  <div class="card__content">...</div>
+</article>
+```
+
+### Disabling
+```html
+<figure class="themed-image" data-no-duotone>
+  <img src="photo.jpg" alt="No filter applied">
+</figure>
+```
+
+### How It Works
+Images are converted to grayscale, then an accent-colored overlay is applied via `mix-blend-mode`. The effect intensity varies by motion preset. Hover reveals the original image.
+
+---
+
 ## Modal / Dialog
 
 Built on native `<dialog>` for accessibility. CSS transitions; JS needed only for `showModal()` / `close()`.

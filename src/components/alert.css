@@ -379,4 +379,24 @@
       padding: var(--space-3);
     }
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .alert {
+      transition: none;
+    }
+
+    .toast {
+      animation: none;
+    }
+
+    .toast[data-dismissing] {
+      animation: none;
+      opacity: 0;
+    }
+  }
 }

@@ -236,10 +236,21 @@
      ACCESSIBILITY
      ======================================== */
 
-  /* Hide tooltips when reduced motion preferred AND touch-only devices */
+  /* Hide tooltips on touch-only devices */
   @media (hover: none) {
     [data-tooltip]::after {
       display: none;
+    }
+  }
+
+  /* Reduced motion: instant show/hide */
+  @media (prefers-reduced-motion: reduce) {
+    [data-tooltip]::after {
+      transition: none;
+    }
+
+    .popover {
+      transition: none;
     }
   }
 }

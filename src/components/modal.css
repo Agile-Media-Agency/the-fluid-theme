@@ -325,4 +325,24 @@
       transform: translateY(0);
     }
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .modal {
+      transition: none;
+    }
+
+    .modal__content {
+      transform: none;
+      transition: none;
+    }
+
+    .modal[open] .modal__content {
+      transform: none;
+    }
+  }
 }

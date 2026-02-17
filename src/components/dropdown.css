@@ -312,4 +312,23 @@
   [data-motion="tsunami"] .dropdown__menu {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .dropdown__menu {
+      transition: none;
+    }
+
+    .dropdown__chevron {
+      transition: none;
+    }
+
+    .dropdown__item {
+      transition: none;
+    }
+  }
 }
