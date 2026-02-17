@@ -132,6 +132,60 @@ nav: home
       <span style="--swatch: oklch(50% 0.20 260)"></span>
     </div>
   </button>
+
+  <button class="theme-grid__item" data-theme="brutalist" data-no-image onclick="setThemePreset('brutalist'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="brutalist"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Brutalist</h2>
+      <p class="theme-grid__desc">Raw. Monospace. Zero decoration.</p>
+      <span class="theme-grid__font">Monospace</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="brutalist">
+      <span style="--swatch: oklch(0% 0 0)"></span>
+      <span style="--swatch: oklch(100% 0 0)"></span>
+      <span style="--swatch: oklch(50% 0 0)"></span>
+      <span style="--swatch: oklch(60% 0.25 25)"></span>
+      <span style="--swatch: oklch(25% 0 0)"></span>
+      <span style="--swatch: oklch(75% 0 0)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="editorial" data-no-image onclick="setThemePreset('editorial'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="editorial"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Editorial</h2>
+      <p class="theme-grid__desc">Literary. Serif. Generous whitespace.</p>
+      <span class="theme-grid__font">Georgia / Palatino</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="editorial">
+      <span style="--swatch: oklch(40% 0.08 30)"></span>
+      <span style="--swatch: oklch(55% 0.06 50)"></span>
+      <span style="--swatch: oklch(65% 0.04 70)"></span>
+      <span style="--swatch: oklch(35% 0.05 200)"></span>
+      <span style="--swatch: oklch(70% 0.03 90)"></span>
+      <span style="--swatch: oklch(45% 0.07 150)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="neon" data-no-image onclick="setThemePreset('neon'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="neon"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Neon</h2>
+      <p class="theme-grid__desc">Electric. Glowing. Cyberpunk.</p>
+      <span class="theme-grid__font">System UI</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="neon">
+      <span style="--swatch: oklch(70% 0.25 320)"></span>
+      <span style="--swatch: oklch(75% 0.22 190)"></span>
+      <span style="--swatch: oklch(80% 0.20 100)"></span>
+      <span style="--swatch: oklch(65% 0.28 290)"></span>
+      <span style="--swatch: oklch(75% 0.18 50)"></span>
+      <span style="--swatch: oklch(60% 0.25 250)"></span>
+    </div>
+  </button>
 </section>
 
 <!-- Hero Section -->
@@ -159,8 +213,6 @@ nav: home
       Ten complete themes with motion, colors, fonts, and layout.
     </p>
 
-    <!-- Water Themes -->
-    <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-end: var(--space-2);">Water Themes</p>
     <div class="theme-chips">
       <button class="theme-chip" data-theme-preset="still" onclick="setThemePreset('still')">
         <span class="theme-chip__dot" style="--chip-color: var(--gray-50);"></span>
@@ -191,27 +243,17 @@ nav: home
         <span class="theme-chip__dot" style="--chip-color: oklch(0.35 0.12 210);"></span>
         Tsunami
       </button>
-    </div>
-
-    <!-- Signature Presets -->
-    <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-5); margin-block-end: var(--space-2);">
-      Signature Presets <span style="font-size: var(--font-size-xs); opacity: 0.7;">(Radically Different)</span>
-    </p>
-    <div class="theme-chips">
       <button class="theme-chip" data-theme-preset="brutalist" onclick="setThemePreset('brutalist')">
         <span class="theme-chip__dot" style="--chip-color: var(--black);"></span>
         Brutalist
-        <span class="theme-chip__badge" style="background: var(--gray-20);">New</span>
       </button>
       <button class="theme-chip" data-theme-preset="editorial" onclick="setThemePreset('editorial')">
         <span class="theme-chip__dot" style="--chip-color: oklch(0.40 0.08 30);"></span>
         Editorial
-        <span class="theme-chip__badge" style="background: var(--gray-20);">New</span>
       </button>
       <button class="theme-chip" data-theme-preset="neon" onclick="setThemePreset('neon')">
         <span class="theme-chip__dot" style="--chip-color: oklch(0.70 0.25 320);"></span>
         Neon
-        <span class="theme-chip__badge" style="background: var(--gray-20);">New</span>
       </button>
     </div>
   </section>
@@ -406,6 +448,49 @@ nav: home
 
   .theme-grid__item[data-theme="tsunami"] .theme-grid__overlay {
     background: linear-gradient(135deg, oklch(0.20 0.08 250) 0%, oklch(0.35 0.12 210) 100%);
+  }
+
+  /* Placeholder backgrounds for presets without images */
+  .theme-grid__placeholder {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  /* Brutalist: Stark grid pattern */
+  .theme-grid__placeholder[data-preset="brutalist"] {
+    background:
+      linear-gradient(90deg, var(--black) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(0deg, var(--black) 1px, transparent 1px) 0 0 / 40px 40px,
+      var(--white);
+  }
+  .theme-grid__item[data-theme="brutalist"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.10 0 0) 0%, oklch(0.30 0 0) 100%);
+  }
+
+  /* Editorial: Warm paper texture gradient */
+  .theme-grid__placeholder[data-preset="editorial"] {
+    background: linear-gradient(135deg,
+      oklch(0.92 0.02 60) 0%,
+      oklch(0.88 0.03 50) 50%,
+      oklch(0.85 0.02 70) 100%);
+  }
+  .theme-grid__item[data-theme="editorial"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.35 0.06 40) 0%, oklch(0.60 0.04 60) 100%);
+  }
+
+  /* Neon: Dark with glowing accent lines */
+  .theme-grid__placeholder[data-preset="neon"] {
+    background:
+      radial-gradient(ellipse at 30% 70%, oklch(0.50 0.25 320 / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, oklch(0.60 0.22 190 / 0.3) 0%, transparent 50%),
+      linear-gradient(135deg, oklch(0.08 0.02 280) 0%, oklch(0.12 0.03 300) 100%);
+  }
+  .theme-grid__item[data-theme="neon"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.15 0.10 280) 0%, oklch(0.25 0.15 320) 100%);
+    mix-blend-mode: screen;
+    opacity: 0.6;
   }
 
   /* Content overlay */
@@ -692,6 +777,9 @@ nav: home
   [data-motion="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
   [data-motion="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
   [data-motion="tsunami"] .theme-grid__item:nth-child(7) { transform: translateZ(18px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(8) { transform: translateZ(6px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(9) { transform: translateZ(14px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(10) { transform: translateZ(9px); }
 
 
   /* ========================================
