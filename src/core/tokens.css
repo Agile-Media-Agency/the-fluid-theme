@@ -140,16 +140,19 @@
     /* Base size - flows smoothly with viewport */
     --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
 
-    /* Type scale - Musical thirds for harmony */
-    --font-size-xs: calc(var(--font-size-base) * 0.75);
-    --font-size-sm: calc(var(--font-size-base) * 0.875);
+    /* Fluid type scale — each size has its own clamp() range.
+       Larger sizes compress more on small screens, expand more on large.
+       This preserves typographic hierarchy at every viewport width.
+       Calculated for 320px → 1440px fluid range. */
+    --font-size-xs: clamp(0.75rem, 0.73rem + 0.09vw, 0.8125rem);
+    --font-size-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.9375rem);
     --font-size-md: var(--font-size-base);
-    --font-size-lg: calc(var(--font-size-base) * 1.2);
-    --font-size-xl: calc(var(--font-size-base) * 1.44);
-    --font-size-2xl: calc(var(--font-size-base) * 1.728);
-    --font-size-3xl: calc(var(--font-size-base) * 2.074);
-    --font-size-4xl: calc(var(--font-size-base) * 2.488);
-    --font-size-5xl: calc(var(--font-size-base) * 2.986);
+    --font-size-lg: clamp(1.125rem, 1.05rem + 0.36vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.12rem + 0.63vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 1.29rem + 1.04vw, 1.875rem);
+    --font-size-3xl: clamp(1.75rem, 1.43rem + 1.61vw, 2.375rem);
+    --font-size-4xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    --font-size-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 3.75rem);
 
     /* Line heights - Room to breathe */
     --leading-none: 1;
