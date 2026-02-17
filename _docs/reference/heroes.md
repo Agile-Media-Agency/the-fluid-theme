@@ -1,5 +1,7 @@
 # Hero Component Reference
 
+[Live demo](https://thefluidtheme.com/examples/heroes.html) | [Hero Picker tool](https://thefluidtheme.com/examples/hero-picker.html) | [TheFluidTheme.com](https://thefluidtheme.com)
+
 Full-width hero sections for landing pages and page headers. Heroes use the positioning system for layout control.
 
 ---

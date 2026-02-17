@@ -1,5 +1,7 @@
 # Positioning System Reference
 
+[Live demo](https://thefluidtheme.com/examples/positioning.html) | [TheFluidTheme.com](https://thefluidtheme.com)
+
 The positioning system lets you control layout and alignment using data attributes. Same HTML, different layouts - just change an attribute.
 
 ---

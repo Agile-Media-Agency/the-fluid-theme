@@ -1,6 +1,6 @@
 # The Fluid Theme Framework - Executive Summary
 
-**Version**: 0.3.0
+**Version**: 0.3.2
 **Status**: Pre-Release (Phase 3 — Component Complete)
 **Last Updated**: February 17, 2026
 
@@ -33,7 +33,7 @@ A **physics-based CSS framework** that applies fluid dynamics principles to web 
 - **Modern CSS**: Cascade layers, OKLCH colors, container queries, logical properties
 
 ### What's Left for MVP
-- **Documentation**: Getting started guide, installation instructions, tutorials
+- **Documentation**: ~~Getting started guide~~ DONE, installation instructions, tutorials
 - **Distribution**: npm package, CDN links
 - **Testing**: Visual regression, accessibility tests
 - **Integrations**: React/Vue/Svelte guides
@@ -48,7 +48,7 @@ A **physics-based CSS framework** that applies fluid dynamics principles to web 
 | **Components** | 17/20+ (85%) | All critical components complete |
 | **Layouts** | Complete | Flex, Grid, Sidebar, Holy Grail, Dashboard |
 | **Templates** | 9/20+ (45%) | Need blog detail, landing pages, dashboard |
-| **Documentation** | ~60% | API reference done; need guides, tutorials |
+| **Documentation** | ~70% | API reference + Getting Started done; need tutorials |
 | **Testing** | 0% | Not started |
 | **Distribution** | 0% | Not published |
 
@@ -60,7 +60,7 @@ A **physics-based CSS framework** that applies fluid dynamics principles to web 
 1. ~~Build essential components~~ DONE (Modal, Dropdown, Tooltip, Accordion, Tables, Alert, Avatar, Loading)
 2. ~~Add layout utilities~~ DONE (Flexbox, Grid, Sidebar, Holy Grail, Dashboard)
 3. ~~Write component API documentation~~ DONE
-4. Write Getting Started guide
+4. ~~Write Getting Started guide~~ DONE
 5. Publish to npm + setup CDN
 
 ### HIGH (Do Second)
@@ -178,7 +178,7 @@ npm run serve
 3. Decide on starter kit scope (HTML only vs. React/Vue)
 
 ### For Developers
-1. Write Getting Started guide (highest priority gap)
+1. ~~Write Getting Started guide~~ DONE (see `_docs/getting-started.md`)
 2. Follow component development guide in `_docs/_agents/component-developer.md`
 3. Test all 17 components across motion themes
 4. Ensure WCAG 2.1 AA compliance

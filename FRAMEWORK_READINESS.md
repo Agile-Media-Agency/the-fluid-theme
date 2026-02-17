@@ -1,6 +1,6 @@
 # The Fluid Theme Framework - Public Readiness Assessment & Roadmap
 
-**Version**: 0.3.1
+**Version**: 0.3.2
 **Last Updated**: February 17, 2026
 **Status**: Pre-Release (Phase 3 Complete — Component + Layout Complete)
 

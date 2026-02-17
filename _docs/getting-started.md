@@ -422,4 +422,4 @@ Explore the live examples on **[TheFluidTheme.com](https://thefluidtheme.com)**:
 
 ---
 
-*Fluid Framework v0.3.1 — Built with physics and 32 years of design experience.*
+*Fluid Framework v0.3.2 — Built with physics and 32 years of design experience.*

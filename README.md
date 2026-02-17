@@ -181,4 +181,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.3.1** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.3.2** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

@@ -30,7 +30,7 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 
 ---
 
-## What's New in v0.3.1
+## What's New in v0.3.2
 
 ### Phase 3 Complete: 17 Components + Layout System
 
@@ -247,4 +247,4 @@ Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 ---
 
-*Version 0.3.1 - February 2026*
+*Version 0.3.2 - February 2026*
