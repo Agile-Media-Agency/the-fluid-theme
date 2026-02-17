@@ -58,9 +58,9 @@ npm run serve    # Open examples in browser at localhost:8080
 
 **Perfect the default `flowing` preset first**, then propagate fixes to other presets:
 
-- [ ] Dark mode: Use deep palette colors, not black
-- [ ] Subdued contrast: Needs proper muted palettes
-- [ ] Each preset should feel completely different
+- [x] Dark mode: Use deep palette colors, not black
+- [x] Subdued contrast: Needs proper muted palettes
+- [x] Each preset should feel completely different
 - [ ] Fluid typography that scales proportionally
 
 ---

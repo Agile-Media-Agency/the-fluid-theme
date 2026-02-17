@@ -589,7 +589,8 @@
   /* === STILL: Instant, no animation ===
      Like perfectly still water - no movement at all.
      For users who prefer no motion or maximum performance.
-     Layout: Structured, grid-based, minimal decoration. */
+     Layout: Swiss design, structured, grid-based, minimal decoration.
+     Character: Precise, no-nonsense, Müller-Brockmann. */
   :root[data-motion="still"],
   [data-motion="still"] {
     --motion-scale: 0;
@@ -602,26 +603,45 @@
     --ease-fluid: linear;
     --ease-settle: linear;
 
-    /* Layout: Swiss design, precise, grid-focused */
+    /* Typography: tight, precise, functional */
+    --leading-normal: 1.5;
+    --leading-tight: 1.15;
+    --tracking-normal: 0;
+    --tracking-wide: 0.05em;
+
+    /* Layout: Swiss design, precise, grid-focused, compact */
     --space-section: var(--space-12);
+    --space-gutter: var(--space-5);
+    --container-content: var(--container-lg);
+
+    /* Sharp corners — zero radius across the board */
     --radius-sm: 0;
     --radius-md: 2px;
-    --radius-lg: 4px;
+    --radius-lg: 2px;
     --radius-xl: 4px;
+    --radius-2xl: 4px;
     --radius-card: 0;
     --radius-button: 0;
     --radius-input: 2px;
-    --container-content: var(--container-lg);
+
+    /* Flat, crisp — no soft shadows, only sharp lines */
+    --shadow-xs: none;
     --shadow-sm: none;
     --shadow-md: 0 1px 2px oklch(from var(--shadow-color) l c h / 0.1);
     --shadow-lg: 0 2px 4px oklch(from var(--shadow-color) l c h / 0.1);
+    --shadow-xl: 0 3px 6px oklch(from var(--shadow-color) l c h / 0.12);
+
+    /* Thicker borders — structure through lines, not shadows */
+    --border-width: 1.5px;
+    --border-width-thick: 3px;
   }
 
   /* === SERENE: Ken Burns effect ===
      Like gazing at a reflection in still water.
      Very slow crossfades, gentle zoom on images.
      Meditative, contemplative motion.
-     Layout: Generous whitespace, classical proportions, soft edges. */
+     Layout: Generous whitespace, classical proportions, soft edges.
+     Character: Classical, literary, spa-like, timeless. */
   :root[data-motion="serene"],
   [data-motion="serene"] {
     --motion-scale: 0.3;
@@ -636,15 +656,20 @@
     /* Ken Burns zoom amount for images */
     --kenburns-scale: 1.05;
 
+    /* Typography: generous, literary, breathable */
+    --leading-normal: 1.8;
+    --leading-relaxed: 2;
+    --tracking-normal: 0.01em;
+    --tracking-wide: 0.08em;
+
     /* Layout: Editorial, soft rounded corners, NOT full width */
     --space-section: var(--space-24);
     --space-gutter: var(--space-10);
-    --leading-normal: 1.75;
     --container-prose: 38rem;
     --container-content: var(--container-md);  /* Narrower content */
     --container-xl: var(--container-lg);        /* Constrain max width */
 
-    /* Soft, pillowy corners */
+    /* Soft, pillowy corners — cloud-like */
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
@@ -654,16 +679,23 @@
     --radius-button: 9999px;  /* Pill buttons */
     --radius-input: 16px;
 
-    /* Softer shadows */
-    --shadow-sm: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.04);
-    --shadow-md: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.06);
-    --shadow-lg: 0 16px 48px oklch(from var(--shadow-color) l c h / 0.08);
+    /* Whisper-soft diffuse shadows — barely visible depth */
+    --shadow-xs: 0 2px 8px oklch(from var(--shadow-color) l c h / 0.02);
+    --shadow-sm: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.03);
+    --shadow-md: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.05);
+    --shadow-lg: 0 16px 48px oklch(from var(--shadow-color) l c h / 0.06);
+    --shadow-xl: 0 24px 64px oklch(from var(--shadow-color) l c h / 0.07);
+
+    /* Thin, delicate borders */
+    --border-width: 1px;
+    --border-width-thick: 1.5px;
   }
 
   /* === TRICKLING: Minimal, quick motion ===
      Like a small brook - slight movement, nothing dramatic.
      Quick, subtle feedback for interactions.
-     Layout: Compact, efficient, subtle styling. */
+     Layout: Compact, efficient, subtle styling.
+     Character: Understated, utility-first, developer-friendly. */
   :root[data-motion="trickling"],
   [data-motion="trickling"] {
     --motion-scale: 0.5;
@@ -672,22 +704,37 @@
     --duration-slow: 250ms;
     --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* Typography: compact, efficient */
+    --leading-normal: 1.55;
+    --tracking-normal: 0;
+
     /* Layout: Understated, efficient use of space */
     --space-section: var(--space-12);
+    --space-gutter: var(--space-5);
     --container-content: var(--container-lg);
+
+    /* Small, subtle radius — functional */
     --radius-sm: 3px;
     --radius-md: 6px;
     --radius-lg: 8px;
     --radius-xl: 12px;
+    --radius-2xl: 16px;
     --radius-card: 8px;
     --radius-button: 6px;
     --radius-input: 6px;
+
+    /* Minimal shadows — only when needed */
+    --shadow-xs: 0 1px 2px oklch(from var(--shadow-color) l c h / 0.04);
+    --shadow-sm: 0 1px 3px oklch(from var(--shadow-color) l c h / 0.06);
+    --shadow-md: 0 2px 6px oklch(from var(--shadow-color) l c h / 0.06);
+    --shadow-lg: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.08);
   }
 
   /* === STREAM: Horizontal flow ===
      Like a gentle stream - content flows sideways.
      Modern, tech-forward feel.
-     Layout: Clean lines, horizontal emphasis, full-width. */
+     Layout: Clean lines, horizontal emphasis, full-width.
+     Character: Open, approachable, tech-forward, SaaS-like. */
   :root[data-motion="stream"],
   [data-motion="stream"] {
     --motion-scale: 0.7;
@@ -697,23 +744,41 @@
     --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
 
-    /* Layout: Modern, clean horizontal lines */
+    /* Typography: open, readable, generous */
+    --leading-normal: 1.6;
+    --tracking-normal: 0.01em;
+
+    /* Layout: Modern, wide, clean horizontal lines */
     --space-section: var(--space-16);
+    --space-gutter: var(--space-6);
     --container-content: var(--container-xl);
+
+    /* Medium, consistent radius — modern SaaS feel */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-xl: 16px;
+    --radius-2xl: 20px;
     --radius-card: 12px;
     --radius-button: 8px;
     --radius-input: 8px;
+
+    /* Subtle, diffuse shadows — glass-like depth */
+    --shadow-sm: 0 1px 3px oklch(from var(--shadow-color) l c h / 0.03);
+    --shadow-md:
+      0 2px 6px oklch(from var(--shadow-color) l c h / 0.04),
+      0 4px 16px oklch(from var(--shadow-color) l c h / 0.04);
+    --shadow-lg:
+      0 4px 12px oklch(from var(--shadow-color) l c h / 0.04),
+      0 12px 36px oklch(from var(--shadow-color) l c h / 0.06);
   }
 
   /* === FLOWING: Connected horizontal flow (default) ===
      Like a gentle stream - content flows left to right.
      Old content pushes out as new content slides in.
      The default, balanced motion style.
-     Layout: Balanced, organic, versatile. */
+     Layout: Balanced, organic, versatile.
+     Character: Friendly, professional, the "just right" preset. */
   :root[data-motion="flowing"],
   [data-motion="flowing"],
   :root:not([data-motion]) {
@@ -721,17 +786,42 @@
     --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
 
-    /* Layout: Balanced defaults */
+    /* Typography: comfortable, readable */
+    --leading-normal: 1.65;
+    --tracking-normal: 0;
+
+    /* Layout: Balanced, roomy but not extravagant */
+    --space-section: var(--space-16);
+    --space-gutter: var(--space-6);
     --container-content: var(--container-xl);
-    --radius-card: var(--radius-lg);
-    --radius-button: var(--radius-md);
-    --radius-input: var(--radius-md);
+
+    /* Organic rounded corners */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+    --radius-2xl: 24px;
+    --radius-card: 14px;
+    --radius-button: 10px;
+    --radius-input: 10px;
+
+    /* Layered, organic shadows */
+    --shadow-sm:
+      0 2px 4px oklch(from var(--shadow-color) l c h / 0.04),
+      0 4px 8px oklch(from var(--shadow-color) l c h / 0.04);
+    --shadow-md:
+      0 4px 8px oklch(from var(--shadow-color) l c h / 0.04),
+      0 8px 16px oklch(from var(--shadow-color) l c h / 0.06);
+    --shadow-lg:
+      0 8px 16px oklch(from var(--shadow-color) l c h / 0.04),
+      0 16px 32px oklch(from var(--shadow-color) l c h / 0.08);
   }
 
   /* === CASCADE: Waterfall effect ===
      Like a waterfall - content cascades down in layers.
      Playful, friendly, staggered animations.
-     Layout: Rounded, warm, approachable, bubbly. */
+     Layout: Rounded, warm, approachable, bubbly.
+     Character: Rounded, warm, Notion/Slack vibes. */
   :root[data-motion="cascade"],
   [data-motion="cascade"] {
     --motion-scale: 1.2;
@@ -741,10 +831,16 @@
     --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Slight bounce */
     --ease-settle: cubic-bezier(0.22, 1.2, 0.36, 1);
 
-    /* Layout: Friendly, bubbly, rounded corners */
+    /* Typography: round, friendly, slightly loose */
+    --leading-normal: 1.7;
+    --tracking-normal: 0.01em;
+
+    /* Layout: Friendly, bubbly, generous gaps */
     --space-section: var(--space-16);
     --space-gutter: var(--space-6);
     --container-content: var(--container-xl);
+
+    /* Maximum roundness — bubble shapes */
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
@@ -753,15 +849,21 @@
     --radius-card: 20px;
     --radius-button: 9999px;  /* Pill buttons */
     --radius-input: 12px;
+
+    /* Soft, colorful shadows — warm and friendly */
+    --shadow-xs: 0 2px 6px oklch(from var(--shadow-color) l c h / 0.05);
+    --shadow-sm: 0 3px 8px oklch(from var(--shadow-color) l c h / 0.06);
     --shadow-md: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.08);
     --shadow-lg: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.12);
+    --shadow-xl: 0 16px 40px oklch(from var(--shadow-color) l c h / 0.14);
   }
 
   /* === RAPIDS: Vertical spring effect ===
      Like rushing water - new content rushes in from top,
      accelerates, then pulls the old content away.
      Energetic, bouncy, with overshoot.
-     Layout: Compact, bold, athletic. */
+     Layout: Compact, bold, athletic.
+     Character: Athletic, bold, Stripe/Vercel energy. */
   :root[data-motion="rapids"],
   [data-motion="rapids"] {
     --motion-scale: 1.5;
@@ -773,26 +875,45 @@
     /* Stagger delay for layered effect */
     --rapids-stagger: 80ms;
 
+    /* Typography: tight, condensed, punchy */
+    --leading-normal: 1.45;
+    --leading-tight: 1.1;
+    --tracking-normal: -0.01em;
+    --tracking-wide: 0.08em;
+
     /* Layout: Tight, punchy, high-energy, full-width */
     --space-section: var(--space-12);
     --space-gutter: var(--space-4);
     --container-content: var(--container-2xl);
+
+    /* Small, functional radius */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-xl: 16px;
+    --radius-2xl: 20px;
     --radius-card: 12px;
     --radius-button: 8px;
     --radius-input: 6px;
+
+    /* Hard, high-contrast shadows — strong depth */
+    --shadow-xs: 0 1px 2px oklch(from var(--shadow-color) l c h / 0.1);
+    --shadow-sm: 0 2px 4px oklch(from var(--shadow-color) l c h / 0.12);
     --shadow-md: 0 4px 8px oklch(from var(--shadow-color) l c h / 0.15);
     --shadow-lg: 0 8px 16px oklch(from var(--shadow-color) l c h / 0.2);
+    --shadow-xl: 0 16px 32px oklch(from var(--shadow-color) l c h / 0.25);
+
+    /* Bold borders */
+    --border-width: 2px;
+    --border-width-thick: 3px;
   }
 
   /* === TSUNAMI: Diagonal wave crash ===
      Maximum impact - content crashes in diagonally
      like a wave breaking. Strong overshoot, dramatic.
      For bold, attention-grabbing interfaces.
-     Layout: Bold, edge-to-edge, asymmetric corners. */
+     Layout: Bold, edge-to-edge, asymmetric corners.
+     Character: Imposing, cinematic, Hokusai wave. */
   :root[data-motion="tsunami"],
   [data-motion="tsunami"] {
     --motion-scale: 2;
@@ -801,6 +922,12 @@
     --duration-slow: 900ms;
     --ease-fluid: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Strong overshoot */
     --ease-settle: cubic-bezier(0.34, 1.8, 0.64, 1); /* Dramatic settle */
+
+    /* Typography: bold, wide-set, commanding */
+    --leading-normal: 1.5;
+    --leading-tight: 1.05;
+    --tracking-normal: 0;
+    --tracking-wide: 0.15em;
 
     /* Layout: Bold, edge-to-edge, maximum impact */
     --space-section: var(--space-20);
@@ -813,6 +940,7 @@
     --radius-md: 0;
     --radius-lg: 0;
     --radius-xl: 0;
+    --radius-2xl: 0;
     --radius-card: 0;
     --radius-button: 0;
     --radius-input: 0;
@@ -821,10 +949,16 @@
     --radius-asymmetric-alt: 24px 0 0 0;  /* Only top-left rounded */
     --radius-asymmetric-lg: 0 48px 0 0;
 
-    /* Dramatic shadows */
+    /* Dramatic, heavy shadows — cinematic depth */
+    --shadow-xs: 0 2px 4px oklch(from var(--shadow-color) l c h / 0.1);
+    --shadow-sm: 0 4px 8px oklch(from var(--shadow-color) l c h / 0.12);
     --shadow-md: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.2);
     --shadow-lg: 0 16px 48px oklch(from var(--shadow-color) l c h / 0.25);
     --shadow-xl: 0 24px 64px oklch(from var(--shadow-color) l c h / 0.3);
+
+    /* Heavy borders — structural, bold */
+    --border-width: 2px;
+    --border-width-thick: 4px;
   }
 
 
@@ -1443,32 +1577,340 @@
 
 /* ========================================
    SUBDUED MODE (Low Contrast)
-   Reduces contrast for gentler viewing
+   Reduces contrast for gentler viewing.
+   Each preset gets its own tinted subdued variant
+   that maintains color character at lower contrast.
    Apply via: <html data-contrast="subdued">
    ======================================== */
 
+/* --- Base subdued: neutral fallback --- */
 [data-contrast="subdued"] {
-  /* Light mode subdued: soften the extremes */
-  --color-text: var(--gray-30);
-  --color-text-muted: var(--gray-45);
-  --color-text-subtle: var(--gray-55);
-  --color-background: var(--gray-95);
-  --color-surface: var(--gray-92);
-  --color-surface-raised: var(--gray-98);
-  --color-border: var(--gray-80);
-  --color-border-subtle: var(--gray-85);
+  --color-text: oklch(35% 0.01 250);
+  --color-text-muted: oklch(48% 0.01 250);
+  --color-text-subtle: oklch(58% 0.01 250);
+  --color-background: oklch(96% 0.005 250);
+  --color-surface: oklch(93% 0.005 250);
+  --color-surface-raised: oklch(98% 0.005 250);
+  --color-border: oklch(82% 0.01 250);
+  --color-border-subtle: oklch(87% 0.01 250);
+  /* Mute accents globally */
+  --accent-subtle: color-mix(in oklch, var(--accent) 10%, var(--color-background));
 }
 
 [data-theme="dark"][data-contrast="subdued"] {
-  /* Dark mode subdued: less stark */
-  --color-text: var(--gray-75);
-  --color-text-muted: var(--gray-55);
-  --color-text-subtle: var(--gray-45);
-  --color-background: var(--gray-15);
-  --color-surface: var(--gray-20);
-  --color-surface-raised: var(--gray-25);
-  --color-border: var(--gray-30);
-  --color-border-subtle: var(--gray-25);
+  --color-text: oklch(75% 0.01 230);
+  --color-text-muted: oklch(55% 0.01 230);
+  --color-text-subtle: oklch(45% 0.01 230);
+  --color-background: oklch(16% 0.015 230);
+  --color-surface: oklch(20% 0.015 230);
+  --color-surface-raised: oklch(24% 0.015 230);
+  --color-border: oklch(30% 0.02 230);
+  --color-border-subtle: oklch(25% 0.015 230);
+}
+
+
+/* --- STILL subdued: Cool gray, muted slate ---
+   Hue 250, very low chroma. Whisper-quiet. */
+[data-motion="still"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="still"],
+[data-contrast="subdued"]:root[data-motion="still"] {
+  --color-text: oklch(35% 0.01 250);
+  --color-text-muted: oklch(48% 0.01 250);
+  --color-text-subtle: oklch(58% 0.008 250);
+  --color-background: oklch(96% 0.005 250);
+  --color-surface: oklch(93% 0.005 250);
+  --color-surface-raised: oklch(98% 0.005 250);
+  --color-border: oklch(82% 0.01 250);
+  --color-border-subtle: oklch(87% 0.008 250);
+}
+
+[data-theme="dark"][data-motion="still"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="still"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="still"] {
+  --color-text: oklch(75% 0.01 250);
+  --color-text-muted: oklch(55% 0.008 250);
+  --color-text-subtle: oklch(45% 0.008 250);
+  --color-background: oklch(15% 0.01 250);
+  --color-surface: oklch(19% 0.01 250);
+  --color-surface-raised: oklch(23% 0.01 250);
+  --color-border: oklch(28% 0.015 250);
+  --color-border-subtle: oklch(23% 0.01 250);
+}
+
+
+/* --- SERENE subdued: Warm taupe cream ---
+   Hue 60, low chroma. Like aged linen. */
+[data-motion="serene"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="serene"],
+[data-contrast="subdued"]:root[data-motion="serene"] {
+  --color-text: oklch(35% 0.015 60);
+  --color-text-muted: oklch(48% 0.012 60);
+  --color-text-subtle: oklch(58% 0.01 60);
+  --color-background: oklch(96% 0.01 60);
+  --color-surface: oklch(93% 0.012 65);
+  --color-surface-raised: oklch(98% 0.008 60);
+  --color-border: oklch(82% 0.015 60);
+  --color-border-subtle: oklch(87% 0.01 60);
+}
+
+[data-theme="dark"][data-motion="serene"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="serene"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="serene"] {
+  --color-text: oklch(75% 0.01 60);
+  --color-text-muted: oklch(55% 0.01 60);
+  --color-text-subtle: oklch(45% 0.008 60);
+  --color-background: oklch(16% 0.012 60);
+  --color-surface: oklch(20% 0.015 60);
+  --color-surface-raised: oklch(24% 0.015 60);
+  --color-border: oklch(30% 0.015 60);
+  --color-border-subtle: oklch(25% 0.012 60);
+}
+
+
+/* --- STREAM subdued: Cool teal mist ---
+   Hue 200, low chroma. Modern, soft tech. */
+[data-motion="stream"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="stream"],
+[data-contrast="subdued"]:root[data-motion="stream"] {
+  --color-text: oklch(35% 0.012 200);
+  --color-text-muted: oklch(48% 0.01 200);
+  --color-text-subtle: oklch(58% 0.008 200);
+  --color-background: oklch(96% 0.008 200);
+  --color-surface: oklch(93% 0.01 200);
+  --color-surface-raised: oklch(98% 0.006 200);
+  --color-border: oklch(82% 0.012 200);
+  --color-border-subtle: oklch(87% 0.01 200);
+}
+
+[data-theme="dark"][data-motion="stream"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="stream"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="stream"] {
+  --color-text: oklch(75% 0.01 200);
+  --color-text-muted: oklch(55% 0.008 200);
+  --color-text-subtle: oklch(45% 0.008 200);
+  --color-background: oklch(15% 0.015 200);
+  --color-surface: oklch(19% 0.015 200);
+  --color-surface-raised: oklch(23% 0.015 200);
+  --color-border: oklch(28% 0.02 200);
+  --color-border-subtle: oklch(23% 0.015 200);
+}
+
+
+/* --- FLOWING subdued: Soft ocean blue (default) ---
+   Hue 230, low chroma. Calm water at rest. */
+[data-motion="flowing"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="flowing"],
+[data-contrast="subdued"]:root[data-motion="flowing"],
+[data-contrast="subdued"]:root:not([data-motion]) {
+  --color-text: oklch(35% 0.015 230);
+  --color-text-muted: oklch(48% 0.012 230);
+  --color-text-subtle: oklch(58% 0.01 230);
+  --color-background: oklch(96% 0.008 230);
+  --color-surface: oklch(93% 0.01 230);
+  --color-surface-raised: oklch(98% 0.006 230);
+  --color-border: oklch(82% 0.012 230);
+  --color-border-subtle: oklch(87% 0.01 230);
+}
+
+[data-theme="dark"][data-motion="flowing"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="flowing"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="flowing"],
+[data-theme="dark"][data-contrast="subdued"]:root:not([data-motion]) {
+  --color-text: oklch(75% 0.01 220);
+  --color-text-muted: oklch(55% 0.008 220);
+  --color-text-subtle: oklch(45% 0.008 220);
+  --color-background: oklch(16% 0.02 230);
+  --color-surface: oklch(20% 0.02 230);
+  --color-surface-raised: oklch(24% 0.02 230);
+  --color-border: oklch(30% 0.025 230);
+  --color-border-subtle: oklch(25% 0.02 230);
+}
+
+
+/* --- CASCADE subdued: Soft lavender haze ---
+   Hue 280, low chroma. Gentle twilight. */
+[data-motion="cascade"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="cascade"],
+[data-contrast="subdued"]:root[data-motion="cascade"] {
+  --color-text: oklch(35% 0.012 280);
+  --color-text-muted: oklch(48% 0.01 280);
+  --color-text-subtle: oklch(58% 0.008 280);
+  --color-background: oklch(96% 0.008 280);
+  --color-surface: oklch(93% 0.01 280);
+  --color-surface-raised: oklch(98% 0.006 280);
+  --color-border: oklch(82% 0.012 280);
+  --color-border-subtle: oklch(87% 0.01 280);
+}
+
+[data-theme="dark"][data-motion="cascade"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="cascade"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="cascade"] {
+  --color-text: oklch(75% 0.008 280);
+  --color-text-muted: oklch(55% 0.008 280);
+  --color-text-subtle: oklch(45% 0.006 280);
+  --color-background: oklch(17% 0.015 280);
+  --color-surface: oklch(21% 0.018 280);
+  --color-surface-raised: oklch(25% 0.018 280);
+  --color-border: oklch(30% 0.02 280);
+  --color-border-subtle: oklch(25% 0.015 280);
+}
+
+
+/* --- RAPIDS subdued: Warm muted ember ---
+   Hue 25, low chroma. Banked coals. */
+[data-motion="rapids"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="rapids"],
+[data-contrast="subdued"]:root[data-motion="rapids"] {
+  --color-text: oklch(35% 0.015 25);
+  --color-text-muted: oklch(48% 0.012 25);
+  --color-text-subtle: oklch(58% 0.01 25);
+  --color-background: oklch(96% 0.01 25);
+  --color-surface: oklch(93% 0.012 30);
+  --color-surface-raised: oklch(98% 0.008 25);
+  --color-border: oklch(82% 0.015 25);
+  --color-border-subtle: oklch(87% 0.01 25);
+}
+
+[data-theme="dark"][data-motion="rapids"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="rapids"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="rapids"] {
+  --color-text: oklch(75% 0.01 25);
+  --color-text-muted: oklch(55% 0.008 25);
+  --color-text-subtle: oklch(45% 0.008 25);
+  --color-background: oklch(14% 0.02 25);
+  --color-surface: oklch(18% 0.02 25);
+  --color-surface-raised: oklch(22% 0.02 25);
+  --color-border: oklch(28% 0.03 25);
+  --color-border-subtle: oklch(23% 0.02 25);
+}
+
+
+/* --- TSUNAMI subdued: Deep muted navy ---
+   Hue 250, low chroma. Quiet ocean depth. */
+[data-motion="tsunami"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="tsunami"],
+[data-contrast="subdued"]:root[data-motion="tsunami"] {
+  --color-text: oklch(35% 0.015 250);
+  --color-text-muted: oklch(48% 0.012 250);
+  --color-text-subtle: oklch(58% 0.01 250);
+  --color-background: oklch(96% 0.008 250);
+  --color-surface: oklch(93% 0.01 250);
+  --color-surface-raised: oklch(98% 0.006 250);
+  --color-border: oklch(82% 0.012 250);
+  --color-border-subtle: oklch(87% 0.01 250);
+}
+
+[data-theme="dark"][data-motion="tsunami"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="tsunami"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="tsunami"] {
+  --color-text: oklch(75% 0.012 200);
+  --color-text-muted: oklch(55% 0.01 200);
+  --color-text-subtle: oklch(45% 0.008 200);
+  --color-background: oklch(13% 0.03 250);
+  --color-surface: oklch(17% 0.03 250);
+  --color-surface-raised: oklch(21% 0.03 250);
+  --color-border: oklch(26% 0.04 240);
+  --color-border-subtle: oklch(21% 0.03 240);
+}
+
+
+/* --- BRUTALIST subdued: High-mid contrast ---
+   Pure achromatic. Less stark than default but still bold. */
+[data-motion="brutalist"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="brutalist"],
+[data-contrast="subdued"]:root[data-motion="brutalist"] {
+  --color-text: oklch(20% 0 0);
+  --color-text-muted: oklch(40% 0 0);
+  --color-text-subtle: oklch(55% 0 0);
+  --color-background: oklch(95% 0 0);
+  --color-surface: oklch(92% 0 0);
+  --color-surface-raised: oklch(98% 0 0);
+  --color-border: oklch(60% 0 0);
+  --color-border-subtle: oklch(75% 0 0);
+}
+
+[data-theme="dark"][data-motion="brutalist"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="brutalist"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="brutalist"] {
+  --color-text: oklch(80% 0 0);
+  --color-text-muted: oklch(60% 0 0);
+  --color-text-subtle: oklch(45% 0 0);
+  --color-background: oklch(10% 0 0);
+  --color-surface: oklch(15% 0 0);
+  --color-surface-raised: oklch(20% 0 0);
+  --color-border: oklch(40% 0 0);
+  --color-border-subtle: oklch(30% 0 0);
+}
+
+
+/* --- EDITORIAL subdued: Warm paper muted ---
+   Hue 50-60, low chroma. Old library ambience. */
+[data-motion="editorial"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="editorial"],
+[data-contrast="subdued"]:root[data-motion="editorial"] {
+  --color-text: oklch(35% 0.015 50);
+  --color-text-muted: oklch(50% 0.012 50);
+  --color-text-subtle: oklch(60% 0.01 50);
+  --color-background: oklch(96% 0.01 60);
+  --color-surface: oklch(93% 0.012 60);
+  --color-surface-raised: oklch(98% 0.008 60);
+  --color-border: oklch(82% 0.015 60);
+  --color-border-subtle: oklch(87% 0.01 60);
+}
+
+[data-theme="dark"][data-motion="editorial"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-motion="editorial"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-motion="editorial"] {
+  --color-text: oklch(75% 0.008 60);
+  --color-text-muted: oklch(55% 0.008 60);
+  --color-text-subtle: oklch(45% 0.006 60);
+  --color-background: oklch(15% 0.01 60);
+  --color-surface: oklch(19% 0.012 60);
+  --color-surface-raised: oklch(23% 0.012 60);
+  --color-border: oklch(28% 0.015 60);
+  --color-border-subtle: oklch(23% 0.01 60);
+}
+
+
+/* --- NEON subdued: Muted glow ---
+   Hue 280, reduced chroma. Neon behind frosted glass. */
+[data-motion="neon"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-motion="neon"],
+[data-contrast="subdued"]:root[data-motion="neon"] {
+  /* Neon defaults dark, so light subdued is unusual but supported */
+  --color-text: oklch(35% 0.015 280);
+  --color-text-muted: oklch(50% 0.012 280);
+  --color-text-subtle: oklch(60% 0.01 280);
+  --color-background: oklch(96% 0.008 280);
+  --color-surface: oklch(93% 0.01 280);
+  --color-surface-raised: oklch(98% 0.006 280);
+  --color-border: oklch(82% 0.012 280);
+  --color-border-subtle: oklch(87% 0.01 280);
+  /* Mute the glow effects */
+  --shadow-xs: none;
+  --shadow-sm: 0 0 8px color-mix(in oklch, var(--accent) 20%, transparent);
+  --shadow-md: 0 0 12px color-mix(in oklch, var(--accent) 25%, transparent);
+  --shadow-lg: 0 0 18px color-mix(in oklch, var(--accent) 25%, transparent);
+  --shadow-xl: 0 0 24px color-mix(in oklch, var(--accent) 20%, transparent);
+}
+
+/* Neon dark subdued (the more common case) */
+[data-motion="neon"][data-contrast="subdued"]:not([data-theme="light"]),
+[data-contrast="subdued"]:root[data-motion="neon"]:not([data-theme="light"]) {
+  --color-text: oklch(80% 0.01 280);
+  --color-text-muted: oklch(60% 0.015 280);
+  --color-text-subtle: oklch(45% 0.01 280);
+  --color-background: oklch(10% 0.015 280);
+  --color-surface: oklch(14% 0.02 280);
+  --color-surface-raised: oklch(18% 0.02 280);
+  --color-border: oklch(22% 0.03 280);
+  --color-border-subtle: oklch(17% 0.02 280);
+  /* Muted glow */
+  --shadow-xs: none;
+  --shadow-sm: 0 0 6px color-mix(in oklch, var(--accent) 15%, transparent);
+  --shadow-md: 0 0 10px color-mix(in oklch, var(--accent) 20%, transparent);
+  --shadow-lg: 0 0 16px color-mix(in oklch, var(--accent) 20%, transparent);
+  --shadow-xl: 0 0 22px color-mix(in oklch, var(--accent) 15%, transparent);
 }
 
 
