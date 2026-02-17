@@ -278,6 +278,141 @@ Read `_docs/DEVELOPMENT.md` for the full philosophy and rationale.
 - **OKLCH color system** — Modern color space with `color-mix()` for derived shades
 - **No JavaScript required** — All interactivity works with CSS `:hover`, `:focus`, etc.
 
+## Troubleshooting
+
+### Common Issues
+
+**Server won't start on port 8080:**
+```bash
+# Kill existing process
+lsof -ti:8080 | xargs kill -9
+# Or use a different port
+npx http-server . -o /index.html -p 8081
+```
+
+**CSS changes not showing:**
+- Hard refresh browser (Ctrl+Shift+R / Cmd+Shift+R)
+- Check browser console for 404 errors
+- Verify file is imported in `src/fluid.css`
+
+**Dark mode not working:**
+- Check `data-theme="dark"` attribute on `<body>`
+- Verify component uses semantic color tokens (not hardcoded colors)
+- Test in Settings Panel on any example page
+
+**Animation not showing:**
+- Check `data-motion` attribute value (still, serene, stream, flowing, cascade, rapids, tsunami)
+- Test with different motion styles via Settings Panel
+- Verify `@media (prefers-reduced-motion)` handling
+
+**Jekyll frontmatter errors:**
+- Ensure three dashes `---` at start and end
+- Check YAML syntax (indentation, colons, quotes)
+- Validate in `_config.yml` for site-wide settings
+
+## Getting Help
+
+### Documentation Resources
+- **[_docs/DEVELOPMENT.md](_docs/DEVELOPMENT.md)** — The master guide (read first!)
+- **[_docs/_start-here.md](_docs/_start-here.md)** — Documentation index
+- **[_docs/architecture.md](_docs/architecture.md)** — Technical decisions and rationale
+- **[_docs/reference/components.md](_docs/reference/components.md)** — All 17 components API
+- **[_docs/reference/tokens.md](_docs/reference/tokens.md)** — Design token reference
+- **[CLAUDE.md](CLAUDE.md)** — Quick reference for AI agents
+- **[README.md](README.md)** — Project overview and quick start
+
+### Live Examples
+- **[Homepage](https://thefluidtheme.com)** — Interactive preset grid
+- **[Components Gallery](https://thefluidtheme.com/examples/components.html)** — All 17 components
+- **[Foundation](https://thefluidtheme.com/examples/foundation.html)** — All HTML elements
+- **[Templates](https://thefluidtheme.com/templates/)** — 9 page templates
+
+### For Contributors
+- **[_docs/contributing.md](_docs/contributing.md)** — Contribution guidelines
+- **[_docs/future-features.md](_docs/future-features.md)** — Roadmap and planned features
+
+## Code Examples
+
+### Adding a Custom Color to a Preset
+
+```css
+/* In src/core/tokens.css, find the preset section */
+@layer tokens {
+  [data-palette="fluid"] {
+    --color-accent-custom: oklch(65% 0.19 200);
+  }
+}
+
+/* Use in components */
+@layer components {
+  .my-component {
+    background: var(--color-accent-custom);
+  }
+}
+```
+
+### Creating a New Animation
+
+```css
+/* In src/animations/ or component file */
+@layer components {
+  @keyframes slide-in {
+    from { 
+      opacity: 0; 
+      transform: translateX(-2rem); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+
+  .animated-element {
+    animation: slide-in var(--duration-moderate) var(--ease-standard);
+  }
+
+  /* Always handle reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animated-element {
+      animation: none;
+    }
+  }
+}
+```
+
+### Adding a Component Variant
+
+```css
+/* In component file, use data attributes for variants */
+@layer components {
+  .card {
+    /* Base styles */
+    background: var(--color-bg-surface);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+
+  .card[data-variant="elevated"] {
+    box-shadow: var(--shadow-md);
+  }
+
+  .card[data-variant="outlined"] {
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+}
+```
+
+### Using the Component in HTML
+
+```html
+<!-- Semantic HTML with data attributes -->
+<article class="card" data-variant="elevated">
+  <h3 class="card__title">Title</h3>
+  <p class="card__description">Description</p>
+</article>
+```
+
 ## Trust These Instructions
 
 The information in this file has been carefully validated. Only search for additional information if:
