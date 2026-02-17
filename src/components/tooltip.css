@@ -40,9 +40,9 @@
     z-index: var(--z-tooltip);
     pointer-events: none;
 
-    /* Visual */
-    background: var(--gray-15);
-    color: var(--gray-95);
+    /* Visual — inverts relative to page background */
+    background: var(--color-text);
+    color: var(--color-background);
     font-size: var(--font-size-xs);
     font-weight: var(--weight-medium);
     line-height: var(--leading-snug);
@@ -59,18 +59,7 @@
       transform var(--duration-fast) var(--ease-settle);
   }
 
-  /* Dark mode tooltip */
-  [data-theme="dark"] [data-tooltip]::after {
-    background: var(--gray-85);
-    color: var(--gray-10);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) [data-tooltip]::after {
-      background: var(--gray-85);
-      color: var(--gray-10);
-    }
-  }
+  /* Dark mode tooltip — automatically inverts via semantic tokens above */
 
   /* Show on hover/focus */
   [data-tooltip]:hover::after,

@@ -358,17 +358,17 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      /* Invert semantic colors */
-      --color-text: var(--gray-90);
-      --color-text-muted: var(--gray-60);
-      --color-text-subtle: var(--gray-50);
+      /* Base dark mode: subtle cool tint (not pure black) */
+      --color-text: oklch(92% 0.01 220);
+      --color-text-muted: oklch(65% 0.01 220);
+      --color-text-subtle: oklch(50% 0.01 220);
 
-      --color-background: var(--gray-10);
-      --color-surface: var(--gray-15);
-      --color-surface-raised: var(--gray-20);
+      --color-background: oklch(13% 0.02 230);
+      --color-surface: oklch(17% 0.02 230);
+      --color-surface-raised: oklch(21% 0.02 230);
 
-      --color-border: var(--gray-25);
-      --color-border-subtle: var(--gray-20);
+      --color-border: oklch(25% 0.025 230);
+      --color-border-subtle: oklch(20% 0.02 230);
 
       /* Deeper shadows in dark mode */
       --shadow-opacity: 0.25;
@@ -387,18 +387,18 @@
     }
   }
 
-  /* Manual dark mode override */
+  /* Manual dark mode override (base — presets override below) */
   [data-theme="dark"] {
-    --color-text: var(--gray-90);
-    --color-text-muted: var(--gray-60);
-    --color-text-subtle: var(--gray-50);
+    --color-text: oklch(92% 0.01 220);
+    --color-text-muted: oklch(65% 0.01 220);
+    --color-text-subtle: oklch(50% 0.01 220);
 
-    --color-background: var(--gray-10);
-    --color-surface: var(--gray-15);
-    --color-surface-raised: var(--gray-20);
+    --color-background: oklch(13% 0.02 230);
+    --color-surface: oklch(17% 0.02 230);
+    --color-surface-raised: oklch(21% 0.02 230);
 
-    --color-border: var(--gray-25);
-    --color-border-subtle: var(--gray-20);
+    --color-border: oklch(25% 0.025 230);
+    --color-border-subtle: oklch(20% 0.02 230);
 
     --shadow-opacity: 0.25;
 
@@ -427,6 +427,120 @@
     --color-border-subtle: var(--gray-90);
 
     --shadow-opacity: 0.08;
+  }
+
+
+  /* ========================================
+     PRESET-SPECIFIC DARK MODE
+     Each preset uses deep colors from its palette
+     instead of generic black/gray.
+     "Dark" = majority deep color, not black.
+     ======================================== */
+
+  /* --- STILL: Deep cool slate ---
+     Mono palette, hue 250. Quiet, disciplined dark. */
+  [data-motion="still"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="still"],
+  [data-theme="dark"]:root[data-motion="still"] {
+    --color-background: oklch(12% 0.015 250);
+    --color-surface: oklch(16% 0.015 250);
+    --color-surface-raised: oklch(20% 0.015 250);
+    --color-text: oklch(88% 0.01 250);
+    --color-text-muted: oklch(65% 0.01 250);
+    --color-text-subtle: oklch(50% 0.01 250);
+    --color-border: oklch(25% 0.02 250);
+    --color-border-subtle: oklch(20% 0.015 250);
+  }
+
+  /* --- SERENE: Warm deep taupe ---
+     Morandi palette, hue 60. Like a dimly lit gallery. */
+  [data-motion="serene"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="serene"],
+  [data-theme="dark"]:root[data-motion="serene"] {
+    --color-background: oklch(13% 0.015 60);
+    --color-surface: oklch(17% 0.02 60);
+    --color-surface-raised: oklch(21% 0.02 60);
+    --color-text: oklch(88% 0.01 60);
+    --color-text-muted: oklch(65% 0.01 60);
+    --color-text-subtle: oklch(50% 0.01 60);
+    --color-border: oklch(25% 0.015 60);
+    --color-border-subtle: oklch(20% 0.015 60);
+  }
+
+  /* --- STREAM: Deep teal-gray ---
+     Subtle palette, hue 200. Modern, cool, techy. */
+  [data-motion="stream"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="stream"],
+  [data-theme="dark"]:root[data-motion="stream"] {
+    --color-background: oklch(12% 0.02 200);
+    --color-surface: oklch(16% 0.02 200);
+    --color-surface-raised: oklch(20% 0.02 200);
+    --color-text: oklch(90% 0.01 200);
+    --color-text-muted: oklch(65% 0.01 200);
+    --color-text-subtle: oklch(50% 0.01 200);
+    --color-border: oklch(24% 0.02 200);
+    --color-border-subtle: oklch(19% 0.02 200);
+  }
+
+  /* --- FLOWING: Deep ocean blue (default) ---
+     Fluid palette, hue 230. Like deep water at dusk. */
+  [data-motion="flowing"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="flowing"],
+  [data-theme="dark"]:root[data-motion="flowing"],
+  [data-theme="dark"]:root:not([data-motion]) {
+    --color-background: oklch(13% 0.025 230);
+    --color-surface: oklch(17% 0.025 230);
+    --color-surface-raised: oklch(21% 0.025 230);
+    --color-text: oklch(92% 0.01 220);
+    --color-text-muted: oklch(68% 0.01 220);
+    --color-text-subtle: oklch(52% 0.01 220);
+    --color-border: oklch(25% 0.03 230);
+    --color-border-subtle: oklch(20% 0.025 230);
+  }
+
+  /* --- CASCADE: Deep lavender ---
+     Pastel palette, hue 280. Warm purple twilight. */
+  [data-motion="cascade"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="cascade"],
+  [data-theme="dark"]:root[data-motion="cascade"] {
+    --color-background: oklch(14% 0.02 280);
+    --color-surface: oklch(18% 0.025 280);
+    --color-surface-raised: oklch(22% 0.025 280);
+    --color-text: oklch(90% 0.01 280);
+    --color-text-muted: oklch(66% 0.01 280);
+    --color-text-subtle: oklch(50% 0.01 280);
+    --color-border: oklch(26% 0.02 280);
+    --color-border-subtle: oklch(21% 0.02 280);
+  }
+
+  /* --- RAPIDS: Deep warm ember ---
+     Bold palette, hue 25. Smoldering, aggressive, warm. */
+  [data-motion="rapids"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="rapids"],
+  [data-theme="dark"]:root[data-motion="rapids"] {
+    --color-background: oklch(11% 0.03 25);
+    --color-surface: oklch(15% 0.03 25);
+    --color-surface-raised: oklch(19% 0.03 25);
+    --color-text: oklch(92% 0.01 25);
+    --color-text-muted: oklch(67% 0.01 25);
+    --color-text-subtle: oklch(50% 0.01 25);
+    --color-border: oklch(24% 0.04 25);
+    --color-border-subtle: oklch(19% 0.03 25);
+  }
+
+  /* --- TSUNAMI: Deepest navy abyss ---
+     Tsunami palette, hue 250. Ocean trench depth. */
+  [data-motion="tsunami"][data-theme="dark"],
+  [data-theme="dark"] [data-motion="tsunami"],
+  [data-theme="dark"]:root[data-motion="tsunami"] {
+    --color-background: oklch(10% 0.04 250);
+    --color-surface: oklch(14% 0.04 250);
+    --color-surface-raised: oklch(18% 0.04 250);
+    --color-text: oklch(90% 0.015 200);
+    --color-text-muted: oklch(65% 0.015 200);
+    --color-text-subtle: oklch(48% 0.01 200);
+    --color-border: oklch(22% 0.05 240);
+    --color-border-subtle: oklch(17% 0.04 240);
   }
 
 
@@ -973,8 +1087,7 @@
 
 
   /* ========================================
-     SIGNATURE PRESETS - Radically Different
-     These intentionally break the mold.
+     ADDITIONAL PRESETS
      Same HTML, completely different visual identity.
      ======================================== */
 

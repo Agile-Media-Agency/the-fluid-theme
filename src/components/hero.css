@@ -166,11 +166,11 @@
      Pre-designed color schemes
      ======================================== */
 
-  /* Dark hero with light text */
+  /* Dark hero with light text — derives from page's dark mode colors */
   .hero[data-theme="dark"] {
-    --hero-background: var(--gray-10);
-    --hero-text-color: var(--gray-95);
-    --hero-text-muted: var(--gray-70);
+    --hero-background: color-mix(in oklch, var(--accent) 10%, oklch(12% 0.02 230));
+    --hero-text-color: oklch(94% 0.01 220);
+    --hero-text-muted: oklch(70% 0.01 220);
   }
 
   /* Accent color hero */
@@ -187,16 +187,16 @@
     --hero-text-muted: var(--color-text-muted);
   }
 
-  /* Gradient hero - uses theme colors for consistency */
+  /* Gradient hero - derives from accent color */
   .hero[data-theme="gradient"] {
     --hero-background: linear-gradient(
       135deg,
-      var(--gray-20) 0%,
-      var(--gray-35) 50%,
-      var(--gray-50) 100%
+      color-mix(in oklch, var(--accent) 30%, oklch(15% 0.02 230)) 0%,
+      color-mix(in oklch, var(--accent) 20%, oklch(25% 0.02 230)) 50%,
+      color-mix(in oklch, var(--accent) 15%, oklch(35% 0.02 230)) 100%
     );
-    --hero-text-color: var(--white);
-    --hero-text-muted: var(--gray-80);
+    --hero-text-color: oklch(95% 0.01 0);
+    --hero-text-muted: oklch(80% 0.01 0);
     background: var(--hero-background);
   }
 
