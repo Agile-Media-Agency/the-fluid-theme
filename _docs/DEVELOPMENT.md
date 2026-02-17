@@ -373,6 +373,67 @@ data-motion="still|serene|flowing|rapids|tsunami"
 
 ---
 
+## Session Handoff Protocol
+
+**Every session must end with a handoff summary.** This prevents lost context and forgotten features across sessions.
+
+### Required Handoff Format
+
+When completing a session, provide:
+
+```markdown
+## Session Summary
+
+### Completed
+- [List of tasks completed this session]
+
+### Suggested Next Steps
+
+**High Priority** (address these first):
+1. [Most pressing issues that block other work]
+
+**Medium Priority** (when high priority is done):
+1. [Important but not blocking]
+
+**Ideas & Future Enhancements** (document, don't implement yet):
+1. [Features noticed during work that could be added later]
+
+### Notes
+- [Any gotchas, edge cases, or things the next session should know]
+```
+
+### Guidelines for Suggested Next Steps
+
+1. **Be logical about dependencies** — Don't suggest features that require other layers to be in place first. If Feature B depends on Feature A, only suggest Feature A.
+
+2. **Prioritize fixes over features** — Broken things take priority over new things. Dark mode not working? Fix that before adding a 12th preset.
+
+3. **Consider cross-browser impact** — If a change might affect other browsers/modes, note it. "This CSS may need testing in Safari."
+
+4. **Don't suggest fluff** — Only suggest things that genuinely improve the framework. No padding the list.
+
+5. **Reference existing documentation** — If something is already in `future-features.md`, reference it rather than re-explaining.
+
+6. **Note discovered issues** — If you notice something broken while working on something else, document it. "While testing dark mode, noticed the accordion headers don't flip colors correctly."
+
+7. **Assess complexity** — For complex suggestions, note dependencies:
+   ```
+   - Implement masonry grid layout
+     - Requires: CSS Grid masonry support or JS fallback
+     - Affects: All grid-based components
+     - Test: Chrome, Firefox (Safari lacks support)
+   ```
+
+### What NOT to Do
+
+- ❌ End a session with just "Done!" and no context
+- ❌ Suggest features that sound cool but don't fit the framework philosophy
+- ❌ Ignore issues you noticed while working on other things
+- ❌ Suggest the same thing that was already rejected or deprioritized
+- ❌ Add fluff suggestions just to have a longer list
+
+---
+
 ## Remember
 
 > **The user is burned out from overcomplicated frameworks and wants something clean, semantic, and maintainable. Every decision should reduce complexity, not add to it.**
