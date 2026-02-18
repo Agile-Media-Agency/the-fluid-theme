@@ -142,8 +142,8 @@
 @layer layouts {
   /* Container - constrained width with centered content */
   .container {
-    --_container-size: var(--container-xl);
-    inline-size: min(100% - var(--space-8), var(--_container-size));
+    --_container-size: var(--container-content, var(--container-xl));
+    inline-size: min(100% - var(--space-gutter, var(--space-8)), var(--_container-size));
     margin-inline: auto;
     container-type: inline-size;
   }

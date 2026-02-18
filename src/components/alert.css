@@ -228,10 +228,13 @@
   .toast {
     --_toast-accent: var(--color-info);
 
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: flex-start;
     gap: var(--space-3);
     padding: var(--space-4);
+    padding-inline-start: calc(var(--space-4) + 3px);
     background: var(--color-surface-raised);
     border: var(--border-width) solid var(--color-border-subtle);
     border-radius: var(--radius-lg);
@@ -258,12 +261,6 @@
     block-size: 100%;
     background: var(--_toast-accent);
     border-radius: var(--radius-full) 0 0 var(--radius-full);
-  }
-
-  .toast {
-    position: relative;
-    overflow: hidden;
-    padding-inline-start: calc(var(--space-4) + 3px);
   }
 
   .toast__icon {

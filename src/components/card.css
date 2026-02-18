@@ -75,7 +75,6 @@
   /* Dark mode: use accent glow since shadows are barely visible on dark */
   @media (prefers-color-scheme: dark) {
     .card[data-variant="elevated"] {
-      --_card-border: transparent;
       box-shadow:
         0 0 0 1px oklch(from var(--accent) l c h / 0.15),
         0 4px 20px oklch(from var(--accent) l c h / 0.1);
@@ -90,7 +89,6 @@
 
   /* Also support explicit dark theme */
   [data-theme="dark"] .card[data-variant="elevated"] {
-    --_card-border: transparent;
     box-shadow:
       0 0 0 1px oklch(from var(--accent) l c h / 0.15),
       0 4px 20px oklch(from var(--accent) l c h / 0.1);

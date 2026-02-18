@@ -509,20 +509,20 @@
      TOGGLE/SWITCH
      ======================================== */
 
-  .switch {
+  .settings-panel .switch {
     position: relative;
     display: inline-block;
     cursor: pointer;
   }
 
-  .switch__input {
+  .settings-panel .switch__input {
     position: absolute;
     opacity: 0;
     inline-size: 0;
     block-size: 0;
   }
 
-  .switch__track {
+  .settings-panel .switch__track {
     display: block;
     inline-size: 2.75rem;
     block-size: 1.5rem;
@@ -531,7 +531,7 @@
     transition: background-color var(--duration-fast) var(--ease-fluid);
   }
 
-  .switch__thumb {
+  .settings-panel .switch__thumb {
     position: absolute;
     inset-block-start: 0.125rem;
     inset-inline-start: 0.125rem;
@@ -543,15 +543,15 @@
     transition: transform var(--duration-fast) var(--ease-settle);
   }
 
-  .switch__input:checked + .switch__track {
+  .settings-panel .switch__input:checked + .switch__track {
     background-color: var(--accent);
   }
 
-  .switch__input:checked + .switch__track .switch__thumb {
+  .settings-panel .switch__input:checked + .switch__track .switch__thumb {
     transform: translateX(1.25rem);
   }
 
-  .switch__input:focus-visible + .switch__track {
+  .settings-panel .switch__input:focus-visible + .switch__track {
     box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--accent);
   }
 

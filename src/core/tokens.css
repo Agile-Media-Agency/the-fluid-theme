@@ -53,29 +53,8 @@
     --theme-dark: var(--black);
     --theme-light: var(--white);
 
-    /* Optional: Theme can add slight chroma for warmth/coolness
-       Default is 0 (pure neutral). Themes can set 0.01-0.03 for subtle tint. */
-    --theme-chroma: 0;
-    --theme-hue: 0;
-
-
-    /* === MATHEMATICAL BLENDS ===
-       Mix theme colors in OKLCH for perceptually even results */
-    --blend-5:  color-mix(in oklch, var(--theme-dark) 95%, var(--theme-light));
-    --blend-10: color-mix(in oklch, var(--theme-dark) 90%, var(--theme-light));
-    --blend-15: color-mix(in oklch, var(--theme-dark) 85%, var(--theme-light));
-    --blend-20: color-mix(in oklch, var(--theme-dark) 80%, var(--theme-light));
-    --blend-25: color-mix(in oklch, var(--theme-dark) 75%, var(--theme-light));
-    --blend-30: color-mix(in oklch, var(--theme-dark) 70%, var(--theme-light));
-    --blend-40: color-mix(in oklch, var(--theme-dark) 60%, var(--theme-light));
-    --blend-50: color-mix(in oklch, var(--theme-dark) 50%, var(--theme-light));
-    --blend-60: color-mix(in oklch, var(--theme-dark) 40%, var(--theme-light));
-    --blend-70: color-mix(in oklch, var(--theme-dark) 30%, var(--theme-light));
-    --blend-75: color-mix(in oklch, var(--theme-dark) 25%, var(--theme-light));
-    --blend-80: color-mix(in oklch, var(--theme-dark) 20%, var(--theme-light));
-    --blend-85: color-mix(in oklch, var(--theme-dark) 15%, var(--theme-light));
-    --blend-90: color-mix(in oklch, var(--theme-dark) 10%, var(--theme-light));
-    --blend-95: color-mix(in oklch, var(--theme-dark) 5%, var(--theme-light));
+    /* Note: --theme-chroma/--theme-hue and --blend-* scale removed (unused).
+       Semantic color tokens (--color-text, --color-surface, etc.) are used instead. */
 
 
     /* === ACCENT COLOR ===
@@ -260,14 +239,8 @@
        Usage: <html data-motion="trickling">
        ======================================== */
 
-    /* Motion multiplier - default is 1 (normal) */
-    --motion-scale: 1;
-
-    /* Computed durations based on scale */
-    --motion-instant: calc(100ms * var(--motion-scale));
-    --motion-fast: calc(200ms * var(--motion-scale));
-    --motion-normal: calc(350ms * var(--motion-scale));
-    --motion-slow: calc(500ms * var(--motion-scale));
+    /* Note: --motion-scale and --motion-instant/fast/normal/slow removed (unused).
+       Components use the --duration-* and --motion-base system instead. */
 
 
     /* ========================================
@@ -336,21 +309,8 @@
     --z-max: 9999;
 
 
-    /* ========================================
-       OPACITY SCALE
-       Subtle transparency levels
-       ======================================== */
-
-    --opacity-0: 0;
-    --opacity-5: 0.05;
-    --opacity-10: 0.1;
-    --opacity-20: 0.2;
-    --opacity-30: 0.3;
-    --opacity-50: 0.5;
-    --opacity-70: 0.7;
-    --opacity-80: 0.8;
-    --opacity-90: 0.9;
-    --opacity-100: 1;
+    /* Note: --opacity-* scale removed (unused).
+       Opacity values are applied inline where needed. */
   }
 
 

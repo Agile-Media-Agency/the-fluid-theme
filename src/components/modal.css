@@ -79,7 +79,6 @@
   .modal::backdrop {
     background: oklch(0% 0 0 / 0.5);
     backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
   }
 
 
@@ -265,10 +264,6 @@
   /* Cascade: bouncy entry */
   [data-motion="cascade"] .modal__content {
     border-radius: var(--radius-2xl);
-  }
-
-  .modal[open] .modal__content {
-    transform: translateY(0) scale(1);
   }
 
   /* Rapids: hard offset shadow */
