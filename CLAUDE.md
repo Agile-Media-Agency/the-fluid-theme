@@ -52,7 +52,7 @@ npm run serve    # Open examples in browser at localhost:8080
 | `_includes/scripts.html` | Theme switching JavaScript |
 | `index.html` | Homepage with preset grid |
 | `examples/foundation.html` | Element showcase |
-| `examples/components.html` | Component gallery (17 components) |
+| `examples/components.html` | Component gallery (18 components) |
 
 ## Current Focus
 

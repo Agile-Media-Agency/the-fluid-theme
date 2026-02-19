@@ -398,6 +398,108 @@
     color: var(--accent);
   }
 
+  /* Testimonial card - quote with attribution */
+  .card[data-type="testimonial"] .card__content {
+    gap: var(--space-4);
+  }
+
+  .card[data-type="testimonial"] .card__rating {
+    display: flex;
+    gap: 0.125rem;
+    color: oklch(75% 0.18 85);
+  }
+
+  .card[data-type="testimonial"] .card__quote {
+    font-style: italic;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+
+  .card[data-type="testimonial"] .card__quote::before {
+    content: "\201C";
+    font-size: var(--font-size-3xl);
+    font-style: normal;
+    line-height: 0;
+    vertical-align: -0.35em;
+    color: var(--accent);
+    margin-inline-end: var(--space-1);
+  }
+
+  .card[data-type="testimonial"] .card__attribution {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .card[data-type="testimonial"] .card__author {
+    font-weight: var(--weight-semibold);
+    font-style: normal;
+    color: var(--color-text);
+  }
+
+  .card[data-type="testimonial"] .card__role {
+    color: var(--color-text-muted);
+  }
+
+  /* Pricing card - plan comparison */
+  .card[data-type="pricing"] {
+    text-align: center;
+    overflow: visible;
+    position: relative;
+  }
+
+  .card[data-type="pricing"] .card__price {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-none);
+    margin-block-end: var(--space-1);
+  }
+
+  .card[data-type="pricing"] .card__price-period {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-weight: var(--weight-normal);
+  }
+
+  /* Featured/popular pricing card */
+  .card[data-type="pricing"][data-featured] {
+    border: 2px solid var(--accent);
+    transform: scale(1.03);
+  }
+
+  .card[data-type="pricing"][data-featured] > .badge {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Pricing feature list */
+  .card[data-type="pricing"] .card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: start;
+  }
+
+  .card[data-type="pricing"] .card__features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    border-block-end: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .card[data-type="pricing"] .card__features li:last-child {
+    border-block-end: none;
+  }
+
+  .card[data-type="pricing"] .card__features .check {
+    color: var(--color-success);
+    flex-shrink: 0;
+  }
+
 
   /* ========================================
      CARD GROUPS

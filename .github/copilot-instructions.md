@@ -9,7 +9,7 @@
 - **Runtime theming** — CSS Custom Properties enable instant theme changes
 - **Physics-based animations** — Motion styles derived from Reynolds numbers (fluid dynamics)
 - **Semantic HTML** — No utility class soup (`<article class="card">` not `<div class="flex flex-col p-4">`)
-- **17 UI components** with full dark mode and accessibility support
+- **18 UI components** with full dark mode and accessibility support
 - **Static site** — Hosted on GitHub Pages with Jekyll
 
 ## Project Type and Technologies
@@ -43,7 +43,7 @@ The framework itself requires **no compilation or build step**. It's pure CSS th
 3. **Test visually** by opening:
    - `http://localhost:8080/index.html` — Homepage with preset grid
    - `http://localhost:8080/examples/foundation.html` — All HTML elements
-   - `http://localhost:8080/examples/components.html` — All 17 components
+   - `http://localhost:8080/examples/components.html` — All 18 components
    - Other pages in `/examples/` and `/templates/`
 
 ### Important Development Notes
@@ -93,7 +93,7 @@ the-fluid-theme/
 │   ├── future-features.md            # Roadmap
 │   ├── reference/
 │   │   ├── tokens.md                 # Design token reference
-│   │   ├── components.md             # All 17 components API
+│   │   ├── components.md             # All 18 components API
 │   │   ├── positioning.md            # Layout utilities
 │   │   └── heroes.md                 # Hero sections
 │   └── _agents/                      # AI agent instructions
@@ -115,7 +115,7 @@ the-fluid-theme/
 │   │   ├── reset.css                 # Modern CSS reset
 │   │   ├── tokens.css                # Design tokens, palettes, motion
 │   │   └── base.css                  # Base element styles
-│   ├── components/                   # 17 UI components
+│   ├── components/                   # 18 UI components
 │   │   ├── button.css
 │   │   ├── card.css
 │   │   ├── nav.css
@@ -132,7 +132,8 @@ the-fluid-theme/
 │   │   ├── table.css
 │   │   ├── avatar.css
 │   │   ├── loading.css
-│   │   └── dropdown.css
+│   │   ├── dropdown.css
+│   │   └── badge.css
 │   ├── layouts/                      # Layout utilities
 │   │   └── positioning.css           # All layout: position, flex, grid, patterns
 │   └── animations/
@@ -140,7 +141,7 @@ the-fluid-theme/
 │
 ├── examples/                         # Demo pages
 │   ├── foundation.html               # All HTML elements showcase
-│   ├── components.html               # All 17 components gallery
+│   ├── components.html               # All 18 components gallery
 │   ├── heroes.html                   # Hero section variants
 │   ├── hero-picker.html              # Interactive hero builder
 │   ├── indicators.html               # Status indicators demo

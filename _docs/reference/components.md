@@ -127,6 +127,40 @@ UI components built on the Fluid foundation. All components use design tokens an
 </article>
 ```
 
+### Testimonial Card
+```html
+<article class="card" data-type="testimonial">
+  <div class="card__content">
+    <div class="card__rating">★★★★★</div>
+    <p class="card__quote">Great product, highly recommend.</p>
+    <div class="card__attribution">
+      <div>
+        <div class="card__author">Jane Doe</div>
+        <div class="card__role">CEO, Acme Inc.</div>
+      </div>
+    </div>
+  </div>
+</article>
+```
+
+### Pricing Card
+```html
+<article class="card" data-type="pricing" data-featured>
+  <span class="badge" data-variant="filled">Most Popular</span>
+  <div class="card__content">
+    <h3 class="card__title">Pro</h3>
+    <div class="card__price">$29<span class="card__price-period">/mo</span></div>
+    <ul class="card__features">
+      <li><span class="check">&#10003;</span> Unlimited projects</li>
+      <li><span class="check">&#10003;</span> Priority support</li>
+    </ul>
+  </div>
+  <footer class="card__footer">
+    <button data-full>Upgrade</button>
+  </footer>
+</article>
+```
+
 ### Card Group
 ```html
 <div class="card-group" data-equal-height>
@@ -134,6 +168,46 @@ UI components built on the Fluid foundation. All components use design tokens an
   <article class="card">...</article>
   <article class="card">...</article>
 </div>
+```
+
+---
+
+## Badge
+
+[Live demo](https://thefluidtheme.com/examples/components.html#badges)
+
+### Basic Usage
+```html
+<span class="badge">Default</span>
+```
+
+### Variants
+```html
+<span class="badge">Default (accent-tinted)</span>
+<span class="badge" data-variant="filled">Filled</span>
+<span class="badge" data-variant="outline">Outline</span>
+<span class="badge" data-variant="muted">Muted</span>
+```
+
+### Status Colors
+```html
+<span class="badge" data-status="good">Active</span>
+<span class="badge" data-status="warning">Pending</span>
+<span class="badge" data-status="error">Failed</span>
+<span class="badge" data-status="info">Info</span>
+```
+
+### Sizes
+```html
+<span class="badge" data-size="sm">Small</span>
+<span class="badge">Default</span>
+<span class="badge" data-size="lg">Large</span>
+```
+
+### Dot Indicator & Count
+```html
+<span class="badge" data-dot data-status="good">Online</span>
+<span class="badge" data-variant="filled" data-count>3</span>
 ```
 
 ---
@@ -956,7 +1030,7 @@ Standalone dropdown menus for actions, selections, and context menus. Separate f
 
 | Attribute | Values | Used On |
 |-----------|--------|---------|
-| `data-variant` | `secondary`, `outline`, `ghost`, `danger`, `elevated`, `outlined`, `filled` | Buttons, Cards |
+| `data-variant` | `secondary`, `outline`, `ghost`, `danger`, `elevated`, `outlined`, `filled`, `muted` | Buttons, Cards, Badges |
 | `data-variant` | `drawer-right`, `drawer-left` | Modal |
 | `data-variant` | `bordered`, `separated`, `flush` | Accordion |
 | `data-variant` | `filled`, `outline` | Alert |
@@ -965,6 +1039,10 @@ Standalone dropdown menus for actions, selections, and context menus. Separate f
 | `data-size` | `sm`, `lg`, `full` | Modal |
 | `data-size` | `sm`, `lg` | Accordion |
 | `data-status` | `info`, `success`, `warning`, `error` | Alert, Toast |
+| `data-status` | `good`, `warning`, `error`, `info` | Badge |
+| `data-dot` | (presence) | Badge |
+| `data-count` | (presence) | Badge |
+| `data-featured` | (presence) | Pricing Card |
 | `data-status` | `online`, `busy`, `away`, `offline` | Avatar |
 | `data-position` | `top-right`, `top-left`, `bottom-right`, `bottom-left`, `top-center`, `bottom-center` | Toast Container |
 | `data-position` | `bottom-end`, `top`, `top-end` | Dropdown |
@@ -977,7 +1055,7 @@ Standalone dropdown menus for actions, selections, and context menus. Separate f
 | `data-full` | (presence) | Buttons |
 | `data-icon` | (presence) | Buttons |
 | `data-interactive` | (presence) | Cards |
-| `data-type` | `stat`, `profile`, `feature` | Cards |
+| `data-type` | `stat`, `profile`, `feature`, `testimonial`, `pricing` | Cards |
 | `data-aspect` | `square`, `video`, `portrait`, `wide` | Card media |
 | `data-sticky` | (presence) | Nav |
 | `data-valid` | (presence) | Inputs |
