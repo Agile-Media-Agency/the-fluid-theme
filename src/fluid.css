@@ -4,7 +4,7 @@
  *
  * Like water: adaptable, natural, powerful yet gentle.
  *
- * @version 0.1.0
+ * @version 0.4.0
  * @license MIT
  *
  * Layer Architecture:
@@ -53,6 +53,15 @@
 @import "./components/settings-panel.css";
 @import "./components/scroll-progress.css";
 @import "./components/themed-images.css";
+@import "./components/modal.css";
+@import "./components/tooltip.css";
+@import "./components/accordion.css";
+@import "./components/alert.css";
+@import "./components/table.css";
+@import "./components/avatar.css";
+@import "./components/loading.css";
+@import "./components/dropdown.css";
+@import "./components/badge.css";
 
 /* Animations */
 @import "./animations/scroll-reveal.css";
@@ -115,14 +124,14 @@
     display: inline-block;
     vertical-align: middle;
     flex-shrink: 0;
-    width: 1em;
-    height: 1em;
+    inline-size: 1em;
+    block-size: 1em;
     stroke-width: 2;
   }
 
-  .icon--sm { width: 0.875em; height: 0.875em; }
-  .icon--lg { width: 1.25em; height: 1.25em; }
-  .icon--xl { width: 1.5em; height: 1.5em; }
+  .icon--sm { inline-size: 0.875em; block-size: 0.875em; }
+  .icon--lg { inline-size: 1.25em; block-size: 1.25em; }
+  .icon--xl { inline-size: 1.5em; block-size: 1.5em; }
 }
 
 
@@ -134,8 +143,8 @@
 @layer layouts {
   /* Container - constrained width with centered content */
   .container {
-    --_container-size: var(--container-xl);
-    inline-size: min(100% - var(--space-8), var(--_container-size));
+    --_container-size: var(--container-content, var(--container-xl));
+    inline-size: min(100% - var(--space-gutter, var(--space-8)), var(--_container-size));
     margin-inline: auto;
     container-type: inline-size;
   }

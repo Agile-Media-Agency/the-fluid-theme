@@ -462,7 +462,7 @@
     color: var(--color-text);
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-input, var(--radius-md));
     /* Subtle 3D effect - layered shadows create depth */
     box-shadow:
       inset 0 1px 2px oklch(from var(--shadow-color) l c h / 0.04),
@@ -767,6 +767,55 @@
       var(--shadow-lg),
       0 0 0 3px var(--color-background),
       0 0 0 5px var(--accent);
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC TYPOGRAPHY
+     Motion styles affect text presentation
+     ======================================== */
+
+  /* Still: Clean, precise, Swiss-style typography */
+  [data-motion="still"] h1,
+  [data-motion="still"] h2,
+  [data-motion="still"] h3 {
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* Serene: Elegant, classical typography */
+  [data-motion="serene"] h1,
+  [data-motion="serene"] h2 {
+    font-weight: var(--weight-normal);
+    letter-spacing: 0;
+    font-style: italic;
+  }
+
+  /* Rapids: Bold, italic, aggressive sports feel */
+  [data-motion="rapids"] h1,
+  [data-motion="rapids"] h2,
+  [data-motion="rapids"] h3 {
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  [data-motion="rapids"] h1 {
+    font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-5xl));
+  }
+
+  /* Tsunami: Maximum impact, dramatic typography */
+  [data-motion="tsunami"] h1,
+  [data-motion="tsunami"] h2 {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+  }
+  [data-motion="tsunami"] h1 {
+    font-size: clamp(var(--font-size-4xl), 10vw, 6rem);
   }
 
 

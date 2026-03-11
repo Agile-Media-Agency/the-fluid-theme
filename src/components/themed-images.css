@@ -146,25 +146,51 @@
   /* Tinted section background */
   .section[data-bg="tinted"],
   section[data-bg="tinted"] {
-    background-color: var(--surface-tinted, var(--color-surface));
+    background-color: var(--surface-tinted, var(--section-2, var(--color-surface)));
   }
 
   /* Accent-tinted section */
   .section[data-bg="accent"],
   section[data-bg="accent"] {
-    background-color: var(--surface-accent, var(--accent-subtle));
+    background-color: var(--section-accent, var(--surface-accent, var(--accent-subtle)));
   }
 
   /* Alternating sections (every other) */
   .section[data-bg="alt"],
   section[data-bg="alt"] {
-    background-color: var(--section-alt, var(--color-surface));
+    background-color: var(--section-2, var(--section-alt, var(--color-surface)));
   }
 
-  /* Auto-alternating sections in a container */
-  [data-alternating-sections] > .section:nth-child(even),
-  [data-alternating-sections] > section:nth-child(even) {
-    background-color: var(--section-alt);
+  /* Specific section color slots */
+  .section[data-bg="1"], section[data-bg="1"] { background-color: var(--section-1, var(--color-background)); }
+  .section[data-bg="2"], section[data-bg="2"] { background-color: var(--section-2, var(--color-surface)); }
+  .section[data-bg="3"], section[data-bg="3"] { background-color: var(--section-3, var(--surface-tinted)); }
+
+  /* Auto-alternating sections - 3-color rotation */
+  [data-alternating-sections] > .section:nth-child(3n+1),
+  [data-alternating-sections] > section:nth-child(3n+1) {
+    background-color: var(--section-1, var(--color-background));
+  }
+
+  [data-alternating-sections] > .section:nth-child(3n+2),
+  [data-alternating-sections] > section:nth-child(3n+2) {
+    background-color: var(--section-2, var(--color-surface));
+  }
+
+  [data-alternating-sections] > .section:nth-child(3n+3),
+  [data-alternating-sections] > section:nth-child(3n+3) {
+    background-color: var(--section-3, var(--surface-tinted));
+  }
+
+  /* Simple 2-color alternation */
+  [data-alternating-sections="simple"] > .section:nth-child(odd),
+  [data-alternating-sections="simple"] > section:nth-child(odd) {
+    background-color: var(--section-1, var(--color-background));
+  }
+
+  [data-alternating-sections="simple"] > .section:nth-child(even),
+  [data-alternating-sections="simple"] > section:nth-child(even) {
+    background-color: var(--section-2, var(--color-surface));
   }
 
 

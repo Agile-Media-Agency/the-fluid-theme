@@ -60,6 +60,18 @@
 
 
   /* ========================================
+     TRICKLING - Compact, Efficient, Minimal
+     Fonts: Inter (all)
+     Character: Understated, utility-first, developer-friendly
+     ======================================== */
+  [data-motion="trickling"] {
+    --font-heading: 'Inter', var(--font-system);
+    --font-body: 'Inter', var(--font-system);
+    --font-display: 'Inter', var(--font-system);
+  }
+
+
+  /* ========================================
      FLOWING - Balanced, Organic, Natural (Default)
      Fonts: Outfit (headers) + Inter (body)
      Character: Friendly, professional, versatile
@@ -106,6 +118,44 @@
     --font-body: 'Space Grotesk', var(--font-system);
     --font-display: 'Space Grotesk', var(--font-system);
   }
+
+
+  /* ========================================
+     BRUTALIST - Raw, Industrial, Technical
+     Fonts: Space Mono (all)
+     Character: Mechanical, grid-locked, uncompromising
+     ======================================== */
+  [data-motion="brutalist"] {
+    --font-heading: 'Space Mono', var(--font-mono);
+    --font-body: 'Space Mono', var(--font-mono);
+    --font-display: 'Space Mono', var(--font-mono);
+    --font-ui: 'Space Mono', var(--font-mono);
+  }
+
+
+  /* ========================================
+     EDITORIAL - Luxurious, Literary, Magazine
+     Fonts: Playfair Display (headers) + Libre Baskerville (body)
+     Character: High-contrast serif, classical, contemplative
+     ======================================== */
+  [data-motion="editorial"] {
+    --font-heading: 'Playfair Display', var(--font-serif);
+    --font-body: 'Libre Baskerville', var(--font-serif);
+    --font-display: 'Playfair Display', var(--font-serif);
+  }
+
+
+  /* ========================================
+     NEON - Futuristic, Geometric, Cyberpunk
+     Fonts: Orbitron (headers) + Exo 2 (body)
+     Character: Tech, gaming, electric signage
+     ======================================== */
+  [data-motion="neon"] {
+    --font-heading: 'Orbitron', var(--font-system);
+    --font-body: 'Exo 2', var(--font-system);
+    --font-display: 'Orbitron', var(--font-system);
+    --font-ui: 'Exo 2', var(--font-system);
+  }
 </style>
 
 <script>
@@ -115,6 +165,7 @@
     serene: [
       'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap'
     ],
+    trickling: [],  // Uses base Inter
     stream: [
       'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap'
     ],
@@ -129,6 +180,15 @@
     ],
     tsunami: [
       'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap'
+    ],
+    brutalist: [
+      'https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'
+    ],
+    editorial: [
+      'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap'
+    ],
+    neon: [
+      'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap'
     ]
   };
 

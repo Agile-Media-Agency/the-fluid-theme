@@ -1,5 +1,7 @@
 # AI Agent Instructions - General
 
+> **Required Reading:** Before making changes, read [DEVELOPMENT.md](../DEVELOPMENT.md) — the master guide explaining why this framework exists and how we build it.
+
 ## Project Context
 You are working on The Fluid Theme Framework, a modern CSS/HTML design system that prioritizes semantic markup, CSS custom properties, and progressive enhancement over utility-class frameworks.
 

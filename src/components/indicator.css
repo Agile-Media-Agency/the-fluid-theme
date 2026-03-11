@@ -116,13 +116,13 @@
   /* Dark mode: make track more visible with stronger tint */
   @media (prefers-color-scheme: dark) {
     .progress__track {
-      --_progress-track: color-mix(in oklch, var(--status-color, var(--accent)) 20%, var(--gray-20));
+      --_progress-track: color-mix(in oklch, var(--status-color, var(--accent)) 20%, var(--color-surface-raised));
       box-shadow: inset 0 1px 3px oklch(0% 0 0 / 0.3);
     }
   }
 
   [data-theme="dark"] .progress__track {
-    --_progress-track: color-mix(in oklch, var(--status-color, var(--accent)) 20%, var(--gray-20));
+    --_progress-track: color-mix(in oklch, var(--status-color, var(--accent)) 20%, var(--color-surface-raised));
     box-shadow: inset 0 1px 3px oklch(0% 0 0 / 0.3);
   }
 

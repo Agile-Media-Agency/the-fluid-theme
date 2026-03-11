@@ -403,6 +403,7 @@
      ======================================== */
 
   .settings-select {
+    position: relative;
     padding: var(--space-2) var(--space-3);
     padding-inline-end: var(--space-8);
     border-radius: var(--radius-md);
@@ -413,11 +414,16 @@
     cursor: pointer;
     transition: all var(--duration-fast) var(--ease-fluid);
 
-    /* Custom arrow */
+    /* Custom arrow — CSS mask adapts to dark mode via currentColor */
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right var(--space-3) center;
+  }
+
+  /* Dark mode: swap arrow to light color */
+  [data-theme="dark"] .settings-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   }
 
   .settings-select:hover {
@@ -503,20 +509,20 @@
      TOGGLE/SWITCH
      ======================================== */
 
-  .switch {
+  .settings-panel .switch {
     position: relative;
     display: inline-block;
     cursor: pointer;
   }
 
-  .switch__input {
+  .settings-panel .switch__input {
     position: absolute;
     opacity: 0;
     inline-size: 0;
     block-size: 0;
   }
 
-  .switch__track {
+  .settings-panel .switch__track {
     display: block;
     inline-size: 2.75rem;
     block-size: 1.5rem;
@@ -525,7 +531,7 @@
     transition: background-color var(--duration-fast) var(--ease-fluid);
   }
 
-  .switch__thumb {
+  .settings-panel .switch__thumb {
     position: absolute;
     inset-block-start: 0.125rem;
     inset-inline-start: 0.125rem;
@@ -537,15 +543,15 @@
     transition: transform var(--duration-fast) var(--ease-settle);
   }
 
-  .switch__input:checked + .switch__track {
+  .settings-panel .switch__input:checked + .switch__track {
     background-color: var(--accent);
   }
 
-  .switch__input:checked + .switch__track .switch__thumb {
+  .settings-panel .switch__input:checked + .switch__track .switch__thumb {
     transform: translateX(1.25rem);
   }
 
-  .switch__input:focus-visible + .switch__track {
+  .settings-panel .switch__input:focus-visible + .switch__track {
     box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--accent);
   }
 

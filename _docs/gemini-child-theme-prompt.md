@@ -2,6 +2,8 @@
 
 Copy this prompt into Gemini (or any AI assistant) to help it understand how to create child themes for the Fluid Framework.
 
+> **Note**: This prompt references v0.2.0 syntax. The framework is now at v0.3.x with 17 components. The core theming system (palettes, motion, tokens) is unchanged — the prompt remains valid for child theme creation.
+
 ---
 
 ## The Prompt

@@ -30,6 +30,73 @@ Ideas and enhancements to consider for future versions of Fluid Framework.
 
 ---
 
+## Preset System Enhancements
+
+### User-Generated Presets
+
+**Concept:** Allow users to create, save, and share their own presets. The system could eventually support hundreds of community presets.
+
+**Features:**
+- Save current settings as a named preset
+- Export/import presets as JSON or URL parameters
+- Community preset gallery
+- Rating/favoriting system
+- Preset categories/tags for discoverability
+
+**Implementation approach:**
+- Presets stored in localStorage for local use
+- Optional account system for cloud sync
+- Shareable preset URLs (encode settings in query params)
+- API for community preset submission
+
+### Masonry/Bento-Box Grid Layouts
+
+**Concept:** A new preset (or layout mode) that implements masonry/freestyle grid layouts, similar to Pinterest or Notion gallery views.
+
+**Features:**
+- Variable-height items flow naturally
+- Items span multiple columns/rows (bento-box style)
+- Perfect for Editorial preset's literary feel
+- Could be a standalone 11th preset: "Mosaic" or "Gallery"
+
+**Considerations:**
+- Pure CSS masonry (using `grid-template-rows: masonry`) has limited support
+- May need JS fallback (Masonry.js, CSS Columns approach)
+- Works well for image galleries, blog grids, portfolio items
+
+### Full Customizer vs Preset Combinator
+
+**Concept:** Clarify naming for two distinct customization approaches:
+
+1. **Preset Combinator** (current drawer)
+   - Mix motion + palette + accent from existing presets
+   - Quick switching between complete looks
+   - Non-destructive, preset-based
+
+2. **Full Customizer** (future)
+   - WYSIWYG visual editor
+   - Modify individual CSS tokens
+   - Create entirely custom themes
+   - More complex, power-user focused
+
+**Implementation:**
+- Rename current drawer to "Preset Mixer" or "Quick Customize"
+- Build separate `/customizer.html` page for full customizer
+- Full customizer could output exportable CSS
+
+### Preset Grid Enhancements
+
+**Concept:** Improvements to the homepage hero grid as preset count grows.
+
+**Features:**
+- Toggle between preview thumbnails vs landing page screenshots
+- Lazy loading for performance with 100+ presets
+- Search/filter presets by name or style
+- Pagination or infinite scroll for large preset libraries
+- Preset comparison mode (side-by-side view)
+
+---
+
 ## Motion System Enhancements
 
 ### Direction Options
@@ -141,4 +208,4 @@ Allow child themes to define their own motion presets:
 
 ---
 
-*Last updated: Dec 19, 2025*
+*Last updated: Feb 17, 2026*

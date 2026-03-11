@@ -1,0 +1,350 @@
+/**
+ * Fluid Framework - Responsive Table Component
+ * @layer components
+ *
+ * Tables that adapt to their container.
+ * Responsive strategies: horizontal scroll, stacked on mobile.
+ *
+ * Usage:
+ *   <div class="table-wrap">
+ *     <table class="table">
+ *       <thead>
+ *         <tr>
+ *           <th>Name</th>
+ *           <th>Status</th>
+ *           <th data-align="end">Amount</th>
+ *         </tr>
+ *       </thead>
+ *       <tbody>
+ *         <tr>
+ *           <td>Item</td>
+ *           <td><span class="badge" data-status="good">Active</span></td>
+ *           <td data-align="end">$99.00</td>
+ *         </tr>
+ *       </tbody>
+ *     </table>
+ *   </div>
+ *
+ * Variants:
+ *   data-variant="striped"  — alternating row backgrounds
+ *   data-variant="bordered" — all cell borders
+ *   data-variant="compact"  — reduced padding
+ *
+ * Features:
+ *   data-hover      — highlight rows on hover
+ *   data-sticky-col — sticky first column
+ */
+
+@layer components {
+  /* ========================================
+     TABLE WRAPPER
+     Provides horizontal scroll overflow
+     ======================================== */
+
+  .table-wrap {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+
+    /* Scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .table-wrap::-webkit-scrollbar {
+    block-size: 6px;
+  }
+
+  .table-wrap::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .table-wrap::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+  }
+
+
+  /* ========================================
+     BASE TABLE
+     ======================================== */
+
+  .table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-normal);
+    text-align: start;
+  }
+
+  /* Header cells */
+  .table th {
+    padding: var(--space-3) var(--space-4);
+    font-weight: var(--weight-semibold);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border-block-end: var(--border-width-thick) solid var(--color-border-subtle);
+    white-space: nowrap;
+    position: relative;
+  }
+
+  /* Body cells */
+  .table td {
+    padding: var(--space-3) var(--space-4);
+    border-block-end: var(--border-width) solid var(--color-border-subtle);
+    vertical-align: middle;
+  }
+
+  /* Last row: no bottom border */
+  .table tbody tr:last-child td {
+    border-block-end: none;
+  }
+
+  /* Alignment via data attribute */
+  .table [data-align="end"],
+  .table [data-align="right"] {
+    text-align: end;
+  }
+
+  .table [data-align="center"] {
+    text-align: center;
+  }
+
+  /* Numeric data: tabular-nums for alignment */
+  .table [data-type="numeric"] {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+  }
+
+
+  /* ========================================
+     TABLE VARIANTS
+     ======================================== */
+
+  /* Striped: alternating row backgrounds */
+  .table[data-variant="striped"] tbody tr:nth-child(even) {
+    background: var(--color-surface);
+  }
+
+  /* Bordered: all cell borders */
+  .table[data-variant="bordered"] th,
+  .table[data-variant="bordered"] td {
+    border: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  /* Compact: tighter spacing */
+  .table[data-variant="compact"] th,
+  .table[data-variant="compact"] td {
+    padding: var(--space-2) var(--space-3);
+  }
+
+
+  /* ========================================
+     INTERACTIVE FEATURES
+     ======================================== */
+
+  /* Hover highlight */
+  .table[data-hover] tbody tr {
+    transition: background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .table[data-hover] tbody tr:hover {
+    background: color-mix(in oklch, var(--accent) 5%, var(--color-background));
+  }
+
+  /* Selectable rows */
+  .table[data-selectable] tbody tr {
+    cursor: pointer;
+  }
+
+  .table[data-selectable] tbody tr[aria-selected="true"] {
+    background: color-mix(in oklch, var(--accent) 10%, var(--color-background));
+  }
+
+  /* Sticky first column */
+  .table[data-sticky-col] th:first-child,
+  .table[data-sticky-col] td:first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--z-raised);
+    background: var(--color-surface-raised);
+    box-shadow: 2px 0 4px oklch(from var(--shadow-color) l c h / 0.06);
+  }
+
+  .table[data-sticky-col] th:first-child {
+    background: var(--color-surface);
+    z-index: calc(var(--z-raised) + 1);
+  }
+
+  /* Sticky header */
+  .table[data-sticky-header] thead th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-raised);
+  }
+
+
+  /* ========================================
+     SORTABLE HEADERS
+     ======================================== */
+
+  .table th[data-sortable] {
+    cursor: pointer;
+    user-select: none;
+    padding-inline-end: var(--space-6);
+  }
+
+  .table th[data-sortable]:hover {
+    background: color-mix(in oklch, var(--accent) 8%, var(--color-surface));
+  }
+
+  .table th[data-sortable]::after {
+    content: "";
+    position: absolute;
+    inset-inline-end: var(--space-3);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    background: var(--color-text-subtle);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'%3E%3Cpath d='M8 9l4-4 4 4M8 15l4 4 4-4'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    opacity: 0.4;
+  }
+
+  .table th[data-sort="asc"]::after {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'%3E%3Cpath d='M8 14l4-4 4 4'/%3E%3C/svg%3E");
+    opacity: 1;
+    background: var(--accent);
+  }
+
+  .table th[data-sort="desc"]::after {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'%3E%3Cpath d='M8 10l4 4 4-4'/%3E%3C/svg%3E");
+    opacity: 1;
+    background: var(--accent);
+  }
+
+
+  /* ========================================
+     EMPTY STATE
+     ======================================== */
+
+  .table__empty {
+    text-align: center;
+    padding: var(--space-10) var(--space-5);
+    color: var(--color-text-subtle);
+  }
+
+  .table__empty td {
+    border: none;
+  }
+
+
+  /* ========================================
+     TABLE CAPTION & FOOTER
+     ======================================== */
+
+  .table caption {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: start;
+    caption-side: bottom;
+  }
+
+  .table tfoot td {
+    font-weight: var(--weight-semibold);
+    background: var(--color-surface);
+    border-block-start: var(--border-width-thick) solid var(--color-border-subtle);
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: crisp borders */
+  [data-motion="still"] .table-wrap {
+    border-radius: 0;
+  }
+
+  /* Serene: soft rounded */
+  [data-motion="serene"] .table-wrap {
+    border-radius: var(--radius-xl);
+  }
+
+  /* Rapids: hard offset shadow */
+  [data-motion="rapids"] .table-wrap {
+    box-shadow: 3px 3px 0 oklch(0 0 0 / 0.1);
+  }
+
+  /* Tsunami: asymmetric corners */
+  [data-motion="tsunami"] .table-wrap {
+    border-radius: var(--radius-asymmetric, 0 24px 0 0);
+  }
+
+
+  /* ========================================
+     RESPONSIVE: Stacked layout on mobile
+     Apply data-responsive to enable
+     ======================================== */
+
+  @media (max-width: 40rem) {
+    .table[data-responsive] thead {
+      /* Visually hide header but keep accessible */
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .table[data-responsive] tbody tr {
+      display: block;
+      padding: var(--space-4);
+      border-block-end: var(--border-width) solid var(--color-border-subtle);
+    }
+
+    .table[data-responsive] tbody tr:last-child {
+      border-block-end: none;
+    }
+
+    .table[data-responsive] td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      border: none;
+      text-align: end;
+    }
+
+    /* Use data-label for row headers on mobile */
+    .table[data-responsive] td::before {
+      content: attr(data-label);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      text-align: start;
+    }
+
+    .table[data-responsive] td[data-align] {
+      text-align: end;
+    }
+  }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .table[data-hover] tbody tr {
+      transition: none;
+    }
+  }
+}

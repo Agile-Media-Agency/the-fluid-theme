@@ -1,5 +1,7 @@
 # Fluid Framework - Documentation
 
+**Live Site: [TheFluidTheme.com](https://thefluidtheme.com)** | [Components Demo](https://thefluidtheme.com/examples/components.html) | [GitHub](https://github.com/Agile-Media-Agency/the-fluid-theme)
+
 > *"A design system derived from fluid dynamics - not water-themed, physics-based."*
 
 Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design system built on the physics of how fluids actually behave.
@@ -10,13 +12,16 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 
 | Document | Description |
 |----------|-------------|
+| **[DEVELOPMENT.md](DEVELOPMENT.md)** | **Master guide — read first. Why we built this, principles, practices.** |
 | [Architecture](architecture.md) | Technical decisions, layer system, philosophy |
 | [Contributing](contributing.md) | How to contribute to the project |
+| [Future Features](future-features.md) | Planned features and ideas |
 | [Tokens Reference](reference/tokens.md) | Design tokens (colors, spacing, typography) |
 | [Positioning System](reference/positioning.md) | Layout and alignment utilities |
 | [Heroes](reference/heroes.md) | Full-width hero sections |
-| [Components](reference/components.md) | Component API and usage |
-| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance |
+| [Components](reference/components.md) | Component API and usage (17 components) |
+| [Getting Started](getting-started.md) | Installation and first steps |
+| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance | |
 
 ### For AI Agents
 | Document | Description |
@@ -27,10 +32,19 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 
 ---
 
-## What's New in v0.2.0
+## What's New in v0.3.2
+
+### Phase 3 Complete: 17 Components + Layout System
+
+The framework now has full component coverage and a comprehensive layout system:
+
+- **8 new components** added: Modal/Dialog, Tooltip/Popover, Accordion, Alert/Toast, Table, Avatar, Loading/Skeleton, Dropdown
+- **Layout utilities** added: Flexbox, Grid, common layout patterns (sidebar, holy grail, dashboard)
+- **Accessibility improvements**: `prefers-reduced-motion` support in all animated components
+- **New Tsunami palette**: Deep ocean, Hokusai-inspired colors
 
 ### Fluid Dynamics Foundation
-The framework is now explicitly based on fluid mechanics:
+The framework is explicitly based on fluid mechanics:
 - **Viscosity** - Elements have different densities
 - **Displacement** - New content pushes old away
 - **Surface Tension** - Boundaries before breakthrough
@@ -38,19 +52,20 @@ The framework is now explicitly based on fluid mechanics:
 
 See [examples/philosophy.html](../examples/philosophy.html) for the full explanation.
 
-### Motion System (Water-Themed)
-Six motion presets mapped to Reynolds numbers:
+### Motion System (7 Presets)
+Seven motion presets mapped to Reynolds numbers:
 
-| Style | Flow Type | Behavior |
-|-------|-----------|----------|
-| `still` | No flow | Instant, no animation |
-| `serene` | Laminar | Ken Burns effect, slow crossfade |
-| `trickling` | Low Re | Quick, subtle feedback |
-| `flowing` | Moderate Re | Horizontal push (default) |
-| `rapids` | High Re | Fluid dynamics - pushes through, drags |
-| `tsunami` | Extreme | Rise, crest, crash |
+| Style | Reynolds | Behavior |
+|-------|----------|----------|
+| `still` | 0 | No motion, instant state changes |
+| `serene` | ~10 | Slow, meditative, Ken Burns |
+| `stream` | ~100 | Laminar flow, smooth and predictable |
+| `flowing` | ~500 | Organic ease-in-out |
+| `cascade` | ~1000 | Transitional, gentle waterfalls |
+| `rapids` | ~5000 | Turbulent, energetic with resistance |
+| `tsunami` | ~50000 | Massive force, dramatic displacement |
 
-### Color Palette System (9 Moods)
+### Color Palette System (10 Palettes)
 | Palette | Character |
 |---------|-----------|
 | `fluid` | Water colors, auto-linked to motion style |
@@ -62,12 +77,13 @@ Six motion presets mapped to Reynolds numbers:
 | `80s` | Neon synthwave |
 | `matrix` | Terminal/coding aesthetic |
 | `subtle` | Trending feminine (Etsy/IG) |
+| `tsunami` | Deep ocean (Hokusai-inspired) |
 
 ### Subdued Mode
 Lower contrast for gentler viewing: `<html data-contrast="subdued">`
 
-### Status Indicator System
-Progress bars, badges, and status cards with semantic status-driven styling.
+### 17 Components
+Buttons, Cards, Navigation, Forms, Heroes, Indicators, Scroll Progress, Settings Panel, Themed Images, Modal/Dialog, Tooltip/Popover, Accordion, Alert/Toast, Table, Avatar, Loading/Skeleton, Dropdown
 
 ---
 
@@ -87,14 +103,30 @@ the-fluid-theme-v2c/
 │   │   ├── reset.css        # Modern CSS reset
 │   │   ├── tokens.css       # Design tokens + palettes + motion
 │   │   └── base.css         # Element defaults
-│   ├── components/          # UI components
-│   │   ├── button.css       # Buttons (tsunami effects)
-│   │   ├── card.css         # Cards
-│   │   └── indicator.css    # Progress bars, badges, status
-│   ├── layouts/             # Layout patterns
-│   ├── themes/              # Theme variations
+│   ├── components/          # 17 UI components
+│   │   ├── button.css       # Buttons (5 variants, 5 sizes)
+│   │   ├── card.css         # Cards (5 variants, container-query)
+│   │   ├── nav.css          # Navigation, tabs, breadcrumbs, pagination
+│   │   ├── form.css         # Custom inputs, toggles, validation
+│   │   ├── hero.css         # Full-width hero sections
+│   │   ├── indicator.css    # Progress bars, badges, status
+│   │   ├── settings-panel.css # Theme/motion/palette controls
+│   │   ├── scroll-progress.css # Page scroll tracking bar
+│   │   ├── themed-images.css # Duotone filters, theme-aware overlays
+│   │   ├── modal.css        # Native <dialog>, drawer, bottom sheet
+│   │   ├── tooltip.css      # CSS-only tooltips, native popover API
+│   │   ├── accordion.css    # Native <details>/<summary>
+│   │   ├── alert.css        # Alerts + toast notifications
+│   │   ├── table.css        # Responsive, mobile stacked
+│   │   ├── avatar.css       # Sizes, initials, status, groups
+│   │   ├── loading.css      # Spinner, dots, skeleton screens
+│   │   └── dropdown.css     # Standalone menus, keyboard shortcuts
+│   ├── layouts/             # Layout patterns + utilities
+│   │   └── positioning.css  # Flex, grid, sidebar, dashboard, display
+│   ├── animations/          # Scroll reveal system
+│   │   └── scroll-reveal.css
 │   └── fluid.css            # Main entry point
-├── examples/                # Live examples
+├── examples/                # 7 demo pages
 │   ├── foundation.html      # Element showcase
 │   ├── components.html      # Component gallery
 │   ├── positioning.html     # Positioning system demo
@@ -102,6 +134,7 @@ the-fluid-theme-v2c/
 │   ├── indicators.html      # Status indicators demo
 │   ├── philosophy.html      # Fluid dynamics explanation
 │   └── hero-picker.html     # Interactive hero builder
+├── templates/               # 9 page templates
 ├── .github/workflows/       # GitHub Actions
 │   └── version-bump.yml     # Auto version on merge
 ├── CLAUDE.md                # AI assistant entry point
@@ -184,11 +217,11 @@ Perceptually uniform colors that derive mathematically:
 
 | Attribute | Values | Purpose |
 |-----------|--------|---------|
-| `data-theme` | `light`, `dark` | Color mode |
-| `data-motion` | `still`, `serene`, `trickling`, `flowing`, `rapids`, `tsunami` | Motion intensity |
-| `data-palette` | `fluid`, `morandi`, `bold`, `pastel`, `earth`, `mono`, `80s`, `matrix`, `subtle` | Color family |
+| `data-theme` | `light`, `dark`, `auto` | Color mode |
+| `data-motion` | `still`, `serene`, `stream`, `flowing`, `cascade`, `rapids`, `tsunami` | Motion intensity |
+| `data-palette` | `fluid`, `morandi`, `bold`, `pastel`, `earth`, `mono`, `80s`, `matrix`, `subtle`, `tsunami` | Color family |
 | `data-accent` | `1`-`6` | Accent color from palette |
-| `data-contrast` | `subdued` | Lower contrast mode |
+| `data-contrast` | `normal`, `subdued` | Contrast mode |
 | `data-status` | `good`, `moderate`, `severe`, `neutral` | Status indicator styling |
 
 ---
@@ -208,10 +241,12 @@ Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 1. Read [Architecture](architecture.md) for technical details
 2. See [Tokens Reference](reference/tokens.md) for available design tokens
-3. Visit [philosophy.html](../examples/philosophy.html) for fluid dynamics explanation
-4. Check [examples/](../examples/) for live demos
-5. Use [Gemini Prompt](gemini-child-theme-prompt.md) to create child themes
+3. See [Components Reference](reference/components.md) for all 17 components
+4. See [Positioning Reference](reference/positioning.md) for layout utilities
+5. Visit [philosophy.html](../examples/philosophy.html) for fluid dynamics explanation
+6. Check [examples/](../examples/) for live demos
+7. Use [Gemini Prompt](gemini-child-theme-prompt.md) to create child themes
 
 ---
 
-*Version 0.2.0 - December 2024*
+*Version 0.3.2 - February 2026*

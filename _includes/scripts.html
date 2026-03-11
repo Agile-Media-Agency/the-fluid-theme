@@ -32,6 +32,20 @@
         btn.removeAttribute('data-active');
       }
     });
+
+    // Update nav theme toggle button
+    const navToggle = document.querySelector('.nav__theme-toggle');
+    if (navToggle) {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      navToggle.setAttribute('data-theme', currentTheme || 'light');
+    }
+  }
+
+  // Toggle between light and dark theme (for nav button)
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setThemeMode(newTheme);
   }
 
   // Listen for system theme changes
@@ -198,6 +212,11 @@
     if (palette === 'fluid' && !accent) {
       updatePaletteSwatches();
     }
+
+    // Update nav preset name
+    if (typeof updateNavPresetName === 'function') {
+      updateNavPresetName();
+    }
   }
 
   function updateMotionSelect() {
@@ -216,13 +235,18 @@
   // Theme preset configurations
   // Each preset maps a motion style to its recommended palette and default accent
   const themePresets = {
+    // Water themes
     still: { motion: 'still', palette: 'mono', accent: '3' },        // Minimal, focused
     serene: { motion: 'serene', palette: 'morandi', accent: '2' },   // Calm, muted sage
     stream: { motion: 'stream', palette: 'subtle', accent: '2' },    // Modern teal
     flowing: { motion: 'flowing', palette: 'fluid', accent: null },  // Auto from motion
     cascade: { motion: 'cascade', palette: 'pastel', accent: '2' },  // Soft blue
     rapids: { motion: 'rapids', palette: 'bold', accent: '1' },      // Electric coral
-    tsunami: { motion: 'tsunami', palette: '80s', accent: '1' }      // Hot pink
+    tsunami: { motion: 'tsunami', palette: 'tsunami', accent: '4' }, // Deep ocean storm
+    // Signature presets
+    brutalist: { motion: 'brutalist', palette: 'brutalist', accent: '1' },    // Raw, technical
+    editorial: { motion: 'editorial', palette: 'editorial', accent: '1' },    // Literary, luxurious
+    neon: { motion: 'neon', palette: 'neon', accent: '1' }                    // Electric, futuristic
   };
 
   function setThemePreset(preset) {
@@ -250,6 +274,20 @@
     updatePaletteSwatches();
   }
 
+  // Preset display names for nav indicator
+  const presetDisplayNames = {
+    still: 'Still',
+    serene: 'Serene',
+    stream: 'Stream',
+    flowing: 'Flowing',
+    cascade: 'Cascade',
+    rapids: 'Rapids',
+    tsunami: 'Tsunami',
+    brutalist: 'Brutalist',
+    editorial: 'Editorial',
+    neon: 'Neon'
+  };
+
   function updateThemeCards() {
     const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
     document.querySelectorAll('.theme-card').forEach(card => {
@@ -259,6 +297,21 @@
         card.removeAttribute('data-active');
       }
     });
+
+    // Update nav preset name indicator
+    updateNavPresetName();
+  }
+
+  function updateNavPresetName() {
+    const el = document.getElementById('nav-preset-name');
+    if (!el) return;
+
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const name = presetDisplayNames[currentMotion] || currentMotion;
+    el.textContent = name;
+
+    // Set a data attribute for potential per-preset styling
+    el.setAttribute('data-preset', currentMotion);
   }
 
 
@@ -564,6 +617,7 @@
         updatePaletteUI();
         updateMotionSelect();
         updateThemeCards();
+        updateNavPresetName();
         initAnimatedProgress();
         initAutoStatus();
         initScrollProgress();
@@ -575,6 +629,7 @@
       updatePaletteUI();
       updateMotionSelect();
       updateThemeCards();
+      updateNavPresetName();
       initAnimatedProgress();
       initAutoStatus();
       initScrollProgress();

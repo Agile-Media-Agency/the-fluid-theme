@@ -60,6 +60,25 @@ nav: home
     </div>
   </button>
 
+  <button class="theme-grid__item" data-theme="flowing" onclick="setThemePreset('flowing'); updateThemeGrid();">
+    <img src="{{ '/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_3.png' | relative_url }}" alt="Flowing water">
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Flowing</h2>
+      <p class="theme-grid__desc">Balanced. The default.</p>
+      <span class="theme-grid__font">Outfit + Inter</span>
+      <span class="theme-grid__badge" style="margin-block-start: var(--space-2); font-size: var(--font-size-xs); background: var(--accent); color: var(--color-background); padding: var(--space-1) var(--space-2); border-radius: var(--radius-full);">Default</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="fluid">
+      <span style="--swatch: oklch(55% 0.15 220)"></span>
+      <span style="--swatch: oklch(60% 0.12 200)"></span>
+      <span style="--swatch: oklch(65% 0.10 180)"></span>
+      <span style="--swatch: oklch(70% 0.08 160)"></span>
+      <span style="--swatch: oklch(75% 0.06 140)"></span>
+      <span style="--swatch: oklch(80% 0.04 120)"></span>
+    </div>
+  </button>
+
   <button class="theme-grid__item" data-theme="cascade" onclick="setThemePreset('cascade'); updateThemeGrid();">
     <img src="{{ '/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png' | relative_url }}" alt="Cascading waterfall">
     <div class="theme-grid__overlay"></div>
@@ -113,6 +132,60 @@ nav: home
       <span style="--swatch: oklch(50% 0.20 260)"></span>
     </div>
   </button>
+
+  <button class="theme-grid__item" data-theme="brutalist" data-no-image onclick="setThemePreset('brutalist'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="brutalist"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Brutalist</h2>
+      <p class="theme-grid__desc">Raw. Monospace. Zero decoration.</p>
+      <span class="theme-grid__font">Space Mono</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="brutalist">
+      <span style="--swatch: oklch(0% 0 0)"></span>
+      <span style="--swatch: oklch(100% 0 0)"></span>
+      <span style="--swatch: oklch(50% 0 0)"></span>
+      <span style="--swatch: oklch(60% 0.25 25)"></span>
+      <span style="--swatch: oklch(25% 0 0)"></span>
+      <span style="--swatch: oklch(75% 0 0)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="editorial" data-no-image onclick="setThemePreset('editorial'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="editorial"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Editorial</h2>
+      <p class="theme-grid__desc">Literary. Serif. Generous whitespace.</p>
+      <span class="theme-grid__font">Playfair Display + Libre Baskerville</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="editorial">
+      <span style="--swatch: oklch(40% 0.08 30)"></span>
+      <span style="--swatch: oklch(55% 0.06 50)"></span>
+      <span style="--swatch: oklch(65% 0.04 70)"></span>
+      <span style="--swatch: oklch(35% 0.05 200)"></span>
+      <span style="--swatch: oklch(70% 0.03 90)"></span>
+      <span style="--swatch: oklch(45% 0.07 150)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="neon" data-no-image onclick="setThemePreset('neon'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="neon"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Neon</h2>
+      <p class="theme-grid__desc">Electric. Glowing. Cyberpunk.</p>
+      <span class="theme-grid__font">Orbitron + Exo 2</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="neon">
+      <span style="--swatch: oklch(70% 0.25 320)"></span>
+      <span style="--swatch: oklch(75% 0.22 190)"></span>
+      <span style="--swatch: oklch(80% 0.20 100)"></span>
+      <span style="--swatch: oklch(65% 0.28 290)"></span>
+      <span style="--swatch: oklch(75% 0.18 50)"></span>
+      <span style="--swatch: oklch(60% 0.25 250)"></span>
+    </div>
+  </button>
 </section>
 
 <!-- Hero Section -->
@@ -137,8 +210,9 @@ nav: home
   <section class="section" data-layout="center" data-padding="md" data-bg="tinted">
     <h2>Choose Your Theme</h2>
     <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto; margin-block-end: var(--space-6);">
-      Seven complete themes with motion, colors, fonts, and layout.
+      Ten complete themes with motion, colors, fonts, and layout.
     </p>
+
     <div class="theme-chips">
       <button class="theme-chip" data-theme-preset="still" onclick="setThemePreset('still')">
         <span class="theme-chip__dot" style="--chip-color: var(--gray-50);"></span>
@@ -166,8 +240,20 @@ nav: home
         Rapids
       </button>
       <button class="theme-chip" data-theme-preset="tsunami" onclick="setThemePreset('tsunami')">
-        <span class="theme-chip__dot" style="--chip-color: oklch(0.55 0.25 320);"></span>
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.35 0.12 210);"></span>
         Tsunami
+      </button>
+      <button class="theme-chip" data-theme-preset="brutalist" onclick="setThemePreset('brutalist')">
+        <span class="theme-chip__dot" style="--chip-color: var(--black);"></span>
+        Brutalist
+      </button>
+      <button class="theme-chip" data-theme-preset="editorial" onclick="setThemePreset('editorial')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.40 0.08 30);"></span>
+        Editorial
+      </button>
+      <button class="theme-chip" data-theme-preset="neon" onclick="setThemePreset('neon')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.70 0.25 320);"></span>
+        Neon
       </button>
     </div>
   </section>
@@ -184,7 +270,7 @@ nav: home
       <a href="{{ '/examples/components.html' | relative_url }}" class="card" data-interactive>
         <div class="card__content">
           <h3 class="card__title">Components</h3>
-          <p class="card__description">Buttons, cards, navigation, form controls.</p>
+          <p class="card__description">17 UI components — buttons, cards, modals, tooltips, and more.</p>
         </div>
       </a>
       <a href="{{ '/examples/positioning.html' | relative_url }}" class="card" data-interactive>
@@ -213,7 +299,7 @@ nav: home
     <div class="grid" style="--grid-min: 14rem; margin-block-start: var(--space-6);">
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">7 Complete Themes</h4>
+          <h4 class="card__title">10 Complete Themes</h4>
           <p class="card__description">Motion, colors, fonts, layout</p>
         </div>
       </div>
@@ -225,7 +311,7 @@ nav: home
       </div>
       <div class="card" data-variant="filled">
         <div class="card__content" data-align="center">
-          <h4 class="card__title">9 Color Palettes</h4>
+          <h4 class="card__title">10 Color Palettes</h4>
           <p class="card__description">OKLCH-based, perceptually uniform</p>
         </div>
       </div>
@@ -286,19 +372,22 @@ nav: home
   .theme-grid-hero {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
     /* Fit in viewport below nav (~60px) */
-    block-size: calc(100svh - 4rem);
-    max-block-size: calc(100svh - 4rem);
+    min-block-size: calc(100svh - 4rem);
     gap: 2px;
     background: var(--color-background);
   }
 
-  /* Landscape: 3 columns, 2 rows */
+  /* Last item spans full width as a dramatic banner (works for odd item counts) */
+  .theme-grid-hero > .theme-grid__item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Landscape: 3 columns */
   @media (orientation: landscape) {
     .theme-grid-hero {
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
     }
   }
 
@@ -358,7 +447,50 @@ nav: home
   }
 
   .theme-grid__item[data-theme="tsunami"] .theme-grid__overlay {
-    background: linear-gradient(135deg, oklch(0.35 0.25 300) 0%, oklch(0.55 0.20 340) 100%);
+    background: linear-gradient(135deg, oklch(0.20 0.08 250) 0%, oklch(0.35 0.12 210) 100%);
+  }
+
+  /* Placeholder backgrounds for presets without images */
+  .theme-grid__placeholder {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  /* Brutalist: Stark grid pattern */
+  .theme-grid__placeholder[data-preset="brutalist"] {
+    background:
+      linear-gradient(90deg, var(--black) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(0deg, var(--black) 1px, transparent 1px) 0 0 / 40px 40px,
+      var(--white);
+  }
+  .theme-grid__item[data-theme="brutalist"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.10 0 0) 0%, oklch(0.30 0 0) 100%);
+  }
+
+  /* Editorial: Warm paper texture gradient */
+  .theme-grid__placeholder[data-preset="editorial"] {
+    background: linear-gradient(135deg,
+      oklch(0.92 0.02 60) 0%,
+      oklch(0.88 0.03 50) 50%,
+      oklch(0.85 0.02 70) 100%);
+  }
+  .theme-grid__item[data-theme="editorial"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.35 0.06 40) 0%, oklch(0.60 0.04 60) 100%);
+  }
+
+  /* Neon: Dark with glowing accent lines */
+  .theme-grid__placeholder[data-preset="neon"] {
+    background:
+      radial-gradient(ellipse at 30% 70%, oklch(0.50 0.25 320 / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, oklch(0.60 0.22 190 / 0.3) 0%, transparent 50%),
+      linear-gradient(135deg, oklch(0.08 0.02 280) 0%, oklch(0.12 0.03 300) 100%);
+  }
+  .theme-grid__item[data-theme="neon"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.15 0.10 280) 0%, oklch(0.25 0.15 320) 100%);
+    mix-blend-mode: screen;
+    opacity: 0.6;
   }
 
   /* Content overlay */
@@ -467,6 +599,187 @@ nav: home
     outline-offset: -3px;
     z-index: 1;
   }
+
+
+  /* ========================================
+     THEME-SPECIFIC GRID ITEM SHAPES
+     Each theme has distinctive border-radius
+     ======================================== */
+
+  /* Default: Standard grid with small gap */
+  .theme-grid-hero {
+    gap: var(--grid-gap, 2px);
+    padding: var(--grid-padding, 0);
+  }
+
+  .theme-grid__item {
+    border-radius: var(--item-radius, 0);
+    transform: var(--item-transform, none);
+    box-shadow: var(--item-shadow, none);
+    margin: var(--item-margin, 0);
+  }
+
+  /* ----------------------------------------
+     STILL: Zero space, items touch, sharp
+     ---------------------------------------- */
+  [data-motion="still"] .theme-grid-hero {
+    --grid-gap: 0;
+    --grid-padding: 0;
+  }
+  [data-motion="still"] .theme-grid__item {
+    --item-radius: 0;
+  }
+
+  /* ----------------------------------------
+     SERENE: Generous whitespace, soft corners
+     ---------------------------------------- */
+  [data-motion="serene"] .theme-grid-hero {
+    --grid-gap: var(--space-6);
+    --grid-padding: var(--space-6);
+    background: var(--color-surface);
+  }
+  [data-motion="serene"] .theme-grid__item {
+    --item-radius: 24px;
+    --item-shadow: 0 8px 32px oklch(0 0 0 / 0.1);
+  }
+
+  /* ----------------------------------------
+     STREAM: Small padding, clean
+     ---------------------------------------- */
+  [data-motion="stream"] .theme-grid-hero {
+    --grid-gap: var(--space-3);
+    --grid-padding: var(--space-3);
+  }
+  [data-motion="stream"] .theme-grid__item {
+    --item-radius: 12px;
+  }
+
+  /* ----------------------------------------
+     FLOWING: Horizontal carousel (single row)
+     Auto-scrolling, swipeable, loops
+     ---------------------------------------- */
+  [data-motion="flowing"] .theme-grid-hero {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    --grid-gap: var(--space-4);
+    --grid-padding: var(--space-4);
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  [data-motion="flowing"] .theme-grid-hero::-webkit-scrollbar {
+    display: none;
+  }
+  [data-motion="flowing"] .theme-grid__item {
+    flex: 0 0 45%;
+    min-inline-size: 280px;
+    max-inline-size: 400px;
+    aspect-ratio: 3/4;
+    scroll-snap-align: center;
+    --item-radius: 16px;
+  }
+  @media (min-width: 768px) {
+    [data-motion="flowing"] .theme-grid__item {
+      flex: 0 0 30%;
+      max-inline-size: 350px;
+    }
+  }
+
+  /* ----------------------------------------
+     CASCADE: Large rounded, spacing, shadows
+     Bubbly, friendly, elevated
+     ---------------------------------------- */
+  [data-motion="cascade"] .theme-grid-hero {
+    --grid-gap: var(--space-5);
+    --grid-padding: var(--space-5);
+    background: linear-gradient(135deg, oklch(0.96 0.02 200) 0%, oklch(0.98 0.01 100) 100%);
+  }
+  [data-motion="cascade"] .theme-grid__item {
+    --item-radius: 32px;
+    --item-shadow:
+      0 4px 12px oklch(0 0 0 / 0.08),
+      0 12px 32px oklch(0 0 0 / 0.12);
+  }
+  [data-motion="cascade"] .theme-grid__item:hover {
+    box-shadow:
+      0 8px 24px oklch(0 0 0 / 0.1),
+      0 24px 48px oklch(0 0 0 / 0.15);
+  }
+
+  /* ----------------------------------------
+     RAPIDS: Skewed, angled, aggressive
+     Sports/action/fitness feel
+     ---------------------------------------- */
+  [data-motion="rapids"] .theme-grid-hero {
+    --grid-gap: var(--space-3);
+    --grid-padding: var(--space-4);
+    background: oklch(0.15 0.02 250);
+  }
+  [data-motion="rapids"] .theme-grid__item {
+    --item-radius: 4px;
+    --item-transform: skewY(-2deg);
+    --item-shadow: 4px 4px 0 oklch(0 0 0 / 0.3);
+  }
+  [data-motion="rapids"] .theme-grid__item:nth-child(even) {
+    --item-transform: skewY(2deg);
+  }
+  [data-motion="rapids"] .theme-grid__item:hover {
+    transform: skewY(-2deg) scale(1.03);
+    z-index: 2;
+  }
+  [data-motion="rapids"] .theme-grid__item:nth-child(even):hover {
+    transform: skewY(2deg) scale(1.03);
+  }
+  /* Bold italic text for Rapids */
+  [data-motion="rapids"] .theme-grid__name {
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  /* ----------------------------------------
+     TSUNAMI: Depth/layered effect
+     3D perspective, dramatic shadows
+     ---------------------------------------- */
+  [data-motion="tsunami"] .theme-grid-hero {
+    --grid-gap: var(--space-2);
+    --grid-padding: var(--space-2);
+    background: oklch(0.08 0.03 260);
+    perspective: 1000px;
+  }
+  [data-motion="tsunami"] .theme-grid__item {
+    --item-radius: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --item-shadow:
+      0 20px 40px oklch(0 0 0 / 0.4),
+      0 0 0 1px oklch(1 0 0 / 0.1) inset;
+  }
+  [data-motion="tsunami"] .theme-grid__item:hover {
+    transform: translateZ(30px) scale(1.02);
+    z-index: 10;
+    box-shadow:
+      0 30px 60px oklch(0 0 0 / 0.5),
+      0 0 0 2px var(--accent) inset,
+      0 0 60px oklch(from var(--accent) l c h / 0.3);
+  }
+  /* Staggered depth for visual interest */
+  [data-motion="tsunami"] .theme-grid__item:nth-child(1) { transform: translateZ(10px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(2) { transform: translateZ(5px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(3) { transform: translateZ(15px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(4) { transform: translateZ(8px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(7) { transform: translateZ(18px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(8) { transform: translateZ(6px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(9) { transform: translateZ(14px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(10) { transform: translateZ(9px); }
 
 
   /* ========================================
@@ -670,4 +983,65 @@ nav: home
 
   // Call on page load
   document.addEventListener('DOMContentLoaded', updateThemeGrid);
+
+  // ========================================
+  // FLOWING CAROUSEL - Auto-scroll
+  // ========================================
+  let flowingScrollInterval = null;
+  let flowingScrollPaused = false;
+
+  function initFlowingCarousel() {
+    const grid = document.querySelector('.theme-grid-hero');
+    if (!grid) return;
+
+    const isFlowing = document.documentElement.getAttribute('data-motion') === 'flowing';
+
+    // Clear any existing interval
+    if (flowingScrollInterval) {
+      clearInterval(flowingScrollInterval);
+      flowingScrollInterval = null;
+    }
+
+    if (!isFlowing) return;
+
+    // Start scrolled to show last item peeking
+    setTimeout(() => {
+      grid.scrollLeft = grid.scrollWidth - grid.clientWidth - 50;
+    }, 100);
+
+    // Auto-scroll slowly to the right
+    flowingScrollInterval = setInterval(() => {
+      if (flowingScrollPaused) return;
+
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+
+      // Scroll right slowly
+      grid.scrollLeft += 0.5;
+
+      // Loop back when reaching the end
+      if (grid.scrollLeft >= maxScroll) {
+        grid.scrollLeft = 0;
+      }
+    }, 30);
+
+    // Pause on hover/touch
+    grid.addEventListener('mouseenter', () => { flowingScrollPaused = true; });
+    grid.addEventListener('mouseleave', () => { flowingScrollPaused = false; });
+    grid.addEventListener('touchstart', () => { flowingScrollPaused = true; }, { passive: true });
+    grid.addEventListener('touchend', () => {
+      setTimeout(() => { flowingScrollPaused = false; }, 2000);
+    }, { passive: true });
+  }
+
+  // Initialize on load and theme change
+  document.addEventListener('DOMContentLoaded', initFlowingCarousel);
+
+  // Re-init when theme changes (wrap setThemePreset)
+  const originalSetThemePreset = window.setThemePreset;
+  if (originalSetThemePreset) {
+    window.setThemePreset = function(preset) {
+      originalSetThemePreset(preset);
+      setTimeout(initFlowingCarousel, 50);
+    };
+  }
 </script>
