@@ -1,0 +1,192 @@
+/**
+ * Fluid Framework - Avatar Component
+ * @layer components
+ *
+ * Avatars display user profile images or initials.
+ * Supports sizes, groups, status indicators, and fallbacks.
+ *
+ * Usage:
+ *   <div class="avatar">
+ *     <img src="photo.jpg" alt="Jane Doe">
+ *   </div>
+ *
+ *   <!-- With initials fallback -->
+ *   <div class="avatar" data-initials="JD"></div>
+ *
+ *   <!-- With status -->
+ *   <div class="avatar" data-status="online">
+ *     <img src="photo.jpg" alt="Jane Doe">
+ *   </div>
+ *
+ * Sizes: data-size="xs|sm|lg|xl|2xl"
+ * Shapes: data-shape="square|rounded" (default: circle)
+ * Groups: <div class="avatar-group">...</div>
+ */
+
+@layer components {
+  /* ========================================
+     BASE AVATAR
+     ======================================== */
+
+  .avatar {
+    --_avatar-size: 2.5rem;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    inline-size: var(--_avatar-size);
+    block-size: var(--_avatar-size);
+    border-radius: var(--radius-full);
+    background: color-mix(in oklch, var(--accent) 20%, var(--color-surface));
+    color: var(--accent);
+    font-weight: var(--weight-semibold);
+    font-size: calc(var(--_avatar-size) * 0.4);
+    line-height: 1;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* Image inside avatar */
+  .avatar img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  /* Initials fallback (when no image) */
+  .avatar[data-initials]::before {
+    content: attr(data-initials);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  /* Border ring */
+  .avatar[data-ring] {
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--accent);
+  }
+
+
+  /* ========================================
+     SIZE VARIANTS
+     ======================================== */
+
+  .avatar[data-size="xs"] { --_avatar-size: 1.5rem; }
+  .avatar[data-size="sm"] { --_avatar-size: 2rem; }
+  /* default: 2.5rem */
+  .avatar[data-size="lg"] { --_avatar-size: 3rem; }
+  .avatar[data-size="xl"] { --_avatar-size: 4rem; }
+  .avatar[data-size="2xl"] { --_avatar-size: 5rem; }
+
+
+  /* ========================================
+     SHAPE VARIANTS
+     ======================================== */
+
+  .avatar[data-shape="square"] {
+    border-radius: var(--radius-md);
+  }
+
+  .avatar[data-shape="rounded"] {
+    border-radius: var(--radius-lg);
+  }
+
+
+  /* ========================================
+     STATUS INDICATOR
+     ======================================== */
+
+  .avatar[data-status]::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    inline-size: calc(var(--_avatar-size) * 0.3);
+    block-size: calc(var(--_avatar-size) * 0.3);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-background);
+    background: var(--color-text-subtle);
+  }
+
+  .avatar[data-status="online"]::after {
+    background: var(--color-success);
+  }
+
+  .avatar[data-status="busy"]::after {
+    background: var(--color-error);
+  }
+
+  .avatar[data-status="away"]::after {
+    background: var(--color-warning);
+  }
+
+  .avatar[data-status="offline"]::after {
+    background: var(--color-text-subtle);
+  }
+
+  /* Don't show status dot on initials-only avatars unless explicitly set */
+  .avatar[data-initials]:not([data-status])::after {
+    display: none;
+  }
+
+
+  /* ========================================
+     AVATAR GROUP
+     Overlapping stack
+     ======================================== */
+
+  .avatar-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar-group .avatar {
+    box-shadow: 0 0 0 2px var(--color-background);
+    transition: transform var(--duration-fast) var(--ease-settle);
+  }
+
+  .avatar-group .avatar + .avatar {
+    margin-inline-start: calc(var(--_avatar-size) * -0.3);
+  }
+
+  .avatar-group .avatar:hover {
+    z-index: var(--z-raised);
+    transform: scale(1.1);
+  }
+
+  /* Overflow counter: +5 more */
+  .avatar-group__overflow {
+    --_avatar-size: 2.5rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--_avatar-size);
+    block-size: var(--_avatar-size);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border-subtle);
+    font-size: var(--font-size-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-muted);
+    margin-inline-start: calc(var(--_avatar-size) * -0.3);
+    box-shadow: 0 0 0 2px var(--color-background);
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Tsunami: asymmetric corners on square */
+  [data-motion="tsunami"] .avatar[data-shape="square"] {
+    border-radius: var(--radius-asymmetric, 0 12px 0 0);
+  }
+
+  /* Rapids: hard shadow on group */
+  [data-motion="rapids"] .avatar-group .avatar {
+    box-shadow: 2px 2px 0 oklch(0 0 0 / 0.1), 0 0 0 2px var(--color-background);
+  }
+}

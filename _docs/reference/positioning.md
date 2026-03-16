@@ -1,5 +1,7 @@
 # Positioning System Reference
 
+[Live demo](https://thefluidtheme.com/examples/positioning.html) | [TheFluidTheme.com](https://thefluidtheme.com)
+
 The positioning system lets you control layout and alignment using data attributes. Same HTML, different layouts - just change an attribute.
 
 ---
@@ -258,6 +260,147 @@ You can customize layouts with CSS custom properties:
 
 ---
 
+## Flex Utilities
+
+Composable flex layout controls via data attributes.
+
+### Direction
+```html
+<div data-flex="row">Horizontal (default)</div>
+<div data-flex="col">Vertical</div>
+<div data-flex="row-reverse">Reversed horizontal</div>
+<div data-flex="col-reverse">Reversed vertical</div>
+```
+
+### Wrap & Child Controls
+```html
+<div data-flex="row" data-wrap><!-- Wraps --></div>
+<div data-flex="row" data-wrap="nowrap"><!-- No wrap --></div>
+<div data-grow><!-- flex-grow: 1 --></div>
+<div data-shrink="0"><!-- flex-shrink: 0 --></div>
+```
+
+### Flex Basis
+```html
+<div data-basis="full"><!-- 100% --></div>
+<div data-basis="half"><!-- 50% --></div>
+<div data-basis="third"><!-- 33.333% --></div>
+<div data-basis="quarter"><!-- 25% --></div>
+```
+
+---
+
+## Grid Utilities
+
+### Explicit Columns
+```html
+<div data-grid="2">Two columns</div>
+<div data-grid="3">Three columns</div>
+<div data-grid="4">Four columns</div>
+```
+
+All collapse to 1 column on mobile (`< 40rem`), and 3/4-col grids collapse to 2 columns on tablet (`40-64rem`).
+
+### Auto-fit Responsive Grids
+```html
+<div data-grid="auto-sm">Auto-fit, min 12rem per item</div>
+<div data-grid="auto">Auto-fit, min 16rem per item</div>
+<div data-grid="auto-lg">Auto-fit, min 22rem per item</div>
+```
+
+### Grid Span
+```html
+<div data-span="2">Span 2 columns</div>
+<div data-span="3">Span 3 columns</div>
+<div data-span="full">Span all columns</div>
+```
+
+---
+
+## Structural Layouts
+
+### Sidebar
+```html
+<div data-layout="sidebar">
+  <aside>Sidebar (12-16rem)</aside>
+  <main>Main content</main>
+</div>
+
+<div data-layout="sidebar-right">
+  <main>Main content</main>
+  <aside>Right sidebar</aside>
+</div>
+```
+
+Both stack on screens narrower than `48rem`.
+
+### Holy Grail
+```html
+<div data-layout="holy-grail">
+  <aside>Left sidebar</aside>
+  <main>Main content</main>
+  <aside>Right sidebar</aside>
+</div>
+```
+
+Stacks to single column on screens narrower than `64rem`.
+
+### Dashboard
+```html
+<div data-layout="dashboard">
+  <div class="card">Widget 1</div>
+  <div class="card">Widget 2</div>
+  <div class="card">Widget 3</div>
+</div>
+```
+
+Dense auto-fill grid, min 18rem per item.
+
+---
+
+## Position Utilities
+
+```html
+<div data-position="sticky">Sticky to top</div>
+<div data-position="relative">Relative positioned</div>
+```
+
+### Overflow
+```html
+<div data-overflow="hidden">Hidden</div>
+<div data-overflow="auto">Auto scroll</div>
+<div data-overflow="scroll">Always scroll</div>
+```
+
+### Z-Index
+```html
+<div data-z="base">Base layer</div>
+<div data-z="raised">Raised</div>
+<div data-z="dropdown">Dropdown level</div>
+<div data-z="overlay">Overlay level</div>
+```
+
+---
+
+## Display Utilities
+
+```html
+<div data-display="none">Hidden</div>
+<div data-display="block">Block</div>
+<div data-display="inline">Inline</div>
+<div data-display="inline-flex">Inline flex</div>
+<div data-display="inline-block">Inline block</div>
+```
+
+### Responsive Visibility
+```html
+<div data-hide="mobile">Hidden below 40rem</div>
+<div data-hide="tablet">Hidden 40-64rem</div>
+<div data-hide="desktop">Hidden above 64rem</div>
+```
+
+---
+
 ## Complete Example
 
 ```html
@@ -278,14 +421,20 @@ You can customize layouts with CSS custom properties:
   <img src="feature.jpg" alt="Feature">
 </section>
 
-<!-- Alternate Feature: Split Reverse -->
-<section class="section" data-layout="split-reverse">
-  <div data-layout="stack" data-gap="md">
-    <h2>Another Feature</h2>
-    <p>Description here.</p>
-  </div>
-  <img src="feature2.jpg" alt="Feature">
+<!-- Dashboard Layout -->
+<section class="section" data-layout="dashboard">
+  <article class="card">Widget 1</article>
+  <article class="card">Widget 2</article>
+  <article class="card">Widget 3</article>
+  <article class="card">Widget 4</article>
 </section>
+
+<!-- Grid with spans -->
+<div data-grid="3" data-gap="lg">
+  <div data-span="2">Wide item (spans 2 columns)</div>
+  <div>Regular item</div>
+  <div data-span="full">Full width item</div>
+</div>
 
 <!-- CTA Section: Center with narrow width -->
 <section class="section" data-layout="center" data-width="narrow" data-padding="xl">

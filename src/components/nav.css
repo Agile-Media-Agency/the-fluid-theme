@@ -64,8 +64,9 @@
   }
 
 
-  /* Brand / Logo */
+  /* Brand / Logo - adopts active preset's font */
   .nav__brand {
+    font-family: var(--font-heading, var(--font-body, var(--font-system)));
     font-size: var(--font-size-lg);
     font-weight: var(--weight-semibold);
     color: var(--color-text);
@@ -74,7 +75,9 @@
     align-items: center;
     gap: var(--space-2);
     flex-shrink: 0;
-    transition: opacity var(--duration-normal) var(--ease-fluid);
+    transition:
+      opacity var(--duration-normal) var(--ease-fluid),
+      font-family var(--duration-normal) var(--ease-fluid);
   }
 
   .nav__brand:hover {
@@ -85,6 +88,25 @@
   .nav__brand svg {
     block-size: 2rem;
     inline-size: auto;
+  }
+
+  /* Active preset name indicator */
+  .nav__preset-name {
+    font-family: var(--font-heading, var(--font-body, var(--font-system)));
+    font-size: var(--font-size-xs);
+    font-weight: var(--weight-medium);
+    color: var(--accent);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition:
+      color var(--duration-normal) var(--ease-fluid),
+      font-family var(--duration-normal) var(--ease-fluid);
+  }
+
+  .nav__preset-name:empty {
+    display: none;
   }
 
 
@@ -196,8 +218,8 @@
   }
 
   .nav__dropdown-trigger svg {
-    width: 1em;
-    height: 1em;
+    inline-size: 1em;
+    block-size: 1em;
     transition: transform var(--duration-normal) var(--ease-fluid);
   }
 

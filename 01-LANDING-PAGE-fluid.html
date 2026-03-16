@@ -1,0 +1,2579 @@
+<!DOCTYPE html>
+<html lang="en" data-motion="cascade">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Setup Sunday - 90-Minute AI Automation Workshop for Small Business</title>
+    <meta name="description" content="Learn 3 real AI automations for your business in 90 minutes. Join 150+ small business owners every Sunday at 6PM ET. $47 only.">
+    <meta name="theme-color" content="#2563eb">
+
+    <style>
+        @layer reset, tokens, base, layouts, components, utilities;
+
+        /* ========================================
+           LAYER: RESET
+           Modern CSS Reset
+           ======================================== */
+        @layer reset {
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+            }
+
+            :where(html) {
+                block-size: 100%;
+                color-scheme: light dark;
+                hanging-punctuation: first last;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+                -moz-text-size-adjust: 100%;
+            }
+
+            :where(body) {
+                min-block-size: 100%;
+                line-height: 1.6;
+                font-family: var(--font-system, system-ui, -apple-system, sans-serif);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+
+            :where(img, picture, video, canvas, svg) {
+                display: block;
+                max-inline-size: 100%;
+                block-size: auto;
+            }
+
+            :where(input, button, textarea, select) {
+                font: inherit;
+                color: inherit;
+            }
+
+            :where(textarea) {
+                resize: vertical;
+            }
+
+            :where(p, h1, h2, h3, h4, h5, h6, li, figcaption) {
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+
+            :where(h1, h2, h3, h4, h5, h6) {
+                line-height: 1.2;
+                text-wrap: balance;
+            }
+
+            :where(p) {
+                text-wrap: pretty;
+            }
+
+            :where(ul, ol)[role="list"],
+            :where(ul, ol)[role="navigation"] {
+                list-style: none;
+                padding: 0;
+            }
+
+            :where(a) {
+                color: inherit;
+                text-underline-offset: 0.2em;
+            }
+
+            :where(a[href^="#"]) {
+                scroll-margin-block-start: 2rem;
+            }
+
+            :focus-visible {
+                outline: 2px solid var(--color-focus, currentColor);
+                outline-offset: 3px;
+                border-radius: 2px;
+            }
+
+            :focus:not(:focus-visible) {
+                outline: none;
+            }
+
+            :where(table) {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+
+            :where(fieldset) {
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            :where(legend) {
+                padding: 0;
+            }
+
+            :where(summary) {
+                cursor: pointer;
+            }
+
+            :where(dialog) {
+                padding: 0;
+                border: none;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                    scroll-behavior: auto !important;
+                }
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                :where(html:focus-within) {
+                    scroll-behavior: smooth;
+                }
+            }
+        }
+
+        /* ========================================
+           LAYER: TOKENS
+           Design System Variables
+           ======================================== */
+        @layer tokens {
+            :root {
+                /* OKLCH COLOR SYSTEM */
+                --black: oklch(0% 0 0);
+                --white: oklch(100% 0 0);
+
+                /* GRAY SCALE */
+                --gray-5:  oklch(5% 0 0);
+                --gray-10: oklch(10% 0 0);
+                --gray-15: oklch(15% 0 0);
+                --gray-20: oklch(20% 0 0);
+                --gray-25: oklch(25% 0 0);
+                --gray-30: oklch(30% 0 0);
+                --gray-35: oklch(35% 0 0);
+                --gray-40: oklch(40% 0 0);
+                --gray-45: oklch(45% 0 0);
+                --gray-50: oklch(50% 0 0);
+                --gray-55: oklch(55% 0 0);
+                --gray-60: oklch(60% 0 0);
+                --gray-65: oklch(65% 0 0);
+                --gray-70: oklch(70% 0 0);
+                --gray-75: oklch(75% 0 0);
+                --gray-80: oklch(80% 0 0);
+                --gray-85: oklch(85% 0 0);
+                --gray-90: oklch(90% 0 0);
+                --gray-95: oklch(95% 0 0);
+                --gray-98: oklch(98% 0 0);
+
+                /* THEME FOUNDATION */
+                --theme-dark: var(--black);
+                --theme-light: var(--white);
+
+                /* ACCENT COLOR - Professional blue-teal */
+                --accent: oklch(50% 0.21 220);
+                --accent-subtle: color-mix(in oklch, var(--accent) 15%, var(--theme-light));
+                --accent-hover: oklch(45% 0.23 215);
+                --accent-active: oklch(40% 0.25 210);
+
+                /* SEMANTIC COLORS: Light Mode */
+                --color-text: var(--gray-15);
+                --color-text-muted: var(--gray-40);
+                --color-text-subtle: var(--gray-55);
+
+                --color-background: var(--white);
+                --color-surface: var(--gray-98);
+                --color-surface-raised: var(--white);
+
+                --color-border: var(--gray-85);
+                --color-border-subtle: var(--gray-90);
+
+                --color-focus: var(--accent);
+                --color-selection: var(--accent-subtle);
+
+                /* FEEDBACK COLORS */
+                --color-success: oklch(55% 0.15 145);
+                --color-warning: oklch(70% 0.15 70);
+                --color-error: oklch(55% 0.18 25);
+                --color-info: oklch(55% 0.12 240);
+
+                --color-success-subtle: oklch(95% 0.03 145);
+                --color-warning-subtle: oklch(95% 0.04 70);
+                --color-error-subtle: oklch(95% 0.03 25);
+                --color-info-subtle: oklch(95% 0.02 240);
+
+                /* SHADOW COLOR */
+                --shadow-color: var(--theme-dark);
+                --shadow-opacity: 0.08;
+
+                /* TYPOGRAPHY */
+                --font-system: system-ui, -apple-system, "Segoe UI", Roboto,
+                               "Helvetica Neue", Arial, sans-serif;
+                --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino,
+                              Georgia, serif;
+                --font-mono: ui-monospace, "SF Mono", "Cascadia Code",
+                             "Source Code Pro", Menlo, monospace;
+
+                --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+                --font-size-xs: clamp(0.75rem, 0.73rem + 0.09vw, 0.8125rem);
+                --font-size-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.9375rem);
+                --font-size-md: var(--font-size-base);
+                --font-size-lg: clamp(1.125rem, 1.05rem + 0.36vw, 1.25rem);
+                --font-size-xl: clamp(1.25rem, 1.12rem + 0.63vw, 1.5rem);
+                --font-size-2xl: clamp(1.5rem, 1.29rem + 1.04vw, 1.875rem);
+                --font-size-3xl: clamp(1.75rem, 1.43rem + 1.61vw, 2.375rem);
+                --font-size-4xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+                --font-size-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 3.75rem);
+
+                /* LINE HEIGHTS */
+                --leading-none: 1;
+                --leading-tight: 1.2;
+                --leading-snug: 1.35;
+                --leading-normal: 1.6;
+                --leading-relaxed: 1.75;
+                --leading-loose: 2;
+
+                /* LETTER SPACING */
+                --tracking-tight: -0.025em;
+                --tracking-normal: 0;
+                --tracking-wide: 0.025em;
+                --tracking-wider: 0.05em;
+
+                /* FONT WEIGHTS */
+                --weight-light: 300;
+                --weight-normal: 400;
+                --weight-medium: 500;
+                --weight-semibold: 600;
+                --weight-bold: 700;
+
+                /* SPACING SYSTEM */
+                --space-0: 0;
+                --space-px: 1px;
+                --space-0-5: 0.125rem;
+                --space-1: 0.25rem;
+                --space-1-5: 0.375rem;
+                --space-2: 0.5rem;
+                --space-3: 0.75rem;
+                --space-4: 1rem;
+                --space-5: 1.25rem;
+                --space-6: 1.5rem;
+                --space-8: 2rem;
+                --space-10: 2.5rem;
+                --space-12: 3rem;
+                --space-16: 4rem;
+                --space-20: 5rem;
+                --space-24: 6rem;
+
+                --space-gutter: var(--space-5);
+                --space-section: var(--space-16);
+
+                /* CONTAINERS */
+                --container-xs: 20rem;
+                --container-sm: 32rem;
+                --container-md: 48rem;
+                --container-lg: 64rem;
+                --container-xl: 80rem;
+                --container-2xl: 96rem;
+                --container-prose: 65ch;
+
+                /* ANIMATION */
+                --motion-base: 467ms;
+                --duration-instant: 137ms;
+                --duration-fast: calc(var(--motion-base) * 0.73);
+                --duration-normal: var(--motion-base);
+                --duration-slow: calc(var(--motion-base) * 1.37);
+                --duration-slower: calc(var(--motion-base) * 1.73);
+                --duration-slowest: calc(var(--motion-base) * 2.37);
+
+                --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+                --ease-in: cubic-bezier(0.4, 0, 1, 1);
+                --ease-out: cubic-bezier(0, 0, 0.2, 1);
+                --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+                --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
+                --ease-fluid-in: cubic-bezier(0.55, 0, 1, 0.45);
+                --ease-fluid-out: cubic-bezier(0, 0.55, 0.45, 1);
+                --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+
+                /* BORDERS & RADII */
+                --radius-none: 0;
+                --radius-sm: 0.25rem;
+                --radius-md: 0.5rem;
+                --radius-lg: 0.75rem;
+                --radius-xl: 1rem;
+                --radius-2xl: 1.5rem;
+                --radius-full: 9999px;
+
+                --border-width: 1px;
+                --border-width-thick: 2px;
+
+                /* SHADOWS */
+                --shadow-xs:
+                    0 1px 2px oklch(from var(--shadow-color) l c h / 0.04),
+                    0 1px 3px oklch(from var(--shadow-color) l c h / 0.06);
+
+                --shadow-sm:
+                    0 2px 4px oklch(from var(--shadow-color) l c h / 0.04),
+                    0 3px 6px oklch(from var(--shadow-color) l c h / 0.06);
+
+                --shadow-md:
+                    0 4px 8px oklch(from var(--shadow-color) l c h / 0.04),
+                    0 6px 12px oklch(from var(--shadow-color) l c h / 0.08);
+
+                --shadow-lg:
+                    0 8px 16px oklch(from var(--shadow-color) l c h / 0.04),
+                    0 12px 24px oklch(from var(--shadow-color) l c h / 0.08);
+
+                --shadow-xl:
+                    0 16px 32px oklch(from var(--shadow-color) l c h / 0.06),
+                    0 24px 48px oklch(from var(--shadow-color) l c h / 0.1);
+
+                --shadow-inset: inset 0 2px 4px oklch(from var(--shadow-color) l c h / 0.06);
+                --shadow-glow: 0 0 0 3px color-mix(in oklch, var(--accent) 30%, transparent);
+
+                /* Z-INDEX */
+                --z-base: 0;
+                --z-raised: 1;
+                --z-dropdown: 1000;
+                --z-sticky: 1100;
+                --z-overlay: 1200;
+                --z-modal: 1300;
+                --z-popover: 1400;
+                --z-toast: 1500;
+                --z-tooltip: 1600;
+                --z-max: 9999;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --color-text: oklch(92% 0.01 220);
+                    --color-text-muted: oklch(65% 0.01 220);
+                    --color-text-subtle: oklch(50% 0.01 220);
+
+                    --color-background: oklch(13% 0.02 230);
+                    --color-surface: oklch(17% 0.02 230);
+                    --color-surface-raised: oklch(21% 0.02 230);
+
+                    --color-border: oklch(25% 0.025 230);
+                    --color-border-subtle: oklch(20% 0.02 230);
+
+                    --shadow-opacity: 0.25;
+
+                    --color-success: oklch(65% 0.15 145);
+                    --color-warning: oklch(75% 0.15 70);
+                    --color-error: oklch(65% 0.18 25);
+                    --color-info: oklch(65% 0.12 240);
+
+                    --color-success-subtle: oklch(20% 0.04 145);
+                    --color-warning-subtle: oklch(20% 0.05 70);
+                    --color-error-subtle: oklch(20% 0.04 25);
+                    --color-info-subtle: oklch(20% 0.03 240);
+                }
+            }
+        }
+
+        /* ========================================
+           LAYER: BASE
+           Base Element Styles
+           ======================================== */
+        @layer base {
+            body {
+                font-family: var(--font-body, var(--font-system));
+                font-size: var(--font-size-base);
+                line-height: var(--leading-normal);
+                color: var(--color-text);
+                background-color: var(--color-background);
+            }
+
+            ::selection {
+                background-color: var(--color-selection);
+                color: var(--color-text);
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                font-family: var(--font-heading, var(--font-system));
+                color: var(--color-text);
+                font-weight: var(--weight-semibold);
+                line-height: var(--leading-tight);
+                letter-spacing: var(--tracking-tight);
+                margin-block-end: var(--space-4);
+            }
+
+            h1 {
+                font-size: var(--font-size-4xl);
+                font-weight: var(--weight-bold);
+                letter-spacing: -0.03em;
+            }
+
+            h2 {
+                font-size: var(--font-size-3xl);
+                letter-spacing: -0.02em;
+            }
+
+            h3 {
+                font-size: var(--font-size-2xl);
+                letter-spacing: -0.015em;
+            }
+
+            h4 {
+                font-size: var(--font-size-xl);
+                letter-spacing: var(--tracking-tight);
+            }
+
+            h5 {
+                font-size: var(--font-size-lg);
+                font-weight: var(--weight-medium);
+                letter-spacing: var(--tracking-normal);
+            }
+
+            h6 {
+                font-size: var(--font-size-base);
+                font-weight: var(--weight-medium);
+                letter-spacing: var(--tracking-normal);
+            }
+
+            :is(h1, h2, h3) + :is(h2, h3, h4) {
+                margin-block-start: var(--space-2);
+            }
+
+            p {
+                margin-block-end: var(--space-5);
+                max-inline-size: var(--container-prose);
+            }
+
+            p:last-child {
+                margin-block-end: 0;
+            }
+
+            strong, b {
+                font-weight: var(--weight-semibold);
+            }
+
+            em, i {
+                font-style: italic;
+            }
+
+            small {
+                font-size: var(--font-size-sm);
+                color: var(--color-text-muted);
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 0.15em;
+                transition:
+                    color var(--duration-normal) var(--ease-fluid),
+                    text-decoration-color var(--duration-normal) var(--ease-fluid);
+            }
+
+            a:hover {
+                color: var(--accent-hover);
+                text-decoration-thickness: 2px;
+            }
+
+            a[data-subtle] {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            a[data-subtle]:hover {
+                color: var(--accent);
+                text-decoration: underline;
+            }
+
+            ul, ol {
+                padding-inline-start: var(--space-6);
+                margin-block-end: var(--space-5);
+            }
+
+            li {
+                margin-block-end: var(--space-2);
+            }
+
+            li:last-child {
+                margin-block-end: 0;
+            }
+
+            li > ul,
+            li > ol {
+                margin-block-start: var(--space-2);
+                margin-block-end: 0;
+            }
+
+            [data-motion="cascade"] ul:not([class]) {
+                list-style-type: none;
+                padding-inline-start: var(--space-6);
+            }
+
+            [data-motion="cascade"] ul:not([class]) > li {
+                position: relative;
+            }
+
+            [data-motion="cascade"] ul:not([class]) > li::before {
+                content: "";
+                position: absolute;
+                inset-inline-start: calc(var(--space-6) * -1);
+                inset-block-start: 0.55em;
+                inline-size: 0.5em;
+                block-size: 0.5em;
+                background: var(--accent);
+                border-radius: var(--radius-full);
+            }
+
+            table {
+                inline-size: 100%;
+                margin-block-end: var(--space-5);
+                border-collapse: collapse;
+                font-variant-numeric: tabular-nums;
+            }
+
+            th, td {
+                padding: var(--space-3) var(--space-4);
+                text-align: start;
+                border-block-end: 1px solid var(--color-border-subtle);
+            }
+
+            th {
+                font-weight: var(--weight-semibold);
+                color: var(--color-text);
+                background-color: var(--color-surface);
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: oklch(from var(--shadow-color) l c h / 0.02);
+            }
+
+            tbody tr {
+                transition: background-color var(--duration-normal) var(--ease-fluid);
+            }
+
+            tbody tr:hover {
+                background-color: oklch(from var(--shadow-color) l c h / 0.04);
+            }
+
+            label {
+                display: block;
+                font-size: var(--font-size-sm);
+                font-weight: var(--weight-medium);
+                margin-block-end: var(--space-2);
+                color: var(--color-text);
+            }
+
+            input,
+            textarea,
+            select {
+                inline-size: 100%;
+                padding: var(--space-3) var(--space-4);
+                font-size: var(--font-size-base);
+                line-height: var(--leading-normal);
+                color: var(--color-text);
+                background-color: var(--color-background);
+                border: 1px solid var(--color-border);
+                border-radius: var(--radius-input, var(--radius-md));
+                box-shadow:
+                    inset 0 1px 2px oklch(from var(--shadow-color) l c h / 0.04),
+                    0 1px 0 oklch(from var(--theme-light) l c h / 0.6);
+                transition:
+                    border-color var(--duration-normal) var(--ease-fluid),
+                    box-shadow var(--duration-normal) var(--ease-fluid),
+                    background-color var(--duration-normal) var(--ease-fluid);
+            }
+
+            input:hover,
+            textarea:hover,
+            select:hover {
+                border-color: var(--color-text-subtle);
+            }
+
+            input:focus,
+            textarea:focus,
+            select:focus {
+                outline: none;
+                border-color: var(--accent);
+                box-shadow:
+                    var(--shadow-glow),
+                    inset 0 1px 2px oklch(from var(--shadow-color) l c h / 0.03);
+                background-color: color-mix(in oklch, var(--accent) 8%, var(--color-background));
+            }
+
+            input::placeholder,
+            textarea::placeholder {
+                color: var(--color-text-subtle);
+                opacity: 1;
+            }
+
+            input:disabled,
+            textarea:disabled,
+            select:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                background-color: var(--color-surface);
+            }
+
+            textarea {
+                min-block-size: 8rem;
+                resize: vertical;
+            }
+
+            button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--space-2);
+                padding: var(--space-3) var(--space-5);
+                font-size: var(--font-size-base);
+                font-weight: var(--weight-medium);
+                line-height: var(--leading-none);
+                color: var(--white);
+                background-color: var(--accent);
+                border: none;
+                border-radius: var(--radius-md);
+                cursor: pointer;
+                transition:
+                    background-color var(--duration-normal) var(--ease-fluid),
+                    transform var(--duration-fast) var(--ease-settle),
+                    box-shadow var(--duration-normal) var(--ease-fluid);
+            }
+
+            button:hover {
+                background-color: var(--accent-hover);
+                box-shadow: var(--shadow-sm);
+            }
+
+            button:active {
+                transform: scale(0.98);
+                box-shadow: none;
+            }
+
+            button:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+            button:disabled:hover {
+                background-color: var(--accent);
+                box-shadow: none;
+                transform: none;
+            }
+
+            details {
+                margin-block-end: var(--space-4);
+                border: 1px solid var(--color-border-subtle);
+                border-radius: var(--radius-md);
+                padding: var(--space-4);
+            }
+
+            summary {
+                font-weight: var(--weight-medium);
+                cursor: pointer;
+                padding: var(--space-2);
+                margin: calc(var(--space-4) * -1);
+                margin-block-end: 0;
+                border-radius: var(--radius-md);
+                transition: background-color var(--duration-normal) var(--ease-fluid);
+            }
+
+            summary:hover {
+                background-color: var(--color-surface);
+            }
+
+            details[open] summary {
+                margin-block-end: var(--space-4);
+                border-block-end: 1px solid var(--color-border-subtle);
+                border-end-start-radius: 0;
+                border-end-end-radius: 0;
+            }
+
+            summary::-webkit-details-marker {
+                display: none;
+            }
+
+            summary::marker {
+                content: "";
+            }
+
+            summary::before {
+                content: "▸";
+                display: inline-block;
+                margin-inline-end: var(--space-2);
+                transition: transform var(--duration-normal) var(--ease-settle);
+            }
+
+            details[open] summary::before {
+                transform: rotate(90deg);
+            }
+
+            dialog {
+                max-inline-size: min(90vw, var(--container-sm));
+                padding: var(--space-6);
+                border: 1px solid var(--color-border-subtle);
+                border-radius: var(--radius-xl);
+                box-shadow: var(--shadow-xl);
+                background-color: var(--color-background);
+            }
+
+            dialog::backdrop {
+                background-color: oklch(from var(--shadow-color) l c h / 0.5);
+                backdrop-filter: blur(4px);
+            }
+        }
+
+        /* ========================================
+           LAYER: LAYOUTS
+           Positioning System
+           ======================================== */
+        @layer layouts {
+            [data-align="start"] {
+                text-align: start;
+            }
+
+            [data-align="center"] {
+                text-align: center;
+            }
+
+            [data-align="end"] {
+                text-align: end;
+            }
+
+            [data-layout="center"] {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            [data-layout="center"] > * {
+                max-inline-size: var(--content-width, var(--container-md));
+            }
+
+            [data-layout="left"] {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: start;
+            }
+
+            [data-layout="left"] > * {
+                max-inline-size: var(--content-width, var(--container-md));
+            }
+
+            [data-layout="split"] {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--split-gap, var(--space-8));
+                align-items: center;
+            }
+
+            [data-layout="split-reverse"] {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--split-gap, var(--space-8));
+                align-items: center;
+            }
+
+            [data-layout="split-reverse"] > :first-child {
+                order: 2;
+            }
+
+            [data-layout="split-reverse"] > :last-child {
+                order: 1;
+            }
+
+            [data-layout="stack"] {
+                display: flex;
+                flex-direction: column;
+                gap: var(--stack-gap, var(--space-5));
+            }
+
+            @container (max-width: 40rem) {
+                [data-layout="split"],
+                [data-layout="split-reverse"] {
+                    grid-template-columns: 1fr;
+                }
+
+                [data-layout="split-reverse"] > :first-child {
+                    order: 1;
+                }
+
+                [data-layout="split-reverse"] > :last-child {
+                    order: 2;
+                }
+            }
+        }
+
+        /* ========================================
+           LAYER: COMPONENTS
+           Button, Card, Hero, Modal, Accordion
+           ======================================== */
+        @layer components {
+
+            /* --- BUTTON COMPONENT --- */
+            button,
+            [role="button"],
+            .button {
+                appearance: none;
+                border: none;
+                background: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--space-2);
+                padding-block: var(--_btn-padding-block, var(--space-3));
+                padding-inline: var(--_btn-padding-inline, var(--space-5));
+                min-block-size: var(--_btn-min-height, 2.75rem);
+                font-family: inherit;
+                font-size: var(--_btn-font-size, var(--font-size-base));
+                font-weight: var(--weight-medium);
+                line-height: var(--leading-none);
+                text-decoration: none;
+                white-space: nowrap;
+                color: var(--_btn-color, var(--white));
+                background-color: var(--_btn-bg, var(--accent));
+                border: var(--border-width) solid var(--_btn-border, transparent);
+                border-radius: var(--radius-button, var(--radius-md));
+                box-shadow: var(--_btn-shadow, var(--shadow-xs));
+                cursor: pointer;
+                transition:
+                    background-color var(--duration-normal) var(--ease-fluid),
+                    border-color var(--duration-normal) var(--ease-fluid),
+                    color var(--duration-normal) var(--ease-fluid),
+                    box-shadow var(--duration-normal) var(--ease-fluid),
+                    transform var(--duration-fast) var(--ease-settle);
+            }
+
+            button:hover:not(:disabled),
+            [role="button"]:hover:not(:disabled),
+            .button:hover:not(:disabled) {
+                background-color: var(--_btn-bg-hover, var(--accent-hover));
+                box-shadow: var(--shadow-sm);
+            }
+
+            button:active:not(:disabled),
+            [role="button"]:active:not(:disabled),
+            .button:active:not(:disabled) {
+                transform: scale(0.98);
+                box-shadow: none;
+            }
+
+            button:focus-visible,
+            [role="button"]:focus-visible,
+            .button:focus-visible {
+                outline: none;
+                box-shadow:
+                    var(--shadow-glow),
+                    0 0 0 2px var(--color-background),
+                    0 0 0 4px var(--accent);
+            }
+
+            button:disabled,
+            [role="button"][aria-disabled="true"],
+            .button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+
+            /* Button Variants */
+            button[data-variant="secondary"],
+            .button[data-variant="secondary"] {
+                --_btn-color: var(--color-text);
+                --_btn-bg: var(--color-surface);
+                --_btn-bg-hover: var(--color-surface-raised);
+                --_btn-border: var(--color-border);
+            }
+
+            button[data-variant="secondary"]:hover:not(:disabled),
+            .button[data-variant="secondary"]:hover:not(:disabled) {
+                --_btn-border: var(--color-text-subtle);
+            }
+
+            button[data-variant="ghost"],
+            .button[data-variant="ghost"] {
+                --_btn-color: var(--color-text);
+                --_btn-bg: transparent;
+                --_btn-bg-hover: var(--color-surface);
+                --_btn-border: transparent;
+                --_btn-shadow: none;
+            }
+
+            button[data-variant="outline"],
+            .button[data-variant="outline"] {
+                --_btn-color: var(--accent);
+                --_btn-bg: transparent;
+                --_btn-bg-hover: var(--accent-subtle);
+                --_btn-border: var(--accent);
+                --_btn-shadow: none;
+            }
+
+            /* Button Sizes */
+            button[data-size="sm"],
+            .button[data-size="sm"] {
+                --_btn-padding-block: var(--space-2);
+                --_btn-padding-inline: var(--space-4);
+                --_btn-font-size: var(--font-size-sm);
+                --_btn-min-height: 2.25rem;
+            }
+
+            button[data-size="lg"],
+            .button[data-size="lg"] {
+                --_btn-padding-block: var(--space-4);
+                --_btn-padding-inline: var(--space-6);
+                --_btn-font-size: var(--font-size-lg);
+                --_btn-min-height: 3.25rem;
+                border-radius: var(--radius-lg);
+            }
+
+            button[data-full],
+            .button[data-full] {
+                inline-size: 100%;
+            }
+
+            /* --- CARD COMPONENT --- */
+            .card {
+                container-name: card;
+                display: flex;
+                flex-direction: column;
+                min-inline-size: 0;
+                background-color: var(--_card-bg, var(--color-surface-raised));
+                border: var(--border-width) solid var(--_card-border, var(--color-border-subtle));
+                border-radius: var(--radius-card, var(--radius-xl));
+                overflow: hidden;
+                transition:
+                    box-shadow var(--duration-normal) var(--ease-fluid),
+                    border-color var(--duration-normal) var(--ease-fluid),
+                    transform var(--duration-normal) var(--ease-settle);
+            }
+
+            .card[data-variant="elevated"] {
+                --_card-border: transparent;
+                box-shadow: var(--shadow-md);
+            }
+
+            .card[data-variant="elevated"]:hover {
+                box-shadow: var(--shadow-lg);
+            }
+
+            .card[data-variant="outlined"] {
+                --_card-bg: transparent;
+                --_card-border: var(--color-border);
+            }
+
+            .card[data-variant="ghost"] {
+                --_card-bg: transparent;
+                --_card-border: transparent;
+            }
+
+            .card[data-variant="filled"] {
+                --_card-bg: var(--color-surface);
+                --_card-border: transparent;
+            }
+
+            .card[data-interactive],
+            a.card {
+                cursor: pointer;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .card[data-interactive]:hover,
+            a.card:hover {
+                --_card-border: var(--accent);
+                box-shadow: var(--shadow-sm);
+            }
+
+            .card[data-interactive]:active,
+            a.card:active {
+                transform: scale(0.99);
+            }
+
+            .card__media {
+                inline-size: 100%;
+                block-size: auto;
+                object-fit: cover;
+                flex-shrink: 0;
+            }
+
+            .card__content {
+                flex: 1;
+                padding: var(--space-5);
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+
+            .card__title {
+                font-size: var(--font-size-lg);
+                font-weight: var(--weight-semibold);
+                line-height: var(--leading-tight);
+                margin: 0;
+            }
+
+            .card__description {
+                color: var(--color-text-muted);
+                margin: 0;
+            }
+
+            .card__footer {
+                padding: var(--space-4) var(--space-5);
+                border-block-start: 1px solid var(--color-border-subtle);
+                display: flex;
+                gap: var(--space-3);
+                align-items: center;
+            }
+
+            .card[data-type="stat"] .card__content {
+                text-align: center;
+                gap: var(--space-2);
+            }
+
+            .card[data-type="stat"] .card__value {
+                font-size: var(--font-size-3xl);
+                font-weight: var(--weight-bold);
+                line-height: var(--leading-none);
+                color: var(--accent);
+            }
+
+            .card[data-type="stat"] .card__title {
+                font-size: var(--font-size-sm);
+                font-weight: var(--weight-normal);
+                color: var(--color-text-muted);
+            }
+
+            .card[data-type="feature"] {
+                text-align: center;
+                padding: var(--space-6);
+            }
+
+            .card[data-type="feature"] .card__icon {
+                inline-size: 3rem;
+                block-size: 3rem;
+                margin-inline: auto;
+                margin-block-end: var(--space-4);
+                color: var(--accent);
+            }
+
+            .card-group {
+                display: grid;
+                gap: var(--space-5);
+                grid-template-columns: repeat(
+                    auto-fit,
+                    minmax(min(100%, var(--card-min-width, 18rem)), 1fr)
+                );
+            }
+
+            .card-group[data-equal-height] > .card {
+                block-size: 100%;
+            }
+
+            .card-group[data-equal-height] > .card .card__content {
+                flex: 1;
+            }
+
+            /* Cascade motion - bubbly lift on hover */
+            [data-motion="cascade"] .card {
+                box-shadow:
+                    0 4px 12px oklch(0 0 0 / 0.06),
+                    0 12px 28px oklch(0 0 0 / 0.1);
+            }
+
+            [data-motion="cascade"] .card:hover {
+                transform: translateY(-4px);
+                box-shadow:
+                    0 8px 20px oklch(0 0 0 / 0.08),
+                    0 20px 40px oklch(0 0 0 / 0.14);
+            }
+
+            /* --- HERO COMPONENT --- */
+            .hero {
+                --hero-min-height: 60vh;
+                --hero-background: var(--color-surface);
+                --hero-text-color: var(--color-text);
+                position: relative;
+                min-block-size: var(--hero-min-height);
+                background-color: var(--hero-background);
+                color: var(--hero-text-color);
+                overflow: hidden;
+                container-type: inline-size;
+                padding-inline: var(--space-5);
+            }
+
+            .hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero[data-size="compact"] {
+                --hero-min-height: 40vh;
+            }
+
+            .hero[data-size="full"] {
+                --hero-min-height: 100vh;
+            }
+
+            .hero[data-theme="dark"] {
+                --hero-background: color-mix(in oklch, var(--accent) 10%, oklch(12% 0.02 230));
+                --hero-text-color: oklch(94% 0.01 220);
+                --hero-text-muted: oklch(70% 0.01 220);
+            }
+
+            .hero[data-theme="gradient"] {
+                --hero-background: linear-gradient(
+                    135deg,
+                    color-mix(in oklch, var(--accent) 30%, oklch(15% 0.02 230)) 0%,
+                    color-mix(in oklch, var(--accent) 20%, oklch(25% 0.02 230)) 50%,
+                    color-mix(in oklch, var(--accent) 15%, oklch(35% 0.02 230)) 100%
+                );
+                --hero-text-color: oklch(95% 0.01 0);
+                --hero-text-muted: oklch(80% 0.01 0);
+                background: var(--hero-background);
+            }
+
+            .hero__content {
+                max-inline-size: var(--content-width, var(--container-md));
+            }
+
+            .hero__headline {
+                font-size: clamp(2rem, 1rem + 5vw, 3.5rem);
+                font-weight: var(--weight-bold);
+                letter-spacing: -0.03em;
+                line-height: var(--leading-tight);
+                margin-block-end: var(--space-4);
+                text-wrap: balance;
+            }
+
+            .hero__subheadline {
+                font-size: clamp(1.125rem, 0.875rem + 1.5vw, 1.5rem);
+                color: var(--hero-text-muted, var(--color-text-muted));
+                line-height: var(--leading-relaxed);
+                margin-block-end: var(--space-6);
+                text-wrap: pretty;
+                max-inline-size: 65ch;
+            }
+
+            .hero__actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--space-4);
+                justify-content: inherit;
+            }
+
+            .hero[data-theme="gradient"] button[data-variant="outline"] {
+                --_btn-color: var(--white);
+                --_btn-border: var(--white);
+                --_btn-bg-hover: oklch(100% 0 0 / 0.15);
+            }
+
+            @container (max-width: 40rem) {
+                .hero__actions {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .hero__actions > * {
+                    justify-content: center;
+                }
+            }
+
+            /* --- MODAL COMPONENT --- */
+            .modal {
+                border: none;
+                padding: 0;
+                max-inline-size: none;
+                max-block-size: none;
+                background: transparent;
+                color: var(--color-text);
+                overflow: visible;
+                position: fixed;
+                inset: 0;
+                inline-size: 100%;
+                block-size: 100%;
+                z-index: var(--z-modal);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: var(--space-5);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition:
+                    opacity var(--duration-normal) var(--ease-fluid),
+                    visibility var(--duration-normal) var(--ease-fluid);
+            }
+
+            .modal[open] {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            .modal::backdrop {
+                background: oklch(0% 0 0 / 0.5);
+                backdrop-filter: blur(4px);
+            }
+
+            .modal__content {
+                --_modal-width: min(90vw, 32rem);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                inline-size: var(--_modal-width);
+                max-block-size: min(90vh, 40rem);
+                background: var(--color-surface-raised);
+                border: var(--border-width) solid var(--color-border-subtle);
+                border-radius: var(--radius-2xl);
+                box-shadow: var(--shadow-xl);
+                overflow: hidden;
+                transform: translateY(var(--space-5)) scale(0.97);
+                transition:
+                    transform var(--duration-normal) var(--ease-settle);
+            }
+
+            .modal[open] .modal__content {
+                transform: translateY(0) scale(1);
+            }
+
+            .modal__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: var(--space-4);
+                padding: var(--space-5) var(--space-6);
+                border-block-end: var(--border-width) solid var(--color-border-subtle);
+                flex-shrink: 0;
+            }
+
+            .modal__title {
+                font-size: var(--font-size-lg);
+                font-weight: var(--weight-semibold);
+                line-height: var(--leading-tight);
+                margin: 0;
+            }
+
+            .modal__close {
+                --_btn-bg: transparent;
+                --_btn-shadow: none;
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                inline-size: 2rem;
+                block-size: 2rem;
+                padding: 0;
+                border-radius: var(--radius-md);
+                font-size: var(--font-size-xl);
+                line-height: 1;
+                color: var(--color-text-muted);
+                cursor: pointer;
+                transition:
+                    color var(--duration-fast) var(--ease-fluid),
+                    background-color var(--duration-fast) var(--ease-fluid);
+            }
+
+            .modal__close:hover {
+                color: var(--color-text);
+                background-color: var(--color-surface);
+            }
+
+            .modal__body {
+                flex: 1;
+                padding: var(--space-6);
+                overflow-y: auto;
+                overscroll-behavior: contain;
+            }
+
+            .modal__footer {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: var(--space-3);
+                padding: var(--space-4) var(--space-6);
+                border-block-start: var(--border-width) solid var(--color-border-subtle);
+                flex-shrink: 0;
+            }
+
+            @media (max-width: 40rem) {
+                .modal {
+                    padding: var(--space-3);
+                    align-items: flex-end;
+                }
+
+                .modal__content {
+                    --_modal-width: 100%;
+                    max-block-size: 85vh;
+                    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+                    transform: translateY(100%);
+                }
+
+                .modal[open] .modal__content {
+                    transform: translateY(0);
+                }
+            }
+
+            /* --- ACCORDION COMPONENT --- */
+            .accordion {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .accordion[data-variant="separated"] {
+                gap: var(--space-3);
+            }
+
+            .accordion__item {
+                border-block-end: var(--border-width) solid var(--color-border-subtle);
+            }
+
+            .accordion__item:first-of-type {
+                border-block-start: var(--border-width) solid var(--color-border-subtle);
+            }
+
+            .accordion[data-variant="bordered"] .accordion__item {
+                border: var(--border-width) solid var(--color-border-subtle);
+                border-radius: var(--radius-lg);
+                overflow: hidden;
+            }
+
+            .accordion[data-variant="separated"] .accordion__item {
+                border: var(--border-width) solid var(--color-border-subtle);
+                border-radius: var(--radius-lg);
+                background: var(--color-surface-raised);
+                box-shadow: var(--shadow-xs);
+                overflow: hidden;
+            }
+
+            .accordion[data-variant="flush"] .accordion__item {
+                border: none;
+            }
+
+            .accordion[data-variant="flush"] .accordion__item:first-of-type {
+                border: none;
+            }
+
+            .accordion__trigger {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: var(--space-4);
+                padding: var(--space-4) var(--space-5);
+                cursor: pointer;
+                font-weight: var(--weight-semibold);
+                font-size: var(--font-size-base);
+                line-height: var(--leading-snug);
+                color: var(--color-text);
+                list-style: none;
+                transition:
+                    color var(--duration-fast) var(--ease-fluid),
+                    background-color var(--duration-fast) var(--ease-fluid);
+            }
+
+            .accordion__trigger::-webkit-details-marker {
+                display: none;
+            }
+
+            .accordion__trigger::marker {
+                content: "";
+            }
+
+            .accordion__trigger::after {
+                content: "";
+                flex-shrink: 0;
+                inline-size: 1.25rem;
+                block-size: 1.25rem;
+                background-color: var(--color-text-muted);
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+                mask-repeat: no-repeat;
+                mask-position: center;
+                mask-size: contain;
+                transition: transform var(--duration-normal) var(--ease-settle);
+            }
+
+            .accordion__item[open] > .accordion__trigger::after {
+                transform: rotate(180deg);
+            }
+
+            .accordion__trigger:hover {
+                color: var(--accent);
+                background-color: color-mix(in oklch, var(--accent) 5%, transparent);
+            }
+
+            .accordion__trigger:focus-visible {
+                outline: 2px solid var(--color-focus);
+                outline-offset: -2px;
+                border-radius: var(--radius-sm);
+            }
+
+            .accordion__content {
+                overflow: hidden;
+            }
+
+            .accordion__body {
+                padding: 0 var(--space-5) var(--space-5);
+                color: var(--color-text-muted);
+                font-size: var(--font-size-base);
+                line-height: var(--leading-normal);
+            }
+
+            .accordion__body > * + * {
+                margin-block-start: var(--space-3);
+            }
+
+            [data-motion="cascade"] .accordion[data-variant="separated"] .accordion__item,
+            [data-motion="cascade"] .accordion[data-variant="bordered"] .accordion__item {
+                border-radius: var(--radius-xl);
+            }
+        }
+
+        /* ========================================
+           PAGE-SPECIFIC STYLES
+           ======================================== */
+
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, color-mix(in oklch, var(--accent) 100%, oklch(20% 0.02 230)) 0%, color-mix(in oklch, var(--accent) 80%, oklch(15% 0.02 230)) 100%);
+            border-bottom: 2px solid var(--accent);
+            padding: var(--space-3) var(--space-5);
+            z-index: var(--z-sticky);
+            transform: translateY(-100%);
+            transition: transform var(--duration-fast) var(--ease-fluid);
+            box-shadow: var(--shadow-md);
+        }
+
+        .sticky-header.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-5);
+        }
+
+        .sticky-header-logo {
+            font-size: var(--font-size-lg);
+            font-weight: var(--weight-bold);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header-logo {
+                display: none;
+            }
+
+            .sticky-header-content {
+                justify-content: center;
+            }
+        }
+
+        /* Hero Section Customization */
+        .hero-main {
+            padding-block: var(--space-20) var(--space-16);
+            padding-inline: var(--space-5);
+        }
+
+        .hero-countdown {
+            font-size: var(--font-size-lg);
+            font-weight: var(--weight-semibold);
+            margin: var(--space-6) 0;
+            padding: var(--space-5);
+            background: oklch(from var(--accent) l c h / 0.15);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius-md);
+            color: var(--accent);
+        }
+
+        .hero-countdown span {
+            color: var(--white);
+            font-size: var(--font-size-2xl);
+            margin: 0 var(--space-2);
+        }
+
+        .social-proof-section {
+            padding: var(--space-8) var(--space-5);
+            background: var(--color-background);
+            border-bottom: 1px solid var(--color-border-subtle);
+            text-align: center;
+        }
+
+        .social-proof-text {
+            max-width: var(--container-lg);
+            margin: 0 auto;
+            font-size: var(--font-size-lg);
+            font-weight: var(--weight-medium);
+            color: var(--color-text-muted);
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--space-16) var(--space-5);
+        }
+
+        section h2 {
+            margin-bottom: var(--space-10);
+        }
+
+        /* Icon styles (CSS-only) */
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            inline-size: 3.5rem;
+            block-size: 3.5rem;
+            border-radius: var(--radius-full);
+            background: color-mix(in oklch, var(--accent) 10%, var(--color-surface));
+            color: var(--accent);
+            font-weight: var(--weight-bold);
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-4);
+        }
+
+        .checkmark {
+            display: inline-block;
+            inline-size: 1.25rem;
+            block-size: 1.25rem;
+            margin-inline-end: var(--space-2);
+            color: var(--color-success);
+            font-weight: var(--weight-bold);
+        }
+
+        .x-mark {
+            display: inline-block;
+            inline-size: 1.25rem;
+            block-size: 1.25rem;
+            margin-inline-end: var(--space-2);
+            color: var(--color-error);
+            font-weight: var(--weight-bold);
+        }
+
+        /* Avatar initials */
+        .avatar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            inline-size: 4rem;
+            block-size: 4rem;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--accent), color-mix(in oklch, var(--accent) 80%, oklch(40% 0.2 210)));
+            color: var(--white);
+            font-weight: var(--weight-bold);
+            font-size: var(--font-size-xl);
+            margin: 0 auto var(--space-4);
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            min-width: 100%;
+        }
+
+        /* Centered content */
+        .text-center {
+            text-align: center;
+        }
+
+        .max-width-lg {
+            max-width: var(--container-lg);
+            margin-inline: auto;
+        }
+
+        /* Pricing badge */
+        .pricing-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--weight-bold);
+            margin-block-end: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+        }
+
+        /* Step counter */
+        .step-counter {
+            counter-reset: step-count;
+        }
+
+        .step-item {
+            counter-increment: step-count;
+        }
+
+        .step-number::before {
+            content: counter(step-count);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            inline-size: 2.5rem;
+            block-size: 2.5rem;
+            border-radius: var(--radius-full);
+            background: var(--accent);
+            color: var(--white);
+            font-weight: var(--weight-bold);
+            margin-inline-end: var(--space-3);
+        }
+
+        /* Guarantee section */
+        .guarantee-section {
+            padding: var(--space-12) var(--space-5);
+            background: var(--color-surface);
+            text-align: center;
+            border-radius: var(--radius-lg);
+        }
+
+        .guarantee-section h3 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-4);
+        }
+
+        /* CTA section */
+        .cta-section {
+            padding: var(--space-16) var(--space-5);
+            background: linear-gradient(135deg, color-mix(in oklch, var(--accent) 100%, oklch(20% 0.02 230)) 0%, color-mix(in oklch, var(--accent) 80%, oklch(15% 0.02 230)) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        /* Mobile sticky CTA */
+        .mobile-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--space-3) var(--space-4);
+            background: var(--white);
+            border-top: 1px solid var(--color-border-subtle);
+            box-shadow: var(--shadow-lg);
+            z-index: var(--z-sticky);
+            transform: translateY(100%);
+            transition: transform var(--duration-fast) var(--ease-fluid);
+            display: none;
+        }
+
+        .mobile-cta.visible {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-cta {
+                display: block;
+            }
+
+            body.has-mobile-cta {
+                padding-bottom: 4rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--space-12) var(--space-5);
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border-subtle);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            section {
+                padding: var(--space-12) var(--space-4);
+            }
+
+            .hero-main {
+                padding-block: var(--space-12) var(--space-10);
+            }
+
+            [data-layout="split"],
+            [data-layout="split-reverse"] {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SKIP LINK -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky-header" id="sticky-header">
+        <div class="sticky-header-content">
+            <div class="sticky-header-logo">AI Setup Sunday</div>
+            <button class="button" data-size="sm" onclick="handleCTA('sticky-header')">Reserve My Seat</button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero hero-main" data-theme="gradient" data-layout="center">
+        <div class="hero__content">
+            <h1 class="hero__headline">Stop Watching AI Tutorials. Start Using AI.</h1>
+            <p class="hero__subheadline">
+                Learn 3 real AI automations you can use in your business tomorrow.
+                Join 150+ small business owners every Sunday at 6PM ET for a 90-minute live workshop.
+            </p>
+
+            <div class="hero-countdown">
+                Next Session: <span id="countdown">7d 6h 45m</span>
+            </div>
+
+            <div class="hero__actions">
+                <button class="button" data-size="lg" onclick="handleCTA('hero-primary')">
+                    Reserve My Seat — $47
+                </button>
+                <button class="button" data-variant="outline" data-size="lg" onclick="document.getElementById('what-you-build').scrollIntoView({ behavior: 'smooth' })">
+                    See What You'll Build
+                </button>
+            </div>
+
+            <p style="margin-top: var(--space-6); font-size: var(--font-size-sm); opacity: 0.9;">
+                30-day money-back guarantee. No questions asked.
+            </p>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof-section">
+        <p class="social-proof-text">
+            Trusted by consultants, coaches, agencies &amp; local business owners
+        </p>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section data-layout="center" data-width="wide" id="problem">
+        <h2>Sound Familiar?</h2>
+        <p style="margin-bottom: var(--space-10);">You want to use AI, but you're drowning in tools and complexity.</p>
+
+        <div class="card-group">
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <div class="icon-circle">1</div>
+                    <h3 class="card__title">AI Tutorials Overload</h3>
+                    <p class="card__description">
+                        Endless YouTube videos, courses, and AI tools promising everything.
+                        Where do you actually start?
+                    </p>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <div class="icon-circle">2</div>
+                    <h3 class="card__title">Tools Don't Work Together</h3>
+                    <p class="card__description">
+                        ChatGPT, Zapier, Make—they're powerful, but how do you connect them
+                        to actually automate your business?
+                    </p>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <div class="icon-circle">3</div>
+                    <h3 class="card__title">No Real Results</h3>
+                    <p class="card__description">
+                        You learn new tools but end up doing more manual work than before.
+                        You're not getting ahead.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- WHAT YOU'LL BUILD -->
+    <section data-layout="center" data-width="wide" id="what-you-build">
+        <h2>What You'll Build</h2>
+        <p style="margin-bottom: var(--space-10);">
+            Three fully-functional automations you'll walk away with (and can deploy immediately).
+        </p>
+
+        <div class="card-group">
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <h3 class="card__title">Automation #1: AI Customer Responder</h3>
+                    <p class="card__description">
+                        Set up an AI agent that answers customer questions 24/7 using ChatGPT + your business knowledge.
+                    </p>
+                    <ul>
+                        <li>Respond to emails/messages automatically</li>
+                        <li>Answer FAQs in seconds</li>
+                        <li>Handle support requests while you sleep</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <h3 class="card__title">Automation #2: AI Content Machine</h3>
+                    <p class="card__description">
+                        Create social media posts, emails, and blog content automatically
+                        (your voice, your ideas, AI speed).
+                    </p>
+                    <ul>
+                        <li>Generate weeks of content in minutes</li>
+                        <li>Maintain consistent brand voice</li>
+                        <li>Publish to multiple platforms instantly</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <h3 class="card__title">Automation #3: AI Admin Assistant</h3>
+                    <p class="card__description">
+                        Automate data entry, invoicing, scheduling, and admin tasks
+                        with AI-powered workflows.
+                    </p>
+                    <ul>
+                        <li>Organize client data automatically</li>
+                        <li>Generate invoices from email</li>
+                        <li>Schedule tasks without thinking</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section data-layout="center" id="comparison">
+        <h2>Why AI Setup Sunday?</h2>
+        <p style="margin-bottom: var(--space-10);">Not all learning is created equal.</p>
+
+        <div class="comparison-table max-width-lg">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>AI Setup Sunday</th>
+                        <th>Online Course</th>
+                        <th>AI Consultant</th>
+                        <th>DIY YouTube</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Live Feedback</strong></td>
+                        <td>✓ Real-time Q&A</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                        <td>✗</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ready-to-Use Templates</strong></td>
+                        <td>✓ 3 automations</td>
+                        <td>✓ Many</td>
+                        <td>✓ Custom</td>
+                        <td>✓ Often outdated</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Community Support</strong></td>
+                        <td>✓ 150+ peers</td>
+                        <td>Varies</td>
+                        <td>✗</td>
+                        <td>✗ Comments only</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td>$47 / session</td>
+                        <td>$200–$2000</td>
+                        <td>$2000–$10k+</td>
+                        <td>Free (time = cost)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time Investment</strong></td>
+                        <td>90 min/week</td>
+                        <td>10–40 hours</td>
+                        <td>Variable</td>
+                        <td>50+ hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tested Setup</strong></td>
+                        <td>✓ Already works</td>
+                        <td>Varies</td>
+                        <td>✓ Custom fit</td>
+                        <td>✗ Hit or miss</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section data-layout="center" id="how-it-works">
+        <h2>How It Works</h2>
+
+        <div class="card-group" style="max-width: 48rem; margin: var(--space-10) auto 0;">
+            <article class="card step-item">
+                <div class="card__content">
+                    <div class="step-number"></div>
+                    <h3 class="card__title">Show Up</h3>
+                    <p class="card__description">
+                        Join the Zoom call at 6PM ET on Sunday.
+                        No prep required—bring your business needs, leave with a solution.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card step-item">
+                <div class="card__content">
+                    <div class="step-number"></div>
+                    <h3 class="card__title">Follow Along</h3>
+                    <p class="card__description">
+                        I'll build one automation live (step-by-step) while you follow along.
+                        Ask questions anytime. No experience needed.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card step-item">
+                <div class="card__content">
+                    <div class="step-number"></div>
+                    <h3 class="card__title">Walk Away Automated</h3>
+                    <p class="card__description">
+                        Leave with a working automation, templates, and a recording
+                        to refer back to whenever you need.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- INSTRUCTOR -->
+    <section data-layout="center" id="instructor">
+        <h2>Meet Your Instructor</h2>
+
+        <div class="card max-width-lg" data-variant="elevated" style="text-align: center;">
+            <div class="card__content">
+                <div class="avatar">NW</div>
+                <h3 class="card__title">Neil White</h3>
+                <p style="color: var(--accent); font-weight: var(--weight-semibold); margin-bottom: var(--space-3);">
+                    AI Automation Architect
+                </p>
+                <p class="card__description">
+                    Neil has helped 150+ small business owners implement AI automation workflows.
+                    His systems save business owners an average of 8–12 hours per week.
+                    He's been featured in Forbes, TechCrunch, and Founder Magazine for his work
+                    on accessible AI tools.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section data-layout="center" id="testimonials">
+        <h2>What Business Owners Say</h2>
+
+        <div class="card-group" style="max-width: 64rem;">
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <p style="font-size: var(--font-size-lg); font-weight: var(--weight-semibold); margin-bottom: var(--space-2);">
+                        ★ ★ ★ ★ ★
+                    </p>
+                    <p class="card__description">
+                        "I spent $3000 on a consultant to set up my email automation.
+                        Neil did it live in 40 minutes for $47. Game changer."
+                    </p>
+                    <p style="margin-top: var(--space-3); font-weight: var(--weight-semibold); font-size: var(--font-size-sm);">
+                        Sarah K., Agency Owner
+                    </p>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <p style="font-size: var(--font-size-lg); font-weight: var(--weight-semibold); margin-bottom: var(--space-2);">
+                        ★ ★ ★ ★ ★
+                    </p>
+                    <p class="card__description">
+                        "I run a coaching business and my calendar is insane.
+                        The admin automation alone saves me 3 hours every Friday."
+                    </p>
+                    <p style="margin-top: var(--space-3); font-weight: var(--weight-semibold); font-size: var(--font-size-sm);">
+                        Marcus T., Executive Coach
+                    </p>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <p style="font-size: var(--font-size-lg); font-weight: var(--weight-semibold); margin-bottom: var(--space-2);">
+                        ★ ★ ★ ★ ★
+                    </p>
+                    <p class="card__description">
+                        "Thought I was too old to learn AI tools. Turns out I just needed
+                        someone who could explain it clearly. Can't wait for Sunday!"
+                    </p>
+                    <p style="margin-top: var(--space-3); font-weight: var(--weight-semibold); font-size: var(--font-size-sm);">
+                        Jennifer L., Consultant
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section id="who-its-for">
+        <h2 data-align="center" style="margin-bottom: var(--space-10);">Who It's For</h2>
+
+        <div data-layout="split" style="max-width: 64rem; margin: 0 auto;">
+            <div>
+                <h3 style="color: var(--color-success); margin-bottom: var(--space-5);">This IS for you if...</h3>
+                <ul>
+                    <li>You run a small business (1–50 people)</li>
+                    <li>You're spending too much time on repetitive tasks</li>
+                    <li>You want to use AI but don't know where to start</li>
+                    <li>You learn better with examples than theory</li>
+                    <li>You value your time more than $47</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 style="color: var(--color-error); margin-bottom: var(--space-5);">This is NOT for you if...</h3>
+                <ul>
+                    <li>You're looking for a cheap MBA or business degree</li>
+                    <li>You want passive income secrets</li>
+                    <li>You expect hand-holding for 6 months</li>
+                    <li>You're not willing to try new tools</li>
+                    <li>You think AI will solve every problem</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section data-layout="center" id="stats">
+        <h2 style="margin-bottom: var(--space-10);">The Numbers</h2>
+
+        <div class="card-group" style="max-width: 48rem;">
+            <article class="card" data-type="stat">
+                <div class="card__content">
+                    <div class="card__value">3</div>
+                    <div class="card__title">Automations Per Session</div>
+                </div>
+            </article>
+
+            <article class="card" data-type="stat">
+                <div class="card__content">
+                    <div class="card__value">90</div>
+                    <div class="card__title">Minutes (Not Longer)</div>
+                </div>
+            </article>
+
+            <article class="card" data-type="stat">
+                <div class="card__content">
+                    <div class="card__value">$47</div>
+                    <div class="card__title">One-Time Investment</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section data-layout="center" id="pricing">
+        <h2 style="margin-bottom: var(--space-10);">Choose Your Path</h2>
+
+        <div class="card-group" style="max-width: 72rem;">
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <h3 class="card__title">Single Session</h3>
+                    <p style="font-size: var(--font-size-3xl); font-weight: var(--weight-bold); color: var(--accent); margin: var(--space-4) 0;">
+                        $47
+                    </p>
+                    <p class="card__description" style="margin-bottom: var(--space-5);">
+                        Perfect for testing the waters. One 90-minute workshop.
+                    </p>
+                    <ul style="margin-bottom: var(--space-5);">
+                        <li>1 live session</li>
+                        <li>3 automations</li>
+                        <li>Lifetime access to recording</li>
+                        <li>Community Discord access</li>
+                    </ul>
+                </div>
+                <div class="card__footer">
+                    <button class="button" data-full onclick="handleCTA('pricing-single')">
+                        Reserve Spot
+                    </button>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated" style="position: relative; border-color: var(--accent); transform: scale(1.05);">
+                <div class="pricing-badge">MOST POPULAR</div>
+                <div class="card__content">
+                    <h3 class="card__title">AI Mastery Pass</h3>
+                    <p style="font-size: var(--font-size-3xl); font-weight: var(--weight-bold); color: var(--accent); margin: var(--space-4) 0;">
+                        $197
+                    </p>
+                    <p class="card__description" style="margin-bottom: var(--space-5);">
+                        8 weeks of weekly live sessions. The full transformation.
+                    </p>
+                    <ul style="margin-bottom: var(--space-5);">
+                        <li>8 live sessions (once per week)</li>
+                        <li>24 unique automations</li>
+                        <li>Lifetime recordings access</li>
+                        <li>Private community + slack channel</li>
+                        <li>Custom automation review (async)</li>
+                        <li>Templates library</li>
+                    </ul>
+                </div>
+                <div class="card__footer">
+                    <button class="button" data-full onclick="handleCTA('pricing-mastery')">
+                        Join Cohort
+                    </button>
+                </div>
+            </article>
+
+            <article class="card" data-variant="elevated">
+                <div class="card__content">
+                    <h3 class="card__title">VIP Setup</h3>
+                    <p style="font-size: var(--font-size-3xl); font-weight: var(--weight-bold); color: var(--accent); margin: var(--space-4) 0;">
+                        $497
+                    </p>
+                    <p class="card__description" style="margin-bottom: var(--space-5);">
+                        Everything in Mastery + custom 1:1 setup.
+                    </p>
+                    <ul style="margin-bottom: var(--space-5);">
+                        <li>All Mastery Pass benefits</li>
+                        <li>2 hours 1:1 setup call</li>
+                        <li>Custom automation audit</li>
+                        <li>Priority support (48h response)</li>
+                        <li>Custom integration help</li>
+                    </ul>
+                </div>
+                <div class="card__footer">
+                    <button class="button" data-full onclick="handleCTA('pricing-vip')">
+                        Schedule Call
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section data-layout="center" id="guarantee">
+        <div class="guarantee-section max-width-lg">
+            <h3>30-Day Money-Back Guarantee</h3>
+            <p>
+                If you don't get value from your first session, I'll refund 100% of your money.
+                No questions. I'm that confident you'll learn something actionable.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section data-layout="center" id="faq">
+        <h2 style="margin-bottom: var(--space-10);">Frequently Asked Questions</h2>
+
+        <div class="accordion" data-variant="separated" style="max-width: 48rem;">
+
+            <details class="accordion__item">
+                <summary class="accordion__trigger">Do I need AI experience?</summary>
+                <div class="accordion__content">
+                    <div class="accordion__body">
+                        <p>
+                            No. I teach every automation from scratch, assuming no prior knowledge.
+                            If you can send an email and click buttons, you can follow along.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="accordion__item">
+                <summary class="accordion__trigger">What if I miss a live session?</summary>
+                <div class="accordion__content">
+                    <div class="accordion__body">
+                        <p>
+                            You get lifetime access to recordings. Watch anytime, rewatch as many times as you need.
+                            For Mastery Pass holders, you also get the next cohort included.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="accordion__item">
+                <summary class="accordion__trigger">Can I use these in my specific industry?</summary>
+                <div class="accordion__content">
+                    <div class="accordion__body">
+                        <p>
+                            Yes. The automations are industry-agnostic.
+                            Whether you're a coach, consultant, agency, or e-commerce owner,
+                            the principles apply. I'll show you how to customize them for your business.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="accordion__item">
+                <summary class="accordion__trigger">What tools do you use?</summary>
+                <div class="accordion__content">
+                    <div class="accordion__body">
+                        <p>
+                            ChatGPT, Make (formerly Integromat), Zapier, and other free or low-cost tools.
+                            You won't need any expensive software. Most setups have a free tier that works for small businesses.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="accordion__item">
+                <summary class="accordion__trigger">Is there a contract or long-term commitment?</summary>
+                <div class="accordion__content">
+                    <div class="accordion__body">
+                        <p>
+                            No contracts. Single sessions are one-time purchases.
+                            The Mastery Pass is an 8-week cohort—you're committed to those dates, but no recurring charges after.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="accordion__item">
+                <summary class="accordion__trigger">Do you offer refunds?</summary>
+                <div class="accordion__content">
+                    <div class="accordion__body">
+                        <p>
+                            Yes. 30-day money-back guarantee on all purchases.
+                            If you don't find value in your first session, you get your money back, no questions asked.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section text-center" id="final-cta">
+        <h2>Ready to Automate Your Business?</h2>
+        <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 48rem; margin-inline: auto;">
+            The next session starts in one week. Spots fill up fast.
+        </p>
+        <button class="button" data-size="lg" onclick="handleCTA('final-cta')" style="background-color: var(--white); color: var(--accent);">
+            Reserve My Seat — $47
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="max-width: 64rem; margin: 0 auto;">
+            <p style="margin-bottom: var(--space-4);">
+                <strong>AI Setup Sunday</strong> — 90-Minute AI Automation Workshop for Small Business Owners
+            </p>
+            <p style="margin-bottom: var(--space-3);">
+                Every Sunday at 6PM ET | Taught by Neil White
+            </p>
+            <p style="margin-bottom: var(--space-6); border-top: 1px solid var(--color-border-subtle); padding-top: var(--space-4);">
+                &copy; 2025 AI Setup Sunday. All rights reserved. |
+                <a href="#" data-subtle>Privacy Policy</a> |
+                <a href="#" data-subtle>Terms of Service</a>
+            </p>
+            <p style="font-size: var(--font-size-xs);">
+                30-day money-back guarantee. No questions asked.
+            </p>
+        </div>
+    </footer>
+
+    <!-- EXIT INTENT MODAL -->
+    <dialog class="modal" id="exit-modal">
+        <div class="modal__content">
+            <header class="modal__header">
+                <h2 class="modal__title">Wait! One Last Thing...</h2>
+                <button class="modal__close" aria-label="Close" onclick="document.getElementById('exit-modal').close()">×</button>
+            </header>
+            <div class="modal__body">
+                <p style="margin-bottom: var(--space-5);">
+                    Thinking about leaving? Download our free <strong>"AI Automation Starter Kit"</strong>
+                    before you go. It includes:
+                </p>
+                <ul style="margin-bottom: var(--space-6);">
+                    <li>ChatGPT prompt templates (ready-to-use)</li>
+                    <li>Automation checklist for your business</li>
+                    <li>Tool comparison guide</li>
+                </ul>
+                <p style="margin-bottom: var(--space-5); font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                    Plus: Get notified about next Sunday's session.
+                </p>
+                <form style="display: flex; flex-direction: column; gap: var(--space-3);">
+                    <input type="email" placeholder="your@email.com" required style="padding: var(--space-3) var(--space-4);">
+                    <button type="submit" class="button" data-full onclick="handleExitModal(event)">
+                        Get Free Kit + Notify Me
+                    </button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MOBILE STICKY CTA -->
+    <div class="mobile-cta" id="mobile-cta">
+        <button class="button" data-full onclick="handleCTA('mobile-cta')">
+            Reserve My Seat — $47
+        </button>
+    </div>
+
+    <script>
+        // ========================================
+        // AFFILIATE & TRACKING
+        // ========================================
+
+        // Get ref parameter and set 90-day cookie
+        function getAffiliateRef() {
+            const params = new URLSearchParams(window.location.search);
+            const ref = params.get('ref');
+            if (ref) {
+                const date = new Date();
+                date.setTime(date.getTime() + (90 * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = "ai_setup_ref=" + encodeURIComponent(ref) + ";" + expires + ";path=/";
+            }
+            return ref;
+        }
+
+        // Get UTM parameters
+        function getUTMParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                source: params.get('utm_source'),
+                medium: params.get('utm_medium'),
+                campaign: params.get('utm_campaign'),
+                content: params.get('utm_content'),
+                term: params.get('utm_term')
+            };
+        }
+
+        // Get affiliate ref from cookie
+        function getAffiliateRefFromCookie() {
+            const name = "ai_setup_ref=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+        }
+
+        // Initialize on page load
+        getAffiliateRef();
+
+        // ========================================
+        // COUNTDOWN TIMER
+        // ========================================
+
+        function updateCountdown() {
+            const target = getNextSunday6PM();
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = target - now;
+
+                if (distance <= 0) {
+                    document.getElementById('countdown').textContent = 'Happening Now!';
+                    clearInterval(interval);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('countdown').textContent =
+                    `${days}d ${hours}h ${minutes}m`;
+            }, 1000);
+        }
+
+        function getNextSunday6PM() {
+            const now = new Date();
+            const target = new Date();
+
+            // Set to 6 PM ET (current timezone conversion)
+            target.setHours(18, 0, 0, 0);
+
+            // Find next Sunday
+            while (target.getDay() !== 0 || target <= now) {
+                target.setDate(target.getDate() + 1);
+                if (target.getDay() === 0) break;
+            }
+
+            return target.getTime();
+        }
+
+        updateCountdown();
+
+        // ========================================
+        // STICKY HEADER
+        // ========================================
+
+        let lastScrollY = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('sticky-header');
+            if (window.scrollY > 300) {
+                header.classList.add('visible');
+            } else {
+                header.classList.remove('visible');
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // ========================================
+        // MOBILE STICKY CTA
+        // ========================================
+
+        window.addEventListener('scroll', () => {
+            const mobileCTA = document.getElementById('mobile-cta');
+            if (window.scrollY > 300 && window.innerWidth <= 768) {
+                mobileCTA.classList.add('visible');
+                document.body.classList.add('has-mobile-cta');
+            } else {
+                mobileCTA.classList.remove('visible');
+                document.body.classList.remove('has-mobile-cta');
+            }
+        });
+
+        // ========================================
+        // EXIT INTENT MODAL
+        // ========================================
+
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                exitIntentShown = true;
+                setTimeout(() => {
+                    document.getElementById('exit-modal').showModal();
+                }, 500);
+            }
+        });
+
+        // Also show after 30 seconds of inactivity
+        let inactivityTimer;
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                if (!exitIntentShown && !document.getElementById('exit-modal').open) {
+                    exitIntentShown = true;
+                    document.getElementById('exit-modal').showModal();
+                }
+            }, 30000);
+        }
+
+        document.addEventListener('mousemove', resetInactivityTimer);
+        document.addEventListener('keydown', resetInactivityTimer);
+        resetInactivityTimer();
+
+        // ========================================
+        // MAIN CTA HANDLER
+        // ========================================
+
+        function handleCTA(source) {
+            const ref = getAffiliateRefFromCookie();
+            const utmParams = getUTMParams();
+
+            // TODO: Replace with your actual Stripe payment link
+            // Format: https://buy.stripe.com/test/[YOUR_SESSION_ID]?prefilled_email={email}
+            // You'll need to:
+            // 1. Create a Stripe product for each tier (Single: $47, Mastery: $197, VIP: $497)
+            // 2. Create a Stripe payment link for each
+            // 3. Replace the URLs below with your actual payment links
+            // 4. Pass ref as a custom metadata field if needed
+
+            let paymentLink = '';
+            let tier = 'single';
+
+            if (source.includes('mastery')) {
+                paymentLink = 'https://buy.stripe.com/test/[MASTERY_LINK]';
+                tier = 'mastery';
+            } else if (source.includes('vip')) {
+                paymentLink = 'https://buy.stripe.com/test/[VIP_LINK]';
+                tier = 'vip';
+            } else {
+                paymentLink = 'https://buy.stripe.com/test/[SINGLE_SESSION_LINK]';
+                tier = 'single';
+            }
+
+            // Add query parameters for tracking
+            const separator = paymentLink.includes('?') ? '&' : '?';
+            if (ref) {
+                paymentLink += separator + 'client_reference_id=' + encodeURIComponent(ref);
+            }
+
+            // Track in GA4
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    value: tier === 'mastery' ? 197 : (tier === 'vip' ? 497 : 47),
+                    currency: 'USD',
+                    items: [{
+                        item_id: tier,
+                        item_name: tier === 'mastery' ? 'AI Mastery Pass' : (tier === 'vip' ? 'VIP Setup' : 'Single Session'),
+                        price: tier === 'mastery' ? 197 : (tier === 'vip' ? 497 : 47)
+                    }]
+                });
+            }
+
+            // Track Meta Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    value: tier === 'mastery' ? 197 : (tier === 'vip' ? 497 : 47),
+                    currency: 'USD',
+                    content_name: tier === 'mastery' ? 'AI Mastery Pass' : (tier === 'vip' ? 'VIP Setup' : 'Single Session'),
+                    content_type: 'product'
+                });
+            }
+
+            // Redirect to Stripe
+            window.location.href = paymentLink;
+        }
+
+        // ========================================
+        // EXIT MODAL FORM
+        // ========================================
+
+        function handleExitModal(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            const ref = getAffiliateRefFromCookie();
+
+            // TODO: Send email to your backend/email service
+            // Example endpoint: POST /api/lead-capture
+            // Payload: { email, ref, utm_params }
+
+            console.log('Lead captured:', { email, ref });
+
+            // Close modal and show success message
+            document.getElementById('exit-modal').close();
+            alert('Check your email for the free kit! (This would normally be silent in production)');
+        }
+
+        // ========================================
+        // SMOOTH SCROLLING
+        // ========================================
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

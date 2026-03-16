@@ -1,0 +1,221 @@
+/**
+ * Fluid Framework - Themed Images
+ * @layer components
+ *
+ * Apply theme-aware duotone filters to images sitewide.
+ * Uses CSS filters and pseudo-element overlays for the effect.
+ *
+ * Usage:
+ *   <figure class="themed-image">
+ *     <img src="..." alt="...">
+ *   </figure>
+ *
+ * Or apply to card images:
+ *   <div class="card" data-themed-image>
+ *     <img src="..." alt="...">
+ *   </div>
+ *
+ * Disable with data-no-duotone attribute.
+ */
+
+@layer components {
+  /* ========================================
+     THEMED IMAGE CONTAINER
+     Applies duotone effect via overlay
+     ======================================== */
+
+  .themed-image,
+  [data-themed-image] {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .themed-image img,
+  [data-themed-image] img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    /* Convert to grayscale as base for duotone */
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Duotone overlay using gradient */
+  .themed-image::after,
+  [data-themed-image]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--duotone-dark, oklch(0.3 0.1 220)) 0%,
+      var(--duotone-light, oklch(0.7 0.1 200)) 100%
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    pointer-events: none;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Hover: reduce effect to show more of original */
+  .themed-image:hover::after,
+  [data-themed-image]:hover::after {
+    opacity: 0.6;
+  }
+
+  .themed-image:hover img,
+  [data-themed-image]:hover img {
+    filter: grayscale(50%) contrast(1.05);
+  }
+
+  /* Disable duotone */
+  [data-no-duotone] img {
+    filter: none !important;
+  }
+
+  [data-no-duotone]::after {
+    display: none !important;
+  }
+
+
+  /* ========================================
+     SITEWIDE IMAGE THEMING
+     Auto-apply to images in certain contexts
+     ======================================== */
+
+  /* Apply to images in cards (opt-in) */
+  .card[data-themed-image] .card__image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card[data-themed-image] .card__image img {
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  .card[data-themed-image] .card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--duotone-dark) 0%,
+      var(--duotone-light) 100%
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+
+  /* ========================================
+     HERO IMAGE THEMING
+     For hero sections with background images
+     ======================================== */
+
+  .hero[data-themed-image] {
+    position: relative;
+  }
+
+  .hero[data-themed-image]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--duotone-dark) 0%,
+      var(--duotone-light) 100%
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.75;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero[data-themed-image] > * {
+    position: relative;
+    z-index: 2;
+  }
+
+
+  /* ========================================
+     SECTION BACKGROUNDS
+     Alternating themed section colors
+     ======================================== */
+
+  /* Tinted section background */
+  .section[data-bg="tinted"],
+  section[data-bg="tinted"] {
+    background-color: var(--surface-tinted, var(--section-2, var(--color-surface)));
+  }
+
+  /* Accent-tinted section */
+  .section[data-bg="accent"],
+  section[data-bg="accent"] {
+    background-color: var(--section-accent, var(--surface-accent, var(--accent-subtle)));
+  }
+
+  /* Alternating sections (every other) */
+  .section[data-bg="alt"],
+  section[data-bg="alt"] {
+    background-color: var(--section-2, var(--section-alt, var(--color-surface)));
+  }
+
+  /* Specific section color slots */
+  .section[data-bg="1"], section[data-bg="1"] { background-color: var(--section-1, var(--color-background)); }
+  .section[data-bg="2"], section[data-bg="2"] { background-color: var(--section-2, var(--color-surface)); }
+  .section[data-bg="3"], section[data-bg="3"] { background-color: var(--section-3, var(--surface-tinted)); }
+
+  /* Auto-alternating sections - 3-color rotation */
+  [data-alternating-sections] > .section:nth-child(3n+1),
+  [data-alternating-sections] > section:nth-child(3n+1) {
+    background-color: var(--section-1, var(--color-background));
+  }
+
+  [data-alternating-sections] > .section:nth-child(3n+2),
+  [data-alternating-sections] > section:nth-child(3n+2) {
+    background-color: var(--section-2, var(--color-surface));
+  }
+
+  [data-alternating-sections] > .section:nth-child(3n+3),
+  [data-alternating-sections] > section:nth-child(3n+3) {
+    background-color: var(--section-3, var(--surface-tinted));
+  }
+
+  /* Simple 2-color alternation */
+  [data-alternating-sections="simple"] > .section:nth-child(odd),
+  [data-alternating-sections="simple"] > section:nth-child(odd) {
+    background-color: var(--section-1, var(--color-background));
+  }
+
+  [data-alternating-sections="simple"] > .section:nth-child(even),
+  [data-alternating-sections="simple"] > section:nth-child(even) {
+    background-color: var(--section-2, var(--color-surface));
+  }
+
+
+  /* ========================================
+     FULL-BLEED COLORED SECTIONS
+     Sections with strong theme presence
+     ======================================== */
+
+  .section[data-bg="accent-solid"] {
+    background-color: var(--accent);
+    color: white;
+  }
+
+  .section[data-bg="accent-solid"] h1,
+  .section[data-bg="accent-solid"] h2,
+  .section[data-bg="accent-solid"] h3 {
+    color: white;
+  }
+
+  .section[data-bg="accent-solid"] a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .section[data-bg="accent-solid"] a:hover {
+    opacity: 0.8;
+  }
+}

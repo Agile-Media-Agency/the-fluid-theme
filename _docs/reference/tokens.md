@@ -1,5 +1,7 @@
 # Design Tokens Reference
 
+[Live demo](https://thefluidtheme.com/examples/foundation.html#tokens) | [TheFluidTheme.com](https://thefluidtheme.com)
+
 Design tokens are the single source of truth for all visual values. They're defined as CSS custom properties in `src/core/tokens.css`.
 
 ---

@@ -7,6 +7,7 @@ on:
       - main
     paths-ignore:
       - '_config.yml'  # Prevent infinite loop
+      - 'package.json'
 
 jobs:
   bump-version:
@@ -21,7 +22,7 @@ jobs:
 
       - name: Bump patch version
         run: |
-          # Get current version
+          # Get current version from _config.yml (source of truth for Jekyll)
           CURRENT=$(grep 'version:' _config.yml | sed 's/version: "//;s/"//')
           echo "Current version: $CURRENT"
 
@@ -34,13 +35,19 @@ jobs:
           NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
           echo "New version: $NEW_VERSION"
 
-          # Update file
+          # Update _config.yml (Jekyll site version - shown in page footers)
           sed -i "s/version: \"$CURRENT\"/version: \"$NEW_VERSION\"/" _config.yml
+
+          # Update package.json (npm package version)
+          sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VERSION\"/" package.json
+
+          # Update fluid.css version comment
+          sed -i "s/@version .*/@version $NEW_VERSION/" src/fluid.css
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add _config.yml
+          git add _config.yml package.json src/fluid.css
           git commit -m "chore: bump version to $(grep 'version:' _config.yml | sed 's/version: "//;s/"//')"
           git push
