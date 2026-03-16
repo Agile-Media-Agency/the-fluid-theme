@@ -1,11 +1,11 @@
-<nav class="nav" data-sticky>
+<nav class="nav" data-sticky aria-label="Main navigation">
   <a href="{{ '/' | relative_url }}" class="nav__brand">Fluid</a>
   <span class="nav__preset-name" id="nav-preset-name"></span>
 
   <ul class="nav__menu" role="list" id="nav-menu">
     <!-- Templates Dropdown -->
     <li class="nav__dropdown">
-      <button class="nav__dropdown-trigger"{% if page.url contains '/templates/' %} data-active{% endif %}>
+      <button class="nav__dropdown-trigger" aria-expanded="false" aria-haspopup="true"{% if page.url contains '/templates/' %} data-active{% endif %}>
         Templates
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </button>
@@ -23,7 +23,7 @@
 
     <!-- Theme Dropdown -->
     <li class="nav__dropdown">
-      <button class="nav__dropdown-trigger"{% if page.url contains '/examples/' %} data-active{% endif %}>
+      <button class="nav__dropdown-trigger" aria-expanded="false" aria-haspopup="true"{% if page.url contains '/examples/' %} data-active{% endif %}>
         Theme
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </button>

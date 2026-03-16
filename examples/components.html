@@ -232,6 +232,10 @@ nav: components
       outline: none;
     }
 
+    .search-modal__input:focus-visible {
+      box-shadow: 0 1px 0 var(--accent);
+    }
+
     .search-modal__input::placeholder {
       color: var(--color-text-muted);
     }
@@ -767,21 +771,21 @@ nav: components
       <div class="component-label">Toggle Switches</div>
       <div class="stack" style="--stack-gap: var(--space-4)">
         <label class="switch">
-          <input type="checkbox" class="switch__input" checked>
+          <input type="checkbox" class="switch__input" role="switch" checked>
           <span class="switch__track">
             <span class="switch__thumb"></span>
           </span>
           <span class="switch__label">Dark mode</span>
         </label>
         <label class="switch">
-          <input type="checkbox" class="switch__input">
+          <input type="checkbox" class="switch__input" role="switch">
           <span class="switch__track">
             <span class="switch__thumb"></span>
           </span>
           <span class="switch__label">Auto-save</span>
         </label>
         <label class="switch" data-size="sm">
-          <input type="checkbox" class="switch__input">
+          <input type="checkbox" class="switch__input" role="switch">
           <span class="switch__track">
             <span class="switch__thumb"></span>
           </span>
