@@ -21,28 +21,28 @@ nav: contact
 
         <form class="stack" data-gap="md">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
-            <div class="form-field">
-              <label for="first-name">First Name *</label>
+            <div class="form-group">
+              <label class="form-label" data-required for="first-name">First Name</label>
               <input type="text" id="first-name" placeholder="Jane" required>
             </div>
-            <div class="form-field">
-              <label for="last-name">Last Name *</label>
+            <div class="form-group">
+              <label class="form-label" data-required for="last-name">Last Name</label>
               <input type="text" id="last-name" placeholder="Smith" required>
             </div>
           </div>
 
-          <div class="form-field">
-            <label for="email">Email Address *</label>
+          <div class="form-group">
+            <label class="form-label" data-required for="email">Email Address</label>
             <input type="email" id="email" placeholder="jane@example.com" required>
           </div>
 
-          <div class="form-field">
-            <label for="company">Company</label>
+          <div class="form-group">
+            <label class="form-label" for="company">Company</label>
             <input type="text" id="company" placeholder="Your company name">
           </div>
 
-          <div class="form-field">
-            <label for="service">What service are you interested in?</label>
+          <div class="form-group">
+            <label class="form-label" for="service">What service are you interested in?</label>
             <select id="service">
               <option value="">Select a service...</option>
               <option value="web-design">Web Design</option>
@@ -53,8 +53,8 @@ nav: contact
             </select>
           </div>
 
-          <div class="form-field">
-            <label for="budget">Budget Range</label>
+          <div class="form-group">
+            <label class="form-label" for="budget">Budget Range</label>
             <select id="budget">
               <option value="">Select a range...</option>
               <option value="starter">$500 - $1,000</option>
@@ -64,15 +64,16 @@ nav: contact
             </select>
           </div>
 
-          <div class="form-field">
-            <label for="message">Tell us about your project *</label>
+          <div class="form-group">
+            <label class="form-label" data-required for="message">Tell us about your project</label>
             <textarea id="message" rows="5" placeholder="Describe your project, goals, and any specific requirements..." required></textarea>
           </div>
 
-          <div class="form-field">
-            <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer;">
-              <input type="checkbox" style="width: auto;">
-              <span>I agree to the <a href="#">privacy policy</a></span>
+          <div class="form-group">
+            <label class="checkbox">
+              <input type="checkbox" class="checkbox__input" id="privacy-agree">
+              <span class="checkbox__box"></span>
+              <span class="checkbox__label">I agree to the <a href="#">privacy policy</a></span>
             </label>
           </div>
 

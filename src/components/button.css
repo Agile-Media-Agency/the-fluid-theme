@@ -338,4 +338,50 @@
   .button-group > .button:focus-visible {
     z-index: 1;
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    button,
+    [role="button"],
+    .button {
+      transition: none;
+    }
+
+    button:active:not(:disabled),
+    [role="button"]:active:not(:disabled),
+    .button:active:not(:disabled) {
+      transform: none;
+    }
+
+    button[data-loading]::after,
+    .button[data-loading]::after {
+      animation: none;
+      /* Static indicator instead of spinning */
+      opacity: 0.6;
+    }
+
+    [data-motion="tsunami"] button:hover:not(:disabled),
+    [data-motion="tsunami"] [role="button"]:hover:not(:disabled),
+    [data-motion="tsunami"] .button:hover:not(:disabled) {
+      transform: none;
+      transition: none;
+    }
+
+    [data-motion="tsunami"] button:active:not(:disabled),
+    [data-motion="tsunami"] [role="button"]:active:not(:disabled),
+    [data-motion="tsunami"] .button:active:not(:disabled) {
+      transform: none;
+      transition: none;
+    }
+
+    [data-motion="tsunami"] button:not(:hover):not(:active):not(:disabled),
+    [data-motion="tsunami"] [role="button"]:not(:hover):not(:active):not([aria-disabled="true"]),
+    [data-motion="tsunami"] .button:not(:hover):not(:active):not(:disabled) {
+      animation: none;
+    }
+  }
 }

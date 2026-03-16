@@ -14,12 +14,14 @@ nav: pricing
 <section class="section" data-padding="md">
   <div data-layout="center">
     <div class="cluster" style="justify-content: center; align-items: center; gap: var(--space-3);">
-      <span>Monthly</span>
-      <label style="position: relative; display: inline-block; width: 3.5rem; height: 2rem;">
-        <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
-        <span style="position: absolute; cursor: pointer; inset: 0; background: var(--color-primary); border-radius: 2rem; transition: 0.3s;"></span>
+      <span id="billing-monthly">Monthly</span>
+      <label class="switch" for="billing-toggle">
+        <input type="checkbox" class="switch__input" id="billing-toggle" role="switch" aria-label="Switch to annual billing">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
       </label>
-      <span>Annual <span class="badge" data-status="good" data-size="sm">Save 20%</span></span>
+      <span id="billing-annual">Annual <span class="badge" data-status="good" data-size="sm">Save 20%</span></span>
     </div>
   </div>
 </section>
@@ -137,52 +139,52 @@ nav: pricing
   <div data-layout="center" data-width="wide">
     <h2 style="text-align: center; margin-block-end: var(--space-8);">Feature Comparison</h2>
 
-    <div style="overflow-x: auto;">
-      <table style="width: 100%; border-collapse: collapse;">
+    <div class="table-wrap">
+      <table class="table" data-variant="striped" data-responsive>
         <thead>
           <tr>
-            <th style="text-align: left; padding: var(--space-4); border-block-end: 2px solid var(--color-border);">Feature</th>
-            <th style="text-align: center; padding: var(--space-4); border-block-end: 2px solid var(--color-border);">Starter</th>
-            <th style="text-align: center; padding: var(--space-4); border-block-end: 2px solid var(--color-border);">Professional</th>
-            <th style="text-align: center; padding: var(--space-4); border-block-end: 2px solid var(--color-border);">Enterprise</th>
+            <th>Feature</th>
+            <th>Starter</th>
+            <th>Professional</th>
+            <th>Enterprise</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Pages</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">5</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">15</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Unlimited</td>
+            <td data-label="Feature">Pages</td>
+            <td data-label="Starter">5</td>
+            <td data-label="Professional">15</td>
+            <td data-label="Enterprise">Unlimited</td>
           </tr>
           <tr>
-            <td style="padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Design revisions</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">2</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">5</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Unlimited</td>
+            <td data-label="Feature">Design revisions</td>
+            <td data-label="Starter">2</td>
+            <td data-label="Professional">5</td>
+            <td data-label="Enterprise">Unlimited</td>
           </tr>
           <tr>
-            <td style="padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Custom animations</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">—</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle); color: var(--status-good);">{% include icons.html icon="check" size="18" %}</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle); color: var(--status-good);">{% include icons.html icon="check" size="18" %}</td>
+            <td data-label="Feature">Custom animations</td>
+            <td data-label="Starter">—</td>
+            <td data-label="Professional" style="color: var(--status-good);">{% include icons.html icon="check" size="18" %}</td>
+            <td data-label="Enterprise" style="color: var(--status-good);">{% include icons.html icon="check" size="18" %}</td>
           </tr>
           <tr>
-            <td style="padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">E-commerce</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">—</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">25 products</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Unlimited</td>
+            <td data-label="Feature">E-commerce</td>
+            <td data-label="Starter">—</td>
+            <td data-label="Professional">25 products</td>
+            <td data-label="Enterprise">Unlimited</td>
           </tr>
           <tr>
-            <td style="padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Support</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Email</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Email + Chat</td>
-            <td style="text-align: center; padding: var(--space-4); border-block-end: 1px solid var(--color-border-subtle);">Priority 24/7</td>
+            <td data-label="Feature">Support</td>
+            <td data-label="Starter">Email</td>
+            <td data-label="Professional">Email + Chat</td>
+            <td data-label="Enterprise">Priority 24/7</td>
           </tr>
           <tr>
-            <td style="padding: var(--space-4);">Delivery time</td>
-            <td style="text-align: center; padding: var(--space-4);">2-3 weeks</td>
-            <td style="text-align: center; padding: var(--space-4);">4-6 weeks</td>
-            <td style="text-align: center; padding: var(--space-4);">Custom</td>
+            <td data-label="Feature">Delivery time</td>
+            <td data-label="Starter">2-3 weeks</td>
+            <td data-label="Professional">4-6 weeks</td>
+            <td data-label="Enterprise">Custom</td>
           </tr>
         </tbody>
       </table>
@@ -229,7 +231,7 @@ nav: pricing
   <h2>Ready to Get Started?</h2>
   <p style="color: var(--color-text-muted); margin-block: var(--space-4);">Let's discuss your project and find the perfect solution.</p>
   <div class="cluster" style="justify-content: center;">
-    <a href="contact.html"><button data-variant="secondary">Schedule a Call</button></a>
+    <a href="contact.html" class="button">Schedule a Call</a>
   </div>
 </section>
 

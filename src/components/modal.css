@@ -241,6 +241,26 @@
 
 
   /* ========================================
+     DESTRUCTIVE CONFIRMATION MODIFIER
+     Wider gap in footer, mobile stacking
+     ======================================== */
+
+  .modal[data-destructive] .modal__footer {
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 40rem) {
+    .modal[data-destructive] .modal__footer {
+      flex-direction: column-reverse;
+    }
+
+    .modal[data-destructive] .modal__footer > button {
+      inline-size: 100%;
+    }
+  }
+
+
+  /* ========================================
      THEME-SPECIFIC MODAL STYLES
      ======================================== */
 

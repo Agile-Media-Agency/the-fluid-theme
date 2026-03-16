@@ -1562,24 +1562,24 @@ nav: components
         </div>
         <footer class="modal__footer">
           <button data-variant="ghost" onclick="this.closest('dialog').close()">Cancel</button>
-          <button onclick="this.closest('dialog').close()">Confirm</button>
+          <button onclick="this.closest('dialog').close()">Save Changes</button>
         </footer>
       </div>
     </dialog>
 
     <!-- Small Modal -->
-    <dialog id="demo-modal-sm" class="modal" data-size="sm">
+    <dialog id="demo-modal-sm" class="modal" data-size="sm" data-destructive>
       <div class="modal__content">
         <header class="modal__header">
-          <h2 class="modal__title">Are you sure?</h2>
+          <h2 class="modal__title">Delete this item permanently</h2>
           <button class="modal__close" aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
         </header>
         <div class="modal__body">
           <p>This action cannot be undone. Your data will be permanently deleted.</p>
         </div>
         <footer class="modal__footer">
-          <button data-variant="ghost" onclick="this.closest('dialog').close()">Cancel</button>
-          <button data-variant="danger" onclick="this.closest('dialog').close()">Delete</button>
+          <button data-variant="ghost" onclick="this.closest('dialog').close()" autofocus>Cancel</button>
+          <button data-variant="danger" onclick="this.closest('dialog').close()">Delete Item</button>
         </footer>
       </div>
     </dialog>
@@ -1631,7 +1631,7 @@ nav: components
           </div>
         </div>
         <footer class="modal__footer">
-          <button onclick="this.closest('dialog').close()">Done</button>
+          <button onclick="this.closest('dialog').close()">Close Settings</button>
         </footer>
       </div>
     </dialog>

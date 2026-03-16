@@ -282,37 +282,39 @@ function createTheme(name, tokens) {
         <span>&lt;table&gt;</span>
         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table" target="_blank" rel="noopener">MDN</a>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Token</th>
-            <th>Value</th>
-            <th>Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>--space-4</code></td>
-            <td>1rem</td>
-            <td>Standard padding</td>
-          </tr>
-          <tr>
-            <td><code>--space-5</code></td>
-            <td>1.25rem</td>
-            <td>Component spacing</td>
-          </tr>
-          <tr>
-            <td><code>--space-8</code></td>
-            <td>2rem</td>
-            <td>Section spacing</td>
-          </tr>
-          <tr>
-            <td><code>--space-16</code></td>
-            <td>4rem</td>
-            <td>Large sections</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table" data-responsive>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Token"><code>--space-4</code></td>
+              <td data-label="Value">1rem</td>
+              <td data-label="Usage">Standard padding</td>
+            </tr>
+            <tr>
+              <td data-label="Token"><code>--space-5</code></td>
+              <td data-label="Value">1.25rem</td>
+              <td data-label="Usage">Component spacing</td>
+            </tr>
+            <tr>
+              <td data-label="Token"><code>--space-8</code></td>
+              <td data-label="Value">2rem</td>
+              <td data-label="Usage">Section spacing</td>
+            </tr>
+            <tr>
+              <td data-label="Token"><code>--space-16</code></td>
+              <td data-label="Value">4rem</td>
+              <td data-label="Usage">Large sections</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 

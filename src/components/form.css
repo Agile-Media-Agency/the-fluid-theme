@@ -423,7 +423,11 @@
   input[data-invalid],
   textarea[data-invalid],
   select[data-invalid],
+  input[aria-invalid="true"],
+  textarea[aria-invalid="true"],
+  select[aria-invalid="true"],
   input:invalid:not(:placeholder-shown),
+  textarea:invalid:not(:placeholder-shown),
   .form-group[data-invalid] input,
   .form-group[data-invalid] textarea,
   .form-group[data-invalid] select {
@@ -433,7 +437,11 @@
   input[data-invalid]:focus,
   textarea[data-invalid]:focus,
   select[data-invalid]:focus,
-  input:invalid:not(:placeholder-shown):focus {
+  input[aria-invalid="true"]:focus,
+  textarea[aria-invalid="true"]:focus,
+  select[aria-invalid="true"]:focus,
+  input:invalid:not(:placeholder-shown):focus,
+  textarea:invalid:not(:placeholder-shown):focus {
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-error) 20%, transparent);
   }
 

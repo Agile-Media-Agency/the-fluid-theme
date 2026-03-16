@@ -597,4 +597,41 @@
       0 10px 20px oklch(0 0 0 / 0.15),
       0 0 40px oklch(from var(--accent) l c h / 0.15);
   }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+
+    .card[data-interactive]:active,
+    a.card:active {
+      transform: none;
+    }
+
+    [data-motion="cascade"] .card:hover,
+    [data-motion="rapids"] .card:hover,
+    [data-motion="rapids"] .card:active,
+    [data-motion="tsunami"] .card:hover {
+      transform: none;
+      transition: none;
+    }
+
+    [data-motion="rapids"] .card {
+      transition: none;
+    }
+
+    [data-motion="tsunami"] .card {
+      transition: none;
+    }
+
+    .card__media,
+    .card__media-wrap::after {
+      transition: none;
+    }
+  }
 }

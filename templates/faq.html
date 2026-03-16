@@ -38,6 +38,12 @@ nav: faq
     transform: rotate(45deg);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .faq-accordion summary span {
+      transition: none;
+    }
+  }
+
   .faq-accordion .faq-answer {
     padding: 0 var(--space-4) var(--space-4);
     color: var(--color-text-muted);
@@ -270,7 +276,7 @@ nav: faq
   <h2>Still Have Questions?</h2>
   <p style="color: var(--color-text-muted); margin-block: var(--space-4);">We're here to help. Reach out and we'll get back to you within 24 hours.</p>
   <div class="cluster" style="justify-content: center;">
-    <a href="contact.html"><button>Contact Us</button></a>
+    <a href="contact.html" class="button">Contact Us</a>
   </div>
 </section>
 

@@ -17,8 +17,8 @@ permalink: /404.html
     <p class="hero__subheadline" style="max-inline-size: 45ch; margin-inline: auto;">The page you're looking for seems to have drifted away. Don't worry, we'll help you find your way back.</p>
 
     <div class="hero__actions" style="margin-block-start: var(--space-8);">
-      <a href="index.html"><button>Back to Home</button></a>
-      <button data-variant="outline" style="border-color: white; color: white;" onclick="history.back()">Go Back</button>
+      <a href="index.html" class="button">Back to Home</a>
+      <a href="javascript:history.back()" class="button" data-variant="outline" style="border-color: white; color: white;">Go Back</a>
     </div>
   </div>
 </section>
@@ -96,10 +96,13 @@ permalink: /404.html
 <!-- Search Section -->
 <section class="section" data-padding="lg" data-layout="center" data-theme="subtle">
   <h3 style="margin-block-end: var(--space-4);">Or Try Searching</h3>
-  <div class="input-group" style="max-inline-size: 400px; margin-inline: auto;">
-    <input type="search" placeholder="Search our site...">
-    <button>Search</button>
-  </div>
+  <form role="search" aria-label="Site search" style="max-inline-size: 400px; margin-inline: auto;">
+    <div class="input-group">
+      <label for="site-search" class="sr-only">Search our site</label>
+      <input type="search" id="site-search" placeholder="Search our site...">
+      <button type="submit">Search</button>
+    </div>
+  </form>
 </section>
 
 <!-- Footer -->
