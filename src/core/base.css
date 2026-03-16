@@ -37,6 +37,7 @@
     font-weight: var(--weight-semibold);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
+    margin-block-start: 0;
     margin-block-end: var(--space-4);
   }
 

@@ -45,6 +45,7 @@
     gap: var(--space-2);
     position: relative;
     text-align: center;
+    margin: 0;
   }
 
   /* Connector line between steps */

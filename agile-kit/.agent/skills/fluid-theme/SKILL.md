@@ -9,9 +9,9 @@ allowed-tools: Read, Glob, Grep, Bash
 > A modern CSS design system built on fluid dynamics principles — not utility classes.
 > **Repo:** github.com/Agile-Media-Agency/the-fluid-theme
 > **Live demo:** TheFluidTheme.com
-> **Version:** 0.3.2
+> **Version:** 0.3.3
 >
-> **⚠ Version check:** This skill was verified against v0.3.2. Before using, check the repo's `PROJECT_STATUS.md` for the current version. If it differs, component APIs, token names, or available templates may have changed. Update this skill accordingly.
+> **⚠ Version check:** This skill was verified against v0.3.3. Before using, check the repo's `PROJECT_STATUS.md` for the current version. If it differs, component APIs, token names, or available templates may have changed. Update this skill accordingly.
 
 ## Selective Reading
 
@@ -200,18 +200,23 @@ fluid, morandi, bold, pastel, earth, mono, 80s, matrix, subtle, tsunami
 - **Settings Panel** (`settings-panel.css`): Theme/motion/palette live switching controls. Used on the Fluid Theme demo site.
 - **Themed Images** (`themed-images.css`): Duotone filters and theme-aware image overlays that adapt to the active palette.
 
-### Known Inconsistency
-
-The existing `templates/contact.html` uses `class="form-field"` for form groups, but the actual CSS component uses `class="form-group"`. The correct class is `.form-group`. If using contact.html as a starting point, update the class names.
+### New Components (v0.3.3)
+- **Empty State** (`empty-state.css`): `.empty-state` with `.empty-state__icon`, `.empty-state__title`, `.empty-state__description`, `.empty-state__actions`. Sizes: `data-size="sm|lg"`.
+- **Step Indicator** (`step-indicator.css`): `.steps` > `.steps__list` > `.steps__item[data-status="complete|current"]` with `.steps__marker` and `.steps__label`. Sizes: `data-size="sm"`.
+- **Search Input** (`search-input.css`): `.search-input` with `.search-input__icon`, `.search-input__field`, `.search-input__clear`. Sizes: `data-size="sm|lg"`.
+- **Chip / Filter Tag** (`chip.css`): `.chip` with `.chip__label`, `.chip__remove`. Variants: `data-variant="filled|outline"`. Container: `.chip-group` with `.chip-group__clear`.
+- **Toast with Action** (`alert.css` enhancement): `.toast__action` for undo buttons. `data-auto-dismiss` with progress bar animation.
+- **Breadcrumb Mobile Collapse** (`nav.css` enhancement): Mobile auto-collapses to "← Back to [Parent]" below 40rem.
+- **Destructive Modal Modifier** (`modal.css` enhancement): `[data-destructive]` on `<dialog>` for wider footer gap and mobile vertical button stacking.
 
 ---
 
 ## Templates Available
 
-`templates/`: 404, about, blog, contact, faq, gallery, index, pricing, services
+`templates/`: 404, 500, about, blog, contact, faq, gallery, index, pricing, services
 
 ---
 
 ## Known Gaps
 
-See `ux-behavior-spec` skill §18 for the full gap tracker. Key missing components: action group (responsive), empty state, step indicator, search input with clear, filter chips, breadcrumb nav.
+See `ux-behavior-spec` skill §18 for the full gap tracker. Remaining gaps: action group (responsive overflow), mobile sticky CTA bar, cookie consent banner. Most previously tracked gaps have been resolved in v0.3.3.

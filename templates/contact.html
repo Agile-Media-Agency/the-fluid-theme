@@ -20,7 +20,7 @@ nav: contact
         <h2 style="margin-block-end: var(--space-6);">Send Us a Message</h2>
 
         <form class="stack" data-gap="md">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--space-4);">
             <div class="form-group">
               <label class="form-label" data-required for="first-name">First Name</label>
               <input type="text" id="first-name" placeholder="Jane" required>

@@ -201,17 +201,17 @@
 
   .section[data-bg="accent-solid"] {
     background-color: var(--accent);
-    color: white;
+    color: var(--white);
   }
 
   .section[data-bg="accent-solid"] h1,
   .section[data-bg="accent-solid"] h2,
   .section[data-bg="accent-solid"] h3 {
-    color: white;
+    color: var(--white);
   }
 
   .section[data-bg="accent-solid"] a {
-    color: white;
+    color: var(--white);
     text-decoration: underline;
   }
 

@@ -89,4 +89,4 @@ project-starter  ←── checklist used by ──→ /new-site and /new-brand 
 
 ## Framework Version
 
-This kit was built against **Fluid Theme v0.3.2**. Check the repo's `PROJECT_STATUS.md` for the current version. If the version has changed, the `fluid-theme` skill may reference outdated component APIs.
+This kit was built against **Fluid Theme v0.3.3**. Check the repo's `PROJECT_STATUS.md` for the current version. If the version has changed, the `fluid-theme` skill may reference outdated component APIs.

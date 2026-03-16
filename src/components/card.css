@@ -41,8 +41,9 @@
     border: var(--border-width) solid var(--_card-border, var(--color-border-subtle));
     border-radius: var(--radius-card, var(--radius-xl));
 
-    /* Overflow handling */
-    overflow: hidden;
+    /* Overflow: clip media but allow focus rings and shadows to paint */
+    overflow: clip;
+    overflow-clip-margin: 4px;
 
     /* Transitions */
     transition:

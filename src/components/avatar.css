@@ -44,7 +44,7 @@
     font-weight: var(--weight-semibold);
     font-size: calc(var(--_avatar-size) * 0.4);
     line-height: 1;
-    overflow: hidden;
+    overflow: visible;
     user-select: none;
   }
 

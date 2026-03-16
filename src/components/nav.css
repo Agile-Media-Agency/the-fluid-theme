@@ -292,7 +292,7 @@
     padding: var(--space-2) var(--space-4);
     font-size: var(--font-size-sm);
     font-weight: var(--weight-medium);
-    color: white;
+    color: var(--white);
     text-decoration: none;
     background-color: var(--accent);
     border-radius: var(--radius-md);

@@ -71,6 +71,7 @@
 
     /* Sizing */
     min-inline-size: 12rem;
+    max-inline-size: min(calc(100vw - 2rem), 20rem);
     max-block-size: 20rem;
     overflow-y: auto;
 

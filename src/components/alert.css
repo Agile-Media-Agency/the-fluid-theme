@@ -144,6 +144,7 @@
     --_btn-bg: transparent;
     --_btn-shadow: none;
 
+    position: relative;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
@@ -157,6 +158,13 @@
     color: var(--color-text-muted);
     cursor: pointer;
     transition: color var(--duration-fast) var(--ease-fluid);
+  }
+
+  /* Extend touch target to 44px minimum */
+  .alert__close::before {
+    content: "";
+    position: absolute;
+    inset: -0.625rem;
   }
 
   .alert__close:hover {
@@ -292,6 +300,7 @@
     --_btn-bg: transparent;
     --_btn-shadow: none;
 
+    position: relative;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
@@ -303,6 +312,13 @@
     font-size: var(--font-size-base);
     color: var(--color-text-subtle);
     cursor: pointer;
+  }
+
+  /* Extend touch target to 44px minimum */
+  .toast__close::before {
+    content: "";
+    position: absolute;
+    inset: -0.625rem;
   }
 
   .toast__close:hover {

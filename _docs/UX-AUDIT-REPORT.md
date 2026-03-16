@@ -2,7 +2,7 @@
 
 **Audited:** 2026-03-16
 **Spec Version:** UX Behavior Spec v0.2.0
-**Scope:** All templates (9), example pages (7), CSS components (18)
+**Scope:** All templates (10), example pages (7), CSS components (22)
 
 ---
 
@@ -49,17 +49,17 @@
 7. ~~**templates/gallery.html**: Card image `transition` in inline styles has no `prefers-reduced-motion` (Spec §12)~~ ✅ Fixed (removed inline transitions)
 8. ~~**templates/404.html**: Card hover transitions in inline styles have no `prefers-reduced-motion` (Spec §12)~~ ✅ Fixed (removed inline transitions)
 9. ~~**templates/blog.html**: Sidebar `position: sticky; top:` uses physical property instead of `inset-block-start` (Dev conventions)~~ ✅ Fixed (previous commit)
-10. **ALL templates**: No breadcrumbs on any deep page (Spec §8) — Deferred: requires breadcrumb mobile collapse component (Gap §8)
+10. **ALL templates**: No breadcrumbs on any deep page (Spec §8) — Breadcrumb component + mobile collapse now built; templates need breadcrumb markup added per-project
 11. **ALL templates**: Excessive inline styles throughout — Deferred: templates are functional demos, inline styles are acceptable for showcase
 12. ~~**templates/about.html**: Hero buttons are `<button>` elements with no click handler — do nothing (Spec §9)~~ ✅ Fixed (previous commit — now `<a>` links to sections)
 13. ~~**templates/services.html**: Hero CTA buttons are plain `<button>` with no link behavior (Spec §9)~~ ✅ Fixed (previous commit — now `<a>` links)
 14. ~~**templates/blog.html**: Pagination uses `<button>` instead of `<a>` links; `<nav>` has no `aria-label` (Spec §8)~~ ✅ Fixed
-15. **No 500 error page template** exists (Spec §7) — Deferred: tracked as Component Gap
+15. ~~**No 500 error page template** exists (Spec §7)~~ ✅ Fixed — `templates/500.html` created
 
 ### Examples
 
 16. ~~**examples/components.html**: Interactive card uses `onclick` on `<article>` — not keyboard-focusable (Spec §12)~~ ✅ Fixed
-17. **examples/components.html**: Search modal uses `<div role="dialog">` instead of native `<dialog>` — Deferred: requires JS refactor
+17. ~~**examples/components.html**: Search modal uses `<div role="dialog">` instead of native `<dialog>`~~ ✅ Fixed — converted to native `<dialog>` with `.showModal()/.close()`
 18. ~~**examples/components.html**: Form inputs missing `id`/`for` attribute linkage to labels (Spec §5)~~ ✅ Fixed
 19. ~~**examples/components.html**: Dots spinner missing `aria-label` (Spec §12)~~ ✅ Fixed
 20. ~~**examples/components.html**: Drawer "Done" button is vague (Spec §9)~~ ✅ Fixed (previous commit — now "Close Settings")
@@ -121,7 +121,11 @@ Tracked in Spec §18. Status after this audit:
 - **indicator.css**: Status colors, `prefers-reduced-motion`, motion-aware animations
 - **scroll-progress.css**: `prefers-reduced-motion`, logical properties
 - **settings-panel.css**: `:focus-visible`, `prefers-reduced-motion`
-- **All 18 CSS components**: Use `@layer components`, CSS custom properties, and logical properties correctly
+- **empty-state.css**: Correct `@layer`, logical properties, tokens, size variants
+- **step-indicator.css**: Correct `@layer`, logical properties, tokens, `prefers-reduced-motion`, responsive
+- **search-input.css**: Correct `@layer`, logical properties, tokens, `prefers-reduced-motion`, `:focus-visible`
+- **chip.css**: Correct `@layer`, logical properties, tokens, `prefers-reduced-motion`, `:focus-visible`, variants
+- **All 22 CSS components**: Use `@layer components`, CSS custom properties, and logical properties correctly
 
 ---
 
@@ -165,12 +169,12 @@ _Fixes applied during this audit (2026-03-16):_
 | 32 | examples/components.html | Moved `</footer>` outside `</main>` | ✅ Fixed |
 | 33 | templates/pricing.html | Badge position: `top`/`left` → `inset-block-start`/`inset-inline-start` | ✅ Fixed |
 
-### Remaining (not fixable in this pass)
+### Remaining (deferred or acceptable)
 
 | Item | Reason |
 |------|--------|
-| No 500 error page template | Requires new template — tracked as Component Gap |
-| No breadcrumbs on deep pages | Requires layout-level changes and JS for mobile collapse — tracked as Component Gap |
-| Excessive inline styles | Scope too large for this audit; templates are functional demos, not production sites |
-| Search modal uses `<div role="dialog">` | Requires JS refactor to switch from custom to native `<dialog>` — non-trivial |
+| ~~No 500 error page template~~ | ✅ Fixed — `templates/500.html` created |
+| ~~No breadcrumbs on deep pages~~ | ✅ Component built — breadcrumb mobile collapse in `nav.css`. Templates need per-project breadcrumb markup. |
+| Excessive inline styles | Acceptable for framework demo templates; not production sites |
+| ~~Search modal uses `<div role="dialog">`~~ | ✅ Fixed — converted to native `<dialog>` |
 | About/Services hero button `style="color: white"` on CTA section | These are on themed sections (`data-theme="primary"/"dark"`), not hero backgrounds with `--hero-text-color` |

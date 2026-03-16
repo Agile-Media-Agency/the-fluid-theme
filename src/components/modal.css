@@ -137,12 +137,13 @@
     --_btn-bg: transparent;
     --_btn-shadow: none;
 
+    position: relative;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: 2rem;
-    block-size: 2rem;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
     padding: 0;
     border-radius: var(--radius-md);
     font-size: var(--font-size-xl);

@@ -53,6 +53,7 @@
     --_btn-bg: transparent;
     --_btn-shadow: none;
 
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -76,6 +77,13 @@
   .chip__remove:focus-visible {
     color: var(--color-error);
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Extend touch target to 44px minimum */
+  .chip__remove::before {
+    content: "";
+    position: absolute;
+    inset: -0.75rem;
   }
 
 
@@ -119,7 +127,6 @@
   .chip-group__clear {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
-    margin-inline-start: var(--space-2);
   }
 
 
