@@ -234,6 +234,22 @@
     }
   }
 
+  /* Media query fallback for when container-type is not set on ancestor */
+  @media (max-width: 40rem) {
+    [data-layout="split"],
+    [data-layout="split-reverse"] {
+      grid-template-columns: 1fr;
+    }
+
+    [data-layout="split-reverse"] > :first-child {
+      order: 1;
+    }
+
+    [data-layout="split-reverse"] > :last-child {
+      order: 2;
+    }
+  }
+
 
   /* ========================================
      CONTENT WIDTH CONTROL
@@ -327,6 +343,17 @@
 
   [data-padding="xl"] {
     padding-block: var(--space-24);
+  }
+
+  /* Reduce vertical padding on mobile — large values waste screen space */
+  @media (max-width: 40rem) {
+    [data-padding="lg"] {
+      padding-block: var(--space-10);
+    }
+
+    [data-padding="xl"] {
+      padding-block: var(--space-12);
+    }
   }
 
 

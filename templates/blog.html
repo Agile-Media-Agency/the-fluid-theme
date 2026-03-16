@@ -123,7 +123,7 @@ nav: blog
       </div>
 
       <!-- Sidebar -->
-      <aside style="position: sticky; inset-block-start: var(--space-20);">
+      <aside class="blog-sidebar">
         <!-- Search -->
         <div class="card" style="margin-block-end: var(--space-6);">
           <div class="card__content">
@@ -171,9 +171,18 @@ nav: blog
 </footer>
 
 <style>
+  .blog-sidebar {
+    position: sticky;
+    inset-block-start: var(--space-20);
+  }
+
   @media (max-width: 900px) {
     .section > div > div[style*="grid-template-columns"] {
       grid-template-columns: 1fr !important;
+    }
+
+    .blog-sidebar {
+      position: static;
     }
   }
 
