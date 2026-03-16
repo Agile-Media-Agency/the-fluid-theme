@@ -36,5 +36,5 @@ defaults:
       layout: default
 
 # Site-wide variables
-version: "0.3.2"
+version: "0.3.3"
 # Note: "Last Built" timestamp is now automatic via site.time
