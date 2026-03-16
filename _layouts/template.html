@@ -14,7 +14,9 @@
 <body>
   {% include scroll-progress.html %}
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  {% include template-nav.html %}
+  <header>
+    {% include template-nav.html %}
+  </header>
 
   <main id="main-content" data-alternating-sections>
     {{ content }}

@@ -328,10 +328,15 @@
       drawer.removeAttribute('data-open');
       if (fab) fab.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      // Return focus to trigger
+      if (fab) fab.focus();
     } else {
       drawer.setAttribute('data-open', '');
       if (fab) fab.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      // Move focus into drawer
+      const closeBtn = drawer.querySelector('.settings-drawer__close');
+      if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
     }
   }
 
@@ -401,11 +406,25 @@
     if (isOpen) {
       menu.removeAttribute('data-open');
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
     } else {
       menu.setAttribute('data-open', '');
       toggle.setAttribute('aria-expanded', 'true');
+      // Focus first menu link
+      const firstLink = menu.querySelector('.nav__link, .nav__dropdown-trigger');
+      if (firstLink) setTimeout(() => firstLink.focus(), 50);
     }
   }
+
+  // Close mobile menu with Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const menu = document.getElementById('nav-menu');
+      if (menu && menu.hasAttribute('data-open')) {
+        toggleMenu();
+      }
+    }
+  });
 
 
   // ========================================
@@ -520,6 +539,9 @@
   // ========================================
 
   function initScrollReveal() {
+    // Respect OS-level reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Get motion style - if 'still', skip all animations
     const motionStyle = document.documentElement.getAttribute('data-motion') || 'flowing';
     if (motionStyle === 'still') return;
