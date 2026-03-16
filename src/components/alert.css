@@ -309,6 +309,44 @@
     color: var(--color-text);
   }
 
+  /* Toast action (undo link, etc.) */
+  .toast__action {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-2);
+    margin-block-start: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--_toast-accent);
+    background: transparent;
+    border: var(--border-width) solid var(--_toast-accent);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .toast__action:hover {
+    background: var(--_toast-accent);
+    color: var(--white);
+  }
+
+  /* Auto-dismiss progress bar */
+  .toast[data-auto-dismiss]::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    block-size: 2px;
+    background: var(--_toast-accent);
+    animation: toast-progress var(--_toast-duration, 4s) linear both;
+  }
+
+  @keyframes toast-progress {
+    from { inline-size: 100%; }
+    to { inline-size: 0%; }
+  }
+
   /* Exit animation */
   .toast[data-dismissing] {
     animation: toast-out var(--duration-fast) var(--ease-fluid) both;

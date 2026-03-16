@@ -1,0 +1,125 @@
+/**
+ * Fluid Framework - Search Input Component
+ * @layer components
+ *
+ * Styled search input with embedded clear button.
+ *
+ * Usage:
+ *   <div class="search-input">
+ *     <svg class="search-input__icon">...</svg>
+ *     <input type="search" class="search-input__field" placeholder="Search...">
+ *     <button class="search-input__clear" aria-label="Clear search" hidden>&times;</button>
+ *   </div>
+ *
+ * The clear button should be shown/hidden via JS when the input has a value.
+ * Sizes: data-size="sm|lg"
+ */
+
+@layer components {
+  .search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-input__icon {
+    position: absolute;
+    inset-inline-start: var(--space-3);
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .search-input__field {
+    inline-size: 100%;
+    padding-inline-start: var(--space-10);
+    padding-inline-end: var(--space-10);
+  }
+
+  /* Hide native search cancel button (webkit) */
+  .search-input__field::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  .search-input__clear {
+    --_btn-bg: transparent;
+    --_btn-shadow: none;
+
+    position: absolute;
+    inset-inline-end: var(--space-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    padding: 0;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    z-index: 1;
+    transition: color var(--duration-fast) var(--ease-fluid),
+                background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .search-input__clear:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  .search-input__clear:focus-visible {
+    color: var(--color-text);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Hidden by default, shown via JS when input has value */
+  .search-input__clear[hidden] {
+    display: none;
+  }
+
+
+  /* ========================================
+     SIZE VARIANTS
+     ======================================== */
+
+  .search-input[data-size="sm"] .search-input__icon {
+    inset-inline-start: var(--space-2);
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+
+  .search-input[data-size="sm"] .search-input__field {
+    padding-inline-start: var(--space-8);
+    padding-inline-end: var(--space-8);
+  }
+
+  .search-input[data-size="sm"] .search-input__clear {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    font-size: var(--font-size-base);
+  }
+
+  .search-input[data-size="lg"] .search-input__field {
+    padding-inline-start: var(--space-12);
+    padding-inline-end: var(--space-12);
+  }
+
+  .search-input[data-size="lg"] .search-input__icon {
+    inset-inline-start: var(--space-4);
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .search-input__clear {
+      transition: none;
+    }
+  }
+}

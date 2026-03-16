@@ -523,6 +523,36 @@
     pointer-events: none;
   }
 
+  /* Mobile: collapse to "← Back to [Parent]" */
+  @media (max-width: 40rem) {
+    .breadcrumb .breadcrumb__item {
+      display: none;
+    }
+
+    /* Show only the second-to-last item (parent) as a back link */
+    .breadcrumb .breadcrumb__item:nth-last-child(2) {
+      display: inline-flex;
+    }
+
+    .breadcrumb .breadcrumb__item:nth-last-child(2)::before {
+      content: "← ";
+      color: var(--color-text-muted);
+    }
+
+    .breadcrumb .breadcrumb__item:nth-last-child(2)::after {
+      content: none;
+    }
+
+    .breadcrumb .breadcrumb__item:nth-last-child(2) .breadcrumb__link {
+      color: var(--color-text-muted);
+      pointer-events: auto;
+    }
+
+    .breadcrumb .breadcrumb__item:nth-last-child(2) .breadcrumb__link::before {
+      content: "Back to ";
+    }
+  }
+
 
   /* ========================================
      PAGINATION

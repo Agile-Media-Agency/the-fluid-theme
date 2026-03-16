@@ -282,47 +282,49 @@ nav: philosophy
     <h2>The Reynolds Number</h2>
     <p>In fluid dynamics, the <strong>Reynolds number</strong> determines whether flow is smooth (laminar) or chaotic (turbulent). Our motion styles map directly to this spectrum:</p>
 
-    <table class="reynolds-table">
-      <thead>
-        <tr>
-          <th>Motion Style</th>
-          <th>Flow Type</th>
-          <th>Physical Behavior</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Still</strong></td>
-          <td>No flow</td>
-          <td>Zero energy. Absolute rest. Instant transitions.</td>
-        </tr>
-        <tr>
-          <td><strong>Serene</strong></td>
-          <td>Laminar</td>
-          <td>Smooth parallel layers. No mixing. Slow crossfades.</td>
-        </tr>
-        <tr>
-          <td><strong>Trickling</strong></td>
-          <td>Low Re</td>
-          <td>Viscosity dominates. Gentle, predictable movement.</td>
-        </tr>
-        <tr>
-          <td><strong>Flowing</strong></td>
-          <td>Moderate Re</td>
-          <td>Balanced forces. The comfortable default.</td>
-        </tr>
-        <tr>
-          <td><strong>Rapids</strong></td>
-          <td>High Re</td>
-          <td>Inertia dominates. Turbulent mixing. Content pushes through content.</td>
-        </tr>
-        <tr>
-          <td><strong>Tsunami</strong></td>
-          <td>Extreme</td>
-          <td>Boundary-breaking energy. Rise, crest, crash.</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrap">
+      <table class="table reynolds-table" data-responsive>
+        <thead>
+          <tr>
+            <th>Motion Style</th>
+            <th>Flow Type</th>
+            <th>Physical Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Motion Style"><strong>Still</strong></td>
+            <td data-label="Flow Type">No flow</td>
+            <td data-label="Physical Behavior">Zero energy. Absolute rest. Instant transitions.</td>
+          </tr>
+          <tr>
+            <td data-label="Motion Style"><strong>Serene</strong></td>
+            <td data-label="Flow Type">Laminar</td>
+            <td data-label="Physical Behavior">Smooth parallel layers. No mixing. Slow crossfades.</td>
+          </tr>
+          <tr>
+            <td data-label="Motion Style"><strong>Trickling</strong></td>
+            <td data-label="Flow Type">Low Re</td>
+            <td data-label="Physical Behavior">Viscosity dominates. Gentle, predictable movement.</td>
+          </tr>
+          <tr>
+            <td data-label="Motion Style"><strong>Flowing</strong></td>
+            <td data-label="Flow Type">Moderate Re</td>
+            <td data-label="Physical Behavior">Balanced forces. The comfortable default.</td>
+          </tr>
+          <tr>
+            <td data-label="Motion Style"><strong>Rapids</strong></td>
+            <td data-label="Flow Type">High Re</td>
+            <td data-label="Physical Behavior">Inertia dominates. Turbulent mixing. Content pushes through content.</td>
+          </tr>
+          <tr>
+            <td data-label="Motion Style"><strong>Tsunami</strong></td>
+            <td data-label="Flow Type">Extreme</td>
+            <td data-label="Physical Behavior">Boundary-breaking energy. Rise, crest, crash.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- Rapids Deep Dive -->

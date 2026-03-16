@@ -100,7 +100,7 @@ nav: heroes
   <p class="hero__subheadline">Subtle color transitions create depth without distraction. A calm brook, not a crashing wave.</p>
   <div class="hero__actions">
     <button>Primary Action</button>
-    <button data-variant="ghost" style="color: white; border-color: white;">Secondary</button>
+    <button data-variant="ghost" style="--_btn-color: var(--hero-text-color, var(--color-text));">Secondary</button>
   </div>
 </section>
 
@@ -147,7 +147,7 @@ nav: heroes
   <p class="hero__subheadline">Use overlays to ensure text readability over images. Light, medium, heavy, or gradient options.</p>
   <div class="hero__actions">
     <button>Get Started</button>
-    <button data-variant="outline" style="border-color: white; color: white;">Watch Video</button>
+    <button data-variant="outline" style="--_btn-color: var(--hero-text-color, var(--color-text)); --_btn-border: var(--hero-text-color, var(--color-border));">Watch Video</button>
   </div>
 </section>
 

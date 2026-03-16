@@ -13,12 +13,12 @@ nav: gallery
 <!-- Filter Tabs -->
 <section class="section" data-padding="md" style="border-block-end: 1px solid var(--color-border-subtle);">
   <div data-layout="center">
-    <div class="cluster" style="justify-content: center; gap: var(--space-2);">
-      <button data-variant="ghost" data-size="sm" style="font-weight: 600;">All</button>
-      <button data-variant="ghost" data-size="sm">Web Design</button>
-      <button data-variant="ghost" data-size="sm">Branding</button>
-      <button data-variant="ghost" data-size="sm">E-Commerce</button>
-      <button data-variant="ghost" data-size="sm">Apps</button>
+    <div class="cluster" role="group" aria-label="Filter by category" style="justify-content: center; gap: var(--space-2);">
+      <button data-variant="ghost" data-size="sm" aria-pressed="true" style="font-weight: 600;">All</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Web Design</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Branding</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">E-Commerce</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Apps</button>
     </div>
   </div>
 </section>
@@ -31,7 +31,7 @@ nav: gallery
       <!-- Project 1 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png" alt="Project 1" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png" alt="Project 1">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Web Design</span>
             <h3 style="margin: 0;">Serene Wellness Spa</h3>
@@ -43,7 +43,7 @@ nav: gallery
       <!-- Project 2 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png" alt="Project 2" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png" alt="Project 2">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">E-Commerce</span>
             <h3 style="margin: 0;">Flow Outdoors</h3>
@@ -55,7 +55,7 @@ nav: gallery
       <!-- Project 3 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png" alt="Project 3" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png" alt="Project 3">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Branding</span>
             <h3 style="margin: 0;">Cascade Consulting</h3>
@@ -67,7 +67,7 @@ nav: gallery
       <!-- Project 4 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0.png" alt="Project 4" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0.png" alt="Project 4">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Apps</span>
             <h3 style="margin: 0;">Rapids Fitness</h3>
@@ -79,7 +79,7 @@ nav: gallery
       <!-- Project 5 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0.png" alt="Project 5" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0.png" alt="Project 5">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Web Design</span>
             <h3 style="margin: 0;">Wave Energy Corp</h3>
@@ -91,7 +91,7 @@ nav: gallery
       <!-- Project 6 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__e2ae094e-6fda-4e49-829b-fbbf14a4934e_0.png" alt="Project 6" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__e2ae094e-6fda-4e49-829b-fbbf14a4934e_0.png" alt="Project 6">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Branding</span>
             <h3 style="margin: 0;">Reflection Media</h3>
@@ -103,7 +103,7 @@ nav: gallery
       <!-- Project 7 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0.png" alt="Project 7" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0.png" alt="Project 7">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">E-Commerce</span>
             <h3 style="margin: 0;">Gentle Goods</h3>
@@ -115,7 +115,7 @@ nav: gallery
       <!-- Project 8 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_1.png" alt="Project 8" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_1.png" alt="Project 8">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Apps</span>
             <h3 style="margin: 0;">CascadeNotes</h3>
@@ -127,7 +127,7 @@ nav: gallery
       <!-- Project 9 -->
       <article class="card" style="--card-padding: 0; overflow: hidden;">
         <div style="position: relative;">
-          <img class="card__media" data-aspect="video" src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_83c574a8-05d0-4522-949a-bf25ef8fd5e0_0.png" alt="Project 9" style="transition: transform 0.3s ease;">
+          <img class="card__media" data-aspect="video" src="../assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_83c574a8-05d0-4522-949a-bf25ef8fd5e0_0.png" alt="Project 9">
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, hsl(0 0% 0% / 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); color: white;">
             <span style="font-size: var(--font-size-xs); opacity: 0.8;">Web Design</span>
             <h3 style="margin: 0;">Rapid Response</h3>

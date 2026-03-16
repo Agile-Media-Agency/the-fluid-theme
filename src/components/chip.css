@@ -1,0 +1,136 @@
+/**
+ * Fluid Framework - Chip / Filter Tag Component
+ * @layer components
+ *
+ * Dismissable tags for active filters, selections, and removable items.
+ *
+ * Usage:
+ *   <span class="chip">
+ *     <span class="chip__label">Color: Blue</span>
+ *     <button class="chip__remove" aria-label="Remove Color: Blue filter">&times;</button>
+ *   </span>
+ *
+ *   <!-- Non-dismissable (no remove button) -->
+ *   <span class="chip">
+ *     <span class="chip__label">Category</span>
+ *   </span>
+ *
+ *   <!-- Active filter bar -->
+ *   <div class="chip-group">
+ *     <span class="chip">...</span>
+ *     <span class="chip">...</span>
+ *     <button class="chip-group__clear" data-variant="ghost" data-size="sm">Clear All</button>
+ *   </div>
+ *
+ * Variants: data-variant="filled|outline"
+ */
+
+@layer components {
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    transition: background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .chip:hover {
+    background: var(--color-surface-raised);
+  }
+
+  .chip__label {
+    padding-inline-end: var(--space-1);
+  }
+
+  .chip__remove {
+    --_btn-bg: transparent;
+    --_btn-shadow: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    padding: 0;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-fluid),
+                background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .chip__remove:hover {
+    color: var(--color-error);
+    background: var(--color-error-subtle);
+  }
+
+  .chip__remove:focus-visible {
+    color: var(--color-error);
+    box-shadow: var(--shadow-glow);
+  }
+
+
+  /* ========================================
+     VARIANTS
+     ======================================== */
+
+  .chip[data-variant="filled"] {
+    background: var(--accent-subtle);
+    border-color: transparent;
+    color: var(--accent);
+  }
+
+  .chip[data-variant="filled"]:hover {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .chip[data-variant="filled"]:hover .chip__remove:hover {
+    color: var(--white);
+    background: oklch(from var(--accent) calc(l - 0.1) c h);
+  }
+
+  .chip[data-variant="outline"] {
+    background: transparent;
+  }
+
+
+  /* ========================================
+     CHIP GROUP
+     Container for active filter chips
+     ======================================== */
+
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .chip-group__clear {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-inline-start: var(--space-2);
+  }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .chip,
+    .chip__remove {
+      transition: none;
+    }
+  }
+}

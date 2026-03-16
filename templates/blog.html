@@ -49,7 +49,7 @@ nav: blog
               </div>
               <h3 class="card__title">CSS Layers: Organizing Styles for Scalable Design Systems</h3>
               <p class="card__description">How CSS @layer can transform your stylesheet architecture and make specificity battles a thing of the past.</p>
-              <button data-variant="ghost" data-size="sm">Read More →</button>
+              <button data-variant="ghost" data-size="sm" aria-label="Read more about CSS Layers">Read More →</button>
             </div>
           </article>
 
@@ -63,7 +63,7 @@ nav: blog
               </div>
               <h3 class="card__title">Creating Flow States in Digital Experiences</h3>
               <p class="card__description">The psychology behind seamless user experiences and how to design interfaces that feel effortless.</p>
-              <button data-variant="ghost" data-size="sm">Read More →</button>
+              <button data-variant="ghost" data-size="sm" aria-label="Read more about Flow States">Read More →</button>
             </div>
           </article>
 
@@ -77,7 +77,7 @@ nav: blog
               </div>
               <h3 class="card__title">Speed Matters: Optimizing Web Performance in 2024</h3>
               <p class="card__description">Practical techniques for building fast, responsive websites that delight users and rank higher.</p>
-              <button data-variant="ghost" data-size="sm">Read More →</button>
+              <button data-variant="ghost" data-size="sm" aria-label="Read more about Web Performance">Read More →</button>
             </div>
           </article>
 
@@ -91,7 +91,7 @@ nav: blog
               </div>
               <h3 class="card__title">Making Waves: How to Stand Out in a Crowded Digital Space</h3>
               <p class="card__description">Strategies for differentiating your brand and creating memorable digital experiences.</p>
-              <button data-variant="ghost" data-size="sm">Read More →</button>
+              <button data-variant="ghost" data-size="sm" aria-label="Read more about Standing Out">Read More →</button>
             </div>
           </article>
 
@@ -105,19 +105,19 @@ nav: blog
               </div>
               <h3 class="card__title">Modern CSS Features You Should Be Using Today</h3>
               <p class="card__description">Container queries, cascade layers, and other CSS features that are ready for production.</p>
-              <button data-variant="ghost" data-size="sm">Read More →</button>
+              <button data-variant="ghost" data-size="sm" aria-label="Read more about Modern CSS Features">Read More →</button>
             </div>
           </article>
         </div>
 
         <!-- Pagination -->
-        <nav style="margin-block-start: var(--space-10);">
+        <nav aria-label="Blog pagination" style="margin-block-start: var(--space-10);">
           <div class="cluster" style="justify-content: center; gap: var(--space-2);">
-            <button data-variant="ghost" data-size="sm" disabled>← Previous</button>
-            <button data-variant="ghost" data-size="sm" style="font-weight: 700;">1</button>
-            <button data-variant="ghost" data-size="sm">2</button>
-            <button data-variant="ghost" data-size="sm">3</button>
-            <button data-variant="ghost" data-size="sm">Next →</button>
+            <a class="button" data-variant="ghost" data-size="sm" aria-disabled="true">← Previous</a>
+            <a href="#" class="button" data-variant="ghost" data-size="sm" aria-current="page" style="font-weight: 700;">1</a>
+            <a href="#" class="button" data-variant="ghost" data-size="sm">2</a>
+            <a href="#" class="button" data-variant="ghost" data-size="sm">3</a>
+            <a href="#" class="button" data-variant="ghost" data-size="sm">Next →</a>
           </div>
         </nav>
       </div>
@@ -153,8 +153,9 @@ nav: blog
           <div class="card__content">
             <h4 style="margin-block-end: var(--space-2);">Newsletter</h4>
             <p style="font-size: var(--font-size-sm); opacity: 0.9; margin-block-end: var(--space-4);">Get the latest articles delivered to your inbox.</p>
-            <input type="email" placeholder="you@example.com" style="margin-block-end: var(--space-3);">
-            <button data-variant="secondary" style="width: 100%;">Subscribe</button>
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input type="email" id="newsletter-email" placeholder="you@example.com" style="margin-block-end: var(--space-3);">
+            <button data-variant="secondary" style="width: 100%;">Subscribe to Newsletter</button>
           </div>
         </div>
       </aside>

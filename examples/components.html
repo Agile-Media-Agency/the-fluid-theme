@@ -171,23 +171,29 @@ nav: components
 
     /* === Search Modal === */
     .search-modal {
+      border: none;
+      padding: 0;
+      background: transparent;
+      max-inline-size: none;
+      max-block-size: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      display: none;
+      display: flex;
       align-items: flex-start;
       justify-content: center;
       padding-block-start: 15vh;
       padding-inline: var(--space-4);
+      opacity: 0;
+      visibility: hidden;
     }
 
     .search-modal[open] {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
     }
 
-    .search-modal__backdrop {
-      position: absolute;
-      inset: 0;
+    .search-modal::backdrop {
       background: color-mix(in oklch, var(--color-background) 80%, transparent);
       backdrop-filter: blur(4px);
     }
@@ -330,8 +336,7 @@ nav: components
 </style>
 
 <!-- Search Modal -->
-<div class="search-modal" id="search-modal" role="dialog" aria-label="Search components">
-  <div class="search-modal__backdrop" onclick="closeSearch()"></div>
+<dialog class="search-modal" id="search-modal" aria-label="Search components">
   <div class="search-modal__content">
     <div class="search-modal__input-wrap">
       <svg class="search-modal__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -345,7 +350,7 @@ nav: components
       <span><kbd>esc</kbd> Close</span>
     </div>
   </div>
-</div>
+</dialog>
 
 <div class="container">
   <!-- Header -->
@@ -488,7 +493,7 @@ nav: components
           </div>
         </a>
 
-        <article class="card" data-variant="elevated" data-interactive onclick="alert('Card clicked!')">
+        <article class="card" data-variant="elevated" data-interactive onclick="alert('Card clicked!')" tabindex="0" role="button">
           <div class="card__content">
             <h3 class="card__title">Interactive Elevated</h3>
             <p class="card__description">Click anywhere on this card to trigger an action.</p>
@@ -708,10 +713,10 @@ nav: components
     <div class="component-group">
       <div class="component-label">Input Group</div>
       <div class="form-group">
-        <label class="form-label">Website URL</label>
+        <label class="form-label" for="website-url">Website URL</label>
         <div class="input-group">
           <span class="input-group__addon">https://</span>
-          <input type="text" placeholder="example.com">
+          <input type="text" id="website-url" placeholder="example.com">
         </div>
       </div>
     </div>
@@ -1705,7 +1710,7 @@ nav: components
     <div class="component-group">
       <div class="component-label">Dots Spinner</div>
       <div class="cluster" style="--cluster-gap: var(--space-5); --cluster-align: center;">
-        <div class="spinner-dots"><span></span></div>
+        <div class="spinner-dots" aria-label="Loading"><span></span></div>
         <span style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Loading data...</span>
       </div>
     </div>
@@ -1865,9 +1870,9 @@ nav: components
       <small>All components respect <code>prefers-reduced-motion</code> and <code>prefers-color-scheme</code>.</small>
     </p>
     {% include version.html %}
-  </footer>
-
     </main>
+
+  </footer>
   </div><!-- /.components-layout -->
 </div><!-- /.container -->
 
@@ -1899,7 +1904,7 @@ let filteredComponents = [...components];
 function openSearch() {
   const modal = document.getElementById('search-modal');
   const input = document.getElementById('search-input');
-  modal.setAttribute('open', '');
+  modal.showModal();
   searchOpen = true;
   input.value = '';
   filteredComponents = [...components];
@@ -1910,10 +1915,15 @@ function openSearch() {
 // Close search modal
 function closeSearch() {
   const modal = document.getElementById('search-modal');
-  modal.removeAttribute('open');
+  modal.close();
   searchOpen = false;
   selectedIndex = 0;
 }
+
+// Close on backdrop click (native dialog)
+document.getElementById('search-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeSearch();
+});
 
 // Fuzzy search
 function fuzzyMatch(query, text) {

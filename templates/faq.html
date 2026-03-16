@@ -68,13 +68,13 @@ nav: faq
 <!-- Category Filters -->
 <section class="section" data-padding="sm" style="border-block-end: 1px solid var(--color-border-subtle);">
   <div data-layout="center">
-    <div class="cluster" style="justify-content: center; gap: var(--space-2);">
-      <button data-variant="ghost" data-size="sm" style="font-weight: 600;">All</button>
-      <button data-variant="ghost" data-size="sm">General</button>
-      <button data-variant="ghost" data-size="sm">Pricing</button>
-      <button data-variant="ghost" data-size="sm">Process</button>
-      <button data-variant="ghost" data-size="sm">Technical</button>
-      <button data-variant="ghost" data-size="sm">Support</button>
+    <div class="cluster" role="group" aria-label="Filter by category" style="justify-content: center; gap: var(--space-2);">
+      <button data-variant="ghost" data-size="sm" aria-pressed="true" style="font-weight: 600;">All</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">General</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Pricing</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Process</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Technical</button>
+      <button data-variant="ghost" data-size="sm" aria-pressed="false">Support</button>
     </div>
   </div>
 </section>

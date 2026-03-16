@@ -1,0 +1,68 @@
+---
+title: Server Error
+description: Something went wrong on our end
+layout: template
+nav: ""
+permalink: /500.html
+---
+<!-- 500 Hero -->
+<section class="hero" data-layout="center" data-padding="xl" data-size="full" data-theme="subtle">
+  <div style="text-align: center;">
+    <p style="font-size: var(--font-size-8xl); font-weight: 800; margin-block-end: var(--space-4); opacity: 0.3;">500</p>
+    <h1 class="hero__headline">Something Went Wrong</h1>
+    <p class="hero__subheadline" style="max-inline-size: 50ch; margin-inline: auto;">We hit an unexpected error on our end. Your data is safe — this is on us, not you.</p>
+
+    <div class="hero__actions" style="margin-block-start: var(--space-8);">
+      <a href="index.html" class="button">Back to Home</a>
+      <button data-variant="outline" onclick="location.reload()">Try Again</button>
+    </div>
+  </div>
+</section>
+
+<!-- What Happened -->
+<section class="section" data-padding="xl">
+  <div data-layout="center" data-width="narrow">
+    <div class="alert" data-status="info" data-variant="subtle">
+      <div class="alert__content">
+        <strong class="alert__title">What happened?</strong>
+        <p>Our server encountered an unexpected condition. This is usually temporary.</p>
+      </div>
+    </div>
+
+    <div class="stack" data-gap="md" style="margin-block-start: var(--space-8);">
+      <h2 style="text-align: center;">What you can do</h2>
+
+      <div class="grid" style="--grid-min: 250px; gap: var(--space-6);">
+        <article class="card">
+          <div class="card__content" style="text-align: center;">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2); color: var(--accent);">{% include icons.html icon="refresh-cw" size="32" %}</span>
+            <h3 class="card__title">Refresh the page</h3>
+            <p class="card__description">Wait a moment, then try loading the page again.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__content" style="text-align: center;">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2); color: var(--accent);">{% include icons.html icon="home" size="32" %}</span>
+            <h3 class="card__title">Go to the homepage</h3>
+            <p class="card__description">Start fresh from our main page.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__content" style="text-align: center;">
+            <span style="font-size: var(--font-size-2xl); display: block; margin-block-end: var(--space-2); color: var(--accent);">{% include icons.html icon="mail" size="32" %}</span>
+            <h3 class="card__title">Contact support</h3>
+            <p class="card__description">If this keeps happening, let us know.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+  <p style="color: var(--color-text-muted);">Built with the Fluid Framework</p>
+  {% include version.html %}
+</footer>
