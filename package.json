@@ -1,6 +1,6 @@
 {
   "name": "@fluid/theme-framework",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A modern, semantic design system using CSS layers and custom properties",
   "main": "src/fluid.css",
   "scripts": {
