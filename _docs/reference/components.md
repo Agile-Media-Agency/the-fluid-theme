@@ -1075,3 +1075,175 @@ Standalone dropdown menus for actions, selections, and context menus. Separate f
 | `data-dismissible` | (presence) | Alert |
 | `data-danger` | (presence) | Dropdown item |
 | `data-active` | (presence) | Dropdown item |
+| `data-destructive` | (presence) | Modal dialog (wider footer gap, mobile stacking) |
+| `data-auto-dismiss` | (presence) | Toast (progress bar animation) |
+| `aria-pressed` | `true`, `false` | Filter/toggle buttons |
+| `role="switch"` | (presence) | Toggle switch inputs |
+
+---
+
+## Empty State
+
+Placeholder for lists, tables, or content areas with no items.
+
+### Basic Usage
+```html
+<div class="empty-state">
+  <div class="empty-state__icon">📭</div>
+  <h3 class="empty-state__title">No items yet</h3>
+  <p class="empty-state__description">Create your first item to get started.</p>
+  <div class="empty-state__actions">
+    <button>Create Item</button>
+  </div>
+</div>
+```
+
+### Sizes
+```html
+<div class="empty-state" data-size="sm"><!-- Compact --></div>
+<div class="empty-state"><!-- Default --></div>
+<div class="empty-state" data-size="lg"><!-- Large --></div>
+```
+
+---
+
+## Step Indicator
+
+Labeled discrete steps for multi-step forms and onboarding.
+
+### Basic Usage
+```html
+<nav class="steps" aria-label="Progress">
+  <ol class="steps__list">
+    <li class="steps__item" data-status="complete">
+      <span class="steps__marker">1</span>
+      <span class="steps__label">Account</span>
+    </li>
+    <li class="steps__item" data-status="current" aria-current="step">
+      <span class="steps__marker">2</span>
+      <span class="steps__label">Details</span>
+    </li>
+    <li class="steps__item">
+      <span class="steps__marker">3</span>
+      <span class="steps__label">Review</span>
+    </li>
+  </ol>
+</nav>
+```
+
+### Small Variant
+```html
+<nav class="steps" data-size="sm" aria-label="Progress">...</nav>
+```
+
+Completed steps show a checkmark. Current step has a glow ring.
+
+---
+
+## Search Input
+
+Styled search input with embedded icon and clear button.
+
+### Basic Usage
+```html
+<div class="search-input">
+  <svg class="search-input__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+  </svg>
+  <input type="search" class="search-input__field" placeholder="Search...">
+  <button class="search-input__clear" aria-label="Clear search" hidden>&times;</button>
+</div>
+```
+
+### Sizes
+```html
+<div class="search-input" data-size="sm">...</div>
+<div class="search-input"><!-- Default --></div>
+<div class="search-input" data-size="lg">...</div>
+```
+
+The clear button should be shown/hidden via JS when the input has a value.
+
+---
+
+## Chip / Filter Tag
+
+Dismissable tags for active filters and selections.
+
+### Basic Usage
+```html
+<span class="chip">
+  <span class="chip__label">Color: Blue</span>
+  <button class="chip__remove" aria-label="Remove Color: Blue filter">&times;</button>
+</span>
+```
+
+### Variants
+```html
+<span class="chip"><!-- Default --></span>
+<span class="chip" data-variant="filled"><!-- Accent tinted --></span>
+<span class="chip" data-variant="outline"><!-- Border only --></span>
+```
+
+### Chip Group (Active Filters)
+```html
+<div class="chip-group">
+  <span class="chip">
+    <span class="chip__label">Color: Blue</span>
+    <button class="chip__remove" aria-label="Remove">&times;</button>
+  </span>
+  <span class="chip">
+    <span class="chip__label">Size: Large</span>
+    <button class="chip__remove" aria-label="Remove">&times;</button>
+  </span>
+  <button class="chip-group__clear" data-variant="ghost" data-size="sm">Clear All</button>
+</div>
+```
+
+---
+
+## Toast with Action
+
+Enhanced toast with undo/action button and auto-dismiss progress.
+
+### Toast with Undo
+```html
+<div class="toast" data-status="success" data-auto-dismiss style="--_toast-duration: 8s;">
+  <div class="toast__content">
+    <strong>Item deleted</strong>
+    <p>'Sunrise Collection' has been removed.</p>
+    <button class="toast__action">Undo</button>
+  </div>
+  <button class="toast__close" aria-label="Dismiss">&times;</button>
+</div>
+```
+
+The `data-auto-dismiss` attribute adds a progress bar that shrinks over `--_toast-duration` (default 4s).
+
+---
+
+## Destructive Modal
+
+Enhanced modal for destructive confirmations with wider button spacing and mobile stacking.
+
+### Usage
+```html
+<dialog class="modal" data-size="sm" data-destructive>
+  <div class="modal__content">
+    <header class="modal__header">
+      <h2 class="modal__title">Delete 'Project Name'</h2>
+      <button class="modal__close" aria-label="Close">&times;</button>
+    </header>
+    <div class="modal__body">
+      <p>This will permanently delete the project and all associated data.</p>
+      <p><strong>This cannot be undone.</strong></p>
+    </div>
+    <footer class="modal__footer">
+      <button data-variant="ghost" autofocus>Cancel</button>
+      <button data-variant="danger">Delete Project</button>
+    </footer>
+  </div>
+</dialog>
+```
+
+On mobile, buttons stack vertically with the safe action (Cancel) on top.
