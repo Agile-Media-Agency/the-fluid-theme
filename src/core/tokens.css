@@ -354,6 +354,10 @@
       --color-warning-subtle: oklch(20% 0.05 70);
       --color-error-subtle: oklch(20% 0.04 25);
       --color-info-subtle: oklch(20% 0.03 240);
+
+      /* Stronger offset shadows for dark backgrounds */
+      --shadow-offset: 4px 4px 0 oklch(0% 0 0 / 0.4);
+      --shadow-offset-hover: 6px 6px 0 oklch(0% 0 0 / 0.5);
     }
   }
 
@@ -381,6 +385,9 @@
     --color-warning-subtle: oklch(20% 0.05 70);
     --color-error-subtle: oklch(20% 0.04 25);
     --color-info-subtle: oklch(20% 0.03 240);
+
+    --shadow-offset: 4px 4px 0 oklch(0% 0 0 / 0.4);
+    --shadow-offset-hover: 6px 6px 0 oklch(0% 0 0 / 0.5);
   }
 
   /* Manual light mode override */

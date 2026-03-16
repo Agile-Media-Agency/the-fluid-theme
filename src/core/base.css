@@ -856,5 +856,23 @@
     pre, code {
       background-color: #f5f5f5;
     }
+
+    /* Hide overlays and fixed UI on print */
+    .modal,
+    .toast-container,
+    .settings-fab,
+    .settings-drawer,
+    .scroll-progress,
+    .nav[data-sticky] {
+      display: none !important;
+    }
+
+    /* Preserve badge/alert colors on print */
+    .badge,
+    .alert {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      border: 1px solid currentColor;
+    }
   }
 }

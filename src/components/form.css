@@ -312,6 +312,7 @@
   /* ========================================
      TOGGLE SWITCH
      On/off control
+     Add role="switch" to <input> for ARIA compliance
      ======================================== */
 
   .switch {
