@@ -407,7 +407,7 @@
   .card[data-type="testimonial"] .card__rating {
     display: flex;
     gap: 0.125rem;
-    color: oklch(75% 0.18 85);
+    color: var(--color-rating);
   }
 
   .card[data-type="testimonial"] .card__quote {
@@ -569,14 +569,14 @@
 
   /* Rapids: Hard offset shadows, energetic hover */
   [data-motion="rapids"] .card {
-    box-shadow: 4px 4px 0 oklch(0 0 0 / 0.15);
+    box-shadow: var(--shadow-offset);
     transition:
       transform 150ms var(--ease-fluid),
       box-shadow 150ms var(--ease-fluid);
   }
   [data-motion="rapids"] .card:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 oklch(0 0 0 / 0.2);
+    box-shadow: var(--shadow-offset-hover);
   }
   [data-motion="rapids"] .card:active {
     transform: translate(1px, 1px);

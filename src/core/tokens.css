@@ -291,6 +291,13 @@
     /* Glow for focus states */
     --shadow-glow: 0 0 0 3px color-mix(in oklch, var(--accent) 30%, transparent);
 
+    /* Offset shadow for rapids/brutalist theme */
+    --shadow-offset: 4px 4px 0 oklch(0 0 0 / 0.12);
+    --shadow-offset-hover: 6px 6px 0 oklch(0 0 0 / 0.15);
+
+    /* Rating color (stars, reviews) */
+    --color-rating: oklch(75% 0.18 85);
+
 
     /* ========================================
        Z-INDEX SCALE

@@ -29,7 +29,7 @@
     block-size: 1.25rem;
     color: var(--color-text-muted);
     pointer-events: none;
-    z-index: 1;
+    z-index: var(--z-raised);
   }
 
   .search-input__field {
@@ -59,7 +59,7 @@
     font-size: var(--font-size-lg);
     color: var(--color-text-muted);
     cursor: pointer;
-    z-index: 1;
+    z-index: var(--z-raised);
     transition: color var(--duration-fast) var(--ease-fluid),
                 background-color var(--duration-fast) var(--ease-fluid);
   }

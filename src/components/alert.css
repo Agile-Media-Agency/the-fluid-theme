@@ -403,7 +403,7 @@
 
   /* Rapids: offset shadow */
   [data-motion="rapids"] .toast {
-    box-shadow: 4px 4px 0 oklch(0 0 0 / 0.12);
+    box-shadow: var(--shadow-offset);
   }
 
   [data-motion="rapids"] .alert {

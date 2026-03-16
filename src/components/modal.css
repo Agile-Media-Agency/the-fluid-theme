@@ -289,7 +289,7 @@
 
   /* Rapids: hard offset shadow */
   [data-motion="rapids"] .modal__content {
-    box-shadow: 6px 6px 0 oklch(0 0 0 / 0.15);
+    box-shadow: var(--shadow-offset-hover);
   }
 
   /* Tsunami: dramatic, asymmetric corners */
