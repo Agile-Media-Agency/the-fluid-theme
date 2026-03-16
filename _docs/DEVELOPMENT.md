@@ -434,6 +434,31 @@ When completing a session, provide:
 
 ---
 
+## Browser Support
+
+Fluid Theme targets **modern evergreen browsers**. The CSS uses features that require:
+
+| Browser | Minimum Version | Released |
+|---------|----------------|----------|
+| Chrome | 119+ | Nov 2023 |
+| Safari | 16.4+ | Mar 2023 |
+| Firefox | 128+ | Jun 2024 |
+| Edge | 119+ | Nov 2023 |
+
+**Key CSS features used:**
+- `oklch()` and relative color syntax (`oklch(from var(...) l c h / alpha)`) — the narrowest requirement
+- `color-mix(in oklch, ...)` for dynamic color blending
+- Container queries (`container-type: inline-size`)
+- CSS nesting (used sparingly)
+- Logical properties (`margin-block`, `padding-inline`, `inline-size`)
+- `overflow: clip` with `overflow-clip-margin`
+- Native `<dialog>` element for modals
+- Native `popover` API for popovers
+
+**No polyfills are provided.** This is intentional — the framework demonstrates what modern CSS can do natively.
+
+---
+
 ## Remember
 
 > **The user is burned out from overcomplicated frameworks and wants something clean, semantic, and maintainable. Every decision should reduce complexity, not add to it.**
@@ -447,4 +472,4 @@ When in doubt:
 
 ---
 
-*Last updated: Feb 17, 2026*
+*Last updated: Mar 16, 2026*
