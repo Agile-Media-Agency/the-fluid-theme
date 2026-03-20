@@ -122,6 +122,18 @@
     object-fit: cover;
   }
 
+  /* Focal point control for hero backgrounds */
+  .hero__background[data-focus="top"] img { object-position: center top; }
+  .hero__background[data-focus="bottom"] img { object-position: center bottom; }
+  .hero__background[data-focus="left"] img { object-position: left center; }
+  .hero__background[data-focus="right"] img { object-position: right center; }
+  .hero__background[data-focus="center"] img { object-position: center center; }
+
+  /* Custom focal point via CSS custom properties */
+  .hero__background[style*="--focus"] img {
+    object-position: var(--focus-x, 50%) var(--focus-y, 50%);
+  }
+
 
   /* ========================================
      HERO OVERLAY

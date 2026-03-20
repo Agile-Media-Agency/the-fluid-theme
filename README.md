@@ -27,7 +27,7 @@ Most design systems pick arbitrary animation timings. We use **Reynolds numbers*
 ### CDN (recommended for quick start)
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3/src/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.4/src/fluid.css">
 ```
 
 ### npm
@@ -46,7 +46,7 @@ Grab the latest release from the [GitHub Releases](https://github.com/Agile-Medi
 
 ```html
 <!-- Link the CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3/src/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.4/src/fluid.css">
 
 <!-- Set your preferences -->
 <body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
@@ -108,6 +108,20 @@ Ten curated palettes, each with 6 accent colors:
 - **Layout patterns** — Sidebar, holy grail, dashboard
 - **Position utilities** — Sticky, z-index, overflow, responsive visibility
 
+### Image Optimization
+
+Built-in CSS utilities for responsive, performant images:
+
+- **Focal point control** — `data-focus="top|bottom|left|right|center"` on hero backgrounds and card media
+- **Custom focal points** — `--focus-x` / `--focus-y` CSS custom properties
+- **Aspect ratios** — `data-aspect="square|video|portrait|wide"` on `.card__media`
+- **Image protection** — `data-protected` blocks casual right-click saving (not DRM)
+- **Orientation-aware** — `data-orientation="landscape|portrait"` shows/hides based on viewport
+- **Lazy loading** — all templates use `loading="lazy"` on below-fold images
+- **Dimensions** — all `<img>` tags include `width`/`height` for CLS prevention
+
+See `_docs/images-guide.md` for the full guide including `<picture>` patterns, `srcset`, format recommendations (AVIF > WebP > JPEG), and stack-specific solutions.
+
 ### CSS Architecture
 ```css
 @layer reset, tokens, base, layouts, components, themes, utilities;
@@ -120,17 +134,31 @@ Modern CSS features throughout:
 - **View Transitions API** for page transitions
 - **CSS Custom Properties** for runtime theming
 
+## The Fluid Agent Kit
+
+This project ships with the **Fluid Agent Kit** (`fluid-agent-kit/`) — skill files that help AI coding assistants produce correct Fluid Theme code.
+
+| Skill | What It Covers |
+|-------|----------------|
+| CSS Conventions | Layer order, tokens, logical properties, data attributes |
+| UX Rules | 12 behavioral rules for interactive components |
+| Accessibility | HTML, keyboard, motion, touch, color standards |
+| Image Optimization | Responsive images, lazy loading, focal points, formats |
+
+Works automatically with **Claude Code** (reads `CLAUDE.md`), **Gemini** (reads `GEMINI.md`), and any AI assistant that reads project-level instructions (reads `AGENTS.md`).
+
 ## Project Structure
 
 ```
 the-fluid-theme/
+├── fluid-agent-kit/          # AI coding assistant skills
+│   ├── README.md             # Kit overview
+│   └── skills/               # CSS, UX, a11y, image skills
 ├── _docs/                    # Documentation
-│   ├── _start-here.md       # Full documentation
-│   ├── reference/            # Component + layout API docs
-│   └── _agents/              # AI agent instructions
+│   ├── _start-here.md        # Full documentation
+│   ├── images-guide.md       # Image optimization guide
+│   └── reference/            # Component + layout API docs
 ├── _includes/                # Jekyll includes
-│   ├── settings-panel.html   # Interactive controls
-│   └── scripts.html          # Theme/palette logic
 ├── src/
 │   ├── core/
 │   │   ├── reset.css         # Modern reset
@@ -141,7 +169,10 @@ the-fluid-theme/
 │   ├── animations/           # Scroll reveal system
 │   └── fluid.css             # Main entry point
 ├── examples/                 # 7 demo pages
-└── templates/                # 18 page templates
+├── templates/                # 18 page templates
+├── CLAUDE.md                 # Claude Code instructions
+├── GEMINI.md                 # Google Gemini instructions
+└── AGENTS.md                 # Agent-agnostic instructions
 ```
 
 ## Data Attributes
@@ -175,10 +206,10 @@ Control everything via HTML attributes:
 - [x] **Phase 1: Foundation** — Reset, tokens, base styles
 - [x] **Phase 2: Core Components** — Buttons, cards, nav, forms, heroes, indicators (9 components)
 - [x] **Phase 3: Extended Components + Layouts** — Modal, tooltip, accordion, alert, table, avatar, loading, dropdown + flex/grid utilities (17 total)
-- [ ] **Phase 4: Documentation** — Getting started guide, installation, tutorials
-- [x] **Phase 5: Distribution** — npm publish, CDN, starter kits
+- [x] **Phase 4: Documentation** — Getting started guide, installation, tutorials, image optimization guide
+- [x] **Phase 5: Distribution** — npm publish, CDN, Fluid Agent Kit for AI assistants
 
-**Current**: See [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) for comprehensive roadmap.
+**Current**: v0.4.0 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
 
 ## Browser Support
 
@@ -201,4 +232,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.3.5** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.4.0** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

@@ -4,7 +4,7 @@
  *
  * Like water: adaptable, natural, powerful yet gentle.
  *
- * @version 0.3.5
+ * @version 0.4.0
  * @license MIT
  *
  * Layer Architecture:
@@ -151,6 +151,42 @@
   .icon--sm { inline-size: 0.875em; block-size: 0.875em; }
   .icon--lg { inline-size: 1.25em; block-size: 1.25em; }
   .icon--xl { inline-size: 1.5em; block-size: 1.5em; }
+
+
+  /* ========================================
+     IMAGE PROTECTION
+     Discourage casual right-click saving.
+     NOT DRM — just friction for the 95% who right-click.
+     Does NOT prevent screenshots, dev tools, or determined users.
+     ======================================== */
+
+  [data-protected] {
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  [data-protected]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Transparent overlay blocks "Save Image As" context menu */
+  }
+
+
+  /* ========================================
+     ORIENTATION-AWARE IMAGES
+     Show/hide images based on viewport orientation.
+     Use with <picture> for art direction.
+     ======================================== */
+
+  [data-orientation="portrait"] { display: none; }
+
+  @media (orientation: portrait) {
+    [data-orientation="landscape"] { display: none; }
+    [data-orientation="portrait"] { display: block; }
+  }
 }
 
 

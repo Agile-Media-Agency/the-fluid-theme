@@ -4,9 +4,9 @@
 
 ## Before Doing Anything
 
-1. Read `.claude/skills/` — 4 skill files load automatically (CSS conventions, UX rules, accessibility, Agile Kit reference)
-2. Read `.agent/ARCHITECTURE.md` — the multi-agent system with 7 agents, 7 skills, 11 workflows
-3. Read `.agent/rules/core.md` — 12 non-negotiable rules
+1. Read `fluid-agent-kit/skills/` — 4 skill files covering CSS conventions, UX rules, accessibility, and image optimization
+2. Read `_docs/DEVELOPMENT.md` — master development guide
+3. Read `_docs/UX-BEHAVIOR-SPEC.md` — 18-section behavioral specification (skim first, deep-read relevant sections)
 
 ## Quick Reference
 
@@ -51,31 +51,42 @@ A CSS framework that proves modern CSS can replace the utility-class approach of
 | `templates/` | 18 HTML templates |
 | `examples/` | Live component demos |
 | `_docs/UX-BEHAVIOR-SPEC.md` | UX behavioral rules (18 sections) |
-| `.agent/` | Agile Kit multi-agent system |
-| `.claude/skills/` | Claude Code skill files |
+| `_docs/images-guide.md` | Image optimization best practices |
+| `fluid-agent-kit/` | AI agent skills and conventions |
 
-## Agent System (.agent/)
+## The Fluid Agent Kit
 
-This project has a multi-agent system. See `.agent/ARCHITECTURE.md` for details.
+This project includes the **Fluid Agent Kit** (`fluid-agent-kit/`) with skill files for AI coding assistants. See `fluid-agent-kit/README.md` for details.
 
-**Key workflows:**
-- `/audit-ux` — Check project against UX Behavior Spec
-- `/new-component [name]` — Add component following all conventions
-- `/enhance [feature]` — Improve existing functionality
-- `/debug [issue]` — Systematic issue resolution
-- `/status` — Project completeness check
+**Available skills:**
+- `fluid-agent-kit/skills/css-conventions.md` — Layer order, tokens, logical properties
+- `fluid-agent-kit/skills/ux-rules.md` — 12 behavioral rules for interactive components
+- `fluid-agent-kit/skills/accessibility.md` — HTML, keyboard, motion, color standards
+- `fluid-agent-kit/skills/image-optimization.md` — Responsive images, lazy loading, focal points
 
 ## UX Behavior Spec
 
-Full spec at `_docs/UX-BEHAVIOR-SPEC.md`. Quick reference at `.claude/skills/ux-rules.md`.
+Full spec at `_docs/UX-BEHAVIOR-SPEC.md`. Quick reference at `fluid-agent-kit/skills/ux-rules.md`.
 
 **The non-negotiables:**
-- Every destructive action → confirmation modal with specific title and consequence body
-- Every user action → visible feedback (toast, alert, or state change)
-- Every button → specific label ("Save Changes" not "Submit")
-- Every pattern → consistent across all screens (search and update all instances)
-- Every interactive element → keyboard accessible with visible focus
-- Every animation → respects `prefers-reduced-motion`
+- Every destructive action requires a confirmation modal with specific title and consequence body
+- Every user action requires visible feedback (toast, alert, or state change)
+- Every button requires a specific label ("Save Changes" not "Submit")
+- Every pattern must be consistent across all screens (search and update all instances)
+- Every interactive element must be keyboard accessible with visible focus
+- Every animation must respect `prefers-reduced-motion`
+
+## Image Optimization
+
+Full guide at `_docs/images-guide.md`. Quick reference at `fluid-agent-kit/skills/image-optimization.md`.
+
+**The non-negotiables:**
+- Every `<img>` must have `width` and `height` attributes (prevents CLS)
+- Every below-fold image must have `loading="lazy"`
+- Every image must have meaningful `alt` text
+- Use `data-focus` for focal point control on hero backgrounds and card media
+- Use `data-aspect` for consistent aspect ratios on card media
+- Serve modern formats (WebP/AVIF) with `<picture>` fallbacks
 
 ## Documentation
 
@@ -83,11 +94,11 @@ Full spec at `_docs/UX-BEHAVIOR-SPEC.md`. Quick reference at `.claude/skills/ux-
 |----------|----------------|
 | [DEVELOPMENT.md](_docs/DEVELOPMENT.md) | Master guide — read first |
 | [UX-BEHAVIOR-SPEC.md](_docs/UX-BEHAVIOR-SPEC.md) | Behavioral rules — 18 sections |
+| [images-guide.md](_docs/images-guide.md) | Image optimization best practices |
 | [architecture.md](_docs/architecture.md) | Technical decisions |
 | [reference/components.md](_docs/reference/components.md) | Component API |
 | [reference/tokens.md](_docs/reference/tokens.md) | Design token reference |
-| [UX-AUDIT-REPORT.md](_docs/UX-AUDIT-REPORT.md) | Latest audit findings |
 
 ## Version
 
-**Current: 0.3.5** — Update in package.json, PROJECT_STATUS.md, CHANGELOG.md, and version badges on every session that modifies files.
+**Current: 0.4.0** — Update in package.json, PROJECT_STATUS.md, CHANGELOG.md, _config.yml, and version badges on every session that modifies files.

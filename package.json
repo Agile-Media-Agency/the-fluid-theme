@@ -1,11 +1,15 @@
 {
   "name": "the-fluid-theme",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "A modern, semantic CSS design system built on physics principles — not utility classes",
   "main": "src/fluid.css",
   "style": "src/fluid.css",
   "files": [
     "src/",
+    "fluid-agent-kit/",
+    "CLAUDE.md",
+    "AGENTS.md",
+    "GEMINI.md",
     "LICENSE",
     "README.md",
     "CHANGELOG.md"

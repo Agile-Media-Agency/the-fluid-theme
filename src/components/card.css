@@ -209,6 +209,18 @@
     filter: none;
   }
 
+  /* Focal point control for card media */
+  .card__media[data-focus="top"] { object-position: center top; }
+  .card__media[data-focus="bottom"] { object-position: center bottom; }
+  .card__media[data-focus="left"] { object-position: left center; }
+  .card__media[data-focus="right"] { object-position: right center; }
+  .card__media[data-focus="center"] { object-position: center center; }
+
+  /* Custom focal point via CSS custom properties */
+  .card__media[style*="--focus"] {
+    object-position: var(--focus-x, 50%) var(--focus-y, 50%);
+  }
+
   /* Aspect ratio variants for media */
   .card__media[data-aspect="square"] {
     aspect-ratio: 1;

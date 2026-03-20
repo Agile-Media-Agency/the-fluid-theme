@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-03-20
+
+### Added
+- **Image utilities** in CSS framework:
+  - Focal point control via `data-focus` attribute on `.hero__background` and `.card__media` (top, bottom, left, right, center)
+  - Custom focal point via `--focus-x` / `--focus-y` CSS custom properties
+  - Image protection utility via `[data-protected]` (casual right-click deterrent, not DRM)
+  - Orientation-aware images via `[data-orientation="landscape|portrait"]`
+- **Lazy loading** (`loading="lazy"`) added to 70 below-fold images across all templates and examples
+- **Image dimensions** (`width`/`height`) added to all `<img>` tags for CLS prevention
+- **Image optimization guide** (`_docs/images-guide.md`) — format recommendations, responsive patterns, focal points, lazy loading, stack-specific solutions
+- **The Fluid Agent Kit** (`fluid-agent-kit/`) — AI coding assistant support with 4 skills:
+  - CSS conventions, UX rules, accessibility standards, image optimization
+- **AI pointer files**: `AGENTS.md` (agent-agnostic), `GEMINI.md` (Google Gemini)
+- **Updated `CLAUDE.md`** to reference Fluid Agent Kit instead of internal tools
+
+### Fixed
+- **Heading order** on homepage: h4 under h2 "Features" changed to h3
+- **Customizer 404**: nav link changed from broken `<a>` to `<button>` that opens settings panel
+- **Lint script**: added `.unlighthouse/` exclusion to prevent false positives from third-party tool output
+
+### Changed
+- Internal development tools (`.agent/`, `.claude/`) are now gitignored — not shipped publicly
+- Version bump from 0.3.5 to 0.4.0
+
 ## [0.3.5] - 2026-03-20
 
 ### Fixed

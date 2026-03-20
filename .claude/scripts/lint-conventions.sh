@@ -9,7 +9,7 @@ VIOLATIONS=0
 echo "=== Fluid Theme Convention Lint ==="
 
 # Check for physical CSS properties
-PHYSICAL=$(grep -rn "margin-top\|margin-bottom\|margin-left\|margin-right\|padding-top\|padding-bottom\|padding-left\|padding-right" --include="*.css" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v "reset.css")
+PHYSICAL=$(grep -rn "margin-top\|margin-bottom\|margin-left\|margin-right\|padding-top\|padding-bottom\|padding-left\|padding-right" --include="*.css" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v ".unlighthouse" | grep -v "reset.css")
 if [ -n "$PHYSICAL" ]; then
   echo ""
   echo "❌ Physical CSS properties (use logical: margin-block-start, padding-inline, etc.):"
@@ -18,7 +18,7 @@ if [ -n "$PHYSICAL" ]; then
 fi
 
 # Check for forbidden button labels in HTML
-BUTTONS=$(grep -rn '>Submit<\|>OK<\|>Yes<\|>No<\|>Confirm<\|>Click Here<' --include="*.html" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git")
+BUTTONS=$(grep -rn '>Submit<\|>OK<\|>Yes<\|>No<\|>Confirm<\|>Click Here<' --include="*.html" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v ".unlighthouse")
 if [ -n "$BUTTONS" ]; then
   echo ""
   echo "❌ Forbidden button labels (use action-specific labels):"
@@ -27,7 +27,7 @@ if [ -n "$BUTTONS" ]; then
 fi
 
 # Check for <a><button> nesting
-NESTING=$(grep -rn '<a[^>]*><button\|<a[^>]*>.*<button' --include="*.html" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git")
+NESTING=$(grep -rn '<a[^>]*><button\|<a[^>]*>.*<button' --include="*.html" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v ".unlighthouse")
 if [ -n "$NESTING" ]; then
   echo ""
   echo "❌ Invalid <a><button> nesting:"
@@ -36,7 +36,7 @@ if [ -n "$NESTING" ]; then
 fi
 
 # Check for focus outline removal
-FOCUS=$(grep -rn "outline: none\|outline: 0\|outline:none\|outline:0" --include="*.css" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v "reset.css")
+FOCUS=$(grep -rn "outline: none\|outline: 0\|outline:none\|outline:0" --include="*.css" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v ".unlighthouse" | grep -v "reset.css")
 if [ -n "$FOCUS" ]; then
   echo ""
   echo "❌ Focus outline removal (never remove — restyle instead):"
@@ -45,7 +45,7 @@ if [ -n "$FOCUS" ]; then
 fi
 
 # Check for "Are you sure?" in UI
-AREYOUSURE=$(grep -rn "Are you sure" --include="*.html" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git")
+AREYOUSURE=$(grep -rn "Are you sure" --include="*.html" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v ".unlighthouse")
 if [ -n "$AREYOUSURE" ]; then
   echo ""
   echo "❌ 'Are you sure?' in UI (use specific action description):"
@@ -54,7 +54,7 @@ if [ -n "$AREYOUSURE" ]; then
 fi
 
 # Check animated CSS files for reduced motion support
-for f in $(grep -rln "animation:\|@keyframes" --include="*.css" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git"); do
+for f in $(grep -rln "animation:\|@keyframes" --include="*.css" "$TARGET" 2>/dev/null | grep -v "node_modules" | grep -v ".git" | grep -v ".unlighthouse"); do
   if ! grep -q "prefers-reduced-motion" "$f"; then
     echo ""
     echo "⚠️  Animations without prefers-reduced-motion: $f"

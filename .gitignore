@@ -30,3 +30,8 @@ coverage/
 *.tmp
 *.temp
 .cache/
+
+# Internal development tools (not for public distribution)
+.agent/
+.claude/
+.unlighthouse/
