@@ -77,7 +77,7 @@ Seven physics-based animation styles:
 - **Rapids** — Turbulent with friction and drag (300ms)
 - **Tsunami** — Dramatic rise, crest, and crash (400ms)
 
-### 17 Components
+### 23 Components
 Buttons, Cards, Navigation, Forms, Heroes, Indicators, Scroll Progress, Settings Panel, Themed Images, Modal/Dialog, Tooltip/Popover, Accordion, Alert/Toast, Table, Avatar, Loading/Skeleton, Dropdown
 
 ### Color Palettes
@@ -136,12 +136,12 @@ the-fluid-theme/
 │   │   ├── reset.css         # Modern reset
 │   │   ├── tokens.css        # Design tokens + motion + palettes
 │   │   └── base.css          # Base element styles
-│   ├── components/           # 17 UI components
+│   ├── components/           # 23 UI components
 │   ├── layouts/              # Layout patterns + utilities
 │   ├── animations/           # Scroll reveal system
 │   └── fluid.css             # Main entry point
 ├── examples/                 # 7 demo pages
-└── templates/                # 9 page templates
+└── templates/                # 18 page templates
 ```
 
 ## Data Attributes
@@ -189,7 +189,7 @@ Modern browsers: Chrome 120+, Firefox 120+, Safari 16.4+, Edge 120+
 - **[TheFluidTheme.com](https://thefluidtheme.com)** — Live demo site
 - **[Getting Started](_docs/getting-started.md)** — Installation and first steps
 - **[Full Documentation](_docs/_start-here.md)** — Complete guide
-- **[Component Reference](_docs/reference/components.md)** — All 17 components
+- **[Component Reference](_docs/reference/components.md)** — All 23 components
 - **[Positioning Reference](_docs/reference/positioning.md)** — Layout system
 - **[Tokens Reference](_docs/reference/tokens.md)** — Design tokens
 - **[Public Readiness Roadmap](FRAMEWORK_READINESS.md)** — Launch plan
@@ -201,4 +201,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.3.4** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.3.5** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

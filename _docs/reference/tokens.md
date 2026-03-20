@@ -10,9 +10,9 @@ Design tokens are the single source of truth for all visual values. They're defi
 
 ### Primary & Accent
 ```css
---color-primary          /* Main brand color (muted blue) */
---color-primary-hover    /* Hover state */
---color-primary-subtle   /* Light tint for backgrounds */
+--accent          /* Main brand color (muted blue) */
+--accent-hover    /* Hover state */
+--accent-subtle   /* Light tint for backgrounds */
 --color-accent           /* Complementary warm tone */
 ```
 

@@ -19,7 +19,7 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 | [Tokens Reference](reference/tokens.md) | Design tokens (colors, spacing, typography) |
 | [Positioning System](reference/positioning.md) | Layout and alignment utilities |
 | [Heroes](reference/heroes.md) | Full-width hero sections |
-| [Components](reference/components.md) | Component API and usage (17 components) |
+| [Components](reference/components.md) | Component API and usage (23 components) |
 | [Installation](installation.md) | npm, CDN, and download options |
 | [Getting Started](getting-started.md) | Installation and first steps |
 | [Your First Page](first-component-tutorial.md) | Step-by-step tutorial building a complete page |
@@ -41,9 +41,9 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 
 ---
 
-## What's New in v0.3.2
+## What's New in v0.3.4
 
-### Phase 3 Complete: 17 Components + Layout System
+### Phase 3 Complete: 23 Components + Layout System
 
 The framework now has full component coverage and a comprehensive layout system:
 
@@ -91,7 +91,7 @@ Seven motion presets mapped to Reynolds numbers:
 ### Subdued Mode
 Lower contrast for gentler viewing: `<html data-contrast="subdued">`
 
-### 17 Components
+### 23 Components
 Buttons, Cards, Navigation, Forms, Heroes, Indicators, Scroll Progress, Settings Panel, Themed Images, Modal/Dialog, Tooltip/Popover, Accordion, Alert/Toast, Table, Avatar, Loading/Skeleton, Dropdown
 
 ---
@@ -112,7 +112,7 @@ the-fluid-theme-v2c/
 │   │   ├── reset.css        # Modern CSS reset
 │   │   ├── tokens.css       # Design tokens + palettes + motion
 │   │   └── base.css         # Element defaults
-│   ├── components/          # 17 UI components
+│   ├── components/          # 23 UI components
 │   │   ├── button.css       # Buttons (5 variants, 5 sizes)
 │   │   ├── card.css         # Cards (5 variants, container-query)
 │   │   ├── nav.css          # Navigation, tabs, breadcrumbs, pagination
@@ -150,7 +150,7 @@ the-fluid-theme-v2c/
 │   ├── indicators.html      # Status indicators demo
 │   ├── philosophy.html      # Fluid dynamics explanation
 │   └── hero-picker.html     # Interactive hero builder
-├── templates/               # 16 page templates
+├── templates/               # 18 page templates
 ├── .github/workflows/       # GitHub Actions
 │   └── version-bump.yml     # Auto version on merge
 ├── CLAUDE.md                # AI assistant entry point
@@ -257,7 +257,7 @@ Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 1. Read [Architecture](architecture.md) for technical details
 2. See [Tokens Reference](reference/tokens.md) for available design tokens
-3. See [Components Reference](reference/components.md) for all 17 components
+3. See [Components Reference](reference/components.md) for all 23 components
 4. See [Positioning Reference](reference/positioning.md) for layout utilities
 5. Visit [philosophy.html](../examples/philosophy.html) for fluid dynamics explanation
 6. Check [examples/](../examples/) for live demos
@@ -265,4 +265,4 @@ Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 ---
 
-*Version 0.3.4 - March 2026*
+*Version 0.3.5 - March 2026*

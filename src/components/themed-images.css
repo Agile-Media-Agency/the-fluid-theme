@@ -218,4 +218,12 @@
   .section[data-bg="accent-solid"] a:hover {
     opacity: 0.8;
   }
+
+  /* Accessibility: reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-duotone] img,
+    [data-duotone]:hover img {
+      transition: none;
+    }
+  }
 }

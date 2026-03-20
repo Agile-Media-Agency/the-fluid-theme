@@ -35,7 +35,7 @@ nav: foundation
     .element-label {
       font-family: var(--font-mono);
       font-size: var(--font-size-xs);
-      color: var(--color-primary);
+      color: var(--accent);
       margin-block-end: var(--space-4);
       display: flex;
       align-items: center;
@@ -73,7 +73,7 @@ nav: foundation
 
     .spacing-bar {
       block-size: var(--space-2);
-      background: var(--color-primary);
+      background: var(--accent);
       border-radius: var(--radius-full);
       opacity: 0.8;
     }
@@ -363,11 +363,11 @@ function createTheme(name, tokens) {
     <div class="element-group">
       <div class="element-label">Color System</div>
       <div class="grid" style="--grid-min: 14rem; --grid-gap: var(--space-3)">
-        <div class="color-swatch" style="--swatch-color: var(--color-primary)">
-          --color-primary
+        <div class="color-swatch" style="--swatch-color: var(--accent)">
+          --accent
         </div>
-        <div class="color-swatch" style="--swatch-color: var(--color-accent)">
-          --color-accent
+        <div class="color-swatch" style="--swatch-color: var(--accent-subtle)">
+          --accent-subtle
         </div>
         <div class="color-swatch" style="--swatch-color: var(--color-text)">
           --color-text

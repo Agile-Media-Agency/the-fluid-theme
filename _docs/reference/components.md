@@ -1259,7 +1259,7 @@ A small fixed-position badge showing the current framework version. Subtle, semi
 <!-- Add data-show-version="true" to <html> to display -->
 <html data-show-version="true">
   ...
-  <span class="version-badge">v0.3.4</span>
+  <span class="version-badge">v0.3.5</span>
 </html>
 ```
 

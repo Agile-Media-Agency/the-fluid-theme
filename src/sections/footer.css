@@ -189,10 +189,9 @@
      ======================================== */
 
   .site-footer__brand {
-    max-inline-size: var(--container-xl);
+    max-inline-size: 20rem;
     margin-inline: auto;
     margin-block-end: var(--space-10);
-    max-inline-size: 20rem;
   }
 
   .site-footer[data-type="mega"] .site-footer__brand {
@@ -253,7 +252,7 @@
      ======================================== */
 
   .site-footer[data-dark] {
-    --_footer-bg: var(--theme-dark, var(--gray-12));
+    --_footer-bg: var(--theme-dark, var(--gray-15));
     --_footer-text: var(--gray-60);
     --_footer-border: var(--gray-20);
   }

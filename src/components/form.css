@@ -493,4 +493,16 @@
     padding-inline: var(--space-2);
     color: var(--color-text);
   }
+
+  /* Accessibility: reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    input,
+    textarea,
+    select,
+    .checkbox__toggle,
+    .checkbox__label::before,
+    .radio__label::before {
+      transition: none;
+    }
+  }
 }

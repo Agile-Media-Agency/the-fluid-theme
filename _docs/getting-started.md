@@ -19,20 +19,20 @@ Download the `src/` directory and link the main CSS file:
 ### Option 2: Clone from GitHub
 
 ```bash
-git clone https://github.com/Agile-Media-Agency/the-fluid-theme-v2c.git
+git clone https://github.com/Agile-Media-Agency/the-fluid-theme.git
 ```
 
 Then link the CSS from the cloned directory:
 
 ```html
-<link rel="stylesheet" href="the-fluid-theme-v2c/src/fluid.css">
+<link rel="stylesheet" href="the-fluid-theme/src/fluid.css">
 ```
 
 ### Option 3: Local Development
 
 ```bash
-git clone https://github.com/Agile-Media-Agency/the-fluid-theme-v2c.git
-cd the-fluid-theme-v2c
+git clone https://github.com/Agile-Media-Agency/the-fluid-theme.git
+cd the-fluid-theme
 npm run serve    # Opens at localhost:8080
 ```
 
@@ -401,20 +401,20 @@ Explore the live examples on **[TheFluidTheme.com](https://thefluidtheme.com)**:
 | Page | What It Shows |
 |------|---------------|
 | [Foundation](https://thefluidtheme.com/examples/foundation.html) | All HTML elements styled |
-| [Components](https://thefluidtheme.com/examples/components.html) | All 17 components |
+| [Components](https://thefluidtheme.com/examples/components.html) | All 23 components |
 | [Positioning](https://thefluidtheme.com/examples/positioning.html) | Layout utilities |
 | [Heroes](https://thefluidtheme.com/examples/heroes.html) | Hero section variants |
 | [Indicators](https://thefluidtheme.com/examples/indicators.html) | Progress, badges, status |
 | [Philosophy](https://thefluidtheme.com/examples/philosophy.html) | Fluid dynamics explanation |
 | [Hero Picker](https://thefluidtheme.com/examples/hero-picker.html) | Interactive hero builder |
-| [Templates](https://thefluidtheme.com/templates/) | 9 ready-made page templates |
+| [Templates](https://thefluidtheme.com/templates/) | 18 ready-made page templates |
 
 ---
 
 ## Next Steps
 
 - **[TheFluidTheme.com](https://thefluidtheme.com)** — Live demo site with all components
-- [Component Reference](reference/components.md) — Full API for all 17 components
+- [Component Reference](reference/components.md) — Full API for all 23 components
 - [Design Tokens Reference](reference/tokens.md) — All CSS custom properties
 - [Positioning Reference](reference/positioning.md) — Layout system details
 - [Heroes Reference](reference/heroes.md) — Hero section options
@@ -422,4 +422,4 @@ Explore the live examples on **[TheFluidTheme.com](https://thefluidtheme.com)**:
 
 ---
 
-*Fluid Framework v0.3.2 — Built with physics and 32 years of design experience.*
+*Fluid Framework v0.3.5 — Built with physics and 32 years of design experience.*

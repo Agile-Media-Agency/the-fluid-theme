@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.5] - 2026-03-20
+
+### Fixed
+- **`--color-primary` phantom token**: replaced 40+ references across 8 HTML files with `--accent` — all were rendering nothing
+- **Duplicate `<main>` in dashboard.html**: changed inner `<main>` to `<div role="region">`
+- **Missing `prefers-reduced-motion`** in `form.css` (6 transitions) and `themed-images.css` (2 transitions)
+- **`outline: none` in reset.css**: changed to `outline: 2px solid transparent` for high-contrast mode
+- **`--gray-12` typo in footer.css**: token doesn't exist, changed to `--gray-15`
+- **Duplicate `.progress__track` selector** in indicator.css: merged into single rule
+- **Dead `max-inline-size` rule** in footer.css `.site-footer__brand`: removed duplicate
+- **Print styles**: now hide all `.nav` (not just sticky), use token for `pre/code` background
+- **Missing `<h1>` in search-results.html**: added heading
+- **Generic `alt="Team member"`** on about.html: changed to actual names
+- **Documentation phantom API**: `tokens.md` documented non-existent `--color-primary` family, changed to `--accent`
+- **Stale documentation**: getting-started (v0.3.2, 17 components, 9 templates, old repo URL), _start-here (v0.3.2, 17/16), README (17/9), installation (17) — all corrected to v0.3.5 / 23 / 18
+
+### Added
+- **Pre-release audit report** (`_docs/PRE-RELEASE-AUDIT.md`): 13-phase comprehensive audit covering CSS validity, browser compat, accessibility, HTML validation, token consistency, responsive, dark mode, print, documentation, npm readiness, cross-file consistency, security, performance
+
 ## [0.3.4] - 2026-03-20
 
 ### Added
@@ -68,6 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dark mode, light mode, auto mode, subdued contrast
 - OKLCH color system with color-mix()
 
+[0.3.5]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.3.0...v0.3.2

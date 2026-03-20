@@ -2,7 +2,7 @@
 
 ## Current Status: Phase 4 Complete (UX Compliance + Sections + Templates)
 
-**Version**: 0.3.4
+**Version**: 0.3.5
 **Last Updated**: March 20, 2026
 
 ### Design Philosophy

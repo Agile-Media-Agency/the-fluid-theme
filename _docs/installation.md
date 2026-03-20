@@ -21,7 +21,7 @@ Or use unpkg:
 **Production tip:** Pin to a specific version instead of `@latest` to avoid unexpected changes:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3.4/src/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3.5/src/fluid.css">
 ```
 
 ## Option 2: npm
@@ -104,7 +104,7 @@ A complete starter page with navigation, hero section, card, and button:
 
 ## What's Included
 
-- **17+ components** -- buttons, cards, modals, tooltips, tabs, accordions, and more
+- **23 components** -- buttons, cards, modals, tooltips, tabs, accordions, and more
 - **Complete layout system** -- flex, grid, sidebar, holy grail, dashboard
 - **7 motion presets** -- from Still (no animation) to Tsunami (dramatic)
 - **10 color palettes** with 6 accents each
