@@ -23,9 +23,9 @@
   [data-reveal] {
     opacity: 0;
     transition:
-      opacity var(--reveal-duration, 0.6s) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1)),
-      transform var(--reveal-duration, 0.6s) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1)),
-      filter var(--reveal-duration, 0.6s) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1));
+      opacity var(--reveal-duration, var(--duration-slow)) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1)),
+      transform var(--reveal-duration, var(--duration-slow)) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1)),
+      filter var(--reveal-duration, var(--duration-slow)) var(--reveal-easing, cubic-bezier(0.16, 1, 0.3, 1));
     will-change: opacity, transform;
   }
 
@@ -70,9 +70,9 @@
   [data-reveal-delay="500"] { transition-delay: 500ms; }
 
   /* Durations */
-  [data-reveal-duration="fast"] { --reveal-duration: 0.3s; }
-  [data-reveal-duration="normal"] { --reveal-duration: 0.6s; }
-  [data-reveal-duration="slow"] { --reveal-duration: 1s; }
+  [data-reveal-duration="fast"] { --reveal-duration: var(--duration-fast); }
+  [data-reveal-duration="normal"] { --reveal-duration: var(--duration-slow); }
+  [data-reveal-duration="slow"] { --reveal-duration: var(--duration-slower); }
 
   /* Stagger children - useful for grids and lists */
   [data-reveal-stagger] > [data-reveal]:nth-child(1) { transition-delay: calc(var(--reveal-stagger, 100ms) * 0); }
@@ -99,7 +99,7 @@
 
   /* Serene: Very slow, gentle fade */
   [data-motion="serene"] [data-reveal] {
-    --reveal-duration: 1.2s;
+    --reveal-duration: var(--duration-slower);
     --reveal-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
@@ -107,8 +107,8 @@
     opacity: 0;
     transform: scale(1.02);
     transition:
-      opacity 1.5s cubic-bezier(0.25, 0.1, 0.25, 1),
-      transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      opacity var(--duration-slowest) cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform var(--duration-slowest) cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   [data-motion="serene"] .section:not([data-reveal]).revealed {
@@ -118,7 +118,7 @@
 
   /* Stream: Gentle horizontal flow */
   [data-motion="stream"] [data-reveal] {
-    --reveal-duration: 0.8s;
+    --reveal-duration: var(--duration-slow);
     --reveal-easing: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -126,8 +126,8 @@
     opacity: 0;
     transform: translateX(-1rem);
     transition:
-      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity var(--duration-slow) cubic-bezier(0.22, 1, 0.36, 1),
+      transform var(--duration-slow) cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   [data-motion="stream"] .section:not([data-reveal]).revealed {
@@ -137,7 +137,7 @@
 
   /* Flowing: Smooth ease-in-out, organic */
   [data-motion="flowing"] [data-reveal] {
-    --reveal-duration: 0.6s;
+    --reveal-duration: var(--duration-slow);
     --reveal-easing: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -145,8 +145,8 @@
     opacity: 0;
     transform: translateY(1.5rem);
     transition:
-      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity var(--duration-slow) cubic-bezier(0.16, 1, 0.3, 1),
+      transform var(--duration-slow) cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   [data-motion="flowing"] .section:not([data-reveal]).revealed {
@@ -156,7 +156,7 @@
 
   /* Cascade: Medium energy, waterfall effect */
   [data-motion="cascade"] [data-reveal] {
-    --reveal-duration: 0.5s;
+    --reveal-duration: var(--duration-normal);
     --reveal-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -164,8 +164,8 @@
     opacity: 0;
     transform: translateY(2rem);
     transition:
-      opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      opacity var(--duration-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+      transform var(--duration-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   [data-motion="cascade"] .section:not([data-reveal]).revealed {
@@ -175,7 +175,7 @@
 
   /* Rapids: Fast, direct */
   [data-motion="rapids"] [data-reveal] {
-    --reveal-duration: 0.3s;
+    --reveal-duration: var(--duration-fast);
     --reveal-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
@@ -183,8 +183,8 @@
     opacity: 0;
     transform: scale(0.98);
     transition:
-      opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity var(--duration-fast) cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      transform var(--duration-fast) cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   [data-motion="rapids"] .section:not([data-reveal]).revealed {
@@ -194,7 +194,7 @@
 
   /* Tsunami: Dramatic, bold sweep */
   [data-motion="tsunami"] [data-reveal] {
-    --reveal-duration: 0.4s;
+    --reveal-duration: var(--duration-normal);
     --reveal-easing: cubic-bezier(0.68, -0.2, 0.32, 1.2);
   }
 
@@ -202,8 +202,8 @@
     opacity: 0;
     transform: translateY(3rem) scale(0.97);
     transition:
-      opacity 0.4s cubic-bezier(0.68, -0.2, 0.32, 1.2),
-      transform 0.4s cubic-bezier(0.68, -0.2, 0.32, 1.2);
+      opacity var(--duration-normal) cubic-bezier(0.68, -0.2, 0.32, 1.2),
+      transform var(--duration-normal) cubic-bezier(0.68, -0.2, 0.32, 1.2);
   }
 
   [data-motion="tsunami"] .section:not([data-reveal]).revealed {

@@ -161,8 +161,9 @@
       overlay var(--duration-fast) allow-discrete;
   }
 
-  /* Open state */
-  .popover:popover-open {
+  /* Open state — JS fallback via [data-open] for browsers without :popover-open */
+  .popover:popover-open,
+  .popover[data-open] {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
