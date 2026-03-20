@@ -27,6 +27,8 @@ exclude:
 # Include dotfiles if needed
 include:
   - .nojekyll
+  - _headers
+  - _redirects
 
 # Collections (if we add more pages later)
 collections_dir: .
