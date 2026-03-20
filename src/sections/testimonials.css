@@ -112,7 +112,7 @@
     font-size: var(--font-size-5xl);
     line-height: 1;
     color: color-mix(in oklch, var(--accent) 25%, transparent);
-    font-family: Georgia, serif;
+    font-family: var(--font-serif, Georgia, serif);
     pointer-events: none;
   }
 

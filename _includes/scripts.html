@@ -656,6 +656,14 @@
       initAutoStatus();
       initScrollProgress();
       initScrollReveal();
+
+      // Progressive enhancement: error page actions
+      document.querySelectorAll('[data-action="back"]').forEach(el => {
+        el.addEventListener('click', (e) => { e.preventDefault(); history.back(); });
+      });
+      document.querySelectorAll('[data-action="reload"]').forEach(el => {
+        el.addEventListener('click', (e) => { e.preventDefault(); location.reload(); });
+      });
     }
   })();
 </script>
