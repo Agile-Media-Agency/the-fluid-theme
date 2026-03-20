@@ -9,9 +9,9 @@ allowed-tools: Read, Glob, Grep, Bash
 > A modern CSS design system built on fluid dynamics principles — not utility classes.
 > **Repo:** github.com/Agile-Media-Agency/the-fluid-theme
 > **Live demo:** TheFluidTheme.com
-> **Version:** 0.3.3
+> **Version:** 0.3.4
 >
-> **⚠ Version check:** This skill was verified against v0.3.3. Before using, check the repo's `PROJECT_STATUS.md` for the current version. If it differs, component APIs, token names, or available templates may have changed. Update this skill accordingly.
+> **⚠ Version check:** This skill was verified against v0.3.4. Before using, check the repo's `PROJECT_STATUS.md` for the current version. If it differs, component APIs, token names, or available templates may have changed. Update this skill accordingly.
 
 ## Selective Reading
 
@@ -200,7 +200,7 @@ fluid, morandi, bold, pastel, earth, mono, 80s, matrix, subtle, tsunami
 - **Settings Panel** (`settings-panel.css`): Theme/motion/palette live switching controls. Used on the Fluid Theme demo site.
 - **Themed Images** (`themed-images.css`): Duotone filters and theme-aware image overlays that adapt to the active palette.
 
-### New Components (v0.3.3)
+### New Components (v0.3.4)
 - **Empty State** (`empty-state.css`): `.empty-state` with `.empty-state__icon`, `.empty-state__title`, `.empty-state__description`, `.empty-state__actions`. Sizes: `data-size="sm|lg"`.
 - **Step Indicator** (`step-indicator.css`): `.steps` > `.steps__list` > `.steps__item[data-status="complete|current"]` with `.steps__marker` and `.steps__label`. Sizes: `data-size="sm"`.
 - **Search Input** (`search-input.css`): `.search-input` with `.search-input__icon`, `.search-input__field`, `.search-input__clear`. Sizes: `data-size="sm|lg"`.
@@ -219,4 +219,4 @@ fluid, morandi, bold, pastel, earth, mono, 80s, matrix, subtle, tsunami
 
 ## Known Gaps
 
-See `ux-behavior-spec` skill §18 for the full gap tracker. Remaining gaps: action group (responsive overflow), mobile sticky CTA bar, cookie consent banner. Most previously tracked gaps have been resolved in v0.3.3.
+See `ux-behavior-spec` skill §18 for the full gap tracker. Remaining gaps: action group (responsive overflow), mobile sticky CTA bar, cookie consent banner. Most previously tracked gaps have been resolved in v0.3.4.

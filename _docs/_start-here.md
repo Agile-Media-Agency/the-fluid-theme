@@ -265,4 +265,4 @@ Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 ---
 
-*Version 0.3.3 - March 2026*
+*Version 0.3.4 - March 2026*

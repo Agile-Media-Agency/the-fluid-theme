@@ -1,8 +1,8 @@
 # UX Audit Report — The Fluid Theme v0.3.3
 
-**Audited:** 2026-03-16
+**Audited:** 2026-03-16 (updated 2026-03-20)
 **Spec Version:** UX Behavior Spec v0.2.0
-**Scope:** All templates (10), example pages (7), CSS components (22)
+**Scope:** All templates (18), example pages (7), CSS components (23)
 
 ---
 
@@ -13,26 +13,26 @@
 1. ~~**templates/contact.html**: Uses `class="form-field"` (7 instances) but CSS defines `class="form-group"` — all form styling is broken (Spec §5)~~ ✅ Fixed
 2. ~~**templates/contact.html**: No form validation, no `aria-invalid`, no `.form-error` elements, no feedback on submission (Spec §4, §5)~~ ✅ Fixed — client-side validation with aria-invalid, .form-error messages, success/error alerts
 3. ~~**templates/contact.html**: Submit button says "Send Message" ✓ but form has no action/handler — silent on submit (Spec §4)~~ ✅ Fixed — form validates and shows success feedback
-4. **ALL templates**: `<a href="..."><button>` invalid HTML nesting — breaks keyboard nav and accessibility. Found in: 404, about, blog, faq, gallery, index, pricing, services (Spec §9, §12)
-5. **templates/pricing.html**: Feature comparison table has no `data-responsive` or `td[data-label]` attributes — broken on mobile (Spec §11)
-6. **templates/404.html**: Search input has no `<form>` wrapper, no `role="search"`, no `<label>` — invisible to screen readers (Spec §7, §12)
-7. **templates/pricing.html**: Billing toggle checkbox has no accessible label, no `aria-label`, no `role="switch"` (Spec §12)
+4. ~~**ALL templates**: `<a href="..."><button>` invalid HTML nesting — breaks keyboard nav and accessibility. Found in: 404, about, blog, faq, gallery, index, pricing, services (Spec §9, §12)~~ ✅ Fixed — all templates now use `<a class="button">` instead
+5. ~~**templates/pricing.html**: Feature comparison table has no `data-responsive` or `td[data-label]` attributes — broken on mobile (Spec §11)~~ ✅ Fixed — added `data-responsive` and `td[data-label]` to comparison table
+6. ~~**templates/404.html**: Search input has no `<form>` wrapper, no `role="search"`, no `<label>` — invisible to screen readers (Spec §7, §12)~~ ✅ Fixed — wrapped in `<form role="search">` with `<label>`
+7. ~~**templates/pricing.html**: Billing toggle checkbox has no accessible label, no `aria-label`, no `role="switch"` (Spec §12)~~ ✅ Fixed — added `role="switch"` and `aria-label`
 
 ### Examples
 
-8. **examples/components.html**: Destructive confirmation modal uses "Are you sure?" title — explicitly prohibited (Spec §1)
-9. **examples/components.html**: Destructive modal "Delete" button lacks specificity — should be "Delete [Thing]" (Spec §1)
-10. **examples/components.html**: Modal "Confirm" button is vague — should describe the action (Spec §9)
-11. **examples/foundation.html**: Table missing `.table-wrap` wrapper and `data-responsive`/`td[data-label]` attributes (Spec §11)
-12. **examples/philosophy.html**: Custom `reynolds-table` bypasses component system — no `.table-wrap`, no `data-responsive` (Spec §11)
-13. **examples/heroes.html**: Inline `style="color: white; border-color: white;"` on buttons — breaks preset/dark mode switching (Token usage)
-14. **examples/positioning.html**: Same inline color overrides on hero buttons (Token usage)
+8. ~~**examples/components.html**: Destructive confirmation modal uses "Are you sure?" title — explicitly prohibited (Spec §1)~~ ✅ Fixed — title now "Delete this item permanently"
+9. ~~**examples/components.html**: Destructive modal "Delete" button lacks specificity — should be "Delete [Thing]" (Spec §1)~~ ✅ Fixed — now "Delete Item"
+10. ~~**examples/components.html**: Modal "Confirm" button is vague — should describe the action (Spec §9)~~ ✅ Fixed — uses action-specific labels
+11. ~~**examples/foundation.html**: Table missing `.table-wrap` wrapper and `data-responsive`/`td[data-label]` attributes (Spec §11)~~ ✅ Fixed
+12. ~~**examples/philosophy.html**: Custom `reynolds-table` bypasses component system — no `.table-wrap`, no `data-responsive` (Spec §11)~~ ✅ Fixed — now uses `.table-wrap` + `.table` + `data-responsive`
+13. ~~**examples/heroes.html**: Inline `style="color: white; border-color: white;"` on buttons — breaks preset/dark mode switching (Token usage)~~ ✅ Fixed — uses CSS custom properties
+14. ~~**examples/positioning.html**: Same inline color overrides on hero buttons (Token usage)~~ ✅ Fixed — uses CSS custom properties
 
 ### CSS Components
 
-15. **src/components/form.css**: Missing `[aria-invalid="true"]` selector — the standard accessible attribute gets no visual treatment (Spec §5)
-16. **src/components/modal.css**: No `data-destructive` modifier for wider footer gap — requires inline style override (Spec §1, §18)
-17. **src/components/button.css**: No `prefers-reduced-motion` handling — loading spinner and tsunami animation play for all users (Spec §12)
+15. ~~**src/components/form.css**: Missing `[aria-invalid="true"]` selector — the standard accessible attribute gets no visual treatment (Spec §5)~~ ✅ Fixed — added selectors for input/textarea/select
+16. ~~**src/components/modal.css**: No `data-destructive` modifier for wider footer gap — requires inline style override (Spec §1, §18)~~ ✅ Fixed — added `[data-destructive]` modifier
+17. ~~**src/components/button.css**: No `prefers-reduced-motion` handling — loading spinner and tsunami animation play for all users (Spec §12)~~ ✅ Fixed — added `prefers-reduced-motion` block
 
 ---
 
@@ -177,4 +177,4 @@ _Fixes applied during this audit (2026-03-16):_
 | ~~No breadcrumbs on deep pages~~ | ✅ Component built — breadcrumb mobile collapse in `nav.css`. Templates need per-project breadcrumb markup. |
 | Excessive inline styles | Acceptable for framework demo templates; not production sites |
 | ~~Search modal uses `<div role="dialog">`~~ | ✅ Fixed — converted to native `<dialog>` |
-| About/Services hero button `style="color: white"` on CTA section | These are on themed sections (`data-theme="primary"/"dark"`), not hero backgrounds with `--hero-text-color` |
+| About/Services hero button `style="color: white"` on CTA section | Acceptable: these are on themed sections (`data-theme="primary"/"dark"`) which set their own text colors |

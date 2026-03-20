@@ -90,4 +90,4 @@ Full spec at `_docs/UX-BEHAVIOR-SPEC.md`. Quick reference at `.claude/skills/ux-
 
 ## Version
 
-**Current: 0.3.3** — Update in package.json, PROJECT_STATUS.md, CHANGELOG.md, and version badges on every session that modifies files.
+**Current: 0.3.4** — Update in package.json, PROJECT_STATUS.md, CHANGELOG.md, and version badges on every session that modifies files.

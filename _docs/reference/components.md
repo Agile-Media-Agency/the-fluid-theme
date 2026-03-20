@@ -1247,3 +1247,25 @@ Enhanced modal for destructive confirmations with wider button spacing and mobil
 ```
 
 On mobile, buttons stack vertically with the safe action (Cancel) on top.
+
+---
+
+## Version Badge
+
+A small fixed-position badge showing the current framework version. Subtle, semi-transparent, positioned in the bottom-right corner.
+
+### Usage
+```html
+<!-- Add data-show-version="true" to <html> to display -->
+<html data-show-version="true">
+  ...
+  <span class="version-badge">v0.3.4</span>
+</html>
+```
+
+### Behavior
+- Hidden by default (requires `data-show-version="true"` on `<html>`)
+- Semi-transparent with backdrop blur
+- Non-interactive (`pointer-events: none`)
+- Hidden in print
+- Respects `prefers-reduced-motion`

@@ -2,7 +2,7 @@
 
 Reference knowledge for the Fluid Framework CSS design system.
 
-**Version:** 0.3.3
+**Version:** 0.3.4
 
 ## Architecture
 

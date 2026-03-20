@@ -633,7 +633,7 @@
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
-    outline: none;
+    outline: 2px solid transparent;
     transition:
       color var(--duration-normal) var(--ease-fluid),
       background-color var(--duration-normal) var(--ease-fluid);

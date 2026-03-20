@@ -41,7 +41,7 @@ nav: page-name
 <section class="cta" aria-label="Call to action">...</section>
 
 <footer class="site-footer" data-type="standard">...</footer>
-<span class="version-badge">v0.3.3</span>
+<span class="version-badge">v{{ site.version }}</span>
 ```
 
 ## Available Sections

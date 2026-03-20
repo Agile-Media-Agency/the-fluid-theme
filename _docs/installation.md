@@ -21,7 +21,7 @@ Or use unpkg:
 **Production tip:** Pin to a specific version instead of `@latest` to avoid unexpected changes:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3.3/src/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3.4/src/fluid.css">
 ```
 
 ## Option 2: npm

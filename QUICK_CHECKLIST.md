@@ -100,8 +100,8 @@ Each section below needs its own CSS file in `src/sections/` and demo markup in 
 
 #### CDN Setup (jsDelivr, unpkg) — **Neil**
 1. Once published to npm, CDN links are automatic:
-   - jsDelivr: `https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3.3/src/fluid.css`
-   - unpkg: `https://unpkg.com/the-fluid-theme@0.3.3/src/fluid.css`
+   - jsDelivr: `https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3.4/src/fluid.css`
+   - unpkg: `https://unpkg.com/the-fluid-theme@0.3.4/src/fluid.css`
 2. Test both URLs in a browser after npm publish
 3. Add CDN `<link>` tags to README and Getting Started guide
 4. Consider creating a minified version: add a build script using `lightningcss` or `cssnano`

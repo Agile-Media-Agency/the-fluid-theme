@@ -80,7 +80,7 @@
   button:focus-visible,
   [role="button"]:focus-visible,
   .button:focus-visible {
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow:
       var(--shadow-glow),
       0 0 0 2px var(--color-background),

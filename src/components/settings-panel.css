@@ -65,7 +65,7 @@
   }
 
   .settings-fab:focus-visible {
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow:
       var(--shadow-lg),
       0 0 0 3px var(--color-background),
@@ -431,7 +431,7 @@
   }
 
   .settings-select:focus {
-    outline: none;
+    outline: 2px solid transparent;
     border-color: var(--accent);
     box-shadow: 0 0 0 2px var(--accent-subtle);
   }
