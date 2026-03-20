@@ -22,11 +22,31 @@ Most design systems pick arbitrary animation timings. We use **Reynolds numbers*
 | **Rapids** | ~5000 | Turbulent, energetic with resistance |
 | **Tsunami** | ~50000 | Massive force, dramatic displacement |
 
+## Installation
+
+### CDN (recommended for quick start)
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3/src/fluid.css">
+```
+
+### npm
+
+```bash
+npm install the-fluid-theme
+```
+
+Then link to `node_modules/the-fluid-theme/src/fluid.css` in your HTML, or import it in your build tool.
+
+### Download
+
+Grab the latest release from the [GitHub Releases](https://github.com/Agile-Media-Agency/the-fluid-theme/releases) page.
+
 ## Quick Start
 
 ```html
 <!-- Link the CSS -->
-<link rel="stylesheet" href="path/to/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.3/src/fluid.css">
 
 <!-- Set your preferences -->
 <body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
@@ -103,7 +123,7 @@ Modern CSS features throughout:
 ## Project Structure
 
 ```
-the-fluid-theme-v2c/
+the-fluid-theme/
 ├── _docs/                    # Documentation
 │   ├── _start-here.md       # Full documentation
 │   ├── reference/            # Component + layout API docs
@@ -156,7 +176,7 @@ Control everything via HTML attributes:
 - [x] **Phase 2: Core Components** — Buttons, cards, nav, forms, heroes, indicators (9 components)
 - [x] **Phase 3: Extended Components + Layouts** — Modal, tooltip, accordion, alert, table, avatar, loading, dropdown + flex/grid utilities (17 total)
 - [ ] **Phase 4: Documentation** — Getting started guide, installation, tutorials
-- [ ] **Phase 5: Distribution** — npm publish, CDN, starter kits
+- [x] **Phase 5: Distribution** — npm publish, CDN, starter kits
 
 **Current**: See [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) for comprehensive roadmap.
 
@@ -181,4 +201,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.3.2** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.3.3** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

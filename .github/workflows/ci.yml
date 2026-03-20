@@ -1,0 +1,130 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: CSS syntax check
+        run: |
+          echo "Checking CSS files for syntax errors..."
+          ERRORS=0
+          for file in $(find src -name "*.css"); do
+            # Check for unclosed braces
+            OPEN=$(grep -o '{' "$file" | wc -l)
+            CLOSE=$(grep -o '}' "$file" | wc -l)
+            if [ "$OPEN" -ne "$CLOSE" ]; then
+              echo "::error file=$file::Mismatched braces: $OPEN opening vs $CLOSE closing"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "::error::Found $ERRORS CSS syntax issues"
+            exit 1
+          fi
+          echo "All CSS files pass syntax check"
+
+      - name: Physical property detection
+        run: |
+          echo "Checking for physical properties (should use logical properties)..."
+          ERRORS=0
+
+          # Files/layers where physical properties are allowed
+          ALLOWED="src/core/reset.css"
+
+          for file in $(find src -name "*.css"); do
+            # Skip allowed files
+            if echo "$ALLOWED" | grep -q "$file"; then
+              continue
+            fi
+
+            # Check for common physical properties
+            HITS=$(grep -n \
+              -e 'margin-top\b' \
+              -e 'margin-bottom\b' \
+              -e 'margin-left\b' \
+              -e 'margin-right\b' \
+              -e 'padding-top\b' \
+              -e 'padding-bottom\b' \
+              -e 'padding-left\b' \
+              -e 'padding-right\b' \
+              -e 'border-top\b' \
+              -e 'border-bottom\b' \
+              -e 'border-left\b' \
+              -e 'border-right\b' \
+              -e '\btop\s*:' \
+              -e '\bbottom\s*:' \
+              -e '\bleft\s*:' \
+              -e '\bright\s*:' \
+              "$file" 2>/dev/null || true)
+
+            if [ -n "$HITS" ]; then
+              echo "::warning file=$file::Physical properties found:"
+              echo "$HITS"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "::warning::Found physical properties in $ERRORS files — prefer logical properties"
+          fi
+          echo "Physical property check complete"
+
+      - name: Breaking change detection
+        run: |
+          echo "Checking for removed CSS custom properties..."
+          git fetch origin main --depth=1
+
+          # Extract custom property names from main branch
+          git show origin/main:src/core/tokens.css 2>/dev/null | \
+            grep -oP '--[\w-]+' | sort -u > /tmp/main-tokens.txt || true
+
+          # Extract from PR branch
+          grep -oP '--[\w-]+' src/core/tokens.css | sort -u > /tmp/pr-tokens.txt
+
+          # Find removed tokens
+          REMOVED=$(comm -23 /tmp/main-tokens.txt /tmp/pr-tokens.txt || true)
+
+          if [ -n "$REMOVED" ]; then
+            echo "::warning::The following CSS custom properties were removed (this is a BREAKING CHANGE — use the 'major' label):"
+            echo "$REMOVED"
+          else
+            echo "No custom properties removed"
+          fi
+
+      - name: File size report
+        run: |
+          TOTAL=$(find src -name "*.css" -exec cat {} + | wc -c)
+          TOTAL_KB=$((TOTAL / 1024))
+          echo "### File Size Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Total CSS size: **${TOTAL_KB}KB**" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          # Compare with main
+          git fetch origin main --depth=1
+          MAIN_TOTAL=$(git show origin/main:src/fluid.css 2>/dev/null | wc -c || echo "0")
+
+          # Get all CSS from main
+          MAIN_SIZE=0
+          for file in $(git ls-tree -r --name-only origin/main -- src/ 2>/dev/null | grep '\.css$'); do
+            SIZE=$(git show "origin/main:$file" 2>/dev/null | wc -c || echo "0")
+            MAIN_SIZE=$((MAIN_SIZE + SIZE))
+          done
+
+          MAIN_KB=$((MAIN_SIZE / 1024))
+          DIFF=$((TOTAL_KB - MAIN_KB))
+
+          echo "Size on main: **${MAIN_KB}KB**" >> "$GITHUB_STEP_SUMMARY"
+          echo "Difference: **${DIFF}KB**" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$DIFF" -gt 10 ]; then
+            echo "::warning::CSS size increased by ${DIFF}KB (threshold: 10KB)"
+          fi

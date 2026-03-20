@@ -1,0 +1,74 @@
+name: Bug Report
+description: Report a visual bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug", "patch"]
+body:
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser Version
+      placeholder: "e.g. Chrome 120"
+
+  - type: dropdown
+    id: preset
+    attributes:
+      label: Preset / Settings
+      description: Which theme settings are active?
+      options:
+        - Default (flowing)
+        - Custom (describe below)
+    validations:
+      required: false
+
+  - type: textarea
+    id: settings
+    attributes:
+      label: Active Settings
+      description: "List the data attributes on your body tag"
+      placeholder: |
+        data-theme="dark"
+        data-motion="cascade"
+        data-palette="fluid"
+        data-accent="1"
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag and drop a screenshot if helpful
+
+  - type: input
+    id: reproduction
+    attributes:
+      label: Reproduction URL
+      description: Link to a CodePen, JSFiddle, or live page showing the issue
+      placeholder: "https://"

@@ -20,8 +20,14 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 | [Positioning System](reference/positioning.md) | Layout and alignment utilities |
 | [Heroes](reference/heroes.md) | Full-width hero sections |
 | [Components](reference/components.md) | Component API and usage (17 components) |
+| [Installation](installation.md) | npm, CDN, and download options |
 | [Getting Started](getting-started.md) | Installation and first steps |
-| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance | |
+| [Your First Page](first-component-tutorial.md) | Step-by-step tutorial building a complete page |
+| [Theming Guide](theming-guide.md) | Presets, palettes, custom themes, dark mode |
+| [Layout Guide](layout-guide.md) | Grid, flex, structural layouts, recipes |
+| [Migrate from Bootstrap](migrations/from-bootstrap.md) | Bootstrap → Fluid mapping |
+| [Migrate from Tailwind](migrations/from-tailwind.md) | Tailwind → Fluid mapping |
+| [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance |
 
 ### For AI Agents
 | Document | Description |
