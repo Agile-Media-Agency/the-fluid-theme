@@ -1,0 +1,30 @@
+# Cloudflare Pages — Custom Headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Immutable assets (images, CSS) — cache aggressively
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/src/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# WebP and AVIF images — long cache + correct content type
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages — short cache, always revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Security headers on all pages
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

@@ -1,0 +1,5 @@
+# Cloudflare Pages — Redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# www to apex
+https://www.thefluidtheme.com/* https://thefluidtheme.com/:splat 301

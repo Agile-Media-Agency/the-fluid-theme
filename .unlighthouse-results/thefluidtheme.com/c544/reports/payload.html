@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fluid Framework - A modern, semantic CSS design system with complete theme presets">
+<title>Home - Fluid Framework</title>
+<!-- Google Fonts - Theme Font Pairings
+     Each theme has a heading and body font that matches its character.
+     Fonts are loaded based on the current theme/motion setting. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Base fonts - always loaded -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Theme-specific fonts - loaded conditionally -->
+<style id="theme-fonts">
+  /* ========================================
+     FONT FAMILY TOKENS
+     Updated by JavaScript based on theme
+     ======================================== */
+
+  :root {
+    /* Default: Inter (balanced, universal) */
+    --font-heading: 'Inter', var(--font-system);
+    --font-body: 'Inter', var(--font-system);
+    --font-display: 'Inter', var(--font-system);
+  }
+
+
+  /* ========================================
+     STILL - Clean, Minimal, Professional
+     Fonts: Inter (headers) + Inter (body)
+     Character: Precise, no-nonsense, Swiss design
+     ======================================== */
+  [data-motion="still"] {
+    --font-heading: 'Inter', var(--font-system);
+    --font-body: 'Inter', var(--font-system);
+    --font-display: 'Inter', var(--font-system);
+  }
+
+
+  /* ========================================
+     SERENE - Elegant, Calm, Refined
+     Fonts: Cormorant Garamond (headers) + Lato (body)
+     Character: Classical, literary, timeless
+     ======================================== */
+  [data-motion="serene"] {
+    --font-heading: 'Cormorant Garamond', var(--font-serif);
+    --font-body: 'Lato', var(--font-system);
+    --font-display: 'Cormorant Garamond', var(--font-serif);
+  }
+
+
+  /* ========================================
+     STREAM - Modern, Readable, Contemporary
+     Fonts: Source Sans 3 (headers) + Source Sans 3 (body)
+     Character: Open, approachable, tech-forward
+     ======================================== */
+  [data-motion="stream"] {
+    --font-heading: 'Source Sans 3', var(--font-system);
+    --font-body: 'Source Sans 3', var(--font-system);
+    --font-display: 'Source Sans 3', var(--font-system);
+  }
+
+
+  /* ========================================
+     TRICKLING - Compact, Efficient, Minimal
+     Fonts: Inter (all)
+     Character: Understated, utility-first, developer-friendly
+     ======================================== */
+  [data-motion="trickling"] {
+    --font-heading: 'Inter', var(--font-system);
+    --font-body: 'Inter', var(--font-system);
+    --font-display: 'Inter', var(--font-system);
+  }
+
+
+  /* ========================================
+     FLOWING - Balanced, Organic, Natural (Default)
+     Fonts: Outfit (headers) + Inter (body)
+     Character: Friendly, professional, versatile
+     ======================================== */
+  :root:not([data-motion]),
+  [data-motion="flowing"] {
+    --font-heading: 'Outfit', var(--font-system);
+    --font-body: 'Inter', var(--font-system);
+    --font-display: 'Outfit', var(--font-system);
+  }
+
+
+  /* ========================================
+     CASCADE - Playful, Energetic, Friendly
+     Fonts: Nunito (headers) + Nunito Sans (body)
+     Character: Rounded, warm, approachable
+     ======================================== */
+  [data-motion="cascade"] {
+    --font-heading: 'Nunito', var(--font-system);
+    --font-body: 'Nunito Sans', var(--font-system);
+    --font-display: 'Nunito', var(--font-system);
+  }
+
+
+  /* ========================================
+     RAPIDS - Bold, Dynamic, Energetic
+     Fonts: Archivo Black (headers) + Archivo (body)
+     Character: Strong, punchy, athletic
+     ======================================== */
+  [data-motion="rapids"] {
+    --font-heading: 'Archivo Black', var(--font-system);
+    --font-body: 'Archivo', var(--font-system);
+    --font-display: 'Archivo Black', var(--font-system);
+  }
+
+
+  /* ========================================
+     TSUNAMI - Dramatic, Bold, Impactful
+     Fonts: Space Grotesk (headers) + Space Grotesk (body)
+     Character: Futuristic, bold, memorable
+     ======================================== */
+  [data-motion="tsunami"] {
+    --font-heading: 'Space Grotesk', var(--font-system);
+    --font-body: 'Space Grotesk', var(--font-system);
+    --font-display: 'Space Grotesk', var(--font-system);
+  }
+
+
+  /* ========================================
+     BRUTALIST - Raw, Industrial, Technical
+     Fonts: Space Mono (all)
+     Character: Mechanical, grid-locked, uncompromising
+     ======================================== */
+  [data-motion="brutalist"] {
+    --font-heading: 'Space Mono', var(--font-mono);
+    --font-body: 'Space Mono', var(--font-mono);
+    --font-display: 'Space Mono', var(--font-mono);
+    --font-ui: 'Space Mono', var(--font-mono);
+  }
+
+
+  /* ========================================
+     EDITORIAL - Luxurious, Literary, Magazine
+     Fonts: Playfair Display (headers) + Libre Baskerville (body)
+     Character: High-contrast serif, classical, contemplative
+     ======================================== */
+  [data-motion="editorial"] {
+    --font-heading: 'Playfair Display', var(--font-serif);
+    --font-body: 'Libre Baskerville', var(--font-serif);
+    --font-display: 'Playfair Display', var(--font-serif);
+  }
+
+
+  /* ========================================
+     NEON - Futuristic, Geometric, Cyberpunk
+     Fonts: Orbitron (headers) + Exo 2 (body)
+     Character: Tech, gaming, electric signage
+     ======================================== */
+  [data-motion="neon"] {
+    --font-heading: 'Orbitron', var(--font-system);
+    --font-body: 'Exo 2', var(--font-system);
+    --font-display: 'Orbitron', var(--font-system);
+    --font-ui: 'Exo 2', var(--font-system);
+  }
+</style>
+
+<script>
+  // Font loading for theme presets
+  const themeFonts = {
+    still: [],  // Uses base Inter
+    serene: [
+      'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap'
+    ],
+    trickling: [],  // Uses base Inter
+    stream: [
+      'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap'
+    ],
+    flowing: [
+      'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap'
+    ],
+    cascade: [
+      'https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap'
+    ],
+    rapids: [
+      'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap'
+    ],
+    tsunami: [
+      'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap'
+    ],
+    brutalist: [
+      'https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'
+    ],
+    editorial: [
+      'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap'
+    ],
+    neon: [
+      'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap'
+    ]
+  };
+
+  // Track loaded fonts to avoid duplicates
+  const loadedFonts = new Set(['Inter']);
+
+  function loadThemeFonts(theme) {
+    const fonts = themeFonts[theme];
+    if (!fonts || fonts.length === 0) return;
+
+    fonts.forEach(fontUrl => {
+      // Extract font name from URL for tracking
+      const match = fontUrl.match(/family=([^:&]+)/);
+      const fontName = match ? match[1].replace(/\+/g, ' ') : fontUrl;
+
+      if (!loadedFonts.has(fontName)) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = fontUrl;
+        document.head.appendChild(link);
+        loadedFonts.add(fontName);
+      }
+    });
+  }
+
+  // Load fonts for current theme on page load
+  (function() {
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    loadThemeFonts(currentMotion);
+  })();
+</script>
+
+<link rel="stylesheet" href="/src/fluid.css">
+
+  
+  
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress" data-position="top" aria-hidden="true"></div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header>
+    <nav class="nav" data-sticky aria-label="Main navigation">
+  <a href="/" class="nav__brand">Fluid</a>
+  <span class="nav__preset-name" id="nav-preset-name"></span>
+
+  <ul class="nav__menu" role="list" id="nav-menu">
+    <!-- Templates Dropdown -->
+    <li class="nav__dropdown">
+      <button class="nav__dropdown-trigger" aria-haspopup="true">
+        Templates
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <ul class="nav__dropdown-menu">
+        <li><a href="/templates/" class="nav__dropdown-link">Overview</a></li>
+        <li><a href="/templates/about.html" class="nav__dropdown-link">About</a></li>
+        <li><a href="/templates/services.html" class="nav__dropdown-link">Services</a></li>
+        <li><a href="/templates/gallery.html" class="nav__dropdown-link">Gallery</a></li>
+        <li><a href="/templates/blog.html" class="nav__dropdown-link">Blog</a></li>
+        <li><a href="/templates/pricing.html" class="nav__dropdown-link">Pricing</a></li>
+        <li><a href="/templates/faq.html" class="nav__dropdown-link">FAQ</a></li>
+        <li><a href="/templates/contact.html" class="nav__dropdown-link">Contact</a></li>
+      </ul>
+    </li>
+
+    <!-- Theme Dropdown -->
+    <li class="nav__dropdown">
+      <button class="nav__dropdown-trigger" aria-haspopup="true">
+        Theme
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <ul class="nav__dropdown-menu">
+        <li><a href="/examples/foundation.html" class="nav__dropdown-link">Foundation</a></li>
+        <li><a href="/examples/components.html" class="nav__dropdown-link">Components</a></li>
+        <li><a href="/examples/positioning.html" class="nav__dropdown-link">Layouts</a></li>
+        <li><a href="/examples/heroes.html" class="nav__dropdown-link">Heroes</a></li>
+        <li><a href="/examples/hero-picker.html" class="nav__dropdown-link">Hero Picker</a></li>
+      </ul>
+    </li>
+
+    <!-- Customizer CTA -->
+    <li>
+      <a href="/customizer.html" class="nav__cta">Customizer</a>
+    </li>
+  </ul>
+
+  <button class="nav__theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+  </button>
+  <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 12h18M3 6h18M3 18h18"/>
+    </svg>
+  </button>
+</nav>
+
+  </header>
+
+  <main id="main-content" data-alternating-sections>
+    <!-- Full-viewport Theme Grid -->
+<section class="theme-grid-hero">
+  <button class="theme-grid__item" data-theme="still" onclick="setThemePreset('still'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0-640.webp 640w, /assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png" alt="Still water reflection" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Still</h2>
+      <p class="theme-grid__desc">No animation. Swiss precision.</p>
+      <span class="theme-grid__font">Inter</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="mono">
+      <span style="--swatch: oklch(30% 0.03 250)"></span>
+      <span style="--swatch: oklch(40% 0.03 250)"></span>
+      <span style="--swatch: oklch(50% 0.03 250)"></span>
+      <span style="--swatch: oklch(60% 0.03 250)"></span>
+      <span style="--swatch: oklch(70% 0.02 250)"></span>
+      <span style="--swatch: oklch(80% 0.02 250)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="serene" onclick="setThemePreset('serene'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0-640.webp 640w, /assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png" alt="Serene landscape" loading="lazy" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Serene</h2>
+      <p class="theme-grid__desc">Slow Ken Burns fades.</p>
+      <span class="theme-grid__font">Cormorant Garamond + Lato</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="morandi">
+      <span style="--swatch: oklch(65% 0.04 50)"></span>
+      <span style="--swatch: oklch(70% 0.03 90)"></span>
+      <span style="--swatch: oklch(55% 0.05 230)"></span>
+      <span style="--swatch: oklch(60% 0.04 60)"></span>
+      <span style="--swatch: oklch(75% 0.02 100)"></span>
+      <span style="--swatch: oklch(68% 0.03 40)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="stream" onclick="setThemePreset('stream'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0-640.webp 640w, /assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_cec568ca-e842-44e8-915a-65cfb3a6229f_0.png" alt="Gentle stream" loading="lazy" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Stream</h2>
+      <p class="theme-grid__desc">Horizontal flow. Modern.</p>
+      <span class="theme-grid__font">Source Sans 3</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="subtle">
+      <span style="--swatch: oklch(55% 0.08 50)"></span>
+      <span style="--swatch: oklch(50% 0.10 180)"></span>
+      <span style="--swatch: oklch(65% 0.12 75)"></span>
+      <span style="--swatch: oklch(60% 0.06 30)"></span>
+      <span style="--swatch: oklch(70% 0.05 90)"></span>
+      <span style="--swatch: oklch(58% 0.07 260)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="flowing" onclick="setThemePreset('flowing'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_3-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_3-640.webp 640w, /assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_3-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_3.png" alt="Flowing water" loading="lazy" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Flowing</h2>
+      <p class="theme-grid__desc">Balanced. The default.</p>
+      <span class="theme-grid__font">Outfit + Inter</span>
+      <span class="theme-grid__badge" style="margin-block-start: var(--space-2); font-size: var(--font-size-xs); background: var(--accent); color: var(--color-background); padding: var(--space-1) var(--space-2); border-radius: var(--radius-full);">Default</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="fluid">
+      <span style="--swatch: oklch(55% 0.15 220)"></span>
+      <span style="--swatch: oklch(60% 0.12 200)"></span>
+      <span style="--swatch: oklch(65% 0.10 180)"></span>
+      <span style="--swatch: oklch(70% 0.08 160)"></span>
+      <span style="--swatch: oklch(75% 0.06 140)"></span>
+      <span style="--swatch: oklch(80% 0.04 120)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="cascade" onclick="setThemePreset('cascade'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0-640.webp 640w, /assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png" alt="Cascading waterfall" loading="lazy" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Cascade</h2>
+      <p class="theme-grid__desc">Playful waterfall stagger.</p>
+      <span class="theme-grid__font">Nunito + Nunito Sans</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="pastel">
+      <span style="--swatch: oklch(85% 0.08 350)"></span>
+      <span style="--swatch: oklch(88% 0.06 200)"></span>
+      <span style="--swatch: oklch(90% 0.07 100)"></span>
+      <span style="--swatch: oklch(87% 0.08 80)"></span>
+      <span style="--swatch: oklch(85% 0.07 280)"></span>
+      <span style="--swatch: oklch(86% 0.06 160)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="rapids" onclick="setThemePreset('rapids'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0-640.webp 640w, /assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/rapids/turbulent_rapids_churning_with_energy_--ar_169_--sref_6712779_06294332-ef43-4c56-b7bd-a02d9985d66a_0.png" alt="Turbulent rapids" loading="lazy" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Rapids</h2>
+      <p class="theme-grid__desc">Fast. Energetic bounces.</p>
+      <span class="theme-grid__font">Archivo Black + Archivo</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="bold">
+      <span style="--swatch: oklch(60% 0.25 25)"></span>
+      <span style="--swatch: oklch(55% 0.22 300)"></span>
+      <span style="--swatch: oklch(70% 0.20 145)"></span>
+      <span style="--swatch: oklch(65% 0.25 45)"></span>
+      <span style="--swatch: oklch(50% 0.20 260)"></span>
+      <span style="--swatch: oklch(62% 0.18 180)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="tsunami" onclick="setThemePreset('tsunami'); updateThemeGrid();">
+    <picture>
+    <source srcset="/assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0-1456.avif 1456w" sizes="100vw" type="image/avif">
+    <source srcset="/assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0-640.webp 640w, /assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0-1024.webp 1024w" sizes="100vw" type="image/webp">
+    <img src="/assets/images/motion/tsunami/massive_wave_cresting_with_dramatic_power_--ar_169_--sref_671_3bade4e7-6492-4cc8-a7fc-87f071e89419_0.png" alt="Powerful tsunami wave" loading="lazy" width="1920" height="1080">
+  </picture>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Tsunami</h2>
+      <p class="theme-grid__desc">Bold. Maximum impact.</p>
+      <span class="theme-grid__font">Space Grotesk</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="80s">
+      <span style="--swatch: oklch(60% 0.28 330)"></span>
+      <span style="--swatch: oklch(70% 0.22 190)"></span>
+      <span style="--swatch: oklch(55% 0.25 290)"></span>
+      <span style="--swatch: oklch(75% 0.18 100)"></span>
+      <span style="--swatch: oklch(65% 0.22 50)"></span>
+      <span style="--swatch: oklch(50% 0.20 260)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="brutalist" data-no-image onclick="setThemePreset('brutalist'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="brutalist"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Brutalist</h2>
+      <p class="theme-grid__desc">Raw. Monospace. Zero decoration.</p>
+      <span class="theme-grid__font">Space Mono</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="brutalist">
+      <span style="--swatch: oklch(0% 0 0)"></span>
+      <span style="--swatch: oklch(100% 0 0)"></span>
+      <span style="--swatch: oklch(50% 0 0)"></span>
+      <span style="--swatch: oklch(60% 0.25 25)"></span>
+      <span style="--swatch: oklch(25% 0 0)"></span>
+      <span style="--swatch: oklch(75% 0 0)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="editorial" data-no-image onclick="setThemePreset('editorial'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="editorial"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Editorial</h2>
+      <p class="theme-grid__desc">Literary. Serif. Generous whitespace.</p>
+      <span class="theme-grid__font">Playfair Display + Libre Baskerville</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="editorial">
+      <span style="--swatch: oklch(40% 0.08 30)"></span>
+      <span style="--swatch: oklch(55% 0.06 50)"></span>
+      <span style="--swatch: oklch(65% 0.04 70)"></span>
+      <span style="--swatch: oklch(35% 0.05 200)"></span>
+      <span style="--swatch: oklch(70% 0.03 90)"></span>
+      <span style="--swatch: oklch(45% 0.07 150)"></span>
+    </div>
+  </button>
+
+  <button class="theme-grid__item" data-theme="neon" data-no-image onclick="setThemePreset('neon'); updateThemeGrid();">
+    <div class="theme-grid__placeholder" data-preset="neon"></div>
+    <div class="theme-grid__overlay"></div>
+    <div class="theme-grid__content">
+      <h2 class="theme-grid__name">Neon</h2>
+      <p class="theme-grid__desc">Electric. Glowing. Cyberpunk.</p>
+      <span class="theme-grid__font">Orbitron + Exo 2</span>
+    </div>
+    <div class="theme-grid__palette" data-palette="neon">
+      <span style="--swatch: oklch(70% 0.25 320)"></span>
+      <span style="--swatch: oklch(75% 0.22 190)"></span>
+      <span style="--swatch: oklch(80% 0.20 100)"></span>
+      <span style="--swatch: oklch(65% 0.28 290)"></span>
+      <span style="--swatch: oklch(75% 0.18 50)"></span>
+      <span style="--swatch: oklch(60% 0.25 250)"></span>
+    </div>
+  </button>
+</section>
+
+<!-- Hero Section -->
+<div class="container">
+  <header class="section" data-layout="center" data-padding="xl">
+    <h1>Fluid Framework</h1>
+    <p>A modern, semantic CSS design system. Like water: adaptable, natural, powerful yet gentle.</p>
+    <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+      No build step. No JavaScript required. Just CSS.
+    </p>
+    <div class="cluster" style="margin-block-start: var(--space-6); justify-content: center;">
+      <a href="/examples/foundation.html" class="btn" data-variant="primary">
+        Explore Components
+      </a>
+      <button class="btn" data-variant="outline" onclick="toggleSettingsPanel()">
+        Customize Theme
+      </button>
+    </div>
+  </header>
+
+  <!-- Theme Selection Cards (Compact) -->
+  <section class="section" data-layout="center" data-padding="md" data-bg="tinted">
+    <h2>Choose Your Theme</h2>
+    <p style="color: var(--color-text-muted); max-inline-size: 40rem; margin-inline: auto; margin-block-end: var(--space-6);">
+      Ten complete themes with motion, colors, fonts, and layout.
+    </p>
+
+    <div class="theme-chips">
+      <button class="theme-chip" data-theme-preset="still" onclick="setThemePreset('still')">
+        <span class="theme-chip__dot" style="--chip-color: var(--gray-50);"></span>
+        Still
+      </button>
+      <button class="theme-chip" data-theme-preset="serene" onclick="setThemePreset('serene')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.75 0.05 60);"></span>
+        Serene
+      </button>
+      <button class="theme-chip" data-theme-preset="stream" onclick="setThemePreset('stream')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.65 0.08 230);"></span>
+        Stream
+      </button>
+      <button class="theme-chip" data-theme-preset="flowing" onclick="setThemePreset('flowing')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.65 0.15 220);"></span>
+        Flowing
+        <span class="theme-chip__badge">Default</span>
+      </button>
+      <button class="theme-chip" data-theme-preset="cascade" onclick="setThemePreset('cascade')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.80 0.12 150);"></span>
+        Cascade
+      </button>
+      <button class="theme-chip" data-theme-preset="rapids" onclick="setThemePreset('rapids')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.60 0.20 25);"></span>
+        Rapids
+      </button>
+      <button class="theme-chip" data-theme-preset="tsunami" onclick="setThemePreset('tsunami')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.35 0.12 210);"></span>
+        Tsunami
+      </button>
+      <button class="theme-chip" data-theme-preset="brutalist" onclick="setThemePreset('brutalist')">
+        <span class="theme-chip__dot" style="--chip-color: var(--black);"></span>
+        Brutalist
+      </button>
+      <button class="theme-chip" data-theme-preset="editorial" onclick="setThemePreset('editorial')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.40 0.08 30);"></span>
+        Editorial
+      </button>
+      <button class="theme-chip" data-theme-preset="neon" onclick="setThemePreset('neon')">
+        <span class="theme-chip__dot" style="--chip-color: oklch(0.70 0.25 320);"></span>
+        Neon
+      </button>
+    </div>
+  </section>
+
+  <section class="section" data-layout="center" data-padding="md">
+    <h2>Examples</h2>
+    <div class="grid" style="--grid-min: 16rem; margin-block-start: var(--space-6);">
+      <a href="/examples/foundation.html" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Foundation</h3>
+          <p class="card__description">Base HTML elements - typography, forms, tables, and more.</p>
+        </div>
+      </a>
+      <a href="/examples/components.html" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Components</h3>
+          <p class="card__description">17 UI components — buttons, cards, modals, tooltips, and more.</p>
+        </div>
+      </a>
+      <a href="/examples/positioning.html" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Positioning</h3>
+          <p class="card__description">Layout system - center, split, stack layouts.</p>
+        </div>
+      </a>
+      <a href="/examples/heroes.html" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Heroes</h3>
+          <p class="card__description">Full-width hero sections with themes and overlays.</p>
+        </div>
+      </a>
+      <a href="/examples/hero-picker.html" class="card" data-interactive>
+        <div class="card__content">
+          <h3 class="card__title">Hero Picker</h3>
+          <p class="card__description">Interactive builder - design heroes visually and copy the code.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" data-layout="center" data-padding="md">
+    <h2>Features</h2>
+    <div class="grid" style="--grid-min: 14rem; margin-block-start: var(--space-6);">
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h3 class="card__title">10 Complete Themes</h4>
+          <p class="card__description">Motion, colors, fonts, layout</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h3 class="card__title">View Transitions</h4>
+          <p class="card__description">Unique page transitions per theme</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h3 class="card__title">10 Color Palettes</h4>
+          <p class="card__description">OKLCH-based, perceptually uniform</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h3 class="card__title">Auto Dark Mode</h4>
+          <p class="card__description">Respects system preferences</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h3 class="card__title">No Build Step</h4>
+          <p class="card__description">Works directly in browsers</p>
+        </div>
+      </div>
+      <div class="card" data-variant="filled">
+        <div class="card__content" data-align="center">
+          <h3 class="card__title">Accessible</h4>
+          <p class="card__description">Focus states, reduced motion</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-layout="center" data-padding="lg" style="background: var(--color-surface);">
+    <h2>Quick Start</h2>
+    <div data-width="wide" style="margin-block-start: var(--space-5);">
+      <pre><code>&lt;!-- Just link the CSS --&gt;
+&lt;link rel="stylesheet" href="src/fluid.css"&gt;
+
+&lt;!-- Use semantic HTML with data attributes --&gt;
+&lt;section data-layout="center" data-padding="lg"&gt;
+  &lt;h1&gt;Hello Fluid&lt;/h1&gt;
+  &lt;p&gt;A serene design system.&lt;/p&gt;
+  &lt;button&gt;Get Started&lt;/button&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+  </section>
+
+  <footer class="section" data-layout="center" data-padding="md">
+    <p style="color: var(--color-text-muted);">
+      <a href="https://github.com/Agile-Media-Agency/the-fluid-theme-v2c">View on GitHub</a>
+      · Built by <a href="https://agilemediaagency.com">Agile Media Agency</a>
+    </p>
+    <p style="color: var(--color-text-subtle); font-size: var(--font-size-sm); margin-block-start: var(--space-3);">
+      Click the gear icon to customize, or try the theme cards above.
+    </p>
+    <p class="version-indicator" style="color: var(--color-text-subtle); font-size: var(--font-size-xs); margin-block-start: var(--space-4); font-family: var(--font-mono); text-align: center; inline-size: 100%;">
+  Last Built: <time datetime="2026-03-20T16:10:38-04:00">Mar 20, 2026 at  4:10 PM</time> · v0.4.1
+</p>
+<span class="version-badge">v0.4.1</span>
+
+  </footer>
+</div>
+
+<style>
+  /* ========================================
+     FULL-VIEWPORT THEME GRID
+     2x3 portrait, 3x2 landscape with duotone
+     ======================================== */
+
+  .theme-grid-hero {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    /* Fit in viewport below nav (~60px) */
+    min-block-size: calc(100svh - 4rem);
+    gap: 2px;
+    background: var(--color-background);
+  }
+
+  /* Last item spans full width as a dramatic banner (works for odd item counts) */
+  .theme-grid-hero > .theme-grid__item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Landscape: 3 columns */
+  @media (orientation: landscape) {
+    .theme-grid-hero {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .theme-grid__item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background: var(--gray-90);
+    transition: transform var(--duration-normal) var(--ease-fluid);
+  }
+
+  .theme-grid__item img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-fluid);
+    /* Base grayscale for duotone effect */
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  /* Duotone overlay - creates the color effect */
+  .theme-grid__overlay {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  /* Theme-specific duotone colors */
+  .theme-grid__item[data-theme="still"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.45 0.02 250) 0%, oklch(0.70 0.02 200) 100%);
+  }
+
+  .theme-grid__item[data-theme="serene"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.55 0.08 60) 0%, oklch(0.80 0.06 80) 100%);
+  }
+
+  .theme-grid__item[data-theme="stream"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.45 0.12 230) 0%, oklch(0.75 0.08 200) 100%);
+  }
+
+  .theme-grid__item[data-theme="flowing"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.50 0.15 220) 0%, oklch(0.70 0.12 240) 100%);
+  }
+
+  .theme-grid__item[data-theme="cascade"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.60 0.15 160) 0%, oklch(0.85 0.10 140) 100%);
+  }
+
+  .theme-grid__item[data-theme="rapids"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.45 0.20 25) 0%, oklch(0.70 0.18 40) 100%);
+  }
+
+  .theme-grid__item[data-theme="tsunami"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.20 0.08 250) 0%, oklch(0.35 0.12 210) 100%);
+  }
+
+  /* Placeholder backgrounds for presets without images */
+  .theme-grid__placeholder {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  /* Brutalist: Stark grid pattern */
+  .theme-grid__placeholder[data-preset="brutalist"] {
+    background:
+      linear-gradient(90deg, var(--black) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(0deg, var(--black) 1px, transparent 1px) 0 0 / 40px 40px,
+      var(--white);
+  }
+  .theme-grid__item[data-theme="brutalist"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.10 0 0) 0%, oklch(0.30 0 0) 100%);
+  }
+
+  /* Editorial: Warm paper texture gradient */
+  .theme-grid__placeholder[data-preset="editorial"] {
+    background: linear-gradient(135deg,
+      oklch(0.92 0.02 60) 0%,
+      oklch(0.88 0.03 50) 50%,
+      oklch(0.85 0.02 70) 100%);
+  }
+  .theme-grid__item[data-theme="editorial"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.35 0.06 40) 0%, oklch(0.60 0.04 60) 100%);
+  }
+
+  /* Neon: Dark with glowing accent lines */
+  .theme-grid__placeholder[data-preset="neon"] {
+    background:
+      radial-gradient(ellipse at 30% 70%, oklch(0.50 0.25 320 / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, oklch(0.60 0.22 190 / 0.3) 0%, transparent 50%),
+      linear-gradient(135deg, oklch(0.08 0.02 280) 0%, oklch(0.12 0.03 300) 100%);
+  }
+  .theme-grid__item[data-theme="neon"] .theme-grid__overlay {
+    background: linear-gradient(135deg, oklch(0.15 0.10 280) 0%, oklch(0.25 0.15 320) 100%);
+    mix-blend-mode: screen;
+    opacity: 0.6;
+  }
+
+  /* Content overlay */
+  .theme-grid__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-5);
+    padding-block-end: calc(var(--space-5) + 8px); /* Room for palette strip */
+    background: linear-gradient(to top, oklch(0% 0 0 / 0.85) 0%, oklch(0% 0 0 / 0.4) 40%, transparent 70%);
+    color: white;
+    text-align: left;
+    transition: opacity var(--duration-normal) var(--ease-fluid);
+  }
+
+  .theme-grid__name {
+    font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-3xl));
+    font-weight: var(--weight-bold);
+    margin: 0 0 var(--space-1) 0;
+    color: white !important; /* Override any heading color inheritance */
+    /* Strong multi-layer shadow for visibility on any background */
+    text-shadow:
+      0 1px 2px oklch(0% 0 0 / 0.9),
+      0 2px 4px oklch(0% 0 0 / 0.7),
+      0 4px 8px oklch(0% 0 0 / 0.5),
+      0 0 20px oklch(0% 0 0 / 0.4);
+  }
+
+  .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    margin: 0 0 var(--space-1) 0;
+    text-shadow:
+      0 1px 2px oklch(0% 0 0 / 0.9),
+      0 2px 6px oklch(0% 0 0 / 0.6);
+  }
+
+  .theme-grid__font {
+    font-size: var(--font-size-xs);
+    opacity: 0.8;
+    font-style: italic;
+    text-shadow:
+      0 1px 2px oklch(0% 0 0 / 0.9),
+      0 2px 4px oklch(0% 0 0 / 0.5);
+  }
+
+  /* Palette color strip at bottom */
+  .theme-grid__palette {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    display: flex;
+    block-size: 6px;
+  }
+
+  .theme-grid__palette span {
+    flex: 1;
+    background: var(--swatch);
+    transition: block-size var(--duration-fast) var(--ease-fluid);
+  }
+
+  .theme-grid__item:hover .theme-grid__palette span {
+    block-size: 10px;
+  }
+
+  /* Hover effects */
+  .theme-grid__item:hover img {
+    transform: scale(1.05);
+  }
+
+  .theme-grid__item:hover .theme-grid__overlay {
+    opacity: 0.7;
+  }
+
+  .theme-grid__item:hover .theme-grid__content {
+    opacity: 1;
+  }
+
+  /* Active state */
+  .theme-grid__item[data-active] {
+    outline: 4px solid var(--accent);
+    outline-offset: -4px;
+  }
+
+  .theme-grid__item[data-active]::after {
+    content: "✓";
+    position: absolute;
+    inset-block-start: var(--space-4);
+    inset-inline-end: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    background: var(--accent);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-bold);
+  }
+
+  /* Focus visible */
+  .theme-grid__item:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+    z-index: 1;
+  }
+
+
+  /* ========================================
+     THEME-SPECIFIC GRID ITEM SHAPES
+     Each theme has distinctive border-radius
+     ======================================== */
+
+  /* Default: Standard grid with small gap */
+  .theme-grid-hero {
+    gap: var(--grid-gap, 2px);
+    padding: var(--grid-padding, 0);
+  }
+
+  .theme-grid__item {
+    border-radius: var(--item-radius, 0);
+    transform: var(--item-transform, none);
+    box-shadow: var(--item-shadow, none);
+    margin: var(--item-margin, 0);
+  }
+
+  /* ----------------------------------------
+     STILL: Zero space, items touch, sharp
+     ---------------------------------------- */
+  [data-motion="still"] .theme-grid-hero {
+    --grid-gap: 0;
+    --grid-padding: 0;
+  }
+  [data-motion="still"] .theme-grid__item {
+    --item-radius: 0;
+  }
+
+  /* ----------------------------------------
+     SERENE: Generous whitespace, soft corners
+     ---------------------------------------- */
+  [data-motion="serene"] .theme-grid-hero {
+    --grid-gap: var(--space-6);
+    --grid-padding: var(--space-6);
+    background: var(--color-surface);
+  }
+  [data-motion="serene"] .theme-grid__item {
+    --item-radius: 24px;
+    --item-shadow: 0 8px 32px oklch(0 0 0 / 0.1);
+  }
+
+  /* ----------------------------------------
+     STREAM: Small padding, clean
+     ---------------------------------------- */
+  [data-motion="stream"] .theme-grid-hero {
+    --grid-gap: var(--space-3);
+    --grid-padding: var(--space-3);
+  }
+  [data-motion="stream"] .theme-grid__item {
+    --item-radius: 12px;
+  }
+
+  /* ----------------------------------------
+     FLOWING: Horizontal carousel (single row)
+     Auto-scrolling, swipeable, loops
+     ---------------------------------------- */
+  [data-motion="flowing"] .theme-grid-hero {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    --grid-gap: var(--space-4);
+    --grid-padding: var(--space-4);
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  [data-motion="flowing"] .theme-grid-hero::-webkit-scrollbar {
+    display: none;
+  }
+  [data-motion="flowing"] .theme-grid__item {
+    flex: 0 0 45%;
+    min-inline-size: 280px;
+    max-inline-size: 400px;
+    aspect-ratio: 3/4;
+    scroll-snap-align: center;
+    --item-radius: 16px;
+  }
+  @media (min-width: 768px) {
+    [data-motion="flowing"] .theme-grid__item {
+      flex: 0 0 30%;
+      max-inline-size: 350px;
+    }
+  }
+
+  /* ----------------------------------------
+     CASCADE: Large rounded, spacing, shadows
+     Bubbly, friendly, elevated
+     ---------------------------------------- */
+  [data-motion="cascade"] .theme-grid-hero {
+    --grid-gap: var(--space-5);
+    --grid-padding: var(--space-5);
+    background: linear-gradient(135deg, oklch(0.96 0.02 200) 0%, oklch(0.98 0.01 100) 100%);
+  }
+  [data-motion="cascade"] .theme-grid__item {
+    --item-radius: 32px;
+    --item-shadow:
+      0 4px 12px oklch(0 0 0 / 0.08),
+      0 12px 32px oklch(0 0 0 / 0.12);
+  }
+  [data-motion="cascade"] .theme-grid__item:hover {
+    box-shadow:
+      0 8px 24px oklch(0 0 0 / 0.1),
+      0 24px 48px oklch(0 0 0 / 0.15);
+  }
+
+  /* ----------------------------------------
+     RAPIDS: Skewed, angled, aggressive
+     Sports/action/fitness feel
+     ---------------------------------------- */
+  [data-motion="rapids"] .theme-grid-hero {
+    --grid-gap: var(--space-3);
+    --grid-padding: var(--space-4);
+    background: oklch(0.15 0.02 250);
+  }
+  [data-motion="rapids"] .theme-grid__item {
+    --item-radius: 4px;
+    --item-transform: skewY(-2deg);
+    --item-shadow: 4px 4px 0 oklch(0 0 0 / 0.3);
+  }
+  [data-motion="rapids"] .theme-grid__item:nth-child(even) {
+    --item-transform: skewY(2deg);
+  }
+  [data-motion="rapids"] .theme-grid__item:hover {
+    transform: skewY(-2deg) scale(1.03);
+    z-index: 2;
+  }
+  [data-motion="rapids"] .theme-grid__item:nth-child(even):hover {
+    transform: skewY(2deg) scale(1.03);
+  }
+  /* Bold italic text for Rapids */
+  [data-motion="rapids"] .theme-grid__name {
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  /* ----------------------------------------
+     TSUNAMI: Depth/layered effect
+     3D perspective, dramatic shadows
+     ---------------------------------------- */
+  [data-motion="tsunami"] .theme-grid-hero {
+    --grid-gap: var(--space-2);
+    --grid-padding: var(--space-2);
+    background: oklch(0.08 0.03 260);
+    perspective: 1000px;
+  }
+  [data-motion="tsunami"] .theme-grid__item {
+    --item-radius: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --item-shadow:
+      0 20px 40px oklch(0 0 0 / 0.4),
+      0 0 0 1px oklch(1 0 0 / 0.1) inset;
+  }
+  [data-motion="tsunami"] .theme-grid__item:hover {
+    transform: translateZ(30px) scale(1.02);
+    z-index: 10;
+    box-shadow:
+      0 30px 60px oklch(0 0 0 / 0.5),
+      0 0 0 2px var(--accent) inset,
+      0 0 60px oklch(from var(--accent) l c h / 0.3);
+  }
+  /* Staggered depth for visual interest */
+  [data-motion="tsunami"] .theme-grid__item:nth-child(1) { transform: translateZ(10px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(2) { transform: translateZ(5px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(3) { transform: translateZ(15px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(4) { transform: translateZ(8px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(7) { transform: translateZ(18px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(8) { transform: translateZ(6px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(9) { transform: translateZ(14px); }
+  [data-motion="tsunami"] .theme-grid__item:nth-child(10) { transform: translateZ(9px); }
+
+
+  /* ========================================
+     THEME-SPECIFIC GRID LAYOUTS
+     Each theme shows its character in the grid
+     ======================================== */
+
+  /* Still: Minimal, precise, bottom-left aligned (Swiss style) */
+  [data-motion="still"] .theme-grid__content {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-4);
+  }
+  [data-motion="still"] .theme-grid__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  [data-motion="still"] .theme-grid__desc {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.02em;
+  }
+
+  /* Serene: Elegant, centered, larger serif feel */
+  [data-motion="serene"] .theme-grid__content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-6);
+  }
+  [data-motion="serene"] .theme-grid__name {
+    font-size: clamp(var(--font-size-2xl), 5vw, var(--font-size-4xl));
+    font-weight: var(--weight-normal);
+    font-style: italic;
+  }
+  [data-motion="serene"] .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    font-style: italic;
+    opacity: 0.85;
+  }
+
+  /* Stream: Horizontal emphasis, left-aligned, modern */
+  [data-motion="stream"] .theme-grid__content {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-5);
+  }
+  [data-motion="stream"] .theme-grid__name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--weight-semibold);
+  }
+  [data-motion="stream"] .theme-grid__name::after {
+    content: "";
+    display: block;
+    inline-size: 3rem;
+    block-size: 2px;
+    background: white;
+    margin-block-start: var(--space-2);
+    opacity: 0.7;
+  }
+
+  /* Cascade: Playful, offset positioning */
+  [data-motion="cascade"] .theme-grid__content {
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: right;
+    padding: var(--space-5);
+    padding-block-start: 30%;
+  }
+  [data-motion="cascade"] .theme-grid__name {
+    font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-2xl));
+    font-weight: var(--weight-bold);
+  }
+
+  /* Rapids: Bold, large, punchy */
+  [data-motion="rapids"] .theme-grid__content {
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-6);
+  }
+  [data-motion="rapids"] .theme-grid__name {
+    font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-4xl));
+    font-weight: var(--weight-black, 900);
+    text-transform: uppercase;
+    line-height: 0.9;
+  }
+  [data-motion="rapids"] .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Tsunami: Maximum impact, centered, dramatic */
+  [data-motion="tsunami"] .theme-grid__content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-6);
+  }
+  [data-motion="tsunami"] .theme-grid__name {
+    font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-5xl));
+    font-weight: var(--weight-black, 900);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.85;
+  }
+  [data-motion="tsunami"] .theme-grid__desc {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-block-start: var(--space-3);
+  }
+
+
+  /* ========================================
+     THEME CHIPS (Compact Selection)
+     ======================================== */
+
+  .theme-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .theme-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-surface-raised);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-fluid);
+  }
+
+  .theme-chip:hover {
+    border-color: var(--accent);
+    background: var(--color-surface);
+  }
+
+  .theme-chip[data-active] {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+  }
+
+  .theme-chip__dot {
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--chip-color, var(--accent));
+  }
+
+  .theme-chip__badge {
+    font-size: var(--font-size-xs);
+    padding: 0 var(--space-1);
+    background: var(--accent);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    margin-inline-start: var(--space-1);
+  }
+</style>
+
+<script>
+  // Update theme grid and chips when theme changes
+  function updateThemeGrid() {
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+
+    // Update grid items
+    document.querySelectorAll('.theme-grid__item').forEach(item => {
+      if (item.dataset.theme === currentMotion) {
+        item.setAttribute('data-active', '');
+      } else {
+        item.removeAttribute('data-active');
+      }
+    });
+
+    // Update chips
+    document.querySelectorAll('.theme-chip').forEach(chip => {
+      if (chip.dataset.themePreset === currentMotion) {
+        chip.setAttribute('data-active', '');
+      } else {
+        chip.removeAttribute('data-active');
+      }
+    });
+
+    // Also update theme cards if present
+    if (typeof updateThemeCards === 'function') {
+      updateThemeCards();
+    }
+  }
+
+  // Call on page load
+  document.addEventListener('DOMContentLoaded', updateThemeGrid);
+
+  // ========================================
+  // FLOWING CAROUSEL - Auto-scroll
+  // ========================================
+  let flowingScrollInterval = null;
+  let flowingScrollPaused = false;
+
+  function initFlowingCarousel() {
+    const grid = document.querySelector('.theme-grid-hero');
+    if (!grid) return;
+
+    const isFlowing = document.documentElement.getAttribute('data-motion') === 'flowing';
+
+    // Clear any existing interval
+    if (flowingScrollInterval) {
+      clearInterval(flowingScrollInterval);
+      flowingScrollInterval = null;
+    }
+
+    if (!isFlowing) return;
+
+    // Start scrolled to show last item peeking
+    setTimeout(() => {
+      grid.scrollLeft = grid.scrollWidth - grid.clientWidth - 50;
+    }, 100);
+
+    // Auto-scroll slowly to the right
+    flowingScrollInterval = setInterval(() => {
+      if (flowingScrollPaused) return;
+
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+
+      // Scroll right slowly
+      grid.scrollLeft += 0.5;
+
+      // Loop back when reaching the end
+      if (grid.scrollLeft >= maxScroll) {
+        grid.scrollLeft = 0;
+      }
+    }, 30);
+
+    // Pause on hover/touch
+    grid.addEventListener('mouseenter', () => { flowingScrollPaused = true; });
+    grid.addEventListener('mouseleave', () => { flowingScrollPaused = false; });
+    grid.addEventListener('touchstart', () => { flowingScrollPaused = true; }, { passive: true });
+    grid.addEventListener('touchend', () => {
+      setTimeout(() => { flowingScrollPaused = false; }, 2000);
+    }, { passive: true });
+  }
+
+  // Initialize on load and theme change
+  document.addEventListener('DOMContentLoaded', initFlowingCarousel);
+
+  // Re-init when theme changes (wrap setThemePreset)
+  const originalSetThemePreset = window.setThemePreset;
+  if (originalSetThemePreset) {
+    window.setThemePreset = function(preset) {
+      originalSetThemePreset(preset);
+      setTimeout(initFlowingCarousel, 50);
+    };
+  }
+</script>
+
+  </main>
+
+  <!-- Settings Panel - Slide-out Theme Customization -->
+<aside class="settings-drawer" id="settings-panel" aria-label="Theme settings">
+  <!-- Backdrop for closing -->
+  <div class="settings-drawer__backdrop" onclick="toggleSettingsPanel()"></div>
+
+  <!-- Drawer content -->
+  <div class="settings-drawer__panel">
+    <header class="settings-drawer__header">
+      <h2 class="settings-drawer__title">Customize</h2>
+      <button class="settings-drawer__close" onclick="toggleSettingsPanel()" aria-label="Close settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <div class="settings-drawer__body">
+      <!-- THEME SELECTION (Top - Complete themes) -->
+      <section class="settings-section">
+        <h3 class="settings-section__label">Theme</h3>
+        <p class="settings-section__hint">Complete styling presets</p>
+        <div class="theme-grid" id="theme-grid">
+          <button class="theme-card" data-theme-preset="still" onclick="setThemePreset('still')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="12" x2="15" y2="12"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Still</span>
+            <span class="theme-card__desc">Instant, minimal</span>
+          </button>
+          <button class="theme-card" data-theme-preset="serene" onclick="setThemePreset('serene')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3c.5 0 1 .5 1 1v1c0 .5-.5 1-1 1s-1-.5-1-1V4c0-.5.5-1 1-1z"/>
+                <path d="M12 19c.5 0 1 .5 1 1v1c0 .5-.5 1-1 1s-1-.5-1-1v-1c0-.5.5-1 1-1z"/>
+                <circle cx="12" cy="12" r="4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Serene</span>
+            <span class="theme-card__desc">Slow, gentle</span>
+          </button>
+          <button class="theme-card" data-theme-preset="stream" onclick="setThemePreset('stream')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 12h16"/>
+                <path d="M4 8h12"/>
+                <path d="M8 16h12"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Stream</span>
+            <span class="theme-card__desc">Horizontal flow</span>
+          </button>
+          <button class="theme-card" data-theme-preset="flowing" onclick="setThemePreset('flowing')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12c3-4 6-4 9 0s6 4 9 0"/>
+                <path d="M3 17c3-4 6-4 9 0s6 4 9 0"/>
+                <path d="M3 7c3-4 6-4 9 0s6 4 9 0"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Flowing</span>
+            <span class="theme-card__desc">Balanced, organic</span>
+          </button>
+          <button class="theme-card" data-theme-preset="cascade" onclick="setThemePreset('cascade')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3v4"/>
+                <path d="M8 7v4"/>
+                <path d="M16 7v4"/>
+                <path d="M12 11v4"/>
+                <path d="M8 15v4"/>
+                <path d="M16 15v4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Cascade</span>
+            <span class="theme-card__desc">Waterfall effect</span>
+          </button>
+          <button class="theme-card" data-theme-preset="rapids" onclick="setThemePreset('rapids')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Rapids</span>
+            <span class="theme-card__desc">Fast, energetic</span>
+          </button>
+          <button class="theme-card" data-theme-preset="tsunami" onclick="setThemePreset('tsunami')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 12c2-6 6-8 10-4s8 2 10-4"/>
+                <path d="M2 18c2-6 6-8 10-4s8 2 10-4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Tsunami</span>
+            <span class="theme-card__desc">Bold, dramatic</span>
+          </button>
+          <button class="theme-card" data-theme-preset="brutalist" onclick="setThemePreset('brutalist')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="12" y1="3" x2="12" y2="21"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Brutalist</span>
+            <span class="theme-card__desc">Raw, technical</span>
+          </button>
+          <button class="theme-card" data-theme-preset="editorial" onclick="setThemePreset('editorial')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16v16H4z"/>
+                <path d="M7 8h10M7 12h7M7 16h10"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Editorial</span>
+            <span class="theme-card__desc">Literary, elegant</span>
+          </button>
+          <button class="theme-card" data-theme-preset="neon" onclick="setThemePreset('neon')">
+            <span class="theme-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3"/>
+                <circle cx="12" cy="12" r="8" stroke-dasharray="4 2"/>
+                <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+              </svg>
+            </span>
+            <span class="theme-card__name">Neon</span>
+            <span class="theme-card__desc">Electric, futuristic</span>
+          </button>
+        </div>
+      </section>
+
+      <hr class="settings-divider">
+
+      <!-- APPEARANCE -->
+      <section class="settings-section">
+        <h3 class="settings-section__label">Appearance</h3>
+        <div class="settings-row">
+          <span class="settings-row__label">Mode</span>
+          <div class="mode-buttons">
+            <button class="mode-btn" data-theme-option="light" onclick="setThemeMode('light')" title="Light mode" aria-label="Light mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+            </button>
+            <button class="mode-btn" data-theme-option="dark" onclick="setThemeMode('dark')" title="Dark mode" aria-label="Dark mode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <button class="mode-btn" data-theme-option="auto" onclick="setThemeMode('auto')" title="Auto (system)" aria-label="Match system preference">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row__label">Subdued contrast</span>
+          <label class="switch">
+            <input type="checkbox" class="switch__input" id="subdued-toggle" onchange="setContrast(this.checked ? 'subdued' : 'normal')">
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <hr class="settings-divider">
+
+      <!-- OVERRIDES -->
+      <section class="settings-section">
+        <h3 class="settings-section__label">Overrides</h3>
+        <p class="settings-section__hint">Fine-tune your experience</p>
+
+        <!-- Motion Override -->
+        <div class="settings-row">
+          <span class="settings-row__label">Animation speed</span>
+          <select id="motion-select" onchange="setMotion(this.value)" class="settings-select">
+            <option value="still">Still (none)</option>
+            <option value="serene">Serene (very slow)</option>
+            <option value="trickling">Trickling (subtle)</option>
+            <option value="flowing" selected>Flowing (default)</option>
+            <option value="rapids">Rapids (fast)</option>
+            <option value="tsunami">Tsunami (dramatic)</option>
+            <option value="brutalist">Brutalist (instant)</option>
+            <option value="editorial">Editorial (contemplative)</option>
+            <option value="neon">Neon (snappy)</option>
+          </select>
+        </div>
+
+        <!-- Palette Override -->
+        <div class="settings-row">
+          <span class="settings-row__label">Color palette</span>
+          <select id="palette-select" onchange="setPalette(this.value)" class="settings-select">
+            <option value="fluid">Fluid (Water)</option>
+            <option value="morandi">Morandi (Muted)</option>
+            <option value="bold">Bold (Vibrant)</option>
+            <option value="pastel">Pastel (Soft)</option>
+            <option value="earth">Earth (Natural)</option>
+            <option value="mono">Mono (Focused)</option>
+            <option value="80s">80s (Retro)</option>
+            <option value="matrix">Matrix (Digital)</option>
+            <option value="subtle">Subtle (Trending)</option>
+            <option value="tsunami">Tsunami (Deep Ocean)</option>
+            <option value="brutalist">Brutalist (Stark)</option>
+            <option value="editorial">Editorial (Warm)</option>
+            <option value="neon">Neon (Electric)</option>
+          </select>
+        </div>
+
+        <!-- Accent Color Swatches -->
+        <div class="settings-row">
+          <span class="settings-row__label">Accent color</span>
+          <div class="palette-swatches" id="palette-swatches">
+            <button class="palette-swatch" data-swatch="1" onclick="setAccentFromPalette('1')" aria-label="Color 1"></button>
+            <button class="palette-swatch" data-swatch="2" onclick="setAccentFromPalette('2')" aria-label="Color 2"></button>
+            <button class="palette-swatch" data-swatch="3" onclick="setAccentFromPalette('3')" aria-label="Color 3"></button>
+            <button class="palette-swatch" data-swatch="4" onclick="setAccentFromPalette('4')" aria-label="Color 4"></button>
+            <button class="palette-swatch" data-swatch="5" onclick="setAccentFromPalette('5')" aria-label="Color 5"></button>
+            <button class="palette-swatch" data-swatch="6" onclick="setAccentFromPalette('6')" aria-label="Color 6"></button>
+          </div>
+        </div>
+        <p class="settings-hint" id="fluid-hint">Accent auto-links to motion in Fluid palette</p>
+      </section>
+    </div>
+
+    <footer class="settings-drawer__footer">
+      <button class="btn btn--ghost btn--sm" onclick="resetSettings()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        Reset to defaults
+      </button>
+    </footer>
+  </div>
+</aside>
+
+<!-- Floating toggle button -->
+<button class="settings-fab" onclick="toggleSettingsPanel()" aria-label="Open theme settings" aria-expanded="false" id="settings-fab">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+</button>
+
+  <script>
+  // ========================================
+  // THEME MODE (Light/Dark/Auto)
+  // ========================================
+
+  function setThemeMode(mode) {
+    if (mode === 'auto') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('fluid-theme');
+      // Apply system preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      localStorage.setItem('fluid-theme-mode', 'auto');
+    } else {
+      document.documentElement.setAttribute('data-theme', mode);
+      localStorage.setItem('fluid-theme', mode);
+      localStorage.setItem('fluid-theme-mode', mode);
+    }
+    updateThemeButtons();
+  }
+
+  function updateThemeButtons() {
+    const mode = localStorage.getItem('fluid-theme-mode') || 'auto';
+    // Support both old .theme-btn and new .mode-btn class names
+    document.querySelectorAll('.theme-btn, .mode-btn').forEach(btn => {
+      if (btn.dataset.themeOption === mode) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
+    });
+
+    // Update nav theme toggle button
+    const navToggle = document.querySelector('.nav__theme-toggle');
+    if (navToggle) {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      navToggle.setAttribute('data-theme', currentTheme || 'light');
+    }
+  }
+
+  // Toggle between light and dark theme (for nav button)
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setThemeMode(newTheme);
+  }
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    const mode = localStorage.getItem('fluid-theme-mode');
+    if (mode === 'auto' || !mode) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+  });
+
+
+  // ========================================
+  // CONTRAST MODE (Subdued)
+  // ========================================
+
+  function setContrast(mode) {
+    if (mode === 'subdued') {
+      document.documentElement.setAttribute('data-contrast', 'subdued');
+      localStorage.setItem('fluid-contrast', 'subdued');
+    } else {
+      document.documentElement.removeAttribute('data-contrast');
+      localStorage.removeItem('fluid-contrast');
+    }
+    updateSubduedToggle();
+  }
+
+  function updateSubduedToggle() {
+    const toggle = document.getElementById('subdued-toggle');
+    if (toggle) {
+      toggle.checked = document.documentElement.getAttribute('data-contrast') === 'subdued';
+    }
+  }
+
+
+  // ========================================
+  // COLOR PALETTE (Mood)
+  // ========================================
+
+  function setPalette(palette) {
+    document.documentElement.setAttribute('data-palette', palette);
+    localStorage.setItem('fluid-palette', palette);
+
+    // If switching to fluid palette, clear any manual accent selection
+    // to allow motion-to-color mapping
+    if (palette === 'fluid') {
+      const currentAccent = document.documentElement.getAttribute('data-accent');
+      // If there's a numbered accent, keep it, otherwise let auto work
+      if (currentAccent && !['1','2','3','4','5','6'].includes(currentAccent)) {
+        document.documentElement.removeAttribute('data-accent');
+        localStorage.removeItem('fluid-accent');
+      }
+    }
+
+    updatePaletteUI();
+  }
+
+  function setAccentFromPalette(swatchNum) {
+    document.documentElement.setAttribute('data-accent', swatchNum);
+    localStorage.setItem('fluid-accent', swatchNum);
+    updatePaletteSwatches();
+  }
+
+  function updatePaletteSelect() {
+    const select = document.getElementById('palette-select');
+    const current = document.documentElement.getAttribute('data-palette') || 'fluid';
+    if (select) {
+      select.value = current;
+    }
+  }
+
+  function updatePaletteSwatches() {
+    const current = document.documentElement.getAttribute('data-accent');
+    const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
+
+    document.querySelectorAll('.palette-swatch').forEach(swatch => {
+      swatch.removeAttribute('data-active');
+      swatch.removeAttribute('data-auto');
+
+      if (swatch.dataset.swatch === current) {
+        swatch.setAttribute('data-active', '');
+      }
+    });
+
+    // In Fluid palette, mark the motion-linked swatch as "auto"
+    if (palette === 'fluid' && !current) {
+      const motion = document.documentElement.getAttribute('data-motion') || 'flowing';
+      const motionToSwatch = {
+        'still': '1',
+        'serene': '2',
+        'trickling': '3',
+        'flowing': '4',
+        'rapids': '5',
+        'tsunami': '6'
+      };
+      const autoSwatch = document.querySelector(`.palette-swatch[data-swatch="${motionToSwatch[motion]}"]`);
+      if (autoSwatch) {
+        autoSwatch.setAttribute('data-auto', '');
+        autoSwatch.setAttribute('data-active', '');
+      }
+    }
+  }
+
+  function updateFluidHint() {
+    const hint = document.getElementById('fluid-hint');
+    const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
+    if (hint) {
+      hint.style.display = palette === 'fluid' ? 'block' : 'none';
+    }
+  }
+
+  function updatePaletteUI() {
+    updatePaletteSelect();
+    updatePaletteSwatches();
+    updateFluidHint();
+  }
+
+
+  // ========================================
+  // LEGACY ACCENT COLOR (for backwards compatibility)
+  // ========================================
+
+  function setAccent(preset) {
+    // Legacy function - now we use palette system
+    // Map old presets to new system
+    const presetToPalette = {
+      'default': { palette: 'mono', accent: '3' },
+      'coral': { palette: 'bold', accent: '1' },
+      'vapor': { palette: 'bold', accent: '2' },
+      'tide': { palette: 'fluid', accent: '5' },
+      'forest': { palette: 'earth', accent: '2' },
+      'sunset': { palette: 'earth', accent: '3' },
+      'midnight': { palette: 'fluid', accent: '6' }
+    };
+
+    if (presetToPalette[preset]) {
+      setPalette(presetToPalette[preset].palette);
+      setAccentFromPalette(presetToPalette[preset].accent);
+    }
+  }
+
+  function updateAccentSwatches() {
+    // Legacy - now handled by updatePaletteSwatches
+    updatePaletteSwatches();
+  }
+
+
+  // ========================================
+  // MOTION INTENSITY
+  // ========================================
+
+  function setMotion(level) {
+    document.documentElement.setAttribute('data-motion', level);
+    localStorage.setItem('fluid-motion', level);
+    updateMotionSelect();
+
+    // Load theme fonts if available
+    if (typeof loadThemeFonts === 'function') {
+      loadThemeFonts(level);
+    }
+
+    // If using Fluid palette without manual accent, update swatches
+    const palette = document.documentElement.getAttribute('data-palette') || 'fluid';
+    const accent = document.documentElement.getAttribute('data-accent');
+    if (palette === 'fluid' && !accent) {
+      updatePaletteSwatches();
+    }
+
+    // Update nav preset name
+    if (typeof updateNavPresetName === 'function') {
+      updateNavPresetName();
+    }
+  }
+
+  function updateMotionSelect() {
+    const select = document.getElementById('motion-select');
+    const current = document.documentElement.getAttribute('data-motion') || 'flowing';
+    if (select) {
+      select.value = current;
+    }
+  }
+
+
+  // ========================================
+  // THEME PRESETS (Complete child themes)
+  // ========================================
+
+  // Theme preset configurations
+  // Each preset maps a motion style to its recommended palette and default accent
+  const themePresets = {
+    // Water themes
+    still: { motion: 'still', palette: 'mono', accent: '3' },        // Minimal, focused
+    serene: { motion: 'serene', palette: 'morandi', accent: '2' },   // Calm, muted sage
+    stream: { motion: 'stream', palette: 'subtle', accent: '2' },    // Modern teal
+    flowing: { motion: 'flowing', palette: 'fluid', accent: null },  // Auto from motion
+    cascade: { motion: 'cascade', palette: 'pastel', accent: '2' },  // Soft blue
+    rapids: { motion: 'rapids', palette: 'bold', accent: '1' },      // Electric coral
+    tsunami: { motion: 'tsunami', palette: 'tsunami', accent: '4' }, // Deep ocean storm
+    // Signature presets
+    brutalist: { motion: 'brutalist', palette: 'brutalist', accent: '1' },    // Raw, technical
+    editorial: { motion: 'editorial', palette: 'editorial', accent: '1' },    // Literary, luxurious
+    neon: { motion: 'neon', palette: 'neon', accent: '1' }                    // Electric, futuristic
+  };
+
+  function setThemePreset(preset) {
+    const config = themePresets[preset];
+    if (!config) return;
+
+    // Apply motion and palette
+    setMotion(config.motion);
+    setPalette(config.palette);
+
+    // Apply accent (clear for fluid/auto, set for others)
+    if (config.accent) {
+      setAccentFromPalette(config.accent);
+    } else {
+      // Clear accent for auto mode (fluid palette)
+      document.documentElement.removeAttribute('data-accent');
+      localStorage.removeItem('fluid-accent');
+    }
+
+    // Store the preset
+    localStorage.setItem('fluid-preset', preset);
+
+    // Update UI
+    updateThemeCards();
+    updatePaletteSwatches();
+  }
+
+  // Preset display names for nav indicator
+  const presetDisplayNames = {
+    still: 'Still',
+    serene: 'Serene',
+    stream: 'Stream',
+    flowing: 'Flowing',
+    cascade: 'Cascade',
+    rapids: 'Rapids',
+    tsunami: 'Tsunami',
+    brutalist: 'Brutalist',
+    editorial: 'Editorial',
+    neon: 'Neon'
+  };
+
+  function updateThemeCards() {
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    document.querySelectorAll('.theme-card').forEach(card => {
+      if (card.dataset.themePreset === currentMotion) {
+        card.setAttribute('data-active', '');
+      } else {
+        card.removeAttribute('data-active');
+      }
+    });
+
+    // Update nav preset name indicator
+    updateNavPresetName();
+  }
+
+  function updateNavPresetName() {
+    const el = document.getElementById('nav-preset-name');
+    if (!el) return;
+
+    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const name = presetDisplayNames[currentMotion] || currentMotion;
+    el.textContent = name;
+
+    // Set a data attribute for potential per-preset styling
+    el.setAttribute('data-preset', currentMotion);
+  }
+
+
+  // ========================================
+  // SETTINGS DRAWER TOGGLE
+  // ========================================
+
+  function toggleSettingsPanel() {
+    const drawer = document.getElementById('settings-panel');
+    const fab = document.getElementById('settings-fab');
+    const isOpen = drawer.hasAttribute('data-open');
+
+    if (isOpen) {
+      drawer.removeAttribute('data-open');
+      if (fab) fab.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      // Return focus to trigger
+      if (fab) fab.focus();
+    } else {
+      drawer.setAttribute('data-open', '');
+      if (fab) fab.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Move focus into drawer
+      const closeBtn = drawer.querySelector('.settings-drawer__close');
+      if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+    }
+  }
+
+  // Close drawer with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const drawer = document.getElementById('settings-panel');
+      if (drawer && drawer.hasAttribute('data-open')) {
+        toggleSettingsPanel();
+        const fab = document.getElementById('settings-fab');
+        if (fab) fab.focus();
+      }
+    }
+  });
+
+
+  // ========================================
+  // RESET TO DEFAULTS
+  // ========================================
+
+  function resetSettings() {
+    // Clear stored preferences
+    localStorage.removeItem('fluid-theme');
+    localStorage.removeItem('fluid-theme-mode');
+    localStorage.removeItem('fluid-accent');
+    localStorage.removeItem('fluid-motion');
+    localStorage.removeItem('fluid-palette');
+    localStorage.removeItem('fluid-contrast');
+    localStorage.removeItem('fluid-preset');
+
+    // Reset to system/defaults
+    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute('data-accent');
+    document.documentElement.removeAttribute('data-motion');
+    document.documentElement.removeAttribute('data-palette');
+    document.documentElement.removeAttribute('data-contrast');
+
+    // Apply defaults
+    document.documentElement.setAttribute('data-palette', 'fluid');
+    document.documentElement.setAttribute('data-motion', 'flowing');
+
+    // Check system preference for dark mode
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    // Update UI
+    updateThemeButtons();
+    updateSubduedToggle();
+    updatePaletteUI();
+    updateMotionSelect();
+    updateThemeCards();
+  }
+
+
+  // ========================================
+  // MOBILE MENU TOGGLE
+  // ========================================
+
+  function toggleMenu() {
+    const menu = document.getElementById('nav-menu');
+    const toggle = document.querySelector('.nav__toggle');
+    const isOpen = menu.hasAttribute('data-open');
+
+    if (isOpen) {
+      menu.removeAttribute('data-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    } else {
+      menu.setAttribute('data-open', '');
+      toggle.setAttribute('aria-expanded', 'true');
+      // Focus first menu link
+      const firstLink = menu.querySelector('.nav__link, .nav__dropdown-trigger');
+      if (firstLink) setTimeout(() => firstLink.focus(), 50);
+    }
+  }
+
+  // Close mobile menu with Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const menu = document.getElementById('nav-menu');
+      if (menu && menu.hasAttribute('data-open')) {
+        toggleMenu();
+      }
+    }
+  });
+
+
+  // ========================================
+  // ANIMATED PROGRESS BARS
+  // Trigger fill animation when scrolled into view
+  // ========================================
+
+  function initAnimatedProgress() {
+    const progressBars = document.querySelectorAll('.progress[data-animate]');
+
+    if (progressBars.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute('data-visible', '');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% visible
+    });
+
+    progressBars.forEach(bar => observer.observe(bar));
+  }
+
+
+  // ========================================
+  // STATUS FROM SCORE
+  // Auto-calculate status from percentage
+  // ========================================
+
+  function getStatusFromScore(score, thresholds = { good: 80, moderate: 60 }) {
+    if (score >= thresholds.good) return 'good';
+    if (score >= thresholds.moderate) return 'moderate';
+    return 'severe';
+  }
+
+  function initAutoStatus() {
+    document.querySelectorAll('[data-score]').forEach(el => {
+      const score = parseFloat(el.dataset.score);
+      if (!isNaN(score) && !el.hasAttribute('data-status')) {
+        el.setAttribute('data-status', getStatusFromScore(score));
+      }
+    });
+  }
+
+
+  // ========================================
+  // SCROLL PROGRESS INDICATOR
+  // ========================================
+
+  function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+
+      progressBar.style.setProperty('--_progress', progress);
+
+      // Add data attribute for CSS hooks
+      if (progress === 0) {
+        progressBar.setAttribute('data-progress', '0');
+      } else {
+        progressBar.removeAttribute('data-progress');
+      }
+    }
+
+    // Throttle scroll updates for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial update
+    updateProgress();
+  }
+
+  function setScrollProgressPosition(position) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      progressBar.setAttribute('data-position', position);
+      localStorage.setItem('fluid-scroll-progress-position', position);
+    }
+  }
+
+  function toggleScrollProgress(show) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      if (show) {
+        progressBar.removeAttribute('data-hidden');
+        localStorage.removeItem('fluid-scroll-progress-hidden');
+      } else {
+        progressBar.setAttribute('data-hidden', '');
+        localStorage.setItem('fluid-scroll-progress-hidden', 'true');
+      }
+    }
+  }
+
+
+  // ========================================
+  // SCROLL REVEAL ANIMATIONS
+  // ========================================
+
+  function initScrollReveal() {
+    // Respect OS-level reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Get motion style - if 'still', skip all animations
+    const motionStyle = document.documentElement.getAttribute('data-motion') || 'flowing';
+    if (motionStyle === 'still') return;
+
+    // Select both explicit [data-reveal] elements AND sections for auto-reveal
+    const explicitElements = document.querySelectorAll('[data-reveal]');
+    const sections = document.querySelectorAll('.section:not([data-reveal])');
+    const allElements = [...explicitElements, ...sections];
+
+    if (!allElements.length) return;
+
+    // Check for IntersectionObserver support
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: reveal all immediately
+      allElements.forEach(el => el.classList.add('revealed'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    });
+
+    allElements.forEach(el => observer.observe(el));
+  }
+
+
+  // ========================================
+  // INITIALIZE ON PAGE LOAD
+  // ========================================
+
+  (function() {
+    // Theme mode
+    const savedTheme = localStorage.getItem('fluid-theme');
+    const savedThemeMode = localStorage.getItem('fluid-theme-mode');
+
+    if (savedThemeMode === 'auto' || (!savedTheme && !savedThemeMode)) {
+      // Auto mode or first visit
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } else if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // Contrast mode
+    const savedContrast = localStorage.getItem('fluid-contrast');
+    if (savedContrast === 'subdued') {
+      document.documentElement.setAttribute('data-contrast', 'subdued');
+    }
+
+    // Palette
+    const savedPalette = localStorage.getItem('fluid-palette');
+    document.documentElement.setAttribute('data-palette', savedPalette || 'fluid');
+
+    // Accent color
+    const savedAccent = localStorage.getItem('fluid-accent');
+    if (savedAccent) {
+      document.documentElement.setAttribute('data-accent', savedAccent);
+    }
+
+    // Motion intensity
+    const savedMotion = localStorage.getItem('fluid-motion');
+    if (savedMotion) {
+      document.documentElement.setAttribute('data-motion', savedMotion);
+    }
+
+    // Scroll progress settings
+    const savedScrollProgressHidden = localStorage.getItem('fluid-scroll-progress-hidden');
+    const savedScrollProgressPosition = localStorage.getItem('fluid-scroll-progress-position');
+    if (savedScrollProgressHidden) {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.setAttribute('data-hidden', '');
+    }
+    if (savedScrollProgressPosition) {
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.setAttribute('data-position', savedScrollProgressPosition);
+    }
+
+    // Update UI controls once DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        updateThemeButtons();
+        updateSubduedToggle();
+        updatePaletteUI();
+        updateMotionSelect();
+        updateThemeCards();
+        updateNavPresetName();
+        initAnimatedProgress();
+        initAutoStatus();
+        initScrollProgress();
+        initScrollReveal();
+      });
+    } else {
+      updateThemeButtons();
+      updateSubduedToggle();
+      updatePaletteUI();
+      updateMotionSelect();
+      updateThemeCards();
+      updateNavPresetName();
+      initAnimatedProgress();
+      initAutoStatus();
+      initScrollProgress();
+      initScrollReveal();
+
+      // Progressive enhancement: error page actions
+      document.querySelectorAll('[data-action="back"]').forEach(el => {
+        el.addEventListener('click', (e) => { e.preventDefault(); history.back(); });
+      });
+      document.querySelectorAll('[data-action="reload"]').forEach(el => {
+        el.addEventListener('click', (e) => { e.preventDefault(); location.reload(); });
+      });
+    }
+  })();
+</script>
+
+  
+</body>
+</html>
