@@ -1,4 +1,4 @@
-# Pre-Release Audit — Fluid Theme v0.3.4
+# Pre-Release Audit — Fluid Theme v0.3.5
 
 **Date:** 2026-03-20
 **Auditor:** Claude Code (Opus 4.6)
@@ -7,8 +7,8 @@
 ## Summary
 
 - **0 blockers remaining** (18 blockers found and fixed during audit)
-- **12 warnings** (acceptable or deferred to v0.4.0)
-- **18 items fixed** during this audit
+- **7 warnings remaining** (acceptable or deferred to v0.4.0)
+- **23 items fixed** during this audit (18 blockers + 5 warnings)
 
 ---
 
@@ -43,15 +43,15 @@
 
 1. **`scroll-reveal.css` uses 10+ hardcoded duration values** (`0.6s`, `0.3s`, `1s`, etc.) instead of `var(--duration-*)` tokens. These work correctly but bypass the design token system.
 
-2. **`testimonials.css` line 115 uses `font-family: Georgia, serif`** instead of `var(--font-serif)`. Cosmetic — should be tokenized for preset consistency.
+2. ~~**`testimonials.css` line 115 uses `font-family: Georgia, serif`** instead of `var(--font-serif)`.~~ ✅ Fixed — now uses `var(--font-serif, Georgia, serif)`
 
-3. **`settings-panel.css` select arrow SVG** uses hardcoded `#6b7280` and only swaps for `[data-theme="dark"]`, not `@media (prefers-color-scheme: dark)`. System dark mode users without JS toggle see dark arrow on dark background.
+3. ~~**`settings-panel.css` select arrow SVG** uses hardcoded `#6b7280` and only swaps for `[data-theme="dark"]`.~~ ✅ Fixed — added `@media (prefers-color-scheme: dark)` rule
 
 4. **Hardcoded `px` in box-shadow/border values** across ~15 component files (2px, 3px, 4px focus rings, accent bars, borders). These are sub-token-level values that work correctly but have no token equivalents. Consider adding `--border-accent-width` token for v0.4.0.
 
 ### Browser Compatibility
 
-5. **`oklch(from ...)` relative color syntax** (Chrome 119+, Safari 17.2+, Firefox 128+) used in ~30 places across tokens.css, base.css, card.css, indicator.css, nav.css, chip.css. No fallbacks. Most uses are decorative (shadow colors), but `indicator.css` line 43 computes a structural warning text color with no fallback.
+5. **`oklch(from ...)` relative color syntax** (Chrome 119+, Safari 17.2+, Firefox 128+) used in ~30 places across tokens.css, base.css, card.css, nav.css, chip.css. No fallbacks for decorative uses (shadow colors). ~~`indicator.css` warning text color had no fallback~~ ✅ Fixed — static fallback added before the `oklch(from ...)` declaration.
 
 6. **`:popover-open` pseudo-class** (`tooltip.css` line 165) has no `[data-open]` CSS fallback selector. Popovers stay invisible on unsupported browsers. Add a JS-driven fallback class alongside `:popover-open`.
 
@@ -61,7 +61,7 @@
 
 8. **120 `<a href="#">` placeholder links** across 12 template files. Acceptable for framework demos but should be noted as non-production.
 
-9. **`templates/404.html` and `templates/500.html`** use inline `onclick` handlers (`history.back()`, `location.reload()`). Should move to `_includes/scripts.html` for CSP compliance.
+9. ~~**`templates/404.html` and `templates/500.html`** use inline `onclick` handlers.~~ ✅ Fixed — replaced with `data-action` attributes + progressive enhancement in `scripts.html`. Fallback hrefs work without JS.
 
 ### External Dependencies
 
