@@ -101,4 +101,4 @@ Full guide at `_docs/images-guide.md`. Quick reference at `fluid-agent-kit/skill
 
 ## Version
 
-**Current: 0.4.0** — Update in package.json, PROJECT_STATUS.md, CHANGELOG.md, _config.yml, and version badges on every session that modifies files.
+**Current: 0.4.1** — Update in package.json, PROJECT_STATUS.md, CHANGELOG.md, _config.yml, and version badges on every session that modifies files.

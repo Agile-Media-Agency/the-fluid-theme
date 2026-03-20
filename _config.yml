@@ -22,6 +22,7 @@ exclude:
   - node_modules
   - _docs
   - fluid-agent-kit
+  - scripts
 
 # Include dotfiles if needed
 include:
@@ -39,5 +40,5 @@ defaults:
       layout: default
 
 # Site-wide variables
-version: "0.4.0"
+version: "0.4.1"
 # Note: "Last Built" timestamp is now automatic via site.time

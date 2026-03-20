@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-03-20
+
+### Added
+- **Image optimization pipeline**: `npm run optimize-images` generates WebP (640w, 1024w) and AVIF (full-width) variants via sharp
+- **`<picture>` elements**: all 62 template images wrapped with AVIF + WebP sources and `srcset`/`sizes` for responsive delivery
+- **Build scripts**: `scripts/optimize-images.js` (image conversion) and `scripts/update-html-picture.js` (HTML template updates)
+
+### Changed
+- **Image payload reduced 77.5%**: 33.6MB PNG originals → 7.6MB optimized WebP/AVIF variants
+- All hero/full-width images use `sizes="100vw"`, card images use responsive sizes
+- Avatar images intentionally excluded from `<picture>` wrapping (too small for srcset)
+- PNG originals preserved as fallbacks inside `<picture>` elements
+
 ## [0.4.0] - 2026-03-20
 
 ### Added
