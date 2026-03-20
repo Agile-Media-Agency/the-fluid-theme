@@ -1,0 +1,293 @@
+---
+title: "The Physics of Digital Design: Why Fluid Motion Matters"
+description: A deep dive into how physics-based design principles create more intuitive user experiences
+layout: template
+nav: blog
+---
+<style>
+  @layer demo {
+    .article-header {
+      text-align: center;
+      max-inline-size: var(--container-md);
+      margin-inline: auto;
+      padding-block: var(--space-10);
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin-block-start: var(--space-4);
+    }
+
+    .article-meta__divider {
+      inline-size: 3px;
+      block-size: 3px;
+      border-radius: var(--radius-full);
+      background-color: var(--color-text-muted);
+      opacity: 0.5;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr min(65ch, 100%) 1fr;
+      gap: var(--space-5);
+      padding-inline: var(--space-5);
+    }
+
+    .article-layout > * {
+      grid-column: 2;
+    }
+
+    .article-sidebar {
+      grid-column: 3;
+      position: sticky;
+      inset-block-start: var(--space-8);
+      align-self: start;
+    }
+
+    .author-bio {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-5);
+      padding: var(--space-6);
+      background-color: var(--color-surface);
+      border: var(--border-width) solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      margin-block: var(--space-10);
+    }
+
+    .author-bio .avatar {
+      flex-shrink: 0;
+    }
+
+    .toc {
+      padding: var(--space-5);
+      background-color: var(--color-surface);
+      border: var(--border-width) solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      font-size: var(--font-size-sm);
+    }
+
+    .toc__title {
+      font-size: var(--font-size-xs);
+      font-weight: var(--weight-semibold, 600);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wider);
+      color: var(--color-text-muted);
+      margin-block-end: var(--space-3);
+    }
+
+    .toc__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .toc__list a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .toc__list a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 72rem) {
+      .article-layout {
+        grid-template-columns: 1fr min(65ch, 100%) 1fr;
+      }
+
+      .article-sidebar {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" style="padding: var(--space-4) var(--space-5); max-inline-size: var(--container-xl); margin-inline: auto;">
+  <ol style="list-style: none; padding: 0; margin: 0; display: flex; gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-muted);">
+    <li><a href="../templates/blog.html" style="color: var(--color-text-muted); text-decoration: none;">Blog</a></li>
+    <li aria-hidden="true">/</li>
+    <li><a href="#" style="color: var(--color-text-muted); text-decoration: none;">Design Systems</a></li>
+    <li aria-hidden="true">/</li>
+    <li aria-current="page" style="color: var(--color-text);">The Physics of Digital Design</li>
+  </ol>
+</nav>
+
+<!-- Article Header -->
+<header class="article-header">
+  <span class="badge" data-variant="filled">Design Systems</span>
+  <h1 style="font-size: var(--font-size-4xl); line-height: var(--leading-tight); margin-block-start: var(--space-4);">The Physics of Digital Design: Why Fluid Motion Matters</h1>
+  <div class="article-meta">
+    <div style="display: flex; align-items: center; gap: var(--space-2);">
+      <img class="avatar avatar--sm" src="../assets/images/motion/flowing/flowing_water_dynamic_motion_natural_light_--ar_169_--sref_67_fc13be77-24e7-4c29-ae6a-b4e4d37fcfce_0.png" alt="Sarah Chen">
+      <span>Sarah Chen</span>
+    </div>
+    <span class="article-meta__divider"></span>
+    <time datetime="2026-03-15">March 15, 2026</time>
+    <span class="article-meta__divider"></span>
+    <span>8 min read</span>
+  </div>
+</header>
+
+<!-- Hero Image -->
+<figure style="margin: 0; padding-inline: var(--space-5); max-inline-size: var(--container-lg); margin-inline: auto;">
+  <img src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png" alt="Cascading waterfall representing fluid motion in design" style="inline-size: 100%; block-size: auto; border-radius: var(--radius-xl); aspect-ratio: 16/9; object-fit: cover;">
+  <figcaption style="text-align: center; font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-3);">Physics-based motion creates interfaces that feel natural and intuitive.</figcaption>
+</figure>
+
+<!-- Article Body -->
+<div class="article-layout" style="margin-block-start: var(--space-10);">
+
+  <!-- Main Content -->
+  <article class="flow">
+    <p style="font-size: var(--font-size-lg); color: var(--color-text-muted); line-height: var(--leading-relaxed);">
+      Every digital interface tells a story through motion. When a button depresses, a menu slides open, or a page transitions, these movements communicate meaning. But most design systems treat motion as decoration — an afterthought sprinkled on top. What if motion was the foundation?
+    </p>
+
+    <h2 id="reynolds-numbers">Understanding Reynolds Numbers in UI</h2>
+    <p>
+      In fluid dynamics, the Reynolds number determines whether fluid flow is smooth (laminar) or chaotic (turbulent). This same principle maps beautifully to user interface motion. A "Still" preset (Re ≈ 0) means no motion at all — pure static content. A "Tsunami" preset (Re ≈ 50,000) brings dramatic, energetic animations.
+    </p>
+    <p>
+      The key insight is that <strong>motion intensity should be a spectrum, not a binary</strong>. Users don't want "animations on" or "animations off" — they want motion that matches their context, preference, and content type.
+    </p>
+
+    <h2 id="seven-presets">The Seven Motion Presets</h2>
+    <p>
+      Fluid Framework maps the Reynolds number spectrum to seven distinct presets, each creating a completely different experience from the same HTML:
+    </p>
+    <ol>
+      <li><strong>Still</strong> — Zero motion. Content confidence through typography alone.</li>
+      <li><strong>Serene</strong> — Barely perceptible transitions. Warm, editorial feel.</li>
+      <li><strong>Stream</strong> — Gentle, consistent flow. Professional and calm.</li>
+      <li><strong>Flowing</strong> — The default. Balanced motion that feels natural.</li>
+      <li><strong>Cascade</strong> — Layered, sequential animations. Dramatic reveals.</li>
+      <li><strong>Rapids</strong> — Energetic, fast transitions. Modern and dynamic.</li>
+      <li><strong>Tsunami</strong> — Maximum intensity. Bold, cinematic experience.</li>
+    </ol>
+
+    <h2 id="complete-experiences">Presets as Complete Experiences</h2>
+    <p>
+      A preset isn't just a motion speed setting — it's a complete sensory transformation. When you switch from "Serene" to "Rapids," the typography changes, the color palette shifts, shadows behave differently, and spacing adjusts. The entire personality of the interface transforms.
+    </p>
+    <p>
+      This is fundamentally different from frameworks that offer a "dark mode toggle" or "animation speed" slider. Each preset is a <em>curated experience</em> designed to feel cohesive from the ground up.
+    </p>
+
+    <blockquote>
+      <p>"The best interfaces don't just look right — they <em>feel</em> right. Motion is the bridge between visual design and emotional response."</p>
+    </blockquote>
+
+    <h2 id="accessibility">Motion and Accessibility</h2>
+    <p>
+      Respecting <code>prefers-reduced-motion</code> is non-negotiable, but it's a blunt instrument. Some users with vestibular disorders can tolerate subtle transitions but not parallax scrolling. The preset system gives users granular control — they can choose "Serene" instead of disabling all motion entirely.
+    </p>
+    <p>
+      Every animation in Fluid Framework gracefully degrades. At the "Still" preset, the interface is fully functional and visually complete — motion adds to the experience but is never required for it.
+    </p>
+
+    <h2 id="implementation">CSS-Only Implementation</h2>
+    <p>
+      The entire motion system is built with CSS custom properties and <code>@layer</code>. No JavaScript required. A single data attribute on the <code>&lt;html&gt;</code> element controls the preset:
+    </p>
+    <pre><code>&lt;html data-motion="flowing" data-theme="light"&gt;</code></pre>
+    <p>
+      All animation durations, easing curves, shadow depths, and transform scales derive from a single <code>--motion-base</code> token that each preset sets. This ensures mathematical consistency across every moving element.
+    </p>
+
+    <h2 id="conclusion">Looking Forward</h2>
+    <p>
+      Physics-based design isn't just an aesthetic choice — it's a paradigm shift. When interfaces move like natural systems, users develop intuition rather than relying on memory. The learning curve flattens because the behavior matches expectations built from a lifetime of observing the physical world.
+    </p>
+    <p>
+      Fluid Framework is our attempt to make this approach accessible to every developer, without requiring a physics degree or a JavaScript runtime. Just CSS, doing what CSS was always meant to do.
+    </p>
+  </article>
+
+  <!-- Sidebar (visible on wide screens) -->
+  <aside class="article-sidebar">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc__title">On this page</p>
+      <ol class="toc__list">
+        <li><a href="#reynolds-numbers">Understanding Reynolds Numbers</a></li>
+        <li><a href="#seven-presets">The Seven Motion Presets</a></li>
+        <li><a href="#complete-experiences">Presets as Complete Experiences</a></li>
+        <li><a href="#accessibility">Motion and Accessibility</a></li>
+        <li><a href="#implementation">CSS-Only Implementation</a></li>
+        <li><a href="#conclusion">Looking Forward</a></li>
+      </ol>
+    </nav>
+  </aside>
+
+</div>
+
+<!-- Author Bio -->
+<div style="max-inline-size: 65ch; margin-inline: auto; padding-inline: var(--space-5);">
+  <div class="author-bio">
+    <img class="avatar avatar--lg" src="../assets/images/motion/flowing/flowing_water_dynamic_motion_natural_light_--ar_169_--sref_67_fc13be77-24e7-4c29-ae6a-b4e4d37fcfce_0.png" alt="Sarah Chen">
+    <div>
+      <p style="font-weight: var(--weight-semibold, 600); margin: 0; margin-block-end: var(--space-1);">Sarah Chen</p>
+      <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin: 0; margin-block-end: var(--space-3);">Design Systems Lead</p>
+      <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin: 0; line-height: var(--leading-relaxed);">
+        Sarah leads design systems at Fluid, focusing on the intersection of physics, accessibility, and developer experience. Previously at Stripe and Figma.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Related Posts -->
+<section class="section" data-padding="xl">
+  <div data-layout="center" data-width="wide">
+    <h2 style="margin-block-end: var(--space-6);">Related Articles</h2>
+    <div class="grid" style="--grid-min: 250px; gap: var(--space-6);">
+      <article class="card">
+        <img class="card__media" src="../assets/images/motion/serene/serene_calm_water_surface_subtle_ripples_sunrise_light_--ar_16_1a194a3b-7e59-45a1-8b3b-b128e1e22ecf_0.png" alt="Serene water" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>CSS</span>
+            <time datetime="2026-03-12">Mar 12</time>
+          </div>
+          <h3 class="card__title">CSS Layers: Organizing Styles at Scale</h3>
+          <p class="card__description">How @layer transforms stylesheet architecture and ends specificity wars.</p>
+          <a href="#" class="button" data-variant="ghost" data-size="sm">Read More</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card__media" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png" alt="Still water" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>Design</span>
+            <time datetime="2026-03-08">Mar 8</time>
+          </div>
+          <h3 class="card__title">OKLCH: The Color Space Designers Need</h3>
+          <p class="card__description">Why perceptually uniform colors matter and how to use them today.</p>
+          <a href="#" class="button" data-variant="ghost" data-size="sm">Read More</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card__media" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png" alt="Gentle stream" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>Accessibility</span>
+            <time datetime="2026-03-01">Mar 1</time>
+          </div>
+          <h3 class="card__title">Beyond prefers-reduced-motion</h3>
+          <p class="card__description">Giving users a spectrum of motion control instead of a binary switch.</p>
+          <a href="#" class="button" data-variant="ghost" data-size="sm">Read More</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,138 @@
+---
+title: Login
+description: Sign in to your account
+layout: template
+nav: login
+---
+<style>
+  @layer demo {
+    .auth-page {
+      display: grid;
+      place-items: center;
+      min-block-size: calc(100vh - 4rem);
+      padding: var(--space-5);
+    }
+
+    .auth-card {
+      inline-size: 100%;
+      max-inline-size: 24rem;
+    }
+
+    .auth-card__header {
+      text-align: center;
+      margin-block-end: var(--space-6);
+    }
+
+    .auth-card__header h1 {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--weight-bold);
+      margin-block-end: var(--space-2);
+    }
+
+    .auth-card__header p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-block: var(--space-5);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: "";
+      flex: 1;
+      block-size: var(--border-width);
+      background-color: var(--color-border-subtle);
+    }
+
+    .auth-social {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .auth-social .button {
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .auth-social .button svg {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-block-start: var(--space-6);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+
+    .auth-footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: var(--weight-medium, 500);
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+  }
+</style>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-card__header">
+      <h1>Welcome back</h1>
+      <p>Sign in to your account to continue</p>
+    </div>
+
+    <!-- Social Login -->
+    <div class="auth-social">
+      <button class="button" data-variant="outline" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Continue with GitHub
+      </button>
+      <button class="button" data-variant="outline" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Continue with Google
+      </button>
+    </div>
+
+    <div class="auth-divider">or</div>
+
+    <!-- Login Form -->
+    <form class="stack" data-gap="md" action="#" method="post">
+      <div class="form-group">
+        <label class="form-label" for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <label class="form-label" for="password">Password</label>
+          <a href="#" style="font-size: var(--font-size-xs); color: var(--accent); text-decoration: none;">Forgot password?</a>
+        </div>
+        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+      </div>
+
+      <label class="checkbox" style="font-size: var(--font-size-sm);">
+        <input type="checkbox" class="checkbox__input" name="remember">
+        <span class="checkbox__box"></span>
+        <span class="checkbox__label">Remember me for 30 days</span>
+      </label>
+
+      <button type="submit" class="button" data-full>Sign in</button>
+    </form>
+
+    <p class="auth-footer">
+      Don't have an account? <a href="register.html">Create one</a>
+    </p>
+  </div>
+</div>

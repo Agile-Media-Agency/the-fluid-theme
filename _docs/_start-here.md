@@ -27,6 +27,9 @@ Welcome to the Fluid Framework documentation. This is a modern CSS/HTML design s
 | [Layout Guide](layout-guide.md) | Grid, flex, structural layouts, recipes |
 | [Migrate from Bootstrap](migrations/from-bootstrap.md) | Bootstrap → Fluid mapping |
 | [Migrate from Tailwind](migrations/from-tailwind.md) | Tailwind → Fluid mapping |
+| [React Integration](integrations/react.md) | Using Fluid with React / Next.js |
+| [Vue Integration](integrations/vue.md) | Using Fluid with Vue / Nuxt |
+| [Svelte Integration](integrations/svelte.md) | Using Fluid with Svelte / SvelteKit |
 | [Gemini Prompt](gemini-child-theme-prompt.md) | Create child themes with AI assistance |
 
 ### For AI Agents
@@ -127,6 +130,13 @@ the-fluid-theme-v2c/
 │   │   ├── avatar.css       # Sizes, initials, status, groups
 │   │   ├── loading.css      # Spinner, dots, skeleton screens
 │   │   └── dropdown.css     # Standalone menus, keyboard shortcuts
+│   ├── sections/            # Pre-built page sections
+│   │   ├── features.css     # Feature grids, alternating, showcase
+│   │   ├── testimonials.css # Quotes, grid, logo wall
+│   │   ├── cta.css          # Banners, newsletter, download
+│   │   ├── footer.css       # Simple, standard, mega footers
+│   │   ├── team.css         # Team member cards
+│   │   └── stats.css        # Counter blocks, metrics
 │   ├── layouts/             # Layout patterns + utilities
 │   │   └── positioning.css  # Flex, grid, sidebar, dashboard, display
 │   ├── animations/          # Scroll reveal system
@@ -140,7 +150,7 @@ the-fluid-theme-v2c/
 │   ├── indicators.html      # Status indicators demo
 │   ├── philosophy.html      # Fluid dynamics explanation
 │   └── hero-picker.html     # Interactive hero builder
-├── templates/               # 9 page templates
+├── templates/               # 16 page templates
 ├── .github/workflows/       # GitHub Actions
 │   └── version-bump.yml     # Auto version on merge
 ├── CLAUDE.md                # AI assistant entry point
@@ -255,4 +265,4 @@ Requires: CSS Layers, Container Queries, OKLCH, View Transitions API.
 
 ---
 
-*Version 0.3.2 - February 2026*
+*Version 0.3.3 - March 2026*

@@ -1,0 +1,284 @@
+/**
+ * Fluid Framework - Footer Sections
+ * @layer components
+ *
+ * Page-level footer layouts. Three variants via data-type attribute.
+ * Uses <footer> element with <nav> for link groups.
+ *
+ * Usage:
+ *   <!-- Simple (default) -->
+ *   <footer class="site-footer">
+ *     <div class="site-footer__inner">
+ *       <p class="site-footer__copyright">&copy; 2026 Company</p>
+ *       <nav class="site-footer__links" aria-label="Footer">
+ *         <a href="#">Privacy</a>
+ *         <a href="#">Terms</a>
+ *         <a href="#">Contact</a>
+ *       </nav>
+ *     </div>
+ *   </footer>
+ *
+ *   <!-- Standard multi-column -->
+ *   <footer class="site-footer" data-type="standard">
+ *     <div class="site-footer__grid">
+ *       <div class="site-footer__column">
+ *         <h3 class="site-footer__title">Company</h3>
+ *         <nav class="site-footer__links" aria-label="Company links">
+ *           <a href="#">About</a>
+ *           <a href="#">Careers</a>
+ *         </nav>
+ *       </div>
+ *       <div class="site-footer__column">
+ *         <h3 class="site-footer__title">Product</h3>
+ *         <nav class="site-footer__links" aria-label="Product links">
+ *           <a href="#">Features</a>
+ *           <a href="#">Pricing</a>
+ *         </nav>
+ *       </div>
+ *     </div>
+ *     <div class="site-footer__bottom">
+ *       <p class="site-footer__copyright">&copy; 2026 Company</p>
+ *     </div>
+ *   </footer>
+ *
+ *   <!-- Mega footer -->
+ *   <footer class="site-footer" data-type="mega">
+ *     <div class="site-footer__brand">
+ *       <h2>Brand Name</h2>
+ *       <p>A short tagline about the company.</p>
+ *       <div class="site-footer__social">
+ *         <a href="#" aria-label="Twitter"><svg>...</svg></a>
+ *         <a href="#" aria-label="GitHub"><svg>...</svg></a>
+ *       </div>
+ *     </div>
+ *     <div class="site-footer__grid">
+ *       <!-- columns -->
+ *     </div>
+ *     <div class="site-footer__bottom">
+ *       <p class="site-footer__copyright">&copy; 2026 Company</p>
+ *     </div>
+ *   </footer>
+ */
+
+@layer components {
+
+  /* ========================================
+     BASE FOOTER
+     ======================================== */
+
+  .site-footer {
+    --_footer-bg: var(--color-surface);
+    --_footer-text: var(--color-text-muted);
+    --_footer-border: var(--color-border-subtle);
+    --_footer-padding: var(--space-10);
+
+    background-color: var(--_footer-bg);
+    color: var(--_footer-text);
+    padding-block: var(--_footer-padding);
+    padding-inline: var(--space-5);
+    border-block-start: var(--border-width) solid var(--_footer-border);
+  }
+
+  .site-footer a {
+    color: var(--_footer-text);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .site-footer a:hover {
+    color: var(--color-text);
+  }
+
+  .site-footer a:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+
+  /* ========================================
+     SIMPLE (default)
+     Copyright + horizontal links
+     ======================================== */
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .site-footer__copyright {
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  .site-footer:not([data-type]) .site-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    font-size: var(--font-size-sm);
+  }
+
+
+  /* ========================================
+     STANDARD
+     Multi-column grid with bottom bar
+     ======================================== */
+
+  .site-footer[data-type="standard"],
+  .site-footer[data-type="mega"] {
+    --_footer-padding: var(--space-16);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 12rem), 1fr)
+    );
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .site-footer__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .site-footer__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-semibold, 600);
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    margin: 0;
+    margin-block-end: var(--space-2);
+  }
+
+  .site-footer__column .site-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+    margin-block-start: var(--space-10);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--_footer-border);
+    font-size: var(--font-size-sm);
+  }
+
+
+  /* ========================================
+     MEGA FOOTER
+     Brand section + columns + bottom bar
+     ======================================== */
+
+  .site-footer__brand {
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+    margin-block-end: var(--space-10);
+    max-inline-size: 20rem;
+  }
+
+  .site-footer[data-type="mega"] .site-footer__brand {
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+    margin-block-end: var(--space-10);
+  }
+
+  .site-footer__brand h2 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+    margin: 0;
+    margin-block-end: var(--space-2);
+  }
+
+  .site-footer__brand p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+    margin-block-end: var(--space-4);
+    max-inline-size: 20rem;
+  }
+
+  .site-footer__social {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .site-footer__social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+    background-color: color-mix(in oklch, var(--color-text) 8%, transparent);
+    transition:
+      color var(--duration-fast) var(--ease-fluid),
+      background-color var(--duration-fast) var(--ease-fluid);
+  }
+
+  .site-footer__social a:hover {
+    color: var(--white);
+    background-color: var(--accent);
+  }
+
+  .site-footer__social svg {
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+  }
+
+
+  /* ========================================
+     DARK VARIANT
+     Darker background for contrast with page
+     ======================================== */
+
+  .site-footer[data-dark] {
+    --_footer-bg: var(--theme-dark, var(--gray-12));
+    --_footer-text: var(--gray-60);
+    --_footer-border: var(--gray-20);
+  }
+
+  .site-footer[data-dark] a:hover {
+    color: var(--white);
+  }
+
+  .site-footer[data-dark] .site-footer__title {
+    color: var(--gray-80);
+  }
+
+  .site-footer[data-dark] .site-footer__brand h2 {
+    color: var(--white);
+  }
+
+
+  /* ========================================
+     ACCESSIBILITY
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer a,
+    .site-footer__social a {
+      transition: none;
+    }
+  }
+}

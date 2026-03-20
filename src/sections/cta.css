@@ -1,0 +1,210 @@
+/**
+ * Fluid Framework - Call-to-Action Sections
+ * @layer components
+ *
+ * Conversion-focused sections for signups, downloads, and engagement.
+ * Four layout variants via data-type attribute.
+ *
+ * Usage:
+ *   <!-- Full-width banner (default) -->
+ *   <section class="cta" aria-label="Call to action">
+ *     <h2 class="cta__title">Ready to get started?</h2>
+ *     <p class="cta__description">Join thousands of happy users today.</p>
+ *     <div class="cta__actions">
+ *       <a href="#" class="button" data-variant="primary">Start Free</a>
+ *       <a href="#" class="button" data-variant="outline">Learn More</a>
+ *     </div>
+ *   </section>
+ *
+ *   <!-- Split layout -->
+ *   <section class="cta" data-type="split" aria-label="Call to action">
+ *     <div class="cta__content">
+ *       <h2 class="cta__title">Title</h2>
+ *       <p class="cta__description">Description</p>
+ *     </div>
+ *     <div class="cta__aside">
+ *       <img src="..." alt="...">
+ *     </div>
+ *   </section>
+ *
+ *   <!-- Newsletter -->
+ *   <section class="cta" data-type="newsletter" aria-label="Newsletter signup">
+ *     <h2 class="cta__title">Stay in the loop</h2>
+ *     <p class="cta__description">Get updates straight to your inbox.</p>
+ *     <form class="cta__form">
+ *       <input type="email" placeholder="you@example.com" required>
+ *       <button type="submit" class="button">Subscribe</button>
+ *     </form>
+ *   </section>
+ *
+ *   <!-- App download -->
+ *   <section class="cta" data-type="download" aria-label="Download app">
+ *     <h2 class="cta__title">Get the app</h2>
+ *     <p class="cta__description">Available on all platforms.</p>
+ *     <div class="cta__actions">
+ *       <a href="#" class="button" data-size="lg">App Store</a>
+ *       <a href="#" class="button" data-size="lg" data-variant="outline">Google Play</a>
+ *     </div>
+ *   </section>
+ */
+
+@layer components {
+
+  /* ========================================
+     BASE CTA
+     Full-width banner (default)
+     ======================================== */
+
+  .cta {
+    --_cta-bg: color-mix(in oklch, var(--accent) 8%, var(--color-surface));
+    --_cta-padding-block: var(--space-16);
+    --_cta-padding-inline: var(--space-5);
+    --_cta-radius: var(--radius-xl);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    padding-block: var(--_cta-padding-block);
+    padding-inline: var(--_cta-padding-inline);
+    background-color: var(--_cta-bg);
+    border-radius: var(--_cta-radius);
+    text-align: center;
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .cta__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+    margin: 0;
+    max-inline-size: var(--container-sm);
+  }
+
+  .cta__description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-inline-size: var(--container-sm);
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+    margin-block-start: var(--space-3);
+  }
+
+
+  /* ========================================
+     SPLIT
+     Text + image/form side by side
+     ======================================== */
+
+  .cta[data-type="split"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    text-align: start;
+    align-items: center;
+  }
+
+  .cta[data-type="split"] .cta__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .cta[data-type="split"] .cta__aside img {
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+  }
+
+  @media (max-width: 48rem) {
+    .cta[data-type="split"] {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .cta[data-type="split"] .cta__content {
+      align-items: center;
+    }
+  }
+
+
+  /* ========================================
+     NEWSLETTER
+     Inline email + submit form
+     ======================================== */
+
+  .cta__form {
+    display: flex;
+    gap: var(--space-3);
+    inline-size: 100%;
+    max-inline-size: 28rem;
+    margin-block-start: var(--space-3);
+  }
+
+  .cta__form input[type="email"] {
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  .cta__form .button {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 30rem) {
+    .cta__form {
+      flex-direction: column;
+    }
+  }
+
+
+  /* ========================================
+     DOWNLOAD
+     App store badges / download buttons
+     ======================================== */
+
+  .cta[data-type="download"] .cta__actions {
+    gap: var(--space-4);
+  }
+
+  .cta[data-type="download"] .cta__actions .button {
+    min-inline-size: 10rem;
+  }
+
+
+  /* ========================================
+     ACCENT VARIANT
+     Stronger background for emphasis
+     ======================================== */
+
+  .cta[data-accent] {
+    --_cta-bg: var(--accent);
+    color: var(--white);
+  }
+
+  .cta[data-accent] .cta__title {
+    color: var(--white);
+  }
+
+  .cta[data-accent] .cta__description {
+    color: color-mix(in oklch, var(--white) 80%, transparent);
+  }
+
+  .cta[data-accent] .button:not([data-variant]) {
+    background-color: var(--white);
+    color: var(--accent);
+  }
+
+  .cta[data-accent] .button[data-variant="outline"] {
+    border-color: var(--white);
+    color: var(--white);
+  }
+}

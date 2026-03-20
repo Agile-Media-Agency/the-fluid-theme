@@ -1,0 +1,356 @@
+/**
+ * Fluid Framework - Feature Sections
+ * @layer components
+ *
+ * Pre-built layouts for showcasing product features, service offerings,
+ * and key benefits. Four layout variants via data-type attribute.
+ *
+ * Usage:
+ *   <!-- Icon Grid (default) -->
+ *   <section class="features">
+ *     <header class="features__header">
+ *       <h2>Features</h2>
+ *       <p>Why teams choose us</p>
+ *     </header>
+ *     <div class="features__grid">
+ *       <article class="feature">
+ *         <div class="feature__icon"><svg>...</svg></div>
+ *         <h3 class="feature__title">Fast</h3>
+ *         <p class="feature__description">Loads in milliseconds.</p>
+ *       </article>
+ *     </div>
+ *   </section>
+ *
+ *   <!-- Alternating rows -->
+ *   <section class="features" data-type="alternating">
+ *     <article class="feature">
+ *       <div class="feature__content">
+ *         <h3 class="feature__title">Title</h3>
+ *         <p class="feature__description">Description</p>
+ *       </div>
+ *       <figure class="feature__media">
+ *         <img src="..." alt="...">
+ *       </figure>
+ *     </article>
+ *   </section>
+ *
+ *   <!-- Centered showcase -->
+ *   <section class="features" data-type="showcase">
+ *     <figure class="feature__media">
+ *       <img src="..." alt="...">
+ *     </figure>
+ *     <div class="feature__content">
+ *       <h2>Feature Name</h2>
+ *       <p>Details about the feature.</p>
+ *     </div>
+ *   </section>
+ *
+ *   <!-- Comparison table -->
+ *   <section class="features" data-type="comparison">
+ *     <header class="features__header">
+ *       <h2>Compare Plans</h2>
+ *     </header>
+ *     <table class="features__table">
+ *       <thead><tr><th>Feature</th><th>Basic</th><th>Pro</th></tr></thead>
+ *       <tbody><tr><td>Storage</td><td>5 GB</td><td>100 GB</td></tr></tbody>
+ *     </table>
+ *   </section>
+ */
+
+@layer components {
+
+  /* ========================================
+     BASE FEATURES SECTION
+     ======================================== */
+
+  .features {
+    padding-block: var(--space-16);
+    padding-inline: var(--space-5);
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .features__header {
+    text-align: center;
+    max-inline-size: var(--container-md);
+    margin-inline: auto;
+    margin-block-end: var(--space-12);
+  }
+
+  .features__header h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+    margin-block-end: var(--space-3);
+  }
+
+  .features__header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+
+  /* ========================================
+     ICON GRID (default)
+     3-4 column responsive grid of feature cards
+     ======================================== */
+
+  .features__grid {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 16rem), 1fr)
+    );
+  }
+
+  .feature {
+    --_feat-padding: var(--space-6);
+    --_feat-radius: var(--radius-lg);
+    --_feat-bg: var(--color-surface);
+    --_feat-border: var(--color-border-subtle);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--_feat-padding);
+    background-color: var(--_feat-bg);
+    border: var(--border-width) solid var(--_feat-border);
+    border-radius: var(--_feat-radius);
+    transition:
+      box-shadow var(--duration-normal) var(--ease-fluid),
+      transform var(--duration-normal) var(--ease-settle);
+  }
+
+  .feature:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .feature__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--space-12);
+    block-size: var(--space-12);
+    border-radius: var(--radius-md);
+    background-color: color-mix(in oklch, var(--accent) 12%, transparent);
+    color: var(--accent);
+    font-size: var(--font-size-xl);
+    flex-shrink: 0;
+  }
+
+  .feature__icon svg {
+    inline-size: 1.5em;
+    block-size: 1.5em;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  .feature__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--weight-semibold, 600);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .feature__description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+
+  /* ========================================
+     ALTERNATING
+     Image/text rows that swap sides
+     ======================================== */
+
+  .features[data-type="alternating"] .features__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .features[data-type="alternating"] .feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+  }
+
+  .features[data-type="alternating"] .feature:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .features[data-type="alternating"] .feature:nth-child(even) {
+    direction: rtl;
+  }
+
+  .features[data-type="alternating"] .feature:nth-child(even) > * {
+    direction: ltr;
+  }
+
+  .features[data-type="alternating"] .feature__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .features[data-type="alternating"] .feature__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .features[data-type="alternating"] .feature__description {
+    font-size: var(--font-size-base);
+  }
+
+  .features[data-type="alternating"] .feature__media {
+    margin: 0;
+  }
+
+  .features[data-type="alternating"] .feature__media img {
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+  }
+
+  @media (max-width: 48rem) {
+    .features[data-type="alternating"] .feature {
+      grid-template-columns: 1fr;
+    }
+
+    .features[data-type="alternating"] .feature:nth-child(even) {
+      direction: ltr;
+    }
+  }
+
+
+  /* ========================================
+     CENTERED SHOWCASE
+     Single feature highlight with large image
+     ======================================== */
+
+  .features[data-type="showcase"] {
+    text-align: center;
+  }
+
+  .features[data-type="showcase"] .feature__media {
+    margin-inline: auto;
+    margin-block-end: var(--space-8);
+    max-inline-size: var(--container-lg);
+  }
+
+  .features[data-type="showcase"] .feature__media img {
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .features[data-type="showcase"] .feature__content {
+    max-inline-size: var(--container-md);
+    margin-inline: auto;
+  }
+
+  .features[data-type="showcase"] .feature__content h2,
+  .features[data-type="showcase"] .feature__content h3 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--weight-bold);
+    margin-block-end: var(--space-4);
+  }
+
+  .features[data-type="showcase"] .feature__content p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+
+  /* ========================================
+     COMPARISON TABLE
+     Feature comparison grid
+     ======================================== */
+
+  .features__table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  .features__table th,
+  .features__table td {
+    padding: var(--space-4) var(--space-5);
+    border-block-end: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .features__table thead th {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-semibold, 600);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    padding-block-end: var(--space-4);
+    border-block-end-width: 2px;
+  }
+
+  .features__table tbody td:first-child {
+    text-align: start;
+    font-weight: var(--weight-medium, 500);
+    color: var(--color-text);
+  }
+
+  .features__table tbody td {
+    color: var(--color-text-muted);
+  }
+
+  .features__table tbody tr:hover {
+    background-color: var(--color-surface);
+  }
+
+  /* Highlighted column */
+  .features__table [data-featured] {
+    background-color: color-mix(in oklch, var(--accent) 8%, transparent);
+    font-weight: var(--weight-semibold, 600);
+    color: var(--accent);
+  }
+
+  .features__table thead [data-featured] {
+    color: var(--accent);
+    border-block-end-color: var(--accent);
+  }
+
+  @media (max-width: 40rem) {
+    .features__table {
+      font-size: var(--font-size-sm);
+    }
+
+    .features__table th,
+    .features__table td {
+      padding: var(--space-3) var(--space-3);
+    }
+  }
+
+
+  /* ========================================
+     ACCESSIBILITY
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature {
+      transition: none;
+    }
+
+    .feature:hover {
+      transform: none;
+    }
+  }
+}

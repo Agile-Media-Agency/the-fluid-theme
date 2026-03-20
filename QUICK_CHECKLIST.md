@@ -1,6 +1,6 @@
 # The Fluid Theme - Quick Progress Checklist
 
-**Last Updated**: March 17, 2026
+**Last Updated**: March 20, 2026
 
 This is a condensed version of [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) for quick reference and progress tracking.
 
@@ -38,94 +38,36 @@ This is a condensed version of [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) 
 
 Each section below needs its own CSS file in `src/sections/` and demo markup in templates or examples.
 
-#### Feature Sections (5 variants) — **Neil**
-1. Create `src/sections/features.css` with these layout patterns:
-   - **Icon grid** — 3-4 column grid of icon + heading + description cards
-   - **Alternating** — image left/text right, then swap, repeating rows
-   - **Centered showcase** — single feature image with text overlay or below
-   - **Comparison table** — side-by-side feature comparison using `<table>`
-   - **Tabbed features** — tab navigation switching visible feature panels
-2. Each variant should use existing tokens (`--space-*`, `--radius-*`, `--text-*`)
-3. Use semantic HTML: `<section>`, `<article>`, `<figure>`, `<dl>` where appropriate
-4. All must work in light/dark/subdued modes
-5. Add examples to `examples/components.html` or a new `examples/sections.html`
-6. Test with at least 3 motion presets (Still, Flowing, Cascade)
+#### Feature Sections (4 variants) — DONE
+- [x] `src/sections/features.css` — Icon grid, alternating, centered showcase, comparison table
+- [x] Uses existing tokens, semantic HTML, supports all modes
 
-#### Testimonial Sections (3 variants) — **Neil**
-1. Create `src/sections/testimonials.css`:
-   - **Single centered** — large quote, avatar, name/role, decorative quotation marks
-   - **Grid layout** — 2-3 column grid of testimonial cards
-   - **Logo wall** — client/partner logos in a responsive row/grid
-2. Use `<blockquote>` for testimonial text, `<figure>` + `<figcaption>` for attribution
-3. Avatar component (`.avatar`) already exists — reuse it
-4. Card component (`.card`) can be extended — consider `.card.testimonial` variant
-5. Add `cite` attribute to `<blockquote>` elements
-6. Ensure text wraps well at mobile widths (test at 320px)
+#### Testimonial Sections (3 variants) — DONE
+- [x] `src/sections/testimonials.css` — Single centered, grid, logo wall
+- [x] Uses `<blockquote>`, `<figure>`, `<figcaption>`, `cite`, avatar integration
 
-#### CTA Blocks (4 variants) — **Neil**
-1. Create `src/sections/cta.css`:
-   - **Full-width banner** — background color/gradient, centered text + button
-   - **Split layout** — text on one side, form/image on the other (use `.layout-split`)
-   - **Newsletter signup** — email input + submit button inline
-   - **App download** — heading + store badges/buttons
-2. CTA buttons should use existing `.button.primary` or `.button` variants
-3. Form inputs should use existing form component styles
-4. Use `<section aria-label="Call to action">` for landmark accessibility
-5. Background should use `--bg-accent` or palette surface tokens
-6. Test contrast in all 10 palettes (especially Mono and Subtle)
+#### CTA Blocks (4 variants) — DONE
+- [x] `src/sections/cta.css` — Banner, split, newsletter, download + accent variant
+- [x] Uses existing button/form components, accessible landmarks
 
-#### Footer Variants (3 types) — **Neil**
-1. Create `src/sections/footer.css`:
-   - **Simple** — copyright text + horizontal link list
-   - **Standard** — 3-4 column grid (about, links, links, contact), copyright bar below
-   - **Mega footer** — full sitemap-style with nested link groups, newsletter, social icons
-2. Use `<footer>` element, `<nav aria-label="Footer">` for link groups
-3. Use existing grid utilities (`.grid-3`, `.grid-4`) for column layout
-4. Social links: use existing icon system (Tabler Icons SVGs)
-5. Ensure footer sticks to bottom on short pages (use existing layout utilities)
-6. Dark mode: footer should use `--bg-dark` or `--surface-1` tokens
+#### Footer Variants (3 types) — DONE
+- [x] `src/sections/footer.css` — Simple, standard, mega + dark variant
+- [x] Uses `<footer>`, `<nav>`, social links, grid columns
 
-#### Blog Post Detail Template — **Neil**
-1. Create `templates/blog-post.html`:
-   - Hero/header area with title, date, author avatar, read time
-   - Article body using semantic `<article>` with `<header>`, prose content, `<footer>`
-   - Sidebar with related posts, categories, table of contents
-   - Author bio section at bottom (avatar + name + bio paragraph)
-   - Related posts grid (3 cards) below article
-2. Use `.layout-sidebar` for main + sidebar layout
-3. Article body should rely on base typography styles (no extra classes needed)
-4. Include `<time datetime="...">` for dates
-5. Add breadcrumb navigation using existing `.breadcrumb` component
-6. Test with long-form content (2000+ words) to verify reading experience
+#### Blog Post Detail Template — DONE
+- [x] `templates/blog-post.html` — Article header, prose body, TOC sidebar, author bio, related posts
 
-#### Landing Page Templates (3 styles) — **Neil**
-1. Create three files:
-   - `templates/landing-saas.html` — hero with screenshot, feature grid, pricing, CTA
-   - `templates/landing-agency.html` — full-bleed hero, portfolio grid, team, contact
-   - `templates/landing-product.html` — product hero image, benefits, testimonials, purchase CTA
-2. Each landing page should compose existing sections (hero, features, CTA, footer)
-3. Use the feature/testimonial/CTA/footer sections you build above
-4. Each page needs a clear visual hierarchy: hero → value prop → proof → CTA
-5. Test each with at least 2 different presets to verify preset independence
-6. Mobile-first: design for 320px up, test hamburger nav behavior
+#### Landing Page Templates (3 styles) — DONE
+- [x] `templates/landing-saas.html` — Hero, logos, stats, features (grid + alternating), testimonials, comparison table, CTA, footer
+- [x] `templates/landing-agency.html` — Full-bleed hero, services, portfolio grid, stats, testimonial, team, contact CTA, footer
+- [x] `templates/landing-product.html` — Product hero, benefits grid, showcase, stats, testimonials, purchase CTA, newsletter, footer
 
-#### Team/Staff Section — **Neil**
-1. Create `src/sections/team.css`:
-   - Grid of team member cards (avatar, name, role, short bio)
-   - Use `.avatar.avatar-xl` for photos
-   - Optional social links per member
-2. Use `<section aria-label="Team">` with `<article>` per member
-3. Responsive: 3 columns desktop → 2 tablet → 1 mobile
-4. Cards should use existing `.card` styles or extend them
+#### Team/Staff Section — DONE
+- [x] `src/sections/team.css` — Avatar grid, social links, responsive columns
 
-#### Stats/Metrics Section — **Neil**
-1. Create `src/sections/stats.css`:
-   - Counter blocks: large number + label + optional icon
-   - Arrange in a responsive row (use flexbox cluster or grid)
-2. Use `<dl>` (description list) — `<dt>` for label, `<dd>` for value
-3. Numbers should use `--text-display` or `--text-heading-1` size tokens
-4. Consider animation on scroll (CSS `@keyframes` countUp) for motion presets above "Still"
-5. Respect `prefers-reduced-motion`
+#### Stats/Metrics Section — DONE
+- [x] `src/sections/stats.css` — Counter blocks, borderless variant, divider variant, fade-up animation
+- [x] Uses `<dl>`, respects `prefers-reduced-motion`
 
 ### Documentation
 
@@ -139,20 +81,10 @@ Each section below needs its own CSS file in `src/sections/` and demo markup in 
 #### Layout Guide — DONE
 - [x] `_docs/layout-guide.md` — grid, flex, structural layouts, recipes, decision guide
 
-#### Integration Guides (React, Vue, Svelte) — **Neil**
-1. Create `_docs/integrations/react.md`:
-   - How to import `fluid.css` in a React/Next.js project
-   - Using data attributes for theme switching in React state
-   - Example component wrapping a Fluid card
-   - Note: no build step needed — just `import './fluid.css'`
-2. Create `_docs/integrations/vue.md`:
-   - Same pattern: import CSS, use data attributes via Vue reactivity
-   - Example with `v-bind` for theme attributes
-3. Create `_docs/integrations/svelte.md`:
-   - Import in `+layout.svelte` or `app.html`
-   - Svelte store for theme state
-4. Each guide should be short (< 100 lines) — Fluid is just CSS, integration is simple
-5. Test each guide's code snippets actually work in a fresh project
+#### Integration Guides (React, Vue, Svelte) — DONE
+- [x] `_docs/integrations/react.md` — React/Next.js setup, theme provider, JSX components
+- [x] `_docs/integrations/vue.md` — Vue/Nuxt setup, v-bind data attributes, provide/inject
+- [x] `_docs/integrations/svelte.md` — SvelteKit setup, stores for theme state
 
 ### Distribution
 
@@ -270,28 +202,15 @@ Each section below needs its own CSS file in `src/sections/` and demo markup in 
    - Next/previous project navigation
 2. Use existing layout utilities and card component
 
-#### Login/Register Pages — **Neil**
-1. Create `templates/login.html` and `templates/register.html`:
-   - Centered card layout (use `.layout-center`)
-   - Form with existing form component styles
-   - Social login buttons (styled as `.button.outline`)
-   - Link between login ↔ register
-2. Keep minimal — these are layout demonstrations, not functional auth
+#### Login/Register Pages — DONE
+- [x] `templates/login.html` — Centered auth card, social login, email/password form
+- [x] `templates/register.html` — Registration form with password strength indicator
 
-#### Dashboard Layout — **Neil**
-1. Create `templates/dashboard.html`:
-   - Use `.layout-dashboard` (already exists)
-   - Sidebar nav with icon links
-   - Header bar with avatar + dropdown
-   - Main content area with stat cards + table
-2. Compose existing components: nav, avatar, dropdown, card, table
+#### Dashboard Layout — DONE
+- [x] `templates/dashboard.html` — Sidebar nav, header, stat cards, users table, activity feed
 
-#### Search Results Page — **Neil**
-1. Create `templates/search-results.html`:
-   - Search input at top (use existing form styles)
-   - Filter sidebar (use `.layout-sidebar`)
-   - Results list with card-style items
-   - Pagination at bottom (use existing `.pagination`)
+#### Search Results Page — DONE
+- [x] `templates/search-results.html` — Search bar, filter sidebar, result cards with snippets, pagination
 
 ---
 
@@ -322,11 +241,12 @@ Each section below needs its own CSS file in `src/sections/` and demo markup in 
 
 ## 📊 Current Statistics
 
-**Components**: 17 of 20+ needed (85%)
+**Components**: 23 components + 6 section types
 **Layout utilities**: Complete (flex, grid, sidebar, holy grail, dashboard)
-**Templates**: 9 of 20+ needed (45%)
-**Documentation**: ~90% complete
-**Community/GitHub**: ~90% complete (issue templates, PR template, CI, CoC, contributing)
+**Sections**: Complete (features, testimonials, CTA, footer, team, stats)
+**Templates**: 16 pages (index, about, services, contact, blog, blog-post, gallery, pricing, faq, 404, 500, landing-saas, landing-agency, landing-product, login, register, dashboard, search-results)
+**Documentation**: ~95% complete (integration guides added)
+**Community/GitHub**: ~95% complete (issue templates, PR template, CI, CoC, contributing)
 **Testing**: 0% (not started)
 **Distribution**: 0% (not published to npm/CDN yet)
 

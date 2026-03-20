@@ -1,0 +1,250 @@
+---
+title: Cascade Studio - Digital Agency
+description: Agency landing page template with full-bleed hero, portfolio, team, and contact
+layout: template
+nav: home
+---
+
+<!-- Full-bleed Hero -->
+<section class="hero" data-layout="center" data-padding="xl" data-size="full" data-overlay="medium" style="--hero-text-color: white; --hero-text-muted: oklch(98% 0 0 / 0.8);">
+  <div class="hero__background">
+    <img src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png" alt="Creative studio" style="inline-size: 100%; block-size: 100%; object-fit: cover;">
+  </div>
+  <span style="font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); text-transform: uppercase; opacity: 0.8;">Digital Agency</span>
+  <h1 class="hero__headline" style="font-size: var(--font-size-5xl); max-inline-size: 16ch;">We craft digital experiences that cascade</h1>
+  <p class="hero__subheadline" style="max-inline-size: 45ch;">Strategy, design, and engineering for brands that want to make waves.</p>
+  <div class="hero__actions">
+    <a href="#work" class="button" data-size="lg">See Our Work</a>
+    <a href="#contact" class="button" data-variant="outline" data-size="lg" style="--_btn-color: white; --_btn-border: white;">Get in Touch</a>
+  </div>
+</section>
+
+
+<!-- Services -->
+<section class="features" style="padding-block: var(--space-16);">
+  <header class="features__header">
+    <span style="font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--accent);">What We Do</span>
+    <h2>Services built for growth</h2>
+    <p>From brand strategy to production-ready code, we handle the full spectrum.</p>
+  </header>
+  <div class="features__grid" style="--grid-min: 18rem;">
+    <article class="feature">
+      <div class="feature__icon">
+        {% include icons.html icon="palette" size="24" %}
+      </div>
+      <h3 class="feature__title">Brand Identity</h3>
+      <p class="feature__description">Logo, typography, color systems, and brand guidelines that tell your story.</p>
+    </article>
+    <article class="feature">
+      <div class="feature__icon">
+        {% include icons.html icon="layout" size="24" %}
+      </div>
+      <h3 class="feature__title">Web Design</h3>
+      <p class="feature__description">Responsive, accessible interfaces designed from user research to pixel-perfect mockups.</p>
+    </article>
+    <article class="feature">
+      <div class="feature__icon">
+        {% include icons.html icon="code" size="24" %}
+      </div>
+      <h3 class="feature__title">Development</h3>
+      <p class="feature__description">Modern front-end and full-stack engineering. Performance-first, semantic, accessible.</p>
+    </article>
+    <article class="feature">
+      <div class="feature__icon">
+        {% include icons.html icon="chart-bar" size="24" %}
+      </div>
+      <h3 class="feature__title">Growth Strategy</h3>
+      <p class="feature__description">SEO, analytics, and conversion optimization to turn visitors into customers.</p>
+    </article>
+  </div>
+</section>
+
+
+<!-- Portfolio Grid -->
+<section id="work" class="section" data-padding="xl" style="background-color: var(--color-surface);">
+  <div data-layout="center" data-width="wide">
+    <div style="text-align: center; margin-block-end: var(--space-10);">
+      <span style="font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--accent);">Portfolio</span>
+      <h2 style="margin-block-start: var(--space-2);">Selected Work</h2>
+    </div>
+
+    <div class="grid" style="--grid-min: 20rem; gap: var(--space-6);">
+      <article class="card" data-interactive>
+        <img class="card__media" src="../assets/images/motion/flowing/flowing_water_dynamic_motion_natural_light_--ar_169_--sref_67_fc13be77-24e7-4c29-ae6a-b4e4d37fcfce_0.png" alt="Meridian Brands project" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>Branding</span>
+            <span>2026</span>
+          </div>
+          <h3 class="card__title">Meridian Brands</h3>
+          <p class="card__description">Complete rebrand including identity system, packaging, and digital presence for a sustainable consumer goods company.</p>
+        </div>
+      </article>
+
+      <article class="card" data-interactive>
+        <img class="card__media" src="../assets/images/motion/rapids/powerful_rapids_white_water_energy_motion_--ar_169_--sref_671_b62f2c0e-6a85-42e3-ab1f-fce7f89a1308_0.png" alt="RapidShip project" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>Web App</span>
+            <span>2025</span>
+          </div>
+          <h3 class="card__title">RapidShip</h3>
+          <p class="card__description">Real-time logistics dashboard for a shipping company processing 50,000+ deliveries daily.</p>
+        </div>
+      </article>
+
+      <article class="card" data-interactive>
+        <img class="card__media" src="../assets/images/motion/serene/serene_calm_water_surface_subtle_ripples_sunrise_light_--ar_16_1a194a3b-7e59-45a1-8b3b-b128e1e22ecf_0.png" alt="Serene Wellness project" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>E-commerce</span>
+            <span>2025</span>
+          </div>
+          <h3 class="card__title">Serene Wellness</h3>
+          <p class="card__description">High-conversion e-commerce platform with personalized product recommendations and subscription management.</p>
+        </div>
+      </article>
+
+      <article class="card" data-interactive>
+        <img class="card__media" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png" alt="StreamFi project" data-aspect="video">
+        <div class="card__content">
+          <div class="card__meta">
+            <span>Fintech</span>
+            <span>2025</span>
+          </div>
+          <h3 class="card__title">StreamFi</h3>
+          <p class="card__description">Banking dashboard redesign focused on accessibility and regulatory compliance across 12 countries.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- Stats -->
+<section class="stats" data-variant="borderless" data-animate>
+  <dl class="stats__grid">
+    <div class="stat">
+      <dd class="stat__value">120+</dd>
+      <dt class="stat__label">Projects Delivered</dt>
+    </div>
+    <div class="stat">
+      <dd class="stat__value">8</dd>
+      <dt class="stat__label">Years in Business</dt>
+    </div>
+    <div class="stat">
+      <dd class="stat__value">15</dd>
+      <dt class="stat__label">Team Members</dt>
+    </div>
+    <div class="stat">
+      <dd class="stat__value">94%</dd>
+      <dt class="stat__label">Client Retention</dt>
+    </div>
+  </dl>
+</section>
+
+
+<!-- Testimonial -->
+<section class="testimonials" style="padding-block: var(--space-12);">
+  <figure class="testimonial" style="max-inline-size: var(--container-md); margin-inline: auto;">
+    <blockquote class="testimonial__quote">
+      <p>"Cascade Studio didn't just redesign our website — they transformed how we think about our digital presence. The attention to accessibility and performance was unlike anything we'd experienced before."</p>
+    </blockquote>
+    <figcaption class="testimonial__author">
+      <img class="avatar" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png" alt="David Kim">
+      <div>
+        <cite class="testimonial__name">David Kim</cite>
+        <span class="testimonial__role">COO, Meridian Brands</span>
+      </div>
+    </figcaption>
+  </figure>
+</section>
+
+
+<!-- Team -->
+<section class="team" style="background-color: var(--color-surface); padding-block: var(--space-16); max-inline-size: none; padding-inline: var(--space-5);">
+  <header class="team__header" style="max-inline-size: var(--container-xl); margin-inline: auto;">
+    <span style="font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--accent);">Our Team</span>
+    <h2>The people behind the pixels</h2>
+    <p>A small, focused team that punches above its weight.</p>
+  </header>
+  <div class="team__grid" style="max-inline-size: var(--container-xl); margin-inline: auto;">
+    <article class="team-member">
+      <img class="avatar avatar--xl" src="../assets/images/motion/flowing/flowing_water_dynamic_motion_natural_light_--ar_169_--sref_67_fc13be77-24e7-4c29-ae6a-b4e4d37fcfce_0.png" alt="Elena Voss">
+      <h3 class="team-member__name">Elena Voss</h3>
+      <p class="team-member__role">Creative Director</p>
+      <p class="team-member__bio">15 years shaping brand identities for startups and Fortune 500s.</p>
+    </article>
+    <article class="team-member">
+      <img class="avatar avatar--xl" src="../assets/images/motion/serene/serene_calm_water_surface_subtle_ripples_sunrise_light_--ar_16_1a194a3b-7e59-45a1-8b3b-b128e1e22ecf_0.png" alt="Marcus Chen">
+      <h3 class="team-member__name">Marcus Chen</h3>
+      <p class="team-member__role">Lead Engineer</p>
+      <p class="team-member__bio">Full-stack engineer obsessed with performance and semantic HTML.</p>
+    </article>
+    <article class="team-member">
+      <img class="avatar avatar--xl" src="../assets/images/motion/stream/gentle_stream_flowing_through_peaceful_landscape_--ar_169_--s_95589398-67be-41e6-b574-2ba751a45278_0.png" alt="Aisha Patel">
+      <h3 class="team-member__name">Aisha Patel</h3>
+      <p class="team-member__role">UX Researcher</p>
+      <p class="team-member__bio">Turns user interviews into insights that drive design decisions.</p>
+    </article>
+    <article class="team-member">
+      <img class="avatar avatar--xl" src="../assets/images/motion/still/perfectly_still_water_mirror_surface_at_dawn_--ar_169_--sref__b93fb001-a59d-4d19-8b2f-a30fe2febac2_0.png" alt="Tom Rivera">
+      <h3 class="team-member__name">Tom Rivera</h3>
+      <p class="team-member__role">Strategy Lead</p>
+      <p class="team-member__bio">Ex-consultant who bridges business goals and creative execution.</p>
+    </article>
+  </div>
+</section>
+
+
+<!-- Contact CTA -->
+<section id="contact" class="cta" data-type="split" style="margin: var(--space-16) var(--space-5);" aria-label="Contact us">
+  <div class="cta__content">
+    <h2 class="cta__title">Let's build something together</h2>
+    <p class="cta__description">Tell us about your project and we'll get back to you within 24 hours.</p>
+    <div class="cta__actions" style="justify-content: flex-start;">
+      <a href="#" class="button" data-size="lg">Start a Conversation</a>
+    </div>
+    <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-4);">Or email us at <a href="mailto:hello@cascadestudio.co" style="color: var(--accent);">hello@cascadestudio.co</a></p>
+  </div>
+  <div class="cta__aside">
+    <img src="../assets/images/motion/cascade/cascading_waterfall_with_soft_mist_--ar_169_--sref_6712779360_3a72f4f6-292f-4c45-a797-4e291bd314fe_0.png" alt="Our studio">
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="site-footer" data-type="standard" data-dark>
+  <div class="site-footer__grid">
+    <div class="site-footer__column">
+      <h3 class="site-footer__title">Services</h3>
+      <nav class="site-footer__links" aria-label="Services">
+        <a href="#">Brand Identity</a>
+        <a href="#">Web Design</a>
+        <a href="#">Development</a>
+        <a href="#">Growth Strategy</a>
+      </nav>
+    </div>
+    <div class="site-footer__column">
+      <h3 class="site-footer__title">Company</h3>
+      <nav class="site-footer__links" aria-label="Company">
+        <a href="#">About</a>
+        <a href="#">Team</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+      </nav>
+    </div>
+    <div class="site-footer__column">
+      <h3 class="site-footer__title">Connect</h3>
+      <nav class="site-footer__links" aria-label="Social">
+        <a href="#">Twitter</a>
+        <a href="#">Dribbble</a>
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+      </nav>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <p class="site-footer__copyright">&copy; 2026 Cascade Studio. All rights reserved.</p>
+  </div>
+</footer>

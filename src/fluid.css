@@ -67,6 +67,20 @@
 @import "./components/search-input.css";
 @import "./components/chip.css";
 
+
+/* ========================================
+   SECTIONS
+   Pre-built page sections
+   ======================================== */
+
+@import "./sections/features.css";
+@import "./sections/testimonials.css";
+@import "./sections/cta.css";
+@import "./sections/footer.css";
+@import "./sections/team.css";
+@import "./sections/stats.css";
+
+
 /* Animations */
 @import "./animations/scroll-reveal.css";
 

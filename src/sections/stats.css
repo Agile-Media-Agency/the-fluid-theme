@@ -1,0 +1,234 @@
+/**
+ * Fluid Framework - Stats/Metrics Section
+ * @layer components
+ *
+ * Counter blocks for displaying key metrics, achievements, or numbers.
+ * Uses <dl> (description list) for semantic markup.
+ *
+ * Usage:
+ *   <section class="stats" aria-label="Key metrics">
+ *     <header class="stats__header">
+ *       <h2>By the numbers</h2>
+ *     </header>
+ *     <dl class="stats__grid">
+ *       <div class="stat">
+ *         <dd class="stat__value">10K+</dd>
+ *         <dt class="stat__label">Happy Users</dt>
+ *       </div>
+ *       <div class="stat">
+ *         <dd class="stat__value">99.9%</dd>
+ *         <dt class="stat__label">Uptime</dt>
+ *       </div>
+ *       <div class="stat">
+ *         <dd class="stat__value">50M</dd>
+ *         <dt class="stat__label">API Requests</dt>
+ *       </div>
+ *       <div class="stat">
+ *         <dd class="stat__value">4.9</dd>
+ *         <dt class="stat__label">Star Rating</dt>
+ *       </div>
+ *     </dl>
+ *   </section>
+ */
+
+@layer components {
+
+  /* ========================================
+     BASE STATS SECTION
+     ======================================== */
+
+  .stats {
+    padding-block: var(--space-16);
+    padding-inline: var(--space-5);
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .stats__header {
+    text-align: center;
+    max-inline-size: var(--container-md);
+    margin-inline: auto;
+    margin-block-end: var(--space-12);
+  }
+
+  .stats__header h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+    margin-block-end: var(--space-3);
+  }
+
+  .stats__header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+  }
+
+
+  /* ========================================
+     STATS GRID
+     ======================================== */
+
+  .stats__grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 10rem), 1fr)
+    );
+    margin: 0;
+    padding: 0;
+  }
+
+
+  /* ========================================
+     INDIVIDUAL STAT
+     ======================================== */
+
+  .stat {
+    --_stat-padding: var(--space-6);
+    --_stat-bg: var(--color-surface);
+    --_stat-border: var(--color-border-subtle);
+    --_stat-radius: var(--radius-lg);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+    padding: var(--_stat-padding);
+    background-color: var(--_stat-bg);
+    border: var(--border-width) solid var(--_stat-border);
+    border-radius: var(--_stat-radius);
+  }
+
+  .stat__value {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--weight-bold);
+    color: var(--accent);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .stat__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-weight: var(--weight-medium, 500);
+  }
+
+  .stat__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: var(--font-size-xl);
+    margin-block-end: var(--space-2);
+  }
+
+  .stat__icon svg {
+    inline-size: 1.5em;
+    block-size: 1.5em;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+
+  /* ========================================
+     BORDERLESS VARIANT
+     Minimal stat blocks without cards
+     ======================================== */
+
+  .stats[data-variant="borderless"] .stat {
+    --_stat-bg: transparent;
+    --_stat-border: transparent;
+  }
+
+  .stats[data-variant="borderless"] .stat__value {
+    font-size: var(--font-size-5xl);
+  }
+
+
+  /* ========================================
+     DIVIDER VARIANT
+     Stats separated by vertical lines
+     ======================================== */
+
+  .stats[data-variant="divider"] .stats__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .stats[data-variant="divider"] .stat {
+    --_stat-bg: transparent;
+    --_stat-border: transparent;
+    border-radius: 0;
+    padding-inline: var(--space-8);
+    border-inline-end: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .stats[data-variant="divider"] .stat:last-child {
+    border-inline-end: none;
+  }
+
+  @media (max-width: 40rem) {
+    .stats[data-variant="divider"] .stat {
+      border-inline-end: none;
+      border-block-end: var(--border-width) solid var(--color-border-subtle);
+      padding-inline: var(--space-6);
+      padding-block: var(--space-4);
+    }
+
+    .stats[data-variant="divider"] .stat:last-child {
+      border-block-end: none;
+    }
+  }
+
+
+  /* ========================================
+     COUNT-UP ANIMATION
+     Plays once when section enters viewport
+     ======================================== */
+
+  @keyframes stat-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stats[data-animate] .stat {
+    animation: stat-fade-up var(--duration-slow) var(--ease-settle) both;
+  }
+
+  .stats[data-animate] .stat:nth-child(2) {
+    animation-delay: 100ms;
+  }
+
+  .stats[data-animate] .stat:nth-child(3) {
+    animation-delay: 200ms;
+  }
+
+  .stats[data-animate] .stat:nth-child(4) {
+    animation-delay: 300ms;
+  }
+
+  .stats[data-animate] .stat:nth-child(5) {
+    animation-delay: 400ms;
+  }
+
+
+  /* ========================================
+     ACCESSIBILITY
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .stats[data-animate] .stat {
+      animation: none;
+    }
+  }
+}

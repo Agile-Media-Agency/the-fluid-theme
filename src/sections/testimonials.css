@@ -1,0 +1,251 @@
+/**
+ * Fluid Framework - Testimonial Sections
+ * @layer components
+ *
+ * Social proof sections with customer quotes, avatars, and logo walls.
+ * Three layout variants via data-type attribute.
+ *
+ * Usage:
+ *   <!-- Single centered (default) -->
+ *   <section class="testimonials">
+ *     <header class="testimonials__header">
+ *       <h2>What people say</h2>
+ *     </header>
+ *     <figure class="testimonial">
+ *       <blockquote class="testimonial__quote" cite="https://...">
+ *         <p>"This changed everything for our team."</p>
+ *       </blockquote>
+ *       <figcaption class="testimonial__author">
+ *         <img class="avatar" src="..." alt="Jane Doe">
+ *         <div>
+ *           <cite class="testimonial__name">Jane Doe</cite>
+ *           <span class="testimonial__role">CEO, Acme Corp</span>
+ *         </div>
+ *       </figcaption>
+ *     </figure>
+ *   </section>
+ *
+ *   <!-- Grid -->
+ *   <section class="testimonials" data-type="grid">
+ *     <div class="testimonials__grid">
+ *       <figure class="testimonial">...</figure>
+ *       <figure class="testimonial">...</figure>
+ *       <figure class="testimonial">...</figure>
+ *     </div>
+ *   </section>
+ *
+ *   <!-- Logo wall -->
+ *   <section class="testimonials" data-type="logos">
+ *     <header class="testimonials__header">
+ *       <p>Trusted by leading companies</p>
+ *     </header>
+ *     <div class="testimonials__logos">
+ *       <img src="logo1.svg" alt="Company 1">
+ *       <img src="logo2.svg" alt="Company 2">
+ *     </div>
+ *   </section>
+ */
+
+@layer components {
+
+  /* ========================================
+     BASE TESTIMONIALS SECTION
+     ======================================== */
+
+  .testimonials {
+    padding-block: var(--space-16);
+    padding-inline: var(--space-5);
+    max-inline-size: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .testimonials__header {
+    text-align: center;
+    max-inline-size: var(--container-md);
+    margin-inline: auto;
+    margin-block-end: var(--space-12);
+  }
+
+  .testimonials__header h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+    margin-block-end: var(--space-3);
+  }
+
+  .testimonials__header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+  }
+
+
+  /* ========================================
+     SINGLE CENTERED (default)
+     Large featured testimonial
+     ======================================== */
+
+  .testimonial {
+    --_testi-bg: var(--color-surface);
+    --_testi-border: var(--color-border-subtle);
+    --_testi-padding: var(--space-8);
+    --_testi-radius: var(--radius-xl);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--_testi-padding);
+    background-color: var(--_testi-bg);
+    border: var(--border-width) solid var(--_testi-border);
+    border-radius: var(--_testi-radius);
+    margin: 0;
+    text-align: center;
+    position: relative;
+  }
+
+  /* Decorative quote mark */
+  .testimonial::before {
+    content: "\201C";
+    position: absolute;
+    inset-block-start: var(--space-4);
+    inset-inline-start: var(--space-6);
+    font-size: var(--font-size-5xl);
+    line-height: 1;
+    color: color-mix(in oklch, var(--accent) 25%, transparent);
+    font-family: Georgia, serif;
+    pointer-events: none;
+  }
+
+  .testimonial__quote {
+    margin: 0;
+    padding: 0;
+    border: none;
+    max-inline-size: var(--container-prose);
+  }
+
+  .testimonial__quote p {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .testimonial__author .avatar {
+    flex-shrink: 0;
+  }
+
+  .testimonial__name {
+    display: block;
+    font-style: normal;
+    font-weight: var(--weight-semibold, 600);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+  }
+
+  .testimonial__role {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  /* Single centered: wider and more spacious */
+  .testimonials:not([data-type]) .testimonial {
+    max-inline-size: var(--container-md);
+    margin-inline: auto;
+    padding: var(--space-10);
+  }
+
+  .testimonials:not([data-type]) .testimonial__quote p {
+    font-size: var(--font-size-xl);
+  }
+
+
+  /* ========================================
+     GRID
+     Multiple testimonials in card grid
+     ======================================== */
+
+  .testimonials__grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 18rem), 1fr)
+    );
+  }
+
+  .testimonials[data-type="grid"] .testimonial {
+    text-align: start;
+    align-items: flex-start;
+  }
+
+  .testimonials[data-type="grid"] .testimonial::before {
+    font-size: var(--font-size-4xl);
+  }
+
+  .testimonials[data-type="grid"] .testimonial__quote p {
+    font-size: var(--font-size-base);
+  }
+
+
+  /* ========================================
+     LOGO WALL
+     Client/partner logos in a responsive row
+     ======================================== */
+
+  .testimonials__logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  .testimonials__logos img,
+  .testimonials__logos svg {
+    block-size: 2.5rem;
+    inline-size: auto;
+    object-fit: contain;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition:
+      opacity var(--duration-normal) var(--ease-fluid),
+      filter var(--duration-normal) var(--ease-fluid);
+  }
+
+  .testimonials__logos img:hover,
+  .testimonials__logos svg:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  .testimonials[data-type="logos"] .testimonials__header {
+    margin-block-end: var(--space-8);
+  }
+
+  .testimonials[data-type="logos"] .testimonials__header p {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+  }
+
+
+  /* ========================================
+     ACCESSIBILITY
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials__logos img,
+    .testimonials__logos svg {
+      transition: none;
+    }
+  }
+}
