@@ -19,7 +19,7 @@ nav: contact
       <div>
         <h2 style="margin-block-end: var(--space-6);">Send Us a Message</h2>
 
-        <form class="stack" data-gap="md">
+        <form class="stack" data-gap="md" id="contact-form" novalidate>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--space-4);">
             <div class="form-group">
               <label class="form-label" data-required for="first-name">First Name</label>
@@ -78,6 +78,16 @@ nav: contact
           </div>
 
           <button type="submit">Send Message</button>
+
+          <!-- Success feedback (hidden by default) -->
+          <div class="alert" data-status="good" data-variant="filled" id="contact-success" hidden>
+            <p><strong>Message sent!</strong> We'll get back to you within 24 hours.</p>
+          </div>
+
+          <!-- Error feedback (hidden by default) -->
+          <div class="alert" data-status="error" id="contact-error" hidden>
+            <p>Please fix the highlighted fields below.</p>
+          </div>
         </form>
       </div>
 
@@ -194,3 +204,53 @@ nav: contact
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const successAlert = document.getElementById('contact-success');
+    const errorAlert = document.getElementById('contact-error');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      successAlert.hidden = true;
+      errorAlert.hidden = true;
+
+      // Clear previous errors
+      form.querySelectorAll('[aria-invalid]').forEach(el => {
+        el.removeAttribute('aria-invalid');
+      });
+      form.querySelectorAll('.form-error').forEach(el => el.remove());
+
+      // Validate required fields
+      const requiredFields = form.querySelectorAll('[required]');
+      let firstError = null;
+      let hasErrors = false;
+
+      requiredFields.forEach(field => {
+        if (!field.value.trim() || (field.type === 'email' && !field.validity.valid)) {
+          hasErrors = true;
+          field.setAttribute('aria-invalid', 'true');
+          const errorMsg = document.createElement('p');
+          errorMsg.className = 'form-error';
+          errorMsg.textContent = field.type === 'email' && field.value
+            ? 'Please enter a valid email address.'
+            : `${field.closest('.form-group')?.querySelector('.form-label')?.textContent || 'This field'} is required.`;
+          field.parentElement.appendChild(errorMsg);
+          if (!firstError) firstError = field;
+        }
+      });
+
+      if (hasErrors) {
+        errorAlert.hidden = false;
+        firstError.focus();
+        return;
+      }
+
+      // Simulate successful submission
+      form.hidden = true;
+      successAlert.hidden = false;
+      successAlert.focus();
+    });
+  });
+</script>

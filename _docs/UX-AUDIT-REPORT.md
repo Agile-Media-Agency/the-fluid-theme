@@ -10,9 +10,9 @@
 
 ### Templates
 
-1. **templates/contact.html**: Uses `class="form-field"` (7 instances) but CSS defines `class="form-group"` — all form styling is broken (Spec §5)
-2. **templates/contact.html**: No form validation, no `aria-invalid`, no `.form-error` elements, no feedback on submission (Spec §4, §5)
-3. **templates/contact.html**: Submit button says "Send Message" ✓ but form has no action/handler — silent on submit (Spec §4)
+1. ~~**templates/contact.html**: Uses `class="form-field"` (7 instances) but CSS defines `class="form-group"` — all form styling is broken (Spec §5)~~ ✅ Fixed
+2. ~~**templates/contact.html**: No form validation, no `aria-invalid`, no `.form-error` elements, no feedback on submission (Spec §4, §5)~~ ✅ Fixed — client-side validation with aria-invalid, .form-error messages, success/error alerts
+3. ~~**templates/contact.html**: Submit button says "Send Message" ✓ but form has no action/handler — silent on submit (Spec §4)~~ ✅ Fixed — form validates and shows success feedback
 4. **ALL templates**: `<a href="..."><button>` invalid HTML nesting — breaks keyboard nav and accessibility. Found in: 404, about, blog, faq, gallery, index, pricing, services (Spec §9, §12)
 5. **templates/pricing.html**: Feature comparison table has no `data-responsive` or `td[data-label]` attributes — broken on mobile (Spec §11)
 6. **templates/404.html**: Search input has no `<form>` wrapper, no `role="search"`, no `<label>` — invisible to screen readers (Spec §7, §12)
