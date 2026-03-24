@@ -611,6 +611,14 @@
     /* Thicker borders — structure through lines, not shadows */
     --border-width: 1.5px;
     --border-width-thick: 3px;
+
+    /* Light-mode color character: cool slate — barely perceptible */
+    /* Swiss design lives in a crisp, slightly cool environment */
+    --color-background: oklch(98.5% 0.004 250);
+    --color-surface: oklch(96.5% 0.004 250);
+    --color-surface-raised: oklch(99.5% 0.002 250);
+    --color-border: oklch(84% 0.005 250);
+    --color-border-subtle: oklch(90% 0.004 250);
   }
 
   /* === SERENE: Ken Burns effect ===
@@ -666,6 +674,14 @@
     /* Thin, delicate borders */
     --border-width: 1px;
     --border-width-thick: 1.5px;
+
+    /* Light-mode color character: warm cream — like aged paper, spa calm */
+    /* The contemplative preset lives in a warm, inviting environment */
+    --color-background: oklch(98% 0.007 60);
+    --color-surface: oklch(96% 0.008 60);
+    --color-surface-raised: oklch(99.5% 0.004 60);
+    --color-border: oklch(87% 0.008 60);
+    --color-border-subtle: oklch(92% 0.006 60);
   }
 
   /* === TRICKLING: Minimal, quick motion ===
@@ -748,6 +764,14 @@
     --shadow-lg:
       0 4px 12px oklch(from var(--shadow-color) l c h / 0.04),
       0 12px 36px oklch(from var(--shadow-color) l c h / 0.06);
+
+    /* Light-mode color character: crisp cool white — SaaS product feel */
+    /* Clean, professional, the neutral canvas of modern software */
+    --color-background: oklch(99% 0.003 200);
+    --color-surface: oklch(97% 0.003 200);
+    --color-surface-raised: oklch(100% 0 0);
+    --color-border: oklch(88% 0.004 200);
+    --color-border-subtle: oklch(93% 0.003 200);
   }
 
   /* === FLOWING: Connected horizontal flow (default) ===
@@ -792,6 +816,14 @@
     --shadow-lg:
       0 8px 16px oklch(from var(--shadow-color) l c h / 0.04),
       0 16px 32px oklch(from var(--shadow-color) l c h / 0.08);
+
+    /* Light-mode color character: ocean breath — the Fluid signature */
+    /* Barely-perceptible blue-white, like morning light reflected on water */
+    --color-background: oklch(98.5% 0.006 230);
+    --color-surface: oklch(96.5% 0.006 230);
+    --color-surface-raised: oklch(99.5% 0.003 230);
+    --color-border: oklch(87% 0.007 230);
+    --color-border-subtle: oklch(92% 0.005 230);
   }
 
   /* === CASCADE: Waterfall effect ===
@@ -833,6 +865,14 @@
     --shadow-md: 0 4px 12px oklch(from var(--shadow-color) l c h / 0.08);
     --shadow-lg: 0 8px 24px oklch(from var(--shadow-color) l c h / 0.12);
     --shadow-xl: 0 16px 40px oklch(from var(--shadow-color) l c h / 0.14);
+
+    /* Light-mode color character: soft lavender — warm, playful, approachable */
+    /* The friendly preset lives in a gentle, inviting environment */
+    --color-background: oklch(98.5% 0.005 280);
+    --color-surface: oklch(96.5% 0.005 280);
+    --color-surface-raised: oklch(99.5% 0.003 280);
+    --color-border: oklch(87% 0.006 280);
+    --color-border-subtle: oklch(92% 0.005 280);
   }
 
   /* === RAPIDS: Vertical spring effect ===
@@ -883,6 +923,14 @@
     /* Bold borders */
     --border-width: 2px;
     --border-width-thick: 3px;
+
+    /* Light-mode color character: warm ember — heat, energy, forward motion */
+    /* The athletic preset lives in a warm, high-energy environment */
+    --color-background: oklch(99% 0.004 25);
+    --color-surface: oklch(97% 0.004 25);
+    --color-surface-raised: oklch(100% 0.002 25);
+    --color-border: oklch(86% 0.006 25);
+    --color-border-subtle: oklch(92% 0.004 25);
   }
 
   /* === TSUNAMI: Diagonal wave crash ===
@@ -936,6 +984,14 @@
     /* Heavy borders — structural, bold */
     --border-width: 2px;
     --border-width-thick: 4px;
+
+    /* Light-mode color character: deep navy breath — like looking toward the horizon */
+    /* The cinematic preset lives in a cool, imposing environment */
+    --color-background: oklch(98% 0.007 250);
+    --color-surface: oklch(96% 0.008 250);
+    --color-surface-raised: oklch(99.5% 0.004 250);
+    --color-border: oklch(85% 0.009 250);
+    --color-border-subtle: oklch(91% 0.007 250);
   }
 
 
