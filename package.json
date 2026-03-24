@@ -38,7 +38,7 @@
     "oklch",
     "no-build"
   ],
-  "author": "Neil White",
+  "author": "Neil White <dev+packages@agilemedia.agency>",
   "license": "MIT",
   "repository": {
     "type": "git",
