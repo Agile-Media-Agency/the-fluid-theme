@@ -5,10 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.4] - 2026-03-24
+
+### Added
+- **HTML starter kit** (`starters/html/`) — self-contained CDN-based starter, zero build step, includes nav, hero, features grid, contact form, footer, and full README
+
 ## [0.4.3] - 2026-03-24
 
-### Fixed
-- feat: npm package setup — @fluid-theme/core v0.4.2
+### Added
+- **First public npm publish** — `@fluid-theme/core@0.4.3` is now live on the npm registry
+- **CDN links active** — jsDelivr and unpkg now serve the package automatically
+- npm account `agilemediaagency` created with `@fluid-theme` organization
+
+### Changed
+- Author email added to `package.json`
 
 
 ## [0.4.2] - 2026-03-21

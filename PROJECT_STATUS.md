@@ -2,8 +2,8 @@
 
 ## Current Status: Phase 4 Complete (UX Compliance + Sections + Templates)
 
-**Version**: 0.4.2
-**Last Updated**: March 21, 2026
+**Version**: 0.4.4
+**Last Updated**: March 24, 2026
 
 ### Design Philosophy
 *"Like water: adaptable, natural, powerful yet gentle."*
@@ -127,11 +127,11 @@ The framework embodies physics-based motion derived from fluid dynamics — Reyn
 
 ## Phase 5: Distribution & Testing -- IN PROGRESS
 
-- [x] NPM package configured (`@fluid-theme/core`, v0.4.2)
+- [x] NPM package configured (`@fluid-theme/core`, v0.4.3)
 - [x] Build pipeline (`npm run build` → `dist/fluid.min.css` via lightningcss)
-- [ ] NPM account created + package published (see PUBLISHING.md)
-- [ ] CDN live (jsDelivr, unpkg — automatic once npm publish runs)
-- [ ] HTML starter kit
+- [x] NPM account created + package published (`@fluid-theme/core@0.4.3` — 2026-03-24)
+- [x] CDN live (jsDelivr, unpkg — automatic once npm publish runs)
+- [x] HTML starter kit (`starters/html/` — CDN-based, zero setup)
 - [ ] React starter kit
 - [ ] Visual regression tests
 - [ ] Accessibility testing (axe-core)
@@ -165,4 +165,4 @@ The framework embodies physics-based motion derived from fluid dynamics — Reyn
 
 **See also**: [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) | [QUICK_CHECKLIST.md](QUICK_CHECKLIST.md)
 
-*Last Updated: March 21, 2026*
+*Last Updated: March 24, 2026 (v0.4.4)*
