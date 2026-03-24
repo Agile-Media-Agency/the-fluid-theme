@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.6] - 2026-03-24
+
+### Added
+- **Accessibility audit** (`_docs/ACCESSIBILITY-AUDIT.md`) — axe-core WCAG 2.1 AA audit across Foundation, Components, and Homepage; 0 critical violations
+
+### Fixed
+- Loading spinners: added `role="status"` to all `.spinner` and `.spinner-dots` elements (required for `aria-label` on non-semantic elements)
+- Card ratings: added `role="img"` to `.card__rating` elements (required for `aria-label`)
+- Interactive card demo: removed invalid `role="button"` from `<article>` element
+- Updated `loading.css` usage comment to show correct `role="status"` pattern
+
 ## [0.4.5] - 2026-03-24
 
 ### Added

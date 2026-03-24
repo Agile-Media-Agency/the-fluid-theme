@@ -6,9 +6,9 @@
  * Respects prefers-reduced-motion.
  *
  * Spinner Usage:
- *   <div class="spinner" aria-label="Loading"></div>
- *   <div class="spinner" data-size="sm"></div>
- *   <div class="spinner" data-size="lg"></div>
+ *   <div class="spinner" role="status" aria-label="Loading"></div>
+ *   <div class="spinner" role="status" data-size="sm" aria-label="Loading"></div>
+ *   <div class="spinner" role="status" data-size="lg" aria-label="Loading"></div>
  *
  * Skeleton Usage:
  *   <div class="skeleton" style="--skeleton-h: 1rem; --skeleton-w: 60%;"></div>
