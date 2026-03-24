@@ -1,6 +1,6 @@
 {
   "name": "@fluid-theme/core",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A modern, semantic CSS design system built on physics principles — not utility classes",
   "main": "dist/fluid.min.css",
   "style": "dist/fluid.min.css",
