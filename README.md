@@ -234,7 +234,7 @@ Control everything via HTML attributes:
 - [x] **Phase 4: Documentation** — Getting started guide, installation, tutorials, image optimization guide
 - [x] **Phase 5: Distribution** — npm publish, CDN, Fluid Agent Kit for AI assistants
 
-**Current**: v0.4.8 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
+**Current**: v0.5.0 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
 
 ## Browser Support
 
@@ -257,4 +257,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.4.8** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.5.0** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

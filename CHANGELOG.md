@@ -5,11 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-03-24
+
+### Added
+- **Complete preset typography** — every `data-motion` preset now has a deliberate font personality:
+  - `serene`: Cormorant Garamond + EB Garamond (contemplative, literary, spa-like)
+  - `stream`: Plus Jakarta Sans (modern SaaS, clean, professional)
+  - `flowing`: Outfit + DM Sans (Fluid brand identity — smooth, geometric, the default)
+  - `cascade`: Nunito (friendly, rounded, approachable — Notion/Slack vibes)
+  - `rapids`: Syne + Space Grotesk (athletic, punchy, high-energy — Stripe/Vercel energy)
+  - `tsunami`: Bebas Neue + Barlow (cinematic, dramatic, commanding — Hokusai wave)
+  - `still` + `trickling`: system-ui (intentionally minimal — Swiss design needs no ornament)
+- **`src/fonts/preset-fonts.css`** — optional Google Fonts file for npm/bundler users. Import to activate all preset typefaces at once.
+- **Light-mode color character** — each preset now applies a subtle hue tint to background surfaces. The same page feels different in every preset, not just in dark mode:
+  - `still` → cool slate (hue 250) — crisp, disciplined
+  - `serene` → warm cream (hue 60) — like aged paper, spa calm
+  - `stream` → clean cool (hue 200) — modern SaaS white
+  - `flowing` → ocean breath (hue 230) — the Fluid brand signature
+  - `cascade` → soft lavender (hue 280) — warm, inviting, playful
+  - `rapids` → warm ember (hue 25) — heat, energy, forward motion
+  - `tsunami` → deep navy (hue 250) — imposing, cinematic
+- **Live preset switcher** on `examples/foundation.html` and `examples/components.html` — click any preset to see the full personality change in real time (typography + color + motion + radius + shadows)
+- **MutationObserver in `fonts.html`** — fonts load instantly when switching presets via JS, not just on page load
+
+### Changed
+- `flowing` (default) now uses Outfit + DM Sans, giving the Fluid brand a distinctive voice rather than falling back to system-ui
+- `rapids` switched from Archivo Black to Syne (more distinctive, athletic) + Space Grotesk body
+- `tsunami` switched from Space Grotesk to Bebas Neue (far more cinematic/dramatic) + Barlow body
+- `cascade` now uses Nunito for both heading and body (pure Nunito is more cohesive than mixed stacks)
+- Light-mode backgrounds are no longer pure white for any preset — each has a hue identity
+
 ## [0.4.9] - 2026-03-24
 
 ### Fixed
 - chore: final audit — TASK-QUEUE updated, README starter kits section, version consistency 0.4.8
-
 
 ## [0.4.8] - 2026-03-24
 
