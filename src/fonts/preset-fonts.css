@@ -1,0 +1,84 @@
+/**
+ * Fluid Framework — Preset Fonts
+ * @layer tokens (loaded before the main stylesheet)
+ *
+ * Optional: include this file to activate preset-specific typography.
+ * Without it, all presets fall back gracefully to system fonts.
+ * With it, each preset expresses its full typographic personality.
+ *
+ * Usage (HTML):
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ *   <link rel="stylesheet" href="path/to/preset-fonts.css">
+ *
+ * Usage (npm):
+ *   import '@fluid-theme/core/src/fonts/preset-fonts.css';
+ *
+ * Usage (CDN):
+ *   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/src/fonts/preset-fonts.css">
+ *
+ * Preset → Font Mapping:
+ *   still     → system-ui (intentionally minimal, no custom font)
+ *   serene    → Cormorant Garamond + EB Garamond (contemplative, literary)
+ *   stream    → Plus Jakarta Sans (modern SaaS, clean)
+ *   flowing   → Outfit + DM Sans (Fluid brand identity — smooth, geometric)
+ *   cascade   → Nunito (friendly, rounded, approachable)
+ *   rapids    → Syne + Space Grotesk (athletic, bold, high-energy)
+ *   tsunami   → Bebas Neue + Barlow (cinematic, dramatic, commanding)
+ *   trickling → system-ui (utility-first, no ornament)
+ *   brutalist → Space Mono (geometric, industrial, raw)
+ *   editorial → Playfair Display + Libre Baskerville (luxury magazine)
+ *   neon      → Orbitron + Exo 2 (cyberpunk, futuristic)
+ */
+
+/* ========================================
+   SERENE: Contemplative, literary, spa
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ========================================
+   STREAM: Modern SaaS, clean, tech-forward
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ========================================
+   FLOWING: Fluid brand identity (default)
+   Outfit for headings — geometric, smooth, modern
+   DM Sans for body — friendly, highly readable
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+/* ========================================
+   CASCADE: Friendly, rounded, Notion-like
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ========================================
+   RAPIDS: Athletic, bold, high-energy
+   Syne for headings — distinctive, geometric, strong
+   Space Grotesk for body — technical, confident
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ========================================
+   TSUNAMI: Cinematic, dramatic, Hokusai
+   Bebas Neue for headings — all-caps, commanding, massive
+   Barlow for body — condensed, strong, readable
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ========================================
+   BRUTALIST: Raw, industrial, no-nonsense
+   (also used by data-motion="still" if custom font desired)
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ========================================
+   EDITORIAL: Luxury magazine, literary
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ========================================
+   NEON: Cyberpunk, futuristic, electric
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
