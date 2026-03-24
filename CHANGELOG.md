@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.9] - 2026-03-24
+
+### Fixed
+- chore: final audit — TASK-QUEUE updated, README starter kits section, version consistency 0.4.8
+
+
 ## [0.4.8] - 2026-03-24
 
 ### Added
@@ -199,3 +205,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.3.0]: https://github.com/Agile-Media-Agency/the-fluid-theme/releases/tag/v0.3.0
 [0.4.2]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.4.1...v0.4.2
 [0.4.3]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.4.2...v0.4.3
+[0.4.9]: https://github.com/Agile-Media-Agency/the-fluid-theme/compare/v0.4.8...v0.4.9
