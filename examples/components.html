@@ -339,6 +339,51 @@ nav: components
   }
 </style>
 
+<!-- Preset Switcher — Try every preset live -->
+<div id="preset-switcher" style="
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  z-index: var(--z-toast);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  background-color: var(--color-surface);
+  border-end-start-radius: var(--radius-lg);
+  border-block-end: 1px solid var(--color-border-subtle);
+  border-inline-start: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+">
+  <span style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: var(--color-text-subtle); padding-inline-end: var(--space-2);">Preset:</span>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('still')">Still</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('serene')">Serene</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('stream')">Stream</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('flowing')">Flowing</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('cascade')">Cascade</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('rapids')">Rapids</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('tsunami')">Tsunami</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('editorial')">Editorial</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('brutalist')">Brutalist</button>
+  <button class="btn btn--ghost" style="font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);" onclick="setPreset('neon')">Neon</button>
+</div>
+<script>
+  function setPreset(preset) {
+    document.documentElement.setAttribute('data-motion', preset);
+    document.querySelectorAll('#preset-switcher button').forEach(function(btn) {
+      btn.removeAttribute('data-active');
+      if (btn.textContent.toLowerCase() === preset) btn.setAttribute('data-active', '');
+    });
+  }
+  var _initPreset = document.documentElement.getAttribute('data-motion') || 'flowing';
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#preset-switcher button').forEach(function(btn) {
+      if (btn.textContent.toLowerCase() === _initPreset) btn.setAttribute('data-active', '');
+    });
+  });
+</script>
+
 <!-- Search Modal -->
 <dialog class="search-modal" id="search-modal" aria-label="Search components">
   <div class="search-modal__content">
