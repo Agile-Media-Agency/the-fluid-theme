@@ -2,7 +2,7 @@
 
 ## Current Status: Phase 4 Complete (UX Compliance + Sections + Templates)
 
-**Version**: 0.4.6
+**Version**: 0.4.7
 **Last Updated**: March 24, 2026
 
 ### Design Philosophy
@@ -135,7 +135,7 @@ The framework embodies physics-based motion derived from fluid dynamics — Reyn
 - [x] React starter kit (`starters/react/` — Vite + React 18, live theming demo)
 - [ ] Visual regression tests
 - [x] Accessibility testing (axe-core — 0 critical violations, serious violations fixed, report at `_docs/ACCESSIBILITY-AUDIT.md`)
-- [ ] Performance benchmarks
+- [x] Performance benchmarks (Lighthouse — Perf 100/100/88, CLS 0, TBT 0ms, report at `_docs/PERFORMANCE-BENCHMARKS.md`)
 
 ---
 
