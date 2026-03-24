@@ -2,7 +2,7 @@
 
 ## Current Status: Phase 4 Complete (UX Compliance + Sections + Templates)
 
-**Version**: 0.4.4
+**Version**: 0.4.5
 **Last Updated**: March 24, 2026
 
 ### Design Philosophy
@@ -132,7 +132,7 @@ The framework embodies physics-based motion derived from fluid dynamics — Reyn
 - [x] NPM account created + package published (`@fluid-theme/core@0.4.3` — 2026-03-24)
 - [x] CDN live (jsDelivr, unpkg — automatic once npm publish runs)
 - [x] HTML starter kit (`starters/html/` — CDN-based, zero setup)
-- [ ] React starter kit
+- [x] React starter kit (`starters/react/` — Vite + React 18, live theming demo)
 - [ ] Visual regression tests
 - [ ] Accessibility testing (axe-core)
 - [ ] Performance benchmarks
