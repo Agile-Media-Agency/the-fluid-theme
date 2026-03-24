@@ -116,7 +116,7 @@ async function optimizeImage(relPath) {
     const outName = `${base}-${w}.webp`;
     const outPath = path.join(dir, outName);
 
-    if (!DRY_RUN) {
+    if (!DRY_RUN && !fs.existsSync(outPath)) {
       await sharp(absPath)
         .resize(w, null, { withoutEnlargement: true })
         .webp({ quality: WEBP_QUALITY, effort: 4 })
@@ -133,7 +133,7 @@ async function optimizeImage(relPath) {
   const avifName = `${base}-${avifWidth}.avif`;
   const avifPath = path.join(dir, avifName);
 
-  if (!DRY_RUN) {
+  if (!DRY_RUN && !fs.existsSync(avifPath)) {
     await sharp(absPath)
       .resize(avifWidth, null, { withoutEnlargement: true })
       .avif({ quality: AVIF_QUALITY, effort: 4 })

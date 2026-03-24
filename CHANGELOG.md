@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.8] - 2026-03-24
+
+### Added
+- **1920w WebP variants** generated for all 18 hero images (77.5% savings: 33.63MB → 7.58MB)
+- `scripts/add-1920w-srcset.mjs` — adds 1920w to existing `<picture>` srcsets
+
+### Changed
+- `index.html` and 11 templates: 47 `<source>` srcsets now include 1920w WebP for large displays
+- `scripts/optimize-images.js` — now skips already-existing output files (idempotent)
+
 ## [0.4.7] - 2026-03-24
 
 ### Added
