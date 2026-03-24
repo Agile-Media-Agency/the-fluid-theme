@@ -26,17 +26,35 @@ Most design systems pick arbitrary animation timings. We use **Reynolds numbers*
 
 ### CDN (recommended for quick start)
 
+**jsDelivr** (recommended):
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.4/src/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid.min.css">
+```
+
+**unpkg:**
+```html
+<link rel="stylesheet" href="https://unpkg.com/@fluid-theme/core/dist/fluid.min.css">
 ```
 
 ### npm
 
 ```bash
-npm install the-fluid-theme
+npm install @fluid-theme/core
 ```
 
-Then link to `node_modules/the-fluid-theme/src/fluid.css` in your HTML, or import it in your build tool.
+Then in your HTML:
+```html
+<!-- Production (minified) -->
+<link rel="stylesheet" href="node_modules/@fluid-theme/core/dist/fluid.min.css">
+
+<!-- Source (readable, for customisation) -->
+<link rel="stylesheet" href="node_modules/@fluid-theme/core/src/fluid.css">
+```
+
+Or in a bundler (Vite, Webpack, etc.):
+```js
+import '@fluid-theme/core';
+```
 
 ### Download
 
@@ -46,7 +64,7 @@ Grab the latest release from the [GitHub Releases](https://github.com/Agile-Medi
 
 ```html
 <!-- Link the CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.4/src/fluid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid.min.css">
 
 <!-- Set your preferences -->
 <body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
@@ -209,7 +227,7 @@ Control everything via HTML attributes:
 - [x] **Phase 4: Documentation** — Getting started guide, installation, tutorials, image optimization guide
 - [x] **Phase 5: Distribution** — npm publish, CDN, Fluid Agent Kit for AI assistants
 
-**Current**: v0.4.0 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
+**Current**: v0.4.2 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
 
 ## Browser Support
 
@@ -232,4 +250,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.4.0** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.4.2** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

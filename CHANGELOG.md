@@ -5,11 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.2] - 2026-03-20
+## [0.4.2] - 2026-03-21
+
+### Added
+- **npm package** configured as `@fluid-theme/core` (scoped, leaving room for `@fluid-theme/react`, `@fluid-theme/vue`, etc.)
+- **CSS build pipeline**: `npm run build` bundles all `@import` statements and minifies to `dist/fluid.min.css` via lightningcss
+- **`dist/fluid.min.css`**: production-ready minified build (196 kB) for CDN and npm consumers
+- **CDN links**: jsDelivr and unpkg will serve the minified build automatically once published
+- **Package exports**: `@fluid-theme/core` resolves to minified build; `@fluid-theme/core/src` gives access to raw source
+- **`PUBLISHING.md`**: step-by-step guide for completing the npm publish (create account, create org, login, publish)
+
+### Changed
+- Package renamed from `the-fluid-theme` → `@fluid-theme/core`
+- `package.json` `main` and `style` fields now point to `dist/fluid.min.css`
+- `prepublishOnly` hook ensures dist is always rebuilt before publishing
+- README installation instructions updated with correct CDN links and npm install command
 
 ### Fixed
-- chore: remove internal .agent/ and .claude/ from git tracking
-
+- Removed internal `.agent/` and `.claude/` directories from git tracking
 
 ## [0.4.1] - 2026-03-20
 
