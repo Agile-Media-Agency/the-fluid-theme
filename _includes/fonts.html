@@ -1,130 +1,96 @@
-<!-- Google Fonts - Theme Font Pairings
-     Each theme has a heading and body font that matches its character.
-     Fonts are loaded based on the current theme/motion setting. -->
+<!-- Preset Typography — Fluid Theme
+     Fonts are loaded on demand based on the active preset.
+     Switching presets triggers dynamic font loading via MutationObserver.
+
+     Preset → Font Pairing:
+       still     → system-ui (intentionally minimal — Swiss design needs no ornament)
+       serene    → Cormorant Garamond + EB Garamond (contemplative, literary)
+       stream    → Plus Jakarta Sans (modern SaaS, clean, professional)
+       trickling → system-ui (utility-first, developer-friendly)
+       flowing   → Outfit + DM Sans (Fluid brand identity — smooth, geometric)
+       cascade   → Nunito (friendly, rounded, approachable)
+       rapids    → Syne + Space Grotesk (athletic, punchy, high-energy)
+       tsunami   → Bebas Neue + Barlow (cinematic, dramatic, Hokusai)
+       brutalist → Space Mono (geometric, industrial, raw)
+       editorial → Playfair Display + Libre Baskerville (luxury magazine)
+       neon      → Orbitron + Exo 2 (cyberpunk, futuristic)
+-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Base fonts - always loaded -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Theme-specific fonts - loaded conditionally -->
 <style id="theme-fonts">
   /* ========================================
-     FONT FAMILY TOKENS
-     Updated by JavaScript based on theme
+     FONT FAMILY TOKENS — Per Preset
+     These set the CSS variables. Actual font files
+     are loaded dynamically by the script below.
      ======================================== */
 
+  /* Default (flowing): Outfit + DM Sans — the Fluid brand voice */
   :root {
-    /* Default: Inter (balanced, universal) */
-    --font-heading: 'Inter', var(--font-system);
-    --font-body: 'Inter', var(--font-system);
-    --font-display: 'Inter', var(--font-system);
-  }
-
-
-  /* ========================================
-     STILL - Clean, Minimal, Professional
-     Fonts: Inter (headers) + Inter (body)
-     Character: Precise, no-nonsense, Swiss design
-     ======================================== */
-  [data-motion="still"] {
-    --font-heading: 'Inter', var(--font-system);
-    --font-body: 'Inter', var(--font-system);
-    --font-display: 'Inter', var(--font-system);
-  }
-
-
-  /* ========================================
-     SERENE - Elegant, Calm, Refined
-     Fonts: Cormorant Garamond (headers) + Lato (body)
-     Character: Classical, literary, timeless
-     ======================================== */
-  [data-motion="serene"] {
-    --font-heading: 'Cormorant Garamond', var(--font-serif);
-    --font-body: 'Lato', var(--font-system);
-    --font-display: 'Cormorant Garamond', var(--font-serif);
-  }
-
-
-  /* ========================================
-     STREAM - Modern, Readable, Contemporary
-     Fonts: Source Sans 3 (headers) + Source Sans 3 (body)
-     Character: Open, approachable, tech-forward
-     ======================================== */
-  [data-motion="stream"] {
-    --font-heading: 'Source Sans 3', var(--font-system);
-    --font-body: 'Source Sans 3', var(--font-system);
-    --font-display: 'Source Sans 3', var(--font-system);
-  }
-
-
-  /* ========================================
-     TRICKLING - Compact, Efficient, Minimal
-     Fonts: Inter (all)
-     Character: Understated, utility-first, developer-friendly
-     ======================================== */
-  [data-motion="trickling"] {
-    --font-heading: 'Inter', var(--font-system);
-    --font-body: 'Inter', var(--font-system);
-    --font-display: 'Inter', var(--font-system);
-  }
-
-
-  /* ========================================
-     FLOWING - Balanced, Organic, Natural (Default)
-     Fonts: Outfit (headers) + Inter (body)
-     Character: Friendly, professional, versatile
-     ======================================== */
-  :root:not([data-motion]),
-  [data-motion="flowing"] {
     --font-heading: 'Outfit', var(--font-system);
-    --font-body: 'Inter', var(--font-system);
+    --font-body: 'DM Sans', var(--font-system);
     --font-display: 'Outfit', var(--font-system);
   }
 
+  /* STILL: System-native — Swiss design needs no custom typeface */
+  [data-motion="still"] {
+    --font-heading: var(--font-system);
+    --font-body: var(--font-system);
+    --font-display: var(--font-system);
+  }
 
-  /* ========================================
-     CASCADE - Playful, Energetic, Friendly
-     Fonts: Nunito (headers) + Nunito Sans (body)
-     Character: Rounded, warm, approachable
-     ======================================== */
+  /* SERENE: Contemplative, literary, spa-like */
+  [data-motion="serene"] {
+    --font-heading: 'Cormorant Garamond', var(--font-serif);
+    --font-body: 'EB Garamond', var(--font-serif);
+    --font-display: 'Cormorant Garamond', var(--font-serif);
+  }
+
+  /* STREAM: Modern SaaS, clean, approachable */
+  [data-motion="stream"] {
+    --font-heading: 'Plus Jakarta Sans', var(--font-system);
+    --font-body: 'Plus Jakarta Sans', var(--font-system);
+    --font-display: 'Plus Jakarta Sans', var(--font-system);
+  }
+
+  /* TRICKLING: Utility-first, developer-friendly */
+  [data-motion="trickling"] {
+    --font-heading: var(--font-system);
+    --font-body: var(--font-system);
+    --font-display: var(--font-system);
+  }
+
+  /* FLOWING: Fluid brand identity — smooth, geometric, modern */
+  :root:not([data-motion]),
+  [data-motion="flowing"] {
+    --font-heading: 'Outfit', var(--font-system);
+    --font-body: 'DM Sans', var(--font-system);
+    --font-display: 'Outfit', var(--font-system);
+  }
+
+  /* CASCADE: Friendly, rounded, Notion/Slack vibes */
   [data-motion="cascade"] {
     --font-heading: 'Nunito', var(--font-system);
-    --font-body: 'Nunito Sans', var(--font-system);
+    --font-body: 'Nunito', var(--font-system);
     --font-display: 'Nunito', var(--font-system);
   }
 
-
-  /* ========================================
-     RAPIDS - Bold, Dynamic, Energetic
-     Fonts: Archivo Black (headers) + Archivo (body)
-     Character: Strong, punchy, athletic
-     ======================================== */
+  /* RAPIDS: Athletic, punchy, high-energy */
   [data-motion="rapids"] {
-    --font-heading: 'Archivo Black', var(--font-system);
-    --font-body: 'Archivo', var(--font-system);
-    --font-display: 'Archivo Black', var(--font-system);
-  }
-
-
-  /* ========================================
-     TSUNAMI - Dramatic, Bold, Impactful
-     Fonts: Space Grotesk (headers) + Space Grotesk (body)
-     Character: Futuristic, bold, memorable
-     ======================================== */
-  [data-motion="tsunami"] {
-    --font-heading: 'Space Grotesk', var(--font-system);
+    --font-heading: 'Syne', var(--font-system);
     --font-body: 'Space Grotesk', var(--font-system);
-    --font-display: 'Space Grotesk', var(--font-system);
+    --font-display: 'Syne', var(--font-system);
   }
 
+  /* TSUNAMI: Cinematic, dramatic, Hokusai-inspired */
+  [data-motion="tsunami"] {
+    --font-heading: 'Bebas Neue', var(--font-system);
+    --font-body: 'Barlow', var(--font-system);
+    --font-display: 'Bebas Neue', var(--font-system);
+  }
 
-  /* ========================================
-     BRUTALIST - Raw, Industrial, Technical
-     Fonts: Space Mono (all)
-     Character: Mechanical, grid-locked, uncompromising
-     ======================================== */
+  /* BRUTALIST: Geometric, industrial, uncompromising */
   [data-motion="brutalist"] {
     --font-heading: 'Space Mono', var(--font-mono);
     --font-body: 'Space Mono', var(--font-mono);
@@ -132,24 +98,14 @@
     --font-ui: 'Space Mono', var(--font-mono);
   }
 
-
-  /* ========================================
-     EDITORIAL - Luxurious, Literary, Magazine
-     Fonts: Playfair Display (headers) + Libre Baskerville (body)
-     Character: High-contrast serif, classical, contemplative
-     ======================================== */
+  /* EDITORIAL: Luxury magazine, contemplative */
   [data-motion="editorial"] {
     --font-heading: 'Playfair Display', var(--font-serif);
     --font-body: 'Libre Baskerville', var(--font-serif);
     --font-display: 'Playfair Display', var(--font-serif);
   }
 
-
-  /* ========================================
-     NEON - Futuristic, Geometric, Cyberpunk
-     Fonts: Orbitron (headers) + Exo 2 (body)
-     Character: Tech, gaming, electric signage
-     ======================================== */
+  /* NEON: Cyberpunk, futuristic, electric */
   [data-motion="neon"] {
     --font-heading: 'Orbitron', var(--font-system);
     --font-body: 'Exo 2', var(--font-system);
@@ -159,64 +115,46 @@
 </style>
 
 <script>
-  // Font loading for theme presets
-  const themeFonts = {
-    still: [],  // Uses base Inter
-    serene: [
-      'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap'
-    ],
-    trickling: [],  // Uses base Inter
-    stream: [
-      'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap'
-    ],
-    flowing: [
-      'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap'
-    ],
-    cascade: [
-      'https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap'
-    ],
-    rapids: [
-      'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap'
-    ],
-    tsunami: [
-      'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap'
-    ],
-    brutalist: [
-      'https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'
-    ],
-    editorial: [
-      'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap'
-    ],
-    neon: [
-      'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap'
-    ]
-  };
-
-  // Track loaded fonts to avoid duplicates
-  const loadedFonts = new Set(['Inter']);
-
-  function loadThemeFonts(theme) {
-    const fonts = themeFonts[theme];
-    if (!fonts || fonts.length === 0) return;
-
-    fonts.forEach(fontUrl => {
-      // Extract font name from URL for tracking
-      const match = fontUrl.match(/family=([^:&]+)/);
-      const fontName = match ? match[1].replace(/\+/g, ' ') : fontUrl;
-
-      if (!loadedFonts.has(fontName)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = fontUrl;
-        document.head.appendChild(link);
-        loadedFonts.add(fontName);
-      }
-    });
-  }
-
-  // Load fonts for current theme on page load
   (function() {
-    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
-    loadThemeFonts(currentMotion);
+    // Map each preset to its Google Fonts URL
+    const PRESET_FONTS = {
+      still:     null,  // System fonts — no load needed
+      trickling: null,  // System fonts — no load needed
+      serene:    'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap',
+      stream:    'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap',
+      flowing:   'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap',
+      cascade:   'https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap',
+      rapids:    'https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap',
+      tsunami:   'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap',
+      brutalist: 'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap',
+      editorial: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap',
+      neon:      'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap'
+    };
+
+    const loaded = new Set();
+
+    function loadPresetFont(preset) {
+      const url = PRESET_FONTS[preset];
+      if (!url || loaded.has(preset)) return;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = url;
+      document.head.appendChild(link);
+      loaded.add(preset);
+    }
+
+    // Load font for the initial preset
+    const initial = document.documentElement.getAttribute('data-motion') || 'flowing';
+    loadPresetFont(initial);
+
+    // Observe preset changes and load fonts on demand
+    new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.attributeName === 'data-motion') {
+          const next = document.documentElement.getAttribute('data-motion') || 'flowing';
+          loadPresetFont(next);
+        }
+      });
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-motion'] });
   })();
 </script>
