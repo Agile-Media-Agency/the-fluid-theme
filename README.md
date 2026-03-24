@@ -22,6 +22,13 @@ Most design systems pick arbitrary animation timings. We use **Reynolds numbers*
 | **Rapids** | ~5000 | Turbulent, energetic with resistance |
 | **Tsunami** | ~50000 | Massive force, dramatic displacement |
 
+## Starter Kits
+
+| Starter | What it is | Get started |
+|---------|-----------|------------|
+| [HTML](starters/html/) | Zero-setup, CDN-based. No npm, no build step. | Copy `starters/html/index.html` and open it. |
+| [React](starters/react/) | Vite + React 18. Includes live theming demo. | `cd starters/react && npm install && npm run dev` |
+
 ## Installation
 
 ### CDN (recommended for quick start)
@@ -227,7 +234,7 @@ Control everything via HTML attributes:
 - [x] **Phase 4: Documentation** — Getting started guide, installation, tutorials, image optimization guide
 - [x] **Phase 5: Distribution** — npm publish, CDN, Fluid Agent Kit for AI assistants
 
-**Current**: v0.4.2 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
+**Current**: v0.4.8 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
 
 ## Browser Support
 
@@ -250,4 +257,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.4.2** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.4.8** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
