@@ -894,6 +894,12 @@
 
     /* Ocean-tinted shadows — depth carries the water hue */
     --shadow-color: oklch(22% 0.06 230);
+
+    /* Ocean glow for focus states — diffused, not a sharp ring */
+    --shadow-glow:
+      0 0 0 2px var(--color-background),
+      0 0 0 4px color-mix(in oklch, var(--accent) 50%, transparent),
+      0 0 12px color-mix(in oklch, var(--accent) 20%, transparent);
     --shadow-xs:
       0 1px 3px oklch(from var(--shadow-color) l c h / 0.04);
     --shadow-sm:
@@ -916,10 +922,6 @@
     --color-surface-raised: oklch(99.5% 0.003 230);
     --color-border: oklch(87% 0.008 230);
     --color-border-subtle: oklch(92% 0.006 230);
-
-    /* Accent channel: ocean depths — the default accent reads "water" */
-    --color-accent-h: 220;
-    --color-accent-s: 0.14;
   }
 
   /* === CASCADE: Waterfall effect ===

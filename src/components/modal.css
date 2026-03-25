@@ -265,6 +265,14 @@
      THEME-SPECIFIC MODAL STYLES
      ======================================== */
 
+  /* Flowing: ocean depth — enhanced backdrop, ocean-tinted shadow */
+  :root[data-preset="flowing"] .modal::backdrop,
+  :root:not([data-preset]) .modal::backdrop,
+  [data-preset="flowing"] .modal::backdrop {
+    backdrop-filter: blur(8px) saturate(1.5);
+    -webkit-backdrop-filter: blur(8px) saturate(1.5);
+  }
+
   /* Still: sharp, no animation */
   [data-preset="still"] .modal__content {
     border-radius: var(--radius-md);

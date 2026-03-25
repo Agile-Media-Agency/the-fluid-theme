@@ -268,6 +268,14 @@
      THEME-SPECIFIC STYLES
      ======================================== */
 
+  /* Flowing: ocean shadow, generous radius */
+  :root[data-preset="flowing"] .table-wrap,
+  :root:not([data-preset]) .table-wrap,
+  [data-preset="flowing"] .table-wrap {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
   /* Still: crisp borders */
   [data-preset="still"] .table-wrap {
     border-radius: 0;

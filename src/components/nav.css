@@ -695,6 +695,33 @@
 
 
   /* ========================================
+     FLOWING PRESET — Signature nav
+     Stronger blur, ocean-tinted border, subtle shadow.
+     The nav becomes a frosted ocean glass.
+     ======================================== */
+
+  :root[data-preset="flowing"] .nav[data-sticky],
+  :root:not([data-preset]) .nav[data-sticky],
+  [data-preset="flowing"] .nav[data-sticky] {
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    background-color: oklch(from var(--color-background) l c h / 0.82);
+    border-block-end-color: var(--color-border-subtle);
+    box-shadow:
+      0 1px 0 var(--color-border-subtle),
+      0 4px 16px oklch(from var(--shadow-color) l c h / 0.06);
+  }
+
+  /* Active nav link: ocean accent underline */
+  :root[data-preset="flowing"] .nav__link[aria-current="page"],
+  :root:not([data-preset]) .nav__link[aria-current="page"],
+  [data-preset="flowing"] .nav__link[aria-current="page"] {
+    color: var(--accent);
+    font-weight: var(--weight-medium);
+  }
+
+
+  /* ========================================
      REDUCED MOTION
      ======================================== */
 

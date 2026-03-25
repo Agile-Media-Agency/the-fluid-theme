@@ -210,6 +210,20 @@
     transition: none;
   }
 
+  /* Flowing: ocean depth — elevated shadow, generous radius */
+  :root[data-preset="flowing"] .accordion[data-variant="separated"] .accordion__item,
+  :root:not([data-preset]) .accordion[data-variant="separated"] .accordion__item,
+  [data-preset="flowing"] .accordion[data-variant="separated"] .accordion__item {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  :root[data-preset="flowing"] .accordion[data-variant="bordered"] .accordion__item,
+  :root:not([data-preset]) .accordion[data-variant="bordered"] .accordion__item,
+  [data-preset="flowing"] .accordion[data-variant="bordered"] .accordion__item {
+    border-radius: var(--radius-xl);
+  }
+
   /* Serene: rounded, soft */
   [data-preset="serene"] .accordion[data-variant="separated"] .accordion__item,
   [data-preset="serene"] .accordion[data-variant="bordered"] .accordion__item {
