@@ -207,4 +207,38 @@
     border-color: var(--white);
     color: var(--white);
   }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: enhanced shadow and depth */
+  :root[data-preset="flowing"] .cta,
+  :root:not([data-preset]) .cta,
+  [data-preset="flowing"] .cta {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Still: square CTA */
+  [data-preset="still"] .cta {
+    --_cta-radius: 0;
+  }
+
+  /* Rapids: offset shadow treatment */
+  [data-preset="rapids"] .cta {
+    --_cta-radius: 0;
+    box-shadow: var(--shadow-offset);
+    border: 2px solid var(--color-border);
+  }
+
+  /* Cascade: extra rounded */
+  [data-preset="cascade"] .cta {
+    --_cta-radius: var(--radius-2xl, 2rem);
+  }
+
+  /* Tsunami: asymmetric CTA */
+  [data-preset="tsunami"] .cta {
+    --_cta-radius: var(--radius-asymmetric, 0 32px 0 0);
+  }
 }

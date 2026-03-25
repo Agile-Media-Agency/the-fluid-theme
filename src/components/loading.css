@@ -252,7 +252,14 @@
      THEME-SPECIFIC STYLES
      ======================================== */
 
-  /* Still: no animation */
+  /* Flowing: soft shadow on skeleton cards */
+  :root[data-preset="flowing"] .skeleton-card,
+  :root:not([data-preset]) .skeleton-card,
+  [data-preset="flowing"] .skeleton-card {
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Still: no animation, flat square skeleton */
   [data-preset="still"] .spinner {
     animation-duration: 800ms;
   }
@@ -260,6 +267,10 @@
   [data-preset="still"] .skeleton {
     animation: none;
     background: var(--color-surface);
+  }
+
+  [data-preset="still"] .skeleton-card {
+    border-radius: 0;
   }
 
   /* Serene: very slow, meditative spinner (uses serene --duration-slow: 1500ms automatically) */

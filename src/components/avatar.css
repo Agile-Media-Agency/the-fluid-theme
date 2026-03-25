@@ -180,6 +180,35 @@
      THEME-SPECIFIC STYLES
      ======================================== */
 
+  /* Flowing: ocean glow ring */
+  :root[data-preset="flowing"] .avatar[data-ring],
+  :root:not([data-preset]) .avatar[data-ring],
+  [data-preset="flowing"] .avatar[data-ring] {
+    box-shadow:
+      0 0 0 2px var(--color-background),
+      0 0 0 4px var(--accent),
+      0 0 10px color-mix(in oklch, var(--accent) 35%, transparent);
+  }
+
+  /* Still: square avatars (no rounded corners) */
+  [data-preset="still"] .avatar {
+    border-radius: 0;
+  }
+
+  [data-preset="still"] .avatar[data-shape="square"],
+  [data-preset="still"] .avatar[data-shape="rounded"] {
+    border-radius: 0;
+  }
+
+  [data-preset="still"] .avatar-group__overflow {
+    border-radius: 0;
+  }
+
+  /* Cascade: lift on group hover */
+  [data-preset="cascade"] .avatar-group .avatar:hover {
+    transform: scale(1.15) translateY(-2px);
+  }
+
   /* Tsunami: asymmetric corners on square */
   [data-preset="tsunami"] .avatar[data-shape="square"] {
     border-radius: var(--radius-asymmetric, 0 12px 0 0);

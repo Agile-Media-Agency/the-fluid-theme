@@ -223,6 +223,40 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: shadow depth on stat cards */
+  :root[data-preset="flowing"] .stat,
+  :root:not([data-preset]) .stat,
+  [data-preset="flowing"] .stat {
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Still: square, flat stat cards */
+  [data-preset="still"] .stat {
+    --_stat-radius: 0;
+  }
+
+  /* Rapids: offset shadow on stat cards */
+  [data-preset="rapids"] .stat {
+    --_stat-radius: 0;
+    border-width: 2px;
+    box-shadow: var(--shadow-offset);
+  }
+
+  /* Cascade: extra rounded stat cards */
+  [data-preset="cascade"] .stat {
+    --_stat-radius: var(--radius-xl);
+  }
+
+  /* Tsunami: asymmetric stat cards */
+  [data-preset="tsunami"] .stat {
+    --_stat-radius: var(--radius-asymmetric, 0 16px 0 0);
+  }
+
+
+  /* ========================================
      ACCESSIBILITY
      ======================================== */
 

@@ -165,6 +165,50 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: shadow depth + enhanced hover */
+  :root[data-preset="flowing"] .team-member,
+  :root:not([data-preset]) .team-member,
+  [data-preset="flowing"] .team-member {
+    box-shadow: var(--shadow-xs);
+  }
+
+  :root[data-preset="flowing"] .team-member:hover,
+  :root:not([data-preset]) .team-member:hover,
+  [data-preset="flowing"] .team-member:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Still: flat square team cards */
+  [data-preset="still"] .team-member {
+    --_member-radius: 0;
+  }
+
+  [data-preset="still"] .team-member:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* Rapids: offset shadow team cards */
+  [data-preset="rapids"] .team-member {
+    --_member-radius: 0;
+    border-width: 2px;
+  }
+
+  [data-preset="rapids"] .team-member:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--shadow-offset-hover, var(--shadow-md));
+  }
+
+  /* Tsunami: asymmetric team cards */
+  [data-preset="tsunami"] .team-member {
+    --_member-radius: var(--radius-asymmetric, 0 16px 0 0);
+  }
+
+
+  /* ========================================
      ACCESSIBILITY
      ======================================== */
 

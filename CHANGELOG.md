@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-03-24
+
+### Added
+
+- **Preset avatar styles** — Flowing: ocean glow ring; still: fully square (all shapes); cascade: enhanced group lift; rapids: hard shadow on group already present
+- **Preset form styles** — Still: flat no-glow focus (border only); rapids: offset shadow on focus, square fieldset; tsunami: asymmetric fieldset
+- **Preset empty-state styles** — Flowing: soft icon glow; still: square icon container; rapids: hard bordered offset icon; tsunami: asymmetric icon
+- **Preset search-input styles** — Still: square clear button; rapids: offset shadow + square on hover
+- **Preset settings-panel styles** — Flowing: frosted glass drawer panel; still: square FAB and theme cards; rapids: offset FAB hover translate; tsunami: asymmetric drawer
+- **Preset loading/skeleton styles** — Flowing: shadow on skeleton cards; still: square skeleton cards (no rounded corners)
+- **All 6 sections get preset coverage** — Features, CTA, footer, stats, testimonials, and team sections now each have still/flowing/rapids/tsunami/cascade preset-specific styles covering radius, shadow, and hover behavior
+
 ## [0.7.0] - 2026-03-24
 
 ### Added

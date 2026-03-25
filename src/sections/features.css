@@ -341,6 +341,61 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: soft shadow + depth on cards */
+  :root[data-preset="flowing"] .feature,
+  :root:not([data-preset]) .feature,
+  [data-preset="flowing"] .feature {
+    box-shadow: var(--shadow-xs);
+  }
+
+  :root[data-preset="flowing"] .feature:hover,
+  :root:not([data-preset]) .feature:hover,
+  [data-preset="flowing"] .feature:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Flowing: round icon container */
+  :root[data-preset="flowing"] .feature__icon,
+  :root:not([data-preset]) .feature__icon,
+  [data-preset="flowing"] .feature__icon {
+    border-radius: var(--radius-full);
+  }
+
+  /* Still: flat square cards */
+  [data-preset="still"] .feature {
+    --_feat-radius: 0;
+    border-width: 2px;
+  }
+
+  [data-preset="still"] .feature:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  [data-preset="still"] .feature__icon {
+    border-radius: 0;
+  }
+
+  /* Rapids: offset shadow on card hover */
+  [data-preset="rapids"] .feature:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--shadow-offset-hover, var(--shadow-md));
+  }
+
+  [data-preset="rapids"] .feature__icon {
+    border-radius: 0;
+  }
+
+  /* Tsunami: asymmetric card corners */
+  [data-preset="tsunami"] .feature {
+    --_feat-radius: var(--radius-asymmetric, 0 16px 0 0);
+  }
+
+
+  /* ========================================
      ACCESSIBILITY
      ======================================== */
 

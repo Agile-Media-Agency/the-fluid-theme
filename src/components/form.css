@@ -494,6 +494,46 @@
     color: var(--color-text);
   }
 
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: no shadow — border only, flat inputs */
+  [data-preset="still"] input:focus,
+  [data-preset="still"] textarea:focus,
+  [data-preset="still"] select:focus {
+    box-shadow: none;
+  }
+
+  /* Still: square fieldsets */
+  [data-preset="still"] fieldset.form-fieldset {
+    border-radius: 0;
+  }
+
+  /* Rapids: offset shadow on focus — hard, offset, neo-brutalist */
+  [data-preset="rapids"] input:focus,
+  [data-preset="rapids"] textarea:focus,
+  [data-preset="rapids"] select:focus {
+    box-shadow: var(--shadow-offset);
+    background-color: var(--color-background);
+  }
+
+  /* Rapids: square fieldsets */
+  [data-preset="rapids"] fieldset.form-fieldset {
+    border-radius: 0;
+    border-width: 2px;
+  }
+
+  /* Tsunami: asymmetric fieldset */
+  [data-preset="tsunami"] fieldset.form-fieldset {
+    border-radius: var(--radius-asymmetric, 0 16px 0 0);
+  }
+
+
+  /* ========================================
+     REDUCED MOTION
+     ======================================== */
+
   /* Accessibility: reduced motion */
   @media (prefers-reduced-motion: reduce) {
     input,

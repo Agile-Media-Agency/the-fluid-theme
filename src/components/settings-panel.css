@@ -564,6 +564,48 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: frosted glass drawer panel */
+  :root[data-preset="flowing"] .settings-drawer__panel,
+  :root:not([data-preset]) .settings-drawer__panel,
+  [data-preset="flowing"] .settings-drawer__panel {
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    background-color: oklch(from var(--color-surface-raised) l c h / 0.92);
+  }
+
+  /* Still: square FAB, square theme cards */
+  [data-preset="still"] .settings-fab {
+    border-radius: 0;
+  }
+
+  [data-preset="still"] .theme-card {
+    border-radius: 0;
+  }
+
+  [data-preset="still"] .palette-swatch {
+    border-radius: 0;
+  }
+
+  /* Rapids: offset shadow on FAB */
+  [data-preset="rapids"] .settings-fab:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--shadow-offset-hover, var(--shadow-xl));
+  }
+
+  [data-preset="rapids"] .settings-fab[aria-expanded="true"]:hover {
+    transform: rotate(60deg) translate(-3px, -3px);
+  }
+
+  /* Tsunami: asymmetric drawer */
+  [data-preset="tsunami"] .settings-drawer__panel {
+    border-start-start-radius: var(--radius-asymmetric, 0 24px 0 0);
+  }
+
+
+  /* ========================================
      RESPONSIVE ADJUSTMENTS
      ======================================== */
 

@@ -102,4 +102,34 @@
   .empty-state[data-size="lg"] .empty-state__title {
     font-size: var(--font-size-xl);
   }
+
+
+  /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: soft glow behind icon */
+  :root[data-preset="flowing"] .empty-state__icon,
+  :root:not([data-preset]) .empty-state__icon,
+  [data-preset="flowing"] .empty-state__icon {
+    box-shadow: 0 0 20px color-mix(in oklch, var(--accent) 15%, transparent);
+  }
+
+  /* Still: square icon container */
+  [data-preset="still"] .empty-state__icon {
+    border-radius: 0;
+  }
+
+  /* Rapids: bold offset icon container */
+  [data-preset="rapids"] .empty-state__icon {
+    border-radius: 0;
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-offset);
+    background: var(--color-background);
+  }
+
+  /* Tsunami: asymmetric icon container */
+  [data-preset="tsunami"] .empty-state__icon {
+    border-radius: var(--radius-asymmetric, 0 16px 0 0);
+  }
 }

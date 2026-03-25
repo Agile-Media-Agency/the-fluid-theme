@@ -114,6 +114,22 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: square clear button */
+  [data-preset="still"] .search-input__clear {
+    border-radius: 0;
+  }
+
+  /* Rapids: offset shadow on clear button hover */
+  [data-preset="rapids"] .search-input__clear:hover {
+    box-shadow: var(--shadow-offset);
+    border-radius: 0;
+  }
+
+
+  /* ========================================
      REDUCED MOTION
      ======================================== */
 

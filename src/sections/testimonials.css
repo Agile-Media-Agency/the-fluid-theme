@@ -239,6 +239,41 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: soft shadow on testimonial cards */
+  :root[data-preset="flowing"] .testimonial,
+  :root:not([data-preset]) .testimonial,
+  [data-preset="flowing"] .testimonial {
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Still: square testimonial cards */
+  [data-preset="still"] .testimonial {
+    --_testi-radius: 0;
+  }
+
+  /* Serene: extra rounded, softer */
+  [data-preset="serene"] .testimonial {
+    --_testi-radius: var(--radius-2xl, 1.5rem);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Rapids: offset shadow, hard edges */
+  [data-preset="rapids"] .testimonial {
+    --_testi-radius: 0;
+    border-width: 2px;
+    box-shadow: var(--shadow-offset);
+  }
+
+  /* Tsunami: asymmetric testimonial cards */
+  [data-preset="tsunami"] .testimonial {
+    --_testi-radius: var(--radius-asymmetric, 0 20px 0 0);
+  }
+
+
+  /* ========================================
      ACCESSIBILITY
      ======================================== */
 

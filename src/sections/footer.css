@@ -271,6 +271,37 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Flowing: stronger top border with ocean tint */
+  :root[data-preset="flowing"] .site-footer,
+  :root:not([data-preset]) .site-footer,
+  [data-preset="flowing"] .site-footer {
+    border-block-start-width: 1px;
+    border-block-start-color: color-mix(in oklch, var(--accent) 15%, var(--color-border-subtle));
+  }
+
+  /* Still: bold top border */
+  [data-preset="still"] .site-footer {
+    border-block-start-width: 3px;
+    border-block-start-color: var(--color-border);
+  }
+
+  /* Rapids: bold offset footer accent bar */
+  [data-preset="rapids"] .site-footer {
+    border-block-start-width: 4px;
+    border-block-start-color: var(--accent);
+  }
+
+  /* Tsunami: gradient top border */
+  [data-preset="tsunami"] .site-footer {
+    border-block-start: none;
+    box-shadow: 0 -4px 0 0 var(--accent);
+  }
+
+
+  /* ========================================
      ACCESSIBILITY
      ======================================== */
 
