@@ -23,7 +23,7 @@ Accessibility is a core value of The Fluid Theme, not an afterthought. These rul
 ## Motion
 
 - `prefers-reduced-motion: reduce` respected in every animated component
-- `[data-motion="still"]` disables all transitions entirely
+- `[data-preset="still"]` disables all transitions entirely
 - Spinners use pulse animation in reduced motion mode
 - Skeleton shimmer uses opacity fade in reduced motion mode
 

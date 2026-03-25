@@ -74,7 +74,7 @@ Grab the latest release from the [GitHub Releases](https://github.com/Agile-Medi
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid.min.css">
 
 <!-- Set your preferences -->
-<body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
+<body data-theme="dark" data-preset="cascade" data-palette="fluid" data-accent="1">
 
 <!-- Use semantic HTML -->
 <article class="card">
@@ -207,7 +207,7 @@ Control everything via HTML attributes:
 ```html
 <body
   data-theme="dark"      <!-- light | dark | auto -->
-  data-motion="cascade"  <!-- still | serene | stream | flowing | cascade | rapids | tsunami -->
+  data-preset="cascade"  <!-- still | serene | stream | flowing | cascade | rapids | tsunami -->
   data-palette="fluid"   <!-- fluid | morandi | bold | pastel | earth | mono | 80s | matrix | subtle | tsunami -->
   data-accent="1"        <!-- 1-6, selects from current palette -->
   data-contrast="normal" <!-- normal | subdued -->
@@ -234,7 +234,7 @@ Control everything via HTML attributes:
 - [x] **Phase 4: Documentation** — Getting started guide, installation, tutorials, image optimization guide
 - [x] **Phase 5: Distribution** — npm publish, CDN, Fluid Agent Kit for AI assistants
 
-**Current**: v0.5.0 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
+**Current**: v0.6.0 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.
 
 ## Browser Support
 
@@ -257,4 +257,4 @@ MIT — Use it, modify it, make it yours.
 
 ---
 
-**Version 0.5.0** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.
+**Version 0.6.0** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32 years of design experience.

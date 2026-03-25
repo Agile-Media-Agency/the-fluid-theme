@@ -397,25 +397,25 @@
      ======================================== */
 
   /* Still: no animations */
-  [data-motion="still"] .toast {
+  [data-preset="still"] .toast {
     animation: none;
   }
 
   /* Rapids: offset shadow */
-  [data-motion="rapids"] .toast {
+  [data-preset="rapids"] .toast {
     box-shadow: var(--shadow-offset);
   }
 
-  [data-motion="rapids"] .alert {
+  [data-preset="rapids"] .alert {
     border-inline-start-width: 4px;
   }
 
   /* Tsunami: asymmetric */
-  [data-motion="tsunami"] .toast {
+  [data-preset="tsunami"] .toast {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
 
-  [data-motion="tsunami"] .alert {
+  [data-preset="tsunami"] .alert {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
 

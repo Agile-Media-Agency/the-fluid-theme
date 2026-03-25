@@ -131,7 +131,7 @@
 
     // In Fluid palette, mark the motion-linked swatch as "auto"
     if (palette === 'fluid' && !current) {
-      const motion = document.documentElement.getAttribute('data-motion') || 'flowing';
+      const motion = document.documentElement.getAttribute('data-preset') || 'flowing';
       const motionToSwatch = {
         'still': '1',
         'serene': '2',
@@ -197,7 +197,7 @@
   // ========================================
 
   function setMotion(level) {
-    document.documentElement.setAttribute('data-motion', level);
+    document.documentElement.setAttribute('data-preset', level);
     localStorage.setItem('fluid-motion', level);
     updateMotionSelect();
 
@@ -221,7 +221,7 @@
 
   function updateMotionSelect() {
     const select = document.getElementById('motion-select');
-    const current = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const current = document.documentElement.getAttribute('data-preset') || 'flowing';
     if (select) {
       select.value = current;
     }
@@ -289,7 +289,7 @@
   };
 
   function updateThemeCards() {
-    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const currentMotion = document.documentElement.getAttribute('data-preset') || 'flowing';
     document.querySelectorAll('.theme-card').forEach(card => {
       if (card.dataset.themePreset === currentMotion) {
         card.setAttribute('data-active', '');
@@ -306,7 +306,7 @@
     const el = document.getElementById('nav-preset-name');
     if (!el) return;
 
-    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const currentMotion = document.documentElement.getAttribute('data-preset') || 'flowing';
     const name = presetDisplayNames[currentMotion] || currentMotion;
     el.textContent = name;
 
@@ -370,13 +370,13 @@
     // Reset to system/defaults
     document.documentElement.removeAttribute('data-theme');
     document.documentElement.removeAttribute('data-accent');
-    document.documentElement.removeAttribute('data-motion');
+    document.documentElement.removeAttribute('data-preset');
     document.documentElement.removeAttribute('data-palette');
     document.documentElement.removeAttribute('data-contrast');
 
     // Apply defaults
     document.documentElement.setAttribute('data-palette', 'fluid');
-    document.documentElement.setAttribute('data-motion', 'flowing');
+    document.documentElement.setAttribute('data-preset', 'flowing');
 
     // Check system preference for dark mode
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -543,7 +543,7 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     // Get motion style - if 'still', skip all animations
-    const motionStyle = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const motionStyle = document.documentElement.getAttribute('data-preset') || 'flowing';
     if (motionStyle === 'still') return;
 
     // Select both explicit [data-reveal] elements AND sections for auto-reveal
@@ -616,7 +616,7 @@
     // Motion intensity
     const savedMotion = localStorage.getItem('fluid-motion');
     if (savedMotion) {
-      document.documentElement.setAttribute('data-motion', savedMotion);
+      document.documentElement.setAttribute('data-preset', savedMotion);
     }
 
     // Scroll progress settings

@@ -277,7 +277,7 @@ When implementing action groups, agents MUST:
 - **No nested modals** — if a modal needs a sub-action, use inline content within the same modal or a step/tab pattern inside it. Never open a modal from a modal.
 - **Mobile:** All centered modals become bottom sheets below 40rem (Fluid Theme does this automatically in `modal.css` responsive section)
 - **Scroll lock** on `<body>` while modal is open
-- **Animation:** Entry animation respects the active motion preset. `[data-motion="still"]` disables all transitions. `prefers-reduced-motion: reduce` uses instant open/close.
+- **Animation:** Entry animation respects the active motion preset. `[data-preset="still"]` disables all transitions. `prefers-reduced-motion: reduce` uses instant open/close.
 
 ---
 

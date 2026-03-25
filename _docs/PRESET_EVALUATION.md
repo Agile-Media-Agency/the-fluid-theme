@@ -51,10 +51,10 @@ Current: 48px to 96px (2x range)
 
 **Recommendation**:
 ```css
-[data-motion="still"]   { --section-spacing: 24px; }   /* Tight, grid-like */
-[data-motion="serene"]  { --section-spacing: 160px; }  /* Luxurious breathing room */
-[data-motion="rapids"]  { --section-spacing: 16px; }   /* Dense, high-energy */
-[data-motion="tsunami"] { --section-spacing: 120px; }  /* Bold, dramatic */
+[data-preset="still"]   { --section-spacing: 24px; }   /* Tight, grid-like */
+[data-preset="serene"]  { --section-spacing: 160px; }  /* Luxurious breathing room */
+[data-preset="rapids"]  { --section-spacing: 16px; }   /* Dense, high-energy */
+[data-preset="tsunami"] { --section-spacing: 120px; }  /* Bold, dramatic */
 ```
 
 ### 2. No Font Personality
@@ -65,12 +65,12 @@ Current: All use system-ui (one font family)
 
 **Recommendation**:
 ```css
-[data-motion="still"]   { --font-body: 'SF Mono', monospace; }  /* Technical, precise */
-[data-motion="serene"]  { --font-body: 'Georgia', serif; }      /* Editorial, luxe */
-[data-motion="stream"]  { --font-body: 'Inter', sans-serif; }   /* Modern, clean */
-[data-motion="cascade"] { --font-body: 'Nunito', sans-serif; }  /* Friendly, rounded */
-[data-motion="rapids"]  { --font-body: 'Archivo', sans-serif; } /* Bold, condensed */
-[data-motion="tsunami"] { --font-body: 'Space Grotesk', sans-serif; } /* Geometric, impactful */
+[data-preset="still"]   { --font-body: 'SF Mono', monospace; }  /* Technical, precise */
+[data-preset="serene"]  { --font-body: 'Georgia', serif; }      /* Editorial, luxe */
+[data-preset="stream"]  { --font-body: 'Inter', sans-serif; }   /* Modern, clean */
+[data-preset="cascade"] { --font-body: 'Nunito', sans-serif; }  /* Friendly, rounded */
+[data-preset="rapids"]  { --font-body: 'Archivo', sans-serif; } /* Bold, condensed */
+[data-preset="tsunami"] { --font-body: 'Space Grotesk', sans-serif; } /* Geometric, impactful */
 ```
 
 ### 3. Border Radius Clustering
@@ -81,10 +81,10 @@ Current: Most presets use 8-16px radius (indistinguishable)
 
 **Recommendation**: Make radius a signature trait:
 ```css
-[data-motion="still"]   { --radius-md: 0; --radius-lg: 0; }          /* Sharp edges */
-[data-motion="serene"]  { --radius-md: 24px; --radius-lg: 40px; }    /* Soft, pillowy */
-[data-motion="cascade"] { --radius-md: 999px; --radius-lg: 999px; }  /* Full pills */
-[data-motion="tsunami"] { --radius-md: 4px 24px 4px 24px; }          /* Asymmetric */
+[data-preset="still"]   { --radius-md: 0; --radius-lg: 0; }          /* Sharp edges */
+[data-preset="serene"]  { --radius-md: 24px; --radius-lg: 40px; }    /* Soft, pillowy */
+[data-preset="cascade"] { --radius-md: 999px; --radius-lg: 999px; }  /* Full pills */
+[data-preset="tsunami"] { --radius-md: 4px 24px 4px 24px; }          /* Asymmetric */
 ```
 
 ### 4. Container Width Too Similar
@@ -95,15 +95,15 @@ Current: 1024-1280px for 5 of 7 presets
 
 **Recommendation**:
 ```css
-[data-motion="still"]   { --container-max: 600px; }  /* Narrow, focused */
-[data-motion="serene"]  { --container-max: 650px; }  /* Editorial column */
-[data-motion="stream"]  { --container-max: 90vw; }   /* Wide, tech dashboard */
-[data-motion="tsunami"] { --container-max: 100%; }   /* Edge-to-edge */
+[data-preset="still"]   { --container-max: 600px; }  /* Narrow, focused */
+[data-preset="serene"]  { --container-max: 650px; }  /* Editorial column */
+[data-preset="stream"]  { --container-max: 90vw; }   /* Wide, tech dashboard */
+[data-preset="tsunami"] { --container-max: 100%; }   /* Edge-to-edge */
 ```
 
 ### 5. Components Don't Vary Per-Preset
 
-Current: Only 4 components (button, card, accordion, loading) have `[data-motion="..."]` selectors.
+Current: Only 4 components (button, card, accordion, loading) have `[data-preset="..."]` selectors.
 
 **Problem**: 13 components (forms, nav, tables, modals, etc.) look identical across all presets.
 
@@ -144,7 +144,7 @@ The current system was designed for **additive customization** — users pick mo
 1. Add font-family overrides per preset in `tokens.css`
 2. Make spacing variations more dramatic (4-5x range)
 3. Make border-radius more distinct per preset
-4. Add `[data-motion="..."]` rules to 10 more components
+4. Add `[data-preset="..."]` rules to 10 more components
 5. Auto-link default palettes to motion presets (e.g., Rapids→Bold, Serene→Morandi)
 
 ### Option B: Create 3 New "Signature" Presets ✅ IMPLEMENTED
@@ -176,7 +176,7 @@ These presets demonstrate the vision of "same HTML, radically different themes" 
 **Architecture Change**:
 ```html
 <!-- Instead of independent attributes -->
-<body data-motion="rapids" data-palette="bold" data-accent="1">
+<body data-preset="rapids" data-palette="bold" data-accent="1">
 
 <!-- Single theme attribute -->
 <body data-theme="rapids">
@@ -192,7 +192,7 @@ These presets demonstrate the vision of "same HTML, radically different themes" 
 1. ✅ Add missing "Flowing" preset to homepage grid
 2. ⬜ Add font-family overrides to tokens.css for each preset
 3. ⬜ Increase spacing variation from 2x to 4x range
-4. ⬜ Add `[data-motion="..."]` rules to forms.css and hero.css
+4. ⬜ Add `[data-preset="..."]` rules to forms.css and hero.css
 5. ⬜ Create a default palette mapping per motion preset
 
 ### Experimental Branch

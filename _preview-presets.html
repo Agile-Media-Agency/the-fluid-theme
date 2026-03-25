@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.6.0 Preset Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load all preset fonts upfront for the comparison view -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400&family=Plus+Jakarta+Sans:wght@400;600;700&family=Nunito:wght@400;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500&family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/src/fluid.css">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background: #f0f0f0;
+    }
+
+    h1.page-title {
+      text-align: center;
+      font-size: 1.1rem;
+      font-family: system-ui;
+      font-weight: 600;
+      padding: 1rem;
+      margin: 0;
+      background: #222;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+
+    .preset-frame {
+      border-inline-end: 2px solid #ccc;
+    }
+
+    .preset-frame:last-child {
+      border-inline-end: none;
+    }
+
+    .preset-label {
+      font-family: monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 0.4rem;
+      background: #333;
+      color: #fff;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Each preset gets its own scoped iframe-like section */
+    .preset-demo {
+      padding: 1.5rem 1.25rem;
+      min-height: 340px;
+    }
+
+    /* Font overrides per preset block */
+    .demo-still    { font-family: system-ui, sans-serif; background: oklch(98.5% 0.004 250); }
+    .demo-serene   { font-family: 'EB Garamond', Georgia, serif; background: oklch(98% 0.007 60); }
+    .demo-stream   { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: oklch(99% 0.003 200); }
+    .demo-flowing  { font-family: 'DM Sans', system-ui, sans-serif; background: oklch(98.5% 0.006 230); }
+    .demo-cascade  { font-family: 'Nunito', system-ui, sans-serif; background: oklch(98.5% 0.005 280); }
+    .demo-rapids   { font-family: 'Space Grotesk', system-ui, sans-serif; background: oklch(99% 0.004 25); }
+    .demo-tsunami  { font-family: 'Barlow', system-ui, sans-serif; background: oklch(98% 0.007 250); }
+
+    .demo-h { margin: 0 0 0.4rem; line-height: 1.15; }
+    .demo-still    .demo-h { font-family: system-ui; font-size: 1.4rem; font-weight: 700; }
+    .demo-serene   .demo-h { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.8rem; font-weight: 400; font-style: italic; }
+    .demo-stream   .demo-h { font-family: 'Plus Jakarta Sans'; font-size: 1.4rem; font-weight: 700; }
+    .demo-flowing  .demo-h { font-family: 'Outfit'; font-size: 1.5rem; font-weight: 700; }
+    .demo-cascade  .demo-h { font-family: 'Nunito'; font-size: 1.5rem; font-weight: 700; }
+    .demo-rapids   .demo-h { font-family: 'Syne'; font-size: 1.5rem; font-weight: 800; }
+    .demo-tsunami  .demo-h { font-family: 'Bebas Neue'; font-size: 2rem; font-weight: 400; letter-spacing: 0.05em; }
+
+    .demo-p { font-size: 0.82rem; line-height: 1.6; color: #444; margin: 0 0 1rem; }
+    .demo-serene .demo-p { font-size: 0.9rem; line-height: 1.8; }
+    .demo-tsunami .demo-p { font-family: 'Barlow'; }
+
+    .demo-card {
+      border-radius: 4px;
+      padding: 0.75rem;
+      background: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      margin-block-end: 0.75rem;
+      font-size: 0.78rem;
+    }
+    .demo-still .demo-card    { border-radius: 0; border: 1.5px solid #bbb; box-shadow: none; }
+    .demo-serene .demo-card   { border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); background: oklch(99.5% 0.004 60); }
+    .demo-stream .demo-card   { border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .demo-flowing .demo-card  { border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+    .demo-cascade .demo-card  { border-radius: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.07); background: oklch(99.5% 0.003 280); }
+    .demo-rapids .demo-card   { border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.12); border-block-start: 2px solid #e05; }
+    .demo-tsunami .demo-card  { border-radius: 0; border-inline-start: 3px solid #336; background: oklch(99% 0.004 250); }
+
+    .demo-btn {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      background: #334;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+    .demo-still .demo-btn   { border-radius: 0; background: #222; font-family: system-ui; }
+    .demo-serene .demo-btn  { border-radius: 999px; background: oklch(45% 0.06 30); font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; }
+    .demo-stream .demo-btn  { border-radius: 8px; background: oklch(45% 0.12 200); }
+    .demo-flowing .demo-btn { border-radius: 10px; background: oklch(50% 0.12 230); font-family: 'Outfit'; }
+    .demo-cascade .demo-btn { border-radius: 999px; background: oklch(50% 0.15 280); font-family: 'Nunito'; }
+    .demo-rapids .demo-btn  { border-radius: 4px; background: oklch(45% 0.2 25); font-family: 'Syne'; letter-spacing: 0.05em; }
+    .demo-tsunami .demo-btn { border-radius: 0; background: oklch(20% 0.03 250); font-family: 'Bebas Neue'; letter-spacing: 0.15em; font-size: 0.8rem; }
+
+    .row2 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border-block-start: 2px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">v0.6.0 — Preset Comparison: Font + Background Character</h1>
+
+  <!-- Row 1: still / serene / stream / flowing / cascade -->
+  <div class="grid">
+    <div class="preset-frame">
+      <div class="preset-label">still</div>
+      <div class="preset-demo demo-still">
+        <h2 class="demo-h">Clean & Precise</h2>
+        <p class="demo-p">Swiss design. No ornament, no noise. Structure through typography and grid.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> cool slate<br>
+          <strong>Font:</strong> System UI
+        </div>
+        <button class="demo-btn">Take Action</button>
+      </div>
+    </div>
+    <div class="preset-frame">
+      <div class="preset-label">serene</div>
+      <div class="preset-demo demo-serene">
+        <h2 class="demo-h">Contemplative & Still</h2>
+        <p class="demo-p">Like gazing at water on a quiet morning. Slow, literary, meditative.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> warm cream<br>
+          <strong>Font:</strong> Cormorant Garamond
+        </div>
+        <button class="demo-btn">Read More</button>
+      </div>
+    </div>
+    <div class="preset-frame">
+      <div class="preset-label">stream</div>
+      <div class="preset-demo demo-stream">
+        <h2 class="demo-h">Clean & Modern</h2>
+        <p class="demo-p">Crisp SaaS energy. Clean, professional, everything in its place.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> clean cool<br>
+          <strong>Font:</strong> Plus Jakarta Sans
+        </div>
+        <button class="demo-btn">Get Started</button>
+      </div>
+    </div>
+    <div class="preset-frame">
+      <div class="preset-label">flowing ★ default</div>
+      <div class="preset-demo demo-flowing">
+        <h2 class="demo-h">Fluid & Natural</h2>
+        <p class="demo-p">The Fluid brand voice. Smooth, geometric, effortlessly modern.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> ocean breath<br>
+          <strong>Font:</strong> Outfit + DM Sans
+        </div>
+        <button class="demo-btn">Explore</button>
+      </div>
+    </div>
+    <div class="preset-frame">
+      <div class="preset-label">cascade</div>
+      <div class="preset-demo demo-cascade">
+        <h2 class="demo-h">Friendly & Warm</h2>
+        <p class="demo-p">Rounded, bouncy, approachable. Notion and Slack live here.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> soft lavender<br>
+          <strong>Font:</strong> Nunito
+        </div>
+        <button class="demo-btn">Let's Go!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: rapids / tsunami + 3 empty for comparison -->
+  <div class="row2">
+    <div class="preset-frame">
+      <div class="preset-label">rapids</div>
+      <div class="preset-demo demo-rapids">
+        <h2 class="demo-h">Bold & Athletic</h2>
+        <p class="demo-p">High energy. Stripe and Vercel energy. Everything is urgent and intentional.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> warm ember<br>
+          <strong>Font:</strong> Syne + Space Grotesk
+        </div>
+        <button class="demo-btn">LAUNCH NOW</button>
+      </div>
+    </div>
+    <div class="preset-frame">
+      <div class="preset-label">tsunami</div>
+      <div class="preset-demo demo-tsunami">
+        <h2 class="demo-h">CINEMATIC WAVE</h2>
+        <p class="demo-p">Maximum force. Hokusai energy. Every element lands with weight and intention.</p>
+        <div class="demo-card">
+          <strong>Background:</strong> deep navy<br>
+          <strong>Font:</strong> Bebas Neue + Barlow
+        </div>
+        <button class="demo-btn">ENTER THE WAVE</button>
+      </div>
+    </div>
+    <div class="preset-frame" style="background:#f5f5f5; padding: 1.5rem 1.25rem;">
+      <div style="font-family:monospace;font-size:0.72rem;color:#666;line-height:1.7;">
+        <strong style="color:#222;">What changed in v0.6.0</strong><br><br>
+        ✅ Each preset now has<br>
+        &nbsp;&nbsp;its own font pairing<br><br>
+        ✅ Backgrounds carry a<br>
+        &nbsp;&nbsp;hue identity in light mode<br><br>
+        ✅ Live preset switcher<br>
+        &nbsp;&nbsp;on demo pages<br><br>
+        ✅ Fonts load instantly<br>
+        &nbsp;&nbsp;on preset change<br><br>
+        ✅ <code>src/fonts/preset-fonts.css</code><br>
+        &nbsp;&nbsp;for npm users
+      </div>
+    </div>
+    <div class="preset-frame" style="background:#f5f5f5; padding: 1.5rem 1.25rem;">
+      <div style="font-family:monospace;font-size:0.72rem;color:#666;line-height:1.7;">
+        <strong style="color:#222;">Before v0.6.0</strong><br><br>
+        ❌ All presets used<br>
+        &nbsp;&nbsp;system-ui fallback<br><br>
+        ❌ All light-mode pages<br>
+        &nbsp;&nbsp;were pure white (#fff)<br><br>
+        ❌ Switching presets only<br>
+        &nbsp;&nbsp;changed motion timing<br><br>
+        ❌ No way to preview<br>
+        &nbsp;&nbsp;presets in the demo
+      </div>
+    </div>
+    <div class="preset-frame" style="background:#f5f5f5; padding: 1.5rem 1.25rem;">
+      <div style="font-family:monospace;font-size:0.72rem;color:#666;line-height:1.7;">
+        <strong style="color:#222;">Try it live</strong><br><br>
+        Open either demo page<br>
+        and use the preset<br>
+        switcher (top-right):<br><br>
+        <code>/examples/foundation.html</code><br><br>
+        <code>/examples/components.html</code><br><br>
+        Watch the background,<br>
+        typography, radius,<br>
+        shadows, and spacing<br>
+        all shift together.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

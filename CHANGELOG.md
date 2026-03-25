@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-03-24
+
+### BREAKING CHANGES
+
+- **`data-motion` renamed to `data-preset`** — The attribute that controls visual personality (fonts, radius, shadows, spacing, color tint) has been renamed from `data-motion` to `data-preset`. Update all `<html data-motion="...">` to `<html data-preset="...">` in your code.
+- **`data-motion` repurposed** — `data-motion` now controls animation speed only: `reduced` | `slow` | `default` | `fast`. It no longer controls visual design.
+
+### Added
+- **New `data-motion` animation speed system** — override animation timing independently of visual preset. Four values: `reduced` (0ms, accessibility), `slow` (1.5× base), `default` (no override), `fast` (0.5× base). `prefers-reduced-motion` always wins.
+- **Separation of concerns** — visual personality (`data-preset`) and animation timing (`data-motion`) are now orthogonal axes. Any combination is valid: `data-preset="rapids" data-motion="slow"` gives the bold Rapids design with deliberate, cinematic motion.
+
+### Migrating from 0.5.x
+
+```html
+<!-- Before -->
+<html data-motion="flowing">
+
+<!-- After -->
+<html data-preset="flowing">
+
+<!-- Optional: add animation speed override -->
+<html data-preset="flowing" data-motion="fast">
+```
+
+---
+
 ## [0.5.0] - 2026-03-24
 
 ### Added

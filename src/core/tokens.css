@@ -236,7 +236,7 @@
     /* ========================================
        MOTION INTENSITY - Water Themes
        Scale motion from calm to dynamic
-       Usage: <html data-motion="trickling">
+       Usage: <html data-preset="trickling">
        ======================================== */
 
     /* Note: --motion-scale and --motion-instant/fast/normal/slow removed (unused).
@@ -416,9 +416,9 @@
 
   /* --- STILL: Deep cool slate ---
      Mono palette, hue 250. Quiet, disciplined dark. */
-  [data-motion="still"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="still"],
-  [data-theme="dark"]:root[data-motion="still"] {
+  [data-preset="still"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="still"],
+  [data-theme="dark"]:root[data-preset="still"] {
     --color-background: oklch(12% 0.015 250);
     --color-surface: oklch(16% 0.015 250);
     --color-surface-raised: oklch(20% 0.015 250);
@@ -431,9 +431,9 @@
 
   /* --- SERENE: Warm deep taupe ---
      Morandi palette, hue 60. Like a dimly lit gallery. */
-  [data-motion="serene"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="serene"],
-  [data-theme="dark"]:root[data-motion="serene"] {
+  [data-preset="serene"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="serene"],
+  [data-theme="dark"]:root[data-preset="serene"] {
     --color-background: oklch(13% 0.015 60);
     --color-surface: oklch(17% 0.02 60);
     --color-surface-raised: oklch(21% 0.02 60);
@@ -446,9 +446,9 @@
 
   /* --- STREAM: Deep teal-gray ---
      Subtle palette, hue 200. Modern, cool, techy. */
-  [data-motion="stream"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="stream"],
-  [data-theme="dark"]:root[data-motion="stream"] {
+  [data-preset="stream"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="stream"],
+  [data-theme="dark"]:root[data-preset="stream"] {
     --color-background: oklch(12% 0.02 200);
     --color-surface: oklch(16% 0.02 200);
     --color-surface-raised: oklch(20% 0.02 200);
@@ -461,10 +461,10 @@
 
   /* --- FLOWING: Deep ocean blue (default) ---
      Fluid palette, hue 230. Like deep water at dusk. */
-  [data-motion="flowing"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="flowing"],
-  [data-theme="dark"]:root[data-motion="flowing"],
-  [data-theme="dark"]:root:not([data-motion]) {
+  [data-preset="flowing"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="flowing"],
+  [data-theme="dark"]:root[data-preset="flowing"],
+  [data-theme="dark"]:root:not([data-preset]) {
     --color-background: oklch(13% 0.025 230);
     --color-surface: oklch(17% 0.025 230);
     --color-surface-raised: oklch(21% 0.025 230);
@@ -477,9 +477,9 @@
 
   /* --- CASCADE: Deep lavender ---
      Pastel palette, hue 280. Warm purple twilight. */
-  [data-motion="cascade"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="cascade"],
-  [data-theme="dark"]:root[data-motion="cascade"] {
+  [data-preset="cascade"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="cascade"],
+  [data-theme="dark"]:root[data-preset="cascade"] {
     --color-background: oklch(14% 0.02 280);
     --color-surface: oklch(18% 0.025 280);
     --color-surface-raised: oklch(22% 0.025 280);
@@ -492,9 +492,9 @@
 
   /* --- RAPIDS: Deep warm ember ---
      Bold palette, hue 25. Smoldering, aggressive, warm. */
-  [data-motion="rapids"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="rapids"],
-  [data-theme="dark"]:root[data-motion="rapids"] {
+  [data-preset="rapids"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="rapids"],
+  [data-theme="dark"]:root[data-preset="rapids"] {
     --color-background: oklch(11% 0.03 25);
     --color-surface: oklch(15% 0.03 25);
     --color-surface-raised: oklch(19% 0.03 25);
@@ -507,9 +507,9 @@
 
   /* --- TSUNAMI: Deepest navy abyss ---
      Tsunami palette, hue 250. Ocean trench depth. */
-  [data-motion="tsunami"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="tsunami"],
-  [data-theme="dark"]:root[data-motion="tsunami"] {
+  [data-preset="tsunami"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="tsunami"],
+  [data-theme="dark"]:root[data-preset="tsunami"] {
     --color-background: oklch(10% 0.04 250);
     --color-surface: oklch(14% 0.04 250);
     --color-surface-raised: oklch(18% 0.04 250);
@@ -553,8 +553,65 @@
 
 
   /* ========================================
-     MOTION INTENSITY PRESETS - Water Themes
-     Apply to root: <html data-motion="flowing">
+     DATA-MOTION: Animation Speed Override
+     Apply to any element: <html data-motion="slow">
+     or scope to a section: <section data-motion="fast">
+
+     data-motion controls ONLY animation timing.
+     It does not change fonts, colors, radius, or layout.
+     Use data-preset for visual personality.
+
+     Values:
+       reduced  — all durations 0ms (accessibility override)
+       slow     — 1.5× base durations (cinematic, deliberate)
+       default  — use preset's own timing (no override)
+       fast     — 0.5× base durations (snappy, high-energy)
+     ======================================== */
+
+  [data-motion="reduced"] {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --duration-slowest: 0ms;
+  }
+
+  [data-motion="slow"] {
+    --duration-instant: calc(137ms * 1.5);
+    --duration-fast: calc(var(--motion-base) * 0.73 * 1.5);
+    --duration-normal: calc(var(--motion-base) * 1.5);
+    --duration-slow: calc(var(--motion-base) * 1.37 * 1.5);
+    --duration-slower: calc(var(--motion-base) * 1.73 * 1.5);
+    --duration-slowest: calc(var(--motion-base) * 2.37 * 1.5);
+  }
+
+  [data-motion="fast"] {
+    --duration-instant: calc(137ms * 0.5);
+    --duration-fast: calc(var(--motion-base) * 0.73 * 0.5);
+    --duration-normal: calc(var(--motion-base) * 0.5);
+    --duration-slow: calc(var(--motion-base) * 1.37 * 0.5);
+    --duration-slower: calc(var(--motion-base) * 1.73 * 0.5);
+    --duration-slowest: calc(var(--motion-base) * 2.37 * 0.5);
+  }
+
+  /* prefers-reduced-motion always wins — layer order ensures this */
+  @media (prefers-reduced-motion: reduce) {
+    [data-motion="slow"],
+    [data-motion="fast"] {
+      --duration-instant: 0ms;
+      --duration-fast: 0ms;
+      --duration-normal: 0ms;
+      --duration-slow: 0ms;
+      --duration-slower: 0ms;
+      --duration-slowest: 0ms;
+    }
+  }
+
+
+  /* ========================================
+     DATA-PRESET: Visual Personality Presets - Water Themes
+     Apply to root: <html data-preset="flowing">
 
      Each level defines:
      - Timing (durations)
@@ -568,8 +625,8 @@
      For users who prefer no motion or maximum performance.
      Layout: Swiss design, structured, grid-based, minimal decoration.
      Character: Precise, no-nonsense, Müller-Brockmann. */
-  :root[data-motion="still"],
-  [data-motion="still"] {
+  :root[data-preset="still"],
+  [data-preset="still"] {
     --motion-scale: 0;
     --duration-instant: 0ms;
     --duration-fast: 0ms;
@@ -627,8 +684,8 @@
      Meditative, contemplative motion.
      Layout: Generous whitespace, classical proportions, soft edges.
      Character: Classical, literary, spa-like, timeless. */
-  :root[data-motion="serene"],
-  [data-motion="serene"] {
+  :root[data-preset="serene"],
+  [data-preset="serene"] {
     --motion-scale: 0.3;
     --duration-instant: 200ms;
     --duration-fast: 600ms;
@@ -689,8 +746,8 @@
      Quick, subtle feedback for interactions.
      Layout: Compact, efficient, subtle styling.
      Character: Understated, utility-first, developer-friendly. */
-  :root[data-motion="trickling"],
-  [data-motion="trickling"] {
+  :root[data-preset="trickling"],
+  [data-preset="trickling"] {
     --motion-scale: 0.5;
     --duration-fast: 100ms;
     --duration-normal: 175ms;
@@ -728,8 +785,8 @@
      Modern, tech-forward feel.
      Layout: Clean lines, horizontal emphasis, full-width.
      Character: Open, approachable, tech-forward, SaaS-like. */
-  :root[data-motion="stream"],
-  [data-motion="stream"] {
+  :root[data-preset="stream"],
+  [data-preset="stream"] {
     --motion-scale: 0.7;
     --duration-fast: 150ms;
     --duration-normal: 300ms;
@@ -780,9 +837,9 @@
      The default, balanced motion style.
      Layout: Balanced, organic, versatile.
      Character: Friendly, professional, the "just right" preset. */
-  :root[data-motion="flowing"],
-  [data-motion="flowing"],
-  :root:not([data-motion]) {
+  :root[data-preset="flowing"],
+  [data-preset="flowing"],
+  :root:not([data-preset]) {
     --motion-scale: 1;
     --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
@@ -831,8 +888,8 @@
      Playful, friendly, staggered animations.
      Layout: Rounded, warm, approachable, bubbly.
      Character: Rounded, warm, Notion/Slack vibes. */
-  :root[data-motion="cascade"],
-  [data-motion="cascade"] {
+  :root[data-preset="cascade"],
+  [data-preset="cascade"] {
     --motion-scale: 1.2;
     --duration-fast: 200ms;
     --duration-normal: 350ms;
@@ -881,8 +938,8 @@
      Energetic, bouncy, with overshoot.
      Layout: Compact, bold, athletic.
      Character: Athletic, bold, Stripe/Vercel energy. */
-  :root[data-motion="rapids"],
-  [data-motion="rapids"] {
+  :root[data-preset="rapids"],
+  [data-preset="rapids"] {
     --motion-scale: 1.5;
     --duration-fast: 250ms;
     --duration-normal: 450ms;
@@ -939,8 +996,8 @@
      For bold, attention-grabbing interfaces.
      Layout: Bold, edge-to-edge, asymmetric corners.
      Character: Imposing, cinematic, Hokusai wave. */
-  :root[data-motion="tsunami"],
-  [data-motion="tsunami"] {
+  :root[data-preset="tsunami"],
+  [data-preset="tsunami"] {
     --motion-scale: 2;
     --duration-fast: 350ms;
     --duration-normal: 600ms;
@@ -1195,7 +1252,7 @@
 
 
   /* --- Still: Instant cut --- */
-  :root[data-motion="still"] {
+  :root[data-preset="still"] {
     &::view-transition-old(root),
     &::view-transition-new(root) {
       animation: none;
@@ -1204,7 +1261,7 @@
 
 
   /* --- Serene: Slow crossfade (Ken Burns) --- */
-  :root[data-motion="serene"] {
+  :root[data-preset="serene"] {
     &::view-transition-old(root) {
       animation: var(--duration-slowest) var(--ease-fluid) both kenburns-out;
     }
@@ -1216,7 +1273,7 @@
 
 
   /* --- Trickling: Quick subtle fade --- */
-  :root[data-motion="trickling"] {
+  :root[data-preset="trickling"] {
     &::view-transition-old(root) {
       animation: var(--duration-slow) var(--ease-fluid) both fade-out;
     }
@@ -1230,7 +1287,7 @@
   /* --- Rapids: Fluid dynamics effect ---
      New content pushes up from bottom, overlaps old briefly,
      friction slows it, then it gains traction and pulls old content away */
-  :root[data-motion="rapids"] {
+  :root[data-preset="rapids"] {
     &::view-transition-old(root) {
       animation: var(--duration-slowest) cubic-bezier(0.4, 0, 0.6, 1) both rapids-old;
     }
@@ -1242,7 +1299,7 @@
 
 
   /* --- Tsunami: Diagonal wave crash --- */
-  :root[data-motion="tsunami"] {
+  :root[data-preset="tsunami"] {
     &::view-transition-old(root) {
       animation: var(--duration-slower) var(--ease-settle) both wave-out;
     }
@@ -1262,8 +1319,8 @@
      Monospace typography, zero decoration, grid-locked.
      Inspired by Swiss design and brutalist architecture.
      For: Developer portfolios, tech products, manifestos */
-  :root[data-motion="brutalist"],
-  [data-motion="brutalist"] {
+  :root[data-preset="brutalist"],
+  [data-preset="brutalist"] {
     /* No motion - instant, mechanical */
     --motion-scale: 0;
     --duration-instant: 0ms;
@@ -1319,8 +1376,8 @@
   }
 
   /* Brutalist dark mode */
-  [data-motion="brutalist"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="brutalist"] {
+  [data-preset="brutalist"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="brutalist"] {
     --color-text: var(--white);
     --color-background: var(--black);
     --color-border: var(--white);
@@ -1335,8 +1392,8 @@
      Serif typography, generous whitespace, classical proportions.
      Inspired by high-end magazines and book design.
      For: Magazines, blogs, luxury brands, essays */
-  :root[data-motion="editorial"],
-  [data-motion="editorial"] {
+  :root[data-preset="editorial"],
+  [data-preset="editorial"] {
     /* Very slow, contemplative motion */
     --motion-scale: 0.2;
     --duration-instant: 300ms;
@@ -1392,8 +1449,8 @@
   }
 
   /* Editorial dark mode - ink on paper feel */
-  [data-motion="editorial"][data-theme="dark"],
-  [data-theme="dark"] [data-motion="editorial"] {
+  [data-preset="editorial"][data-theme="dark"],
+  [data-theme="dark"] [data-preset="editorial"] {
     --color-text: oklch(90% 0.01 60);
     --color-text-muted: oklch(70% 0.01 60);
     --color-background: oklch(12% 0.01 60);
@@ -1407,8 +1464,8 @@
      Geometric sans-serif, dark backgrounds, glowing accents.
      Inspired by cyberpunk, gaming, night clubs.
      For: Gaming, tech startups, entertainment, events */
-  :root[data-motion="neon"],
-  [data-motion="neon"] {
+  :root[data-preset="neon"],
+  [data-preset="neon"] {
     /* Fast, snappy, energetic motion */
     --motion-scale: 1.8;
     --duration-instant: 80ms;
@@ -1470,8 +1527,8 @@
   }
 
   /* Neon "light mode" - inverted but still vibrant */
-  [data-motion="neon"][data-theme="light"],
-  [data-theme="light"] [data-motion="neon"] {
+  [data-preset="neon"][data-theme="light"],
+  [data-theme="light"] [data-preset="neon"] {
     --color-text: oklch(15% 0.02 280);
     --color-background: oklch(98% 0.01 280);
     --color-surface: oklch(95% 0.02 280);
@@ -1484,7 +1541,7 @@
   /* --- Signature Preset Page Transitions --- */
 
   /* Brutalist: Hard cut, no transition */
-  :root[data-motion="brutalist"] {
+  :root[data-preset="brutalist"] {
     &::view-transition-old(root),
     &::view-transition-new(root) {
       animation: none;
@@ -1502,7 +1559,7 @@
     to { opacity: 1; }
   }
 
-  :root[data-motion="editorial"] {
+  :root[data-preset="editorial"] {
     &::view-transition-old(root) {
       animation: 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) both editorial-fade-out;
     }
@@ -1526,7 +1583,7 @@
     100% { opacity: 1; transform: scale(1); filter: brightness(1); }
   }
 
-  :root[data-motion="neon"] {
+  :root[data-preset="neon"] {
     &::view-transition-old(root) {
       animation: 280ms cubic-bezier(0.34, 1.56, 0.64, 1) both neon-out;
     }
@@ -1644,9 +1701,9 @@
 
 /* --- STILL subdued: Cool gray, muted slate ---
    Hue 250, very low chroma. Whisper-quiet. */
-[data-motion="still"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="still"],
-[data-contrast="subdued"]:root[data-motion="still"] {
+[data-preset="still"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="still"],
+[data-contrast="subdued"]:root[data-preset="still"] {
   --color-text: oklch(35% 0.01 250);
   --color-text-muted: oklch(48% 0.01 250);
   --color-text-subtle: oklch(58% 0.008 250);
@@ -1657,9 +1714,9 @@
   --color-border-subtle: oklch(87% 0.008 250);
 }
 
-[data-theme="dark"][data-motion="still"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="still"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="still"] {
+[data-theme="dark"][data-preset="still"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="still"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="still"] {
   --color-text: oklch(75% 0.01 250);
   --color-text-muted: oklch(55% 0.008 250);
   --color-text-subtle: oklch(45% 0.008 250);
@@ -1673,9 +1730,9 @@
 
 /* --- SERENE subdued: Warm taupe cream ---
    Hue 60, low chroma. Like aged linen. */
-[data-motion="serene"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="serene"],
-[data-contrast="subdued"]:root[data-motion="serene"] {
+[data-preset="serene"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="serene"],
+[data-contrast="subdued"]:root[data-preset="serene"] {
   --color-text: oklch(35% 0.015 60);
   --color-text-muted: oklch(48% 0.012 60);
   --color-text-subtle: oklch(58% 0.01 60);
@@ -1686,9 +1743,9 @@
   --color-border-subtle: oklch(87% 0.01 60);
 }
 
-[data-theme="dark"][data-motion="serene"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="serene"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="serene"] {
+[data-theme="dark"][data-preset="serene"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="serene"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="serene"] {
   --color-text: oklch(75% 0.01 60);
   --color-text-muted: oklch(55% 0.01 60);
   --color-text-subtle: oklch(45% 0.008 60);
@@ -1702,9 +1759,9 @@
 
 /* --- TRICKLING subdued: Neutral gray-blue ---
    Hue 190, minimal chroma. Understated, efficient. */
-[data-motion="trickling"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="trickling"],
-[data-contrast="subdued"]:root[data-motion="trickling"] {
+[data-preset="trickling"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="trickling"],
+[data-contrast="subdued"]:root[data-preset="trickling"] {
   --color-text: oklch(35% 0.01 190);
   --color-text-muted: oklch(48% 0.008 190);
   --color-text-subtle: oklch(58% 0.006 190);
@@ -1715,9 +1772,9 @@
   --color-border-subtle: oklch(87% 0.008 190);
 }
 
-[data-theme="dark"][data-motion="trickling"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="trickling"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="trickling"] {
+[data-theme="dark"][data-preset="trickling"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="trickling"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="trickling"] {
   --color-text: oklch(75% 0.008 190);
   --color-text-muted: oklch(55% 0.006 190);
   --color-text-subtle: oklch(45% 0.006 190);
@@ -1731,9 +1788,9 @@
 
 /* --- STREAM subdued: Cool teal mist ---
    Hue 200, low chroma. Modern, soft tech. */
-[data-motion="stream"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="stream"],
-[data-contrast="subdued"]:root[data-motion="stream"] {
+[data-preset="stream"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="stream"],
+[data-contrast="subdued"]:root[data-preset="stream"] {
   --color-text: oklch(35% 0.012 200);
   --color-text-muted: oklch(48% 0.01 200);
   --color-text-subtle: oklch(58% 0.008 200);
@@ -1744,9 +1801,9 @@
   --color-border-subtle: oklch(87% 0.01 200);
 }
 
-[data-theme="dark"][data-motion="stream"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="stream"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="stream"] {
+[data-theme="dark"][data-preset="stream"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="stream"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="stream"] {
   --color-text: oklch(75% 0.01 200);
   --color-text-muted: oklch(55% 0.008 200);
   --color-text-subtle: oklch(45% 0.008 200);
@@ -1760,10 +1817,10 @@
 
 /* --- FLOWING subdued: Soft ocean blue (default) ---
    Hue 230, low chroma. Calm water at rest. */
-[data-motion="flowing"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="flowing"],
-[data-contrast="subdued"]:root[data-motion="flowing"],
-[data-contrast="subdued"]:root:not([data-motion]) {
+[data-preset="flowing"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="flowing"],
+[data-contrast="subdued"]:root[data-preset="flowing"],
+[data-contrast="subdued"]:root:not([data-preset]) {
   --color-text: oklch(35% 0.015 230);
   --color-text-muted: oklch(48% 0.012 230);
   --color-text-subtle: oklch(58% 0.01 230);
@@ -1774,10 +1831,10 @@
   --color-border-subtle: oklch(87% 0.01 230);
 }
 
-[data-theme="dark"][data-motion="flowing"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="flowing"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="flowing"],
-[data-theme="dark"][data-contrast="subdued"]:root:not([data-motion]) {
+[data-theme="dark"][data-preset="flowing"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="flowing"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="flowing"],
+[data-theme="dark"][data-contrast="subdued"]:root:not([data-preset]) {
   --color-text: oklch(75% 0.01 220);
   --color-text-muted: oklch(55% 0.008 220);
   --color-text-subtle: oklch(45% 0.008 220);
@@ -1791,9 +1848,9 @@
 
 /* --- CASCADE subdued: Soft lavender haze ---
    Hue 280, low chroma. Gentle twilight. */
-[data-motion="cascade"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="cascade"],
-[data-contrast="subdued"]:root[data-motion="cascade"] {
+[data-preset="cascade"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="cascade"],
+[data-contrast="subdued"]:root[data-preset="cascade"] {
   --color-text: oklch(35% 0.012 280);
   --color-text-muted: oklch(48% 0.01 280);
   --color-text-subtle: oklch(58% 0.008 280);
@@ -1804,9 +1861,9 @@
   --color-border-subtle: oklch(87% 0.01 280);
 }
 
-[data-theme="dark"][data-motion="cascade"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="cascade"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="cascade"] {
+[data-theme="dark"][data-preset="cascade"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="cascade"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="cascade"] {
   --color-text: oklch(75% 0.008 280);
   --color-text-muted: oklch(55% 0.008 280);
   --color-text-subtle: oklch(45% 0.006 280);
@@ -1820,9 +1877,9 @@
 
 /* --- RAPIDS subdued: Warm muted ember ---
    Hue 25, low chroma. Banked coals. */
-[data-motion="rapids"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="rapids"],
-[data-contrast="subdued"]:root[data-motion="rapids"] {
+[data-preset="rapids"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="rapids"],
+[data-contrast="subdued"]:root[data-preset="rapids"] {
   --color-text: oklch(35% 0.015 25);
   --color-text-muted: oklch(48% 0.012 25);
   --color-text-subtle: oklch(58% 0.01 25);
@@ -1833,9 +1890,9 @@
   --color-border-subtle: oklch(87% 0.01 25);
 }
 
-[data-theme="dark"][data-motion="rapids"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="rapids"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="rapids"] {
+[data-theme="dark"][data-preset="rapids"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="rapids"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="rapids"] {
   --color-text: oklch(75% 0.01 25);
   --color-text-muted: oklch(55% 0.008 25);
   --color-text-subtle: oklch(45% 0.008 25);
@@ -1849,9 +1906,9 @@
 
 /* --- TSUNAMI subdued: Deep muted navy ---
    Hue 250, low chroma. Quiet ocean depth. */
-[data-motion="tsunami"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="tsunami"],
-[data-contrast="subdued"]:root[data-motion="tsunami"] {
+[data-preset="tsunami"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="tsunami"],
+[data-contrast="subdued"]:root[data-preset="tsunami"] {
   --color-text: oklch(35% 0.015 250);
   --color-text-muted: oklch(48% 0.012 250);
   --color-text-subtle: oklch(58% 0.01 250);
@@ -1862,9 +1919,9 @@
   --color-border-subtle: oklch(87% 0.01 250);
 }
 
-[data-theme="dark"][data-motion="tsunami"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="tsunami"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="tsunami"] {
+[data-theme="dark"][data-preset="tsunami"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="tsunami"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="tsunami"] {
   --color-text: oklch(75% 0.012 200);
   --color-text-muted: oklch(55% 0.01 200);
   --color-text-subtle: oklch(45% 0.008 200);
@@ -1878,9 +1935,9 @@
 
 /* --- BRUTALIST subdued: High-mid contrast ---
    Pure achromatic. Less stark than default but still bold. */
-[data-motion="brutalist"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="brutalist"],
-[data-contrast="subdued"]:root[data-motion="brutalist"] {
+[data-preset="brutalist"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="brutalist"],
+[data-contrast="subdued"]:root[data-preset="brutalist"] {
   --color-text: oklch(20% 0 0);
   --color-text-muted: oklch(40% 0 0);
   --color-text-subtle: oklch(55% 0 0);
@@ -1891,9 +1948,9 @@
   --color-border-subtle: oklch(75% 0 0);
 }
 
-[data-theme="dark"][data-motion="brutalist"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="brutalist"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="brutalist"] {
+[data-theme="dark"][data-preset="brutalist"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="brutalist"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="brutalist"] {
   --color-text: oklch(80% 0 0);
   --color-text-muted: oklch(60% 0 0);
   --color-text-subtle: oklch(45% 0 0);
@@ -1907,9 +1964,9 @@
 
 /* --- EDITORIAL subdued: Warm paper muted ---
    Hue 50-60, low chroma. Old library ambience. */
-[data-motion="editorial"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="editorial"],
-[data-contrast="subdued"]:root[data-motion="editorial"] {
+[data-preset="editorial"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="editorial"],
+[data-contrast="subdued"]:root[data-preset="editorial"] {
   --color-text: oklch(35% 0.015 50);
   --color-text-muted: oklch(50% 0.012 50);
   --color-text-subtle: oklch(60% 0.01 50);
@@ -1920,9 +1977,9 @@
   --color-border-subtle: oklch(87% 0.01 60);
 }
 
-[data-theme="dark"][data-motion="editorial"][data-contrast="subdued"],
-[data-theme="dark"][data-contrast="subdued"] [data-motion="editorial"],
-[data-theme="dark"][data-contrast="subdued"]:root[data-motion="editorial"] {
+[data-theme="dark"][data-preset="editorial"][data-contrast="subdued"],
+[data-theme="dark"][data-contrast="subdued"] [data-preset="editorial"],
+[data-theme="dark"][data-contrast="subdued"]:root[data-preset="editorial"] {
   --color-text: oklch(75% 0.008 60);
   --color-text-muted: oklch(55% 0.008 60);
   --color-text-subtle: oklch(45% 0.006 60);
@@ -1936,9 +1993,9 @@
 
 /* --- NEON subdued: Muted glow ---
    Hue 280, reduced chroma. Neon behind frosted glass. */
-[data-motion="neon"][data-contrast="subdued"],
-[data-contrast="subdued"] [data-motion="neon"],
-[data-contrast="subdued"]:root[data-motion="neon"] {
+[data-preset="neon"][data-contrast="subdued"],
+[data-contrast="subdued"] [data-preset="neon"],
+[data-contrast="subdued"]:root[data-preset="neon"] {
   /* Neon defaults dark, so light subdued is unusual but supported */
   --color-text: oklch(35% 0.015 280);
   --color-text-muted: oklch(50% 0.012 280);
@@ -1957,8 +2014,8 @@
 }
 
 /* Neon dark subdued (the more common case) */
-[data-motion="neon"][data-contrast="subdued"]:not([data-theme="light"]),
-[data-contrast="subdued"]:root[data-motion="neon"]:not([data-theme="light"]) {
+[data-preset="neon"][data-contrast="subdued"]:not([data-theme="light"]),
+[data-contrast="subdued"]:root[data-preset="neon"]:not([data-theme="light"]) {
   --color-text: oklch(80% 0.01 280);
   --color-text-muted: oklch(60% 0.015 280);
   --color-text-subtle: oklch(45% 0.01 280);
@@ -1988,28 +2045,28 @@
    Each motion style has its natural water color. */
 
 /* Motion-to-color mapping for Fluid palette */
-[data-palette="fluid"][data-motion="still"],
-[data-palette="fluid"]:not([data-motion]) {
+[data-palette="fluid"][data-preset="still"],
+[data-palette="fluid"]:not([data-preset]) {
   --palette-accent-1: oklch(55% 0.02 250); /* Slate gray - still water */
 }
 
-[data-palette="fluid"][data-motion="serene"] {
+[data-palette="fluid"][data-preset="serene"] {
   --palette-accent-1: oklch(65% 0.12 195); /* Soft teal - calm lake */
 }
 
-[data-palette="fluid"][data-motion="trickling"] {
+[data-palette="fluid"][data-preset="trickling"] {
   --palette-accent-1: oklch(70% 0.14 210); /* Light cyan - gentle stream */
 }
 
-[data-palette="fluid"][data-motion="flowing"] {
+[data-palette="fluid"][data-preset="flowing"] {
   --palette-accent-1: oklch(60% 0.18 240); /* Medium blue - steady river */
 }
 
-[data-palette="fluid"][data-motion="rapids"] {
+[data-palette="fluid"][data-preset="rapids"] {
   --palette-accent-1: oklch(55% 0.15 200); /* Deep teal - whitewater */
 }
 
-[data-palette="fluid"][data-motion="tsunami"] {
+[data-palette="fluid"][data-preset="tsunami"] {
   --palette-accent-1: oklch(40% 0.15 260); /* Deep navy - Hokusai wave */
 }
 
@@ -2377,7 +2434,7 @@
    ======================================== */
 
 /* Still: Clean white/near-white with subtle gray alternation */
-[data-motion="still"] {
+[data-preset="still"] {
   --section-1: var(--color-background);
   --section-2: oklch(from var(--color-background) calc(l - 0.02) 0.01 250);
   --section-3: var(--color-background);
@@ -2385,7 +2442,7 @@
 }
 
 /* Serene: Warm cream tones, editorial feel */
-[data-motion="serene"] {
+[data-preset="serene"] {
   --section-1: oklch(from var(--color-background) l 0.01 60);
   --section-2: oklch(from var(--color-background) calc(l - 0.02) 0.02 70);
   --section-3: oklch(from var(--color-background) l 0.015 50);
@@ -2393,7 +2450,7 @@
 }
 
 /* Stream: Cool, minimal alternation */
-[data-motion="stream"] {
+[data-preset="stream"] {
   --section-1: var(--color-background);
   --section-2: color-mix(in oklch, var(--accent) 4%, var(--color-background));
   --section-3: var(--color-background);
@@ -2401,7 +2458,7 @@
 }
 
 /* Flowing: Balanced, water-inspired blues */
-[data-motion="flowing"] {
+[data-preset="flowing"] {
   --section-1: var(--color-background);
   --section-2: color-mix(in oklch, var(--accent) 6%, var(--color-background));
   --section-3: oklch(from var(--color-background) calc(l - 0.01) 0.02 220);
@@ -2409,7 +2466,7 @@
 }
 
 /* Cascade: Soft pastel alternation */
-[data-motion="cascade"] {
+[data-preset="cascade"] {
   --section-1: var(--color-background);
   --section-2: color-mix(in oklch, var(--accent) 8%, var(--color-background));
   --section-3: oklch(from var(--color-background) l 0.03 180);
@@ -2417,7 +2474,7 @@
 }
 
 /* Rapids: Bold, energetic color bands using palette backgrounds */
-[data-motion="rapids"] {
+[data-preset="rapids"] {
   --section-1: var(--bg-light);
   --section-2: var(--bg-neutral);
   --section-3: var(--color-background);
@@ -2425,7 +2482,7 @@
 }
 
 /* Tsunami: Dramatic deep ocean sections with strong hierarchy */
-[data-motion="tsunami"] {
+[data-preset="tsunami"] {
   --section-1: var(--bg-neutral);
   --section-2: var(--bg-dark);
   --section-3: var(--bg-light);
@@ -2433,7 +2490,7 @@
 }
 
 /* Brutalist: Stark black/white alternation, no softness */
-[data-motion="brutalist"] {
+[data-preset="brutalist"] {
   --section-1: var(--color-background);
   --section-2: var(--color-border);
   --section-3: var(--color-background);
@@ -2441,7 +2498,7 @@
 }
 
 /* Editorial: Warm, subtle cream variations */
-[data-motion="editorial"] {
+[data-preset="editorial"] {
   --section-1: oklch(98% 0.01 60);
   --section-2: oklch(96% 0.015 65);
   --section-3: oklch(97% 0.01 55);
@@ -2449,7 +2506,7 @@
 }
 
 /* Neon: Dark sections with subtle purple variation */
-[data-motion="neon"] {
+[data-preset="neon"] {
   --section-1: oklch(8% 0.02 280);
   --section-2: oklch(10% 0.03 290);
   --section-3: oklch(6% 0.02 270);

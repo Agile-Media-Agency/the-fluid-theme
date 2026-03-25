@@ -128,14 +128,14 @@ nav: foundation
 </div>
 <script>
   function setPreset(preset) {
-    document.documentElement.setAttribute('data-motion', preset);
+    document.documentElement.setAttribute('data-preset', preset);
     document.querySelectorAll('#preset-switcher button').forEach(function(btn) {
       btn.removeAttribute('data-active');
       if (btn.textContent.toLowerCase() === preset) btn.setAttribute('data-active', '');
     });
   }
   // Highlight the current active preset button on load
-  var current = document.documentElement.getAttribute('data-motion') || 'flowing';
+  var current = document.documentElement.getAttribute('data-preset') || 'flowing';
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('#preset-switcher button').forEach(function(btn) {
       if (btn.textContent.toLowerCase() === current) btn.setAttribute('data-active', '');

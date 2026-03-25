@@ -17,7 +17,7 @@ Every Fluid page starts with a standard HTML document that links to `fluid.css`.
   <link rel="stylesheet" href="path/to/src/fluid.css">
   <title>My First Fluid Page</title>
 </head>
-<body data-theme="light" data-motion="flowing" data-palette="fluid" data-accent="1">
+<body data-theme="light" data-preset="flowing" data-palette="fluid" data-accent="1">
 
   <!-- Content goes here -->
 
@@ -30,7 +30,7 @@ Every Fluid page starts with a standard HTML document that links to `fluid.css`.
 | Attribute | Value | Effect |
 |-----------|-------|--------|
 | `data-theme` | `light` | Light color scheme |
-| `data-motion` | `flowing` | Organic, natural animations |
+| `data-preset` | `flowing` | Organic, natural animations |
 | `data-palette` | `fluid` | Default color palette |
 | `data-accent` | `1` | First accent color from the palette |
 
@@ -191,16 +191,16 @@ Change the data attributes on your `<body>` tag:
 
 ```html
 <!-- Swiss design: clean, still, monochrome -->
-<body data-theme="light" data-motion="still" data-palette="mono" data-accent="1">
+<body data-theme="light" data-preset="still" data-palette="mono" data-accent="1">
 
 <!-- Warm and bubbly -->
-<body data-theme="light" data-motion="cascade" data-palette="pastel" data-accent="3">
+<body data-theme="light" data-preset="cascade" data-palette="pastel" data-accent="3">
 
 <!-- Bold and cinematic -->
-<body data-theme="light" data-motion="tsunami" data-palette="tsunami" data-accent="1">
+<body data-theme="light" data-preset="tsunami" data-palette="tsunami" data-accent="1">
 
 <!-- Muted sophistication -->
-<body data-theme="light" data-motion="serene" data-palette="morandi" data-accent="2">
+<body data-theme="light" data-preset="serene" data-palette="morandi" data-accent="2">
 ```
 
 Each combination changes fonts, colors, animation speed, easing curves, and spacing rhythm. No CSS changes, no rebuild -- just swap the attributes.
@@ -213,10 +213,10 @@ Set `data-theme="dark"` on the body to switch to dark mode. Fluid does not just 
 
 ```html
 <!-- Manual dark mode -->
-<body data-theme="dark" data-motion="flowing" data-palette="fluid" data-accent="1">
+<body data-theme="dark" data-preset="flowing" data-palette="fluid" data-accent="1">
 
 <!-- Follow the user's OS preference -->
-<body data-theme="auto" data-motion="flowing" data-palette="fluid" data-accent="1">
+<body data-theme="auto" data-preset="flowing" data-palette="fluid" data-accent="1">
 ```
 
 The `auto` value uses the `prefers-color-scheme` media query, so the page matches whatever the user has set in their system settings.

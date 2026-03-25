@@ -207,7 +207,7 @@ Each motion preset is a **complete styling approach** combining:
 
 **Sample Code Attribute**:
 ```html
-<body data-motion="drift" data-palette="subtle">
+<body data-preset="drift" data-palette="subtle">
 ```
 
 **Brands/Industries**:
@@ -268,7 +268,7 @@ Each motion preset is a **complete styling approach** combining:
 
 **Sample Code Attribute**:
 ```html
-<body data-motion="glitch" data-palette="bold">
+<body data-preset="glitch" data-palette="bold">
 ```
 
 **Brands/Industries**:
@@ -435,7 +435,7 @@ Motion Preset = Motion Timing + Colors + Typography + Component Personality
 ### What to Call Things in Your Code
 
 **In code/docs**:
-- Variable: `--data-motion="still"` (motion preset)
+- Variable: `--data-preset="still"` (motion preset)
 - Variable: `--data-palette="fluid"` (color palette)
 - Variable: `--data-theme="dark"` (light/dark mode - but consider renaming to `--data-mode`)
 - Variable: `--data-contrast="normal"` (normal/subdued)

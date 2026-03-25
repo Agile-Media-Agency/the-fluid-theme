@@ -96,7 +96,7 @@ In `tokens.css`, verify:
 For EVERY CSS file that contains `animation`, `transition`, or `@keyframes`:
 1. Does it have a corresponding `@media (prefers-reduced-motion: reduce)` block?
 2. Does the reduced-motion block actually disable or simplify the animation?
-3. Check that `[data-motion="still"]` also disables motion where applicable
+3. Check that `[data-preset="still"]` also disables motion where applicable
 
 ### 3D. Focus States
 

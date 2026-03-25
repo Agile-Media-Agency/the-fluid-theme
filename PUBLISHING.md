@@ -69,7 +69,7 @@ When you're ready to publish a new version:
 ```bash
 # Bump the version in package.json (patch | minor | major)
 npm version patch   # 0.4.2 → 0.4.3
-npm version minor   # 0.4.2 → 0.5.0
+npm version minor   # 0.4.2 → 0.6.0
 npm version major   # 0.4.2 → 1.0.0
 
 # Then publish

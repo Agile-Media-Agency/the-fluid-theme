@@ -61,7 +61,7 @@ The Fluid palette auto-links colors to motion styles:
 | `tsunami` | Deep navy | Hokusai's Great Wave |
 
 ```html
-<html data-palette="fluid" data-motion="tsunami">
+<html data-palette="fluid" data-preset="tsunami">
 <!-- Accent automatically becomes deep navy -->
 ```
 
@@ -140,7 +140,7 @@ Buttons in Tsunami mode have special physics:
 Each motion level sets timing variables:
 
 ```css
-[data-motion="rapids"] {
+[data-preset="rapids"] {
   --motion-scale: 1.5;
   --duration-fast: 250ms;
   --duration-normal: 450ms;

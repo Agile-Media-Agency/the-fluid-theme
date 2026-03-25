@@ -359,38 +359,38 @@
      ======================================== */
 
   /* Still: instant fill - no animation */
-  [data-motion="still"] .progress__fill {
+  [data-preset="still"] .progress__fill {
     transition: none;
   }
 
   /* Serene: very slow, gentle fill */
-  [data-motion="serene"] .progress__fill {
+  [data-preset="serene"] .progress__fill {
     transition: inline-size var(--duration-slowest) var(--ease-fluid);
   }
 
   /* Trickling: subtle, quick fill */
-  [data-motion="trickling"] .progress__fill {
+  [data-preset="trickling"] .progress__fill {
     transition: inline-size var(--duration-slow) var(--ease-fluid);
   }
 
   /* Stream: smooth horizontal flow */
-  [data-motion="stream"] .progress__fill {
+  [data-preset="stream"] .progress__fill {
     transition: inline-size var(--duration-slow) var(--ease-fluid);
   }
 
   /* Flowing: balanced, organic fill (default) */
-  [data-motion="flowing"] .progress__fill,
-  :root:not([data-motion]) .progress__fill {
+  [data-preset="flowing"] .progress__fill,
+  :root:not([data-preset]) .progress__fill {
     transition: inline-size var(--duration-slow) var(--ease-fluid);
   }
 
   /* Cascade: bouncy waterfall effect */
-  [data-motion="cascade"] .progress__fill {
+  [data-preset="cascade"] .progress__fill {
     transition: inline-size var(--duration-normal) var(--ease-settle);
   }
 
   /* Rapids: fast, energetic with overshoot */
-  [data-motion="rapids"] .progress__fill {
+  [data-preset="rapids"] .progress__fill {
     transition: inline-size var(--duration-normal) var(--ease-settle);
   }
 
@@ -432,17 +432,17 @@
     }
   }
 
-  [data-motion="tsunami"] .progress__fill {
+  [data-preset="tsunami"] .progress__fill {
     transition: none;
     transform-origin: left center;
   }
 
-  [data-motion="tsunami"] .progress[data-animate][data-visible] .progress__fill {
+  [data-preset="tsunami"] .progress[data-animate][data-visible] .progress__fill {
     animation: tsunami-progress-fill var(--duration-slower) var(--ease-settle) forwards;
   }
 
   /* Non-animated tsunami progress - just use transition */
-  [data-motion="tsunami"] .progress:not([data-animate]) .progress__fill {
+  [data-preset="tsunami"] .progress:not([data-animate]) .progress__fill {
     transition: inline-size var(--duration-slower) var(--ease-settle);
   }
 

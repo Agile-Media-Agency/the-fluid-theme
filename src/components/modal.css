@@ -266,34 +266,34 @@
      ======================================== */
 
   /* Still: sharp, no animation */
-  [data-motion="still"] .modal__content {
+  [data-preset="still"] .modal__content {
     border-radius: var(--radius-md);
     transform: none;
     transition: none;
   }
 
-  [data-motion="still"] .modal {
+  [data-preset="still"] .modal {
     transition: none;
   }
 
   /* Serene: gentle, pillowy */
-  [data-motion="serene"] .modal__content {
+  [data-preset="serene"] .modal__content {
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-lg);
   }
 
   /* Cascade: bouncy entry */
-  [data-motion="cascade"] .modal__content {
+  [data-preset="cascade"] .modal__content {
     border-radius: var(--radius-2xl);
   }
 
   /* Rapids: hard offset shadow */
-  [data-motion="rapids"] .modal__content {
+  [data-preset="rapids"] .modal__content {
     box-shadow: var(--shadow-offset-hover);
   }
 
   /* Tsunami: dramatic, asymmetric corners */
-  [data-motion="tsunami"] .modal__content {
+  [data-preset="tsunami"] .modal__content {
     border-radius: var(--radius-asymmetric-lg, 0 48px 0 0);
     box-shadow: var(--shadow-xl);
   }

@@ -67,30 +67,30 @@
 
   /* Motion style adjustments */
   /* Still: No progress bar by default */
-  [data-motion="still"] .scroll-progress {
+  [data-preset="still"] .scroll-progress {
     display: none;
   }
 
   /* Serene/Stream: Very thin, subtle */
-  [data-motion="serene"] .scroll-progress,
-  [data-motion="stream"] .scroll-progress {
+  [data-preset="serene"] .scroll-progress,
+  [data-preset="stream"] .scroll-progress {
     --_size: 2px;
     opacity: 0.5;
   }
 
   /* Flowing: Standard */
-  [data-motion="flowing"] .scroll-progress {
+  [data-preset="flowing"] .scroll-progress {
     --_size: 3px;
   }
 
   /* Cascade: Slightly thicker */
-  [data-motion="cascade"] .scroll-progress {
+  [data-preset="cascade"] .scroll-progress {
     --_size: 4px;
   }
 
   /* Rapids/Tsunami: Bold */
-  [data-motion="rapids"] .scroll-progress,
-  [data-motion="tsunami"] .scroll-progress {
+  [data-preset="rapids"] .scroll-progress,
+  [data-preset="tsunami"] .scroll-progress {
     --_size: 5px;
     opacity: 0.9;
   }

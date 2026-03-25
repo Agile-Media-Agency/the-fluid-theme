@@ -67,7 +67,7 @@ A complete starter page with navigation, hero section, card, and button:
   <title>My Fluid Site</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@latest/src/fluid.css">
 </head>
-<body data-theme="light" data-motion="flowing" data-palette="fluid" data-accent="1">
+<body data-theme="light" data-preset="flowing" data-palette="fluid" data-accent="1">
 
   <nav>
     <a href="/">My Site</a>

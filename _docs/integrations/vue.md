@@ -105,7 +105,7 @@ Set theme attributes in `app.vue`:
 useHead({
   htmlAttrs: {
     'data-theme': 'light',
-    'data-motion': 'flowing',
+    'data-preset': 'flowing',
   },
 });
 </script>

@@ -84,7 +84,7 @@ Create a new CSS component for The Fluid Theme framework, following all architec
   .[name][data-size="sm"] { }
 
   /* Motion preset awareness (if animated) */
-  [data-motion="still"] .[name] {
+  [data-preset="still"] .[name] {
     transition: none;
   }
 

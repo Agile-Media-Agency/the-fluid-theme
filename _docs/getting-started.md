@@ -49,7 +49,7 @@ npm run serve    # Opens at localhost:8080
   <link rel="stylesheet" href="path/to/src/fluid.css">
   <title>My Fluid Page</title>
 </head>
-<body data-theme="light" data-motion="flowing" data-palette="fluid" data-accent="1">
+<body data-theme="light" data-preset="flowing" data-palette="fluid" data-accent="1">
 
   <!-- Navigation -->
   <nav class="nav" data-variant="sticky">
@@ -86,7 +86,7 @@ The framework is configured through HTML data attributes on the `<body>` (or `<h
 ```html
 <body
   data-theme="dark"       <!-- light | dark | auto -->
-  data-motion="cascade"   <!-- still | serene | stream | flowing | cascade | rapids | tsunami -->
+  data-preset="cascade"   <!-- still | serene | stream | flowing | cascade | rapids | tsunami -->
   data-palette="morandi"  <!-- fluid | morandi | bold | pastel | earth | mono | 80s | matrix | subtle | tsunami -->
   data-accent="3"         <!-- 1-6, selects accent from current palette -->
   data-contrast="normal"  <!-- normal | subdued -->
@@ -339,7 +339,7 @@ Each preset changes how every animation in the framework behaves:
 
 ```html
 <!-- Set globally -->
-<body data-motion="cascade">
+<body data-preset="cascade">
 
 <!-- The framework respects prefers-reduced-motion automatically -->
 ```
@@ -356,7 +356,7 @@ Switch palettes to completely change the color mood:
 
 Each palette provides 6 accent colors. Use `data-accent="1"` through `data-accent="6"` to select one.
 
-The special `fluid` palette auto-links accent colors to the active motion preset — `data-motion="tsunami"` gets deep ocean blues, `data-motion="serene"` gets calm pastels.
+The special `fluid` palette auto-links accent colors to the active motion preset — `data-preset="tsunami"` gets deep ocean blues, `data-preset="serene"` gets calm pastels.
 
 ---
 

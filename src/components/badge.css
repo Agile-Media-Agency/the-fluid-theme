@@ -161,13 +161,13 @@
      ======================================== */
 
   /* Still: square badges */
-  [data-motion="still"] .badge {
+  [data-preset="still"] .badge {
     border-radius: 0;
     letter-spacing: var(--tracking-wider);
   }
 
   /* Brutalist: hard edges, bold */
-  [data-motion="brutalist"] .badge {
+  [data-preset="brutalist"] .badge {
     border-radius: 0;
     text-transform: uppercase;
     font-weight: var(--weight-bold);
@@ -176,7 +176,7 @@
   }
 
   /* Tsunami: asymmetric corners */
-  [data-motion="tsunami"] .badge {
+  [data-preset="tsunami"] .badge {
     border-radius: var(--radius-asymmetric, 0 12px 0 0);
   }
 }

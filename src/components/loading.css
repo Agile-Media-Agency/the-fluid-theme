@@ -253,22 +253,22 @@
      ======================================== */
 
   /* Still: no animation */
-  [data-motion="still"] .spinner {
+  [data-preset="still"] .spinner {
     animation-duration: 800ms;
   }
 
-  [data-motion="still"] .skeleton {
+  [data-preset="still"] .skeleton {
     animation: none;
     background: var(--color-surface);
   }
 
   /* Tsunami: asymmetric skeleton cards */
-  [data-motion="tsunami"] .skeleton-card {
+  [data-preset="tsunami"] .skeleton-card {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
 
   /* Rapids: faster spinner */
-  [data-motion="rapids"] .spinner {
+  [data-preset="rapids"] .spinner {
     animation-duration: 500ms;
   }
 }

@@ -181,12 +181,12 @@
      ======================================== */
 
   /* Tsunami: asymmetric corners on square */
-  [data-motion="tsunami"] .avatar[data-shape="square"] {
+  [data-preset="tsunami"] .avatar[data-shape="square"] {
     border-radius: var(--radius-asymmetric, 0 12px 0 0);
   }
 
   /* Rapids: hard shadow on group */
-  [data-motion="rapids"] .avatar-group .avatar {
+  [data-preset="rapids"] .avatar-group .avatar {
     box-shadow: 2px 2px 0 oklch(0 0 0 / 0.1), 0 0 0 2px var(--color-background);
   }
 }

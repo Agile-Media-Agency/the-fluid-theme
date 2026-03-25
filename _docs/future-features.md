@@ -104,7 +104,7 @@ Ideas and enhancements to consider for future versions of Fluid Framework.
 Allow users to choose transition direction for each motion style:
 
 ```html
-<html data-motion="flowing" data-motion-direction="rtl">
+<html data-preset="flowing" data-preset-direction="rtl">
 ```
 
 Options:
@@ -118,7 +118,7 @@ Options:
 Allow child themes to define their own motion presets:
 
 ```css
-[data-motion="custom-bounce"] {
+[data-preset="custom-bounce"] {
   --motion-scale: 1.3;
   --duration-normal: 400ms;
   --ease-fluid: cubic-bezier(0.68, -0.55, 0.265, 1.55);

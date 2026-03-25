@@ -206,30 +206,30 @@
      ======================================== */
 
   /* Still: no animation */
-  [data-motion="still"] .accordion__trigger::after {
+  [data-preset="still"] .accordion__trigger::after {
     transition: none;
   }
 
   /* Serene: rounded, soft */
-  [data-motion="serene"] .accordion[data-variant="separated"] .accordion__item,
-  [data-motion="serene"] .accordion[data-variant="bordered"] .accordion__item {
+  [data-preset="serene"] .accordion[data-variant="separated"] .accordion__item,
+  [data-preset="serene"] .accordion[data-variant="bordered"] .accordion__item {
     border-radius: var(--radius-xl);
   }
 
   /* Cascade: bouncy, bubbly */
-  [data-motion="cascade"] .accordion[data-variant="separated"] .accordion__item,
-  [data-motion="cascade"] .accordion[data-variant="bordered"] .accordion__item {
+  [data-preset="cascade"] .accordion[data-variant="separated"] .accordion__item,
+  [data-preset="cascade"] .accordion[data-variant="bordered"] .accordion__item {
     border-radius: var(--radius-xl);
   }
 
   /* Rapids: hard shadow on separated */
-  [data-motion="rapids"] .accordion[data-variant="separated"] .accordion__item {
+  [data-preset="rapids"] .accordion[data-variant="separated"] .accordion__item {
     box-shadow: var(--shadow-offset);
   }
 
   /* Tsunami: asymmetric corners */
-  [data-motion="tsunami"] .accordion[data-variant="separated"] .accordion__item,
-  [data-motion="tsunami"] .accordion[data-variant="bordered"] .accordion__item {
+  [data-preset="tsunami"] .accordion[data-variant="separated"] .accordion__item,
+  [data-preset="tsunami"] .accordion[data-variant="bordered"] .accordion__item {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
 

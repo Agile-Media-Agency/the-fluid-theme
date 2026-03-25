@@ -279,7 +279,7 @@ This provides automatic RTL support and is more semantically accurate.
 ### When Adding a New Preset
 
 1. Define in `src/core/tokens.css`:
-   - Motion timing (`[data-motion="name"]`)
+   - Motion timing (`[data-preset="name"]`)
    - Color palette (`[data-palette="name"]`)
    - Typography (`--font-heading`, `--font-body`)
 2. Add to `themePresets` object in `_includes/scripts.html`
@@ -350,7 +350,7 @@ data-variant="primary|secondary|outline|ghost"
 data-size="sm|md|lg|xl"
 data-layout="center|split|sidebar"
 data-theme="light|dark|auto"
-data-motion="still|serene|flowing|rapids|tsunami"
+data-preset="still|serene|flowing|rapids|tsunami"
 ```
 
 ### CSS Classes

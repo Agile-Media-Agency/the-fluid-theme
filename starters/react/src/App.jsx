@@ -2,18 +2,18 @@ import { useState } from 'react'
 
 const THEMES = ['light', 'dark']
 const PALETTES = ['fluid', 'morandi', 'bold', 'pastel', 'earth', 'mono', '80s', 'matrix', 'subtle', 'tsunami']
-const MOTIONS = ['still', 'serene', 'stream', 'flowing', 'cascade', 'rapids', 'tsunami']
+const PRESETS = ['still', 'serene', 'stream', 'flowing', 'cascade', 'rapids', 'tsunami']
 
 export default function App() {
   const [theme, setTheme] = useState('light')
   const [palette, setPalette] = useState('fluid')
-  const [motion, setMotion] = useState('flowing')
+  const [preset, setPreset] = useState('flowing')
 
   function apply(key, value) {
     document.documentElement.setAttribute(`data-${key}`, value)
     if (key === 'theme') setTheme(value)
     if (key === 'palette') setPalette(value)
-    if (key === 'motion') setMotion(value)
+    if (key === 'preset') setPreset(value)
   }
 
   return (
@@ -117,18 +117,18 @@ export default function App() {
 
                 <div>
                   <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 600, marginBlockEnd: 'var(--space-3)', color: 'var(--color-text-muted)' }}>
-                    Motion
+                    Preset
                   </p>
                   <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
-                    {MOTIONS.map(m => (
+                    {PRESETS.map(p => (
                       <button
-                        key={m}
+                        key={p}
                         className="button"
-                        data-variant={motion === m ? 'primary' : 'outline'}
+                        data-variant={preset === p ? 'primary' : 'outline'}
                         data-size="sm"
-                        onClick={() => apply('motion', m)}
+                        onClick={() => apply('preset', p)}
                       >
-                        {m}
+                        {p}
                       </button>
                     ))}
                   </div>
@@ -157,7 +157,7 @@ export default function App() {
             </div>
 
             <div className="alert" data-variant="info" role="status">
-              <strong>Current config:</strong> data-theme=&quot;{theme}&quot; data-palette=&quot;{palette}&quot; data-motion=&quot;{motion}&quot;
+              <strong>Current config:</strong> data-theme=&quot;{theme}&quot; data-palette=&quot;{palette}&quot; data-preset=&quot;{preset}&quot;
             </div>
           </div>
         </section>

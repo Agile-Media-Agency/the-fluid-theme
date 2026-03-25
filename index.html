@@ -650,23 +650,23 @@ nav: home
   /* ----------------------------------------
      STILL: Zero space, items touch, sharp
      ---------------------------------------- */
-  [data-motion="still"] .theme-grid-hero {
+  [data-preset="still"] .theme-grid-hero {
     --grid-gap: 0;
     --grid-padding: 0;
   }
-  [data-motion="still"] .theme-grid__item {
+  [data-preset="still"] .theme-grid__item {
     --item-radius: 0;
   }
 
   /* ----------------------------------------
      SERENE: Generous whitespace, soft corners
      ---------------------------------------- */
-  [data-motion="serene"] .theme-grid-hero {
+  [data-preset="serene"] .theme-grid-hero {
     --grid-gap: var(--space-6);
     --grid-padding: var(--space-6);
     background: var(--color-surface);
   }
-  [data-motion="serene"] .theme-grid__item {
+  [data-preset="serene"] .theme-grid__item {
     --item-radius: 24px;
     --item-shadow: 0 8px 32px oklch(0 0 0 / 0.1);
   }
@@ -674,11 +674,11 @@ nav: home
   /* ----------------------------------------
      STREAM: Small padding, clean
      ---------------------------------------- */
-  [data-motion="stream"] .theme-grid-hero {
+  [data-preset="stream"] .theme-grid-hero {
     --grid-gap: var(--space-3);
     --grid-padding: var(--space-3);
   }
-  [data-motion="stream"] .theme-grid__item {
+  [data-preset="stream"] .theme-grid__item {
     --item-radius: 12px;
   }
 
@@ -686,7 +686,7 @@ nav: home
      FLOWING: Horizontal carousel (single row)
      Auto-scrolling, swipeable, loops
      ---------------------------------------- */
-  [data-motion="flowing"] .theme-grid-hero {
+  [data-preset="flowing"] .theme-grid-hero {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -700,10 +700,10 @@ nav: home
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  [data-motion="flowing"] .theme-grid-hero::-webkit-scrollbar {
+  [data-preset="flowing"] .theme-grid-hero::-webkit-scrollbar {
     display: none;
   }
-  [data-motion="flowing"] .theme-grid__item {
+  [data-preset="flowing"] .theme-grid__item {
     flex: 0 0 45%;
     min-inline-size: 280px;
     max-inline-size: 400px;
@@ -712,7 +712,7 @@ nav: home
     --item-radius: 16px;
   }
   @media (min-width: 768px) {
-    [data-motion="flowing"] .theme-grid__item {
+    [data-preset="flowing"] .theme-grid__item {
       flex: 0 0 30%;
       max-inline-size: 350px;
     }
@@ -722,18 +722,18 @@ nav: home
      CASCADE: Large rounded, spacing, shadows
      Bubbly, friendly, elevated
      ---------------------------------------- */
-  [data-motion="cascade"] .theme-grid-hero {
+  [data-preset="cascade"] .theme-grid-hero {
     --grid-gap: var(--space-5);
     --grid-padding: var(--space-5);
     background: linear-gradient(135deg, oklch(0.96 0.02 200) 0%, oklch(0.98 0.01 100) 100%);
   }
-  [data-motion="cascade"] .theme-grid__item {
+  [data-preset="cascade"] .theme-grid__item {
     --item-radius: 32px;
     --item-shadow:
       0 4px 12px oklch(0 0 0 / 0.08),
       0 12px 32px oklch(0 0 0 / 0.12);
   }
-  [data-motion="cascade"] .theme-grid__item:hover {
+  [data-preset="cascade"] .theme-grid__item:hover {
     box-shadow:
       0 8px 24px oklch(0 0 0 / 0.1),
       0 24px 48px oklch(0 0 0 / 0.15);
@@ -743,28 +743,28 @@ nav: home
      RAPIDS: Skewed, angled, aggressive
      Sports/action/fitness feel
      ---------------------------------------- */
-  [data-motion="rapids"] .theme-grid-hero {
+  [data-preset="rapids"] .theme-grid-hero {
     --grid-gap: var(--space-3);
     --grid-padding: var(--space-4);
     background: oklch(0.15 0.02 250);
   }
-  [data-motion="rapids"] .theme-grid__item {
+  [data-preset="rapids"] .theme-grid__item {
     --item-radius: 4px;
     --item-transform: skewY(-2deg);
     --item-shadow: 4px 4px 0 oklch(0 0 0 / 0.3);
   }
-  [data-motion="rapids"] .theme-grid__item:nth-child(even) {
+  [data-preset="rapids"] .theme-grid__item:nth-child(even) {
     --item-transform: skewY(2deg);
   }
-  [data-motion="rapids"] .theme-grid__item:hover {
+  [data-preset="rapids"] .theme-grid__item:hover {
     transform: skewY(-2deg) scale(1.03);
     z-index: 2;
   }
-  [data-motion="rapids"] .theme-grid__item:nth-child(even):hover {
+  [data-preset="rapids"] .theme-grid__item:nth-child(even):hover {
     transform: skewY(2deg) scale(1.03);
   }
   /* Bold italic text for Rapids */
-  [data-motion="rapids"] .theme-grid__name {
+  [data-preset="rapids"] .theme-grid__name {
     font-style: italic;
     font-weight: 900;
     text-transform: uppercase;
@@ -775,13 +775,13 @@ nav: home
      TSUNAMI: Depth/layered effect
      3D perspective, dramatic shadows
      ---------------------------------------- */
-  [data-motion="tsunami"] .theme-grid-hero {
+  [data-preset="tsunami"] .theme-grid-hero {
     --grid-gap: var(--space-2);
     --grid-padding: var(--space-2);
     background: oklch(0.08 0.03 260);
     perspective: 1000px;
   }
-  [data-motion="tsunami"] .theme-grid__item {
+  [data-preset="tsunami"] .theme-grid__item {
     --item-radius: 0;
     transform-style: preserve-3d;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -789,7 +789,7 @@ nav: home
       0 20px 40px oklch(0 0 0 / 0.4),
       0 0 0 1px oklch(1 0 0 / 0.1) inset;
   }
-  [data-motion="tsunami"] .theme-grid__item:hover {
+  [data-preset="tsunami"] .theme-grid__item:hover {
     transform: translateZ(30px) scale(1.02);
     z-index: 10;
     box-shadow:
@@ -798,16 +798,16 @@ nav: home
       0 0 60px oklch(from var(--accent) l c h / 0.3);
   }
   /* Staggered depth for visual interest */
-  [data-motion="tsunami"] .theme-grid__item:nth-child(1) { transform: translateZ(10px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(2) { transform: translateZ(5px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(3) { transform: translateZ(15px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(4) { transform: translateZ(8px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(7) { transform: translateZ(18px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(8) { transform: translateZ(6px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(9) { transform: translateZ(14px); }
-  [data-motion="tsunami"] .theme-grid__item:nth-child(10) { transform: translateZ(9px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(1) { transform: translateZ(10px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(2) { transform: translateZ(5px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(3) { transform: translateZ(15px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(4) { transform: translateZ(8px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(5) { transform: translateZ(12px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(6) { transform: translateZ(3px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(7) { transform: translateZ(18px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(8) { transform: translateZ(6px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(9) { transform: translateZ(14px); }
+  [data-preset="tsunami"] .theme-grid__item:nth-child(10) { transform: translateZ(9px); }
 
 
   /* ========================================
@@ -816,53 +816,53 @@ nav: home
      ======================================== */
 
   /* Still: Minimal, precise, bottom-left aligned (Swiss style) */
-  [data-motion="still"] .theme-grid__content {
+  [data-preset="still"] .theme-grid__content {
     justify-content: flex-end;
     align-items: flex-start;
     text-align: left;
     padding: var(--space-4);
   }
-  [data-motion="still"] .theme-grid__name {
+  [data-preset="still"] .theme-grid__name {
     font-size: var(--font-size-lg);
     font-weight: var(--weight-medium);
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
-  [data-motion="still"] .theme-grid__desc {
+  [data-preset="still"] .theme-grid__desc {
     font-size: var(--font-size-xs);
     letter-spacing: 0.02em;
   }
 
   /* Serene: Elegant, centered, larger serif feel */
-  [data-motion="serene"] .theme-grid__content {
+  [data-preset="serene"] .theme-grid__content {
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: var(--space-6);
   }
-  [data-motion="serene"] .theme-grid__name {
+  [data-preset="serene"] .theme-grid__name {
     font-size: clamp(var(--font-size-2xl), 5vw, var(--font-size-4xl));
     font-weight: var(--weight-normal);
     font-style: italic;
   }
-  [data-motion="serene"] .theme-grid__desc {
+  [data-preset="serene"] .theme-grid__desc {
     font-size: var(--font-size-sm);
     font-style: italic;
     opacity: 0.85;
   }
 
   /* Stream: Horizontal emphasis, left-aligned, modern */
-  [data-motion="stream"] .theme-grid__content {
+  [data-preset="stream"] .theme-grid__content {
     justify-content: flex-end;
     align-items: flex-start;
     text-align: left;
     padding: var(--space-5);
   }
-  [data-motion="stream"] .theme-grid__name {
+  [data-preset="stream"] .theme-grid__name {
     font-size: var(--font-size-xl);
     font-weight: var(--weight-semibold);
   }
-  [data-motion="stream"] .theme-grid__name::after {
+  [data-preset="stream"] .theme-grid__name::after {
     content: "";
     display: block;
     inline-size: 3rem;
@@ -873,32 +873,32 @@ nav: home
   }
 
   /* Cascade: Playful, offset positioning */
-  [data-motion="cascade"] .theme-grid__content {
+  [data-preset="cascade"] .theme-grid__content {
     justify-content: flex-start;
     align-items: flex-end;
     text-align: right;
     padding: var(--space-5);
     padding-block-start: 30%;
   }
-  [data-motion="cascade"] .theme-grid__name {
+  [data-preset="cascade"] .theme-grid__name {
     font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-2xl));
     font-weight: var(--weight-bold);
   }
 
   /* Rapids: Bold, large, punchy */
-  [data-motion="rapids"] .theme-grid__content {
+  [data-preset="rapids"] .theme-grid__content {
     justify-content: center;
     align-items: flex-start;
     text-align: left;
     padding: var(--space-6);
   }
-  [data-motion="rapids"] .theme-grid__name {
+  [data-preset="rapids"] .theme-grid__name {
     font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-4xl));
     font-weight: var(--weight-black, 900);
     text-transform: uppercase;
     line-height: 0.9;
   }
-  [data-motion="rapids"] .theme-grid__desc {
+  [data-preset="rapids"] .theme-grid__desc {
     font-size: var(--font-size-sm);
     font-weight: var(--weight-bold);
     text-transform: uppercase;
@@ -906,20 +906,20 @@ nav: home
   }
 
   /* Tsunami: Maximum impact, centered, dramatic */
-  [data-motion="tsunami"] .theme-grid__content {
+  [data-preset="tsunami"] .theme-grid__content {
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: var(--space-6);
   }
-  [data-motion="tsunami"] .theme-grid__name {
+  [data-preset="tsunami"] .theme-grid__name {
     font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-5xl));
     font-weight: var(--weight-black, 900);
     text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 0.85;
   }
-  [data-motion="tsunami"] .theme-grid__desc {
+  [data-preset="tsunami"] .theme-grid__desc {
     font-size: var(--font-size-sm);
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -983,7 +983,7 @@ nav: home
 <script>
   // Update theme grid and chips when theme changes
   function updateThemeGrid() {
-    const currentMotion = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const currentMotion = document.documentElement.getAttribute('data-preset') || 'flowing';
 
     // Update grid items
     document.querySelectorAll('.theme-grid__item').forEach(item => {
@@ -1022,7 +1022,7 @@ nav: home
     const grid = document.querySelector('.theme-grid-hero');
     if (!grid) return;
 
-    const isFlowing = document.documentElement.getAttribute('data-motion') === 'flowing';
+    const isFlowing = document.documentElement.getAttribute('data-preset') === 'flowing';
 
     // Clear any existing interval
     if (flowingScrollInterval) {

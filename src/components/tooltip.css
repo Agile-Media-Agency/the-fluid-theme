@@ -204,21 +204,21 @@
      ======================================== */
 
   /* Still: no animation */
-  [data-motion="still"] [data-tooltip]::after {
+  [data-preset="still"] [data-tooltip]::after {
     transition: none;
   }
 
-  [data-motion="still"] .popover {
+  [data-preset="still"] .popover {
     transition: none;
   }
 
   /* Rapids: hard shadow */
-  [data-motion="rapids"] .popover__content {
+  [data-preset="rapids"] .popover__content {
     box-shadow: var(--shadow-offset);
   }
 
   /* Tsunami: asymmetric */
-  [data-motion="tsunami"] .popover__content {
+  [data-preset="tsunami"] .popover__content {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
 

@@ -370,13 +370,13 @@ nav: components
 </div>
 <script>
   function setPreset(preset) {
-    document.documentElement.setAttribute('data-motion', preset);
+    document.documentElement.setAttribute('data-preset', preset);
     document.querySelectorAll('#preset-switcher button').forEach(function(btn) {
       btn.removeAttribute('data-active');
       if (btn.textContent.toLowerCase() === preset) btn.setAttribute('data-active', '');
     });
   }
-  var _initPreset = document.documentElement.getAttribute('data-motion') || 'flowing';
+  var _initPreset = document.documentElement.getAttribute('data-preset') || 'flowing';
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('#preset-switcher button').forEach(function(btn) {
       if (btn.textContent.toLowerCase() === _initPreset) btn.setAttribute('data-active', '');

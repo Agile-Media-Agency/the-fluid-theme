@@ -52,7 +52,7 @@ function setPalette(value) {
 
 // Motion: still | serene | stream | flowing | cascade | rapids | tsunami
 function setMotion(value) {
-  document.documentElement.setAttribute('data-motion', value)
+  document.documentElement.setAttribute('data-preset', value)
 }
 ```
 
@@ -64,7 +64,7 @@ For Next.js, add the import to `app/layout.tsx`:
 import '@fluid-theme/core'
 ```
 
-Add `data-theme`, `data-palette`, `data-motion` attributes to your `<html>` element in the layout.
+Add `data-theme`, `data-palette`, `data-preset` attributes to your `<html>` element in the layout.
 
 ## Documentation
 

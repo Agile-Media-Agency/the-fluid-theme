@@ -158,7 +158,7 @@ npm run serve
 <!-- Use in your project -->
 <link rel="stylesheet" href="path/to/fluid.css">
 
-<body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
+<body data-theme="dark" data-preset="cascade" data-palette="fluid" data-accent="1">
   <article class="card">
     <div class="card__content">
       <h2 class="card__title">Physics-Based Design</h2>

@@ -84,7 +84,7 @@ import 'the-fluid-theme/src/fluid.css';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light" data-motion="flowing">
+    <html lang="en" data-theme="light" data-preset="flowing">
       <body>{children}</body>
     </html>
   );

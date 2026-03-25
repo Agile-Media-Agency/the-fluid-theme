@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-motion="cascade">
+<html lang="en" data-preset="cascade">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -503,16 +503,16 @@
                 margin-block-end: 0;
             }
 
-            [data-motion="cascade"] ul:not([class]) {
+            [data-preset="cascade"] ul:not([class]) {
                 list-style-type: none;
                 padding-inline-start: var(--space-6);
             }
 
-            [data-motion="cascade"] ul:not([class]) > li {
+            [data-preset="cascade"] ul:not([class]) > li {
                 position: relative;
             }
 
-            [data-motion="cascade"] ul:not([class]) > li::before {
+            [data-preset="cascade"] ul:not([class]) > li::before {
                 content: "";
                 position: absolute;
                 inset-inline-start: calc(var(--space-6) * -1);
@@ -1073,13 +1073,13 @@
             }
 
             /* Cascade motion - bubbly lift on hover */
-            [data-motion="cascade"] .card {
+            [data-preset="cascade"] .card {
                 box-shadow:
                     0 4px 12px oklch(0 0 0 / 0.06),
                     0 12px 28px oklch(0 0 0 / 0.1);
             }
 
-            [data-motion="cascade"] .card:hover {
+            [data-preset="cascade"] .card:hover {
                 transform: translateY(-4px);
                 box-shadow:
                     0 8px 20px oklch(0 0 0 / 0.08),
@@ -1421,8 +1421,8 @@
                 margin-block-start: var(--space-3);
             }
 
-            [data-motion="cascade"] .accordion[data-variant="separated"] .accordion__item,
-            [data-motion="cascade"] .accordion[data-variant="bordered"] .accordion__item {
+            [data-preset="cascade"] .accordion[data-variant="separated"] .accordion__item,
+            [data-preset="cascade"] .accordion[data-variant="bordered"] .accordion__item {
                 border-radius: var(--radius-xl);
             }
         }

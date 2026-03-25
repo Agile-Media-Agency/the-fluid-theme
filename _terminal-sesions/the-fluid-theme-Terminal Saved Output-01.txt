@@ -1,0 +1,678 @@
+▗ ▗   ▖ ▖  Claude Code v2.1.81
+           Sonnet 4.6 with medium effort · Claude Max
+  ▘▘ ▝▝    ~/Projects/the-fluid-theme
+
+✻ Brewed for 30s
+
+❯ whatever should be next!                                                                               
+
+⏺ Skill(superpowers:brainstorming)
+  ⎿  Successfully loaded skill
+
+  Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ Phase 5 has several independent sub-projects that can't all be designed at once:
+
+  ┌─────────────────────────┬──────────────────────────────────────────────────────────────┐
+  │       Sub-project       │                          What it is                          │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ NPM publish             │ Get the package live on npm so others can install it         │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ CDN setup               │ jsDelivr/unpkg links (these come free once npm is published) │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ HTML starter kit        │ A minimal starter project for plain HTML users               │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ React starter kit       │ A minimal starter project for React/Next.js users            │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ Visual regression tests │ Playwright screenshot comparisons                            │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ Accessibility audit     │ axe-core automated checks                                    │
+  ├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+  │ Performance benchmarks  │ Lighthouse scores                                            │
+  └─────────────────────────┴──────────────────────────────────────────────────────────────┘
+
+  NPM publish is the natural first step — CDN links on jsDelivr and unpkg automatically work once the
+  package is on npm, so that's two items for the price of one.
+
+  Which would you like to start with?
+
+  a) NPM publish + CDN (unblocks everything else, gets the framework publicly installable)
+  b) Testing infrastructure (visual regression + a11y audit) — validate what's already built
+  c) Starter kits (HTML or React) — help adoption
+  d) Something else entirely
+
+✻ Sautéed for 46s
+
+❯ a                                                                                                      
+
+⏺ Good call — NPM publish + CDN is the highest-leverage move right now.
+
+  First question: what should the package name be?
+
+  The current package.json has "name": "the-fluid-theme". Options:
+
+  a) the-fluid-theme — keep as-is (matches the GitHub repo name)
+  b) fluid-theme — shorter, cleaner for npm install fluid-theme
+  c) @fluid-theme/core — scoped, leaves room for @fluid-theme/react, @fluid-theme/vue etc.
+  d) Something else
+
+❯ c                                                                                                      
+
+⏺ Good choice — scoped packages leave room to grow the ecosystem.
+
+  Do you already have an npm account with the @fluid-theme organization created, or does that need to be
+  set up from scratch?
+
+❯ never had npm                                                                                          
+
+⏺ No problem — we'll set everything up. One more question before I propose approaches:
+
+  Should the npm package include a minified/optimized build, or publish the raw source CSS only?
+
+  a) Raw CSS only — what you have now, zero build step, humans can read it (matches the framework's "no
+  build step" philosophy)
+  b) Both raw + minified — add a dist/fluid.min.css, publish both; users choose
+  c) Minified only in dist/ — source stays in src/, published package includes a production-ready build
+
+❯ i dont know what is best practice, and does that fit our project? you make the call                    
+
+⏺ My call: both raw + minified (src/ and dist/fluid.min.css).
+
+  Here's why it fits the project:
+  - Raw source stays in src/ — readable, customizable, true to the "no build step" philosophy
+  - Minified dist/ is what CDN users point to in production (<link href="...fluid.min.css">)
+  - It's what Bootstrap, Bulma, and every major CSS framework does
+  - jsDelivr and unpkg will auto-serve either file; users choose based on need
+
+  I have enough to propose approaches now.
+
+  ---
+  Three approaches for the npm publish setup:
+
+  Option A — Manual publish workflow (recommended)
+  Set up the npm account + @fluid-theme org manually, add a build script that generates
+  dist/fluid.min.css using lightningcss (fast, modern CSS minifier), update package.json with the scoped
+  name and correct files, then publish manually with npm publish --access public. Simple, you're in
+  control, no CI secrets needed yet.
+
+  Option B — Publish + GitHub Actions release automation
+  Same as A but wire up the existing .github/ release workflow to auto-publish to npm on version tags.
+  More setup upfront, but future releases are one git tag away.
+
+  Option C — Publish raw CSS only, skip the build step
+  No minification, just update the package name and publish. Simplest possible path — but CDN users get
+  unminified CSS and you miss the production-ready story.
+
+  My recommendation: Option A. Get the package live quickly, understand the process end-to-end, then add
+  automation (Option B) once you know it works. Option C leaves CDN users with a worse experience.
+
+  Does Option A sound right to you?
+
+❯ go with your recs, and I have done "bypass permissions" so youbhave full autonomy to get this done and 
+ go all night if you can, i have to sleep now, 2am.                                                      
+
+⏺ Got it — I'll get everything ready while you sleep. I need to be upfront about one thing: I can't
+  create your npm account or the @fluid-theme org — those require you to visit npmjs.com and verify an
+  email. But I'll do every single piece of code setup tonight and leave you a clear "3 steps to publish"
+  list for the morning.
+
+  Let me start building.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Good — src/fluid.css uses @import which lightningcss bundles natively. Let me create all the tasks and
+  execute.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Good. I can see the README already has install sections with the old package name. Now let me start
+  executing.
+
+⏺ Bash(npm install --save-dev lightningcss 2>&1)
+  ⎿  added 36 packages, and audited 43 packages in 805ms
+
+     37 packages are looking for funding
+     … +3 lines (ctrl+o to expand)
+
+⏺ Write(scripts/build-css.js)
+  ⎿  Wrote 54 lines to scripts/build-css.js
+     #!/usr/bin/env node
+
+     /**
+      * Build script for @fluid-theme/core
+      *
+      * Bundles all @import statements and minifies src/fluid.css → dist/fluid.min.css
+      * Uses lightningcss for bundling + minification.
+      */
+
+     import { bundle } from "lightningcss";
+     … +44 lines (ctrl+o to expand)
+
+⏺ Now update package.json:
+
+⏺ Update(package.json)
+  ⎿  Error editing file
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Write(package.json)
+  ⎿  Added 12 lines, removed 4 lines
+       1  {
+       2 -  "name": "the-fluid-theme",                                                            
+       3 -  "version": "0.4.1",                                                                   
+       2 +  "name": "@fluid-theme/core",                                                          
+       3 +  "version": "0.4.2",                                                                   
+       4    "description": "A modern, semantic CSS design system built on physics principles —
+          not utility classes",
+       5 -  "main": "src/fluid.css",                                                              
+       6 -  "style": "src/fluid.css",                                                             
+       5 +  "main": "dist/fluid.min.css",                                                         
+       6 +  "style": "dist/fluid.min.css",                                                        
+       7 +  "exports": {                                                                          
+       8 +    ".": "./dist/fluid.min.css",                                                        
+       9 +    "./src": "./src/fluid.css"                                                          
+      10 +  },                                                                                    
+      11    "files": [
+      12 +    "dist/",                                                                            
+      13      "src/",
+      14      "fluid-agent-kit/",
+      15      "CLAUDE.md",
+     ...
+      16    ],
+      17    "scripts": {
+      18      "serve": "npx http-server . -o /index.html",
+      19 +    "build": "node scripts/build-css.js",                                               
+      20 +    "prepublishOnly": "npm run build",                                                  
+      21      "optimize-images": "node scripts/optimize-images.js",
+      22      "test": "echo \"Visual testing only - open examples/foundation.html in browser\""
+      23    },
+     ...
+      54      "supports css-container-queries",
+      55      "supports css-logical-properties"
+      56    ],
+      57 +  "type": "module",                                                                     
+      58    "devDependencies": {
+      59      "lightningcss": "^1.32.0",
+      60      "sharp": "^0.34.5"
+
+⏺ Bash(npm run build 2>&1)
+  ⎿  > @fluid-theme/core@0.4.2 build
+     > node scripts/build-css.js
+
+     ✓ dist/fluid.min.css  196.2 kB  (32ms)
+
+⏺ 196 kB minified in 32ms. Let me verify the output looks right:
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Clean output. Banner, minified layers, logical properties all intact. Let me verify the existing image
+  script still works with "type": "module":
+
+  Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ optimize-images.js uses require() (CommonJS) — adding "type": "module" to package.json would break it.
+  Safer to use .mjs extension for the build script instead:
+
+⏺ Bash(mv /Users/neilwhite/Projects/the-fluid-theme/scripts/build-css.js
+      /Users/neilwhite/Projects/the-fluid-theme/scripts/build-css.mjs)
+  ⎿  Done
+
+⏺ Update(package.json)
+  ⎿  Added 1 line, removed 1 line
+      21    ],
+      22    "scripts": {
+      23      "serve": "npx http-server . -o /index.html",
+      24 -    "build": "node scripts/build-css.js",                                               
+      24 +    "build": "node scripts/build-css.mjs",                                              
+      25      "prepublishOnly": "npm run build",
+      26      "optimize-images": "node scripts/optimize-images.js",
+      27      "test": "echo \"Visual testing only - open examples/foundation.html in browser\""
+
+⏺ Update(package.json)
+  ⎿  Removed 1 line
+      61      "supports css-container-queries",
+      62      "supports css-logical-properties"
+      63    ],
+      64 -  "type": "module",                                                                     
+      64    "devDependencies": {
+      65      "lightningcss": "^1.32.0",
+      66      "sharp": "^0.34.5"
+
+⏺ Bash(npm run build 2>&1)
+  ⎿  > @fluid-theme/core@0.4.2 build
+     > node scripts/build-css.mjs
+
+     ✓ dist/fluid.min.css  196.2 kB  (26ms)
+
+⏺ Now update the README installation section:
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(README.md)
+  ⎿  Added 21 lines, removed 3 lines
+      26   
+      27  ### CDN (recommended for quick start)
+      28   
+      29 +**jsDelivr** (recommended):                                                             
+      30  ```html
+      31 -<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.4/src/fluid.
+         -css">                                                                                   
+      31 +<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid. 
+         +min.css">                                                                               
+      32  ```
+      33   
+      34 +**unpkg:**                                                                              
+      35 +```html                                                                                 
+      36 +<link rel="stylesheet" href="https://unpkg.com/@fluid-theme/core/dist/fluid.min.css">   
+      37 +```                                                                                     
+      38 +                                                                                        
+      39  ### npm
+      40   
+      41  ```bash
+      42 -npm install the-fluid-theme                                                             
+      42 +npm install @fluid-theme/core                                                           
+      43  ```
+      44   
+      45 -Then link to `node_modules/the-fluid-theme/src/fluid.css` in your HTML, or import it in 
+         - your build tool.                                                                       
+      45 +Then in your HTML:                                                                      
+      46 +```html                                                                                 
+      47 +<!-- Production (minified) -->                                                          
+      48 +<link rel="stylesheet" href="node_modules/@fluid-theme/core/dist/fluid.min.css">        
+      49   
+      50 +<!-- Source (readable, for customisation) -->                                           
+      51 +<link rel="stylesheet" href="node_modules/@fluid-theme/core/src/fluid.css">             
+      52 +```                                                                                     
+      53 +                                                                                        
+      54 +Or in a bundler (Vite, Webpack, etc.):                                                  
+      55 +```js                                                                                   
+      56 +import '@fluid-theme/core';                                                             
+      57 +```                                                                                     
+      58 +                                                                                        
+      59  ### Download
+      60   
+      61  Grab the latest release from the [GitHub
+          Releases](https://github.com/Agile-Media-Agency/the-fluid-theme/releases) page.
+
+⏺ Update(README.md)
+  ⎿  Added 1 line, removed 1 line
+      64   
+      65  ```html
+      66  <!-- Link the CSS -->
+      67 -<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-fluid-theme@0.4/src/fluid.
+         -css">                                                                                   
+      67 +<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid. 
+         +min.css">                                                                               
+      68   
+      69  <!-- Set your preferences -->
+      70  <body data-theme="dark" data-motion="cascade" data-palette="fluid" data-accent="1">
+
+⏺ Update(README.md)
+  ⎿  Added 1 line, removed 1 line
+      227  - [x] **Phase 4: Documentation** — Getting started guide, installation, tutorials,
+           image optimization guide
+      228  - [x] **Phase 5: Distribution** — npm publish, CDN, Fluid Agent Kit for AI assistants
+      229   
+      230 -**Current**: v0.4.0 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.          
+      230 +**Current**: v0.4.2 — See [PROJECT_STATUS.md](PROJECT_STATUS.md) for details.          
+      231   
+      232  ## Browser Support
+      233   
+
+⏺ Update(README.md)
+  ⎿  Added 1 line, removed 1 line
+      250   
+      251  ---
+      252   
+      253 -**Version 0.4.0                                                                        
+          -** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32    
+          -years of design experience.                                                            
+      253 +**Version 0.4.2                                                                        
+          +** | **[TheFluidTheme.com](https://thefluidtheme.com)** | Built with physics and 32    
+          +years of design experience.                                                            
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(CHANGELOG.md)
+  ⎿  Added 15 lines
+       5  The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+       6  and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+       7   
+       8 +## [0.4.2] - 2026-03-21                                                                 
+       9 +                                                                                        
+      10 +### Added                                                                               
+      11 +- **npm package** published as `@fluid-theme/core` (scoped, leaving room for            
+         +`@fluid-theme/react`, `@fluid-theme/vue`, etc.)                                         
+      12 +- **CSS build pipeline**: `npm run build` bundles all `@import` statements and minifies 
+         + to `dist/fluid.min.css` via lightningcss                                               
+      13 +- **`dist/fluid.min.css`**: production-ready minified build (196 kB) for CDN and npm    
+         +consumers                                                                               
+      14 +- **CDN links**: jsDelivr and unpkg now serve the minified build automatically once     
+         +published                                                                               
+      15 +- **Package exports**: `@fluid-theme/core` resolves to minified build;                  
+         +`@fluid-theme/core/src` gives access to raw source                                      
+      16 +                                                                                        
+      17 +### Changed                                                                             
+      18 +- Package renamed from `the-fluid-theme` → `@fluid-theme/core`                          
+      19 +- `package.json` `main` and `style` fields now point to `dist/fluid.min.css`            
+      20 +- `prepublishOnly` hook ensures dist is always rebuilt before publishing                
+      21 +- README installation instructions updated with correct CDN links and npm install       
+         +command                                                                                 
+      22 +                                                                                        
+      23  ## [0.4.1] - 2026-03-20
+      24   
+      25  ### Added
+
+⏺ Write(PUBLISHING.md)
+  ⎿  Wrote 96 lines to PUBLISHING.md
+     # Publishing @fluid-theme/core to npm
+
+     Everything is set up. You have 3 steps to do manually — they each take about 2 minutes.
+
+     ---
+
+     ## Step 1 — Create your npm account
+
+     1. Go to **[npmjs.com/signup](https://www.npmjs.com/signup)**
+     2. Create an account (username, email, password)
+     … +86 lines (ctrl+o to expand)
+
+⏺ Now update PROJECT_STATUS.md and version references, then commit:
+
+⏺ Update(PROJECT_STATUS.md)
+  ⎿  Added 2 lines, removed 2 lines
+      2   
+      3  ## Current Status: Phase 4 Complete (UX Compliance + Sections + Templates)
+      4   
+      5 -**Version**: 0.4.1                                                                       
+      6 -**Last Updated**: March 20, 2026                                                         
+      5 +**Version**: 0.4.2                                                                       
+      6 +**Last Updated**: March 21, 2026                                                         
+      7   
+      8  ### Design Philosophy
+      9  *"Like water: adaptable, natural, powerful yet gentle."*
+
+⏺ Update(PROJECT_STATUS.md)
+  ⎿  Added 5 lines, removed 3 lines
+      125  - [x] Release workflow (auto version bump, npm publish, GitHub release)
+      126   
+      127   
+      128 -## Phase 5: Distribution & Testing -- PENDING                                          
+      128 +## Phase 5: Distribution & Testing -- IN PROGRESS                                      
+      129   
+      130 -- [ ] NPM package published                                                            
+      131 -- [ ] CDN setup (jsDelivr, unpkg)                                                      
+      130 +- [x] NPM package configured (`@fluid-theme/core`, v0.4.2)                             
+      131 +- [x] Build pipeline (`npm run build` → `dist/fluid.min.css` via lightningcss)         
+      132 +- [ ] NPM account created + package published (see PUBLISHING.md)                      
+      133 +- [ ] CDN live (jsDelivr, unpkg — automatic once npm publish runs)                     
+      134  - [ ] HTML starter kit
+      135  - [ ] React starter kit
+      136  - [ ] Visual regression tests
+
+⏺ Update(PROJECT_STATUS.md)
+  ⎿  Added 1 line, removed 1 line
+      165   
+      166  **See also**: [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) |
+           [QUICK_CHECKLIST.md](QUICK_CHECKLIST.md)
+      167   
+      168 -*Last Updated: March 20, 2026*                                                         
+      168 +*Last Updated: March 21, 2026*                                                         
+
+⏺ Now check for any other version references to update:
+
+  Searched for 4 patterns (ctrl+o to expand)
+
+⏺ The old version hits are in CHANGELOG history (correct) and .unlighthouse-results/ cache (ignore). Let
+  me check the CSS version comment and _config.yml:
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Update(src/fluid.css)
+  ⎿  Added 1 line, removed 1 line
+       4   *
+       5   * Like water: adaptable, natural, powerful yet gentle.
+       6   *
+       7 - * @version 0.4.1                                                                       
+       7 + * @version 0.4.2                                                                       
+       8   * @license MIT
+       9   *
+      10   * Layer Architecture:
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(_config.yml)
+  ⎿  Added 1 line, removed 1 line
+      42        layout: default
+      43   
+      44  # Site-wide variables
+      45 -version: "0.4.1"                                                                        
+      45 +version: "0.4.2"                                                                        
+      46  # Note: "Last Built" timestamp is now automatic via site.time
+
+⏺ Now rebuild dist with the updated version in the source, then commit:
+
+⏺ Bash(npm run build 2>&1)
+  ⎿  > @fluid-theme/core@0.4.2 build
+     > node scripts/build-css.mjs
+
+     ✓ dist/fluid.min.css  196.2 kB  (24ms)
+
+⏺ Bash(git status && git diff --stat)
+  ⎿  On branch main
+     Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+       (use "git pull" to update your local branch)
+     … +26 lines (ctrl+o to expand)
+
+⏺ Bash(git status dist/ && cat .gitignore 2>/dev/null | head -30)
+  ⎿  On branch main
+     Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+       (use "git pull" to update your local branch)
+     … +32 lines (ctrl+o to expand)
+
+⏺ dist/ is gitignored — that's actually correct. The files field in package.json ensures npm includes
+  dist/ in the published package regardless of .gitignore. The prepublishOnly hook rebuilds it fresh
+  before every publish. Let me update the .gitignore comment to reflect this is now real:
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(.gitignore)
+  ⎿  Added 2 lines, removed 1 line
+      19  .env
+      20  .env.local
+      21   
+      22 -# Build outputs (if we ever add a build step)                                           
+      22 +# Build outputs — dist/ is generated by `npm run build` and included in npm             
+      23 +# publish via package.json "files" field. No need to commit built artifacts.            
+      24  dist/
+      25  build/
+      26   
+
+⏺ Now pull the remote commit and then commit everything:
+
+⏺ Bash(git pull --rebase 2>&1)
+  ⎿  Error: Exit code 128
+     error: cannot pull with rebase: You have unstaged changes.
+     error: Please commit or stash them.
+
+⏺ Bash(git stash && git pull --rebase && git stash pop 2>&1)
+  ⎿  Error: Exit code 1
+     Saved working directory and index state WIP on main: e343fd7 chore: remove internal .agent/ and
+     .claude/ from git tracking
+     Updating e343fd7..80751e2
+     Fast-forward
+      CHANGELOG.md  | 7 +++++++
+      _config.yml   | 2 +-
+      package.json  | 2 +-
+      src/fluid.css | 2 +-
+      4 files changed, 10 insertions(+), 3 deletions(-)
+     Auto-merging CHANGELOG.md
+     … +25 lines (ctrl+o to see all)
+
+⏺ There are conflicts from a remote commit that also bumped to v0.4.2 (the gitignore cleanup). I'll
+  resolve them:
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ Update(CHANGELOG.md)
+  ⎿  Added 6 lines, removed 10 lines
+       5  The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+       6  and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+       7   
+       8 -<<<<<<< Updated upstream                                                                
+       9 -## [0.4.2] - 2026-03-20                                                                 
+      10 -                                                                                        
+      11 -### Fixed                                                                               
+      12 -- chore: remove internal .agent/ and .claude/ from git tracking                         
+      13 -                                                                                        
+      14 -=======                                                                                 
+       8  ## [0.4.2] - 2026-03-21
+       9   
+      10  ### Added
+      11 -- **npm package** published                                                             
+         - as `@fluid-theme/core` (scoped, leaving room for `@fluid-theme/react`,                 
+         -`@fluid-theme/vue`, etc.)                                                               
+      11 +- **npm package** configured                                                            
+         + as `@fluid-theme/core` (scoped, leaving room for `@fluid-theme/react`,                 
+         +`@fluid-theme/vue`, etc.)                                                               
+      12  - **CSS build pipeline**: `npm run build` bundles all `@import` statements and minifies
+           to `dist/fluid.min.css` via lightningcss
+      13  - **`dist/fluid.min.css`**: production-ready minified build (196 kB) for CDN and npm
+          consumers
+      14 -- **CDN links**: jsDelivr and unpkg now                                                 
+         - serve the minified build automatically once published                                  
+      14 +- **CDN links**: jsDelivr and unpkg will                                                
+         + serve the minified build automatically once published                                  
+      15  - **Package exports**: `@fluid-theme/core` resolves to minified build;
+          `@fluid-theme/core/src` gives access to raw source
+      16 +- **`PUBLISHING.md`**: step-by-step guide for completing the npm publish (create        
+         +account, create org, login, publish)                                                    
+      17   
+      18  ### Changed
+      19  - Package renamed from `the-fluid-theme` → `@fluid-theme/core`
+      20  - `package.json` `main` and `style` fields now point to `dist/fluid.min.css`
+      21  - `prepublishOnly` hook ensures dist is always rebuilt before publishing
+      22  - README installation instructions updated with correct CDN links and npm install
+          command
+      23 ->>>>>>> Stashed changes                                                                 
+      23   
+      24 +### Fixed                                                                               
+      25 +- Removed internal `.agent/` and `.claude/` directories from git tracking               
+      26 +                                                                                        
+      27  ## [0.4.1] - 2026-03-20
+      28   
+      29  ### Added
+
+⏺ Update(package.json)
+  ⎿  Removed 4 lines
+      1  {
+      2 -<<<<<<< Updated upstream                                                                 
+      3 -  "name": "the-fluid-theme",                                                             
+      4 -=======                                                                                  
+      2    "name": "@fluid-theme/core",
+      3 ->>>>>>> Stashed changes                                                                  
+      3    "version": "0.4.2",
+      4    "description": "A modern, semantic CSS design system built on physics principles — not
+          utility classes",
+      5    "main": "dist/fluid.min.css",
+
+⏺ Bash(git stash drop && git add CHANGELOG.md package.json package-lock.json README.md PROJECT_STATUS.md
+      _config.yml src/fluid.css .gitignore PUBLISHING.md scripts/bui…)
+  ⎿  Dropped refs/stash@{0} (3f790f5412a4ed3ac319d14b685a76875327f2e7)
+
+⏺ Bash(git status)
+  ⎿  On branch main
+     Your branch is up to date with 'origin/main'.
+     … +10 lines (ctrl+o to expand)
+
+⏺ src/fluid.css isn't staged — let me check:
+
+⏺ Bash(git diff src/fluid.css)
+  ⎿  (No output)
+
+⏺ The remote already updated src/fluid.css to 0.4.2. All good. Now commit:
+
+⏺ Bash(git commit -m "$(cat <<'EOF'
+      feat: npm package setup — @fluid-theme/core v0.4.2…)
+  ⎿  [main 7a68f25] feat: npm package setup — @fluid-theme/core v0.4.2
+      8 files changed, 475 insertions(+), 21 deletions(-)
+      create mode 100644 PUBLISHING.md
+      create mode 100644 scripts/build-css.mjs
+
+⏺ Bash(git push origin main 2>&1)
+  ⎿  To https://github.com/Agile-Media-Agency/the-fluid-theme.git
+        80751e2..7a68f25  main -> main
+
+⏺ All done. Here's what happened while you were asleep:
+
+  ---
+  Everything is ready to publish. You have 3 steps tomorrow morning:
+
+  Step 1 — https://www.npmjs.com/signup — Create your npm account
+
+  Step 2 — https://www.npmjs.com/org/create — Create the @fluid-theme organization (free for public
+  packages)
+
+  Step 3 — In your terminal:
+  npm login
+  npm publish --access public
+
+  That's it. The build runs automatically before publish. CDN links go live within minutes.
+
+  ---
+  What was built:
+
+  ┌─────────────────────┬───────────────────────────────────────────────────────────────────┐
+  │                     │                                                                   │
+  ├─────────────────────┼───────────────────────────────────────────────────────────────────┤
+  │ Package name        │ @fluid-theme/core                                                 │
+  ├─────────────────────┼───────────────────────────────────────────────────────────────────┤
+  │ Build tool          │ lightningcss (bundles all @import, minifies)                      │
+  ├─────────────────────┼───────────────────────────────────────────────────────────────────┤
+  │ Output              │ dist/fluid.min.css — 196 kB                                       │
+  ├─────────────────────┼───────────────────────────────────────────────────────────────────┤
+  │ CDN (after publish) │ https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid.min.css │
+  ├─────────────────────┼───────────────────────────────────────────────────────────────────┤
+  │ Full instructions   │ PUBLISHING.md in the repo                                         │
+  └─────────────────────┴───────────────────────────────────────────────────────────────────┘
+
+✻ Crunched for 5m 26s
+
+❯ should my npm account be a "top level" ie agile media agency (my llc) for all projects that might use  
+this or domain/project level, ie: npm@thefluidtheme.com etc                                              
+
+⏺ One npm account, multiple organizations. Here's why the distinction matters:
+
+  npm account = your login identity (one per person/company, used to authenticate)
+  npm organization = the package scope (@fluid-theme, @agile-media, etc.)
+
+  A single npm account can own as many organizations as you want. So:
+
+  Recommended: one top-level account — something like neilwhite or agilemediaagency — and then create
+  separate orgs per project:
+
+  ┌──────────────┬─────────────────────────────────────────────┐
+  │     Org      │                  Packages                   │
+  ├──────────────┼─────────────────────────────────────────────┤
+  │ @fluid-theme │ @fluid-theme/core, @fluid-theme/react, etc. │
+  ├──────────────┼─────────────────────────────────────────────┤
+  │ @agile-media │ any future LLC tools/packages               │
+  └──────────────┴─────────────────────────────────────────────┘
+
+  Don't use an email-style name like npm@thefluidtheme.com — that's not what npm account names are for.
+  npm usernames are short handles, not emails (though you register with an email address).
+
+  My recommendation: Register as neilwhite (or agile-media if you prefer the LLC brand). Then create the
+  @fluid-theme org from that account. If you ever have collaborators, you can add them to specific orgs
+  without giving them your login.
+
+  The account name is mostly invisible to consumers of your packages — they only ever see
+  @fluid-theme/core, never who the account owner is.
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ x 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)                      
+                                                                                                         
+                                                                                                         
+

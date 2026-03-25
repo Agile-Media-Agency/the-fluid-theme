@@ -188,24 +188,24 @@
      Note: Uses :not([class]) to avoid overriding nav dropdowns and other styled lists */
 
   /* Still: Clean disc (default - minimal) */
-  [data-motion="still"] ul:not([class]) {
+  [data-preset="still"] ul:not([class]) {
     list-style-type: disc;
   }
 
   /* Serene: Open circle - elegant, understated */
-  [data-motion="serene"] ul:not([class]) {
+  [data-preset="serene"] ul:not([class]) {
     list-style-type: circle;
   }
 
   /* Stream: Dash - modern, horizontal emphasis */
-  [data-motion="stream"] ul:not([class]) {
+  [data-preset="stream"] ul:not([class]) {
     list-style-type: none;
     padding-inline-start: var(--space-5);
   }
-  [data-motion="stream"] ul:not([class]) > li {
+  [data-preset="stream"] ul:not([class]) > li {
     position: relative;
   }
-  [data-motion="stream"] ul:not([class]) > li::before {
+  [data-preset="stream"] ul:not([class]) > li::before {
     content: "—";
     position: absolute;
     inset-inline-start: calc(var(--space-5) * -1);
@@ -214,14 +214,14 @@
   }
 
   /* Cascade: Filled circle - friendly, rounded */
-  [data-motion="cascade"] ul:not([class]) {
+  [data-preset="cascade"] ul:not([class]) {
     list-style-type: none;
     padding-inline-start: var(--space-6);
   }
-  [data-motion="cascade"] ul:not([class]) > li {
+  [data-preset="cascade"] ul:not([class]) > li {
     position: relative;
   }
-  [data-motion="cascade"] ul:not([class]) > li::before {
+  [data-preset="cascade"] ul:not([class]) > li::before {
     content: "";
     position: absolute;
     inset-inline-start: calc(var(--space-6) * -1);
@@ -233,14 +233,14 @@
   }
 
   /* Rapids: Chevron - energetic, forward motion */
-  [data-motion="rapids"] ul:not([class]) {
+  [data-preset="rapids"] ul:not([class]) {
     list-style-type: none;
     padding-inline-start: var(--space-6);
   }
-  [data-motion="rapids"] ul:not([class]) > li {
+  [data-preset="rapids"] ul:not([class]) > li {
     position: relative;
   }
-  [data-motion="rapids"] ul:not([class]) > li::before {
+  [data-preset="rapids"] ul:not([class]) > li::before {
     content: "";
     position: absolute;
     inset-inline-start: calc(var(--space-6) * -1);
@@ -253,14 +253,14 @@
   }
 
   /* Tsunami: Square - bold, impactful */
-  [data-motion="tsunami"] ul:not([class]) {
+  [data-preset="tsunami"] ul:not([class]) {
     list-style-type: none;
     padding-inline-start: var(--space-6);
   }
-  [data-motion="tsunami"] ul:not([class]) > li {
+  [data-preset="tsunami"] ul:not([class]) > li {
     position: relative;
   }
-  [data-motion="tsunami"] ul:not([class]) > li::before {
+  [data-preset="tsunami"] ul:not([class]) > li::before {
     content: "";
     position: absolute;
     inset-inline-start: calc(var(--space-6) * -1);
@@ -783,45 +783,45 @@
      ======================================== */
 
   /* Still: Clean, precise, Swiss-style typography */
-  [data-motion="still"] h1,
-  [data-motion="still"] h2,
-  [data-motion="still"] h3 {
+  [data-preset="still"] h1,
+  [data-preset="still"] h2,
+  [data-preset="still"] h3 {
     font-weight: var(--weight-medium);
     letter-spacing: 0.02em;
     text-transform: uppercase;
   }
 
   /* Serene: Elegant, classical typography */
-  [data-motion="serene"] h1,
-  [data-motion="serene"] h2 {
+  [data-preset="serene"] h1,
+  [data-preset="serene"] h2 {
     font-weight: var(--weight-normal);
     letter-spacing: 0;
     font-style: italic;
   }
 
   /* Rapids: Bold, italic, aggressive sports feel */
-  [data-motion="rapids"] h1,
-  [data-motion="rapids"] h2,
-  [data-motion="rapids"] h3 {
+  [data-preset="rapids"] h1,
+  [data-preset="rapids"] h2,
+  [data-preset="rapids"] h3 {
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 0.95;
   }
-  [data-motion="rapids"] h1 {
+  [data-preset="rapids"] h1 {
     font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-5xl));
   }
 
   /* Tsunami: Maximum impact, dramatic typography */
-  [data-motion="tsunami"] h1,
-  [data-motion="tsunami"] h2 {
+  [data-preset="tsunami"] h1,
+  [data-preset="tsunami"] h2 {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.03em;
     line-height: 0.9;
   }
-  [data-motion="tsunami"] h1 {
+  [data-preset="tsunami"] h1 {
     font-size: clamp(var(--font-size-4xl), 10vw, 6rem);
   }
 

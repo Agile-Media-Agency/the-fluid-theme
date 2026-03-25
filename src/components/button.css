@@ -262,9 +262,9 @@
      ======================================== */
 
   /* Tsunami button hover - noticeable growth like a wave rising */
-  [data-motion="tsunami"] button:hover:not(:disabled),
-  [data-motion="tsunami"] [role="button"]:hover:not(:disabled),
-  [data-motion="tsunami"] .button:hover:not(:disabled) {
+  [data-preset="tsunami"] button:hover:not(:disabled),
+  [data-preset="tsunami"] [role="button"]:hover:not(:disabled),
+  [data-preset="tsunami"] .button:hover:not(:disabled) {
     transform: scale(1.08);
     box-shadow: var(--shadow-lg);
     transition:
@@ -274,9 +274,9 @@
   }
 
   /* Tsunami button active/click - crash down effect */
-  [data-motion="tsunami"] button:active:not(:disabled),
-  [data-motion="tsunami"] [role="button"]:active:not(:disabled),
-  [data-motion="tsunami"] .button:active:not(:disabled) {
+  [data-preset="tsunami"] button:active:not(:disabled),
+  [data-preset="tsunami"] [role="button"]:active:not(:disabled),
+  [data-preset="tsunami"] .button:active:not(:disabled) {
     transform: scale(0.92) translateY(4px);
     box-shadow: var(--shadow-xs);
     transition:
@@ -292,9 +292,9 @@
     100% { transform: scale(1) translateY(0); }
   }
 
-  [data-motion="tsunami"] button:not(:hover):not(:active):not(:disabled),
-  [data-motion="tsunami"] [role="button"]:not(:hover):not(:active):not([aria-disabled="true"]),
-  [data-motion="tsunami"] .button:not(:hover):not(:active):not(:disabled) {
+  [data-preset="tsunami"] button:not(:hover):not(:active):not(:disabled),
+  [data-preset="tsunami"] [role="button"]:not(:hover):not(:active):not([aria-disabled="true"]),
+  [data-preset="tsunami"] .button:not(:hover):not(:active):not(:disabled) {
     animation: tsunami-button-settle var(--duration-normal) var(--ease-settle);
   }
 
@@ -364,23 +364,23 @@
       opacity: 0.6;
     }
 
-    [data-motion="tsunami"] button:hover:not(:disabled),
-    [data-motion="tsunami"] [role="button"]:hover:not(:disabled),
-    [data-motion="tsunami"] .button:hover:not(:disabled) {
+    [data-preset="tsunami"] button:hover:not(:disabled),
+    [data-preset="tsunami"] [role="button"]:hover:not(:disabled),
+    [data-preset="tsunami"] .button:hover:not(:disabled) {
       transform: none;
       transition: none;
     }
 
-    [data-motion="tsunami"] button:active:not(:disabled),
-    [data-motion="tsunami"] [role="button"]:active:not(:disabled),
-    [data-motion="tsunami"] .button:active:not(:disabled) {
+    [data-preset="tsunami"] button:active:not(:disabled),
+    [data-preset="tsunami"] [role="button"]:active:not(:disabled),
+    [data-preset="tsunami"] .button:active:not(:disabled) {
       transform: none;
       transition: none;
     }
 
-    [data-motion="tsunami"] button:not(:hover):not(:active):not(:disabled),
-    [data-motion="tsunami"] [role="button"]:not(:hover):not(:active):not([aria-disabled="true"]),
-    [data-motion="tsunami"] .button:not(:hover):not(:active):not(:disabled) {
+    [data-preset="tsunami"] button:not(:hover):not(:active):not(:disabled),
+    [data-preset="tsunami"] [role="button"]:not(:hover):not(:active):not([aria-disabled="true"]),
+    [data-preset="tsunami"] .button:not(:hover):not(:active):not(:disabled) {
       animation: none;
     }
   }

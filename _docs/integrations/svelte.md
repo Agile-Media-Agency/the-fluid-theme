@@ -28,7 +28,7 @@ Set theme attributes in `app.html`:
 ```html
 <!-- src/app.html -->
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-motion="flowing">
+<html lang="en" data-theme="light" data-preset="flowing">
   <head>%sveltekit.head%</head>
   <body>%sveltekit.body%</body>
 </html>

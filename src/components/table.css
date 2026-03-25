@@ -269,22 +269,22 @@
      ======================================== */
 
   /* Still: crisp borders */
-  [data-motion="still"] .table-wrap {
+  [data-preset="still"] .table-wrap {
     border-radius: 0;
   }
 
   /* Serene: soft rounded */
-  [data-motion="serene"] .table-wrap {
+  [data-preset="serene"] .table-wrap {
     border-radius: var(--radius-xl);
   }
 
   /* Rapids: hard offset shadow */
-  [data-motion="rapids"] .table-wrap {
+  [data-preset="rapids"] .table-wrap {
     box-shadow: var(--shadow-offset);
   }
 
   /* Tsunami: asymmetric corners */
-  [data-motion="tsunami"] .table-wrap {
+  [data-preset="tsunami"] .table-wrap {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
   }
 

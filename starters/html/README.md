@@ -16,7 +16,7 @@ Change these attributes on the `<html>` element:
 ```html
 <html
   data-theme="light"       <!-- light | dark -->
-  data-motion="flowing"    <!-- still | serene | stream | flowing | cascade | rapids | tsunami -->
+  data-preset="flowing"    <!-- still | serene | stream | flowing | cascade | rapids | tsunami -->
   data-palette="fluid"     <!-- fluid | morandi | bold | pastel | earth | mono | 80s | matrix | subtle | tsunami -->
   data-accent="1"          <!-- 1–6 -->
 >

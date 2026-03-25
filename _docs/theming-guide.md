@@ -8,25 +8,26 @@ The framework's theming is controlled entirely by data attributes on the `<body>
 
 ## How Theming Works
 
-Fluid's theme system has five independent axes, each controlled by a `data-*` attribute on `<body>`:
+Fluid's theme system has six independent axes, each controlled by a `data-*` attribute on `<body>`:
 
 1. **Color mode**: `data-theme="light|dark|auto"` — light or dark appearance
-2. **Motion preset**: `data-motion="still|serene|stream|flowing|cascade|rapids|tsunami"` — controls animation speed AND visual personality (corners, shadows, spacing, typography feel)
-3. **Color palette**: `data-palette="fluid|morandi|bold|pastel|earth|mono|80s|matrix|subtle|tsunami"` — the color scheme
-4. **Accent**: `data-accent="1|2|3|4|5|6"` — which of the palette's 6 accent colors to use
-5. **Contrast**: `data-contrast="normal|subdued"` — full vs muted contrast
+2. **Visual preset**: `data-preset="still|serene|stream|flowing|cascade|rapids|tsunami"` — visual personality (fonts, corners, shadows, spacing, background tint, typography feel)
+3. **Animation speed**: `data-motion="reduced|slow|default|fast"` — override animation timing only, without changing visual design
+4. **Color palette**: `data-palette="fluid|morandi|bold|pastel|earth|mono|80s|matrix|subtle|tsunami"` — the color scheme
+5. **Accent**: `data-accent="1|2|3|4|5|6"` — which of the palette's 6 accent colors to use
+6. **Contrast**: `data-contrast="normal|subdued"` — full vs muted contrast
 
 These axes are independent. Any combination works. Changing one does not affect the others.
 
 ```html
-<body data-theme="dark" data-motion="cascade" data-palette="morandi" data-accent="3" data-contrast="normal">
+<body data-theme="dark" data-preset="cascade" data-palette="morandi" data-accent="3" data-contrast="normal">
 ```
 
 ---
 
-## Motion Presets in Depth
+## Visual Presets in Depth
 
-Motion presets do not just change animation speed — they change the entire visual personality of the framework. Each preset defines its own corner radii, shadow styles, spacing rhythm, and typographic character.
+Presets change the entire visual personality of the framework — not just animation. Each preset defines its own fonts, corner radii, shadow styles, spacing rhythm, background tint in light mode, and dark mode surface color.
 
 - **still** — Swiss design. Sharp corners, no shadows, compact layout. Precise and minimal.
 - **serene** — Classical. Pillowy corners, whisper-soft shadows, generous whitespace. Calm and spacious.
@@ -49,6 +50,32 @@ Each preset provides its own dark mode surface colors. Dark mode uses deep palet
 | cascade | Deep lavender |
 | rapids | Deep charcoal |
 | tsunami | Deepest navy abyss |
+
+---
+
+## Animation Speed Override (`data-motion`)
+
+`data-motion` controls animation timing only — it does not change fonts, colors, radius, or any other visual design. Use it to adjust the feel of motion independently of the visual preset.
+
+| Value | Effect |
+|-------|--------|
+| `reduced` | All durations → 0ms (accessibility override) |
+| `slow` | 1.5× base durations — cinematic, deliberate |
+| `default` | No override — use the preset's own timing |
+| `fast` | 0.5× base durations — snappy, high-energy |
+
+```html
+<!-- Slow down animations on a page with lots of content -->
+<html data-preset="flowing" data-motion="slow">
+
+<!-- Speed up a data-dense dashboard -->
+<html data-preset="stream" data-motion="fast">
+
+<!-- Accessibility: remove all motion site-wide -->
+<html data-preset="cascade" data-motion="reduced">
+```
+
+`data-motion="reduced"` always wins, and `prefers-reduced-motion: reduce` always beats any `data-motion` value. Accessibility is never overridden.
 
 ---
 
@@ -115,7 +142,7 @@ Override the motion-related tokens to create a new visual personality:
 
 ```css
 @layer themes {
-  [data-motion="custom"] {
+  [data-preset="custom"] {
     --motion-scale: 0.8;
     --radius-sm: 4px;
     --radius-md: 8px;

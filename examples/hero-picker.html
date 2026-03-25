@@ -125,16 +125,16 @@ nav: hero-picker
     }
 
     /* Still: instant */
-    [data-motion="still"] ::view-transition-old(hero-preview),
-    [data-motion="still"] ::view-transition-new(hero-preview) {
+    [data-preset="still"] ::view-transition-old(hero-preview),
+    [data-preset="still"] ::view-transition-new(hero-preview) {
       animation: none;
     }
 
     /* Serene: slow crossfade with subtle zoom */
-    [data-motion="serene"] ::view-transition-old(hero-preview) {
+    [data-preset="serene"] ::view-transition-old(hero-preview) {
       animation: var(--duration-slow) var(--ease-fluid) both kenburns-out;
     }
-    [data-motion="serene"] ::view-transition-new(hero-preview) {
+    [data-preset="serene"] ::view-transition-new(hero-preview) {
       animation: var(--duration-slow) var(--ease-fluid) both kenburns-in;
     }
 

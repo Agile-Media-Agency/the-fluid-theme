@@ -34,64 +34,64 @@
   }
 
   /* STILL: System-native — Swiss design needs no custom typeface */
-  [data-motion="still"] {
+  [data-preset="still"] {
     --font-heading: var(--font-system);
     --font-body: var(--font-system);
     --font-display: var(--font-system);
   }
 
   /* SERENE: Contemplative, literary, spa-like */
-  [data-motion="serene"] {
+  [data-preset="serene"] {
     --font-heading: 'Cormorant Garamond', var(--font-serif);
     --font-body: 'EB Garamond', var(--font-serif);
     --font-display: 'Cormorant Garamond', var(--font-serif);
   }
 
   /* STREAM: Modern SaaS, clean, approachable */
-  [data-motion="stream"] {
+  [data-preset="stream"] {
     --font-heading: 'Plus Jakarta Sans', var(--font-system);
     --font-body: 'Plus Jakarta Sans', var(--font-system);
     --font-display: 'Plus Jakarta Sans', var(--font-system);
   }
 
   /* TRICKLING: Utility-first, developer-friendly */
-  [data-motion="trickling"] {
+  [data-preset="trickling"] {
     --font-heading: var(--font-system);
     --font-body: var(--font-system);
     --font-display: var(--font-system);
   }
 
   /* FLOWING: Fluid brand identity — smooth, geometric, modern */
-  :root:not([data-motion]),
-  [data-motion="flowing"] {
+  :root:not([data-preset]),
+  [data-preset="flowing"] {
     --font-heading: 'Outfit', var(--font-system);
     --font-body: 'DM Sans', var(--font-system);
     --font-display: 'Outfit', var(--font-system);
   }
 
   /* CASCADE: Friendly, rounded, Notion/Slack vibes */
-  [data-motion="cascade"] {
+  [data-preset="cascade"] {
     --font-heading: 'Nunito', var(--font-system);
     --font-body: 'Nunito', var(--font-system);
     --font-display: 'Nunito', var(--font-system);
   }
 
   /* RAPIDS: Athletic, punchy, high-energy */
-  [data-motion="rapids"] {
+  [data-preset="rapids"] {
     --font-heading: 'Syne', var(--font-system);
     --font-body: 'Space Grotesk', var(--font-system);
     --font-display: 'Syne', var(--font-system);
   }
 
   /* TSUNAMI: Cinematic, dramatic, Hokusai-inspired */
-  [data-motion="tsunami"] {
+  [data-preset="tsunami"] {
     --font-heading: 'Bebas Neue', var(--font-system);
     --font-body: 'Barlow', var(--font-system);
     --font-display: 'Bebas Neue', var(--font-system);
   }
 
   /* BRUTALIST: Geometric, industrial, uncompromising */
-  [data-motion="brutalist"] {
+  [data-preset="brutalist"] {
     --font-heading: 'Space Mono', var(--font-mono);
     --font-body: 'Space Mono', var(--font-mono);
     --font-display: 'Space Mono', var(--font-mono);
@@ -99,14 +99,14 @@
   }
 
   /* EDITORIAL: Luxury magazine, contemplative */
-  [data-motion="editorial"] {
+  [data-preset="editorial"] {
     --font-heading: 'Playfair Display', var(--font-serif);
     --font-body: 'Libre Baskerville', var(--font-serif);
     --font-display: 'Playfair Display', var(--font-serif);
   }
 
   /* NEON: Cyberpunk, futuristic, electric */
-  [data-motion="neon"] {
+  [data-preset="neon"] {
     --font-heading: 'Orbitron', var(--font-system);
     --font-body: 'Exo 2', var(--font-system);
     --font-display: 'Orbitron', var(--font-system);
@@ -144,17 +144,17 @@
     }
 
     // Load font for the initial preset
-    const initial = document.documentElement.getAttribute('data-motion') || 'flowing';
+    const initial = document.documentElement.getAttribute('data-preset') || 'flowing';
     loadPresetFont(initial);
 
     // Observe preset changes and load fonts on demand
     new MutationObserver(function(mutations) {
       mutations.forEach(function(m) {
-        if (m.attributeName === 'data-motion') {
-          const next = document.documentElement.getAttribute('data-motion') || 'flowing';
+        if (m.attributeName === 'data-preset') {
+          const next = document.documentElement.getAttribute('data-preset') || 'flowing';
           loadPresetFont(next);
         }
       });
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-motion'] });
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-preset'] });
   })();
 </script>

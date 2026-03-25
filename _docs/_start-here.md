@@ -164,7 +164,7 @@ the-fluid-theme-v2c/
 ### 1. Physics-Based Motion
 Motion isn't arbitrary - it's derived from fluid dynamics:
 ```html
-<html data-motion="rapids">
+<html data-preset="rapids">
 <!-- New content pushes through old with friction and momentum -->
 ```
 
@@ -198,7 +198,7 @@ Perceptually uniform colors that derive mathematically:
 
 ### 5. Motion-Linked Colors (Fluid Palette)
 ```html
-<html data-palette="fluid" data-motion="tsunami">
+<html data-palette="fluid" data-preset="tsunami">
 <!-- Accent automatically becomes deep navy (Hokusai wave) -->
 ```
 
@@ -208,7 +208,7 @@ Perceptually uniform colors that derive mathematically:
 
 ```html
 <!DOCTYPE html>
-<html lang="en" data-palette="fluid" data-motion="flowing">
+<html lang="en" data-palette="fluid" data-preset="flowing">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -234,7 +234,7 @@ Perceptually uniform colors that derive mathematically:
 | Attribute | Values | Purpose |
 |-----------|--------|---------|
 | `data-theme` | `light`, `dark`, `auto` | Color mode |
-| `data-motion` | `still`, `serene`, `stream`, `flowing`, `cascade`, `rapids`, `tsunami` | Motion intensity |
+| `data-preset` | `still`, `serene`, `stream`, `flowing`, `cascade`, `rapids`, `tsunami` | Motion intensity |
 | `data-palette` | `fluid`, `morandi`, `bold`, `pastel`, `earth`, `mono`, `80s`, `matrix`, `subtle`, `tsunami` | Color family |
 | `data-accent` | `1`-`6` | Accent color from palette |
 | `data-contrast` | `normal`, `subdued` | Contrast mode |
