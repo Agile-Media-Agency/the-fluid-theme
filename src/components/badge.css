@@ -175,6 +175,14 @@
     background: transparent;
   }
 
+  /* Rapids: square with bold uppercase — neo-brutalist label */
+  [data-preset="rapids"] .badge {
+    border-radius: var(--radius-sm);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+
   /* Tsunami: asymmetric corners */
   [data-preset="tsunami"] .badge {
     border-radius: var(--radius-asymmetric, 0 12px 0 0);

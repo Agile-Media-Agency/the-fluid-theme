@@ -177,6 +177,38 @@
 
 
   /* ========================================
+     THEME-SPECIFIC STYLES
+     ======================================== */
+
+  /* Still: square step markers */
+  [data-preset="still"] .steps__marker {
+    border-radius: 0;
+  }
+
+  /* Flowing: ocean glow on active step (inherits --shadow-glow) */
+  :root[data-preset="flowing"] .steps__marker[aria-current="step"],
+  :root:not([data-preset]) .steps__marker[aria-current="step"],
+  [data-preset="flowing"] .steps__marker[aria-current="step"] {
+    box-shadow:
+      0 0 0 3px var(--color-background),
+      0 0 0 5px color-mix(in oklch, var(--accent) 40%, transparent),
+      0 0 16px color-mix(in oklch, var(--accent) 20%, transparent);
+  }
+
+  /* Rapids: bold offset shadow on active step */
+  [data-preset="rapids"] .steps__marker[aria-current="step"],
+  [data-preset="rapids"] .steps__marker[aria-selected="true"] {
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-offset);
+  }
+
+  /* Tsunami: dramatic larger active marker */
+  [data-preset="tsunami"] .steps__marker {
+    border-radius: var(--radius-sm);
+  }
+
+
+  /* ========================================
      REDUCED MOTION
      ======================================== */
 
