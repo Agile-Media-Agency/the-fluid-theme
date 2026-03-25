@@ -307,6 +307,114 @@
 
 
   /* ========================================
+     SERENE PRESET — Signature button feel
+     Whisper-gentle: no lift, just a soft glow expansion.
+     Contemplative, unhurried.
+     ======================================== */
+
+  [data-preset="serene"] button:not([data-variant]):not(:disabled),
+  [data-preset="serene"] .button:not([data-variant]):not(:disabled) {
+    box-shadow: var(--shadow-sm);
+    transition:
+      box-shadow var(--duration-normal) var(--ease-fluid),
+      background-color var(--duration-normal) var(--ease-fluid);
+  }
+
+  [data-preset="serene"] button:not([data-variant]):hover:not(:disabled),
+  [data-preset="serene"] .button:not([data-variant]):hover:not(:disabled) {
+    box-shadow: var(--shadow-md);
+  }
+
+  [data-preset="serene"] button:not([data-variant]):active:not(:disabled),
+  [data-preset="serene"] .button:not([data-variant]):active:not(:disabled) {
+    box-shadow: var(--shadow-xs);
+  }
+
+
+  /* ========================================
+     STREAM PRESET — Signature button feel
+     Clean precision: minimal lift, crisp shadow.
+     Modern SaaS clarity.
+     ======================================== */
+
+  [data-preset="stream"] button:not([data-variant]):hover:not(:disabled),
+  [data-preset="stream"] .button:not([data-variant]):hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  [data-preset="stream"] button:not([data-variant]):active:not(:disabled),
+  [data-preset="stream"] .button:not([data-variant]):active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-preset="stream"] button:not([data-variant]):hover:not(:disabled),
+    [data-preset="stream"] .button:not([data-variant]):hover:not(:disabled) {
+      transform: none;
+    }
+  }
+
+
+  /* ========================================
+     CASCADE PRESET — Signature button feel
+     Bouncy: spring up, snap back, joyful.
+     Playful Notion/Slack energy.
+     ======================================== */
+
+  [data-preset="cascade"] button:hover:not(:disabled),
+  [data-preset="cascade"] .button:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-md);
+  }
+
+  [data-preset="cascade"] button:active:not(:disabled),
+  [data-preset="cascade"] .button:active:not(:disabled) {
+    transform: translateY(1px) scale(0.97);
+    box-shadow: var(--shadow-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-preset="cascade"] button:hover:not(:disabled),
+    [data-preset="cascade"] .button:hover:not(:disabled) {
+      transform: none;
+    }
+  }
+
+
+  /* ========================================
+     RAPIDS PRESET — Signature button feel
+     Bold power: strong grow, strong drop.
+     Energetic editorial punch.
+     ======================================== */
+
+  [data-preset="rapids"] button:not([data-variant]):not(:disabled),
+  [data-preset="rapids"] .button:not([data-variant]):not(:disabled) {
+    box-shadow: var(--shadow-offset);
+  }
+
+  [data-preset="rapids"] button:not([data-variant]):hover:not(:disabled),
+  [data-preset="rapids"] .button:not([data-variant]):hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-offset-hover);
+  }
+
+  [data-preset="rapids"] button:not([data-variant]):active:not(:disabled),
+  [data-preset="rapids"] .button:not([data-variant]):active:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-preset="rapids"] button:not([data-variant]):hover:not(:disabled),
+    [data-preset="rapids"] .button:not([data-variant]):hover:not(:disabled) {
+      transform: none;
+    }
+  }
+
+
+  /* ========================================
      TSUNAMI MOTION EFFECTS
      Bold, wave-like interactions
      Uses transform only to avoid CLS

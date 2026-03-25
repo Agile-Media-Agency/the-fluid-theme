@@ -246,6 +246,99 @@
 
 
   /* ========================================
+     SERENE PRESET — Signature hero
+     Warm candlelight: a soft warm cream glow from above,
+     like sunlight through thin linen. Contemplative, spa-like.
+     ======================================== */
+
+  [data-preset="serene"] .hero {
+    background:
+      radial-gradient(
+        ellipse 90% 70% at 50% -15%,
+        oklch(96% 0.018 65 / 0.7) 0%,
+        oklch(98% 0.01 65 / 0) 65%
+      ),
+      var(--color-background);
+  }
+
+  [data-preset="serene"][data-theme="dark"] .hero {
+    background:
+      radial-gradient(
+        ellipse 90% 70% at 50% -15%,
+        oklch(22% 0.02 60 / 0.5) 0%,
+        oklch(14% 0.01 60 / 0) 65%
+      ),
+      var(--color-background);
+  }
+
+
+  /* ========================================
+     STREAM PRESET — Signature hero
+     Clean, open sky: a very subtle cool-white gradient
+     from top-center. Modern, airy, SaaS-clean.
+     ======================================== */
+
+  [data-preset="stream"] .hero {
+    background:
+      radial-gradient(
+        ellipse 100% 50% at 50% -5%,
+        oklch(95% 0.008 230 / 0.4) 0%,
+        oklch(98% 0.004 230 / 0) 60%
+      ),
+      var(--color-background);
+  }
+
+
+  /* ========================================
+     CASCADE PRESET — Signature hero
+     Soft waterfall mist: warm + fresh, top-center glow.
+     Playful, gentle, approachable.
+     ======================================== */
+
+  [data-preset="cascade"] .hero {
+    background:
+      radial-gradient(
+        ellipse 85% 65% at 50% -10%,
+        color-mix(in oklch, var(--accent) 12%, oklch(97% 0.01 160)) 0%,
+        color-mix(in oklch, var(--accent) 0%, var(--color-background)) 65%
+      ),
+      var(--color-background);
+  }
+
+
+  /* ========================================
+     RAPIDS PRESET — Signature hero
+     Bold energy: strong diagonal gradient using accent.
+     Vibrant, energetic, editorial.
+     ======================================== */
+
+  [data-preset="rapids"] .hero {
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--accent) 15%, var(--color-background)) 0%,
+        var(--color-background) 60%
+      );
+  }
+
+
+  /* ========================================
+     TSUNAMI PRESET — Signature hero
+     Deep ocean: dramatic dark-to-light gradient.
+     Bold, high-contrast, full-screen presence.
+     ======================================== */
+
+  [data-preset="tsunami"] .hero {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--accent) 20%, var(--color-background)) 0%,
+        var(--color-background) 70%
+      );
+  }
+
+
+  /* ========================================
      SPLIT HERO
      Content + media side by side
      ======================================== */

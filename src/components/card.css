@@ -597,6 +597,22 @@
     box-shadow: var(--shadow-md);
   }
 
+  /* Stream: Clean, minimal lift — modern SaaS clarity */
+  [data-preset="stream"] .card {
+    box-shadow: var(--shadow-sm);
+  }
+  [data-preset="stream"] .card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  [data-preset="stream"] .card[data-variant="elevated"] {
+    box-shadow: var(--shadow-md);
+  }
+  [data-preset="stream"] .card[data-variant="elevated"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
   /* Cascade: Prominent layered shadows, bubbly elevated feel */
   [data-preset="cascade"] .card {
     box-shadow:
