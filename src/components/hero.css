@@ -288,6 +288,16 @@
       var(--color-background);
   }
 
+  [data-preset="stream"][data-theme="dark"] .hero {
+    background:
+      radial-gradient(
+        ellipse 100% 50% at 50% -5%,
+        oklch(20% 0.02 220 / 0.5) 0%,
+        oklch(14% 0.01 220 / 0) 60%
+      ),
+      var(--color-background);
+  }
+
 
   /* ========================================
      CASCADE PRESET — Signature hero
@@ -300,6 +310,16 @@
       radial-gradient(
         ellipse 85% 65% at 50% -10%,
         color-mix(in oklch, var(--accent) 12%, oklch(97% 0.01 160)) 0%,
+        color-mix(in oklch, var(--accent) 0%, var(--color-background)) 65%
+      ),
+      var(--color-background);
+  }
+
+  [data-preset="cascade"][data-theme="dark"] .hero {
+    background:
+      radial-gradient(
+        ellipse 85% 65% at 50% -10%,
+        color-mix(in oklch, var(--accent) 20%, oklch(18% 0.02 280)) 0%,
         color-mix(in oklch, var(--accent) 0%, var(--color-background)) 65%
       ),
       var(--color-background);
