@@ -648,6 +648,11 @@
     --space-gutter: var(--space-5);
     --container-content: var(--container-lg);
 
+    /* Fonts: System-native — Swiss design needs no custom typeface */
+    --font-heading: var(--font-system);
+    --font-body: var(--font-system);
+    --font-display: var(--font-system);
+
     /* Sharp corners — zero radius across the board */
     --radius-sm: 0;
     --radius-md: 2px;
@@ -697,6 +702,11 @@
     --ease-settle: cubic-bezier(0.25, 0.1, 0.25, 1);
     /* Ken Burns zoom amount for images */
     --kenburns-scale: 1.05;
+
+    /* Fonts: Contemplative, literary, spa-like */
+    --font-heading: 'Cormorant Garamond', var(--font-serif);
+    --font-body: 'EB Garamond', var(--font-serif);
+    --font-display: 'Cormorant Garamond', var(--font-serif);
 
     /* Typography: generous, literary, breathable */
     --leading-normal: 1.8;
@@ -754,6 +764,11 @@
     --duration-slow: 250ms;
     --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* Fonts: System-native — utility-first, developer-friendly */
+    --font-heading: var(--font-system);
+    --font-body: var(--font-system);
+    --font-display: var(--font-system);
+
     /* Typography: compact, efficient */
     --leading-normal: 1.55;
     --tracking-normal: 0;
@@ -793,6 +808,11 @@
     --duration-slow: 450ms;
     --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Fonts: Modern SaaS, clean, tech-forward */
+    --font-heading: 'Plus Jakarta Sans', var(--font-system);
+    --font-body: 'Plus Jakarta Sans', var(--font-system);
+    --font-display: 'Plus Jakarta Sans', var(--font-system);
 
     /* Typography: open, readable, generous */
     --leading-normal: 1.6;
@@ -844,43 +864,62 @@
     --ease-fluid: cubic-bezier(0.33, 0, 0.2, 1);
     --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
 
-    /* Typography: comfortable, readable */
+    /* Fonts: Fluid brand identity — smooth, geometric, modern */
+    --font-heading: 'Outfit', var(--font-system);
+    --font-body: 'DM Sans', var(--font-system);
+    --font-display: 'Outfit', var(--font-system);
+
+    /* Typography: comfortable, fluid rhythm */
     --leading-normal: 1.65;
-    --tracking-normal: 0;
+    --leading-relaxed: 1.8;
+    --tracking-normal: -0.01em;
+    --tracking-tight: -0.025em;
+    --tracking-wide: 0.04em;
 
     /* Layout: Balanced, roomy but not extravagant */
-    --space-section: var(--space-16);
+    --space-section: var(--space-20);
     --space-gutter: var(--space-6);
     --container-content: var(--container-xl);
 
-    /* Organic rounded corners */
+    /* Organic rounded corners — fluid, natural, not artificial */
     --radius-sm: 6px;
     --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 18px;
-    --radius-2xl: 24px;
-    --radius-card: 14px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl: 28px;
+    --radius-card: 16px;
     --radius-button: 10px;
     --radius-input: 10px;
+    --radius-full: 9999px;
 
-    /* Layered, organic shadows */
+    /* Ocean-tinted shadows — depth carries the water hue */
+    --shadow-color: oklch(22% 0.06 230);
+    --shadow-xs:
+      0 1px 3px oklch(from var(--shadow-color) l c h / 0.04);
     --shadow-sm:
       0 2px 4px oklch(from var(--shadow-color) l c h / 0.04),
       0 4px 8px oklch(from var(--shadow-color) l c h / 0.04);
     --shadow-md:
       0 4px 8px oklch(from var(--shadow-color) l c h / 0.04),
-      0 8px 16px oklch(from var(--shadow-color) l c h / 0.06);
+      0 8px 20px oklch(from var(--shadow-color) l c h / 0.07);
     --shadow-lg:
       0 8px 16px oklch(from var(--shadow-color) l c h / 0.04),
-      0 16px 32px oklch(from var(--shadow-color) l c h / 0.08);
+      0 16px 40px oklch(from var(--shadow-color) l c h / 0.10);
+    --shadow-xl:
+      0 12px 24px oklch(from var(--shadow-color) l c h / 0.04),
+      0 24px 56px oklch(from var(--shadow-color) l c h / 0.12);
 
     /* Light-mode color character: ocean breath — the Fluid signature */
     /* Barely-perceptible blue-white, like morning light reflected on water */
     --color-background: oklch(98.5% 0.006 230);
-    --color-surface: oklch(96.5% 0.006 230);
+    --color-surface: oklch(96.5% 0.007 230);
     --color-surface-raised: oklch(99.5% 0.003 230);
-    --color-border: oklch(87% 0.007 230);
-    --color-border-subtle: oklch(92% 0.005 230);
+    --color-border: oklch(87% 0.008 230);
+    --color-border-subtle: oklch(92% 0.006 230);
+
+    /* Accent channel: ocean depths — the default accent reads "water" */
+    --color-accent-h: 220;
+    --color-accent-s: 0.14;
   }
 
   /* === CASCADE: Waterfall effect ===
@@ -896,6 +935,11 @@
     --duration-slow: 500ms;
     --ease-fluid: cubic-bezier(0.34, 1.56, 0.64, 1); /* Slight bounce */
     --ease-settle: cubic-bezier(0.22, 1.2, 0.36, 1);
+
+    /* Fonts: Friendly, rounded, approachable — Notion/Slack vibes */
+    --font-heading: 'Nunito', var(--font-system);
+    --font-body: 'Nunito', var(--font-system);
+    --font-display: 'Nunito', var(--font-system);
 
     /* Typography: round, friendly, slightly loose */
     --leading-normal: 1.7;
@@ -948,6 +992,11 @@
     --ease-settle: cubic-bezier(0.22, 1.4, 0.36, 1); /* Spring settle */
     /* Stagger delay for layered effect */
     --rapids-stagger: 80ms;
+
+    /* Fonts: Athletic, punchy, high-energy — Stripe/Vercel energy */
+    --font-heading: 'Syne', var(--font-system);
+    --font-body: 'Space Grotesk', var(--font-system);
+    --font-display: 'Syne', var(--font-system);
 
     /* Typography: tight, condensed, punchy */
     --leading-normal: 1.45;
@@ -1004,6 +1053,11 @@
     --duration-slow: 900ms;
     --ease-fluid: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Strong overshoot */
     --ease-settle: cubic-bezier(0.34, 1.8, 0.64, 1); /* Dramatic settle */
+
+    /* Fonts: Cinematic, dramatic, Hokusai wave */
+    --font-heading: 'Bebas Neue', var(--font-system);
+    --font-body: 'Barlow', var(--font-system);
+    --font-display: 'Bebas Neue', var(--font-system);
 
     /* Typography: bold, wide-set, commanding */
     --leading-normal: 1.5;

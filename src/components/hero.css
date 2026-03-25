@@ -214,6 +214,38 @@
 
 
   /* ========================================
+     FLOWING PRESET — Signature hero
+     Ocean breath: a very subtle blue-to-white radial glow
+     gives depth without overwhelming. Pure CSS, no images.
+     ======================================== */
+
+  :root[data-preset="flowing"] .hero,
+  :root:not([data-preset]) .hero,
+  [data-preset="flowing"] .hero {
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 50% -10%,
+        oklch(96% 0.015 230 / 0.6) 0%,
+        oklch(98.5% 0.006 230 / 0) 70%
+      ),
+      var(--color-background);
+  }
+
+  /* Dark mode: deeper ocean radial */
+  :root[data-preset="flowing"][data-theme="dark"] .hero,
+  :root:not([data-preset])[data-theme="dark"] .hero,
+  [data-preset="flowing"][data-theme="dark"] .hero {
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 50% -10%,
+        oklch(20% 0.04 230 / 0.5) 0%,
+        oklch(13% 0.025 230 / 0) 70%
+      ),
+      var(--color-background);
+  }
+
+
+  /* ========================================
      SPLIT HERO
      Content + media side by side
      ======================================== */

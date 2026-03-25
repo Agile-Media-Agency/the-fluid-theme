@@ -543,6 +543,42 @@
      Motion styles affect card appearance
      ======================================== */
 
+  /* Flowing (default): Ocean-depth shadows, gentle lift on hover */
+  :root[data-preset="flowing"] .card,
+  :root:not([data-preset]) .card,
+  [data-preset="flowing"] .card {
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform var(--duration-normal) var(--ease-settle),
+      box-shadow var(--duration-normal) var(--ease-fluid);
+  }
+  :root[data-preset="flowing"] .card:hover,
+  :root:not([data-preset]) .card:hover,
+  [data-preset="flowing"] .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  :root[data-preset="flowing"] .card[data-variant="elevated"],
+  :root:not([data-preset]) .card[data-variant="elevated"],
+  [data-preset="flowing"] .card[data-variant="elevated"] {
+    box-shadow: var(--shadow-md);
+  }
+  :root[data-preset="flowing"] .card[data-variant="elevated"]:hover,
+  :root:not([data-preset]) .card[data-variant="elevated"]:hover,
+  [data-preset="flowing"] .card[data-variant="elevated"]:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root[data-preset="flowing"] .card:hover,
+    :root:not([data-preset]) .card:hover,
+    [data-preset="flowing"] .card:hover {
+      transform: none;
+    }
+  }
+
+
   /* Still: Crisp, no-nonsense borders */
   [data-preset="still"] .card {
     border-width: 1px;

@@ -3,24 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Fluid Theme Site</title>
+  <title>Fluid Theme — HTML Starter</title>
+
+  <!-- Google Fonts: Outfit + DM Sans (flowing default) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap">
 
   <!-- Fluid Theme — CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid.min.css">
+
+  <style>
+    /* Font tokens for flowing (set here since we're using CDN, not Jekyll) */
+    :root, [data-preset="flowing"], :root:not([data-preset]) {
+      --font-heading: 'Outfit', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Outfit', system-ui, sans-serif;
+    }
+
+    /* Live preset switcher */
+    .preset-switcher {
+      position: fixed;
+      inset-block-end: var(--space-6);
+      inset-inline-end: var(--space-6);
+      z-index: 100;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3) var(--space-4);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .preset-switcher__label {
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .preset-switcher__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+    }
+    .preset-switcher button {
+      font-size: var(--font-size-xs);
+      padding-block: 0.2rem;
+      padding-inline: var(--space-2);
+      min-block-size: auto;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Navigation -->
   <header class="nav" data-sticky="true">
     <nav class="nav__container" aria-label="Main navigation">
-      <a href="/" class="nav__brand">My Site</a>
+      <a href="/" class="nav__brand">Fluid Theme</a>
       <ul class="nav__links" role="list">
         <li><a href="#features" class="nav__link">Features</a></li>
-        <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li><a href="#components" class="nav__link">Components</a></li>
+        <li><a href="#start" class="nav__link">Get Started</a></li>
       </ul>
       <div class="nav__actions">
-        <a href="#contact" class="button" data-size="sm">Get Started</a>
+        <a href="#start" class="button" data-variant="outline" data-size="sm">Docs</a>
+        <a href="#start" class="button" data-size="sm">Get Started</a>
       </div>
     </nav>
   </header>
@@ -30,114 +79,208 @@
     <!-- Hero -->
     <section class="hero" data-layout="center" data-padding="xl">
       <div class="hero__content" data-layout="stack" data-gap="md">
-        <span style="font-size: var(--font-size-sm); color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;">Welcome</span>
-        <h1 class="hero__headline">Built with Fluid Theme</h1>
-        <p class="hero__subheadline" style="max-inline-size: 55ch; margin-inline: auto;">
-          A modern, semantic CSS framework built on physics principles.
-          No build step. One CSS file. Ship faster.
+        <span style="font-size: var(--font-size-sm); color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;">@fluid-theme/core</span>
+        <h1 class="hero__headline">Ship Beautiful Interfaces.<br>Without the Boilerplate.</h1>
+        <p class="hero__subheadline" style="max-inline-size: 52ch; margin-inline: auto;">
+          One CSS file. Semantic HTML. Runtime theming via data attributes.
+          No build step, no utility classes, no framework lock-in.
         </p>
         <div class="hero__actions" style="justify-content: center;">
-          <a href="#features" class="button" data-size="lg">Explore Features</a>
-          <a href="https://github.com/Agile-Media-Agency/the-fluid-theme" class="button" data-variant="outline" data-size="lg">View on GitHub</a>
+          <a href="#start" class="button" data-size="lg">Start Building</a>
+          <a href="#features" class="button" data-variant="outline" data-size="lg">See Features</a>
+        </div>
+        <div style="display: flex; gap: var(--space-6); justify-content: center; flex-wrap: wrap; padding-block-start: var(--space-4);">
+          <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">✓ Zero dependencies</span>
+          <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">✓ Works in any framework</span>
+          <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">✓ Accessible by default</span>
+          <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">✓ 7 visual presets</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section" data-padding="lg" data-theme="subtle">
+      <div data-layout="center" data-width="wide">
+        <div class="grid" style="--grid-min: 180px; gap: var(--space-6);">
+          <div style="text-align: center; padding: var(--space-4);">
+            <div style="font-size: var(--font-size-4xl); font-weight: 700; color: var(--accent); line-height: 1;">1</div>
+            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-1);">CSS file to import</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <div style="font-size: var(--font-size-4xl); font-weight: 700; color: var(--accent); line-height: 1;">23</div>
+            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-1);">Ready components</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <div style="font-size: var(--font-size-4xl); font-weight: 700; color: var(--accent); line-height: 1;">7</div>
+            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-1);">Visual presets</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <div style="font-size: var(--font-size-4xl); font-weight: 700; color: var(--accent); line-height: 1;">10</div>
+            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-1);">Color palettes</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <div style="font-size: var(--font-size-4xl); font-weight: 700; color: var(--accent); line-height: 1;">0</div>
+            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-block-start: var(--space-1);">Build steps needed</div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Features -->
-    <section id="features" class="section" data-padding="xl" data-theme="subtle">
+    <section id="features" class="section" data-padding="xl">
       <div data-layout="center" data-width="wide">
-        <h2 style="text-align: center; margin-block-end: var(--space-3);">Why Fluid Theme?</h2>
-        <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-10); max-inline-size: 50ch; margin-inline: auto;">
-          Modern CSS that works with your HTML, not against it.
-        </p>
+        <div style="text-align: center; margin-block-end: var(--space-12);">
+          <h2 style="margin-block-end: var(--space-3);">Built Different</h2>
+          <p style="color: var(--color-text-muted); max-inline-size: 48ch; margin-inline: auto;">
+            Fluid Theme is pure CSS with a clear philosophy: semantic HTML should be enough.
+          </p>
+        </div>
 
-        <div class="grid" style="--grid-min: 280px; gap: var(--space-6);">
+        <div class="grid" style="--grid-min: 300px; gap: var(--space-6);">
           <article class="card" data-variant="elevated">
             <div class="card__body">
-              <h3 style="margin-block-end: var(--space-2);">Semantic HTML</h3>
-              <p style="color: var(--color-text-muted);">Use meaningful elements. No utility class soup. Your HTML stays readable and accessible.</p>
+              <div style="font-size: 1.75rem; margin-block-end: var(--space-3);" aria-hidden="true">⬡</div>
+              <h3 style="margin-block-end: var(--space-2);">Semantic HTML First</h3>
+              <p style="color: var(--color-text-muted);">Write <code>&lt;button data-variant="outline"&gt;</code>, not <code>&lt;div class="btn btn-outline-primary"&gt;</code>. Your markup stays clean, accessible, and readable.</p>
             </div>
           </article>
 
           <article class="card" data-variant="elevated">
             <div class="card__body">
-              <h3 style="margin-block-end: var(--space-2);">No Build Step</h3>
-              <p style="color: var(--color-text-muted);">Link one CSS file and go. Works directly in any browser without a bundler or toolchain.</p>
+              <div style="font-size: 1.75rem; margin-block-end: var(--space-3);" aria-hidden="true">◈</div>
+              <h3 style="margin-block-end: var(--space-2);">Runtime Theming</h3>
+              <p style="color: var(--color-text-muted);">Switch the entire design personality with one HTML attribute. No JavaScript required, no CSS rebuild — the browser handles it all.</p>
             </div>
           </article>
 
           <article class="card" data-variant="elevated">
             <div class="card__body">
-              <h3 style="margin-block-end: var(--space-2);">Physics-Based Motion</h3>
-              <p style="color: var(--color-text-muted);">7 motion presets derived from fluid dynamics. Animations that feel natural, not mechanical.</p>
+              <div style="font-size: 1.75rem; margin-block-end: var(--space-3);" aria-hidden="true">⬟</div>
+              <h3 style="margin-block-end: var(--space-2);">Complete Presets</h3>
+              <p style="color: var(--color-text-muted);">Each preset changes fonts, radius, shadows, spacing, background tints, and dark mode surfaces together. A true design system, not a color swap.</p>
             </div>
           </article>
 
           <article class="card" data-variant="elevated">
             <div class="card__body">
-              <h3 style="margin-block-end: var(--space-2);">Dark Mode Built-In</h3>
-              <p style="color: var(--color-text-muted);">Toggle dark/light with a single attribute. Deep palette colors, not just inverted blacks.</p>
+              <div style="font-size: 1.75rem; margin-block-end: var(--space-3);" aria-hidden="true">◎</div>
+              <h3 style="margin-block-end: var(--space-2);">Framework Agnostic</h3>
+              <p style="color: var(--color-text-muted);">React, Vue, Svelte, or plain HTML — import one CSS file and everything works. Components are HTML patterns, not framework components.</p>
             </div>
           </article>
 
           <article class="card" data-variant="elevated">
             <div class="card__body">
-              <h3 style="margin-block-end: var(--space-2);">10 Color Palettes</h3>
-              <p style="color: var(--color-text-muted);">Swap the entire look with one attribute. Each palette includes 6 accent color options.</p>
+              <div style="font-size: 1.75rem; margin-block-end: var(--space-3);" aria-hidden="true">◉</div>
+              <h3 style="margin-block-end: var(--space-2);">Accessibility Built-In</h3>
+              <p style="color: var(--color-text-muted);">Focus-visible, ARIA-ready, <code>prefers-reduced-motion</code> respected globally. Designed with care for users with disabilities.</p>
             </div>
           </article>
 
           <article class="card" data-variant="elevated">
             <div class="card__body">
-              <h3 style="margin-block-end: var(--space-2);">Accessible by Default</h3>
-              <p style="color: var(--color-text-muted);">Focus-visible, ARIA-ready components. Native HTML elements — no JS required for core UI.</p>
+              <div style="font-size: 1.75rem; margin-block-end: var(--space-3);" aria-hidden="true">◇</div>
+              <h3 style="margin-block-end: var(--space-2);">CSS Custom Properties</h3>
+              <p style="color: var(--color-text-muted);">Every design value is a token: <code>var(--space-4)</code>, <code>var(--radius-card)</code>. Override anything, at any scope, without touching the source.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="section" data-padding="xl">
-      <div data-layout="center" data-width="narrow">
-        <h2 style="text-align: center; margin-block-end: var(--space-6);">About This Starter</h2>
-        <p style="color: var(--color-text-muted); margin-block-end: var(--space-4);">
-          This is the HTML starter for <strong>@fluid-theme/core</strong>. It demonstrates the core patterns:
-          semantic HTML, data attributes for variants, CSS custom properties for theming.
-        </p>
-        <p style="color: var(--color-text-muted);">
-          Customize the theme by changing attributes on the <code>&lt;html&gt;</code> element:
-          <code>data-theme</code>, <code>data-preset</code>, <code>data-palette</code>, <code>data-accent</code>.
-        </p>
+    <!-- Components showcase -->
+    <section id="components" class="section" data-padding="xl" data-theme="subtle">
+      <div data-layout="center" data-width="wide">
+        <div style="text-align: center; margin-block-end: var(--space-12);">
+          <h2 style="margin-block-end: var(--space-3);">Everything You Need</h2>
+          <p style="color: var(--color-text-muted); max-inline-size: 46ch; margin-inline: auto;">
+            23 components out of the box. All styled, all responsive, all accessible.
+          </p>
+        </div>
+
+        <!-- Buttons row -->
+        <div class="card" style="margin-block-end: var(--space-6);">
+          <div class="card__body">
+            <p style="font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-muted); margin-block-end: var(--space-4); text-transform: uppercase; letter-spacing: 0.06em;">Buttons</p>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center;">
+              <button>Primary</button>
+              <button data-variant="secondary">Secondary</button>
+              <button data-variant="outline">Outline</button>
+              <button data-variant="ghost">Ghost</button>
+              <button data-variant="danger">Delete</button>
+              <button disabled>Disabled</button>
+              <button data-size="sm">Small</button>
+              <button data-size="lg">Large</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerts row -->
+        <div style="display: grid; gap: var(--space-3); margin-block-end: var(--space-6);">
+          <div class="alert" data-variant="info" role="status"><strong>Info:</strong> Changes saved to your account.</div>
+          <div class="alert" data-variant="success" role="status"><strong>Success:</strong> Your project has been deployed.</div>
+          <div class="alert" data-variant="warning" role="alert"><strong>Warning:</strong> This action cannot be undone.</div>
+          <div class="alert" data-variant="error" role="alert"><strong>Error:</strong> Failed to connect. Check your network.</div>
+        </div>
+
+        <!-- Badges + chips -->
+        <div class="card">
+          <div class="card__body">
+            <p style="font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-muted); margin-block-end: var(--space-4); text-transform: uppercase; letter-spacing: 0.06em;">Badges & Chips</p>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center;">
+              <span class="badge">Default</span>
+              <span class="badge" data-variant="success">Live</span>
+              <span class="badge" data-variant="warning">Beta</span>
+              <span class="badge" data-variant="error">Deprecated</span>
+              <span class="badge" data-variant="info">New</span>
+              <span class="chip">React</span>
+              <span class="chip">Vue</span>
+              <span class="chip">Svelte</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Contact / CTA -->
-    <section id="contact" class="section" data-padding="xl" data-theme="subtle">
+    <!-- Quick start -->
+    <section id="start" class="section" data-padding="xl">
       <div data-layout="center" data-width="narrow">
-        <h2 style="text-align: center; margin-block-end: var(--space-3);">Get in Touch</h2>
-        <p style="text-align: center; color: var(--color-text-muted); margin-block-end: var(--space-8);">
-          Have a question or want to work together?
-        </p>
+        <div style="text-align: center; margin-block-end: var(--space-10);">
+          <h2 style="margin-block-end: var(--space-3);">Up in 30 Seconds</h2>
+          <p style="color: var(--color-text-muted);">Three ways to use Fluid Theme:</p>
+        </div>
 
-        <form class="form" novalidate>
-          <div class="form__group">
-            <label class="form__label" for="name">Your Name</label>
-            <input class="form__input" type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith" required>
+        <div style="display: grid; gap: var(--space-6);">
+          <div class="card">
+            <div class="card__body">
+              <h3 style="margin-block-end: var(--space-2); font-size: var(--font-size-lg);">CDN — Zero Setup</h3>
+              <pre style="background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-4); overflow-x: auto; font-size: var(--font-size-sm);"><code>&lt;link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fluid-theme/core/dist/fluid.min.css"&gt;</code></pre>
+            </div>
           </div>
 
-          <div class="form__group">
-            <label class="form__label" for="email">Email Address</label>
-            <input class="form__input" type="email" id="email" name="email" autocomplete="email" placeholder="jane@example.com" required>
+          <div class="card">
+            <div class="card__body">
+              <h3 style="margin-block-end: var(--space-2); font-size: var(--font-size-lg);">npm — Modern Workflow</h3>
+              <pre style="background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-4); overflow-x: auto; font-size: var(--font-size-sm);"><code>npm install @fluid-theme/core
+
+// In your entry file:
+import '@fluid-theme/core';</code></pre>
+            </div>
           </div>
 
-          <div class="form__group">
-            <label class="form__label" for="message">Message</label>
-            <textarea class="form__input" id="message" name="message" rows="4" placeholder="Tell me what you're working on..." required></textarea>
+          <div class="card">
+            <div class="card__body">
+              <h3 style="margin-block-end: var(--space-2); font-size: var(--font-size-lg);">Configure Your Preset</h3>
+              <pre style="background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-4); overflow-x: auto; font-size: var(--font-size-sm);"><code>&lt;html
+  data-theme="light"       &lt;!-- light | dark | auto --&gt;
+  data-preset="flowing"    &lt;!-- still | serene | stream | flowing | cascade | rapids | tsunami --&gt;
+  data-palette="fluid"     &lt;!-- fluid | morandi | bold | pastel | earth | mono | 80s | matrix | subtle | tsunami --&gt;
+  data-accent="1"          &lt;!-- 1 – 6 --&gt;
+&gt;</code></pre>
+            </div>
           </div>
-
-          <button type="submit" class="button" data-variant="primary" style="inline-size: 100%;">Send Message</button>
-        </form>
+        </div>
       </div>
     </section>
 
@@ -147,14 +290,14 @@
   <footer class="footer" data-theme="dark">
     <div class="footer__container">
       <div class="footer__brand">
-        <span class="footer__logo">My Site</span>
-        <p class="footer__tagline">Built with Fluid Theme</p>
+        <span class="footer__logo">Fluid Theme</span>
+        <p class="footer__tagline">@fluid-theme/core HTML starter</p>
       </div>
       <nav class="footer__nav" aria-label="Footer navigation">
         <ul class="footer__links" role="list">
-          <li><a href="#features" class="footer__link">Features</a></li>
-          <li><a href="#about" class="footer__link">About</a></li>
-          <li><a href="#contact" class="footer__link">Contact</a></li>
+          <li><a href="https://thefluidtheme.com" class="footer__link">Docs</a></li>
+          <li><a href="https://github.com/Agile-Media-Agency/the-fluid-theme" class="footer__link">GitHub</a></li>
+          <li><a href="https://www.npmjs.com/package/@fluid-theme/core" class="footer__link">npm</a></li>
         </ul>
       </nav>
     </div>
@@ -164,6 +307,29 @@
       </p>
     </div>
   </footer>
+
+  <!-- Live preset switcher -->
+  <div class="preset-switcher" role="region" aria-label="Preset switcher">
+    <span class="preset-switcher__label">Preset</span>
+    <div class="preset-switcher__buttons" role="group" aria-label="Choose visual preset">
+      <button data-variant="primary" data-size="xs" onclick="setPreset('flowing')" id="ps-flowing">flowing</button>
+      <button data-variant="outline" data-size="xs" onclick="setPreset('still')" id="ps-still">still</button>
+      <button data-variant="outline" data-size="xs" onclick="setPreset('serene')" id="ps-serene">serene</button>
+      <button data-variant="outline" data-size="xs" onclick="setPreset('stream')" id="ps-stream">stream</button>
+      <button data-variant="outline" data-size="xs" onclick="setPreset('cascade')" id="ps-cascade">cascade</button>
+      <button data-variant="outline" data-size="xs" onclick="setPreset('rapids')" id="ps-rapids">rapids</button>
+      <button data-variant="outline" data-size="xs" onclick="setPreset('tsunami')" id="ps-tsunami">tsunami</button>
+    </div>
+  </div>
+
+  <script>
+    function setPreset(p) {
+      document.documentElement.setAttribute('data-preset', p);
+      document.querySelectorAll('.preset-switcher button').forEach(btn => {
+        btn.setAttribute('data-variant', btn.id === 'ps-' + p ? 'primary' : 'outline');
+      });
+    }
+  </script>
 
 </body>
 </html>
