@@ -678,6 +678,8 @@
       transform: none;
     }
 
+    [data-preset="stream"] .card:hover,
+    [data-preset="stream"] .card[data-variant="elevated"]:hover,
     [data-preset="cascade"] .card:hover,
     [data-preset="rapids"] .card:hover,
     [data-preset="rapids"] .card:active,

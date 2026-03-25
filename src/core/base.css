@@ -791,6 +791,28 @@
     text-transform: uppercase;
   }
 
+  /* Flowing: Geometric confidence — Outfit at its best */
+  :root[data-preset="flowing"] h1,
+  :root:not([data-preset]) h1,
+  [data-preset="flowing"] h1 {
+    font-size: clamp(var(--font-size-3xl), 1rem + 4vw, var(--font-size-5xl));
+    line-height: 1.1;
+  }
+
+  /* Stream: Clean, wide heading — Plus Jakarta Sans optimized */
+  [data-preset="stream"] h1,
+  [data-preset="stream"] h2 {
+    letter-spacing: -0.02em;
+  }
+
+  /* Cascade: Friendly, rounded — Nunito balanced weight */
+  [data-preset="cascade"] h1,
+  [data-preset="cascade"] h2,
+  [data-preset="cascade"] h3 {
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.01em;
+  }
+
   /* Serene: Elegant, classical typography */
   [data-preset="serene"] h1,
   [data-preset="serene"] h2 {
