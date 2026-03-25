@@ -213,6 +213,30 @@
     box-shadow: var(--shadow-lg);
   }
 
+  /* Serene: warm cream frosted glass popover */
+  [data-preset="serene"] .popover__content {
+    backdrop-filter: blur(10px) saturate(1.2);
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    background-color: oklch(from var(--color-surface) l c h / 0.94);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Stream: crisp glass popover */
+  [data-preset="stream"] .popover__content {
+    backdrop-filter: blur(10px) saturate(1.3);
+    -webkit-backdrop-filter: blur(10px) saturate(1.3);
+    background-color: oklch(from var(--color-surface) l c h / 0.92);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Cascade: warm bubbly popover */
+  [data-preset="cascade"] .popover__content {
+    backdrop-filter: blur(12px) saturate(1.3);
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+    background-color: oklch(from var(--color-surface) l c h / 0.92);
+    box-shadow: var(--shadow-md);
+  }
+
   /* Still: no animation */
   [data-preset="still"] [data-tooltip]::after {
     transition: none;

@@ -301,9 +301,13 @@
     transition: none;
   }
 
-  /* Serene: extra rounded */
+  /* Serene: warm cream frosted glass, pillowy */
   [data-preset="serene"] .dropdown__menu {
+    backdrop-filter: blur(10px) saturate(1.2);
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    background-color: oklch(from var(--color-surface) l c h / 0.94);
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
   }
 
   [data-preset="serene"] .dropdown__item {

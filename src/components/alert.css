@@ -403,6 +403,28 @@
     box-shadow: var(--shadow-md);
   }
 
+  /* Serene: whisper-soft toast — pillowy and calm */
+  [data-preset="serene"] .toast {
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-xl);
+  }
+
+  [data-preset="serene"] .alert {
+    border-radius: var(--radius-xl);
+    border-inline-start-width: 2px;
+  }
+
+  /* Cascade: friendly, rounded toast */
+  [data-preset="cascade"] .toast {
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Stream: clean, precise toast */
+  [data-preset="stream"] .toast {
+    box-shadow: var(--shadow-sm);
+  }
+
   /* Still: no animations */
   [data-preset="still"] .toast {
     animation: none;
