@@ -2,7 +2,7 @@
 
 ## Current Status: Phase 5 — Distribution & Preset Polish
 
-**Version**: 0.6.0
+**Version**: 0.7.0
 **Last Updated**: March 24, 2026
 
 ### Design Philosophy
@@ -166,4 +166,4 @@ The framework embodies physics-based motion derived from fluid dynamics — Reyn
 
 **See also**: [FRAMEWORK_READINESS.md](FRAMEWORK_READINESS.md) | [QUICK_CHECKLIST.md](QUICK_CHECKLIST.md)
 
-*Last Updated: March 24, 2026 (v0.4.4)*
+*Last Updated: March 24, 2026 (v0.7.0)*

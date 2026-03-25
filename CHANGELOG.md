@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-03-24
+
+### Added
+
+- **Preset signature hero gradients** — Every preset now has a unique hero background: flowing (ocean radial), serene (warm cream radial), stream (cool-white sky), cascade (accent waterfall mist), rapids (diagonal energy), tsunami (deep ocean vertical)
+- **Preset sticky nav styles** — All 5 non-flowing presets now have distinct sticky nav treatments: serene (warm cream glass), stream (crisp glass), cascade (friendly glass), rapids (hard neo-brutalist offset shadow), tsunami (dramatic deep shadow)
+- **Preset button interactions** — Serene, stream, cascade, and rapids each have signature button hover/active physics: serene (shadow expansion, no lift), stream (clean 1px lift), cascade (bouncy spring), rapids (hard offset translate)
+- **Stream card hover** — Clean minimal lift (-1px) with crisp shadow
+- **Flowing accordion** — Rounded xl corners + ocean shadow-sm for separated/bordered variants
+- **Flowing modal** — Enhanced backdrop blur (8px, 1.5× saturation) for frosted ocean depth
+- **Flowing toast/alert** — Elevated shadow-md
+- **Flowing dropdown** — Frosted glass menu with backdrop-filter + semi-transparent surface
+- **Flowing popover** — Frosted glass with backdrop-filter + semi-transparent surface
+- **Flowing table** — Rounded xl corners + ocean shadow-sm
+
+---
+
 ## [0.6.0] - 2026-03-24
 
 ### BREAKING CHANGES
