@@ -281,9 +281,22 @@
     border-radius: 0;
   }
 
-  /* Serene: soft rounded */
+  /* Serene: soft rounded with whisper shadow */
   [data-preset="serene"] .table-wrap {
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Stream: clean, precise */
+  [data-preset="stream"] .table-wrap {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Cascade: friendly rounded */
+  [data-preset="cascade"] .table-wrap {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
   }
 
   /* Rapids: hard offset shadow */

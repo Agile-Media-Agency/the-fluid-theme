@@ -230,6 +230,13 @@
     border-radius: var(--radius-xl);
   }
 
+  /* Stream: clean, medium-rounded */
+  [data-preset="stream"] .accordion[data-variant="separated"] .accordion__item,
+  [data-preset="stream"] .accordion[data-variant="bordered"] .accordion__item {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+  }
+
   /* Cascade: bouncy, bubbly */
   [data-preset="cascade"] .accordion[data-variant="separated"] .accordion__item,
   [data-preset="cascade"] .accordion[data-variant="bordered"] .accordion__item {

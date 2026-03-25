@@ -262,6 +262,14 @@
     background: var(--color-surface);
   }
 
+  /* Serene: very slow, meditative spinner (uses serene --duration-slow: 1500ms automatically) */
+  /* No override needed — serene tokens set all durations to be contemplatively slow */
+
+  /* Cascade: rounded skeleton cards */
+  [data-preset="cascade"] .skeleton-card {
+    border-radius: var(--radius-xl);
+  }
+
   /* Tsunami: asymmetric skeleton cards */
   [data-preset="tsunami"] .skeleton-card {
     border-radius: var(--radius-asymmetric, 0 24px 0 0);
