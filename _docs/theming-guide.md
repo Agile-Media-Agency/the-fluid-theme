@@ -37,6 +37,20 @@ Presets change the entire visual personality of the framework — not just anima
 - **rapids** — Bold and athletic. Compact spacing, hard shadows. High-energy.
 - **tsunami** — Cinematic. Asymmetric elements, dramatic heavy shadows. Maximum impact.
 
+### Preset Component Signatures
+
+Each preset has signature behaviors built into key components — no extra markup needed:
+
+| Component | Flowing | Serene | Stream | Cascade | Rapids | Tsunami |
+|-----------|---------|--------|--------|---------|--------|---------|
+| **Hero background** | Ocean radial gradient | Warm cream radial | Cool-white sky | Accent waterfall mist | Diagonal accent | Deep ocean vertical |
+| **Sticky nav** | Frosted ocean glass | Warm cream glass | Crisp glass | Friendly glass | Hard offset shadow | Dramatic deep shadow |
+| **Primary button** | Gradient + hover lift | Shadow expansion | Minimal lift | Bouncy spring | Offset translate | Wave crash |
+| **Card hover** | 2px lift + ocean shadow | Shadow only | 1px lift | 4px bouncy lift | Offset translate | 8px lift + 3D depth |
+| **Dropdown/Popover** | Frosted glass | Rounded xl | Rounded xl | Rounded xl | Hard shadow | Asymmetric corners |
+| **Accordion** | Rounded xl + shadow | Rounded xl | (tokens) | Rounded xl | Hard shadow | Asymmetric corners |
+| **Modal backdrop** | Deep blur + saturation | (default) | (default) | (default) | (default) | (default) |
+
 ### Dark Mode Surface Colors
 
 Each preset provides its own dark mode surface colors. Dark mode uses deep palette colors, not black:
