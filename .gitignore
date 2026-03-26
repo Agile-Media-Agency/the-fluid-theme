@@ -36,3 +36,4 @@ coverage/
 .agent/
 .claude/
 .unlighthouse/
+_terminal-sesions/
